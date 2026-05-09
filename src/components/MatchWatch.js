@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom } from "../firebase";
 import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
+import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function MatchWatch() {
   const [screen, setScreen] = useState("start");
@@ -11,6 +12,7 @@ export default function MatchWatch() {
   const [role, setRole] = useState(null); // 'host' or 'guest'
   const [roomData, setRoomData] = useState(null);
   const [cursor, setCursor] = useState(0);
+  const [showDetails, setShowDetails] = useState(false);
 
   // Подписка на изменения в комнате
   useEffect(() => {
@@ -143,19 +145,29 @@ export default function MatchWatch() {
       )}
 
       {screen === "match" && roomData?.match && (
-        <motion.div className="matchwatch-form" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-          <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
-          <div className="match-movie" style={{ textAlign: "center" }}>
-            <img 
-              src={movies.find(m => m.id === roomData.match)?.poster} 
-              alt="Match" 
-              style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto" }} 
+        <>
+          <motion.div className="matchwatch-form" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+            <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
+            <div className="match-movie" style={{ textAlign: "center" }}>
+              <img 
+                src={movies.find(m => m.id === roomData.match)?.poster} 
+                alt="Match" 
+                style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto", cursor: "pointer" }} 
+                onClick={() => setShowDetails(true)}
+              />
+              <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === roomData.match)?.titleRu || movies.find(m => m.id === roomData.match)?.title}</h2>
+              <p>Приятного просмотра!</p>
+            </div>
+            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(true)}>Подробнее о фильме</button>
+            <button className="btn-primary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Завершить</button>
+          </motion.div>
+          {showDetails && (
+            <DetailedMovieModal 
+              movie={movies.find(m => m.id === roomData.match)} 
+              onClose={() => setShowDetails(false)} 
             />
-            <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === roomData.match)?.titleRu || movies.find(m => m.id === roomData.match)?.title}</h2>
-            <p>Приятного просмотра!</p>
-          </div>
-          <button className="btn-primary" style={{ width: "100%", marginTop: "20px" }} onClick={() => setScreen("start")}>Завершить</button>
-        </motion.div>
+          )}
+        </>
       )}
     </div>
   );
