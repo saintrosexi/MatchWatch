@@ -107,7 +107,7 @@ export default function App() {
     if (screen === "mood") {
       return <MoodPicker />;
     }
-    if (screen === "matchwwatch") {
+    if (screen === "matchwatch") {
       return <MatchWatch />;
     }
     return (

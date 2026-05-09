@@ -49,43 +49,4 @@
 // /roomMatches/{roomId}
 //   - {matchId}: { movieId, users: [userId1, userId2], timestamp }
 
-// Placeholder functions (uncomment and use when Firebase is configured)
-
-export const saveLike = async (userId, movieId) => {
-  console.log(`Like saved: user ${userId} -> movie ${movieId}`);
-  // Implement when Firebase is ready
-  // return set(ref(database, `userLikes/${userId}/${movieId}`), true);
-};
-
-export const getLikes = async (userId) => {
-  console.log(`Getting likes for user ${userId}`);
-  return {};
-  // Implement when Firebase is ready
-  // return get(ref(database, `userLikes/${userId}`));
-};
-
-export const createMatchRoom = async (userId) => {
-  const roomId = Math.random().toString(36).substring(7).toUpperCase();
-  console.log(`Match room created: ${roomId}`);
-  return roomId;
-  // Implement when Firebase is ready
-};
-
-export const joinMatchRoom = async (roomId, userId) => {
-  console.log(`User ${userId} joined room ${roomId}`);
-  // Implement when Firebase is ready
-};
-
-export const checkForMatches = async (roomId, user1Id, user2Id) => {
-  console.log(`Checking matches between ${user1Id} and ${user2Id}`);
-  return [];
-  // Implement when Firebase is ready
-};
-
-export const subscribeToRoomMatches = (roomId, callback) => {
-  console.log(`Subscribed to matches in room ${roomId}`);
-  // Implement when Firebase is ready
-  return () => {
-    // Unsubscribe function
-  };
-};
+// Placeholder functions will be implemented when Firebase is configured

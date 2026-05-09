@@ -961,7 +961,7 @@ html, body {
 }
 
 /* MatchWatch */
-.matchwwatch-container {
+.matchwatch-container {
   width: 100%;
   max-width: 1200px;
   padding: 40px 20px;
@@ -971,35 +971,35 @@ html, body {
   margin: 0 auto;
 }
 
-.matchwwatch-start,
-.matchwwatch-form,
-.matchwwatch-swiping {
+.matchwatch-start,
+.matchwatch-form,
+.matchwatch-swiping {
   text-align: center;
   width: 100%;
   max-width: 500px;
 }
 
-.matchwwatch-title {
+.matchwatch-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin: 0 0 16px 0;
   color: white;
 }
 
-.matchwwatch-subtitle {
+.matchwatch-subtitle {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
   margin: 0 0 40px 0;
   line-height: 1.5;
 }
 
-.matchwwatch-buttons {
+.matchwatch-buttons {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.btn-matchwwatch {
+.btn-matchwatch {
   padding: 16px 32px;
   font-size: 1.05rem;
   font-weight: 600;
@@ -1031,7 +1031,7 @@ html, body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.matchwwatch-form h2 {
+.matchwatch-form h2 {
   font-size: 2rem;
   margin: 0 0 30px 0;
   color: white;

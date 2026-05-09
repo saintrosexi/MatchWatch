@@ -20,8 +20,8 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
           </li>
           <li>
             <button
-              className={`nav-tab ${currentScreen === "matchwwatch" ? "active" : ""}`}
-              onClick={() => onTabClick("matchwwatch")}
+              className={`nav-tab ${currentScreen === "matchwatch" ? "active" : ""}`}
+              onClick={() => onTabClick("matchwatch")}
             >
               💑 MatchWatch
             </button>

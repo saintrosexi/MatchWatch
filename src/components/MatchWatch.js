@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { createMatchRoom } from "../firebase";
 
 export default function MatchWatch() {
   const [screen, setScreen] = useState("start"); // start, create, join, swiping
@@ -13,7 +12,7 @@ export default function MatchWatch() {
       alert("Пожалуйста, введите ваше имя");
       return;
     }
-    const code = await createMatchRoom(userName);
+    const code = Math.random().toString(36).substring(2, 8).toUpperCase();
     setRoomCode(code);
     setScreen("swiping");
   };
@@ -27,31 +26,31 @@ export default function MatchWatch() {
   };
 
   return (
-    <div className="matchwwatch-container">
+    <div className="matchwatch-container">
       {screen === "start" && (
         <motion.div
-          className="matchwwatch-start"
+          className="matchwatch-start"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
         >
-          <h2 className="matchwwatch-title">
+          <h2 className="matchwatch-title">
             <span style={{ fontSize: "3rem" }}>❤️</span>
             <br />
             MatchWatch
           </h2>
-          <p className="matchwwatch-subtitle">
+          <p className="matchwatch-subtitle">
             Найдите фильм, который нравится вам обоим!
           </p>
 
-          <div className="matchwwatch-buttons">
+          <div className="matchwatch-buttons">
             <button
-              className="btn-matchwwatch btn-create"
+              className="btn-matchwatch btn-create"
               onClick={() => setScreen("create")}
             >
               🎬 Создать комнату
             </button>
             <button
-              className="btn-matchwwatch btn-join"
+              className="btn-matchwatch btn-join"
               onClick={() => setScreen("join")}
             >
               🔗 Присоединиться к комнате
@@ -62,7 +61,7 @@ export default function MatchWatch() {
 
       {screen === "create" && (
         <motion.div
-          className="matchwwatch-form"
+          className="matchwatch-form"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
         >
@@ -91,7 +90,7 @@ export default function MatchWatch() {
 
       {screen === "join" && (
         <motion.div
-          className="matchwwatch-form"
+          className="matchwatch-form"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
         >
@@ -131,7 +130,7 @@ export default function MatchWatch() {
 
       {screen === "swiping" && (
         <motion.div
-          className="matchwwatch-swiping"
+          className="matchwatch-swiping"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
