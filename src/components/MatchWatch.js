@@ -14,10 +14,15 @@ export default function MatchWatch() {
   const [cursor, setCursor] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
+  const [matchHistory, setMatchHistory] = useState(() => {
+    const saved = localStorage.getItem("matchwatch_history");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [copied, setCopied] = useState(false);
 
   // Подписка на изменения в комнате
   useEffect(() => {
-    if (!roomCode || screen === "start" || screen === "create" || screen === "join") return;
+    if (!roomCode || screen === "start" || screen === "create" || screen === "join" || screen === "history") return;
     
     const unsubscribe = subscribeToRoom(roomCode, (data) => {
       if (data) {
@@ -27,11 +32,28 @@ export default function MatchWatch() {
         }
         if (data.match && screen !== 'match') {
           setScreen('match');
+          
+          // Сохраняем в историю
+          const partnerName = role === 'host' ? data.guestName : data.hostName;
+          const newMatch = {
+            id: Date.now(),
+            movieId: data.match,
+            partner: partnerName || 'Неизвестный',
+            date: new Date().toLocaleDateString()
+          };
+          
+          setMatchHistory(prev => {
+            // Проверяем, нет ли уже такого совпадения в этой сессии (по roomCode или времени)
+            if (prev.some(m => m.movieId === data.match && m.partner === partnerName)) return prev;
+            const updated = [newMatch, ...prev];
+            localStorage.setItem("matchwatch_history", JSON.stringify(updated));
+            return updated;
+          });
         }
       }
     });
     return () => unsubscribe();
-  }, [roomCode, screen]);
+  }, [roomCode, screen, role]);
 
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите ваше имя");
@@ -86,6 +108,7 @@ export default function MatchWatch() {
           <div className="matchwatch-buttons">
             <button className="btn-matchwatch btn-create" onClick={() => setScreen("create")}>🎬 Создать комнату</button>
             <button className="btn-matchwatch btn-join" onClick={() => setScreen("join")}>🔗 Присоединиться</button>
+            <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)" }}>📜 Вы выбирали</button>
           </div>
         </motion.div>
       )}
@@ -124,7 +147,25 @@ export default function MatchWatch() {
           <h2>Ожидание партнера...</h2>
           <div className="room-info" style={{ textAlign: "center", margin: "20px 0" }}>
             <p>Отправьте этот код другу:</p>
-            <h1 style={{ fontSize: "3rem", color: "#ff8a50", letterSpacing: "5px" }}>{roomCode}</h1>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", margin: "10px 0" }}>
+              <h1 style={{ fontSize: "3rem", color: "#ff8a50", letterSpacing: "5px", margin: 0 }}>{roomCode}</h1>
+              <button 
+                onClick={() => {
+                  navigator.clipboard.writeText(roomCode);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                style={{ 
+                  background: "rgba(255,255,255,0.1)", border: "none", color: "white", 
+                  padding: "12px", borderRadius: "50%", cursor: "pointer", display: "flex",
+                  alignItems: "center", justifyContent: "center", width: "48px", height: "48px"
+                }}
+                title="Скопировать"
+              >
+                {copied ? "✅" : "📋"}
+              </button>
+            </div>
+            {copied && <p style={{ color: "#4caf50", fontSize: "0.9rem", margin: "5px 0" }}>Код скопирован!</p>}
           </div>
           <button className="btn-secondary" onClick={() => setScreen("start")}>Отмена</button>
         </motion.div>
@@ -216,6 +257,39 @@ export default function MatchWatch() {
             />
           )}
         </>
+      )}
+
+      {screen === "history" && (
+        <motion.div className="matchwatch-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Вы выбирали</h2>
+          {matchHistory.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#aaa" }}>История совпадений пуста.</p>
+          ) : (
+            <div className="history-list" style={{ display: "flex", flexDirection: "column", gap: "10px", maxHeight: "400px", overflowY: "auto", paddingRight: "5px" }}>
+              {matchHistory.map(item => {
+                const m = movies.find(x => x.id === item.movieId);
+                if (!m) return null;
+                return (
+                  <div key={item.id} className="history-item" style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.05)", padding: "10px", borderRadius: "12px", cursor: "pointer", transition: "background 0.2s" }} onClick={() => setShowDetails(item.movieId)} onMouseEnter={e => e.currentTarget.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.currentTarget.style.background="rgba(255,255,255,0.05)"}>
+                    <img src={m.poster} alt={m.title} style={{ width: "50px", height: "75px", objectFit: "cover", borderRadius: "6px", marginRight: "15px" }} />
+                    <div style={{ flex: 1 }}>
+                      <h4 style={{ margin: "0 0 5px 0", fontSize: "1rem" }}>{m.titleRu || m.title}</h4>
+                      <p style={{ margin: 0, fontSize: "0.85rem", color: "#aaa" }}>С кем: <strong>{item.partner}</strong> • {item.date}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <button className="btn-secondary" style={{ width: "100%", marginTop: "20px" }} onClick={() => setScreen("start")}>Назад</button>
+        </motion.div>
+      )}
+
+      {showDetails && typeof showDetails === 'number' && (
+        <DetailedMovieModal 
+          movie={movies.find(m => m.id === showDetails)} 
+          onClose={() => setShowDetails(false)} 
+        />
       )}
     </div>
   );
