@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { movies } from "../data";
-import MovieModal from "./MovieModal";
+import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function TopMovies() {
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -42,7 +42,7 @@ export default function TopMovies() {
       </div>
 
       {selectedMovie && (
-        <MovieModal
+        <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
         />

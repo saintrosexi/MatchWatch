@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { movies } from "../data";
-import MovieModal from "./MovieModal";
+import DetailedMovieModal from "./DetailedMovieModal";
 
 const MOODS = [
   {
@@ -29,17 +29,25 @@ const MOODS = [
   }
 ];
 
-// Categorize movies into moods based on keywords in description/title
+// Categorize movies into moods based on genres
 const getMoodCategory = (movie) => {
-  const text = `${movie.title} ${movie.titleRu} ${movie.description}`.toLowerCase();
+  const genres = (movie.genres || "").toLowerCase();
   
-  // Simple heuristic-based categorization
-  if (movie.rating >= 8.8 && text.includes("drama")) return "smart";
-  if (text.includes("fantasy") || text.includes("action")) return "epic";
-  if (text.includes("comedy") || movie.year < 1980) return "chill";
-  if (movie.rating >= 8.9) return "smart";
+  // Проверяем по ключевым жанрам
+  if (genres.includes("комедия") || genres.includes("семейный") || genres.includes("мультфильм") || genres.includes("приключения")) {
+    return "chill";
+  }
+  if (genres.includes("мелодрама") || genres.includes("романтика")) {
+    return "romance";
+  }
+  if (genres.includes("боевик") || genres.includes("фантастика") || genres.includes("фэнтези") || genres.includes("триллер") || genres.includes("военный")) {
+    return "epic";
+  }
+  if (genres.includes("драма") || genres.includes("криминал") || genres.includes("детектив") || genres.includes("биография") || genres.includes("история")) {
+    return "smart";
+  }
   
-  // Default to mood based on year and rating
+  // Фолбэк, если жанры не подошли
   const defaultMoods = ["chill", "smart", "romance", "epic"];
   return defaultMoods[movie.id % defaultMoods.length];
 };
@@ -109,7 +117,7 @@ export default function MoodPicker() {
       )}
 
       {selectedMovie && (
-        <MovieModal
+        <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
         />

@@ -89,13 +89,15 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress }) {
             </motion.div>
           )}
 
-          <div className="poster-container">
+          <div className="poster-container" style={{ pointerEvents: "none" }}>
             {!imageLoaded && <div className="image-skeleton" />}
             <img
               className="poster"
               src={movie.poster}
               alt={movie.title}
               onLoad={() => setImageLoaded(true)}
+              draggable={false}
+              style={{ pointerEvents: "none", userSelect: "none" }}
             />
           </div>
           <div className="info">

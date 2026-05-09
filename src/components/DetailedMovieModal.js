@@ -5,7 +5,9 @@ export default function DetailedMovieModal({ movie, onClose }) {
   if (!movie) return null;
 
   const extendedDescription = movie.fullDescription || movie.description;
-  const kinopoiskUrl = movie.kinopoiskId ? `https://www.kinopoisk.ru/film/${movie.kinopoiskId}/` : "";
+  const kinopoiskUrl = movie.kinopoiskId 
+    ? `https://www.kinopoisk.ru/film/${movie.kinopoiskId}/` 
+    : `https://www.kinopoisk.ru/index.php?kp_query=${encodeURIComponent(movie.titleRu || movie.title)}`;
   const actors = (() => {
     const raw = movie.actors;
     if (!raw || typeof raw !== "string") return "";
@@ -101,15 +103,15 @@ export default function DetailedMovieModal({ movie, onClose }) {
               </p>
             </div>
 
-            {/* IMDb Link */}
+            {/* Links */}
             <div className="detailed-modal-section">
               <a
-                href={movie.imdb}
+                href={movie.imdb || `https://www.imdb.com/find/?q=${encodeURIComponent(movie.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-imdb-link"
               >
-                Подробнее и трейлер на IMDb
+                Подробнее на IMDb
               </a>
               {kinopoiskUrl && (
                 <a
