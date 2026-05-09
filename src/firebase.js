@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, onValue, update } from "firebase/database";
+import { getDatabase, ref, set, get, onValue, update, remove } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
@@ -25,6 +25,83 @@ try {
 }
 
 export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile };
+export const generateUniqueTag = async (baseName) => {
+  if (!database) throw new Error("Database not initialized");
+  const cleanName = baseName.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').substring(0, 15);
+  if (!cleanName) throw new Error("Имя должно содержать буквы или цифры");
+  
+  let tag = "";
+  let isUnique = false;
+  let attempts = 0;
+  
+  while (!isUnique && attempts < 10) {
+    const code = Math.floor(1000 + Math.random() * 9000);
+    tag = `${cleanName}#${code}`;
+    const snap = await get(ref(database, `userTags/${tag}`));
+    if (!snap.exists()) {
+      isUnique = true;
+    }
+    attempts++;
+  }
+  
+  if (!isUnique) throw new Error("Не удалось сгенерировать уникальный тег. Попробуйте другое имя.");
+  return tag;
+};
+
+export const registerWithTag = async (email, password, baseName) => {
+  const tag = await generateUniqueTag(baseName);
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+  const user = userCred.user;
+  
+  await updateProfile(user, { displayName: tag });
+  
+  await set(ref(database, `userTags/${tag}`), user.uid);
+  await set(ref(database, `users/${user.uid}/profile`), {
+    tag: tag,
+    email: email,
+    avatar: '😎',
+    createdAt: Date.now()
+  });
+  
+  return userCred;
+};
+
+export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {
+  const targetRef = ref(database, `userTags/${targetTag}`);
+  const snap = await get(targetRef);
+  if (!snap.exists()) throw new Error("Пользователь не найден");
+  
+  const targetUid = snap.val();
+  if (targetUid === currentUid) throw new Error("Нельзя добавить самого себя");
+  
+  const friendSnap = await get(ref(database, `users/${currentUid}/friends/${targetUid}`));
+  if (friendSnap.exists()) throw new Error("Вы уже друзья");
+  
+  await set(ref(database, `users/${targetUid}/friendRequests/${currentUid}`), currentTag);
+};
+
+export const acceptFriendRequest = async (currentUid, currentTag, requesterUid, requesterTag) => {
+  const updates = {};
+  updates[`users/${currentUid}/friends/${requesterUid}`] = requesterTag;
+  updates[`users/${requesterUid}/friends/${currentUid}`] = currentTag;
+  updates[`users/${currentUid}/friendRequests/${requesterUid}`] = null;
+  await update(ref(database), updates);
+};
+
+export const rejectFriendRequest = async (currentUid, requesterUid) => {
+  await remove(ref(database, `users/${currentUid}/friendRequests/${requesterUid}`));
+};
+
+export const inviteToMatchWatch = async (targetUid, roomCode, currentTag) => {
+  await set(ref(database, `users/${targetUid}/invites/${roomCode}`), {
+    from: currentTag,
+    timestamp: Date.now()
+  });
+};
+
+export const removeInvite = async (currentUid, roomCode) => {
+  await remove(ref(database, `users/${currentUid}/invites/${roomCode}`));
+};
 
 export const createMatchRoom = async (hostName, movieCount = 271) => {
   if (!database) return null;

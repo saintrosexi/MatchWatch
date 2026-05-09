@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, set, onValue } from "firebase/database";
 import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -40,11 +40,38 @@ export default function MatchWatch({ onLike }) {
     return () => unsubscribe();
   }, [userName]);
 
+  const [friends, setFriends] = useState({});
+
   useEffect(() => {
     if (auth.currentUser && database) {
       set(ref(database, `users/${auth.currentUser.uid}/matchHistory`), matchHistory);
     }
   }, [matchHistory]);
+
+  useEffect(() => {
+    if (auth.currentUser && database) {
+      const unsubscribe = onValue(ref(database, `users/${auth.currentUser.uid}/friends`), snap => {
+        setFriends(snap.val() || {});
+      });
+      return () => unsubscribe();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (initialRoomCode && userName) {
+      setRoomCode(initialRoomCode);
+      setRole("guest");
+      joinMatchRoom(initialRoomCode, userName).then(success => {
+        if (success) {
+          setScreen("swiping");
+        } else {
+          alert("Не удалось присоединиться");
+          setScreen("start");
+        }
+        if (onClearInitialRoomCode) onClearInitialRoomCode();
+      });
+    }
+  }, [initialRoomCode, userName, onClearInitialRoomCode]);
 
   // Подписка на изменения в комнате
   useEffect(() => {
@@ -195,6 +222,32 @@ export default function MatchWatch({ onLike }) {
               </button>
             </div>
             {copied && <p style={{ color: "#4caf50", fontSize: "0.9rem", margin: "5px 0" }}>Код скопирован!</p>}
+            
+            <div className="invite-friends-section" style={{ marginTop: "30px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "20px" }}>
+              <h4>Пригласить друга:</h4>
+              {Object.keys(friends).length === 0 ? (
+                <p style={{fontSize: "0.9rem", color: "rgba(255,255,255,0.5)"}}>Добавьте друзей в Профиле, чтобы приглашать их.</p>
+              ) : (
+                <div className="friends-invite-list">
+                  {Object.entries(friends).map(([uid, tag]) => (
+                    <button 
+                      key={uid} 
+                      className="btn-invite-friend"
+                      onClick={async () => {
+                        try {
+                          await inviteToMatchWatch(uid, roomCode, auth.currentUser.displayName);
+                          alert(`Приглашение отправлено ${tag}!`);
+                        } catch (e) {
+                          alert(e.message);
+                        }
+                      }}
+                    >
+                      👤 {tag}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
           <button className="btn-secondary" onClick={() => setScreen("start")}>Отмена</button>
         </motion.div>

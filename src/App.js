@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { movies } from "./data";
 import { auth, database } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { ref, set, onValue } from "firebase/database";
+import { ref, set, onValue, remove } from "firebase/database";
 import SwipeCard from "./components/SwipeCard";
 import LikedGrid from "./components/LikedGrid";
 import TopMovies from "./components/TopMovies";
@@ -32,6 +32,8 @@ export default function App() {
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [stopGenres, setStopGenres] = useState([]);
+  const [invites, setInvites] = useState({});
 
   useEffect(() => {
     if (!auth) {
@@ -50,6 +52,14 @@ export default function App() {
           }
           setDataLoaded(true);
         }, { onlyOnce: true });
+        
+        onValue(ref(database, `users/${currentUser.uid}/profile/stopGenres`), (snap) => {
+          setStopGenres(snap.val() || []);
+        });
+        
+        onValue(ref(database, `users/${currentUser.uid}/invites`), (snap) => {
+          setInvites(snap.val() || {});
+        });
       } else {
         setDataLoaded(true);
       }
@@ -71,13 +81,21 @@ export default function App() {
     [deck, decisions]
   );
 
+  const filteredDeck = useMemo(() => {
+    if (stopGenres.length === 0) return deck;
+    return deck.filter(m => {
+      if (!m.genres) return true;
+      return !stopGenres.some(g => m.genres.includes(g));
+    });
+  }, [deck, stopGenres]);
+
   const isDecided = (movie) => Boolean(decisions[movie.id]);
 
   const nextUndecidedFrom = (startIndex) => {
-    for (let i = startIndex; i < deck.length; i++) {
-      if (!isDecided(deck[i])) return i;
+    for (let i = startIndex; i < filteredDeck.length; i++) {
+      if (!isDecided(filteredDeck[i])) return i;
     }
-    return deck.length;
+    return filteredDeck.length;
   };
 
   const handleSwipe = (dir, movie) => {
@@ -87,7 +105,7 @@ export default function App() {
     setHistory(prev => [...prev, movie.id]);
 
     const next = nextUndecidedFrom(cursor + 1);
-    if (next >= deck.length) {
+    if (next >= filteredDeck.length) {
       setScreen("final");
     }
     setCursor(next);
@@ -112,7 +130,7 @@ export default function App() {
         return next;
       });
 
-      const idx = deck.findIndex(m => m.id === lastId);
+      const idx = filteredDeck.findIndex(m => m.id === lastId);
       setCursor(idx >= 0 ? idx : 0);
       setSwipeHint({ x: 0, active: false });
       setScreen("swipe");
@@ -130,6 +148,18 @@ export default function App() {
     }
   };
 
+  const [initialRoomCode, setInitialRoomCode] = useState(null);
+
+  const handleAcceptInvite = (code) => {
+    if (user) remove(ref(database, `users/${user.uid}/invites/${code}`));
+    setInitialRoomCode(code);
+    setScreen("matchwatch");
+  };
+
+  const handleRejectInvite = (code) => {
+    if (user) remove(ref(database, `users/${user.uid}/invites/${code}`));
+  };
+
   const currentScreen = (() => {
     if (screen === "final") {
       return <FinalScreen onOpenLiked={() => setScreen("liked")} />;
@@ -138,16 +168,20 @@ export default function App() {
       return <LikedGrid liked={liked} />;
     }
     if (screen === "top") {
-      return <TopMovies />;
+      return <TopMovies stopGenres={stopGenres} />;
     }
     if (screen === "search") {
-      return <SearchMovies />;
+      return <SearchMovies stopGenres={stopGenres} />;
     }
     if (screen === "mood") {
-      return <MoodPicker />;
+      return <MoodPicker stopGenres={stopGenres} />;
     }
     if (screen === "matchwatch") {
-      return <MatchWatch onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} />;
+      return <MatchWatch 
+        onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} 
+        initialRoomCode={initialRoomCode}
+        onClearInitialRoomCode={() => setInitialRoomCode(null)}
+      />;
     }
     if (screen === "profile") {
       return <Profile />;
@@ -233,6 +267,22 @@ export default function App() {
       <Header currentScreen={screen} onTabClick={handleTabClick} likedCount={liked.length} />
       <div className="app-container">
         {currentScreen}
+        
+        {Object.keys(invites).length > 0 && (
+          <div className="global-invites-overlay">
+            {Object.entries(invites).map(([code, info]) => (
+              <div key={code} className="invite-toast">
+                <div>
+                  <strong>👤 {info.from}</strong> зовет вас выбрать фильм!
+                </div>
+                <div className="invite-actions">
+                  <button className="btn-accept" onClick={() => handleAcceptInvite(code)}>Присоединиться</button>
+                  <button className="btn-reject" onClick={() => handleRejectInvite(code)}>Скрыть</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
