@@ -11,6 +11,7 @@ export default function Profile() {
   
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [name, setName] = useState("");
+  const [customTag, setCustomTag] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
@@ -27,6 +28,10 @@ export default function Profile() {
   const [friendTagInput, setFriendTagInput] = useState("");
   const [friendError, setFriendError] = useState("");
   const [friendSuccess, setFriendSuccess] = useState("");
+  
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [migrateTagInput, setMigrateTagInput] = useState("");
+  const [migrateError, setMigrateError] = useState("");
 
   useEffect(() => {
     if (!auth) {
@@ -61,7 +66,7 @@ export default function Profile() {
       if (isLoginMode) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        await registerWithTag(email, password, name);
+        await registerWithTag(email, password, name, customTag || null);
       }
     } catch (err) {
       console.error(err);
@@ -155,6 +160,26 @@ export default function Profile() {
       alert("Прогресс сброшен!");
     }
   };
+  
+  const handleShareProfile = () => {
+    const link = `${window.location.origin}/?add=${encodeURIComponent(user.displayName)}`;
+    const text = `Я ищу с кем посмотреть кино! 🍿 Добавляй меня в друзья в MatchWatch по тегу ${user.displayName} или переходи по ссылке: ${link}`;
+    navigator.clipboard.writeText(text);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+  
+  const handleMigrate = async (e) => {
+    e.preventDefault();
+    setMigrateError("");
+    try {
+      // Need to import migrateLegacyUser from firebase
+      const { migrateLegacyUser } = await import("../firebase");
+      await migrateLegacyUser(user, name, migrateTagInput || null);
+    } catch (err) {
+      setMigrateError(err.message);
+    }
+  };
 
   if (loading) {
     return (
@@ -165,20 +190,54 @@ export default function Profile() {
   }
 
   if (user) {
+    if (!user.displayName || !user.displayName.includes("#")) {
+      return (
+        <div className="profile-container">
+          <motion.div className="auth-form-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <h3>Обновление профиля</h3>
+            <p style={{color: "rgba(255,255,255,0.7)", marginBottom: "20px", fontSize: "0.9rem", textAlign: "center"}}>
+              Мы добавили систему друзей! Чтобы всё работало, придумайте себе Имя и уникальный Тег (4 цифры).
+            </p>
+            {migrateError && <div className="auth-error">{migrateError}</div>}
+            <form onSubmit={handleMigrate} className="auth-form">
+              <div className="form-group">
+                <label>Ваше Имя</label>
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Например: Иван" required className="form-input" />
+              </div>
+              <div className="form-group">
+                <label>Тег (4 цифры, необязательно)</label>
+                <input type="text" value={migrateTagInput} onChange={e => setMigrateTagInput(e.target.value)} placeholder="1111" className="form-input" maxLength={4} />
+              </div>
+              <button type="submit" className="btn-primary" style={{width: "100%", marginTop: "10px"}}>Сохранить</button>
+            </form>
+            <button className="btn-secondary" onClick={handleLogout} style={{width: "100%", marginTop: "10px"}}>Выйти</button>
+          </motion.div>
+        </div>
+      );
+    }
+
     return (
       <div className="profile-container profile-container--dashboard">
-        <div className="profile-header-large">
-          <div className="profile-avatar-large">
+        <div className="profile-header-large" style={{flexDirection: "column", textAlign: "center"}}>
+          <div className="profile-avatar-large" style={{marginRight: 0, marginBottom: "15px", width: "100px", height: "100px", fontSize: "4rem"}}>
             {profileData?.avatar || "😎"}
           </div>
           <div className="profile-title-area">
-            <h2>{user.displayName || "Без имени"}</h2>
-            <button className="btn-copy-tag" onClick={() => {
-              navigator.clipboard.writeText(user.displayName);
-              alert("Тег скопирован!");
-            }}>📋 Скопировать тег</button>
+            <h2 style={{fontSize: "2.2rem", marginBottom: "5px"}}>{user.displayName}</h2>
+            <button 
+              className="btn-share-profile" 
+              onClick={handleShareProfile}
+              style={{
+                background: copiedLink ? "#4caf50" : "rgba(255, 138, 80, 0.2)",
+                color: copiedLink ? "#fff" : "#ff8a50",
+                border: copiedLink ? "1px solid #4caf50" : "1px solid rgba(255, 138, 80, 0.5)",
+                padding: "8px 20px", borderRadius: "20px", cursor: "pointer", fontWeight: "bold",
+                transition: "0.3s", marginTop: "10px"
+              }}
+            >
+              {copiedLink ? "✅ Текст скопирован!" : "🔗 Поделиться профилем"}
+            </button>
           </div>
-          <button className="btn-logout-small" onClick={handleLogout}>🚪 Выйти</button>
         </div>
 
         <div className="profile-nav">
@@ -339,6 +398,11 @@ export default function Profile() {
                 <p style={{marginBottom: "15px", color: "rgba(255,255,255,0.6)"}}>Удалит все ваши лайки и дизлайки. Вы начнете выбирать фильмы с чистого листа.</p>
                 <button className="btn-secondary" onClick={handleResetProgress}>🗑 Сбросить оценки</button>
               </div>
+              <div className="setting-group danger-zone" style={{marginTop: "20px"}}>
+                <h4>Выход из аккаунта</h4>
+                <p style={{marginBottom: "15px", color: "rgba(255,255,255,0.6)"}}>Вы сможете зайти снова, используя свой email и пароль.</p>
+                <button className="btn-secondary" onClick={handleLogout}>🚪 Выйти</button>
+              </div>
             </motion.div>
           )}
         </div>
@@ -368,7 +432,20 @@ export default function Profile() {
                 required 
                 className="form-input"
               />
-              <small style={{color: 'rgba(255,255,255,0.5)', marginTop: '4px'}}>К имени будет добавлен уникальный код (Иван#1234)</small>
+              <small style={{color: 'rgba(255,255,255,0.5)', marginTop: '4px'}}>К имени будет добавлен уникальный тег</small>
+            </div>
+          )}
+          {!isLoginMode && (
+            <div className="form-group">
+              <label>Желаемый тег (4 цифры, необязательно)</label>
+              <input 
+                type="text" 
+                value={customTag} 
+                onChange={(e) => setCustomTag(e.target.value)} 
+                placeholder="1111" 
+                className="form-input"
+                maxLength={4}
+              />
             </div>
           )}
           <div className="form-group">

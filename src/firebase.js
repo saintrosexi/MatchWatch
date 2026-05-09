@@ -25,10 +25,19 @@ try {
 }
 
 export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile };
-export const generateUniqueTag = async (baseName) => {
+export const generateUniqueTag = async (baseName, customCode = null) => {
   if (!database) throw new Error("Database not initialized");
   const cleanName = baseName.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').substring(0, 15);
   if (!cleanName) throw new Error("Имя должно содержать буквы или цифры");
+  
+  if (customCode) {
+    const cleanCode = customCode.replace(/[^0-9]/g, '').substring(0, 4);
+    if (cleanCode.length !== 4) throw new Error("Код должен состоять из 4 цифр");
+    const tag = `${cleanName}#${cleanCode}`;
+    const snap = await get(ref(database, `userTags/${tag}`));
+    if (snap.exists()) throw new Error("Этот тег уже занят. Попробуйте другой код.");
+    return tag;
+  }
   
   let tag = "";
   let isUnique = false;
@@ -48,8 +57,8 @@ export const generateUniqueTag = async (baseName) => {
   return tag;
 };
 
-export const registerWithTag = async (email, password, baseName) => {
-  const tag = await generateUniqueTag(baseName);
+export const registerWithTag = async (email, password, baseName, customCode = null) => {
+  const tag = await generateUniqueTag(baseName, customCode);
   const userCred = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCred.user;
   
@@ -64,6 +73,16 @@ export const registerWithTag = async (email, password, baseName) => {
   });
   
   return userCred;
+};
+
+export const migrateLegacyUser = async (user, baseName, customCode = null) => {
+  const tag = await generateUniqueTag(baseName, customCode);
+  await updateProfile(user, { displayName: tag });
+  await set(ref(database, `userTags/${tag}`), user.uid);
+  await update(ref(database, `users/${user.uid}/profile`), {
+    tag: tag
+  });
+  return tag;
 };
 
 export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {

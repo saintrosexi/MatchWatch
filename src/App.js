@@ -68,6 +68,23 @@ export default function App() {
   }, [dataLoaded]);
 
   useEffect(() => {
+    if (user && user.displayName) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const addTag = urlParams.get('add');
+      if (addTag && addTag !== user.displayName) {
+        if (window.confirm(`Пользователь ${addTag} приглашает вас в друзья. Отправить заявку?`)) {
+          import('./firebase').then(({ sendFriendRequest }) => {
+            sendFriendRequest(user.uid, user.displayName, addTag)
+              .then(() => alert("Заявка отправлена!"))
+              .catch(err => alert(err.message));
+          });
+        }
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (user && dataLoaded && database) {
       set(ref(database, `users/${user.uid}/appData`), {
         decisions,
