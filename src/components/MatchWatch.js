@@ -108,7 +108,7 @@ export default function MatchWatch() {
           <div className="matchwatch-buttons">
             <button className="btn-matchwatch btn-create" onClick={() => setScreen("create")}>🎬 Создать комнату</button>
             <button className="btn-matchwatch btn-join" onClick={() => setScreen("join")}>🔗 Присоединиться</button>
-            <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)" }}>📜 Вы выбирали</button>
+            <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>📜 Вы выбирали</button>
           </div>
         </motion.div>
       )}
