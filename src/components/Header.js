@@ -58,6 +58,14 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
               ❤️ Любимые ({likedCount})
             </button>
           </li>
+          <li>
+            <button
+              className={`nav-tab ${currentScreen === "profile" ? "active" : ""}`}
+              onClick={() => onTabClick("profile")}
+            >
+              👤 Аккаунт
+            </button>
+          </li>
         </ul>
       </div>
     </header>

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue, update } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
 const firebaseConfig = {
@@ -13,14 +14,17 @@ const firebaseConfig = {
   measurementId: "G-FS2CDSSF16"
 };
 
-let app, database;
+let app, database, auth;
 
 try {
   app = initializeApp(firebaseConfig);
   database = getDatabase(app);
+  auth = getAuth(app);
 } catch (e) {
   console.warn("Firebase is not fully configured yet. Please add your credentials.");
 }
+
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut };
 
 export const createMatchRoom = async (hostName, movieCount = 271) => {
   if (!database) return null;

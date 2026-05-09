@@ -8,6 +8,7 @@ import MoodPicker from "./components/MoodPicker";
 import MatchWatch from "./components/MatchWatch";
 import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
+import Profile from "./components/Profile";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -109,6 +110,9 @@ export default function App() {
     }
     if (screen === "matchwatch") {
       return <MatchWatch />;
+    }
+    if (screen === "profile") {
+      return <Profile />;
     }
     return (
       <div className="screen screen--center">
