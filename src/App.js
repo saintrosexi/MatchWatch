@@ -1,5 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { movies } from "./data";
+import { auth, database } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, set, onValue } from "firebase/database";
 import SwipeCard from "./components/SwipeCard";
 import LikedGrid from "./components/LikedGrid";
 import TopMovies from "./components/TopMovies";
@@ -27,6 +30,41 @@ export default function App() {
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
   const [screen, setScreen] = useState("swipe");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
+  const [user, setUser] = useState(null);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!auth) {
+      setDataLoaded(true);
+      return;
+    }
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        const userRef = ref(database, `users/${currentUser.uid}/appData`);
+        onValue(userRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data && !dataLoaded) {
+            if (data.decisions) setDecisions(data.decisions);
+            if (data.history) setHistory(data.history);
+          }
+          setDataLoaded(true);
+        }, { onlyOnce: true });
+      } else {
+        setDataLoaded(true);
+      }
+    });
+    return () => unsubscribe();
+  }, [dataLoaded]);
+
+  useEffect(() => {
+    if (user && dataLoaded && database) {
+      set(ref(database, `users/${user.uid}/appData`), {
+        decisions,
+        history
+      });
+    }
+  }, [decisions, history, user, dataLoaded]);
 
   const liked = useMemo(
     () => deck.filter(m => decisions[m.id] === "like"),
@@ -109,7 +147,7 @@ export default function App() {
       return <MoodPicker />;
     }
     if (screen === "matchwatch") {
-      return <MatchWatch />;
+      return <MatchWatch onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} />;
     }
     if (screen === "profile") {
       return <Profile />;

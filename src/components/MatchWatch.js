@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, set, onValue } from "firebase/database";
 import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch() {
+export default function MatchWatch({ onLike }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -19,6 +21,30 @@ export default function MatchWatch() {
     return saved ? JSON.parse(saved) : [];
   });
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (user.displayName && !userName) {
+          setUserName(user.displayName);
+        }
+        const userRef = ref(database, `users/${user.uid}/matchHistory`);
+        onValue(userRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            setMatchHistory(data);
+          }
+        }, { onlyOnce: true });
+      }
+    });
+    return () => unsubscribe();
+  }, [userName]);
+
+  useEffect(() => {
+    if (auth.currentUser && database) {
+      set(ref(database, `users/${auth.currentUser.uid}/matchHistory`), matchHistory);
+    }
+  }, [matchHistory]);
 
   // Подписка на изменения в комнате
   useEffect(() => {
@@ -81,6 +107,9 @@ export default function MatchWatch() {
   const handleSwipe = (dir, movie) => {
     const decision = dir === "right" ? "like" : "dislike";
     swipeMovie(roomCode, role, movie.id, decision);
+    if (decision === "like" && onLike) {
+      onLike(movie.id);
+    }
     setSwipeHint({ x: 0, active: false });
     setCursor(prev => prev + 1);
   };

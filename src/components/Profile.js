@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "../firebase";
+import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function Profile() {
@@ -8,6 +8,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
@@ -34,7 +35,10 @@ export default function Profile() {
       if (isLoginMode) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(userCred.user, { displayName: name });
+        // Update local user state immediately
+        setUser({ ...userCred.user, displayName: name });
       }
     } catch (err) {
       console.error(err);
@@ -78,7 +82,7 @@ export default function Profile() {
               {user.email.charAt(0).toUpperCase()}
             </div>
             <div className="profile-info">
-              <h3>Вы вошли как:</h3>
+              <h3>{user.displayName || "Пользователь"}</h3>
               <p>{user.email}</p>
             </div>
           </div>
@@ -101,6 +105,19 @@ export default function Profile() {
         {authError && <div className="auth-error">{authError}</div>}
         
         <form onSubmit={handleAuth} className="auth-form">
+          {!isLoginMode && (
+            <div className="form-group">
+              <label>Имя</label>
+              <input 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)} 
+                placeholder="Как вас зовут?" 
+                required 
+                className="form-input"
+              />
+            </div>
+          )}
           <div className="form-group">
             <label>Email</label>
             <input 
