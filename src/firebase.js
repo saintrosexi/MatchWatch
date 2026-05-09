@@ -25,6 +25,9 @@ try {
 }
 
 export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile };
+
+const getTagKey = (tag) => tag.replace('#', '-');
+
 export const generateUniqueTag = async (baseName, customCode = null) => {
   if (!database) throw new Error("Database not initialized");
   const cleanName = baseName.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').substring(0, 15);
@@ -34,7 +37,7 @@ export const generateUniqueTag = async (baseName, customCode = null) => {
     const cleanCode = customCode.replace(/[^0-9]/g, '').substring(0, 4);
     if (cleanCode.length !== 4) throw new Error("Код должен состоять из 4 цифр");
     const tag = `${cleanName}#${cleanCode}`;
-    const snap = await get(ref(database, `userTags/${tag}`));
+    const snap = await get(ref(database, `userTags/${getTagKey(tag)}`));
     if (snap.exists()) throw new Error("Этот тег уже занят. Попробуйте другой код.");
     return tag;
   }
@@ -46,7 +49,7 @@ export const generateUniqueTag = async (baseName, customCode = null) => {
   while (!isUnique && attempts < 10) {
     const code = Math.floor(1000 + Math.random() * 9000);
     tag = `${cleanName}#${code}`;
-    const snap = await get(ref(database, `userTags/${tag}`));
+    const snap = await get(ref(database, `userTags/${getTagKey(tag)}`));
     if (!snap.exists()) {
       isUnique = true;
     }
@@ -64,7 +67,7 @@ export const registerWithTag = async (email, password, baseName, customCode = nu
   
   await updateProfile(user, { displayName: tag });
   
-  await set(ref(database, `userTags/${tag}`), user.uid);
+  await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
   await set(ref(database, `users/${user.uid}/profile`), {
     tag: tag,
     email: email,
@@ -78,7 +81,7 @@ export const registerWithTag = async (email, password, baseName, customCode = nu
 export const migrateLegacyUser = async (user, baseName, customCode = null) => {
   const tag = await generateUniqueTag(baseName, customCode);
   await updateProfile(user, { displayName: tag });
-  await set(ref(database, `userTags/${tag}`), user.uid);
+  await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
   await update(ref(database, `users/${user.uid}/profile`), {
     tag: tag
   });
@@ -86,7 +89,7 @@ export const migrateLegacyUser = async (user, baseName, customCode = null) => {
 };
 
 export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {
-  const targetRef = ref(database, `userTags/${targetTag}`);
+  const targetRef = ref(database, `userTags/${getTagKey(targetTag)}`);
   const snap = await get(targetRef);
   if (!snap.exists()) throw new Error("Пользователь не найден");
   
