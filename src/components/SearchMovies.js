@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { movies } from "../data";
-import MovieModal from "./MovieModal";
+import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function SearchMovies() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,10 +15,11 @@ export default function SearchMovies() {
   // Filter movies based on search and year
   const filteredMovies = useMemo(() => {
     return movies.filter(movie => {
+      const searchLower = searchTerm.toLowerCase();
       const matchesSearch = 
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        movie.titleRu.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        movie.director.toLowerCase().includes(searchTerm.toLowerCase());
+        (movie.title?.toLowerCase() || "").includes(searchLower) ||
+        (movie.titleRu?.toLowerCase() || "").includes(searchLower) ||
+        (movie.director?.toLowerCase() || "").includes(searchLower);
       
       const matchesYear = !selectedYear || movie.year.toString() === selectedYear;
       
@@ -95,7 +96,7 @@ export default function SearchMovies() {
       </div>
 
       {selectedMovie && (
-        <MovieModal
+        <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
         />
