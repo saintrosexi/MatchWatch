@@ -22,12 +22,12 @@ try {
   console.warn("Firebase is not fully configured yet. Please add your credentials.");
 }
 
-export const createMatchRoom = async (hostName) => {
+export const createMatchRoom = async (hostName, movieCount = 271) => {
   if (!database) return null;
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   
-  // Создаем перемешанный порядок фильмов (индексы от 0 до 9)
-  const deck = Array.from({length: 10}, (_, i) => i);
+  // Создаем перемешанный порядок фильмов (все ID)
+  const deck = Array.from({length: movieCount}, (_, i) => i + 1);
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];

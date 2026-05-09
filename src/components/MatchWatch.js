@@ -13,6 +13,7 @@ export default function MatchWatch() {
   const [roomData, setRoomData] = useState(null);
   const [cursor, setCursor] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
+  const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
 
   // Подписка на изменения в комнате
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function MatchWatch() {
 
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите ваше имя");
-    const code = await createMatchRoom(userName);
+    const code = await createMatchRoom(userName, movies.length);
     if (code) {
       setRoomCode(code);
       setRole("host");
@@ -58,12 +59,21 @@ export default function MatchWatch() {
   const handleSwipe = (dir, movie) => {
     const decision = dir === "right" ? "like" : "dislike";
     swipeMovie(roomCode, role, movie.id, decision);
+    setSwipeHint({ x: 0, active: false });
     setCursor(prev => prev + 1);
   };
 
-  const currentMovie = roomData && roomData.deck && cursor < roomData.deck.length
-    ? movies.find(m => m.id === movies[roomData.deck[cursor]]?.id) || movies[roomData.deck[cursor]]
+  // deck хранит movie IDs — находим фильм по ID
+  const currentMovieId = roomData && roomData.deck && cursor < roomData.deck.length
+    ? roomData.deck[cursor]
     : null;
+  const currentMovie = currentMovieId ? movies.find(m => m.id === currentMovieId) : null;
+
+  // Следующий фильм для стопки
+  const nextMovieId = roomData && roomData.deck && cursor + 1 < roomData.deck.length
+    ? roomData.deck[cursor + 1]
+    : null;
+  const nextMovie = nextMovieId ? movies.find(m => m.id === nextMovieId) : null;
 
   return (
     <div className="matchwatch-container">
@@ -127,19 +137,57 @@ export default function MatchWatch() {
             <span>{roomData?.hostName} & {roomData?.guestName || '...'}</span>
           </div>
           
-          <div className="deck-container" style={{ position: "relative", height: "620px", width: "100%", maxWidth: "380px", margin: "0 auto" }}>
-            {currentMovie ? (
-              <SwipeCard
-                key={currentMovie.id}
-                movie={currentMovie}
-                onSwipe={handleSwipe}
-              />
-            ) : (
-              <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
-                <h2>Фильмы закончились!</h2>
-                <p>Ждем, пока партнер досмотрит свой список...</p>
+          <div className="swipe-wrapper">
+            {/* Подсказки лайк/дизлайк */}
+            <div className="swipe-hints" aria-hidden="true">
+              <div
+                className="swipe-hint-icon swipe-hint-icon--dislike"
+                style={{
+                  opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
+                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
+                }}
+              >
+                ✕
               </div>
-            )}
+              <div
+                className="swipe-hint-icon swipe-hint-icon--like"
+                style={{
+                  opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
+                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
+                }}
+              >
+                ❤️
+              </div>
+            </div>
+
+            <div className="deck-container">
+              {/* Следующая карточка (фон) */}
+              {nextMovie && (
+                <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
+                  <div className="card-placeholder">
+                    <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
+                    <div className="placeholder-overlay" />
+                  </div>
+                </div>
+              )}
+              
+              {/* Текущая карточка */}
+              {currentMovie ? (
+                <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
+                  <SwipeCard
+                    key={currentMovie.id}
+                    movie={currentMovie}
+                    onSwipe={handleSwipe}
+                    onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                  />
+                </div>
+              ) : (
+                <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
+                  <h2>Фильмы закончились!</h2>
+                  <p>Ждем, пока партнер досмотрит свой список...</p>
+                </div>
+              )}
+            </div>
           </div>
         </motion.div>
       )}
