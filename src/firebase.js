@@ -3,13 +3,14 @@ import { getDatabase, ref, set, get, onValue, update } from "firebase/database";
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
 const firebaseConfig = {
-  // apiKey: "YOUR_API_KEY",
-  // authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  // databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-  // projectId: "YOUR_PROJECT_ID",
-  // storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  // messagingSenderId: "YOUR_SENDER_ID",
-  // appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCQHQAL7LiMUQ8PkLeg-qePibn0M3FuqPA",
+  authDomain: "match-watch-f9eec.firebaseapp.com",
+  databaseURL: "https://match-watch-f9eec-default-rtdb.firebaseio.com",
+  projectId: "match-watch-f9eec",
+  storageBucket: "match-watch-f9eec.firebasestorage.app",
+  messagingSenderId: "896259439383",
+  appId: "1:896259439383:web:e242ba183ba638a40a1552",
+  measurementId: "G-FS2CDSSF16"
 };
 
 let app, database;
