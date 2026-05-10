@@ -70,16 +70,16 @@ export default function Profile() {
       }
     } catch (err) {
       console.error(err);
-      if (err.message && err.message.includes("Не удалось сгенерировать")) {
-        setAuthError(err.message);
-      } else if (err.code === "auth/email-already-in-use") {
+      if (err.code === "auth/email-already-in-use") {
         setAuthError("Эта почта уже зарегистрирована");
       } else if (err.code === "auth/wrong-password" || err.code === "auth/user-not-found" || err.code === "auth/invalid-credential") {
         setAuthError("Неверная почта или пароль");
       } else if (err.code === "auth/weak-password") {
         setAuthError("Пароль должен быть не менее 6 символов");
+      } else if (err.message) {
+        setAuthError(err.message);
       } else {
-        setAuthError("Произошла ошибка. Проверьте настройки Firebase.");
+        setAuthError("Произошла ошибка. Попробуйте позже.");
       }
     } finally {
       setAuthLoading(false);
@@ -216,28 +216,25 @@ export default function Profile() {
       );
     }
 
+    const namePart = user.displayName.split('#')[0];
+    const tagPart = '#' + user.displayName.split('#')[1];
+
     return (
       <div className="profile-container profile-container--dashboard">
-        <div className="profile-header-large" style={{flexDirection: "column", textAlign: "center"}}>
-          <div className="profile-avatar-large" style={{marginRight: 0, marginBottom: "15px", width: "100px", height: "100px", fontSize: "4rem"}}>
+        <div className="profile-header-large">
+          <div className="profile-avatar-large">
             {profileData?.avatar || "😎"}
           </div>
-          <div className="profile-title-area">
-            <h2 style={{fontSize: "2.2rem", marginBottom: "5px"}}>{user.displayName}</h2>
-            <button 
-              className="btn-share-profile" 
-              onClick={handleShareProfile}
-              style={{
-                background: copiedLink ? "#4caf50" : "rgba(255, 138, 80, 0.2)",
-                color: copiedLink ? "#fff" : "#ff8a50",
-                border: copiedLink ? "1px solid #4caf50" : "1px solid rgba(255, 138, 80, 0.5)",
-                padding: "8px 20px", borderRadius: "20px", cursor: "pointer", fontWeight: "bold",
-                transition: "0.3s", marginTop: "10px"
-              }}
-            >
-              {copiedLink ? "✅ Текст скопирован!" : "🔗 Поделиться профилем"}
-            </button>
-          </div>
+          <h2 className="profile-display-name">
+            <span className="profile-name-bold">{namePart}</span>
+            <span className="profile-tag-dim">{tagPart}</span>
+          </h2>
+          <button 
+            className={`btn-share-profile ${copiedLink ? 'copied' : ''}`}
+            onClick={handleShareProfile}
+          >
+            {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
+          </button>
         </div>
 
         <div className="profile-nav">

@@ -68,18 +68,27 @@ export default function App() {
   }, [dataLoaded]);
 
   useEffect(() => {
+    // Save ?add= param to sessionStorage so it persists through login
+    const urlParams = new URLSearchParams(window.location.search);
+    const addTag = urlParams.get('add');
+    if (addTag) {
+      sessionStorage.setItem('pendingFriendAdd', addTag);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
     if (user && user.displayName) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const addTag = urlParams.get('add');
-      if (addTag && addTag !== user.displayName) {
-        if (window.confirm(`Пользователь ${addTag} приглашает вас в друзья. Отправить заявку?`)) {
+      const pendingTag = sessionStorage.getItem('pendingFriendAdd');
+      if (pendingTag && pendingTag !== user.displayName) {
+        sessionStorage.removeItem('pendingFriendAdd');
+        if (window.confirm(`Пользователь ${pendingTag} приглашает вас в друзья. Отправить заявку?`)) {
           import('./firebase').then(({ sendFriendRequest }) => {
-            sendFriendRequest(user.uid, user.displayName, addTag)
+            sendFriendRequest(user.uid, user.displayName, pendingTag)
               .then(() => alert("Заявка отправлена!"))
               .catch(err => alert(err.message));
           });
         }
-        window.history.replaceState({}, document.title, window.location.pathname);
       }
     }
   }, [user]);
