@@ -24,8 +24,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [copied, setCopied] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
 
+  const [currentUser, setCurrentUser] = useState(null);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
       if (user) {
         if (user.displayName && !userName) {
           setUserName(user.displayName);
@@ -78,17 +81,17 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     }
   }, [roomCode, screen, role]);
 
-  const [friends, setFriends] = useState({});
   useEffect(() => {
-    if (auth.currentUser) {
-      const friendsRef = ref(database, `users/${auth.currentUser.uid}/friends`);
+    if (currentUser) {
+      const friendsRef = ref(database, `users/${currentUser.uid}/friends`);
       const unsubscribe = onValue(friendsRef, (snap) => {
-        if (snap.exists()) setFriends(snap.val());
-        else setFriends({});
+        setFriends(snap.val() || {});
       });
       return () => unsubscribe();
+    } else {
+      setFriends({});
     }
-  }, []);
+  }, [currentUser]);
 
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите имя");
