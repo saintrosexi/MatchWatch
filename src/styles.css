@@ -119,6 +119,32 @@ html, body {
 .desktop-only { display: block !important; }
 .desktop-only-inline { display: inline !important; }
 
+.btn-header-undo {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-header-undo:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.btn-header-undo:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .tab-matchwatch {
   font-size: 1.1rem !important;
   padding: 10px 24px !important;
@@ -626,7 +652,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px; /* Increase space for top actions */
+  padding-top: 20px; /* Reduced since undo is in header now */
 }
 
 .swipe-hints {

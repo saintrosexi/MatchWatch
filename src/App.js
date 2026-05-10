@@ -254,16 +254,7 @@ export default function App() {
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
-          <div className="swipe-top-actions desktop-only">
-            <button
-              className="btn-swipe-action btn-swipe-action--secondary"
-              onClick={handleUndo}
-              disabled={history.length === 0}
-              title="Назад к предыдущей карточке"
-            >
-              ↩️ <span className="desktop-only-inline">Отменить</span>
-            </button>
-          </div>
+
 
           <div className="swipe-hints" aria-hidden="true">
             <div
@@ -320,9 +311,14 @@ export default function App() {
     );
   })();
 
-  const resetHeaderButton = screen === "swipe" ? (
-    <button className="btn-header-reset" onClick={handleReset}>
-      🔄 Сбросить
+  const undoHeaderButton = screen === "swipe" ? (
+    <button 
+      className="btn-header-undo" 
+      onClick={handleUndo} 
+      disabled={history.length === 0}
+      style={{ opacity: history.length === 0 ? 0.5 : 1 }}
+    >
+      ↩️ Назад
     </button>
   ) : null;
 
@@ -334,7 +330,7 @@ export default function App() {
         likedCount={liked.length} 
         friendRequestsCount={Object.keys(friendRequests).length}
         invitesCount={Object.keys(invites).length}
-        rightContent={resetHeaderButton}
+        rightContent={undoHeaderButton}
       />
       
       <div className="app-container">
