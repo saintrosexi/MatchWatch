@@ -591,8 +591,8 @@ html, body {
 }
 
 .info {
-  height: 30%;
-  flex: 0 0 30%;
+  height: 34%;
+  flex: 0 0 34%;
   padding: 16px;
   background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
   display: flex;
@@ -605,7 +605,7 @@ html, body {
 
 .info h2 {
   margin: 0 0 2px 0;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
