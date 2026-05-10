@@ -189,30 +189,35 @@ html, body {
   
   .mobile-menu-toggle {
     display: block;
+    font-size: 32px;
   }
   
   .active-tab-name {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: #ff8a50;
     justify-self: end;
     margin-right: 5px;
-    background: rgba(255, 138, 80, 0.1);
-    padding: 4px 12px;
+    background: rgba(255, 138, 80, 0.15);
+    padding: 6px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 138, 80, 0.2);
+    border: 1.5px solid rgba(255, 138, 80, 0.3);
+  }
+
+  .logo-icon {
+    font-size: 32px;
   }
 
   .nav-tabs {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 85%;
+    max-width: 340px;
     height: 100vh;
     background: #0d0d0d;
     flex-direction: column;
-    padding: 80px 20px 40px;
+    padding: 90px 24px 40px;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     justify-content: flex-start;
@@ -227,37 +232,71 @@ html, body {
   
   .nav-tabs li {
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   
   .nav-tab {
     width: 100%;
     text-align: left;
-    padding: 14px 20px;
-    font-size: 1.05rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 10px;
+    padding: 18px 24px;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
   }
   
   .menu-header {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 15px !important;
+    margin-bottom: 20px !important;
     padding-left: 20px;
-    font-weight: 700;
+    font-weight: 800;
   }
   
   .tab-matchwatch-mobile {
-    background: linear-gradient(135deg, rgba(255,107,107,0.2) 0%, rgba(255,138,80,0.2) 100%) !important;
-    border: 1px solid rgba(255,138,80,0.3) !important;
+    background: linear-gradient(135deg, rgba(255,107,107,0.25) 0%, rgba(255,138,80,0.25) 100%) !important;
+    border: 1px solid rgba(255,138,80,0.4) !important;
     font-weight: bold;
     color: white;
     width: 100%;
     text-align: left;
+    padding: 18px 24px;
+    border-radius: 14px;
+    font-size: 1.2rem;
+  }
+
+  /* Increase Swipe Actions for Mobile */
+  .swipe-top-actions {
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 15px;
+    flex-direction: column;
+  }
+
+  .btn-swipe-action {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    border-radius: 16px;
+  }
+
+  .btn-swipe-action--secondary {
+    font-size: 1rem;
     padding: 14px 20px;
-    border-radius: 10px;
+  }
+
+  /* Increase Profile Inputs and Buttons */
+  .form-input {
+    padding: 16px 18px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    border-radius: 14px;
   }
   
   .mobile-menu-overlay {
@@ -266,39 +305,30 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
     z-index: 999;
     animation: fadeIn 0.3s ease;
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-
-/* Movie Card */
-.movie-card {
-  width: 100%;
-  max-width: 380px;
-  height: 620px;
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-}
-
 @media (max-width: 480px) {
   .movie-card {
-    height: 540px;
+    height: 520px;
     border-radius: 20px;
+  }
+  
+  .info h2 {
+    font-size: 1.4rem;
+  }
+  
+  .info .year {
+    font-size: 0.95rem;
+  }
+  
+  .info .description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
   }
 }
 
