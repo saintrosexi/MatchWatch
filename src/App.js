@@ -254,24 +254,14 @@ export default function App() {
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
-          <div className="swipe-top-actions mobile-icon-actions">
-            {/* Desktop Undo Button */}
+          <div className="swipe-top-actions">
             <button
-              className="btn-swipe-action btn-swipe-action--secondary desktop-only"
+              className="btn-swipe-action btn-swipe-action--secondary"
               onClick={handleUndo}
               disabled={history.length === 0}
               title="Назад к предыдущей карточке"
             >
-              ↩️ Отменить
-            </button>
-            {/* Mobile Undo Button */}
-            <button
-              className="btn-swipe-icon-action mobile-only"
-              onClick={handleUndo}
-              disabled={history.length === 0}
-              title="Назад к предыдущей карточке"
-            >
-              ↩️
+              ↩️ <span className="desktop-only-inline">Отменить</span>
             </button>
           </div>
 
