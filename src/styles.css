@@ -2642,20 +2642,23 @@ html, body {
   letter-spacing: 1px;
 }
 
-/* MatchWatch Swiping Labels on Mobile */
+/* MatchWatch Swiping Labels */
 .swipe-wrapper .swipe-hint {
-  display: none; /* Hide card hint, use side icons */
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.swipe-screen {
+  justify-content: center;
+  padding-top: 20px;
 }
 
 @media (max-width: 600px) {
-  .swipe-wrapper .swipe-hint {
-    display: block;
-    position: absolute;
-    bottom: -30px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.4);
+  .swipe-screen {
+    justify-content: flex-start;
+    padding-top: 0;
   }
 }
