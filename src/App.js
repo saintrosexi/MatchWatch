@@ -260,17 +260,17 @@ export default function App() {
 
           <div className="deck-container">
             {[cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
-              cardIndex < deck.length && !isDecided(deck[cardIndex]) && (
+              cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
                 <div
                   key={cardIndex}
                   className={`deck-card deck-position-${2 - position}`}
                   style={{
-                    zIndex: deck.length - cardIndex,
+                    zIndex: filteredDeck.length - cardIndex,
                   }}
                 >
                   {cardIndex === cursor ? (
                     <SwipeCard
-                      movie={deck[cardIndex]}
+                      movie={filteredDeck[cardIndex]}
                       onSwipe={(dir, movie) => {
                         setSwipeHint({ x: 0, active: false });
                         handleSwipe(dir, movie);
@@ -279,7 +279,7 @@ export default function App() {
                     />
                   ) : (
                     <div className="card-placeholder">
-                      <img src={deck[cardIndex].poster} alt={deck[cardIndex].title} />
+                      <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
                       <div className="placeholder-overlay" />
                     </div>
                   )}
