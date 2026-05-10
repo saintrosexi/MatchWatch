@@ -254,21 +254,21 @@ export default function App() {
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
-          <div className="swipe-top-actions">
+          <div className="swipe-top-actions mobile-icon-actions">
             <button
-              className="btn-swipe-action btn-swipe-action--secondary"
+              className="btn-swipe-icon-action"
               onClick={handleReset}
               title="Перевыбрать любимые"
             >
-              Перевыбрать любимые
+              🔄
             </button>
             <button
-              className="btn-swipe-action btn-swipe-action--primary"
+              className="btn-swipe-icon-action"
               onClick={handleUndo}
               disabled={history.length === 0}
               title="Назад к предыдущей карточке"
             >
-              Назад к предыдущей карточке
+              ↩️
             </button>
           </div>
 
