@@ -30,7 +30,7 @@ export default function App() {
   const [cursor, setCursor] = useState(0);
   const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
-  const [screen, setScreen] = useState("swipe");
+  const [screen, setScreen] = useState("matchwatch");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
