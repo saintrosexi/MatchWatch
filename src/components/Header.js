@@ -1,4 +1,4 @@
-export default function Header({ currentScreen, onTabClick, likedCount }) {
+export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0 }) {
   return (
     <header className="header">
       <div className="header-content">
@@ -10,14 +10,17 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
           </div>
         </div>
 
-        <div className="header-center">
-          <button
-            className={`nav-tab tab-matchwatch ${currentScreen === "matchwatch" ? "active" : ""}`}
-            onClick={() => onTabClick("matchwatch")}
-          >
-            💑 MatchWatch
-          </button>
-        </div>
+      {/* Center: MatchWatch Tab with optional badge */}
+      <div className="header-center">
+        <button 
+          className={`nav-tab tab-matchwatch ${currentScreen === "matchwatch" ? "active" : ""}`}
+          onClick={() => onTabClick("matchwatch")}
+          style={{ position: 'relative' }}
+        >
+          🍿 MatchWatch
+          {invitesCount > 0 && <span className="nav-badge">{invitesCount}</span>}
+        </button>
+      </div>
 
         <ul className="nav-tabs">
           <li>
@@ -64,8 +67,10 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
             <button
               className={`nav-tab ${currentScreen === "friends" ? "active" : ""}`}
               onClick={() => onTabClick("friends")}
+              style={{ position: 'relative' }}
             >
               👥 Друзья
+              {friendRequestsCount > 0 && <span className="nav-badge">{friendRequestsCount}</span>}
             </button>
           </li>
           <li>

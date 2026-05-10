@@ -36,6 +36,7 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [stopGenres, setStopGenres] = useState([]);
   const [invites, setInvites] = useState({});
+  const [friendRequests, setFriendRequests] = useState({});
 
   useEffect(() => {
     if (!auth) {
@@ -61,6 +62,10 @@ export default function App() {
         
         onValue(ref(database, `users/${currentUser.uid}/invites`), (snap) => {
           setInvites(snap.val() || {});
+        });
+        
+        onValue(ref(database, `users/${currentUser.uid}/friendRequests`), (snap) => {
+          setFriendRequests(snap.val() || {});
         });
       } else {
         setDataLoaded(true);
@@ -207,7 +212,14 @@ export default function App() {
       }} />;
     }
     if (screen === "publicProfile") {
-      return <PublicProfile tag={publicProfileTag} onBackToApp={() => setScreen("swipe")} />;
+      return <PublicProfile 
+        tag={publicProfileTag} 
+        onBackToApp={() => setScreen("swipe")} 
+        onGoToMatchWatch={(roomCode) => {
+          setInitialRoomCode(roomCode);
+          setScreen("matchwatch");
+        }}
+      />;
     }
     return (
       <div className="screen screen--center">
@@ -287,7 +299,13 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header currentScreen={screen} onTabClick={handleTabClick} likedCount={liked.length} />
+      <Header 
+        currentScreen={screen} 
+        onTabClick={handleTabClick} 
+        likedCount={liked.length} 
+        friendRequestsCount={Object.keys(friendRequests).length}
+        invitesCount={Object.keys(invites).length}
+      />
       
       <div className="app-container">
         {currentScreen}

@@ -162,6 +162,13 @@ export const rejectFriendRequest = async (currentUid, requesterUid) => {
   await remove(ref(database, `users/${currentUid}/friendRequests/${requesterUid}`));
 };
 
+export const removeFriend = async (currentUid, targetUid) => {
+  const updates = {};
+  updates[`users/${currentUid}/friends/${targetUid}`] = null;
+  updates[`users/${targetUid}/friends/${currentUid}`] = null;
+  await update(ref(database), updates);
+};
+
 export const inviteToMatchWatch = async (targetUid, roomCode, currentTag) => {
   await set(ref(database, `users/${targetUid}/invites/${roomCode}`), {
     from: currentTag,

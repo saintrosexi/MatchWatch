@@ -1,15 +1,19 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { getPublicProfile, sendFriendRequest, auth } from "../firebase";
+import { getPublicProfile, sendFriendRequest, removeFriend, inviteToMatchWatch, createMatchRoom, auth, database } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { ref, onValue } from "firebase/database";
 import { movies } from "../data";
 
-export default function PublicProfile({ tag, onBackToApp }) {
+export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [targetData, setTargetData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [reqStatus, setReqStatus] = useState("");
+  
+  // Is this user already our friend?
+  const [isFriend, setIsFriend] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -35,6 +39,16 @@ export default function PublicProfile({ tag, onBackToApp }) {
     }
     if (tag) fetchProfile();
   }, [tag]);
+
+  useEffect(() => {
+    if (currentUser && targetData) {
+      const friendRef = ref(database, `users/${currentUser.uid}/friends/${targetData.uid}`);
+      const unsub = onValue(friendRef, (snap) => {
+        setIsFriend(snap.exists());
+      });
+      return () => unsub();
+    }
+  }, [currentUser, targetData]);
 
   const stats = useMemo(() => {
     if (!targetData || !targetData.appData) return { swiped: 0, likes: 0, matches: 0, topGenres: [], favoriteDecade: "—", recentLikes: [] };
@@ -83,13 +97,9 @@ export default function PublicProfile({ tag, onBackToApp }) {
   }, [targetData]);
 
   const handleAddFriend = async () => {
-    if (!currentUser) {
-      setReqStatus("Сначала войдите в аккаунт, чтобы добавлять друзей.");
-      return;
-    }
+    if (!currentUser) return setReqStatus("Сначала войдите в аккаунт.");
     if (!currentUser.displayName || !currentUser.displayName.includes("#")) {
-      setReqStatus("Сначала обновите свой профиль (вкладка Аккаунт), чтобы добавлять друзей.");
-      return;
+      return setReqStatus("Сначала обновите свой профиль (вкладка Аккаунт).");
     }
     try {
       setReqStatus("");
@@ -100,9 +110,30 @@ export default function PublicProfile({ tag, onBackToApp }) {
     }
   };
 
+  const handleRemoveFriend = async () => {
+    if (window.confirm(`Вы уверены, что хотите удалить ${namePart} из друзей?`)) {
+      try {
+        await removeFriend(currentUser.uid, targetData.uid);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
+  const handleInviteToMatchWatch = async () => {
+    if (!currentUser) return;
+    try {
+      const roomCode = await createMatchRoom(currentUser.displayName);
+      await inviteToMatchWatch(targetData.uid, roomCode, currentUser.displayName);
+      onGoToMatchWatch(roomCode);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="public-profile-container">
+      <div className="profile-dashboard">
         <h2 className="page-title">Загрузка...</h2>
       </div>
     );
@@ -110,13 +141,11 @@ export default function PublicProfile({ tag, onBackToApp }) {
 
   if (error) {
     return (
-      <div className="public-profile-container">
-        <div className="public-profile-card">
-          <div style={{fontSize: "4rem", marginBottom: "10px"}}>🤷‍♂️</div>
-          <h2>Ой!</h2>
-          <p>{error}</p>
-          <button className="btn-secondary" onClick={onBackToApp} style={{marginTop: "20px"}}>На главную</button>
-        </div>
+      <div className="profile-dashboard" style={{textAlign: "center", paddingTop: "50px"}}>
+        <div style={{fontSize: "4rem", marginBottom: "10px"}}>🤷‍♂️</div>
+        <h2>Ой!</h2>
+        <p>{error}</p>
+        <button className="btn-secondary" onClick={onBackToApp} style={{marginTop: "20px"}}>На главную</button>
       </div>
     );
   }
@@ -124,76 +153,107 @@ export default function PublicProfile({ tag, onBackToApp }) {
   const namePart = tag.split('#')[0];
   const tagPart = '#' + tag.split('#')[1];
 
+  const stopGenres = targetData.profile?.stopGenres || [];
+
   return (
-    <div className="public-profile-container">
-      <motion.div className="public-profile-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+    <div className="profile-dashboard">
+      <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         
-        <div className="public-profile-header">
-          <div className="profile-avatar-large">
-            {targetData.profile.avatar || "😎"}
+        {/* LEFT COLUMN */}
+        <div className="profile-left">
+          <div className="profile-card-main">
+            <div className="profile-avatar-large">
+              {targetData.profile.avatar || "😎"}
+            </div>
+            <h2 className="profile-display-name">
+              <span className="profile-name-bold">{namePart}</span>
+              <span className="profile-tag-dim">{tagPart}</span>
+            </h2>
+            
+            <div style={{marginTop: "20px", width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
+              {currentUser && currentUser.displayName === tag ? (
+                <p style={{color: "rgba(255,255,255,0.5)", margin: 0}}>Это ваш профиль</p>
+              ) : (
+                <>
+                  {!isFriend ? (
+                    <button className="btn-primary" onClick={handleAddFriend}>➕ Добавить друга</button>
+                  ) : (
+                    <>
+                      <button className="btn-primary" style={{background: "linear-gradient(135deg, #4ade80 0%, #22c55e 100%)"}} onClick={handleInviteToMatchWatch}>🍿 Позвать в MatchWatch</button>
+                      <button className="btn-secondary" onClick={handleRemoveFriend}>✅ Ваш друг (Удалить)</button>
+                    </>
+                  )}
+                  {reqStatus && <p style={{margin: 0, fontSize: "0.9rem"}}>{reqStatus}</p>}
+                </>
+              )}
+            </div>
           </div>
-          <h2 className="profile-display-name" style={{marginTop: "15px"}}>
-            <span className="profile-name-bold">{namePart}</span>
-            <span className="profile-tag-dim">{tagPart}</span>
-          </h2>
+
+          <div className="profile-card-settings">
+            <div className="setting-group">
+              <label>Стоп-жанры</label>
+              {stopGenres.length > 0 ? (
+                <div className="stop-genres-picker">
+                  {stopGenres.map(genre => (
+                    <button key={genre} className="genre-option stopped" style={{cursor: "default"}}>
+                      🚫 {genre}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="setting-hint">У пользователя нет стоп-жанров.</p>
+              )}
+            </div>
+            <button className="btn-secondary" onClick={onBackToApp} style={{width: "100%", marginTop: "15px"}}>Закрыть профиль</button>
+          </div>
         </div>
 
-        <div className="public-profile-actions">
-          {currentUser && currentUser.displayName === tag ? (
-            <p style={{color: "rgba(255,255,255,0.5)"}}>Это ваш профиль!</p>
-          ) : (
-            <>
-              <button className="btn-primary btn-large" onClick={handleAddFriend}>➕ Добавить в друзья</button>
-              {reqStatus && <p style={{marginTop: "10px", fontSize: "0.9rem"}}>{reqStatus}</p>}
-            </>
-          )}
-        </div>
-
-        <div className="public-profile-stats">
-          <h3>Статистика {namePart}</h3>
-          <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
-            <div className="stat-card">
-              <div className="stat-value">{stats.swiped}</div>
-              <div className="stat-label">Оценено</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-value">{stats.likes}</div>
-              <div className="stat-label">Лайков</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-value">{stats.matches}</div>
-              <div className="stat-label">Совпадений</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-value" style={{fontSize: stats.favoriteDecade.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favoriteDecade}</div>
-              <div className="stat-label">Любимая эпоха</div>
-            </div>
-          </div>
-
-          <div className="stats-detailed-box">
-            <h4>Любимые жанры</h4>
-            <div className="stats-tags">
-              {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
-                <span key={g} className="stats-tag">{g}</span>
-              )) : <span className="stats-tag dim">Нет данных</span>}
-            </div>
-          </div>
-
-          {stats.recentLikes.length > 0 && (
-            <div className="stats-detailed-box">
-              <h4>Любимые фильмы</h4>
-              <div className="recent-likes-row">
-                {stats.recentLikes.map(m => (
-                  <div key={m.id} className="recent-like-item" title={m.titleRu || m.title}>
-                    <img src={m.poster} alt={m.title} />
-                  </div>
-                ))}
+        {/* RIGHT COLUMN */}
+        <div className="profile-right">
+          <div className="profile-card-stats">
+            <h3>📊 Статистика</h3>
+            <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
+              <div className="stat-card">
+                <div className="stat-value">{stats.swiped}</div>
+                <div className="stat-label">Фильмов оценено</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">{stats.likes}</div>
+                <div className="stat-label">Лайков</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">{stats.matches}</div>
+                <div className="stat-label">Совпадений</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value" style={{fontSize: stats.favoriteDecade.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favoriteDecade}</div>
+                <div className="stat-label">Любимая эпоха</div>
               </div>
             </div>
-          )}
-        </div>
 
-        <button className="btn-secondary" onClick={onBackToApp} style={{marginTop: "30px", width: "100%"}}>Закрыть профиль</button>
+            <div className="stats-detailed-box">
+              <h4>Любимые жанры</h4>
+              <div className="stats-tags">
+                {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
+                  <span key={g} className="stats-tag">{g}</span>
+                )) : <span className="stats-tag dim">Нет данных</span>}
+              </div>
+            </div>
+
+            {stats.recentLikes.length > 0 && (
+              <div className="stats-detailed-box">
+                <h4>Случайные любимые фильмы</h4>
+                <div className="recent-likes-row">
+                  {stats.recentLikes.map(m => (
+                    <div key={m.id} className="recent-like-item" title={m.titleRu || m.title}>
+                      <img src={m.poster} alt={m.title} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
       </motion.div>
     </div>
