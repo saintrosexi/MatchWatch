@@ -9,6 +9,16 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
             <span className="logo-watch">Watch</span>
           </div>
         </div>
+
+        <div className="header-center">
+          <button
+            className={`nav-tab tab-matchwatch ${currentScreen === "matchwatch" ? "active" : ""}`}
+            onClick={() => onTabClick("matchwatch")}
+          >
+            💑 MatchWatch
+          </button>
+        </div>
+
         <ul className="nav-tabs">
           <li>
             <button
@@ -16,14 +26,6 @@ export default function Header({ currentScreen, onTabClick, likedCount }) {
               onClick={() => onTabClick("swipe")}
             >
               🎬 Выбрать фильм
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-tab ${currentScreen === "matchwatch" ? "active" : ""}`}
-              onClick={() => onTabClick("matchwatch")}
-            >
-              💑 MatchWatch
             </button>
           </li>
           <li>
