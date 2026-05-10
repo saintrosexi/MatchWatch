@@ -166,9 +166,9 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     <div className="matchwatch-container">
       {screen === "start" && (
         <motion.div className="matchwatch-start" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-          <h2 className="matchwatch-title">
-            <span style={{ fontSize: "3rem" }}>❤️</span><br />MatchWatch
-          </h2>
+          <div className="matchwatch-main-logo">
+            <img src="/logo.png" alt="MatchWatch Logo" className="logo-img-large" />
+          </div>
           <p className="matchwatch-subtitle">Синхронный поиск фильма для двоих!</p>
           <div className="matchwatch-buttons">
             <button className="btn-matchwatch btn-create" onClick={() => setScreen("create")}>🎬 Создать комнату</button>

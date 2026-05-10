@@ -32,11 +32,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           </button>
           
           <div className="header-logo" onClick={() => handleTabClick("swipe")}>
-            <div className="logo-icon">🎬❤️</div>
-            <div className="logo-text">
-              <span className="logo-match">Match</span>
-              <span className="logo-watch">Watch</span>
-            </div>
+            <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
           </div>
         </div>
 
