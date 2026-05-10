@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, set, onValue } from "firebase/database";
 import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {} }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -72,6 +72,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       });
     }
   }, [initialRoomCode, userName, onClearInitialRoomCode]);
+
+  useEffect(() => {
+    if (hostRoomCode && userName) {
+      setRoomCode(hostRoomCode);
+      setRole("host");
+      setScreen("waiting");
+      if (onClearHostRoomCode) onClearHostRoomCode();
+    }
+  }, [hostRoomCode, userName, onClearHostRoomCode]);
 
   // Подписка на изменения в комнате
   useEffect(() => {
@@ -166,6 +175,37 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <button className="btn-matchwatch btn-join" onClick={() => setScreen("join")}>🔗 Присоединиться</button>
             <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>📜 Вы выбирали</button>
           </div>
+
+          {Object.keys(invites).length > 0 && (
+            <div className="matchwatch-invites" style={{marginTop: "30px", background: "rgba(255,71,87,0.1)", border: "1px solid rgba(255,71,87,0.3)", padding: "15px", borderRadius: "14px"}}>
+              <h3 style={{marginTop: 0, fontSize: "1.1rem", color: "#ff4757"}}>Входящие приглашения:</h3>
+              <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+                {Object.entries(invites).map(([code, inviteData]) => (
+                  <div key={code} style={{background: "rgba(0,0,0,0.2)", padding: "12px", borderRadius: "8px", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                    <div style={{fontSize: "0.95rem", fontWeight: "bold"}}>👤 {inviteData.from} зовет вас!</div>
+                    <div style={{display: "flex", gap: "8px"}}>
+                      <button className="btn-primary btn-small" onClick={() => {
+                        setRoomCode(code);
+                        setRole("guest");
+                        joinMatchRoom(code, userName).then(success => {
+                          if (success) {
+                            setScreen("swiping");
+                            removeInvite(auth.currentUser.uid, code);
+                          } else {
+                            alert("Комната уже закрыта или не найдена");
+                            removeInvite(auth.currentUser.uid, code);
+                          }
+                        });
+                      }}>✅ Принять</button>
+                      <button className="btn-secondary btn-small" onClick={() => {
+                        removeInvite(auth.currentUser.uid, code);
+                      }}>❌</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </motion.div>
       )}
 

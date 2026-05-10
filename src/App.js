@@ -75,6 +75,8 @@ export default function App() {
   }, [dataLoaded]);
 
   const [publicProfileTag, setPublicProfileTag] = useState(null);
+  const [initialRoomCode, setInitialRoomCode] = useState(null);
+  const [hostRoomCode, setHostRoomCode] = useState(null);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -167,17 +169,7 @@ export default function App() {
     }
   };
 
-  const [initialRoomCode, setInitialRoomCode] = useState(null);
 
-  const handleAcceptInvite = (code) => {
-    if (user) remove(ref(database, `users/${user.uid}/invites/${code}`));
-    setInitialRoomCode(code);
-    setScreen("matchwatch");
-  };
-
-  const handleRejectInvite = (code) => {
-    if (user) remove(ref(database, `users/${user.uid}/invites/${code}`));
-  };
 
   const currentScreen = (() => {
     if (screen === "final") {
@@ -200,6 +192,9 @@ export default function App() {
         onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} 
         initialRoomCode={initialRoomCode}
         onClearInitialRoomCode={() => setInitialRoomCode(null)}
+        hostRoomCode={hostRoomCode}
+        onClearHostRoomCode={() => setHostRoomCode(null)}
+        invites={invites}
       />;
     }
     if (screen === "profile") {
@@ -216,7 +211,7 @@ export default function App() {
         tag={publicProfileTag} 
         onBackToApp={() => setScreen("swipe")} 
         onGoToMatchWatch={(roomCode) => {
-          setInitialRoomCode(roomCode);
+          setHostRoomCode(roomCode);
           setScreen("matchwatch");
         }}
       />;
