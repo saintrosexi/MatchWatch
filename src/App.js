@@ -140,6 +140,20 @@ export default function App() {
     setScreen("swipe");
   };
 
+  const handleWatchNew = () => {
+    setDecisions(prev => {
+      const next = {};
+      Object.entries(prev).forEach(([id, decision]) => {
+        if (decision === "like") next[id] = "like";
+      });
+      return next;
+    });
+    setHistory(prev => prev.filter(id => decisions[id] === "like"));
+    setDeck(shuffle(movies));
+    setCursor(0);
+    setScreen("swipe");
+  };
+
   const handleUndo = () => {
     setHistory(prev => {
       if (prev.length === 0) return prev;
@@ -173,7 +187,7 @@ export default function App() {
 
   const currentScreen = (() => {
     if (screen === "final") {
-      return <FinalScreen onOpenLiked={() => setScreen("liked")} />;
+      return <FinalScreen onOpenLiked={() => setScreen("liked")} onWatchNew={handleWatchNew} />;
     }
     if (screen === "liked") {
       return <LikedGrid liked={liked} />;

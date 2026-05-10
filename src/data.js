@@ -5711,7 +5711,7 @@ export const movies = [
     titleRu: "Эффект бабочки",
     year: 2004,
     rating: 7,
-    poster: "https://kinopoiskapiunofficial.tech/images/posters/kp/no-poster.png",
+    poster: "https://kinopoiskapiunofficial.tech/images/posters/kp/5167.jpg",
     description: "",
     fullDescription: "",
     country: "США",
