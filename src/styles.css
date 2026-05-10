@@ -44,6 +44,7 @@ html, body {
 .app-container.no-scroll {
   overflow-y: hidden !important;
   height: calc(100vh - var(--header-height));
+  padding-top: var(--header-height); /* Remove extra top padding */
 }
 
 .screen {
@@ -654,7 +655,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px; /* Reduced since undo is in header now */
+  padding-top: 0px; /* Fully removed since undo is in header */
 }
 
 .swipe-hints {
