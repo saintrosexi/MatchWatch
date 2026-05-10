@@ -50,8 +50,16 @@ export default function App() {
         onValue(userRef, (snapshot) => {
           const data = snapshot.val();
           if (data && !dataLoaded) {
-            if (data.decisions) setDecisions(data.decisions);
-            if (data.history) setHistory(data.history);
+            if (data.decisions) {
+              setDecisions(prev => ({ ...prev, ...data.decisions }));
+            }
+            if (data.history) {
+              setHistory(prev => {
+                const combined = [...prev, ...data.history];
+                // Return unique IDs to avoid duplicates in history
+                return Array.from(new Set(combined));
+              });
+            }
           }
           setDataLoaded(true);
         }, { onlyOnce: true });
