@@ -115,29 +115,48 @@ export default function Profile() {
 
   // Stats calculation
   const stats = useMemo(() => {
-    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, favGenre: "—" };
+    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, topGenres: [], favoriteDecade: "—", recentLikes: [] };
     const decs = appData.decisions || {};
     const swiped = Object.keys(decs).length;
     const likes = Object.values(decs).filter(d => d === "like").length;
     
     const genreCounts = {};
+    const decadeCounts = {};
+    const likedMovies = [];
+
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
         const m = movies.find(x => x.id === parseInt(id));
-        if (m && m.genres) {
-          m.genres.split(", ").forEach(g => {
-            genreCounts[g] = (genreCounts[g] || 0) + 1;
-          });
+        if (m) {
+          likedMovies.push(m);
+          if (m.genres) {
+            m.genres.split(", ").forEach(g => {
+              genreCounts[g] = (genreCounts[g] || 0) + 1;
+            });
+          }
+          if (m.year) {
+            const decade = Math.floor(m.year / 10) * 10;
+            decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
+          }
         }
       }
     });
-    let favGenre = "—";
-    let max = 0;
-    Object.entries(genreCounts).forEach(([g, count]) => {
-      if (count > max) { max = count; favGenre = g; }
-    });
+
+    const topGenres = Object.entries(genreCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(e => e[0]);
+
+    let favoriteDecade = "—";
+    if (Object.keys(decadeCounts).length > 0) {
+      const topDecade = Object.entries(decadeCounts).sort((a, b) => b[1] - a[1])[0][0];
+      favoriteDecade = `${topDecade}-е`;
+    }
+
+    const shuffledLikes = [...likedMovies].sort(() => 0.5 - Math.random());
+    const recentLikes = shuffledLikes.slice(0, 6);
     
-    return { swiped, likes, matches: matchHistory.length, favGenre };
+    return { swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes };
   }, [appData, matchHistory]);
 
   const achievements = [
@@ -330,7 +349,7 @@ export default function Profile() {
           <div className="profile-right">
             <div className="profile-card-stats">
               <h3>📊 Статистика</h3>
-              <div className="stats-grid-2col">
+              <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
                 <div className="stat-card">
                   <div className="stat-value">{stats.swiped}</div>
                   <div className="stat-label">Фильмов оценено</div>
@@ -344,10 +363,32 @@ export default function Profile() {
                   <div className="stat-label">Совпадений</div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-value" style={{fontSize: stats.favGenre.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favGenre}</div>
-                  <div className="stat-label">Любимый жанр</div>
+                  <div className="stat-value" style={{fontSize: stats.favoriteDecade.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favoriteDecade}</div>
+                  <div className="stat-label">Любимая эпоха</div>
                 </div>
               </div>
+              
+              <div className="stats-detailed-box">
+                <h4>Любимые жанры</h4>
+                <div className="stats-tags">
+                  {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
+                    <span key={g} className="stats-tag">{g}</span>
+                  )) : <span className="stats-tag dim">Нет данных</span>}
+                </div>
+              </div>
+
+              {stats.recentLikes.length > 0 && (
+                <div className="stats-detailed-box">
+                  <h4>Случайные любимые фильмы</h4>
+                  <div className="recent-likes-row">
+                    {stats.recentLikes.map(m => (
+                      <div key={m.id} className="recent-like-item" title={m.titleRu || m.title}>
+                        <img src={m.poster} alt={m.title} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="profile-card-achievements">

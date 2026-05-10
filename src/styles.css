@@ -1746,3 +1746,92 @@ html, body {
   border-radius: 30px;
 }
 
+
+
+/* ===== DETAILED STATS ===== */
+
+.stats-detailed-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 15px;
+}
+
+.stats-detailed-box h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.stats-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stats-tag {
+  background: rgba(255, 138, 80, 0.15);
+  border: 1px solid rgba(255, 138, 80, 0.3);
+  color: #ff8a50;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.stats-tag.dim {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+}
+
+.recent-likes-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.recent-likes-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.recent-likes-row::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+
+.recent-like-item {
+  flex: 0 0 80px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.recent-like-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+}
+
+.recent-like-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Friend hover effect */
+.friend-card.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.friend-card.clickable:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+

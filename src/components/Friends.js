@@ -2,15 +2,36 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { auth, database, sendFriendRequest, acceptFriendRequest, rejectFriendRequest } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, get } from "firebase/database";
 
-export default function Friends() {
+export default function Friends({ onViewProfile }) {
   const [user, setUser] = useState(null);
   const [friends, setFriends] = useState({});
   const [friendRequests, setFriendRequests] = useState({});
   const [friendTagInput, setFriendTagInput] = useState("");
   const [friendError, setFriendError] = useState("");
   const [friendSuccess, setFriendSuccess] = useState("");
+  const [friendAvatars, setFriendAvatars] = useState({});
+
+  useEffect(() => {
+    const fetchAvatars = async () => {
+      const avatars = {};
+      for (const uid of Object.keys(friends)) {
+        try {
+          const snap = await get(ref(database, `users/${uid}/profile/avatar`));
+          if (snap.exists()) {
+            avatars[uid] = snap.val();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      setFriendAvatars(avatars);
+    };
+    if (Object.keys(friends).length > 0) {
+      fetchAvatars();
+    }
+  }, [friends]);
 
   useEffect(() => {
     if (!auth) return;
@@ -127,8 +148,13 @@ export default function Friends() {
                   const namePart = tag.includes('#') ? tag.split('#')[0] : tag;
                   const tagPart = tag.includes('#') ? '#' + tag.split('#')[1] : '';
                   return (
-                    <div key={uid} className="friend-card">
-                      <div className="friend-card-avatar">👤</div>
+                    <div 
+                      key={uid} 
+                      className="friend-card clickable" 
+                      onClick={() => onViewProfile(tag)}
+                      title={`Посмотреть профиль ${namePart}`}
+                    >
+                      <div className="friend-card-avatar">{friendAvatars[uid] || "😎"}</div>
                       <div className="friend-card-info">
                         <span className="friend-card-name">{namePart}</span>
                         <span className="friend-card-tag">{tagPart}</span>

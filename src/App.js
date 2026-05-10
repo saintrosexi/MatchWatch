@@ -201,7 +201,10 @@ export default function App() {
       return <Profile />;
     }
     if (screen === "friends") {
-      return <Friends />;
+      return <Friends onViewProfile={(tag) => {
+        setPublicProfileTag(tag);
+        setScreen("publicProfile");
+      }} />;
     }
     if (screen === "publicProfile") {
       return <PublicProfile tag={publicProfileTag} onBackToApp={() => setScreen("swipe")} />;
