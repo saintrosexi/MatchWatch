@@ -429,10 +429,11 @@ html, body {
 
   /* Almost Full Screen Swipe Card */
   .deck-container {
-    width: 85vw !important;
-    max-width: 480px !important;
-    height: 75vh !important;
+    width: 90vw !important;
+    max-width: 500px !important;
+    height: 85vh !important;
     margin: 5px auto !important;
+    border: none !important;
   }
   
   .movie-card {
@@ -496,8 +497,14 @@ html, body {
   
   .btn-matchwatch-action {
     padding: 30px 40px !important;
-    font-size: 1.8rem !important;
+    font-size: 2rem !important;
     border-radius: 24px !important;
+    font-weight: 900 !important;
+  }
+  
+  .matchwatch-main-logo {
+    font-size: 5rem !important;
+    margin-bottom: 20px !important;
   }
   
   .matchwatch-actions {
@@ -521,25 +528,7 @@ html, body {
   }
 }
 
-@media (max-width: 480px) {
-  .movie-card {
-    height: 520px;
-    border-radius: 20px;
-  }
-  
-  .info h2 {
-    font-size: 1.4rem;
-  }
-  
-  .info .year {
-    font-size: 0.95rem;
-  }
-  
-  .info .description {
-    font-size: 0.9rem;
-    -webkit-line-clamp: 3;
-  }
-}
+
 
 .movie-card:active {
   cursor: grabbing;
