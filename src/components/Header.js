@@ -34,13 +34,6 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           <div className="header-logo" onClick={() => handleTabClick("swipe")}>
             <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
           </div>
-
-          {/* Desktop Undo Button */}
-          {rightContent && (
-            <div className="desktop-only" style={{ marginLeft: "10px" }}>
-              {rightContent}
-            </div>
-          )}
         </div>
 
         {/* Desktop MatchWatch Tab */}

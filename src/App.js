@@ -348,6 +348,15 @@ export default function App() {
               )
             ))}
           </div>
+
+          <button 
+            className="btn-floating-undo desktop-only" 
+            onClick={handleUndo} 
+            disabled={history.length === 0}
+            title="Отменить последний выбор"
+          >
+            ↩️
+          </button>
         </div>
       </div>
     );

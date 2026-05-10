@@ -2675,4 +2675,34 @@ html, body {
   }
 }
 
-/* Removed redundant swipe-screen definition */
+/* Swipe screen floating undo button */
+.btn-floating-undo {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.btn-floating-undo:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ff8a50;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.btn-floating-undo:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
