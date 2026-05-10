@@ -254,7 +254,7 @@ export default function App() {
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
-          <div className="swipe-top-actions">
+          <div className="swipe-top-actions desktop-only">
             <button
               className="btn-swipe-action btn-swipe-action--secondary"
               onClick={handleUndo}

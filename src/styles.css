@@ -411,7 +411,7 @@ html, body {
 
   /* Almost Full Screen Swipe Card */
   .deck-container {
-    width: 100% !important;
+    width: 85% !important;
     max-width: 380px !important;
     height: 70vh !important;
     margin: 0 auto !important;
