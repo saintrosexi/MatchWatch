@@ -25,6 +25,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [showInviteModal, setShowInviteModal] = useState(false);
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [friends, setFriends] = useState({});
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
