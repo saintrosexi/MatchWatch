@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import DetailedMovieModal from "./DetailedMovieModal";
 import TasteProfile from "./TasteProfile";
 
-export default function LikedGrid({ liked }) {
+export default function LikedGrid({ liked, decisions, onToggleLike }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   return (
@@ -40,6 +40,8 @@ export default function LikedGrid({ liked }) {
           <DetailedMovieModal 
             movie={selectedMovie} 
             onClose={() => setSelectedMovie(null)}
+            isLiked={decisions?.[selectedMovie.id] === "like"}
+            onToggleLike={onToggleLike}
           />
         )}
       </AnimatePresence>

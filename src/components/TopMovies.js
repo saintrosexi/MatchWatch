@@ -2,7 +2,7 @@ import { useState } from "react";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function TopMovies() {
+export default function TopMovies({ decisions, onToggleLike }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   // Sort movies by rating in descending order (no slicing - show all)
@@ -45,6 +45,8 @@ export default function TopMovies() {
         <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
+          isLiked={decisions?.[selectedMovie.id] === "like"}
+          onToggleLike={onToggleLike}
         />
       )}
     </div>

@@ -52,7 +52,7 @@ const getMoodCategory = (movie) => {
   return defaultMoods[movie.id % defaultMoods.length];
 };
 
-export default function MoodPicker() {
+export default function MoodPicker({ decisions, onToggleLike }) {
   const [selectedMood, setSelectedMood] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -120,6 +120,8 @@ export default function MoodPicker() {
         <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
+          isLiked={decisions?.[selectedMovie.id] === "like"}
+          onToggleLike={onToggleLike}
         />
       )}
     </div>

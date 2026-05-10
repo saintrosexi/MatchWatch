@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function SearchMovies() {
+export default function SearchMovies({ decisions, onToggleLike }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -99,6 +99,8 @@ export default function SearchMovies() {
         <DetailedMovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
+          isLiked={decisions?.[selectedMovie.id] === "like"}
+          onToggleLike={onToggleLike}
         />
       )}
     </div>

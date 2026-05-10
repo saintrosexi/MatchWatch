@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import "./DetailedMovieModal.css";
 
-export default function DetailedMovieModal({ movie, onClose }) {
+export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike }) {
   if (!movie) return null;
 
   const extendedDescription = movie.fullDescription || movie.description;
@@ -39,6 +39,17 @@ export default function DetailedMovieModal({ movie, onClose }) {
         <button className="modal-close-btn" onClick={onClose} title="Закрыть">
           ✕
         </button>
+
+        {/* Favorite Button */}
+        {onToggleLike && (
+          <button 
+            className={`modal-favorite-btn ${isLiked ? "is-liked" : ""}`} 
+            onClick={() => onToggleLike(movie)}
+            title={isLiked ? "Убрать из избранного" : "Добавить в избранное"}
+          >
+            {isLiked ? "❤️" : "🤍"}
+          </button>
+        )}
 
         <div className="detailed-modal-wrapper">
           {/* Left Section: Poster */}

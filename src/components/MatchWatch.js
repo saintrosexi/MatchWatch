@@ -7,7 +7,7 @@ import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {} }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -401,6 +401,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <DetailedMovieModal 
               movie={movies.find(m => m.id === roomData.match)} 
               onClose={() => setShowDetails(false)} 
+              isLiked={decisions?.[roomData.match] === "like"}
+              onToggleLike={onToggleLike}
             />
           )}
         </div>
@@ -436,6 +438,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         <DetailedMovieModal 
           movie={movies.find(m => m.id === showDetails)} 
           onClose={() => setShowDetails(false)} 
+          isLiked={decisions?.[showDetails] === "like"}
+          onToggleLike={onToggleLike}
         />
       )}
     </div>

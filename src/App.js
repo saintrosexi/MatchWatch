@@ -223,6 +223,19 @@ export default function App() {
     });
   };
 
+  const toggleLike = (movie) => {
+    setDecisions(prev => {
+      const current = prev[movie.id];
+      const next = { ...prev };
+      if (current === "like") {
+        delete next[movie.id];
+      } else {
+        next[movie.id] = "like";
+      }
+      return next;
+    });
+  };
+
   const handleTabClick = (tab) => {
     if (tab === "swipe") {
       setScreen("swipe");
@@ -253,20 +266,22 @@ export default function App() {
       return <FinalScreen onOpenLiked={() => setScreen("liked")} onWatchNew={handleWatchNew} />;
     }
     if (screen === "liked") {
-      return <LikedGrid liked={liked} />;
+      return <LikedGrid liked={liked} decisions={decisions} onToggleLike={toggleLike} />;
     }
     if (screen === "top") {
-      return <TopMovies stopGenres={stopGenres} />;
+      return <TopMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
     }
     if (screen === "search") {
-      return <SearchMovies stopGenres={stopGenres} />;
+      return <SearchMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
     }
     if (screen === "mood") {
-      return <MoodPicker stopGenres={stopGenres} />;
+      return <MoodPicker stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
     }
     if (screen === "matchwatch") {
       return <MatchWatch 
         onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} 
+        decisions={decisions}
+        onToggleLike={toggleLike}
         initialRoomCode={initialRoomCode}
         onClearInitialRoomCode={() => setInitialRoomCode(null)}
         hostRoomCode={hostRoomCode}
