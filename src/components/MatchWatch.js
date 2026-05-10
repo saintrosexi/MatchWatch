@@ -295,9 +295,9 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       {screen === "swiping" && (
         <motion.div className="matchwatch-swiping" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="room-header" style={{ marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span>Комната: <strong>{roomCode}</strong></span>
-            <span>{roomData?.hostName} & {roomData?.guestName || '...'}</span>
+          <div className="room-header-compact">
+            <div className="room-info-item">Комната: <strong>{roomCode}</strong></div>
+            <div className="room-info-item">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
           </div>
           
           <div className="swipe-wrapper">
@@ -356,8 +356,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       )}
 
       {screen === "match" && roomData?.match && (
-        <>
-          <motion.div className="matchwatch-form" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+        <div className="match-screen-overlay">
+          <motion.div className="matchwatch-form match-modal-content" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
             <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
             <div className="match-movie" style={{ textAlign: "center" }}>
               <img 
@@ -378,7 +378,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               onClose={() => setShowDetails(false)} 
             />
           )}
-        </>
+        </div>
       )}
 
       {screen === "history" && (

@@ -97,7 +97,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress }) {
               alt={movie.title}
               onLoad={() => setImageLoaded(true)}
               draggable={false}
-              style={{ pointerEvents: "none", userSelect: "none" }}
+              style={{ pointerEvents: "none" }}
             />
           </div>
           <div className="info">

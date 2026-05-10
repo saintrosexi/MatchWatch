@@ -2250,3 +2250,55 @@ html, body {
   border: 1px solid rgba(255,255,255,0.2);
 }
 
+
+/* MatchWatch Compact Styles */
+.room-header-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.room-info-item {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-info-item strong {
+  color: #ff8a50;
+  font-size: 1rem;
+}
+
+/* Match Screen Higher Position */
+.match-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Move to top */
+  padding-top: 60px; /* Some margin from header */
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.match-modal-content {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 600px) {
+  .match-screen-overlay {
+    padding-top: 20px;
+  }
+}
