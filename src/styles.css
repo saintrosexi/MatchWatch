@@ -19,7 +19,7 @@ html, body {
 
 :root {
   --header-height: 60px;
-  --header-height-mobile: 90px;
+  --header-height-mobile: 120px;
 }
 
 .app {
@@ -204,28 +204,28 @@ html, body {
   
   .mobile-menu-toggle {
     display: block;
-    font-size: 48px; /* Massive hamburger */
-    padding: 10px;
+    font-size: 64px; /* Even bigger hamburger */
+    padding: 15px;
   }
   
   .active-tab-name {
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 900;
     color: #ff8a50;
     justify-self: end;
     margin-right: 0;
-    background: rgba(255, 138, 80, 0.2);
-    padding: 10px 20px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 138, 80, 0.4);
+    background: rgba(255, 138, 80, 0.25);
+    padding: 12px 24px;
+    border-radius: 16px;
+    border: 3px solid rgba(255, 138, 80, 0.5);
   }
 
   .logo-icon {
-    font-size: 44px;
+    font-size: 54px;
   }
   
   .logo-text {
-    font-size: 28px;
+    font-size: 34px;
   }
 
   .nav-tabs {
@@ -258,11 +258,11 @@ html, body {
   .nav-tab {
     width: 100%;
     text-align: left;
-    padding: 22px 30px;
-    font-size: 1.5rem;
+    padding: 26px 36px;
+    font-size: 1.7rem;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    border-width: 2px;
+    border-radius: 20px;
+    border-width: 3px;
   }
   
   .menu-header {
@@ -276,15 +276,15 @@ html, body {
   }
   
   .tab-matchwatch-mobile {
-    background: linear-gradient(135deg, rgba(255,107,107,0.3) 0%, rgba(255,138,80,0.3) 100%) !important;
-    border: 2px solid rgba(255,138,80,0.5) !important;
+    background: linear-gradient(135deg, rgba(255,107,107,0.35) 0%, rgba(255,138,80,0.35) 100%) !important;
+    border: 3px solid rgba(255,138,80,0.6) !important;
     font-weight: 900;
     color: white;
     width: 100%;
     text-align: left;
-    padding: 22px 30px;
-    border-radius: 16px;
-    font-size: 1.5rem;
+    padding: 26px 36px;
+    border-radius: 20px;
+    font-size: 1.7rem;
   }
 
   /* Massive Swipe Actions for Mobile */
@@ -317,10 +317,10 @@ html, body {
   }
 
   .btn-primary, .btn-secondary {
-    padding: 22px 30px;
-    font-size: 1.4rem;
-    border-radius: 18px;
-    font-weight: 800;
+    padding: 26px 40px;
+    font-size: 1.6rem;
+    border-radius: 20px;
+    font-weight: 900;
   }
   
   .mobile-menu-overlay {
