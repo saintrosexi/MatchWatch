@@ -104,7 +104,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress }) {
             <h2>{movie.titleRu || movie.title}</h2>
             <p className="year">{movie.year}</p>
             <p className="description">{movie.description}</p>
-            <div className="swipe-hint">← Свайпни →</div>
+            <div className="swipe-hint">← Пропустить | Нравится →</div>
           </div>
         </motion.div>
       </AnimatePresence>

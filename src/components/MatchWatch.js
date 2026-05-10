@@ -324,6 +324,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           
           <div className="swipe-wrapper">
             {/* Подсказки лайк/дизлайк */}
+            <div className="swipe-hint">← Пропустить | Нравится →</div>
             <div className="swipe-hints" aria-hidden="true">
               <div
                 className="swipe-hint-icon swipe-hint-icon--dislike"
@@ -333,6 +334,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 }}
               >
                 ✕
+                <span className="swipe-hint-text">Пропустить</span>
               </div>
               <div
                 className="swipe-hint-icon swipe-hint-icon--like"
@@ -342,6 +344,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 }}
               >
                 ❤️
+                <span className="swipe-hint-text">Нравится</span>
               </div>
             </div>
 

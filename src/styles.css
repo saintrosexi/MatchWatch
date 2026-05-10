@@ -2427,6 +2427,201 @@ html, body {
 }
 
 .match-modal-content {
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+}
+
+.public-profile-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.public-profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.public-profile-actions {
+  margin-bottom: 35px;
+}
+
+.public-profile-stats {
+  background: rgba(0,0,0,0.2);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: left;
+}
+
+.public-profile-stats h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-large {
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border-radius: 30px;
+}
+
+
+
+/* ===== DETAILED STATS ===== */
+
+.stats-detailed-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 15px;
+}
+
+.stats-detailed-box h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.stats-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stats-tag {
+  background: rgba(255, 138, 80, 0.15);
+  border: 1px solid rgba(255, 138, 80, 0.3);
+  color: #ff8a50;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.stats-tag.dim {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+}
+
+.recent-likes-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.recent-likes-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.recent-likes-row::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+
+.recent-like-item {
+  flex: 0 0 80px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.recent-like-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+}
+
+.recent-like-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Friend hover effect */
+.friend-card.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.friend-card.clickable:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+
+
+/* ===== NOTIFICATION BADGE ===== */
+.nav-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff4757;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+
+/* MatchWatch Compact Styles */
+.room-header-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.room-info-item {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-info-item strong {
+  color: #ff8a50;
+  font-size: 1rem;
+}
+
+/* Match Screen Higher Position */
+.match-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Move to top */
+  padding-top: 60px; /* Some margin from header */
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.match-modal-content {
   background: rgba(255, 255, 255, 0.05) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px);
@@ -2435,5 +2630,32 @@ html, body {
 @media (max-width: 600px) {
   .match-screen-overlay {
     padding-top: 20px;
+  }
+}
+
+.swipe-hint-text {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* MatchWatch Swiping Labels on Mobile */
+.swipe-wrapper .swipe-hint {
+  display: none; /* Hide card hint, use side icons */
+}
+
+@media (max-width: 600px) {
+  .swipe-wrapper .swipe-hint {
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
   }
 }
