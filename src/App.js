@@ -97,6 +97,25 @@ export default function App() {
     }
   }, [decisions, history, user, dataLoaded]);
 
+  useEffect(() => {
+    if (screen === "swipe") {
+      if (filteredDeck.length === 0 || cursor >= filteredDeck.length) {
+        setScreen("final");
+        return;
+      }
+      if (Boolean(decisions[filteredDeck[cursor].id])) {
+        let next = cursor;
+        while (next < filteredDeck.length && Boolean(decisions[filteredDeck[next].id])) {
+          next++;
+        }
+        setCursor(next);
+        if (next >= filteredDeck.length) {
+          setScreen("final");
+        }
+      }
+    }
+  }, [cursor, filteredDeck, decisions, screen]);
+
   const liked = useMemo(
     () => deck.filter(m => decisions[m.id] === "like"),
     [deck, decisions]
