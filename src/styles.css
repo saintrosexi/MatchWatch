@@ -62,9 +62,9 @@ html, body {
 
 .screen--center.swipe-screen {
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 0;
 }
 
 /* Header & Navigation */
@@ -2633,6 +2633,23 @@ html, body {
   }
 }
 
+.swipe-hint {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4); /* Darker for white card info area */
+  margin-top: auto;
+  padding-top: 0;
+}
+
+@media (max-width: 600px) {
+  .screen--center.swipe-screen {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+}
+
 .swipe-hint-text {
   display: block;
   font-size: 1.2rem;
@@ -2640,6 +2657,7 @@ html, body {
   margin-top: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: white; /* Light for side icons */
 }
 
 /* MatchWatch Swiping Labels */
@@ -2648,17 +2666,13 @@ html, body {
   margin-bottom: 10px;
   text-align: center;
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.4);
-}
-
-.swipe-screen {
-  justify-content: center;
-  padding-top: 20px;
+  color: rgba(0,0,0,0.5);
 }
 
 @media (max-width: 600px) {
-  .swipe-screen {
+  .screen--center.swipe-screen {
     justify-content: flex-start;
-    padding-top: 0;
   }
 }
+
+/* Removed redundant swipe-screen definition */
