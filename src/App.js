@@ -12,6 +12,7 @@ import MatchWatch from "./components/MatchWatch";
 import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
+import Friends from "./components/Friends";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -67,8 +68,9 @@ export default function App() {
     return () => unsubscribe();
   }, [dataLoaded]);
 
+  const [pendingFriendAdd, setPendingFriendAdd] = useState(null);
+
   useEffect(() => {
-    // Save ?add= param to sessionStorage so it persists through login
     const urlParams = new URLSearchParams(window.location.search);
     const addTag = urlParams.get('add');
     if (addTag) {
@@ -82,13 +84,7 @@ export default function App() {
       const pendingTag = sessionStorage.getItem('pendingFriendAdd');
       if (pendingTag && pendingTag !== user.displayName) {
         sessionStorage.removeItem('pendingFriendAdd');
-        if (window.confirm(`Пользователь ${pendingTag} приглашает вас в друзья. Отправить заявку?`)) {
-          import('./firebase').then(({ sendFriendRequest }) => {
-            sendFriendRequest(user.uid, user.displayName, pendingTag)
-              .then(() => alert("Заявка отправлена!"))
-              .catch(err => alert(err.message));
-          });
-        }
+        setPendingFriendAdd(pendingTag);
       }
     }
   }, [user]);
@@ -212,6 +208,9 @@ export default function App() {
     if (screen === "profile") {
       return <Profile />;
     }
+    if (screen === "friends") {
+      return <Friends />;
+    }
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
@@ -291,6 +290,25 @@ export default function App() {
   return (
     <div className="app">
       <Header currentScreen={screen} onTabClick={handleTabClick} likedCount={liked.length} />
+      
+      {pendingFriendAdd && (
+        <div className="friend-add-banner">
+          <div className="friend-add-banner-text">
+            <strong>👤 {pendingFriendAdd}</strong> приглашает вас в друзья!
+          </div>
+          <div className="friend-add-banner-actions">
+            <button className="btn-accept" onClick={() => {
+              import('./firebase').then(({ sendFriendRequest }) => {
+                sendFriendRequest(user.uid, user.displayName, pendingFriendAdd)
+                  .then(() => { setPendingFriendAdd(null); setScreen("friends"); })
+                  .catch(err => { alert(err.message); setPendingFriendAdd(null); });
+              });
+            }}>Добавить в друзья</button>
+            <button className="btn-reject" onClick={() => setPendingFriendAdd(null)}>Закрыть</button>
+          </div>
+        </div>
+      )}
+
       <div className="app-container">
         {currentScreen}
         

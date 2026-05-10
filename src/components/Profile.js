@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut, sendFriendRequest, acceptFriendRequest, rejectFriendRequest } from "../firebase";
+import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
@@ -16,18 +16,10 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
-
-  const [activeTab, setActiveTab] = useState("stats"); // stats, friends, settings
   
   const [profileData, setProfileData] = useState(null);
   const [appData, setAppData] = useState(null);
-  const [friends, setFriends] = useState({});
-  const [friendRequests, setFriendRequests] = useState({});
   const [matchHistory, setMatchHistory] = useState([]);
-  
-  const [friendTagInput, setFriendTagInput] = useState("");
-  const [friendError, setFriendError] = useState("");
-  const [friendSuccess, setFriendSuccess] = useState("");
   
   const [copiedLink, setCopiedLink] = useState(false);
   const [migrateTagInput, setMigrateTagInput] = useState("");
@@ -41,14 +33,11 @@ export default function Profile() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // Load everything
         const userRef = ref(database, `users/${currentUser.uid}`);
         onValue(userRef, (snap) => {
           const data = snap.val() || {};
           setProfileData(data.profile || {});
           setAppData(data.appData || {});
-          setFriends(data.friends || {});
-          setFriendRequests(data.friendRequests || {});
           setMatchHistory(data.matchHistory || []);
         });
       }
@@ -96,12 +85,11 @@ export default function Profile() {
 
   // Stats calculation
   const stats = useMemo(() => {
-    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, favGenre: "Нет" };
+    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, favGenre: "—" };
     const decs = appData.decisions || {};
     const swiped = Object.keys(decs).length;
     const likes = Object.values(decs).filter(d => d === "like").length;
     
-    // Fav genre
     const genreCounts = {};
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
@@ -113,7 +101,7 @@ export default function Profile() {
         }
       }
     });
-    let favGenre = "Нет";
+    let favGenre = "—";
     let max = 0;
     Object.entries(genreCounts).forEach(([g, count]) => {
       if (count > max) { max = count; favGenre = g; }
@@ -122,37 +110,12 @@ export default function Profile() {
     return { swiped, likes, matches: matchHistory.length, favGenre };
   }, [appData, matchHistory]);
 
-  const handleAddFriend = async (e) => {
-    e.preventDefault();
-    setFriendError("");
-    setFriendSuccess("");
-    if (!friendTagInput.includes("#")) {
-      return setFriendError("Тег должен содержать # (например Саша#1111)");
-    }
-    try {
-      await sendFriendRequest(user.uid, user.displayName, friendTagInput);
-      setFriendSuccess("Заявка отправлена!");
-      setFriendTagInput("");
-    } catch (err) {
-      setFriendError(err.message);
-    }
-  };
-
-  const handleAcceptFriend = async (uid, tag) => {
-    try {
-      await acceptFriendRequest(user.uid, user.displayName, uid, tag);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleRejectFriend = async (uid) => {
-    try {
-      await rejectFriendRequest(user.uid, uid);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const achievements = [
+    { icon: "👶", title: "Новичок", desc: "Свайпнуть 10 фильмов", unlocked: stats.swiped >= 10 },
+    { icon: "🍿", title: "Киноманьяк", desc: "Свайпнуть 100 фильмов", unlocked: stats.swiped >= 100 },
+    { icon: "❤️", title: "Доброе сердце", desc: "Поставить 50 лайков", unlocked: stats.likes >= 50 },
+    { icon: "🥂", title: "Идеальная пара", desc: "Получить 5 совпадений", unlocked: stats.matches >= 5 },
+  ];
   
   const handleResetProgress = async () => {
     if (window.confirm("Вы уверены? Это удалит все ваши лайки и свайпы (история совпадений останется).")) {
@@ -173,7 +136,6 @@ export default function Profile() {
     e.preventDefault();
     setMigrateError("");
     try {
-      // Need to import migrateLegacyUser from firebase
       const { migrateLegacyUser } = await import("../firebase");
       await migrateLegacyUser(user, name, migrateTagInput || null);
     } catch (err) {
@@ -220,133 +182,30 @@ export default function Profile() {
     const tagPart = '#' + user.displayName.split('#')[1];
 
     return (
-      <div className="profile-container profile-container--dashboard">
-        <div className="profile-header-large">
-          <div className="profile-avatar-large">
-            {profileData?.avatar || "😎"}
-          </div>
-          <h2 className="profile-display-name">
-            <span className="profile-name-bold">{namePart}</span>
-            <span className="profile-tag-dim">{tagPart}</span>
-          </h2>
-          <button 
-            className={`btn-share-profile ${copiedLink ? 'copied' : ''}`}
-            onClick={handleShareProfile}
-          >
-            {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
-          </button>
-        </div>
-
-        <div className="profile-nav">
-          <button className={activeTab === "stats" ? "active" : ""} onClick={() => setActiveTab("stats")}>📊 Статистика</button>
-          <button className={activeTab === "friends" ? "active" : ""} onClick={() => setActiveTab("friends")}>
-            👥 Друзья
-            {Object.keys(friendRequests).length > 0 && <span className="badge-count">{Object.keys(friendRequests).length}</span>}
-          </button>
-          <button className={activeTab === "settings" ? "active" : ""} onClick={() => setActiveTab("settings")}>⚙️ Настройки</button>
-        </div>
-
-        <div className="profile-content">
-          {activeTab === "stats" && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="stats-section">
-              <div className="stats-grid">
-                <div className="stat-card">
-                  <div className="stat-value">{stats.swiped}</div>
-                  <div className="stat-label">Фильмов оценено</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-value">{stats.likes}</div>
-                  <div className="stat-label">Лайков поставлено</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-value">{stats.matches}</div>
-                  <div className="stat-label">Совпадений</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-value" style={{fontSize: "1.2rem", marginTop: "10px"}}>{stats.favGenre}</div>
-                  <div className="stat-label">Любимый жанр</div>
-                </div>
+      <div className="profile-dashboard">
+        <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          
+          {/* LEFT COLUMN */}
+          <div className="profile-left">
+            <div className="profile-card-main">
+              <div className="profile-avatar-large">
+                {profileData?.avatar || "😎"}
               </div>
-              
-              <div className="achievements-section">
-                <h3>🏆 Достижения</h3>
-                <div className="achievements-grid">
-                  <div className={`achievement-card ${stats.swiped >= 10 ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">👶</div>
-                    <div className="ach-title">Новичок</div>
-                    <div className="ach-desc">Свайпнуть 10 фильмов</div>
-                  </div>
-                  <div className={`achievement-card ${stats.swiped >= 100 ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">🍿</div>
-                    <div className="ach-title">Киноманьяк</div>
-                    <div className="ach-desc">Свайпнуть 100 фильмов</div>
-                  </div>
-                  <div className={`achievement-card ${stats.likes >= 50 ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">❤️</div>
-                    <div className="ach-title">Доброе сердце</div>
-                    <div className="ach-desc">Поставить 50 лайков</div>
-                  </div>
-                  <div className={`achievement-card ${stats.matches >= 5 ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">🥂</div>
-                    <div className="ach-title">Идеальная пара</div>
-                    <div className="ach-desc">Получить 5 совпадений</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
+              <h2 className="profile-display-name">
+                <span className="profile-name-bold">{namePart}</span>
+                <span className="profile-tag-dim">{tagPart}</span>
+              </h2>
+              <button 
+                className={`btn-share-profile ${copiedLink ? 'copied' : ''}`}
+                onClick={handleShareProfile}
+              >
+                {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
+              </button>
+            </div>
 
-          {activeTab === "friends" && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="friends-section">
-              <div className="add-friend-box">
-                <h3>Добавить друга</h3>
-                <form onSubmit={handleAddFriend} className="add-friend-form">
-                  <input 
-                    type="text" 
-                    value={friendTagInput} 
-                    onChange={e => setFriendTagInput(e.target.value)} 
-                    placeholder="Например: Саша#1111" 
-                    className="form-input form-input-friend"
-                  />
-                  <button type="submit" className="btn-primary btn-friend-submit">Добавить</button>
-                </form>
-                {friendError && <p className="error-text">{friendError}</p>}
-                {friendSuccess && <p className="success-text">{friendSuccess}</p>}
-              </div>
-
-              {Object.keys(friendRequests).length > 0 && (
-                <div className="friend-requests-list">
-                  <h3>Входящие заявки</h3>
-                  {Object.entries(friendRequests).map(([uid, tag]) => (
-                    <div key={uid} className="friend-request-item">
-                      <span>👤 {tag}</span>
-                      <div className="request-actions">
-                        <button className="btn-accept" onClick={() => handleAcceptFriend(uid, tag)}>Принять</button>
-                        <button className="btn-reject" onClick={() => handleRejectFriend(uid)}>Отклонить</button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="friends-list">
-                <h3>Мои друзья ({Object.keys(friends).length})</h3>
-                {Object.keys(friends).length === 0 ? (
-                  <p className="empty-text">У вас пока нет друзей. Добавьте их по тегу!</p>
-                ) : (
-                  Object.entries(friends).map(([uid, tag]) => (
-                    <div key={uid} className="friend-item">
-                      <span>👤 {tag}</span>
-                    </div>
-                  ))
-                )}
-              </div>
-            </motion.div>
-          )}
-
-          {activeTab === "settings" && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="settings-section">
-              <h3>⚙️ Настройки аккаунта</h3>
+            {/* Settings card */}
+            <div className="profile-card-settings">
+              <h3>⚙️ Настройки</h3>
               
               <div className="setting-group">
                 <label>Аватар</label>
@@ -365,7 +224,7 @@ export default function Profile() {
 
               <div className="setting-group">
                 <label>Стоп-жанры</label>
-                <p style={{fontSize: "0.85rem", color: "rgba(255,255,255,0.6)", marginBottom: "10px"}}>Фильмы этих жанров не будут предлагаться при поиске и свайпах.</p>
+                <p className="setting-hint">Фильмы этих жанров не будут предлагаться.</p>
                 <div className="stop-genres-picker">
                   {["Ужасы", "Драма", "Комедия", "Боевик", "Триллер", "Фантастика", "Документальный"].map(genre => {
                     const isStopped = profileData?.stopGenres?.includes(genre);
@@ -391,18 +250,57 @@ export default function Profile() {
               </div>
 
               <div className="setting-group danger-zone">
-                <h4>Сброс прогресса</h4>
-                <p style={{marginBottom: "15px", color: "rgba(255,255,255,0.6)"}}>Удалит все ваши лайки и дизлайки. Вы начнете выбирать фильмы с чистого листа.</p>
-                <button className="btn-secondary" onClick={handleResetProgress}>🗑 Сбросить оценки</button>
+                <label>Сброс прогресса</label>
+                <p className="setting-hint">Удалит все ваши лайки и дизлайки.</p>
+                <button className="btn-secondary btn-small" onClick={handleResetProgress}>🗑 Сбросить</button>
               </div>
-              <div className="setting-group danger-zone" style={{marginTop: "20px"}}>
-                <h4>Выход из аккаунта</h4>
-                <p style={{marginBottom: "15px", color: "rgba(255,255,255,0.6)"}}>Вы сможете зайти снова, используя свой email и пароль.</p>
-                <button className="btn-secondary" onClick={handleLogout}>🚪 Выйти</button>
+
+              <div className="setting-group danger-zone" style={{marginTop: "15px"}}>
+                <label>Выход из аккаунта</label>
+                <button className="btn-secondary btn-small" onClick={handleLogout}>🚪 Выйти</button>
               </div>
-            </motion.div>
-          )}
-        </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="profile-right">
+            <div className="profile-card-stats">
+              <h3>📊 Статистика</h3>
+              <div className="stats-grid-2col">
+                <div className="stat-card">
+                  <div className="stat-value">{stats.swiped}</div>
+                  <div className="stat-label">Фильмов оценено</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-value">{stats.likes}</div>
+                  <div className="stat-label">Лайков</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-value">{stats.matches}</div>
+                  <div className="stat-label">Совпадений</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-value" style={{fontSize: stats.favGenre.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favGenre}</div>
+                  <div className="stat-label">Любимый жанр</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="profile-card-achievements">
+              <h3>🏆 Достижения</h3>
+              <div className="achievements-grid-2col">
+                {achievements.map(ach => (
+                  <div key={ach.title} className={`achievement-card ${ach.unlocked ? "unlocked" : "locked"}`}>
+                    <div className="ach-icon">{ach.icon}</div>
+                    <div className="ach-title">{ach.title}</div>
+                    <div className="ach-desc">{ach.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </motion.div>
       </div>
     );
   }

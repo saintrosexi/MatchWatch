@@ -1495,25 +1495,44 @@ html, body {
 }
 
 
-/* --- Advanced Profile & Friends --- */
 
-.profile-container--dashboard {
-  max-width: 800px;
+/* ===== PROFILE DASHBOARD (two-column) ===== */
+
+.profile-dashboard {
   width: 100%;
-  padding: 20px 20px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px 50px;
 }
 
-.profile-header-large {
+.profile-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .profile-grid { grid-template-columns: 1fr; }
+}
+
+.profile-card-main,
+.profile-card-settings,
+.profile-card-stats,
+.profile-card-achievements {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 35px 25px;
+}
+
+.profile-card-main {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgba(255,255,255,0.04);
-  padding: 50px 30px 40px;
-  border-radius: 24px;
-  margin-bottom: 40px;
-  border: 1px solid rgba(255,255,255,0.08);
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
 .profile-avatar-large {
@@ -1525,331 +1544,138 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
 }
 
-.profile-display-name {
-  margin: 0;
-  line-height: 1.2;
-}
-
-.profile-name-bold {
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.profile-tag-dim {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.35);
-  margin-left: 4px;
-}
+.profile-display-name { margin: 0; line-height: 1.3; }
+.profile-name-bold { font-size: 2.2rem; font-weight: 800; color: #fff; }
+.profile-tag-dim { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.3); margin-left: 3px; }
 
 .btn-share-profile {
   background: rgba(255, 138, 80, 0.15);
   color: #ff8a50;
   border: 1px solid rgba(255, 138, 80, 0.4);
-  padding: 10px 24px;
+  padding: 10px 22px;
   border-radius: 24px;
   cursor: pointer;
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.3s ease;
-  margin-top: 8px;
+  margin-top: 6px;
 }
+.btn-share-profile:hover { background: rgba(255, 138, 80, 0.3); transform: translateY(-1px); }
+.btn-share-profile.copied { background: #4caf50; color: #fff; border-color: #4caf50; }
 
-.btn-share-profile:hover {
-  background: rgba(255, 138, 80, 0.3);
-  transform: translateY(-1px);
-}
+.profile-card-settings { padding: 25px; }
+.profile-card-settings h3 { margin: 0 0 20px 0; font-size: 1.15rem; }
 
-.btn-share-profile.copied {
-  background: #4caf50;
-  color: #fff;
-  border-color: #4caf50;
-}
-
-.profile-nav {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 35px;
-}
-
-.profile-nav button {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-size: 1rem;
-  cursor: pointer;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  transition: 0.3s;
-}
-
-.profile-nav button.active {
-  background: rgba(255, 138, 80, 0.2);
-  border-color: #ff8a50;
-  color: #ff8a50;
-  font-weight: bold;
-}
-
-.badge-count {
-  background: #e91e63;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-/* Stats */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-bottom: 45px;
-}
-
-.stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 28px 20px;
-  border-radius: 16px;
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ff8a50;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  color: rgba(255,255,255,0.6);
-  font-size: 0.9rem;
-}
-
-/* Achievements */
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-.achievement-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 24px 15px;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.achievement-card.locked {
-  opacity: 0.4;
-  filter: grayscale(100%);
-}
-
-.achievement-card.unlocked {
-  border-color: rgba(255, 138, 80, 0.5);
-  box-shadow: 0 0 15px rgba(255, 138, 80, 0.1);
-}
-
-.ach-icon {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.ach-title {
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.ach-desc {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-}
-
-/* Settings */
 .setting-group {
   background: rgba(255,255,255,0.03);
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 14px;
 }
+.setting-group label { display: block; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+.setting-hint { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin: 0 0 10px 0; }
+.setting-group.danger-zone { border: 1px solid rgba(255, 82, 82, 0.2); }
 
-.setting-group h4 {
-  margin: 0 0 10px 0;
+.avatar-picker { display: flex; gap: 8px; flex-wrap: wrap; }
+.avatar-option { font-size: 1.8rem; background: none; border: 2px solid transparent; border-radius: 50%; cursor: pointer; padding: 4px; transition: 0.2s; }
+.avatar-option.selected { border-color: #ff8a50; background: rgba(255, 138, 80, 0.2); }
+
+.stop-genres-picker { display: flex; flex-wrap: wrap; gap: 8px; }
+.genre-option { background: rgba(255,255,255,0.08); border: none; color: white; padding: 6px 12px; border-radius: 16px; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+.genre-option.stopped { background: rgba(255, 82, 82, 0.2); color: #ff5252; border: 1px solid rgba(255, 82, 82, 0.5); }
+.btn-small { padding: 6px 14px; font-size: 0.85rem; }
+
+/* Right col */
+.profile-card-stats { margin-bottom: 25px; }
+.profile-card-stats h3, .profile-card-achievements h3 { margin: 0 0 20px 0; font-size: 1.15rem; }
+
+.stats-grid-2col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 25px 15px; border-radius: 14px; text-align: center; }
+.stat-value { font-size: 2rem; font-weight: bold; color: #ff8a50; margin-bottom: 6px; }
+.stat-label { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+
+.achievements-grid-2col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.achievement-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 22px 12px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s; }
+.achievement-card.locked { opacity: 0.35; filter: grayscale(100%); }
+.achievement-card.unlocked { border-color: rgba(255, 138, 80, 0.4); box-shadow: 0 0 15px rgba(255, 138, 80, 0.08); }
+.ach-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.ach-title { font-weight: bold; color: #fff; margin-bottom: 4px; font-size: 0.95rem; }
+.ach-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+
+/* ===== FRIENDS PAGE ===== */
+
+.friends-page { width: 100%; max-width: 1100px; margin: 0 auto; padding: 30px 20px 50px; }
+.friends-page-grid { display: grid; grid-template-columns: 380px 1fr; gap: 30px; align-items: start; }
+@media (max-width: 800px) { .friends-page-grid { grid-template-columns: 1fr; } }
+
+.friends-add-card, .friends-requests-card, .friends-list-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 30px 25px;
 }
+.friends-add-card { margin-bottom: 25px; }
+.friends-add-card h3, .friends-requests-card h3, .friends-list-card h3 { margin: 0 0 12px 0; font-size: 1.15rem; }
+.friends-hint { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin: 0 0 15px 0; }
+.friends-add-form { display: flex; gap: 10px; }
+.friends-add-form .form-input { flex: 1; }
+.friends-requests-card { margin-bottom: 25px; }
 
-.setting-group.danger-zone {
-  border: 1px solid rgba(255, 82, 82, 0.3);
-}
+.friend-request-item { background: rgba(255,255,255,0.04); padding: 14px 18px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.request-actions { display: flex; gap: 8px; }
 
-.avatar-picker {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+.btn-accept { background: #4caf50; border: none; color: white; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+.btn-reject { background: rgba(255, 82, 82, 0.8); border: none; color: white; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
 
-.avatar-option {
-  font-size: 2rem;
-  background: none;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 5px;
-  transition: 0.2s;
-}
+.friends-count { color: rgba(255,255,255,0.4); font-weight: 400; }
+.friends-empty-list { text-align: center; padding: 40px 20px; color: rgba(255,255,255,0.6); }
+.friends-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.friend-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 18px; border-radius: 14px; display: flex; align-items: center; gap: 12px; }
+.friend-card-avatar { font-size: 1.8rem; }
+.friend-card-name { font-weight: 700; color: #fff; font-size: 1rem; }
+.friend-card-tag { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-left: 2px; }
 
-.avatar-option.selected {
-  border-color: #ff8a50;
-  background: rgba(255, 138, 80, 0.2);
-}
+.friends-empty-state { text-align: center; padding: 80px 20px; }
+.friends-empty-icon { font-size: 4rem; margin-bottom: 20px; }
+.friends-empty-state h2 { color: #fff; margin-bottom: 10px; }
+.friends-empty-state p { color: rgba(255,255,255,0.5); }
 
-.stop-genres-picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 
-.genre-option {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+/* ===== FRIEND ADD BANNER ===== */
 
-.genre-option.stopped {
-  background: rgba(255, 82, 82, 0.2);
-  color: #ff5252;
-  border: 1px solid rgba(255, 82, 82, 0.5);
-}
-
-/* Friends */
-.add-friend-box {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-}
-
-.add-friend-form {
-  display: flex;
-  gap: 10px;
-}
-
-.form-input-friend {
-  flex: 1;
-}
-
-.btn-friend-submit {
-  width: auto;
-  padding: 0 20px;
-}
-
-.friend-requests-list, .friends-list {
-  margin-bottom: 30px;
-}
-
-.friend-request-item, .friend-item {
-  background: rgba(255,255,255,0.03);
-  padding: 15px 20px;
-  border-radius: 10px;
+.friend-add-banner {
+  background: linear-gradient(90deg, rgba(233, 30, 99, 0.15), rgba(255, 138, 80, 0.15));
+  border-bottom: 1px solid rgba(233, 30, 99, 0.3);
+  padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  animation: bannerSlideDown 0.3s ease;
 }
+@keyframes bannerSlideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.friend-add-banner-text { color: #fff; font-size: 1rem; }
+.friend-add-banner-actions { display: flex; gap: 10px; }
 
-.request-actions {
-  display: flex;
-  gap: 10px;
-}
 
-.btn-accept {
-  background: #4caf50;
-  border: none;
-  color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+/* ===== INVITES OVERLAY ===== */
 
-.btn-reject {
-  background: #ff5252;
-  border: none;
-  color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+.global-invites-overlay { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+.invite-toast { background: #2a2a2a; border-left: 4px solid #e91e63; color: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); animation: slideIn 0.3s forwards; }
+.invite-actions { display: flex; gap: 10px; margin-top: 10px; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-/* Global Invites Overlay */
-.global-invites-overlay {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.friends-invite-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.btn-invite-friend { background: rgba(255, 138, 80, 0.1); border: 1px solid rgba(255, 138, 80, 0.3); color: #ff8a50; padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.2s; }
+.btn-invite-friend:hover { background: rgba(255, 138, 80, 0.3); }
 
-.invite-toast {
-  background: #2a2a2a;
-  border-left: 4px solid #e91e63;
-  color: white;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  animation: slideIn 0.3s forwards;
-}
+.error-text { color: #ff5252; font-size: 0.9rem; }
+.success-text { color: #4caf50; font-size: 0.9rem; }
+.empty-text { color: rgba(255,255,255,0.4); font-size: 0.9rem; text-align: center; padding: 20px; }
 
-.invite-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-.friends-invite-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.btn-invite-friend {
-  background: rgba(255, 138, 80, 0.1);
-  border: 1px solid rgba(255, 138, 80, 0.3);
-  color: #ff8a50;
-  padding: 8px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-invite-friend:hover {
-  background: rgba(255, 138, 80, 0.3);
-}
+.badge-count { background: #e91e63; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+.profile-nav { display: flex; gap: 12px; margin-bottom: 35px; }
+.profile-nav button { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); padding: 14px 20px; border-radius: 14px; font-size: 1rem; cursor: pointer; flex: 1; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.3s; }
+.profile-nav button.active { background: rgba(255, 138, 80, 0.2); border-color: #ff8a50; color: #ff8a50; font-weight: bold; }
 
