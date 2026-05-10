@@ -255,22 +255,22 @@ html, body {
   }
 
   .logo-icon {
-    font-size: 28px;
+    font-size: 24px;
   }
   
   .logo-text {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .btn-header-reset {
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8a50 100%);
     border: none;
     color: white;
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
     cursor: pointer;
     white-space: nowrap;
     display: flex;
@@ -282,11 +282,12 @@ html, body {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 90%;
-    max-width: 400px;
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
+    height: 100dvh;
     background: #0d0d0d;
-    padding: 90px 24px 40px;
+    padding: 90px 24px 120px;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     display: flex;
@@ -368,11 +369,11 @@ html, body {
     font-weight: 700;
   }
   
-  /* Grids: 3 in a row, much taller */
+  /* Grids: 2 in a row for better fit */
   .search-results-grid, .mood-movies-grid, .liked-movies-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 10px !important;
-    padding: 0 5px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+    padding: 0 10px;
   }
   
   .search-result-title, .mood-movie-title, .liked-movie-title {
@@ -380,27 +381,26 @@ html, body {
     margin-top: 6px !important;
     font-weight: 600;
   }
-  
-  /* Make Top Movies cards larger */
-  .top-movie-card {
-    grid-template-columns: 100px 1fr !important;
-    padding: 15px !important;
-    gap: 15px !important;
-    min-height: 150px !important;
+
+  /* Horizontal scrolling for Mood Picker on Mobile */
+  .moods-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 15px !important;
+    gap: 12px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
   }
   
-  .top-movie-poster {
-    width: 100px !important;
-    height: 150px !important;
-    object-fit: cover !important;
+  .moods-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
   
-  .top-movie-title {
-    font-size: 1.2rem !important;
-  }
-  
-  .top-movie-rank {
-    font-size: 1.2rem !important;
+  .mood-card {
+    flex: 0 0 auto !important;
+    min-width: 140px !important;
+    padding: 20px 15px !important;
   }
 
   /* Grid posters: Vertical aspect ratio */
