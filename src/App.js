@@ -257,13 +257,6 @@ export default function App() {
           <div className="swipe-top-actions mobile-icon-actions">
             <button
               className="btn-swipe-icon-action"
-              onClick={handleReset}
-              title="Перевыбрать любимые"
-            >
-              🔄
-            </button>
-            <button
-              className="btn-swipe-icon-action"
               onClick={handleUndo}
               disabled={history.length === 0}
               title="Назад к предыдущей карточке"
@@ -327,6 +320,12 @@ export default function App() {
     );
   })();
 
+  const resetHeaderButton = screen === "swipe" ? (
+    <button className="btn-header-reset" onClick={handleReset}>
+      🔄 Сбросить
+    </button>
+  ) : null;
+
   return (
     <div className="app">
       <Header 
@@ -335,6 +334,7 @@ export default function App() {
         likedCount={liked.length} 
         friendRequestsCount={Object.keys(friendRequests).length}
         invitesCount={Object.keys(invites).length}
+        rightContent={resetHeaderButton}
       />
       
       <div className="app-container">

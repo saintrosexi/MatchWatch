@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0 }) {
+export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const getScreenName = (screen) => {
@@ -52,9 +52,9 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           </button>
         </div>
 
-        {/* Mobile active tab name */}
+        {/* Mobile active tab name or custom content */}
         <div className="mobile-only active-tab-name">
-          {getScreenName(currentScreen)}
+          {rightContent ? rightContent : getScreenName(currentScreen)}
         </div>
 
         <ul className={`nav-tabs ${menuOpen ? "open" : ""}`}>
