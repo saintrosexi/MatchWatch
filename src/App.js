@@ -224,6 +224,20 @@ export default function App() {
     }
   };
 
+  const handleAcceptInvite = (code) => {
+    setInitialRoomCode(code);
+    setScreen("matchwatch");
+    if (user) {
+      remove(ref(database, `users/${user.uid}/invites/${code}`));
+    }
+  };
+
+  const handleRejectInvite = (code) => {
+    if (user) {
+      remove(ref(database, `users/${user.uid}/invites/${code}`));
+    }
+  };
+
 
 
   const currentScreen = (() => {
