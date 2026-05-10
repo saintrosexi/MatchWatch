@@ -289,7 +289,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       )}
 
       {screen === "swiping" && (
-        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="room-header-compact matchwatch-swiping-header">
             <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
             <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
