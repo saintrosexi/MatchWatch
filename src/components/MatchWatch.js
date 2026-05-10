@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, set, onValue } from "firebase/database";
 import { movies } from "../data";
@@ -16,6 +16,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [cursor, setCursor] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
+  const [swipeHistory, setSwipeHistory] = useState([]);
   const [matchHistory, setMatchHistory] = useState(() => {
     const saved = localStorage.getItem("matchwatch_history");
     return saved ? JSON.parse(saved) : [];
@@ -29,142 +30,112 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         if (user.displayName && !userName) {
           setUserName(user.displayName);
         }
-        const userRef = ref(database, `users/${user.uid}/matchHistory`);
-        onValue(userRef, (snapshot) => {
-          const data = snapshot.val();
-          if (data) {
-            setMatchHistory(data);
-          }
-        }, { onlyOnce: true });
       }
     });
     return () => unsubscribe();
   }, [userName]);
 
-  const [friends, setFriends] = useState({});
-
   useEffect(() => {
-    if (auth.currentUser && database) {
-      set(ref(database, `users/${auth.currentUser.uid}/matchHistory`), matchHistory);
+    if (initialRoomCode) {
+      setRoomCode(initialRoomCode);
+      setScreen("join");
+      onClearInitialRoomCode();
     }
-  }, [matchHistory]);
+    if (hostRoomCode) {
+      setRoomCode(hostRoomCode);
+      setRole("host");
+      setScreen("waiting");
+      onClearHostRoomCode();
+    }
+  }, [initialRoomCode, hostRoomCode, onClearInitialRoomCode, onClearHostRoomCode]);
 
   useEffect(() => {
-    if (auth.currentUser && database) {
-      const unsubscribe = onValue(ref(database, `users/${auth.currentUser.uid}/friends`), snap => {
-        setFriends(snap.val() || {});
+    if (roomCode && (screen === "swiping" || screen === "waiting")) {
+      const unsubscribe = subscribeToRoom(roomCode, (data) => {
+        if (!data) return;
+        setRoomData(data);
+        if (data.status === "active" && screen === "waiting") {
+          setScreen("swiping");
+        }
+        if (data.match) {
+          setScreen("match");
+          setMatchHistory(prev => {
+            const exists = prev.find(h => h.movieId === data.match && h.date === new Date().toLocaleDateString());
+            if (exists) return prev;
+            const partner = role === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+            const newHistory = [{
+              id: Date.now(),
+              movieId: data.match,
+              partner: partner,
+              date: new Date().toLocaleDateString()
+            }, ...prev];
+            localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
+            return newHistory;
+          });
+        }
+      });
+      return () => unsubscribe();
+    }
+  }, [roomCode, screen, role]);
+
+  const [friends, setFriends] = useState({});
+  useEffect(() => {
+    if (auth.currentUser) {
+      const friendsRef = ref(database, `users/${auth.currentUser.uid}/friends`);
+      const unsubscribe = onValue(friendsRef, (snap) => {
+        if (snap.exists()) setFriends(snap.val());
+        else setFriends({});
       });
       return () => unsubscribe();
     }
   }, []);
 
-  useEffect(() => {
-    if (initialRoomCode && userName) {
-      setRoomCode(initialRoomCode);
-      setRole("guest");
-      joinMatchRoom(initialRoomCode, userName).then(success => {
-        if (success) {
-          setScreen("swiping");
-        } else {
-          alert("Не удалось присоединиться");
-          setScreen("start");
-        }
-        if (onClearInitialRoomCode) onClearInitialRoomCode();
-      });
-    }
-  }, [initialRoomCode, userName, onClearInitialRoomCode]);
-
-  useEffect(() => {
-    if (hostRoomCode && userName) {
-      setRoomCode(hostRoomCode);
-      setRole("host");
-      setScreen("waiting");
-      if (onClearHostRoomCode) onClearHostRoomCode();
-    }
-  }, [hostRoomCode, userName, onClearHostRoomCode]);
-
-  // Подписка на изменения в комнате
-  useEffect(() => {
-    if (!roomCode || screen === "start" || screen === "create" || screen === "join" || screen === "history") return;
-    
-    const unsubscribe = subscribeToRoom(roomCode, (data) => {
-      if (data) {
-        setRoomData(data);
-        if (data.status === 'active' && screen === 'waiting') {
-          setScreen('swiping');
-        }
-        if (data.match && screen !== 'match') {
-          setScreen('match');
-          
-          // Сохраняем в историю
-          const partnerName = role === 'host' ? data.guestName : data.hostName;
-          const newMatch = {
-            id: Date.now(),
-            movieId: data.match,
-            partner: partnerName || 'Неизвестный',
-            date: new Date().toLocaleDateString()
-          };
-          
-          setMatchHistory(prev => {
-            // Проверяем, нет ли уже такого совпадения в этой сессии (по roomCode или времени)
-            if (prev.some(m => m.movieId === data.match && m.partner === partnerName)) return prev;
-            const updated = [newMatch, ...prev];
-            localStorage.setItem("matchwatch_history", JSON.stringify(updated));
-            return updated;
-          });
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [roomCode, screen, role]);
-
   const handleCreateRoom = async () => {
-    if (!userName.trim()) return alert("Введите ваше имя");
-    const code = await createMatchRoom(userName, movies.length);
-    if (code) {
-      setRoomCode(code);
-      setRole("host");
-      setScreen("waiting");
-    } else {
-      alert("Ошибка подключения к базе данных. Проверьте настройки Firebase.");
-    }
+    if (!userName.trim()) return alert("Введите имя");
+    const code = await createMatchRoom(userName);
+    setRoomCode(code);
+    setRole("host");
+    setScreen("waiting");
   };
 
   const handleJoinRoom = async () => {
-    if (!roomCode.trim() || !userName.trim()) return alert("Введите код и имя");
+    if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
     const success = await joinMatchRoom(roomCode, userName);
     if (success) {
       setRole("guest");
       setScreen("swiping");
     } else {
-      alert("Комната не найдена или ошибка подключения.");
+      alert("Комната не найдена");
     }
   };
 
-  const handleSwipe = (dir, movie) => {
-    const decision = dir === "right" ? "like" : "dislike";
-    swipeMovie(roomCode, role, movie.id, decision);
-    if (decision === "like" && onLike) {
-      onLike(movie.id);
-    }
+  const handleSwipe = (direction, movie) => {
+    swipeMovie(roomCode, role, movie.id, direction);
+    setSwipeHistory(prev => [...prev, movie.id]);
     setSwipeHint({ x: 0, active: false });
     setCursor(prev => prev + 1);
   };
 
-  // deck хранит movie IDs — находим фильм по ID
+  const handleUndo = async () => {
+    if (swipeHistory.length === 0) return;
+    const lastMovieId = swipeHistory[swipeHistory.length - 1];
+    setSwipeHistory(prev => prev.slice(0, -1));
+    setCursor(prev => Math.max(0, prev - 1));
+    await removeSwipe(roomCode, role, lastMovieId);
+  };
+
   const currentMovieId = roomData && roomData.deck && cursor < roomData.deck.length
     ? roomData.deck[cursor]
     : null;
   const currentMovie = currentMovieId ? movies.find(m => m.id === currentMovieId) : null;
 
-  // Следующий фильм для стопки
   const nextMovieId = roomData && roomData.deck && cursor + 1 < roomData.deck.length
     ? roomData.deck[cursor + 1]
     : null;
   const nextMovie = nextMovieId ? movies.find(m => m.id === nextMovieId) : null;
 
   return (
-    <div className="matchwatch-container">
+    <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
       {screen === "start" && (
         <motion.div className="matchwatch-start" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
           <div className="matchwatch-main-logo">
@@ -176,7 +147,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <button className="btn-matchwatch btn-join" onClick={() => setScreen("join")}>🔗 Присоединиться</button>
             <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>📜 Вы выбирали</button>
           </div>
-
           {Object.keys(invites).length > 0 && (
             <div className="matchwatch-invites" style={{marginTop: "30px", background: "rgba(255,71,87,0.1)", border: "1px solid rgba(255,71,87,0.3)", padding: "15px", borderRadius: "14px"}}>
               <h3 style={{marginTop: 0, fontSize: "1.1rem", color: "#ff4757"}}>Входящие приглашения:</h3>
@@ -274,7 +244,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           </div>
           <button className="btn-secondary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Отмена</button>
 
-          {/* Friends Invite Modal */}
           {showInviteModal && (
             <div className="invite-modal-overlay" onClick={() => setShowInviteModal(false)}>
               <div className="invite-modal-content" onClick={e => e.stopPropagation()}>
@@ -316,14 +285,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       )}
 
       {screen === "swiping" && (
-        <motion.div className="matchwatch-swiping" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="room-header-compact matchwatch-swiping-header">
             <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
             <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
           </div>
           
           <div className="swipe-wrapper">
-            {/* Подсказки лайк/дизлайк */}
             <div className="swipe-hint">← Пропустить | Нравится →</div>
             <div className="swipe-hints" aria-hidden="true">
               <div
@@ -349,7 +317,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </div>
 
             <div className="deck-container">
-              {/* Следующая карточка (фон) */}
               {nextMovie && (
                 <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
                   <div className="card-placeholder">
@@ -359,7 +326,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 </div>
               )}
               
-              {/* Текущая карточка */}
               {currentMovie ? (
                 <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
                   <SwipeCard
@@ -376,6 +342,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 </div>
               )}
             </div>
+
+            <button 
+              className="btn-floating-undo desktop-only" 
+              onClick={handleUndo} 
+              disabled={swipeHistory.length === 0}
+              title="Отменить последний выбор"
+            >
+              ↩️
+            </button>
           </div>
         </motion.div>
       )}
@@ -389,22 +364,14 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 src={movies.find(m => m.id === roomData.match)?.poster} 
                 alt="Match" 
                 style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto", cursor: "pointer" }} 
-                onClick={() => setShowDetails(true)}
+                onClick={() => setShowDetails(roomData.match)}
               />
               <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === roomData.match)?.titleRu || movies.find(m => m.id === roomData.match)?.title}</h2>
               <p>Приятного просмотра!</p>
             </div>
-            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(true)}>Подробнее о фильме</button>
+            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(roomData.match)}>Подробнее о фильме</button>
             <button className="btn-primary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Завершить</button>
           </motion.div>
-          {showDetails && (
-            <DetailedMovieModal 
-              movie={movies.find(m => m.id === roomData.match)} 
-              onClose={() => setShowDetails(false)} 
-              isLiked={decisions?.[roomData.match] === "like"}
-              onToggleLike={onToggleLike}
-            />
-          )}
         </div>
       )}
 
@@ -434,11 +401,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         </motion.div>
       )}
 
-      {showDetails && typeof showDetails === 'number' && (
+      {showDetails && (
         <DetailedMovieModal 
-          movie={movies.find(m => m.id === showDetails)} 
+          movie={movies.find(m => m.id === (typeof showDetails === 'number' ? showDetails : roomData?.match))} 
           onClose={() => setShowDetails(false)} 
-          isLiked={decisions?.[showDetails] === "like"}
+          isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : roomData?.match] === "like"}
           onToggleLike={onToggleLike}
         />
       )}
