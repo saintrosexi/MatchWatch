@@ -60,6 +60,13 @@ html, body {
   min-height: calc(100vh - var(--header-height));
 }
 
+.screen--center.swipe-screen {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 10px;
+}
+
 /* Header & Navigation */
 .header {
   background: rgba(0, 0, 0, 0.4);

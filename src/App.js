@@ -272,7 +272,7 @@ export default function App() {
       />;
     }
     return (
-      <div className="screen screen--center">
+      <div className="screen screen--center swipe-screen">
         <div className="swipe-wrapper">
 
 
