@@ -981,6 +981,8 @@ html, body {
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
   line-height: 1.3;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .top-movie-meta {
