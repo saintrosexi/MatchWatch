@@ -21,6 +21,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     return saved ? JSON.parse(saved) : [];
   });
   const [copied, setCopied] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -263,41 +264,62 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </div>
             {copied && <p style={{ color: "#4caf50", fontSize: "0.9rem", margin: "5px 0" }}>Код скопирован!</p>}
             
-            <div className="invite-friends-section" style={{ marginTop: "30px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "20px" }}>
-              <h4>Пригласить друга:</h4>
-              {Object.keys(friends).length === 0 ? (
-                <p style={{fontSize: "0.9rem", color: "rgba(255,255,255,0.5)"}}>Добавьте друзей в Профиле, чтобы приглашать их.</p>
-              ) : (
-                <div className="friends-invite-list">
-                  {Object.entries(friends).map(([uid, tag]) => (
-                    <button 
-                      key={uid} 
-                      className="btn-invite-friend"
-                      onClick={async () => {
-                        try {
-                          await inviteToMatchWatch(uid, roomCode, auth.currentUser.displayName);
-                          alert(`Приглашение отправлено ${tag}!`);
-                        } catch (e) {
-                          alert(e.message);
-                        }
-                      }}
-                    >
-                      👤 {tag}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <button 
+              className="btn-primary" 
+              style={{ marginTop: "20px", width: "100%" }}
+              onClick={() => setShowInviteModal(true)}
+            >
+              ➕ Пригласить друга
+            </button>
           </div>
-          <button className="btn-secondary" onClick={() => setScreen("start")}>Отмена</button>
+          <button className="btn-secondary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Отмена</button>
+
+          {/* Friends Invite Modal */}
+          {showInviteModal && (
+            <div className="invite-modal-overlay" onClick={() => setShowInviteModal(false)}>
+              <div className="invite-modal-content" onClick={e => e.stopPropagation()}>
+                <div className="invite-modal-header">
+                  <h3>Ваши друзья</h3>
+                  <button className="close-modal" onClick={() => setShowInviteModal(false)}>✕</button>
+                </div>
+                <div className="friends-invite-list-scroll">
+                  {Object.keys(friends).length === 0 ? (
+                    <p style={{textAlign: "center", padding: "20px", color: "#aaa"}}>Список друзей пуст</p>
+                  ) : (
+                    Object.entries(friends).map(([uid, tag]) => (
+                      <div key={uid} className="invite-friend-row">
+                        <div className="friend-info-mini">
+                          <div className="friend-avatar-mini">{tag[0].toUpperCase()}</div>
+                          <span>{tag}</span>
+                        </div>
+                        <button 
+                          className="btn-invite-action"
+                          onClick={async () => {
+                            try {
+                              await inviteToMatchWatch(uid, roomCode, auth.currentUser.displayName || auth.currentUser.email);
+                              alert(`Приглашение отправлено ${tag}!`);
+                            } catch (e) {
+                              alert(e.message);
+                            }
+                          }}
+                        >
+                          Позвать
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </motion.div>
       )}
 
       {screen === "swiping" && (
         <motion.div className="matchwatch-swiping" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="room-header-compact">
-            <div className="room-info-item">Комната: <strong>{roomCode}</strong></div>
-            <div className="room-info-item">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
+          <div className="room-header-compact matchwatch-swiping-header">
+            <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
+            <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
           </div>
           
           <div className="swipe-wrapper">
@@ -396,7 +418,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                     <img src={m.poster} alt={m.title} style={{ width: "50px", height: "75px", objectFit: "cover", borderRadius: "6px", marginRight: "15px" }} />
                     <div style={{ flex: 1 }}>
                       <h4 style={{ margin: "0 0 5px 0", fontSize: "1rem" }}>{m.titleRu || m.title}</h4>
-                      <p style={{ margin: 0, fontSize: "0.85rem", color: "#aaa" }}>С кем: <strong>{item.partner}</strong> • {item.date}</p>
+                      <p style={{ margin: 0, fontSize: "0.75rem", color: "#666", lineHeight: "1.25", overflow: "hidden", display: "-webkit-box", "-webkit-line-clamp": 3, "-webkit-box-orient": "vertical" }}>С кем: <strong>{item.partner}</strong> • {item.date}</p>
                     </div>
                   </div>
                 );

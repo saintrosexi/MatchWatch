@@ -629,8 +629,143 @@ html, body {
   line-height: 1.25;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+/* MatchWatch Swipe Header - Absolute Position like Main Swipe */
+.matchwatch-swiping-header {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  padding: 0 16px !important;
+  margin: 0 !important;
+}
+
+.matchwatch-swiping-header .room-info-item {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.75rem;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.matchwatch-swiping-header .users-line {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.room-code-tag {
+  color: #ff8a50 !important;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Invite Modal */
+.invite-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(8px);
+}
+
+.invite-modal-content {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 138, 80, 0.2);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+}
+
+.invite-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.invite-modal-header h3 {
+  margin: 0;
+  color: #ff8a50;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.friends-invite-list-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.invite-friend-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+.friend-info-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.friend-avatar-mini {
+  width: 30px;
+  height: 30px;
+  background: #ff8a50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.btn-invite-action {
+  background: #ff8a50;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Center matchwatch swiping on mobile */
+@media (max-width: 600px) {
+  .matchwatch-swiping {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0;
+    height: 100vh;
+  }
+  .matchwatch-swiping .swipe-wrapper {
+    margin-top: 40px; /* Leave space for header */
+  }
 }
 
 .swipe-hint {
