@@ -122,6 +122,26 @@ export default function App() {
   };
 
   useEffect(() => {
+    if (screen === "swipe" || screen === "matchwatch") {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.height = "100%";
+      document.documentElement.style.height = "100%";
+    } else {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      document.body.style.height = "auto";
+      document.documentElement.style.height = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      document.body.style.height = "auto";
+      document.documentElement.style.height = "auto";
+    };
+  }, [screen]);
+
+  useEffect(() => {
     if (screen === "swipe") {
       if (filteredDeck.length === 0 || cursor >= filteredDeck.length) {
         setScreen("final");
@@ -333,7 +353,7 @@ export default function App() {
         rightContent={undoHeaderButton}
       />
       
-      <div className="app-container">
+      <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
         {currentScreen}
         
         {Object.keys(invites).length > 0 && (
