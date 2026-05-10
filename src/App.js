@@ -28,8 +28,14 @@ const shuffle = (arr) => {
 export default function App() {
   const [deck, setDeck] = useState(() => shuffle(movies));
   const [cursor, setCursor] = useState(0);
-  const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
-  const [history, setHistory] = useState(() => []); // swiped movie ids in order
+  const [decisions, setDecisions] = useState(() => {
+    const saved = localStorage.getItem("matchwatch_decisions");
+    return saved ? JSON.parse(saved) : {};
+  });
+  const [history, setHistory] = useState(() => {
+    const saved = localStorage.getItem("matchwatch_history");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [screen, setScreen] = useState("swipe");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
   const [user, setUser] = useState(null);
@@ -95,7 +101,25 @@ export default function App() {
         history
       });
     }
+    // Also save to localStorage so progress is never lost for non-logged in users
+    // or when reloading before firebase sync
+    localStorage.setItem("matchwatch_decisions", JSON.stringify(decisions));
+    localStorage.setItem("matchwatch_history", JSON.stringify(history));
   }, [decisions, history, user, dataLoaded]);
+
+  useEffect(() => {
+    // Auto-advance cursor if it points to a decided movie (e.g. after loading from localStorage/Firebase)
+    if (cursor < filteredDeck.length && Boolean(decisions[filteredDeck[cursor].id])) {
+      let next = cursor;
+      while (next < filteredDeck.length && Boolean(decisions[filteredDeck[next].id])) {
+        next++;
+      }
+      setCursor(next);
+      if (next >= filteredDeck.length && screen === "swipe") {
+        setScreen("final");
+      }
+    }
+  }, [cursor, filteredDeck, decisions, screen]);
 
   const liked = useMemo(
     () => deck.filter(m => decisions[m.id] === "like"),
@@ -136,6 +160,8 @@ export default function App() {
     setDeck(shuffle(movies));
     setDecisions({});
     setHistory([]);
+    localStorage.removeItem("matchwatch_decisions");
+    localStorage.removeItem("matchwatch_history");
     setCursor(0);
     setScreen("swipe");
   };
