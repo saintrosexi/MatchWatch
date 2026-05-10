@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut } from "../firebase";
+import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut, updateUserTag } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
@@ -24,6 +24,36 @@ export default function Profile() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [migrateTagInput, setMigrateTagInput] = useState("");
   const [migrateError, setMigrateError] = useState("");
+
+  const [editName, setEditName] = useState("");
+  const [editTag, setEditTag] = useState("");
+  const [editError, setEditError] = useState("");
+  const [editSuccess, setEditSuccess] = useState("");
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+
+  const startEditingProfile = () => {
+    if (user && user.displayName) {
+      const parts = user.displayName.split('#');
+      setEditName(parts[0]);
+      setEditTag(parts[1] || "");
+    }
+    setIsEditingProfile(true);
+    setEditError("");
+    setEditSuccess("");
+  };
+
+  const handleEditProfile = async (e) => {
+    e.preventDefault();
+    setEditError("");
+    setEditSuccess("");
+    try {
+      await updateUserTag(user, editName, editTag || null);
+      setEditSuccess("Профиль успешно обновлен!");
+      setTimeout(() => setIsEditingProfile(false), 2000);
+    } catch (err) {
+      setEditError(err.message);
+    }
+  };
 
   useEffect(() => {
     if (!auth) {
@@ -247,6 +277,40 @@ export default function Profile() {
                     );
                   })}
                 </div>
+              </div>
+
+              <div className="setting-group">
+                <label>Редактирование профиля</label>
+                {!isEditingProfile ? (
+                  <button className="btn-secondary btn-small" onClick={startEditingProfile}>✏️ Изменить имя и тег</button>
+                ) : (
+                  <form onSubmit={handleEditProfile} className="auth-form" style={{marginTop: "10px"}}>
+                    <input 
+                      type="text" 
+                      value={editName} 
+                      onChange={e => setEditName(e.target.value)} 
+                      placeholder="Новое имя" 
+                      required 
+                      className="form-input" 
+                      style={{marginBottom: "8px"}}
+                    />
+                    <input 
+                      type="text" 
+                      value={editTag} 
+                      onChange={e => setEditTag(e.target.value)} 
+                      placeholder="Новый тег (4 цифры)" 
+                      className="form-input" 
+                      maxLength={4}
+                      style={{marginBottom: "8px"}}
+                    />
+                    {editError && <div className="error-text">{editError}</div>}
+                    {editSuccess && <div className="success-text">{editSuccess}</div>}
+                    <div style={{display: "flex", gap: "8px", marginTop: "10px"}}>
+                      <button type="submit" className="btn-primary btn-small">Сохранить</button>
+                      <button type="button" className="btn-secondary btn-small" onClick={() => setIsEditingProfile(false)}>Отмена</button>
+                    </div>
+                  </form>
+                )}
               </div>
 
               <div className="setting-group danger-zone">

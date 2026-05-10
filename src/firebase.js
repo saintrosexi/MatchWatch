@@ -88,6 +88,54 @@ export const migrateLegacyUser = async (user, baseName, customCode = null) => {
   return tag;
 };
 
+export const getPublicProfile = async (tag) => {
+  const targetRef = ref(database, `userTags/${getTagKey(tag)}`);
+  const snap = await get(targetRef);
+  if (!snap.exists()) return null;
+  const targetUid = snap.val();
+  
+  const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
+  const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
+  
+  return {
+    uid: targetUid,
+    profile: profileSnap.val() || {},
+    appData: appDataSnap.val() || {}
+  };
+};
+
+export const updateUserTag = async (user, newName, newCustomCode = null) => {
+  const oldTag = user.displayName;
+  const newTag = await generateUniqueTag(newName, newCustomCode);
+  
+  // Create new tag mapping
+  await set(ref(database, `userTags/${getTagKey(newTag)}`), user.uid);
+  
+  // Update auth profile
+  await updateProfile(user, { displayName: newTag });
+  
+  // Update profile data
+  await update(ref(database, `users/${user.uid}/profile`), {
+    tag: newTag
+  });
+  
+  // Get all friends and update their friend lists
+  const friendsSnap = await get(ref(database, `users/${user.uid}/friends`));
+  if (friendsSnap.exists()) {
+    const updates = {};
+    const friends = friendsSnap.val();
+    Object.keys(friends).forEach(friendUid => {
+      updates[`users/${friendUid}/friends/${user.uid}`] = newTag;
+    });
+    await update(ref(database), updates);
+  }
+  
+  // Delete old tag mapping
+  await remove(ref(database, `userTags/${getTagKey(oldTag)}`));
+  
+  return newTag;
+};
+
 export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {
   const targetRef = ref(database, `userTags/${getTagKey(targetTag)}`);
   const snap = await get(targetRef);

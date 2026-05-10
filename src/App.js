@@ -13,6 +13,7 @@ import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
 import Friends from "./components/Friends";
+import PublicProfile from "./components/PublicProfile";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -68,26 +69,17 @@ export default function App() {
     return () => unsubscribe();
   }, [dataLoaded]);
 
-  const [pendingFriendAdd, setPendingFriendAdd] = useState(null);
+  const [publicProfileTag, setPublicProfileTag] = useState(null);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const addTag = urlParams.get('add');
     if (addTag) {
-      sessionStorage.setItem('pendingFriendAdd', addTag);
+      setPublicProfileTag(addTag);
+      setScreen("publicProfile");
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
-
-  useEffect(() => {
-    if (user && user.displayName) {
-      const pendingTag = sessionStorage.getItem('pendingFriendAdd');
-      if (pendingTag && pendingTag !== user.displayName) {
-        sessionStorage.removeItem('pendingFriendAdd');
-        setPendingFriendAdd(pendingTag);
-      }
-    }
-  }, [user]);
 
   useEffect(() => {
     if (user && dataLoaded && database) {
@@ -211,6 +203,9 @@ export default function App() {
     if (screen === "friends") {
       return <Friends />;
     }
+    if (screen === "publicProfile") {
+      return <PublicProfile tag={publicProfileTag} onBackToApp={() => setScreen("swipe")} />;
+    }
     return (
       <div className="screen screen--center">
         <div className="swipe-wrapper">
@@ -291,24 +286,6 @@ export default function App() {
     <div className="app">
       <Header currentScreen={screen} onTabClick={handleTabClick} likedCount={liked.length} />
       
-      {pendingFriendAdd && (
-        <div className="friend-add-banner">
-          <div className="friend-add-banner-text">
-            <strong>👤 {pendingFriendAdd}</strong> приглашает вас в друзья!
-          </div>
-          <div className="friend-add-banner-actions">
-            <button className="btn-accept" onClick={() => {
-              import('./firebase').then(({ sendFriendRequest }) => {
-                sendFriendRequest(user.uid, user.displayName, pendingFriendAdd)
-                  .then(() => { setPendingFriendAdd(null); setScreen("friends"); })
-                  .catch(err => { alert(err.message); setPendingFriendAdd(null); });
-              });
-            }}>Добавить в друзья</button>
-            <button className="btn-reject" onClick={() => setPendingFriendAdd(null)}>Закрыть</button>
-          </div>
-        </div>
-      )}
-
       <div className="app-container">
         {currentScreen}
         
