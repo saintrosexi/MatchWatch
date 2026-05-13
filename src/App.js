@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import Profile from "./components/Profile";
 import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
+import DetailedMovieModal from "./components/DetailedMovieModal";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -40,6 +41,7 @@ export default function App() {
   const [friendRequests, setFriendRequests] = useState({});
   const [disableOnboarding, setDisableOnboarding] = useState(false);
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
+  const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
 
   useEffect(() => {
     if (!auth) {
@@ -379,8 +381,11 @@ export default function App() {
                         <SwipeCard
                           movie={filteredDeck[cardIndex]}
                           onSwipe={(dir, movie) => {
-                            // The exit is triggered when cursor changes
+                            setSwipeHint({ x: 0, active: false, swiped: false });
                             handleSwipe(dir, movie);
+                          }}
+                          onCardClick={(movie) => {
+                            setSelectedMovieForDetails(movie);
                           }}
                           onDragProgress={(x, active) => {
                             setSwipeHint({ x, active, swiped: false });
@@ -453,6 +458,15 @@ export default function App() {
               </div>
             ))}
           </div>
+        )}
+
+        {selectedMovieForDetails && (
+          <DetailedMovieModal
+            movie={selectedMovieForDetails}
+            onClose={() => setSelectedMovieForDetails(null)}
+            isLiked={decisions[selectedMovieForDetails.id] === "like"}
+            onToggleLike={toggleLike}
+          />
         )}
       </div>
     </div>

@@ -591,15 +591,6 @@ html, body {
   border-top-right-radius: 24px;
 }
 
-@media (max-width: 1100px) {
-  .poster-container {
-    height: 40% !important;
-    flex: 0 0 40% !important;
-    min-height: 40% !important;
-    max-height: 40% !important;
-  }
-}
-
 .image-skeleton {
   position: absolute;
   width: 100%;
@@ -634,16 +625,6 @@ html, body {
   overflow: hidden;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
-}
-
-@media (max-width: 1100px) {
-  .info {
-    height: 60% !important;
-    flex: 0 0 60% !important;
-    min-height: 60% !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
 }
 
 .info h2 {
