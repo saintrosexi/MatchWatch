@@ -37,15 +37,14 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
 
     if (Math.abs(offset) > 70 || Math.abs(velocity) > 400) {
       const dir = offset > 0 ? "right" : "left";
-      // Call immediately for high speed performance
       onSwipe(dir, movie);
     } else {
       onDragProgress?.(0, false);
     }
   };
 
-  const posterHeight = isMobile ? "45%" : "55%";
-  const infoHeight = isMobile ? "55%" : "45%";
+  const posterHeight = isMobile ? "40%" : "55%";
+  const infoHeight = isMobile ? "60%" : "45%";
 
   return (
     <motion.div
@@ -129,7 +128,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         flex: `0 0 ${infoHeight}`, 
         display: "flex", 
         flexDirection: "column", 
-        padding: isMobile ? "18px" : "20px", 
+        padding: isMobile ? "20px 20px" : "20px", 
         background: "white",
         color: "#000",
         overflow: "hidden"
@@ -144,13 +143,13 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           </div>
         ) : (
           <>
-            <div style={{ marginBottom: "12px" }}>
+            <div style={{ marginBottom: isMobile ? "8px" : "12px" }}>
               <h2 style={{ fontSize: isMobile ? "1.3rem" : "1.4rem", marginBottom: "2px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
               <p style={{ fontSize: "0.85rem", color: "#888", fontWeight: "500" }}>{movie.year}</p>
             </div>
             
-            <div style={{ fontSize: isMobile ? "0.75rem" : "0.9rem", color: "#333", marginBottom: "12px", lineHeight: "1.4" }}>
-              {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
+            <div style={{ fontSize: isMobile ? "0.75rem" : "0.9rem", color: "#333", marginBottom: isMobile ? "8px" : "12px", lineHeight: "1.4" }}>
+              {movie.director && <div style={{ marginBottom: "2px" }}><b>Режиссер:</b> {movie.director}</div>}
               {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
             </div>
 
@@ -161,7 +160,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
                 lineHeight: "1.5", 
                 margin: 0,
                 display: "-webkit-box",
-                WebkitLineClamp: isMobile ? 5 : "unset",
+                WebkitLineClamp: isMobile ? 12 : "unset", // Increased line clamp to allow more text
                 WebkitBoxOrient: "vertical",
                 overflow: "hidden"
               }}>
