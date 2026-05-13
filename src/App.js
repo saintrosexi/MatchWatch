@@ -138,13 +138,9 @@ export default function App() {
     if (isSwipeScreen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
-      document.body.style.height = "100%";
-      document.documentElement.style.height = "100%";
     } else {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
-      document.body.style.height = "auto";
-      document.documentElement.style.height = "auto";
     }
     return () => {
       document.body.style.overflow = "auto";
@@ -178,7 +174,7 @@ export default function App() {
 
     const next = nextUndecidedFrom(cursor + 1);
     if (next >= filteredDeck.length) {
-      setTimeout(() => setScreen("final"), 500); // Small delay before final screen
+      setTimeout(() => setScreen("final"), 400);
     }
     setCursor(next);
   };
@@ -333,14 +329,14 @@ export default function App() {
             </div>
           </div>
 
-          <div className="deck-container">
-            <AnimatePresence mode="popLayout">
+          <div className="deck-container" style={{ position: "relative" }}>
+            <AnimatePresence initial={false}>
               {showTutorial ? (
                 <motion.div 
                   key="tutorial"
-                  className="deck-card deck-position-0" 
-                  style={{ zIndex: 100 }}
-                  exit={{ y: 1000, rotate: -20, opacity: 0 }}
+                  className="deck-card" 
+                  style={{ zIndex: 500, position: "absolute" }}
+                  exit={{ y: 1200, rotate: -20, opacity: 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <SwipeCard 
@@ -359,25 +355,31 @@ export default function App() {
                   cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
                     <motion.div
                       key={filteredDeck[cardIndex].id}
-                      className={`deck-card deck-position-${2 - position}`}
+                      className="deck-card"
                       style={{ 
-                        zIndex: 100 - position,
-                        position: "absolute"
+                        zIndex: 100 + position, // Top card has highest index
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%"
                       }}
                       initial={{ scale: 0.9, opacity: 0, y: 30 }}
-                      animate={{ scale: position === 2 ? 1 : (position === 1 ? 0.96 : 0.92), opacity: 1, y: position === 2 ? 0 : (position === 1 ? 12 : 24) }}
+                      animate={{ 
+                        scale: position === 2 ? 1 : (position === 1 ? 0.96 : 0.92), 
+                        opacity: 1, 
+                        y: position === 2 ? 0 : (position === 1 ? 12 : 24) 
+                      }}
                       exit={{ 
                         y: 1200, 
                         rotate: swipeHint.x > 0 ? 25 : -25, 
                         opacity: 0,
-                        transition: { duration: 0.6, ease: "easeIn" }
+                        transition: { duration: 0.5, ease: "easeIn" }
                       }}
                     >
                       {cardIndex === cursor ? (
                         <SwipeCard
                           movie={filteredDeck[cardIndex]}
                           onSwipe={(dir, movie) => {
-                            setSwipeHint({ x: 0, active: false, swiped: false });
+                            // The exit is triggered when cursor changes
                             handleSwipe(dir, movie);
                           }}
                           onDragProgress={(x, active) => {
