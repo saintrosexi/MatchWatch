@@ -3,6 +3,7 @@ import { movies } from "./data";
 import { auth, database } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, set, onValue, remove } from "firebase/database";
+import { AnimatePresence, motion } from "framer-motion";
 import SwipeCard from "./components/SwipeCard";
 import LikedGrid from "./components/LikedGrid";
 import TopMovies from "./components/TopMovies";
@@ -133,7 +134,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (screen === "swipe" || screen === "matchwatch") {
+    const isSwipeScreen = screen === "swipe" || screen === "matchwatch";
+    if (isSwipeScreen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
       document.body.style.height = "100%";
@@ -147,8 +149,6 @@ export default function App() {
     return () => {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
-      document.body.style.height = "auto";
-      document.documentElement.style.height = "auto";
     };
   }, [screen]);
 
@@ -178,7 +178,7 @@ export default function App() {
 
     const next = nextUndecidedFrom(cursor + 1);
     if (next >= filteredDeck.length) {
-      setScreen("final");
+      setTimeout(() => setScreen("final"), 500); // Small delay before final screen
     }
     setCursor(next);
   };
@@ -314,23 +314,19 @@ export default function App() {
         <div className="swipe-wrapper">
           <div className="swipe-hints" aria-hidden="true">
             <div
-              className={`swipe-hint-icon swipe-hint-icon--dislike ${swipeHint.swiped && swipeHint.x < 0 ? 'swiped-stay' : ''}`}
+              className={`swipe-hint-icon swipe-hint-icon--dislike ${swipeHint.active && swipeHint.x < -50 ? 'active' : ''}`}
               style={{
-                opacity: swipeHint.swiped && swipeHint.x < 0 ? 1 : (swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0),
-                transform: (swipeHint.swiped && swipeHint.x < 0) 
-                  ? `translateY(-50%) scale(1.8)` 
-                  : `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
+                opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
+                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
               }}
             >
               ✕
             </div>
             <div
-              className={`swipe-hint-icon swipe-hint-icon--like ${swipeHint.swiped && swipeHint.x > 0 ? 'swiped-stay heartbeat' : ''}`}
+              className={`swipe-hint-icon swipe-hint-icon--like ${swipeHint.active && swipeHint.x > 50 ? 'active' : ''}`}
               style={{
-                opacity: swipeHint.swiped && swipeHint.x > 0 ? 1 : (swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0),
-                transform: (swipeHint.swiped && swipeHint.x > 0)
-                  ? `translateY(-50%) scale(2)`
-                  : `translateY(-50%) scale(${0.95 + Math.min(0.25, Math.max(0, swipeHint.x / 400))})`
+                opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
+                transform: `translateY(-50%) scale(${0.95 + Math.min(0.25, Math.max(0, swipeHint.x / 400))})`
               }}
             >
               ❤️
@@ -338,52 +334,67 @@ export default function App() {
           </div>
 
           <div className="deck-container">
-            {showTutorial ? (
-              <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
-                <SwipeCard 
-                  isTutorial={true} 
-                  onSwipe={() => {
-                    setSwipeHint({ x: 0, active: false, swiped: false });
-                    setSessionTutorialSeen(true);
-                  }} 
-                  onDragProgress={(x, active) => {
-                     // In tutorial, we might want to trigger the hint too
-                     setSwipeHint({ x, active, swiped: active && Math.abs(x) > 150 });
-                  }}
-                />
-              </div>
-            ) : (
-              [cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
-                cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
-                  <div
-                    key={cardIndex}
-                    className={`deck-card deck-position-${2 - position}`}
-                    style={{ zIndex: filteredDeck.length - cardIndex }}
-                  >
-                    {cardIndex === cursor ? (
-                      <SwipeCard
-                        movie={filteredDeck[cardIndex]}
-                        onSwipe={(dir, movie) => {
-                          setSwipeHint(prev => ({ ...prev, swiped: true }));
-                          setTimeout(() => {
+            <AnimatePresence mode="popLayout">
+              {showTutorial ? (
+                <motion.div 
+                  key="tutorial"
+                  className="deck-card deck-position-0" 
+                  style={{ zIndex: 100 }}
+                  exit={{ y: 1000, rotate: -20, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <SwipeCard 
+                    isTutorial={true} 
+                    onSwipe={() => {
+                      setSwipeHint({ x: 0, active: false, swiped: false });
+                      setSessionTutorialSeen(true);
+                    }} 
+                    onDragProgress={(x, active) => {
+                       setSwipeHint({ x, active, swiped: false });
+                    }}
+                  />
+                </motion.div>
+              ) : (
+                [cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
+                  cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
+                    <motion.div
+                      key={filteredDeck[cardIndex].id}
+                      className={`deck-card deck-position-${2 - position}`}
+                      style={{ 
+                        zIndex: 100 - position,
+                        position: "absolute"
+                      }}
+                      initial={{ scale: 0.9, opacity: 0, y: 30 }}
+                      animate={{ scale: position === 2 ? 1 : (position === 1 ? 0.96 : 0.92), opacity: 1, y: position === 2 ? 0 : (position === 1 ? 12 : 24) }}
+                      exit={{ 
+                        y: 1200, 
+                        rotate: swipeHint.x > 0 ? 25 : -25, 
+                        opacity: 0,
+                        transition: { duration: 0.6, ease: "easeIn" }
+                      }}
+                    >
+                      {cardIndex === cursor ? (
+                        <SwipeCard
+                          movie={filteredDeck[cardIndex]}
+                          onSwipe={(dir, movie) => {
                             setSwipeHint({ x: 0, active: false, swiped: false });
                             handleSwipe(dir, movie);
-                          }, 600); // Wait for the heartbeat/stay effect
-                        }}
-                        onDragProgress={(x, active) => {
-                          setSwipeHint(prev => ({ ...prev, x, active, swiped: prev.swiped || (active && Math.abs(x) > 200) }));
-                        }}
-                      />
-                    ) : (
-                      <div className="card-placeholder">
-                        <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
-                        <div className="placeholder-overlay" />
-                      </div>
-                    )}
-                  </div>
-                )
-              ))
-            )}
+                          }}
+                          onDragProgress={(x, active) => {
+                            setSwipeHint({ x, active, swiped: false });
+                          }}
+                        />
+                      ) : (
+                        <div className="card-placeholder">
+                          <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
+                          <div className="placeholder-overlay" />
+                        </div>
+                      )}
+                    </motion.div>
+                  )
+                ))
+              )}
+            </AnimatePresence>
           </div>
 
           {!showTutorial && (

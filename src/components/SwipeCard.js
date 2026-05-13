@@ -2,11 +2,9 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial = false }) {
-  const [direction, setDirection] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
-  const [isSwiped, setIsSwiped] = useState(false);
   
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -39,61 +37,33 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
 
     if (Math.abs(offset) > 70 || Math.abs(velocity) > 400) {
       const dir = offset > 0 ? "right" : "left";
-      setDirection(offset > 0 ? 1 : -1);
-      
-      // Trigger internal "falling" state
-      setIsSwiped(true);
-      
-      // Signal parent (App.js handles the delay for desktop heart animation)
+      // Call immediately for high speed performance
       onSwipe(dir, movie);
     } else {
       onDragProgress?.(0, false);
     }
   };
 
-  // Falling animation state
-  const fallingAnimation = isSwiped ? {
-    y: 1200,
-    rotate: direction * 30,
-    opacity: 0,
-    transition: { duration: 0.8, ease: [0.45, 0, 0.55, 1] }
-  } : {};
-
   const posterHeight = isMobile ? "45%" : "55%";
   const infoHeight = isMobile ? "55%" : "45%";
 
   return (
     <motion.div
-      key={isTutorial ? "tutorial" : movie.id}
-      className={`movie-card ${isTutorial ? 'tutorial-card' : ''}`}
+      className="swipe-card-inner"
       style={{
         x,
-        rotate: isSwiped ? undefined : rotate,
-        opacity: isSwiped ? undefined : opacity,
+        rotate,
+        opacity,
         cursor: isDragging ? "grabbing" : "grab",
-        zIndex: 1,
-        position: "relative",
         width: "100%",
         height: "100%"
       }}
-      drag={!isSwiped ? "x" : false}
+      drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={1}
       onDragStart={handleDragStart}
       onDrag={handleDrag}
       onDragEnd={handleDragEnd}
-      initial={{ scale: 0.9, opacity: 0, y: 30 }}
-      animate={{ 
-        scale: 1, 
-        opacity: 1, 
-        y: 0,
-        ...fallingAnimation 
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 350,
-        damping: 25
-      }}
     >
       {isMobile && (
         <>
