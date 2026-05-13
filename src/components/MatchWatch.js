@@ -58,18 +58,28 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       const unsubscribe = subscribeToRoom(roomCode, (data) => {
         if (!data) return;
         setRoomData(data);
+        
         if (data.status === "active" && screen === "waiting") {
           setScreen("swiping");
         }
-        if (data.match) {
+
+        // Внедряем проверку на пересечение лайков (match)
+        const hostLikes = data.hostLikes || {};
+        const guestLikes = data.guestLikes || {};
+        const intersectionId = Object.keys(hostLikes).find(id => 
+          hostLikes[id] === true && guestLikes[id] === true
+        );
+        const effectiveMatch = data.match || (intersectionId ? parseInt(intersectionId) : null);
+
+        if (effectiveMatch && screen !== "match") {
           setScreen("match");
           setMatchHistory(prev => {
-            const exists = prev.find(h => h.movieId === data.match && h.date === new Date().toLocaleDateString());
+            const exists = prev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
             if (exists) return prev;
             const partner = role === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
             const newHistory = [{
               id: Date.now(),
-              movieId: data.match,
+              movieId: effectiveMatch,
               partner: partner,
               date: new Date().toLocaleDateString()
             }, ...prev];
@@ -137,6 +147,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     ? roomData.deck[cursor + 1]
     : null;
   const nextMovie = nextMovieId ? movies.find(m => m.id === nextMovieId) : null;
+
+  // Рассчитываем ID совпадения для отображения
+  const matchId = roomData?.match || (roomData ? Object.keys(roomData.hostLikes || {}).find(id => 
+    roomData.hostLikes[id] === true && (roomData.guestLikes || {})[id] === true
+  ) : null);
 
   return (
     <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -359,21 +374,21 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         </motion.div>
       )}
 
-      {screen === "match" && roomData?.match && (
+      {screen === "match" && matchId && (
         <div className="match-screen-overlay">
           <motion.div className="matchwatch-form match-modal-content" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
             <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
             <div className="match-movie" style={{ textAlign: "center" }}>
               <img 
-                src={movies.find(m => m.id === roomData.match)?.poster} 
+                src={movies.find(m => m.id === parseInt(matchId))?.poster} 
                 alt="Match" 
                 style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto", cursor: "pointer" }} 
-                onClick={() => setShowDetails(roomData.match)}
+                onClick={() => setShowDetails(parseInt(matchId))}
               />
-              <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === roomData.match)?.titleRu || movies.find(m => m.id === roomData.match)?.title}</h2>
+              <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === parseInt(matchId))?.titleRu || movies.find(m => m.id === parseInt(matchId))?.title}</h2>
               <p>Приятного просмотра!</p>
             </div>
-            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(roomData.match)}>Подробнее о фильме</button>
+            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(parseInt(matchId))}>Подробнее о фильме</button>
             <button className="btn-primary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Завершить</button>
           </motion.div>
         </div>
@@ -407,9 +422,9 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       {showDetails && (
         <DetailedMovieModal 
-          movie={movies.find(m => m.id === (typeof showDetails === 'number' ? showDetails : roomData?.match))} 
+          movie={movies.find(m => m.id === (typeof showDetails === 'number' ? showDetails : parseInt(matchId)))} 
           onClose={() => setShowDetails(false)} 
-          isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : roomData?.match] === "like"}
+          isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)] === "like"}
           onToggleLike={onToggleLike}
         />
       )}
