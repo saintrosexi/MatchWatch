@@ -1,11 +1,11 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 
-export default function SwipeCard({ movie, onSwipe, onDragProgress, onCardClick, isTutorial = false }) {
+export default function SwipeCard({ movie, onSwipe, onDragProgress, onShowDetails, isTutorial = false }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
-  const [showInfoOnMobile, setShowInfoOnMobile] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -24,9 +24,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, onCardClick,
 
   const handleDragStart = () => {
     setIsDragging(true);
-    if (isMobile) {
-      setShowInfoOnMobile(false);
-    }
     onDragProgress?.(0, true);
   };
 
@@ -44,25 +41,28 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, onCardClick,
       onSwipe(dir, movie);
     } else {
       onDragProgress?.(0, false);
-      // If it wasn't a swipe, check for a click/tap
-      if (Math.abs(offset) < 5 && Math.abs(info.offset.y) < 5) {
-        if (isMobile) {
-          setShowInfoOnMobile(!showInfoOnMobile);
-        } else {
-          onCardClick?.(movie);
-        }
-      }
     }
   };
 
-  // PC: Poster 65%, Info 35%
-  // Mobile: Toggle between Poster 100% and Info 100%
-  const posterHeight = isMobile ? (showInfoOnMobile ? "0%" : "100%") : "65%";
-  const infoHeight = isMobile ? (showInfoOnMobile ? "100%" : "0%") : "35%";
+  const handleCardClick = (e) => {
+    // Prevent click if we were dragging
+    if (Math.abs(x.get()) > 5) return;
+    
+    if (isMobile) {
+      setShowInfo(!showInfo);
+    } else {
+      onShowDetails?.(movie);
+    }
+  };
+
+  // PC: 65% poster. Mobile: full toggle.
+  const posterHeight = isMobile ? (showInfo ? "0%" : "100%") : "65%";
+  const infoHeight = isMobile ? (showInfo ? "100%" : "0%") : "35%";
 
   return (
     <motion.div
       className="swipe-card-inner"
+      onClick={handleCardClick}
       style={{
         x,
         rotate,
@@ -70,9 +70,8 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, onCardClick,
         cursor: isDragging ? "grabbing" : "grab",
         width: "100%",
         height: "100%",
-        borderRadius: "24px",
         overflow: "hidden",
-        backgroundColor: "white"
+        borderRadius: "24px"
       }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
@@ -121,84 +120,77 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, onCardClick,
         </>
       )}
 
-      <div className="poster-container" style={{ 
-        pointerEvents: "none", 
-        height: posterHeight, 
-        flex: `0 0 ${posterHeight}`, 
-        width: "100%",
-        transition: "height 0.3s ease",
-        display: posterHeight === "0%" ? "none" : "block"
-      }}>
-        {isTutorial ? (
-           <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.05)" }}>
-             <div style={{ fontSize: "5rem" }}>👋</div>
-           </div>
-        ) : (
-          <>
-            {!imageLoaded && <div className="image-skeleton" />}
-            <img
-              className="poster"
-              src={movie.poster}
-              alt={movie.title}
-              onLoad={() => setImageLoaded(true)}
-              draggable={false}
-              style={{ pointerEvents: "none", width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </>
-        )}
-      </div>
-      <div className="info" style={{ 
-        height: infoHeight, 
-        flex: `0 0 ${infoHeight}`, 
-        display: infoHeight === "0%" ? "none" : "flex", 
-        flexDirection: "column", 
-        padding: "24px", 
-        background: "white",
-        color: "#000",
-        overflow: "hidden",
-        width: "100%",
-        transition: "height 0.3s ease"
-      }}>
-        {isTutorial ? (
-          <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-            <h2 style={{ fontSize: "1.4rem", marginBottom: "12px", fontWeight: "800" }}>Обучение</h2>
-            {isMobile ? (
-               <p style={{ fontSize: "1.1rem", lineHeight: "1.5", opacity: 0.8 }}>
-                 <b>Тап</b> — описание<br/>
-                 <b>Свайп</b> — выбор
-               </p>
-            ) : (
-               <p style={{ fontSize: "1rem", lineHeight: "1.5", opacity: 0.8 }}>
-                 <b>Клик</b> — подробности<br/>
-                 <b>Свайп</b> — выбор
-               </p>
-            )}
-          </div>
-        ) : (
-          <>
-            <div style={{ marginBottom: "8px" }}>
-              <h2 style={{ fontSize: "1.4rem", marginBottom: "2px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
-              <p style={{ fontSize: "0.85rem", color: "#888", fontWeight: "500" }}>{movie.year}</p>
-            </div>
-            
-            <div style={{ fontSize: "0.9rem", color: "#333", marginBottom: "8px", lineHeight: "1.4" }}>
-              {movie.director && <div style={{ marginBottom: "2px" }}><b>Режиссер:</b> {movie.director}</div>}
-              {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
-            </div>
-
-            <div style={{ flex: 1, overflowY: "auto" }}>
-              <p style={{ 
-                fontSize: "0.95rem", 
-                color: "#444", 
-                lineHeight: "1.6", 
-                margin: 0
-              }}>
-                {movie.description}
+      {(!isMobile || !showInfo) && (
+        <div className="poster-container" style={{ pointerEvents: "none", height: posterHeight, flex: `0 0 ${posterHeight}`, width: "100%" }}>
+          {isTutorial ? (
+             <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
+               <div style={{ fontSize: "5rem" }}>👋</div>
+             </div>
+          ) : (
+            <>
+              {!imageLoaded && <div className="image-skeleton" />}
+              <img
+                className="poster"
+                src={movie.poster}
+                alt={movie.title}
+                onLoad={() => setImageLoaded(true)}
+                draggable={false}
+                style={{ pointerEvents: "none" }}
+              />
+            </>
+          )}
+        </div>
+      )}
+      
+      {(!isMobile || showInfo) && (
+        <div className="info" style={{ 
+          height: infoHeight, 
+          flex: `0 0 ${infoHeight}`, 
+          display: "flex", 
+          flexDirection: "column", 
+          padding: "20px", 
+          background: "white",
+          color: "#000",
+          overflow: "hidden",
+          width: "100%"
+        }}>
+          {isTutorial ? (
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+              <h2 style={{ fontSize: "1.4rem", marginBottom: "12px", fontWeight: "800" }}>Обучение</h2>
+              <p style={{ fontSize: "1rem", lineHeight: "1.5", opacity: 0.8 }}>
+                {isMobile ? "Тап — описание, Свайп — выбор" : "Нажми на карточку, чтобы увидеть детали"}
               </p>
             </div>
-          </>
-        )}
-      </div>
+          ) : (
+            <>
+              <div style={{ marginBottom: isMobile ? "12px" : "8px" }}>
+                <h2 style={{ fontSize: isMobile ? "1.5rem" : "1.4rem", marginBottom: "2px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
+                <p style={{ fontSize: "0.95rem", color: "#888", fontWeight: "500", marginTop: "2px" }}>{movie.year}</p>
+              </div>
+              
+              <div style={{ fontSize: isMobile ? "0.9rem" : "0.9rem", color: "#333", marginBottom: isMobile ? "12px" : "8px", lineHeight: "1.4" }}>
+                {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
+                {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
+              </div>
+
+              <div style={{ flex: 1, overflow: "hidden" }}>
+                <p style={{ 
+                  fontSize: isMobile ? "0.95rem" : "0.9rem", 
+                  color: "#444", 
+                  lineHeight: "1.6", 
+                  margin: 0,
+                  display: "-webkit-box",
+                  WebkitLineClamp: isMobile ? 15 : "unset",
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden"
+                }}>
+                  {movie.description}
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }

@@ -41,7 +41,6 @@ export default function App() {
   const [friendRequests, setFriendRequests] = useState({});
   const [disableOnboarding, setDisableOnboarding] = useState(false);
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
-  const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
 
   useEffect(() => {
     if (!auth) {
@@ -103,6 +102,8 @@ export default function App() {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
+
+  const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
 
   useEffect(() => {
     if (user && dataLoaded && database) {
@@ -343,6 +344,7 @@ export default function App() {
                 >
                   <SwipeCard 
                     isTutorial={true} 
+                    onShowDetails={() => {}}
                     onSwipe={() => {
                       setSwipeHint({ x: 0, active: false, swiped: false });
                       setSessionTutorialSeen(true);
@@ -380,12 +382,10 @@ export default function App() {
                       {cardIndex === cursor ? (
                         <SwipeCard
                           movie={filteredDeck[cardIndex]}
+                          onShowDetails={(m) => setSelectedMovieForDetails(m)}
                           onSwipe={(dir, movie) => {
-                            setSwipeHint({ x: 0, active: false, swiped: false });
+                            // The exit is triggered when cursor changes
                             handleSwipe(dir, movie);
-                          }}
-                          onCardClick={(movie) => {
-                            setSelectedMovieForDetails(movie);
                           }}
                           onDragProgress={(x, active) => {
                             setSwipeHint({ x, active, swiped: false });
@@ -444,6 +444,15 @@ export default function App() {
       <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
         {currentScreen}
         
+        {selectedMovieForDetails && (
+          <DetailedMovieModal 
+            movie={selectedMovieForDetails} 
+            onClose={() => setSelectedMovieForDetails(null)}
+            isLiked={decisions[selectedMovieForDetails.id] === "like"}
+            onToggleLike={toggleLike}
+          />
+        )}
+        
         {Object.keys(invites).length > 0 && (
           <div className="global-invites-overlay">
             {Object.entries(invites).map(([code, info]) => (
@@ -458,15 +467,6 @@ export default function App() {
               </div>
             ))}
           </div>
-        )}
-
-        {selectedMovieForDetails && (
-          <DetailedMovieModal
-            movie={selectedMovieForDetails}
-            onClose={() => setSelectedMovieForDetails(null)}
-            isLiked={decisions[selectedMovieForDetails.id] === "like"}
-            onToggleLike={toggleLike}
-          />
         )}
       </div>
     </div>
