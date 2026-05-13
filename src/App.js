@@ -31,7 +31,7 @@ export default function App() {
   const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
   const [screen, setScreen] = useState("matchwatch");
-  const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
+  const [swipeHint, setSwipeHint] = useState({ x: 0, active: false, swiped: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [stopGenres, setStopGenres] = useState([]);
@@ -217,7 +217,7 @@ export default function App() {
       });
       const idx = filteredDeck.findIndex(m => m.id === lastId);
       setCursor(idx >= 0 ? idx : 0);
-      setSwipeHint({ x: 0, active: false });
+      setSwipeHint({ x: 0, active: false, swiped: false });
       return prev.slice(0, -1);
     });
   };
@@ -314,19 +314,23 @@ export default function App() {
         <div className="swipe-wrapper">
           <div className="swipe-hints" aria-hidden="true">
             <div
-              className="swipe-hint-icon swipe-hint-icon--dislike"
+              className={`swipe-hint-icon swipe-hint-icon--dislike ${swipeHint.swiped && swipeHint.x < 0 ? 'swiped-stay' : ''}`}
               style={{
-                opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
-                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
+                opacity: swipeHint.swiped && swipeHint.x < 0 ? 1 : (swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0),
+                transform: (swipeHint.swiped && swipeHint.x < 0) 
+                  ? `translateY(-50%) scale(1.8)` 
+                  : `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
               }}
             >
               ✕
             </div>
             <div
-              className="swipe-hint-icon swipe-hint-icon--like"
+              className={`swipe-hint-icon swipe-hint-icon--like ${swipeHint.swiped && swipeHint.x > 0 ? 'swiped-stay heartbeat' : ''}`}
               style={{
-                opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
-                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
+                opacity: swipeHint.swiped && swipeHint.x > 0 ? 1 : (swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0),
+                transform: (swipeHint.swiped && swipeHint.x > 0)
+                  ? `translateY(-50%) scale(2)`
+                  : `translateY(-50%) scale(${0.95 + Math.min(0.25, Math.max(0, swipeHint.x / 400))})`
               }}
             >
               ❤️
@@ -338,8 +342,14 @@ export default function App() {
               <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
                 <SwipeCard 
                   isTutorial={true} 
-                  onSwipe={() => setSessionTutorialSeen(true)} 
-                  onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                  onSwipe={() => {
+                    setSwipeHint({ x: 0, active: false, swiped: false });
+                    setSessionTutorialSeen(true);
+                  }} 
+                  onDragProgress={(x, active) => {
+                     // In tutorial, we might want to trigger the hint too
+                     setSwipeHint({ x, active, swiped: active && Math.abs(x) > 150 });
+                  }}
                 />
               </div>
             ) : (
@@ -354,10 +364,15 @@ export default function App() {
                       <SwipeCard
                         movie={filteredDeck[cardIndex]}
                         onSwipe={(dir, movie) => {
-                          setSwipeHint({ x: 0, active: false });
-                          handleSwipe(dir, movie);
+                          setSwipeHint(prev => ({ ...prev, swiped: true }));
+                          setTimeout(() => {
+                            setSwipeHint({ x: 0, active: false, swiped: false });
+                            handleSwipe(dir, movie);
+                          }, 600); // Wait for the heartbeat/stay effect
                         }}
-                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                        onDragProgress={(x, active) => {
+                          setSwipeHint(prev => ({ ...prev, x, active, swiped: prev.swiped || (active && Math.abs(x) > 200) }));
+                        }}
                       />
                     ) : (
                       <div className="card-placeholder">
