@@ -100,12 +100,7 @@ html, body {
 
 /* Swipe Hints & Tutorial */
 .swipe-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  font-size: 1.5rem;
-  opacity: 0.6;
+  display: none !important;
 }
 
 .tutorial-card {
@@ -834,6 +829,12 @@ html, body {
   inset: 0;
   pointer-events: none;
   z-index: 1; /* behind deck */
+}
+
+@media (max-width: 1100px) {
+  .swipe-hints {
+    display: none !important;
+  }
 }
 
 .swipe-hint-icon {
