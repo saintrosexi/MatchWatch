@@ -110,40 +110,12 @@ html, body {
 
 .tutorial-card {
   background: linear-gradient(135deg, #2c3e50 0%, #000000 100%) !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 30px;
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tutorial-icon {
-  font-size: 5rem;
-  margin-bottom: 20px;
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-}
-
-.tutorial-text {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-
-.tutorial-arrows {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0 20px;
-  font-size: 2rem;
-  animation: bounceX 2s infinite;
-}
-
-@keyframes bounceX {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(10px); }
 }
 
 .mobile-menu-toggle {
