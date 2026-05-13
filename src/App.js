@@ -37,6 +37,8 @@ export default function App() {
   const [stopGenres, setStopGenres] = useState([]);
   const [invites, setInvites] = useState({});
   const [friendRequests, setFriendRequests] = useState({});
+  const [disableOnboarding, setDisableOnboarding] = useState(false);
+  const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
 
   useEffect(() => {
     if (!auth) {
@@ -56,7 +58,6 @@ export default function App() {
             if (data.history) {
               setHistory(prev => {
                 const combined = [...prev, ...data.history];
-                // Return unique IDs to avoid duplicates in history
                 return Array.from(new Set(combined));
               });
             }
@@ -66,6 +67,10 @@ export default function App() {
         
         onValue(ref(database, `users/${currentUser.uid}/profile/stopGenres`), (snap) => {
           setStopGenres(snap.val() || []);
+        });
+
+        onValue(ref(database, `users/${currentUser.uid}/profile/disableOnboarding`), (snap) => {
+          setDisableOnboarding(snap.val() || false);
         });
         
         onValue(ref(database, `users/${currentUser.uid}/invites`), (snap) => {
@@ -104,8 +109,6 @@ export default function App() {
       });
     }
   }, [decisions, history, user, dataLoaded]);
-
-
 
   const liked = useMemo(
     () => deck.filter(m => decisions[m.id] === "like"),
@@ -170,7 +173,6 @@ export default function App() {
 
   const handleSwipe = (dir, movie) => {
     const decision = dir === "right" ? "like" : "dislike";
-
     setDecisions(prev => ({ ...prev, [movie.id]: decision }));
     setHistory(prev => [...prev, movie.id]);
 
@@ -187,6 +189,7 @@ export default function App() {
     setHistory([]);
     setCursor(0);
     setScreen("swipe");
+    setSessionTutorialSeen(false);
   };
 
   const handleWatchNew = () => {
@@ -207,18 +210,14 @@ export default function App() {
     setHistory(prev => {
       if (prev.length === 0) return prev;
       const lastId = prev[prev.length - 1];
-
       setDecisions(d => {
         const next = { ...d };
         delete next[lastId];
         return next;
       });
-
       const idx = filteredDeck.findIndex(m => m.id === lastId);
       setCursor(idx >= 0 ? idx : 0);
       setSwipeHint({ x: 0, active: false });
-      setScreen("swipe");
-
       return prev.slice(0, -1);
     });
   };
@@ -259,8 +258,6 @@ export default function App() {
     }
   };
 
-
-
   const currentScreen = (() => {
     if (screen === "final") {
       return <FinalScreen onOpenLiked={() => setScreen("liked")} onWatchNew={handleWatchNew} />;
@@ -287,6 +284,7 @@ export default function App() {
         hostRoomCode={hostRoomCode}
         onClearHostRoomCode={() => setHostRoomCode(null)}
         invites={invites}
+        disableOnboarding={disableOnboarding}
       />;
     }
     if (screen === "profile") {
@@ -308,11 +306,12 @@ export default function App() {
         }}
       />;
     }
+
+    const showTutorial = !disableOnboarding && !sessionTutorialSeen;
+
     return (
       <div className="screen screen--center swipe-screen">
         <div className="swipe-wrapper">
-
-
           <div className="swipe-hints" aria-hidden="true">
             <div
               className="swipe-hint-icon swipe-hint-icon--dislike"
@@ -335,43 +334,53 @@ export default function App() {
           </div>
 
           <div className="deck-container">
-            {[cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
-              cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
-                <div
-                  key={cardIndex}
-                  className={`deck-card deck-position-${2 - position}`}
-                  style={{
-                    zIndex: filteredDeck.length - cardIndex,
-                  }}
-                >
-                  {cardIndex === cursor ? (
-                    <SwipeCard
-                      movie={filteredDeck[cardIndex]}
-                      onSwipe={(dir, movie) => {
-                        setSwipeHint({ x: 0, active: false });
-                        handleSwipe(dir, movie);
-                      }}
-                      onDragProgress={(x, active) => setSwipeHint({ x, active })}
-                    />
-                  ) : (
-                    <div className="card-placeholder">
-                      <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
-                      <div className="placeholder-overlay" />
-                    </div>
-                  )}
-                </div>
-              )
-            ))}
+            {showTutorial ? (
+              <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
+                <SwipeCard 
+                  isTutorial={true} 
+                  onSwipe={() => setSessionTutorialSeen(true)} 
+                  onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                />
+              </div>
+            ) : (
+              [cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
+                cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
+                  <div
+                    key={cardIndex}
+                    className={`deck-card deck-position-${2 - position}`}
+                    style={{ zIndex: filteredDeck.length - cardIndex }}
+                  >
+                    {cardIndex === cursor ? (
+                      <SwipeCard
+                        movie={filteredDeck[cardIndex]}
+                        onSwipe={(dir, movie) => {
+                          setSwipeHint({ x: 0, active: false });
+                          handleSwipe(dir, movie);
+                        }}
+                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                      />
+                    ) : (
+                      <div className="card-placeholder">
+                        <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
+                        <div className="placeholder-overlay" />
+                      </div>
+                    )}
+                  </div>
+                )
+              ))
+            )}
           </div>
 
-          <button 
-            className="btn-floating-undo desktop-only" 
-            onClick={handleUndo} 
-            disabled={history.length === 0}
-            title="Отменить последний выбор"
-          >
-            ↩️
-          </button>
+          {!showTutorial && (
+            <button 
+              className="btn-floating-undo desktop-only" 
+              onClick={handleUndo} 
+              disabled={history.length === 0}
+              title="Отменить последний выбор"
+            >
+              ↩️
+            </button>
+          )}
         </div>
       </div>
     );

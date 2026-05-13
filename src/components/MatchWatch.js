@@ -7,7 +7,7 @@ import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -26,6 +26,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const [currentUser, setCurrentUser] = useState(null);
   const [friends, setFriends] = useState({});
+  const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -110,6 +111,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     setRoomCode(code);
     setRole("host");
     setScreen("waiting");
+    setSessionTutorialSeen(false);
   };
 
   const handleJoinRoom = async () => {
@@ -118,6 +120,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     if (success) {
       setRole("guest");
       setScreen("swiping");
+      setSessionTutorialSeen(false);
     } else {
       alert("Комната не найдена");
     }
@@ -152,6 +155,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const matchId = roomData?.match || (roomData ? Object.keys(roomData.hostLikes || {}).find(id => 
     roomData.hostLikes[id] === true && (roomData.guestLikes || {})[id] === true
   ) : null);
+
+  const showTutorial = !disableOnboarding && !sessionTutorialSeen;
 
   return (
     <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -311,7 +316,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           </div>
           
           <div className="swipe-wrapper">
-            <div className="swipe-hint">← Пропустить | Нравится →</div>
             <div className="swipe-hints" aria-hidden="true">
               <div
                 className="swipe-hint-icon swipe-hint-icon--dislike"
@@ -336,40 +340,54 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </div>
 
             <div className="deck-container">
-              {nextMovie && (
-                <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
-                  <div className="card-placeholder">
-                    <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
-                    <div className="placeholder-overlay" />
-                  </div>
-                </div>
-              )}
-              
-              {currentMovie ? (
-                <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
-                  <SwipeCard
-                    key={currentMovie.id}
-                    movie={currentMovie}
-                    onSwipe={handleSwipe}
+              {showTutorial ? (
+                <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
+                  <SwipeCard 
+                    isTutorial={true} 
+                    onSwipe={() => setSessionTutorialSeen(true)} 
                     onDragProgress={(x, active) => setSwipeHint({ x, active })}
                   />
                 </div>
               ) : (
-                <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
-                  <h2>Фильмы закончились!</h2>
-                  <p>Ждем, пока партнер досмотрит свой список...</p>
-                </div>
+                <>
+                  {nextMovie && (
+                    <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
+                      <div className="card-placeholder">
+                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
+                        <div className="placeholder-overlay" />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {currentMovie ? (
+                    <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
+                      <SwipeCard
+                        key={currentMovie.id}
+                        movie={currentMovie}
+                        onSwipe={handleSwipe}
+                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                      />
+                    </div>
+                  ) : (
+                    <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
+                      <h2>Фильмы закончились!</h2>
+                      <p>Ждем, пока партнер досмотрит свой список...</p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
-            <button 
-              className="btn-floating-undo desktop-only" 
-              onClick={handleUndo} 
-              disabled={swipeHistory.length === 0}
-              title="Отменить последний выбор"
-            >
-              ↩️
-            </button>
+            {!showTutorial && (
+              <button 
+                className="btn-floating-undo desktop-only" 
+                onClick={handleUndo} 
+                disabled={swipeHistory.length === 0}
+                title="Отменить последний выбор"
+              >
+                ↩️
+              </button>
+            )}
           </div>
         </motion.div>
       )}

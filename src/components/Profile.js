@@ -272,6 +272,21 @@ export default function Profile() {
               </div>
 
               <div className="setting-group">
+                <label>Обучение</label>
+                <div style={{display: "flex", alignItems: "center", gap: "10px", marginTop: "5px"}}>
+                  <input 
+                    type="checkbox" 
+                    id="disable-onboarding"
+                    checked={profileData?.disableOnboarding || false}
+                    onChange={(e) => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), e.target.checked)}
+                    style={{width: "20px", height: "20px", cursor: "pointer"}}
+                  />
+                  <label htmlFor="disable-onboarding" style={{fontSize: "0.95rem", cursor: "pointer"}}>Выключить обучение</label>
+                </div>
+                <p className="setting-hint">Если включено, подсказки не показываются.</p>
+              </div>
+
+              <div className="setting-group">
                 <label>Стоп-жанры</label>
                 <p className="setting-hint">Фильмы этих жанров не будут предлагаться.</p>
                 <div className="stop-genres-picker">
