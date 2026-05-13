@@ -46,7 +46,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     }
   };
 
-  // Exit animation: Always fall down as requested
   const exitAnimation = { 
     y: 1000, 
     rotate: direction * 25, 
@@ -67,7 +66,9 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           zIndex: 1,
           position: "relative",
           width: "100%",
-          height: "100%"
+          height: "100%",
+          display: "flex",
+          flexDirection: "column"
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
@@ -124,10 +125,11 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           </>
         )}
 
-        <div className="poster-container" style={{ pointerEvents: "none", height: "60%", flex: "0 0 60%" }}>
+        {/* Poster height reduced to 45% to give more room for text below */}
+        <div className="poster-container" style={{ pointerEvents: "none", height: "45%", flex: "0 0 45%", overflow: "hidden" }}>
           {isTutorial ? (
              <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
-               <div style={{ fontSize: "5rem" }}>👋</div>
+               <div style={{ fontSize: "4rem" }}>👋</div>
              </div>
           ) : (
             <>
@@ -143,29 +145,31 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
             </>
           )}
         </div>
-        <div className="info" style={{ height: "40%", flex: "0 0 40%", display: "flex", flexDirection: "column", padding: "20px", background: "linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%)" }}>
+        
+        {/* Info height increased to 55% to fit all text without scrolling */}
+        <div className="info" style={{ height: "55%", flex: "0 0 55%", display: "flex", flexDirection: "column", padding: "24px", background: "linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%)", overflow: "hidden" }}>
           {isTutorial ? (
             <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#1a1a1a" }}>
-              <h2 style={{ fontSize: "1.5rem", marginBottom: "15px", fontWeight: "800" }}>Обучение</h2>
-              <p style={{ fontSize: "1.1rem", lineHeight: "1.6", opacity: 0.8 }}>
+              <h2 style={{ fontSize: "1.6rem", marginBottom: "15px", fontWeight: "800" }}>Обучение</h2>
+              <p style={{ fontSize: "1.2rem", lineHeight: "1.6", opacity: 0.8 }}>
                 Свайпай <b>влево</b>, чтобы пропустить,<br/>
                 или <b>вправо</b>, чтобы лайкнуть!
               </p>
             </div>
           ) : (
             <>
-              <div style={{ marginBottom: "12px" }}>
-                <h2 style={{ fontSize: "1.4rem", marginBottom: "4px", color: "#000" }}>{movie.titleRu || movie.title}</h2>
-                <p className="year" style={{ fontSize: "0.9rem", color: "#888", fontWeight: "600" }}>{movie.year}</p>
+              <div style={{ marginBottom: "14px" }}>
+                <h2 style={{ fontSize: "1.5rem", marginBottom: "4px", color: "#000", fontWeight: "800" }}>{movie.titleRu || movie.title}</h2>
+                <p className="year" style={{ fontSize: "1rem", color: "#777", fontWeight: "600" }}>{movie.year}</p>
               </div>
               
-              <div className="metadata-text" style={{ fontSize: "0.85rem", color: "#444", marginBottom: "16px", lineHeight: "1.4" }}>
-                {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
+              <div className="metadata-text" style={{ fontSize: "0.9rem", color: "#333", marginBottom: "20px", lineHeight: "1.5" }}>
+                {movie.director && <div style={{ marginBottom: "6px" }}><b>Режиссер:</b> {movie.director}</div>}
                 {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
               </div>
 
-              <div style={{ flex: 1, overflowY: "auto" }}>
-                <p className="description" style={{ fontSize: "0.9rem", color: "#333", lineHeight: "1.5", margin: 0 }}>
+              <div style={{ flex: 1 }}>
+                <p className="description" style={{ fontSize: "0.95rem", color: "#222", lineHeight: "1.6", margin: 0 }}>
                   {movie.description}
                 </p>
               </div>
