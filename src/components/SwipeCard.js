@@ -18,7 +18,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
   const rotate = useTransform(x, [-150, 0, 150], [-15, 0, 15]);
   const opacity = useTransform(x, [-150, -100, 0, 100, 150], [0.5, 1, 1, 1, 0.5]);
   
-  // These are only used for the "on-top" icons (mobile only according to user preference)
   const feedbackScale = useTransform(x, [-150, 0, 150], [2, 0, 2], { clamp: true });
   const heartOpacity = useTransform(x, [0, 50], [0, 1], { clamp: true });
   const crossOpacity = useTransform(x, [-50, 0], [1, 0], { clamp: true });
@@ -40,7 +39,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     if (Math.abs(offset) > 70 || Math.abs(velocity) > 400) {
       const dir = offset > 0 ? "right" : "left";
       setDirection(offset > 0 ? 1 : -1);
-      // Signal that we've swiped "to the end"
       onDragProgress?.(offset > 0 ? 300 : -300, true); 
       onSwipe(dir, movie);
     } else {
@@ -48,7 +46,11 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     }
   };
 
-  // Fixed structure for both to ensure identical size
+  // Define exit animation based on user preference
+  const exitAnimation = direction === 1 
+    ? { scale: 0.2, opacity: 0, transition: { duration: 0.4 } } // Like: go "under" / shrink away
+    : { y: 1000, rotate: -20, opacity: 0, transition: { duration: 0.5 } }; // Dislike: fall down
+
   return (
     <AnimatePresence>
       <motion.div
@@ -72,20 +74,13 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         onDragEnd={handleDragEnd}
         initial={{ scale: 0.9, opacity: 0, y: 30 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{
-          x: direction * 1000,
-          y: 200,
-          rotate: direction * 45,
-          opacity: 0,
-          transition: { duration: 0.45, ease: "easeIn" }
-        }}
+        exit={exitAnimation}
         transition={{
           type: "spring",
           stiffness: 350,
           damping: 25
         }}
       >
-        {/* Mobile-only feedback icons (rendered on top of card) */}
         {isMobile && (
           <>
             <motion.div 
