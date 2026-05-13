@@ -18,7 +18,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
   const rotate = useTransform(x, [-150, 0, 150], [-15, 0, 15]);
   const opacity = useTransform(x, [-150, -100, 0, 100, 150], [0.5, 1, 1, 1, 0.5]);
   
-  // Feedback icons scale/opacity for mobile "on-card" animation
   const feedbackScale = useTransform(x, [-150, 0, 150], [2.5, 0, 2.5], { clamp: true });
   const heartOpacity = useTransform(x, [0, 50], [0, 1], { clamp: true });
   const crossOpacity = useTransform(x, [-50, 0], [1, 0], { clamp: true });
@@ -47,9 +46,13 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     }
   };
 
-  const exitAnimation = direction === 1 
-    ? { scale: 0.2, opacity: 0, transition: { duration: 0.4 } }
-    : { y: 1000, rotate: -20, opacity: 0, transition: { duration: 0.5 } };
+  // Exit animation: Always fall down as requested
+  const exitAnimation = { 
+    y: 1000, 
+    rotate: direction * 25, 
+    opacity: 0, 
+    transition: { duration: 0.6, ease: "easeIn" } 
+  };
 
   return (
     <AnimatePresence>
@@ -81,7 +84,6 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           damping: 25
         }}
       >
-        {/* Mobile-only feedback icons: only show on mobile as requested */}
         {isMobile && (
           <>
             <motion.div 
@@ -122,7 +124,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           </>
         )}
 
-        <div className="poster-container" style={{ pointerEvents: "none", height: "65%", flex: "0 0 65%" }}>
+        <div className="poster-container" style={{ pointerEvents: "none", height: "60%", flex: "0 0 60%" }}>
           {isTutorial ? (
              <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
                <div style={{ fontSize: "5rem" }}>👋</div>
@@ -141,27 +143,32 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
             </>
           )}
         </div>
-        <div className="info" style={{ height: "35%", flex: "0 0 35%", display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "12px" }}>
+        <div className="info" style={{ height: "40%", flex: "0 0 40%", display: "flex", flexDirection: "column", padding: "20px", background: "linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%)" }}>
           {isTutorial ? (
-            <div style={{ padding: "10px", textAlign: "center", color: "inherit" }}>
-              <h2 style={{ fontSize: "1.2rem", marginBottom: "10px" }}>Обучение</h2>
-              <p style={{ fontSize: "0.9rem", lineHeight: "1.4" }}>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#1a1a1a" }}>
+              <h2 style={{ fontSize: "1.5rem", marginBottom: "15px", fontWeight: "800" }}>Обучение</h2>
+              <p style={{ fontSize: "1.1rem", lineHeight: "1.6", opacity: 0.8 }}>
                 Свайпай <b>влево</b>, чтобы пропустить,<br/>
                 или <b>вправо</b>, чтобы лайкнуть!
               </p>
             </div>
           ) : (
             <>
-              <h2>{movie.titleRu || movie.title}</h2>
-              <p className="year">{movie.year}</p>
+              <div style={{ marginBottom: "12px" }}>
+                <h2 style={{ fontSize: "1.4rem", marginBottom: "4px", color: "#000" }}>{movie.titleRu || movie.title}</h2>
+                <p className="year" style={{ fontSize: "0.9rem", color: "#888", fontWeight: "600" }}>{movie.year}</p>
+              </div>
               
-              {/* New fields: Director and Cast */}
-              <div className="metadata-text" style={{ fontSize: "0.75rem", color: "#666", marginBottom: "6px", lineHeight: "1.3" }}>
-                {movie.director && <div><b>Режиссер:</b> {movie.director}</div>}
+              <div className="metadata-text" style={{ fontSize: "0.85rem", color: "#444", marginBottom: "16px", lineHeight: "1.4" }}>
+                {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
                 {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
               </div>
 
-              <p className="description" style={{ flex: 1, overflowY: "auto" }}>{movie.description}</p>
+              <div style={{ flex: 1, overflowY: "auto" }}>
+                <p className="description" style={{ fontSize: "0.9rem", color: "#333", lineHeight: "1.5", margin: 0 }}>
+                  {movie.description}
+                </p>
+              </div>
             </>
           )}
         </div>
