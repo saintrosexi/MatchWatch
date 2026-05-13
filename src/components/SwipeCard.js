@@ -43,8 +43,29 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     }
   };
 
-  const posterHeight = isMobile ? "40%" : "55%";
-  const infoHeight = isMobile ? "60%" : "45%";
+  // Define heights with !important for mobile
+  const posterStyle = isMobile ? {
+    height: "40% !important",
+    flex: "0 0 40% !important",
+    minHeight: "40% !important",
+    maxHeight: "40% !important"
+  } : {
+    height: "55%",
+    flex: "0 0 55%"
+  };
+
+  const infoStyle = isMobile ? {
+    height: "60% !important",
+    flex: "0 0 60% !important",
+    minHeight: "60% !important",
+    maxHeight: "none !important",
+    overflow: "visible !important",
+    padding: "16px 20px"
+  } : {
+    height: "45%",
+    flex: "0 0 45%",
+    overflow: "hidden"
+  };
 
   return (
     <motion.div
@@ -104,7 +125,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         </>
       )}
 
-      <div className="poster-container" style={{ pointerEvents: "none", height: posterHeight, flex: `0 0 ${posterHeight}`, width: "100%" }}>
+      <div className="poster-container" style={{ pointerEvents: "none", width: "100%", ...posterStyle }}>
         {isTutorial ? (
            <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
              <div style={{ fontSize: "5rem" }}>👋</div>
@@ -124,15 +145,12 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         )}
       </div>
       <div className="info" style={{ 
-        height: infoHeight, 
-        flex: `0 0 ${infoHeight}`, 
         display: "flex", 
         flexDirection: "column", 
-        padding: isMobile ? "16px 20px" : "20px", 
         background: "white",
         color: "#000",
-        overflow: "hidden",
-        width: "100%"
+        width: "100%",
+        ...infoStyle
       }}>
         {isTutorial ? (
           <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
@@ -154,16 +172,16 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
               {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
             </div>
 
-            <div style={{ flex: 1, overflow: "hidden" }}>
+            <div style={{ flex: 1, overflow: isMobile ? "visible" : "hidden" }}>
               <p style={{ 
                 fontSize: isMobile ? "0.8rem" : "0.9rem", 
                 color: "#444", 
                 lineHeight: "1.5", 
                 margin: 0,
-                display: "-webkit-box",
-                WebkitLineClamp: "unset",
+                display: isMobile ? "block" : "-webkit-box",
+                WebkitLineClamp: isMobile ? "none" : 3,
                 WebkitBoxOrient: "vertical",
-                overflow: "hidden"
+                overflow: "visible"
               }}>
                 {movie.description}
               </p>

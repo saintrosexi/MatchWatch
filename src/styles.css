@@ -591,6 +591,15 @@ html, body {
   border-top-right-radius: 24px;
 }
 
+@media (max-width: 1100px) {
+  .poster-container {
+    height: 40% !important;
+    flex: 0 0 40% !important;
+    min-height: 40% !important;
+    max-height: 40% !important;
+  }
+}
+
 .image-skeleton {
   position: absolute;
   width: 100%;
@@ -627,6 +636,16 @@ html, body {
   border-bottom-right-radius: 24px;
 }
 
+@media (max-width: 1100px) {
+  .info {
+    height: 60% !important;
+    flex: 0 0 60% !important;
+    min-height: 60% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
 .info h2 {
   margin: 0 0 2px 0;
   font-size: 1.25rem;
@@ -652,6 +671,15 @@ html, body {
   color: #444;
   line-height: 1.4;
   overflow: visible;
+}
+
+@media (max-width: 1100px) {
+  .info .description {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
 }
 
 /* MatchWatch Swipe Header - Absolute Position like Main Swipe */
