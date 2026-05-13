@@ -53,6 +53,10 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
     transition: { duration: 0.6, ease: "easeIn" } 
   };
 
+  // Responsive layout values
+  const posterHeight = isMobile ? "45%" : "55%";
+  const infoHeight = isMobile ? "55%" : "45%";
+
   return (
     <AnimatePresence>
       <motion.div
@@ -66,9 +70,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           zIndex: 1,
           position: "relative",
           width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column"
+          height: "100%"
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
@@ -125,11 +127,10 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           </>
         )}
 
-        {/* Poster height reduced to 45% to give more room for text below */}
-        <div className="poster-container" style={{ pointerEvents: "none", height: "45%", flex: "0 0 45%", overflow: "hidden" }}>
+        <div className="poster-container" style={{ pointerEvents: "none", height: posterHeight, flex: `0 0 ${posterHeight}` }}>
           {isTutorial ? (
              <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
-               <div style={{ fontSize: "4rem" }}>👋</div>
+               <div style={{ fontSize: "5rem" }}>👋</div>
              </div>
           ) : (
             <>
@@ -145,31 +146,46 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
             </>
           )}
         </div>
-        
-        {/* Info height increased to 55% to fit all text without scrolling */}
-        <div className="info" style={{ height: "55%", flex: "0 0 55%", display: "flex", flexDirection: "column", padding: "24px", background: "linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%)", overflow: "hidden" }}>
+        <div className="info" style={{ 
+          height: infoHeight, 
+          flex: `0 0 ${infoHeight}`, 
+          display: "flex", 
+          flexDirection: "column", 
+          padding: isMobile ? "24px" : "20px", 
+          background: "white", // Matching the photo's clean white look
+          color: "#000"
+        }}>
           {isTutorial ? (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#1a1a1a" }}>
-              <h2 style={{ fontSize: "1.6rem", marginBottom: "15px", fontWeight: "800" }}>Обучение</h2>
-              <p style={{ fontSize: "1.2rem", lineHeight: "1.6", opacity: 0.8 }}>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+              <h2 style={{ fontSize: "1.5rem", marginBottom: "15px", fontWeight: "800" }}>Обучение</h2>
+              <p style={{ fontSize: "1.1rem", lineHeight: "1.6", opacity: 0.8 }}>
                 Свайпай <b>влево</b>, чтобы пропустить,<br/>
                 или <b>вправо</b>, чтобы лайкнуть!
               </p>
             </div>
           ) : (
             <>
-              <div style={{ marginBottom: "14px" }}>
-                <h2 style={{ fontSize: "1.5rem", marginBottom: "4px", color: "#000", fontWeight: "800" }}>{movie.titleRu || movie.title}</h2>
-                <p className="year" style={{ fontSize: "1rem", color: "#777", fontWeight: "600" }}>{movie.year}</p>
+              <div style={{ marginBottom: "16px" }}>
+                <h2 style={{ fontSize: isMobile ? "1.6rem" : "1.4rem", marginBottom: "4px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
+                <p style={{ fontSize: "0.95rem", color: "#888", fontWeight: "500" }}>{movie.year}</p>
               </div>
               
-              <div className="metadata-text" style={{ fontSize: "0.9rem", color: "#333", marginBottom: "20px", lineHeight: "1.5" }}>
+              <div style={{ fontSize: "0.9rem", color: "#333", marginBottom: "20px", lineHeight: "1.5" }}>
                 {movie.director && <div style={{ marginBottom: "6px" }}><b>Режиссер:</b> {movie.director}</div>}
                 {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
               </div>
 
-              <div style={{ flex: 1 }}>
-                <p className="description" style={{ fontSize: "0.95rem", color: "#222", lineHeight: "1.6", margin: 0 }}>
+              <div style={{ flex: 1, overflowY: isMobile ? "auto" : "visible" }}>
+                <p style={{ 
+                  fontSize: isMobile ? "0.95rem" : "0.9rem", 
+                  color: "#444", 
+                  lineHeight: "1.6", 
+                  margin: 0,
+                  display: "-webkit-box",
+                  WebkitLineClamp: isMobile ? 6 : "unset",
+                  WebkitBoxOrient: "vertical",
+                  overflow: isMobile ? "hidden" : "visible"
+                }}>
                   {movie.description}
                 </p>
               </div>

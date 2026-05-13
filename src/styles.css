@@ -616,12 +616,12 @@ html, body {
   height: 34%;
   flex: 0 0 34%;
   padding: 16px;
-  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+  background: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  color: #1a1a1a;
+  color: #000;
   overflow: hidden;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
@@ -649,13 +649,9 @@ html, body {
 .info .description {
   margin: 0;
   font-size: 0.75rem;
-  color: #666;
-  line-height: 1.25;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  white-space: normal;
+  color: #444;
+  line-height: 1.4;
+  overflow: visible;
 }
 
 /* MatchWatch Swipe Header - Absolute Position like Main Swipe */
@@ -943,11 +939,12 @@ html, body {
   position: relative;
   width: 100%;
   max-width: 380px;
-  height: 620px;
+  height: 680px; /* Increased from 620px to fit all text */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 5; /* above hints */
+  margin-top: -40px; /* Shift up slightly as there is space above */
 }
 
 .deck-card {
