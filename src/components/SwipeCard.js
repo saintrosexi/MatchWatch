@@ -104,7 +104,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         </>
       )}
 
-      <div className="poster-container" style={{ pointerEvents: "none", height: posterHeight, flex: `0 0 ${posterHeight}` }}>
+      <div className="poster-container" style={{ pointerEvents: "none", height: posterHeight, flex: `0 0 ${posterHeight}`, width: "100%" }}>
         {isTutorial ? (
            <div className="tutorial-poster-content" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)" }}>
              <div style={{ fontSize: "5rem" }}>👋</div>
@@ -128,10 +128,11 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
         flex: `0 0 ${infoHeight}`, 
         display: "flex", 
         flexDirection: "column", 
-        padding: isMobile ? "20px 20px" : "20px", 
+        padding: isMobile ? "16px 20px" : "20px", 
         background: "white",
         color: "#000",
-        overflow: "hidden"
+        overflow: "hidden",
+        width: "100%"
       }}>
         {isTutorial ? (
           <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
@@ -143,12 +144,12 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
           </div>
         ) : (
           <>
-            <div style={{ marginBottom: isMobile ? "8px" : "12px" }}>
-              <h2 style={{ fontSize: isMobile ? "1.3rem" : "1.4rem", marginBottom: "2px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
-              <p style={{ fontSize: "0.85rem", color: "#888", fontWeight: "500" }}>{movie.year}</p>
+            <div style={{ marginBottom: isMobile ? "4px" : "12px" }}>
+              <h2 style={{ fontSize: isMobile ? "1.3rem" : "1.4rem", marginBottom: "0px", fontWeight: "800", letterSpacing: "-0.5px", lineHeight: "1.2" }}>{movie.titleRu || movie.title}</h2>
+              <p style={{ fontSize: "0.85rem", color: "#888", fontWeight: "500", marginTop: "2px" }}>{movie.year}</p>
             </div>
             
-            <div style={{ fontSize: isMobile ? "0.75rem" : "0.9rem", color: "#333", marginBottom: isMobile ? "8px" : "12px", lineHeight: "1.4" }}>
+            <div style={{ fontSize: isMobile ? "0.75rem" : "0.9rem", color: "#333", marginBottom: isMobile ? "6px" : "12px", lineHeight: "1.4" }}>
               {movie.director && <div style={{ marginBottom: "2px" }}><b>Режиссер:</b> {movie.director}</div>}
               {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
             </div>
@@ -160,7 +161,7 @@ export default function SwipeCard({ movie, onSwipe, onDragProgress, isTutorial =
                 lineHeight: "1.5", 
                 margin: 0,
                 display: "-webkit-box",
-                WebkitLineClamp: isMobile ? 12 : "unset", // Increased line clamp to allow more text
+                WebkitLineClamp: "unset",
                 WebkitBoxOrient: "vertical",
                 overflow: "hidden"
               }}>
