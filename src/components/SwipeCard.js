@@ -8,19 +8,18 @@ import { useState, useEffect } from "react";
 
 const TUTORIAL_MOVIE = {
   id: "tutorial",
-  title: "Как пользоваться?",
-  titleRu: "Как пользоваться?",
-  year: "Обучение",
+  title: "Обучение",
+  titleRu: "Обучение",
+  year: "MatchWatch",
   poster:
     "https://images.unsplash.com/photo-1585647347384-2593bcac5503?q=80&w=1000&auto=format&fit=crop",
-  description: "Нажми чтобы перевернуть и узнать больше 👆",
-  backTitle: "Управление карточками",
-  backInstructions: [
-    { emoji: "❤️", text: "Свайп ВПРАВО — если фильм нравится" },
-    { emoji: "✕", text: "Свайп ВЛЕВО — чтобы пропустить" },
-    { emoji: "✨", text: "Если лайки совпадут — вы узнаете об этом!" },
-  ],
-  backAction: "нажми если хочешь вернуться к постеру или свапни в одну из сторон",
+  description:
+    "Перетяни карточку налево если тебе не нравится, Перетяни направо если тебе нравится, Нажми на карточку чтобы узнать больше о фильме",
+  pcDescription:
+    "Перетяни карточку налево если тебе не нравится, Перетяни направо если тебе нравится, Нажми на карточку чтобы узнать больше о фильме",
+  backTitle: "Обучение",
+  backAction:
+    "Нажми еще раз чтобы вернуться к постеру или перетяни в любую сторону.",
 };
 
 export default function SwipeCard({
@@ -296,8 +295,15 @@ export default function SwipeCard({
                   {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
                   {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
                 </div>
-                <div style={{ flex: 1, overflow: "hidden" }}>
-                  <p style={{ fontSize: "0.9rem", color: "#444", lineHeight: "1.6", margin: 0 }}>
+                <div style={{ flex: 1, overflowY: "auto", paddingRight: "5px" }}>
+                  <p
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "#444",
+                      lineHeight: "1.6",
+                      margin: 0,
+                    }}
+                  >
                     {isTutorial ? movie.pcDescription : movie.description}
                   </p>
                 </div>
@@ -343,36 +349,27 @@ export default function SwipeCard({
 
             <div
               className="back-content"
-              style={{ flex: 1, overflowY: "auto", color: "#444" }}
+              style={{
+                flex: 1,
+                overflowY: "auto",
+                color: "#444",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
             >
               {isTutorial ? (
-                <div
+                <p
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "20px",
-                    marginTop: "10px",
+                    fontSize: "1.1rem",
+                    lineHeight: "1.6",
+                    fontWeight: "600",
+                    padding: "0 10px",
                   }}
                 >
-                  {movie.backInstructions.map((item, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "15px",
-                        background: "#f8fafc",
-                        padding: "12px",
-                        borderRadius: "12px",
-                      }}
-                    >
-                      <span style={{ fontSize: "1.5rem" }}>{item.emoji}</span>
-                      <span style={{ fontSize: "0.95rem", fontWeight: "600" }}>
-                        {item.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                  {movie.backAction}
+                </p>
               ) : (
                 <>
                   <p
@@ -413,9 +410,7 @@ export default function SwipeCard({
                   lineHeight: "1.4",
                 }}
               >
-                {isTutorial
-                  ? movie.backAction
-                  : "Нажми, чтобы вернуться к постеру или свайпай"}
+                {!isTutorial && "Нажми, чтобы вернуться к постеру или свайпай"}
               </p>
             </div>
           </div>
