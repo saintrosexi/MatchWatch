@@ -100,9 +100,9 @@ export default function SwipeCard({
     }
   };
 
-  // PC: Static 60/40 split. Mobile: Mode 1 (95/5), Mode 2 (10/90)
-  const posterHeight = isMobile ? (showInfo ? "10%" : "95%") : "60%";
-  const infoHeight = isMobile ? (showInfo ? "90%" : "5%") : "40%";
+  // PC: Static 60/40 split. Mobile: Mode 1 (100% overlay), Mode 2 (10/90)
+  const posterHeight = isMobile ? (showInfo ? "10%" : "100%") : "60%";
+  const infoHeight = isMobile ? (showInfo ? "90%" : "0%") : "40%";
 
   return (
     <div
@@ -222,18 +222,36 @@ export default function SwipeCard({
                 style={{
                   height: "100%",
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)",
+                  position: "relative",
+                  padding: "20px",
                 }}
               >
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  style={{ fontSize: "8rem" }}
+                  style={{ fontSize: "6rem", marginBottom: "20px" }}
                 >
                   ✨
                 </motion.div>
+                {isMobile && !showInfo && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "white",
+                      fontWeight: "800",
+                      fontSize: "1.3rem",
+                      lineHeight: "1.4",
+                      textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                      maxWidth: "280px",
+                    }}
+                  >
+                    нажми чтобы узнать подробнее о фильме
+                  </div>
+                )}
               </div>
             ) : (
               <>
@@ -251,6 +269,31 @@ export default function SwipeCard({
                     height: "100%",
                   }}
                 />
+                {isMobile && !showInfo && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: "60px 20px 25px",
+                      background:
+                        "linear-gradient(transparent, rgba(0,0,0,0.9))",
+                      color: "white",
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontSize: "1.6rem",
+                        fontWeight: "900",
+                        margin: 0,
+                        textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+                      }}
+                    >
+                      {movie.titleRu || movie.title}
+                    </h2>
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -261,23 +304,23 @@ export default function SwipeCard({
             style={{
               height: infoHeight,
               flex: `0 0 ${infoHeight}`,
-              display: "flex",
+              display: isMobile && !showInfo ? "none" : "flex",
               flexDirection: "column",
-              padding: isMobile ? "0 20px" : "15px 20px",
+              padding: isMobile ? "20px" : "15px 20px",
               background: "white",
               color: "#000",
               overflow: "hidden",
-              justifyContent: isMobile ? "center" : "flex-start",
+              justifyContent: isMobile ? "flex-start" : "flex-start",
               transition: "height 0.3s ease",
             }}
           >
-            <div style={{ marginBottom: isMobile ? "0" : "8px" }}>
+            <div style={{ marginBottom: isMobile ? "8px" : "8px" }}>
               <h2
                 style={{
-                  fontSize: isMobile ? "1rem" : "1.2rem",
+                  fontSize: isMobile ? "1.3rem" : "1.2rem",
                   fontWeight: "800",
                   margin: 0,
-                  whiteSpace: isMobile ? "nowrap" : "normal",
+                  whiteSpace: isMobile ? "normal" : "normal",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                 }}
