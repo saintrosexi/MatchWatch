@@ -128,10 +128,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleSwipe = (direction, movie) => {
     swipeMovie(roomCode, role, movie.id, direction);
-    setSwipeHistory(prev => [...prev, movie.id]);
+    setSwipeHistory((prev) => [...prev, movie.id]);
     setSwipeHint({ x: 0, active: false });
-    setCursor(prev => prev + 1);
+    setCursor((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    // Reset hints whenever cursor changes (new card)
+    setSwipeHint({ x: 0, active: false });
+  }, [cursor]);
 
   const handleUndo = async () => {
     if (swipeHistory.length === 0) return;
