@@ -100,9 +100,9 @@ export default function SwipeCard({
     }
   };
 
-  // PC: Static 65/35 split. Mobile: Mode 1 (95/5), Mode 2 (10/90)
-  const posterHeight = isMobile ? (showInfo ? "10%" : "95%") : "65%";
-  const infoHeight = isMobile ? (showInfo ? "90%" : "5%") : "35%";
+  // PC: Static 60/40 split. Mobile: Mode 1 (95/5), Mode 2 (10/90)
+  const posterHeight = isMobile ? (showInfo ? "10%" : "95%") : "60%";
+  const infoHeight = isMobile ? (showInfo ? "90%" : "5%") : "40%";
 
   return (
     <div
@@ -263,7 +263,7 @@ export default function SwipeCard({
               flex: `0 0 ${infoHeight}`,
               display: "flex",
               flexDirection: "column",
-              padding: isMobile ? "0 20px" : "20px",
+              padding: isMobile ? "0 20px" : "15px 20px",
               background: "white",
               color: "#000",
               overflow: "hidden",
@@ -271,10 +271,10 @@ export default function SwipeCard({
               transition: "height 0.3s ease",
             }}
           >
-            <div style={{ marginBottom: isMobile ? "0" : "12px" }}>
+            <div style={{ marginBottom: isMobile ? "0" : "8px" }}>
               <h2
                 style={{
-                  fontSize: isMobile ? "1rem" : "1.4rem",
+                  fontSize: isMobile ? "1rem" : "1.2rem",
                   fontWeight: "800",
                   margin: 0,
                   whiteSpace: isMobile ? "nowrap" : "normal",
@@ -285,22 +285,54 @@ export default function SwipeCard({
                 {movie.titleRu || movie.title}
               </h2>
               {!isMobile && (
-                 <p style={{ fontSize: "0.95rem", color: "#888", fontWeight: "500", marginTop: "2px" }}>{movie.year}</p>
+                <p
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "#888",
+                    fontWeight: "500",
+                    marginTop: "2px",
+                  }}
+                >
+                  {movie.year}
+                </p>
               )}
             </div>
 
             {!isMobile && (
               <>
-                <div style={{ fontSize: "0.9rem", color: "#333", marginBottom: "8px", lineHeight: "1.4" }}>
-                  {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
-                  {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
+                <div
+                  style={{
+                    fontSize: "0.8rem",
+                    color: "#333",
+                    marginBottom: "8px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  {movie.director && (
+                    <div style={{ marginBottom: "2px" }}>
+                      <b>Режиссер:</b> {movie.director}
+                    </div>
+                  )}
+                  {movie.actors && (
+                    <div
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      <b>В ролях:</b> {movie.actors}
+                    </div>
+                  )}
                 </div>
-                <div style={{ flex: 1, overflowY: "auto", paddingRight: "5px" }}>
+                <div style={{ flex: 1, overflow: "hidden" }}>
                   <p
                     style={{
-                      fontSize: "0.9rem",
+                      fontSize: "0.8rem",
                       color: "#444",
-                      lineHeight: "1.6",
+                      lineHeight: "1.4",
                       margin: 0,
                     }}
                   >
