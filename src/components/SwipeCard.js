@@ -40,12 +40,8 @@ export default function SwipeCard({
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      // Safety reset for hints
-      onDragProgress?.(0, false);
-    };
-  }, [onDragProgress]);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const x = useMotionValue(0);
 
@@ -80,6 +76,7 @@ export default function SwipeCard({
       const dir = offset > 0 ? "right" : "left";
       setIsSwiped(true);
       onSwipe(dir, movie);
+      // Reset hints in parent immediately
       onDragProgress?.(0, false);
     } else {
       onDragProgress?.(0, false);
@@ -103,6 +100,10 @@ export default function SwipeCard({
       setShowInfo(!showInfo);
     }
   };
+
+  // PC: Static 65/35 split. Mobile: Mode 1 (95/5), Mode 2 (10/90)
+  const posterHeight = isMobile ? (showInfo ? "10%" : "95%") : "65%";
+  const infoHeight = isMobile ? (showInfo ? "90%" : "5%") : "35%";
 
   return (
     <div
@@ -208,11 +209,12 @@ export default function SwipeCard({
             className="poster-container"
             style={{
               pointerEvents: "none",
-              height: isMobile ? "95%" : "65%",
-              flex: `0 0 ${isMobile ? "95%" : "65%"}`,
+              height: posterHeight,
+              flex: `0 0 ${posterHeight}`,
               width: "100%",
               overflow: "hidden",
               position: "relative",
+              transition: "height 0.3s ease",
             }}
           >
             {isTutorial ? (
@@ -256,29 +258,51 @@ export default function SwipeCard({
 
           <div
             className="info-front"
+            onClick={!isMobile ? handleInfoClick : undefined}
             style={{
-              height: isMobile ? "5%" : "35%",
-              flex: `0 0 ${isMobile ? "5%" : "35%"}`,
+              height: infoHeight,
+              flex: `0 0 ${infoHeight}`,
               display: "flex",
-              alignItems: "center",
-              padding: "0 20px",
+              flexDirection: "column",
+              padding: isMobile ? "0 20px" : "20px",
               background: "white",
               color: "#000",
               overflow: "hidden",
+              justifyContent: isMobile ? "center" : "flex-start",
+              transition: "height 0.3s ease",
             }}
           >
-            <h2
-              style={{
-                fontSize: isMobile ? "1rem" : "1.4rem",
-                fontWeight: "800",
-                margin: 0,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {movie.titleRu || movie.title}
-            </h2>
+            <div style={{ marginBottom: isMobile ? "0" : "12px" }}>
+              <h2
+                style={{
+                  fontSize: isMobile ? "1rem" : "1.4rem",
+                  fontWeight: "800",
+                  margin: 0,
+                  whiteSpace: isMobile ? "nowrap" : "normal",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {movie.titleRu || movie.title}
+              </h2>
+              {!isMobile && (
+                 <p style={{ fontSize: "0.95rem", color: "#888", fontWeight: "500", marginTop: "2px" }}>{movie.year}</p>
+              )}
+            </div>
+
+            {!isMobile && (
+              <>
+                <div style={{ fontSize: "0.9rem", color: "#333", marginBottom: "8px", lineHeight: "1.4" }}>
+                  {movie.director && <div style={{ marginBottom: "4px" }}><b>Режиссер:</b> {movie.director}</div>}
+                  {movie.actors && <div><b>В ролях:</b> {movie.actors}</div>}
+                </div>
+                <div style={{ flex: 1, overflow: "hidden" }}>
+                  <p style={{ fontSize: "0.9rem", color: "#444", lineHeight: "1.6", margin: 0 }}>
+                    {isTutorial ? movie.pcDescription : movie.description}
+                  </p>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
