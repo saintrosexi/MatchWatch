@@ -2342,13 +2342,23 @@ html, body {
 .stat-value { font-size: 2rem; font-weight: bold; color: #ff8a50; margin-bottom: 6px; }
 .stat-label { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
 
-.achievements-grid-2col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.achievement-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 22px 12px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.3s; }
+.achievements-grid-2col { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+.achievement-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 14px 8px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 .achievement-card.locked { opacity: 0.35; filter: grayscale(100%); }
 .achievement-card.unlocked { border-color: rgba(255, 138, 80, 0.4); box-shadow: 0 0 15px rgba(255, 138, 80, 0.08); }
-.ach-icon { font-size: 2.2rem; margin-bottom: 8px; }
-.ach-title { font-weight: bold; color: #fff; margin-bottom: 4px; font-size: 0.95rem; }
-.ach-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+.ach-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.ach-title { font-weight: 700; color: #fff; margin-bottom: 3px; font-size: 0.8rem; line-height: 1.2; }
+.ach-desc { font-size: 0.68rem; color: rgba(255,255,255,0.45); line-height: 1.25; }
+
+.clickable-stat-card {
+  transition: all 0.3s ease;
+}
+.clickable-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: #ff8a50 !important;
+  box-shadow: 0 6px 20px rgba(255, 138, 80, 0.25) !important;
+  background: linear-gradient(135deg, rgba(255, 138, 80, 0.25) 0%, rgba(233, 30, 99, 0.25) 100%) !important;
+}
 
 
 /* ===== FRIENDS PAGE ===== */

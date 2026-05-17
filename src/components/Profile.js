@@ -4,6 +4,7 @@ import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut, u
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
+import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,9 @@ export default function Profile() {
   const [editError, setEditError] = useState("");
   const [editSuccess, setEditSuccess] = useState("");
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [showAllFavorites, setShowAllFavorites] = useState(false);
 
   const startEditingProfile = () => {
     if (user && user.displayName) {
@@ -113,19 +117,135 @@ export default function Profile() {
     }
   };
 
+  const getAnimeStudio = (movie) => {
+    if (!movie || movie.type !== "anime") return null;
+    const dir = (movie.director || "").toLowerCase();
+    const title = (movie.titleRu || movie.title || "").toLowerCase();
+    
+    if (dir.includes("miyazaki") || dir.includes("миядзаки") || dir.includes("takahata") || dir.includes("такахата") || dir.includes("shinkai") || dir.includes("синкай") || title.includes("унесённые призраками") || title.includes("ходячий замок") || title.includes("навсикая") || title.includes("тоторо") || title.includes("мононоке") || title.includes("порко россо") || title.includes("шепот сердца") || title.includes("ведьмина служба") || title.includes("ариэтти") || title.includes("рыбка поньо")) {
+      if (dir.includes("miyazaki") || dir.includes("миядзаки") || dir.includes("takahata") || dir.includes("такахата")) {
+        return "Studio Ghibli";
+      }
+      if (dir.includes("shinkai") || dir.includes("синкай") || title.includes("твоё имя") || title.includes("дитя погоды") || title.includes("5 сантиметров")) {
+        return "CoMix Wave Films";
+      }
+    }
+    
+    if (title.includes("атака титанов") || title.includes("shingeki")) {
+      return "Wit Studio / MAPPA";
+    }
+    if (title.includes("клинок") || title.includes("демонов") || title.includes("kimetsu")) {
+      return "ufotable";
+    }
+    if (title.includes("тетрадь смерти") || title.includes("death note") || title.includes("ванпанчмен") || title.includes("one punch") || title.includes("хантер") || title.includes("hunter") || title.includes("пираты черной лагуны") || title.includes("паразит")) {
+      return "Madhouse";
+    }
+    if (title.includes("баскетбол куроко") || title.includes("волейбол") || title.includes("haikyu") || title.includes("психопаспорт") || title.includes("psycho-pass")) {
+      return "Production I.G";
+    }
+    if (title.includes("наруто") || title.includes("naruto") || title.includes("блич") || title.includes("bleach") || title.includes("гуль") || title.includes("tokyo ghoul")) {
+      return "Studio Pierrot";
+    }
+    if (title.includes("ван пис") || title.includes("one piece") || title.includes("драгонболл") || title.includes("сэйлор мун")) {
+      return "Toei Animation";
+    }
+    if (title.includes("полнометаллический алхимик") || title.includes("fullmetal") || title.includes("моя геройская академия") || title.includes("hero academia") || title.includes("бездомный бог") || title.includes("noragami")) {
+      return "Bones";
+    }
+    if (title.includes("код гиас") || title.includes("code geass") || title.includes("ковбой бибоп") || title.includes("cowboy bebop")) {
+      return "Sunrise";
+    }
+    if (title.includes("человек-бензопила") || title.includes("chainsaw") || title.includes("магическая битва") || title.includes("jujutsu")) {
+      return "MAPPA";
+    }
+    if (title.includes("форма голоса") || title.includes("silent voice") || title.includes("вайолет эвергарден") || title.includes("violet evergarden") || dir.includes("yamada") || dir.includes("ямада")) {
+      return "Kyoto Animation";
+    }
+    if (title.includes("доктор стоун") || title.includes("dr. stone") || title.includes("детектор")) {
+      return "TMS Entertainment";
+    }
+    if (title.includes("повелитель") || title.includes("overlord") || title.includes("реинкарнация безработного") || title.includes("mushoku")) {
+      return "Studio Bind / Madhouse";
+    }
+    if (title.includes("мастера меча онлайн") || title.includes("sao") || title.includes("sword art online") || title.includes("хвост феи") || title.includes("fairy tail")) {
+      return "A-1 Pictures";
+    }
+    
+    if (dir.includes("miyazaki") || dir.includes("миядзаки")) {
+      return "Studio Ghibli";
+    }
+    
+    return "Другая студия";
+  };
+
+  const toggleLike = (movie) => {
+    if (!user) return;
+    const current = ((appData || {}).decisions || {})[movie.id];
+    const newDecisions = { ...((appData || {}).decisions || {}) };
+    const newFavorites = { ...((appData || {}).favorites || {}) };
+    if (current === "like") {
+      delete newDecisions[movie.id];
+      delete newFavorites[movie.id];
+    } else {
+      newDecisions[movie.id] = "like";
+    }
+    set(ref(database, `users/${user.uid}/appData/decisions`), newDecisions);
+    set(ref(database, `users/${user.uid}/appData/favorites`), newFavorites);
+  };
+
+  const toggleFavorite = (movie) => {
+    if (!user) return;
+    const newFavorites = { ...((appData || {}).favorites || {}) };
+    const newDecisions = { ...((appData || {}).decisions || {}) };
+    if (newFavorites[movie.id]) {
+      delete newFavorites[movie.id];
+    } else {
+      newFavorites[movie.id] = true;
+      if (newDecisions[movie.id] !== "like") {
+        newDecisions[movie.id] = "like";
+      }
+    }
+    set(ref(database, `users/${user.uid}/appData/favorites`), newFavorites);
+    set(ref(database, `users/${user.uid}/appData/decisions`), newDecisions);
+  };
+
+  const handleSetRating = (movie, rating) => {
+    if (!user) return;
+    const newRatings = { ...((appData || {}).ratings || {}) };
+    if (rating === null || newRatings[movie.id] === rating) {
+      delete newRatings[movie.id];
+    } else {
+      newRatings[movie.id] = rating;
+    }
+    set(ref(database, `users/${user.uid}/appData/ratings`), newRatings);
+  };
+
   // Stats calculation
   const stats = useMemo(() => {
-    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, topGenres: [], favoriteDecade: "—", recentLikes: [], favMovies: [], favSeries: [], favAnime: [], ratings: {} };
+    if (!appData) return { 
+      swiped: 0, likes: 0, matches: matchHistory.length, 
+      topGenres: [], favoriteDecade: "—", recentLikes: [], 
+      favMovies: [], favSeries: [], favAnime: [], ratings: {},
+      likedMoviesCount: 0, likedSeriesCount: 0, likedAnimeCount: 0,
+      favoriteDirector: "—", favoriteActor: "—", favoriteStudio: "—"
+    };
     const decs = appData.decisions || {};
     const swiped = Object.keys(decs).length;
     const likes = Object.values(decs).filter(d => d === "like").length;
     
-    const genreCounts = {};
-    const decadeCounts = {};
     const likedMoviesList = [];
     let likedMoviesCount = 0;
     let likedSeriesCount = 0;
     let likedAnimeCount = 0;
+
+    const decadeCounts = {};
+    const favIds = Object.keys(appData.favorites || {}).filter(id => appData.favorites[id]);
+    const ratings = appData.ratings || {};
+
+    const genreScores = {};
+    const directorScores = {};
+    const actorScores = {};
+    const studioScores = {};
 
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
@@ -137,20 +257,45 @@ export default function Profile() {
           if (t === "series") likedSeriesCount++;
           if (t === "anime") likedAnimeCount++;
 
+          const isFav = favIds.includes(id);
+          const weight = isFav ? 3 : 1; // +1 for like, +2 extra for favorite
+
           if (m.genres) {
             m.genres.split(", ").forEach(g => {
-              genreCounts[g] = (genreCounts[g] || 0) + 1;
+              genreScores[g] = (genreScores[g] || 0) + weight;
             });
           }
           if (m.year) {
             const decade = Math.floor(m.year / 10) * 10;
             decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
           }
+
+          // Director (ignore series/anime and N/A/—)
+          if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
+            m.director.split(", ").forEach(d => {
+              directorScores[d] = (directorScores[d] || 0) + weight;
+            });
+          }
+
+          // Actors (ignore N/A/—)
+          if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
+            m.actors.split(", ").forEach(a => {
+              actorScores[a] = (actorScores[a] || 0) + weight;
+            });
+          }
+
+          // Anime Studio
+          if (t === "anime") {
+            const studio = getAnimeStudio(m);
+            if (studio && studio !== "Другая студия") {
+              studioScores[studio] = (studioScores[studio] || 0) + weight;
+            }
+          }
         }
       }
     });
 
-    const topGenres = Object.entries(genreCounts)
+    const topGenres = Object.entries(genreScores)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3)
       .map(e => e[0]);
@@ -161,12 +306,24 @@ export default function Profile() {
       favoriteDecade = `${topDecade}-е`;
     }
 
+    let favoriteDirector = "—";
+    if (Object.keys(directorScores).length > 0) {
+      favoriteDirector = Object.entries(directorScores).sort((a, b) => b[1] - a[1])[0][0];
+    }
+
+    let favoriteActor = "—";
+    if (Object.keys(actorScores).length > 0) {
+      favoriteActor = Object.entries(actorScores).sort((a, b) => b[1] - a[1])[0][0];
+    }
+
+    let favoriteStudio = "—";
+    if (Object.keys(studioScores).length > 0) {
+      favoriteStudio = Object.entries(studioScores).sort((a, b) => b[1] - a[1])[0][0];
+    }
+
     const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
-    // Favorites calculations
-    const favIds = Object.keys(appData.favorites || {}).filter(id => appData.favorites[id]);
-    const ratings = appData.ratings || {};
     const favoriteMoviesList = favIds.map(id => movies.find(m => m.id === parseInt(id))).filter(Boolean);
     const favMovies = favoriteMoviesList.filter(m => (m.type || "movie") === "movie");
     const favSeries = favoriteMoviesList.filter(m => m.type === "series");
@@ -175,7 +332,8 @@ export default function Profile() {
     return { 
       swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes, 
       favMovies, favSeries, favAnime, ratings,
-      likedMoviesCount, likedSeriesCount, likedAnimeCount
+      likedMoviesCount, likedSeriesCount, likedAnimeCount,
+      favoriteDirector, favoriteActor, favoriteStudio
     };
   }, [appData, matchHistory]);
 
@@ -212,6 +370,14 @@ export default function Profile() {
     { icon: "🔖", title: "Коллекционер", desc: "Добавить 5 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 5 },
     { icon: "📚", title: "Библиотекарь", desc: "Добавить 20 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 20 },
     { icon: "💎", title: "Сокровищница", desc: "Добавить 50 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 50 },
+
+    { icon: "🌌", title: "Марафонец", desc: "Посмотреть 50 сериалов", unlocked: stats.likedSeriesCount >= 50 },
+    { icon: "🦊", title: "Кавайный эксперт", desc: "Посмотреть 50 аниме", unlocked: stats.likedAnimeCount >= 50 },
+    { icon: "🌀", title: "Сенсей", desc: "Посмотреть 100 аниме", unlocked: stats.likedAnimeCount >= 100 },
+    { icon: "💯", title: "Перфекционист", desc: "Поставить оценку 10", unlocked: Object.values(stats.ratings).some(r => r === 10) },
+    { icon: "👹", title: "Строгий критик", desc: "Поставить оценку 1", unlocked: Object.values(stats.ratings).some(r => r === 1) },
+    { icon: "👑", title: "Великий судья", desc: "10 оценок по 10 баллов", unlocked: Object.values(stats.ratings).filter(r => r === 10).length >= 10 },
+    { icon: "🏛️", title: "Хранитель музея", desc: "100 тайтлов в избранном", unlocked: (stats.favMovies.length + stats.favSeries.length + stats.favAnime.length) >= 100 }
   ];
   
   const handleResetProgress = async () => {
@@ -414,29 +580,59 @@ export default function Profile() {
               <h3>📊 Статистика</h3>
               <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
                 <div className="stat-card">
-                  <div className="stat-value">{stats.swiped}</div>
-                  <div className="stat-label">Тайтлов оценено</div>
+                  <div className="stat-value">{stats.likedMoviesCount}</div>
+                  <div className="stat-label">Просмотрено фильмов</div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-value">{stats.likes}</div>
-                  <div className="stat-label">Просмотрено</div>
+                  <div className="stat-value">{stats.likedSeriesCount}</div>
+                  <div className="stat-label">Просмотрено сериалов</div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-value">{stats.matches}</div>
-                  <div className="stat-label">Совпадений</div>
+                  <div className="stat-value">{stats.likedAnimeCount}</div>
+                  <div className="stat-label">Просмотрено аниме</div>
                 </div>
-                <div className="stat-card">
-                  <div className="stat-value" style={{fontSize: stats.favoriteDecade.length > 8 ? "1.1rem" : "1.8rem"}}>{stats.favoriteDecade}</div>
-                  <div className="stat-label">Любимая эпоха</div>
+                <div 
+                  className="stat-card clickable-stat-card" 
+                  style={{
+                    cursor: "pointer", 
+                    background: "linear-gradient(135deg, rgba(255, 138, 80, 0.15) 0%, rgba(233, 30, 99, 0.15) 100%)",
+                    border: "1px solid rgba(255, 138, 80, 0.4)",
+                    boxShadow: "0 4px 15px rgba(255, 138, 80, 0.15)"
+                  }}
+                  onClick={() => setShowAllFavorites(true)}
+                >
+                  <div className="stat-value" style={{color: "#ff8a50"}}>
+                    ★ {stats.favMovies.length + stats.favSeries.length + stats.favAnime.length}
+                  </div>
+                  <div className="stat-label" style={{color: "#fff", fontWeight: "bold"}}>Избранное ↗</div>
                 </div>
               </div>
               
-              <div className="stats-detailed-box">
-                <h4>Любимые жанры</h4>
-                <div className="stats-tags">
-                  {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
-                    <span key={g} className="stats-tag">{g}</span>
-                  )) : <span className="stats-tag dim">Нет данных</span>}
+              <div className="stats-detailed-box" style={{marginTop: "20px", display: "flex", flexDirection: "column", gap: "12px"}}>
+                <div>
+                  <h4 style={{margin: "0 0 8px 0", fontSize: "0.95rem", color: "rgba(255,255,255,0.7)"}}>❤️ Любимые жанры</h4>
+                  <div className="stats-tags">
+                    {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
+                      <span key={g} className="stats-tag" style={{background: "rgba(255, 138, 80, 0.15)", color: "#ff8a50", border: "1px solid rgba(255, 138, 80, 0.3)"}}>{g}</span>
+                    )) : <span className="stats-tag dim">Нет данных</span>}
+                  </div>
+                </div>
+                
+                <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px", marginTop: "5px"}}>
+                  <div className="detail-stat-row" style={{background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.05)"}}>
+                    <div style={{fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "4px"}}>Любимый режиссер</div>
+                    <div style={{fontWeight: "bold", fontSize: "0.95rem", color: "#fff"}}>{stats.favoriteDirector}</div>
+                  </div>
+                  
+                  <div className="detail-stat-row" style={{background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.05)"}}>
+                    <div style={{fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "4px"}}>Любимый актер</div>
+                    <div style={{fontWeight: "bold", fontSize: "0.95rem", color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}} title={stats.favoriteActor}>{stats.favoriteActor}</div>
+                  </div>
+                </div>
+
+                <div className="detail-stat-row" style={{background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.05)"}}>
+                  <div style={{fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "4px"}}>Любимая аниме студия</div>
+                  <div style={{fontWeight: "bold", fontSize: "0.95rem", color: "#ff8a50"}}>{stats.favoriteStudio}</div>
                 </div>
               </div>
             </div>
@@ -449,7 +645,13 @@ export default function Profile() {
                   <h4>Любимые фильмы</h4>
                   <div className="favorites-horizontal-scroll">
                     {stats.favMovies.map(m => (
-                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
+                      <div 
+                        key={m.id} 
+                        className="favorite-item-card" 
+                        title={m.titleRu || m.title}
+                        onClick={() => setSelectedMovie(m)}
+                        style={{cursor: "pointer"}}
+                      >
                         <img src={m.poster} alt={m.title} />
                         {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
                       </div>
@@ -463,7 +665,13 @@ export default function Profile() {
                   <h4>Любимые сериалы</h4>
                   <div className="favorites-horizontal-scroll">
                     {stats.favSeries.map(m => (
-                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
+                      <div 
+                        key={m.id} 
+                        className="favorite-item-card" 
+                        title={m.titleRu || m.title}
+                        onClick={() => setSelectedMovie(m)}
+                        style={{cursor: "pointer"}}
+                      >
                         <img src={m.poster} alt={m.title} />
                         {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
                       </div>
@@ -477,7 +685,13 @@ export default function Profile() {
                   <h4>Любимое аниме</h4>
                   <div className="favorites-horizontal-scroll">
                     {stats.favAnime.map(m => (
-                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
+                      <div 
+                        key={m.id} 
+                        className="favorite-item-card" 
+                        title={m.titleRu || m.title}
+                        onClick={() => setSelectedMovie(m)}
+                        style={{cursor: "pointer"}}
+                      >
                         <img src={m.poster} alt={m.title} />
                         {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
                       </div>
@@ -506,6 +720,72 @@ export default function Profile() {
           </div>
 
         </motion.div>
+
+        {/* Mixed Favorites Grid Modal */}
+        {showAllFavorites && (
+          <div className="modal-overlay" style={{zIndex: 1000}}>
+            <div className="modal-content" style={{maxWidth: "800px", width: "95%"}}>
+              <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px"}}>
+                <h2 style={{margin: 0, color: "#fff"}}>⭐ Все избранное</h2>
+                <button className="modal-close" onClick={() => setShowAllFavorites(false)}>✕</button>
+              </div>
+              <div className="favorites-all-grid" style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
+                gap: "15px",
+                maxHeight: "60vh",
+                overflowY: "auto",
+                paddingRight: "10px"
+              }}>
+                {[...stats.favMovies, ...stats.favSeries, ...stats.favAnime].map(m => (
+                  <div 
+                    key={m.id} 
+                    className="favorite-item-card" 
+                    style={{cursor: "pointer", position: "relative"}}
+                    onClick={() => {
+                      setSelectedMovie(m);
+                    }}
+                  >
+                    <img src={m.poster} alt={m.title} style={{borderRadius: "8px", width: "100%", height: "190px", objectFit: "cover"}} />
+                    <div style={{
+                      fontSize: "0.85rem",
+                      marginTop: "6px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      color: "rgba(255,255,255,0.9)",
+                      textAlign: "center"
+                    }}>
+                      {m.titleRu || m.title}
+                    </div>
+                    {stats.ratings[m.id] && (
+                      <div className="favorite-rating-badge" style={{position: "absolute", top: "5px", right: "5px", background: "rgba(0,0,0,0.75)"}}>
+                        ★ {stats.ratings[m.id]}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {([...stats.favMovies, ...stats.favSeries, ...stats.favAnime]).length === 0 && (
+                  <p style={{color: "rgba(255,255,255,0.5)", gridColumn: "1 / -1", textAlign: "center", padding: "40px"}}>Нет избранных элементов.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Detailed Movie Modal */}
+        {selectedMovie && (
+          <DetailedMovieModal 
+            movie={selectedMovie} 
+            onClose={() => setSelectedMovie(null)}
+            isLiked={((appData || {}).decisions || {})[selectedMovie.id] === "like"}
+            onToggleLike={toggleLike}
+            isFavorite={!!((appData || {}).favorites || {})[selectedMovie.id]}
+            onToggleFavorite={toggleFavorite}
+            rating={((appData || {}).ratings || {})[selectedMovie.id]}
+            onSetRating={handleSetRating}
+          />
+        )}
       </div>
     );
   }
