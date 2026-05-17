@@ -27,6 +27,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [currentUser, setCurrentUser] = useState(null);
   const [friends, setFriends] = useState({});
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("movie");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -107,7 +108,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите имя");
-    const code = await createMatchRoom(userName);
+    
+    // Фильтруем ID только для выбранной категории
+    const categoryIds = movies
+      .filter(m => (m.type || "movie") === activeCategory)
+      .map(m => m.id);
+      
+    const code = await createMatchRoom(userName, categoryIds);
     setRoomCode(code);
     setRole("host");
     setScreen("waiting");
@@ -212,6 +219,29 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       {screen === "create" && (
         <motion.div className="matchwatch-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <h2>Создайте комнату</h2>
+          <p style={{ color: "#aaa", fontSize: "0.9rem", marginBottom: "15px" }}>Что будете выбирать вместе?</p>
+          
+          <div className="category-picker">
+            <button 
+              className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('movie')}
+            >
+              Фильмы
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('series')}
+            >
+              Сериалы
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('anime')}
+            >
+              Аниме
+            </button>
+          </div>
+
           <div className="form-group">
             <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Ваше имя" className="form-input" />
           </div>
@@ -375,7 +405,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                     </div>
                   ) : (
                     <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
-                      <h2>Фильмы закончились!</h2>
+                      <h2>Карточки закончились!</h2>
                       <p>Ждем, пока партнер досмотрит свой список...</p>
                     </div>
                   )}

@@ -1,6 +1,26 @@
 import { motion } from "framer-motion";
 
-export default function FinalScreen({ onOpenLiked, onWatchNew }) {
+export default function FinalScreen({ activeCategory, onChangeCategory, onOpenLiked, onWatchNew }) {
+  const getCategoryName = (cat) => {
+    switch (cat) {
+      case "movie": return "все фильмы";
+      case "series": return "все сериалы";
+      case "anime": return "все аниме";
+      default: return "все карточки";
+    }
+  };
+
+  const getOtherCategories = () => {
+    const all = [
+      { id: "movie", label: "Фильмы", icon: "🎬" },
+      { id: "series", label: "Сериалы", icon: "📺" },
+      { id: "anime", label: "Аниме", icon: "👾" }
+    ];
+    return all.filter(c => c.id !== activeCategory);
+  };
+
+  const otherCategories = getOtherCategories();
+
   return (
     <div className="final-screen-container">
       <motion.div 
@@ -9,15 +29,47 @@ export default function FinalScreen({ onOpenLiked, onWatchNew }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="final-icon">🎉</div>
-        <h2>Вы просмотрели все карточки!</h2>
-        <p>Ваша коллекция любимых фильмов пополнена.</p>
-        <div className="final-actions">
-          <button className="btn-primary btn-large" onClick={onOpenLiked} style={{width: "100%", marginBottom: "15px"}}>
+        <div className="final-icon">🏁</div>
+        <h2>Вы просмотрели {getCategoryName(activeCategory)}!</h2>
+        <p style={{ marginBottom: "25px", color: "rgba(255, 255, 255, 0.6)" }}>
+          Хотите продолжить выбор в других категориях?
+        </p>
+
+        {/* 2-Column Grid for other categories */}
+        <div className="final-categories-grid">
+          {otherCategories.map(cat => (
+            <div 
+              key={cat.id} 
+              className="final-category-card" 
+              onClick={() => onChangeCategory(cat.id)}
+            >
+              <div className="final-category-icon">{cat.icon}</div>
+              <div className="final-category-label">{cat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Secondary Actions */}
+        <div className="final-actions" style={{ marginTop: "20px" }}>
+          <button className="btn-primary btn-large" onClick={onOpenLiked} style={{ width: "100%", borderRadius: "14px", padding: "14px" }}>
             ❤️ Посмотреть любимые
           </button>
-          <button className="btn-secondary btn-large" onClick={onWatchNew} style={{width: "100%"}}>
-            🔄 Искать новые (Сбросить дизлайки)
+          
+          <button 
+            className="btn-secondary" 
+            onClick={onWatchNew} 
+            style={{ 
+              width: "100%", 
+              background: "transparent", 
+              border: "none", 
+              color: "rgba(255, 255, 255, 0.4)", 
+              fontSize: "0.85rem",
+              marginTop: "10px",
+              cursor: "pointer",
+              textDecoration: "underline"
+            }}
+          >
+            🔄 Начать сначала (Сбросить дизлайки в этой категории)
           </button>
         </div>
       </motion.div>

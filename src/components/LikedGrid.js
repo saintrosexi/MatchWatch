@@ -5,6 +5,30 @@ import TasteProfile from "./TasteProfile";
 
 export default function LikedGrid({ liked, decisions, onToggleLike }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filteredLiked = liked.filter(m => {
+    if (activeCategory === "all") return true;
+    return m.type === activeCategory;
+  });
+
+  const getGridTitle = () => {
+    switch (activeCategory) {
+      case "movie": return "Любимые фильмы";
+      case "series": return "Любимые сериалы";
+      case "anime": return "Любимые аниме";
+      default: return "Всё любимое";
+    }
+  };
+
+  const getEmptyMessage = () => {
+    switch (activeCategory) {
+      case "movie": return "Вы ещё не добавили фильмы в избранное. Начните свайпить! 🎬";
+      case "series": return "Вы ещё не добавили сериалы в избранное. Начните свайпить! 📺";
+      case "anime": return "Вы ещё не добавили аниме в избранное. Начните свайпить! 👾";
+      default: return "Вы ещё не добавили ничего в избранное. Начните свайпить! 🍿";
+    }
+  };
 
   return (
     <>
@@ -12,14 +36,42 @@ export default function LikedGrid({ liked, decisions, onToggleLike }) {
         <TasteProfile likedMovies={liked} />
 
         <div className="liked-section">
-          <h2 className="page-title">❤️ Ваши любимые фильмы</h2>
+          <h2 className="page-title">❤️ {getGridTitle()}</h2>
+          
+          <div className="category-picker liked-category-picker">
+            <button 
+              className={`category-btn ${activeCategory === "all" ? "active" : ""}`}
+              onClick={() => setActiveCategory("all")}
+            >
+              Все
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === "movie" ? "active" : ""}`}
+              onClick={() => setActiveCategory("movie")}
+            >
+              🎬 Фильмы
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === "series" ? "active" : ""}`}
+              onClick={() => setActiveCategory("series")}
+            >
+              📺 Сериалы
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === "anime" ? "active" : ""}`}
+              onClick={() => setActiveCategory("anime")}
+            >
+              👾 Аниме
+            </button>
+          </div>
+
           <div className="grid">
-            {liked.length === 0 ? (
+            {filteredLiked.length === 0 ? (
               <div className="empty-message">
-                Вы ещё не добавили фильмы в избранное. Начните свайпить! 🎬
+                {getEmptyMessage()}
               </div>
             ) : (
-              liked.map(m => (
+              filteredLiked.map(m => (
                 <div 
                   key={m.id} 
                   className="grid-item"

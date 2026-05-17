@@ -180,25 +180,20 @@ export const removeInvite = async (currentUid, roomCode) => {
   await remove(ref(database, `users/${currentUid}/invites/${roomCode}`));
 };
 
-export const createMatchRoom = async (hostName, movieCount = 271) => {
+export const createMatchRoom = async (hostName, customDeck = null) => {
   if (!database) return null;
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   
-  // Создаем перемешанный порядок фильмов (все ID)
-  const deck = Array.from({length: movieCount}, (_, i) => i + 1);
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
+  // Если передана кастомная колода, используем её, иначе - стандартную 1...512
+  const deck = customDeck || Array.from({length: 512}, (_, i) => i + 1);
+  const shuffledDeck = deck.sort(() => Math.random() - 0.5);
 
-  await set(ref(database, `matchRooms/${roomCode}`), {
-    code: roomCode,
+  const roomRef = ref(database, `matchRooms/${roomCode}`);
+  await set(roomRef, {
     hostName,
-    status: 'waiting',
-    hostLikes: {},
-    guestLikes: {},
-    deck,
-    match: null
+    status: "waiting",
+    deck: shuffledDeck,
+    createdAt: Date.now()
   });
   return roomCode;
 };

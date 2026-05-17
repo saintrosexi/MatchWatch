@@ -4,13 +4,46 @@ import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function TopMovies({ decisions, onToggleLike }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("movie");
 
-  // Sort movies by rating in descending order (no slicing - show all)
-  const topMovies = [...movies].sort((a, b) => b.rating - a.rating);
+  // Sort movies by rating and filter by category
+  const topMovies = [...movies]
+    .filter(m => (m.type || "movie") === activeCategory)
+    .sort((a, b) => b.rating - a.rating);
+
+  const getTitle = () => {
+    switch(activeCategory) {
+      case 'series': return '⭐ Топ сериалов';
+      case 'anime': return '⭐ Топ аниме';
+      default: return '⭐ Топ фильмов';
+    }
+  };
 
   return (
     <div className="top-movies-container">
-      <h2 className="page-title">⭐ Топ фильмов</h2>
+      <h2 className="page-title">{getTitle()}</h2>
+      
+      <div className="category-picker">
+        <button 
+          className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
+          onClick={() => setActiveCategory('movie')}
+        >
+          Фильмы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
+          onClick={() => setActiveCategory('series')}
+        >
+          Сериалы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
+          onClick={() => setActiveCategory('anime')}
+        >
+          Аниме
+        </button>
+      </div>
+
       <div className="top-movies-grid">
         {topMovies.map((movie, index) => (
           <div

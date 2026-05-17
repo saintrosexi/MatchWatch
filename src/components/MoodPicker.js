@@ -55,17 +55,48 @@ const getMoodCategory = (movie) => {
 export default function MoodPicker({ decisions, onToggleLike }) {
   const [selectedMood, setSelectedMood] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("movie");
 
   const filteredMovies = selectedMood
-    ? movies.filter(movie => getMoodCategory(movie) === selectedMood)
+    ? movies.filter(movie => {
+        const type = movie.type || "movie";
+        return type === activeCategory && getMoodCategory(movie) === selectedMood;
+      })
     : [];
 
   const selectedMoodData = MOODS.find(m => m.id === selectedMood);
 
+  const getCategoryLabel = () => {
+    if (activeCategory === 'movie') return 'фильмов';
+    if (activeCategory === 'series') return 'сериалов';
+    return 'аниме';
+  };
+
   return (
     <div className="mood-picker-container">
       <h2 className="page-title">🎬 Выбери настроение</h2>
-      <p className="mood-subtitle">Какой фильм тебе нужен прямо сейчас?</p>
+      <p className="mood-subtitle">Что будем смотреть?</p>
+
+      <div className="category-picker">
+        <button 
+          className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
+          onClick={() => setSelectedMood(null) || setActiveCategory('movie')}
+        >
+          Фильмы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
+          onClick={() => setSelectedMood(null) || setActiveCategory('series')}
+        >
+          Сериалы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
+          onClick={() => setSelectedMood(null) || setActiveCategory('anime')}
+        >
+          Аниме
+        </button>
+      </div>
 
       <div className="moods-grid">
         {MOODS.map(mood => (
@@ -86,7 +117,7 @@ export default function MoodPicker({ decisions, onToggleLike }) {
             {selectedMoodData?.emoji} {selectedMoodData?.label}
           </h3>
           <p className="mood-results-count">
-            Найдено <strong>{filteredMovies.length}</strong> фильм(ов)
+            Найдено <strong>{filteredMovies.length}</strong> {getCategoryLabel()}
           </p>
 
           <div className="mood-movies-grid">

@@ -41,6 +41,7 @@ export default function App() {
   const [friendRequests, setFriendRequests] = useState({});
   const [disableOnboarding, setDisableOnboarding] = useState(false);
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("movie"); // movie, series, anime
 
   useEffect(() => {
     if (!auth) {
@@ -120,12 +121,20 @@ export default function App() {
   );
 
   const filteredDeck = useMemo(() => {
-    if (stopGenres.length === 0) return deck;
-    return deck.filter(m => {
+    let filtered = deck;
+    
+    // Filter by category
+    filtered = filtered.filter(m => {
+      const type = m.type || "movie";
+      return type === activeCategory;
+    });
+
+    if (stopGenres.length === 0) return filtered;
+    return filtered.filter(m => {
       if (!m.genres) return true;
       return !stopGenres.some(g => m.genres.includes(g));
     });
-  }, [deck, stopGenres]);
+  }, [deck, stopGenres, activeCategory]);
 
   const isDecided = (movie) => Boolean(decisions[movie.id]);
 
@@ -243,6 +252,29 @@ export default function App() {
     }
   };
 
+  const CategoryPicker = () => (
+    <div className="category-picker">
+      <button 
+        className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
+        onClick={() => { setActiveCategory('movie'); setCursor(0); }}
+      >
+        Фильмы
+      </button>
+      <button 
+        className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
+        onClick={() => { setActiveCategory('series'); setCursor(0); }}
+      >
+        Сериалы
+      </button>
+      <button 
+        className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
+        onClick={() => { setActiveCategory('anime'); setCursor(0); }}
+      >
+        Аниме
+      </button>
+    </div>
+  );
+
   const handleAcceptInvite = (code) => {
     setInitialRoomCode(code);
     setScreen("matchwatch");
@@ -259,7 +291,18 @@ export default function App() {
 
   const currentScreen = (() => {
     if (screen === "final") {
-      return <FinalScreen onOpenLiked={() => setScreen("liked")} onWatchNew={handleWatchNew} />;
+      return (
+        <FinalScreen 
+          activeCategory={activeCategory}
+          onChangeCategory={(cat) => {
+            setActiveCategory(cat);
+            setCursor(0);
+            setScreen("swipe");
+          }}
+          onOpenLiked={() => setScreen("liked")} 
+          onWatchNew={handleWatchNew} 
+        />
+      );
     }
     if (screen === "liked") {
       return <LikedGrid liked={liked} decisions={decisions} onToggleLike={toggleLike} />;
@@ -310,6 +353,7 @@ export default function App() {
 
     return (
       <div className="screen screen--center swipe-screen">
+        <CategoryPicker />
         <div className="swipe-wrapper">
           <div className="swipe-hints" aria-hidden="true">
             <div
@@ -325,20 +369,20 @@ export default function App() {
               className={`swipe-hint-icon swipe-hint-icon--like ${swipeHint.active && swipeHint.x > 50 ? 'active' : ''}`}
               style={{
                 opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
-                transform: `translateY(-50%) scale(${0.95 + Math.min(0.25, Math.max(0, swipeHint.x / 400))})`
+                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
               }}
             >
               ❤️
             </div>
           </div>
 
-          <div className="deck-container" style={{ position: "relative" }}>
+          <div className="deck-container">
             <AnimatePresence initial={false}>
               {showTutorial ? (
                 <motion.div 
                   key="tutorial"
                   className="deck-card" 
-                  style={{ zIndex: 500, position: "absolute" }}
+                  style={{ zIndex: 500, position: "absolute", width: "100%", height: "100%" }}
                   exit={{ y: 1200, rotate: -20, opacity: 0 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -361,7 +405,7 @@ export default function App() {
                       key={filteredDeck[cardIndex].id}
                       className="deck-card"
                       style={{ 
-                        zIndex: 100 + position, // Top card has highest index
+                        zIndex: 100 + position,
                         position: "absolute",
                         width: "100%",
                         height: "100%"
@@ -384,7 +428,6 @@ export default function App() {
                           movie={filteredDeck[cardIndex]}
                           onShowDetails={(m) => setSelectedMovieForDetails(m)}
                           onSwipe={(dir, movie) => {
-                            // The exit is triggered when cursor changes
                             handleSwipe(dir, movie);
                           }}
                           onDragProgress={(x, active) => {
@@ -402,6 +445,14 @@ export default function App() {
                 ))
               )}
             </AnimatePresence>
+            
+            {cursor >= filteredDeck.length && (
+              <div className="no-more-cards">
+                <h2>Конец категории!</h2>
+                <p>Вы просмотрели всё в этом разделе.</p>
+                <button onClick={handleReset} className="reset-btn">Начать сначала</button>
+              </div>
+            )}
           </div>
 
           {!showTutorial && (

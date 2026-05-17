@@ -6,15 +6,20 @@ export default function SearchMovies({ decisions, onToggleLike }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("movie");
 
-  // Get all available years
+  // Get available years for current category
   const availableYears = useMemo(() => {
-    return [...new Set(movies.map(m => m.year))].sort((a, b) => b - a);
-  }, []);
+    const categoryMovies = movies.filter(m => (m.type || "movie") === activeCategory);
+    return [...new Set(categoryMovies.map(m => m.year))].sort((a, b) => b - a);
+  }, [activeCategory]);
 
-  // Filter movies based on search and year
+  // Filter movies based on search, year and category
   const filteredMovies = useMemo(() => {
     return movies.filter(movie => {
+      const type = movie.type || "movie";
+      if (type !== activeCategory) return false;
+
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch = 
         (movie.title?.toLowerCase() || "").includes(searchLower) ||
@@ -25,12 +30,42 @@ export default function SearchMovies({ decisions, onToggleLike }) {
       
       return matchesSearch && matchesYear;
     });
-  }, [searchTerm, selectedYear]);
+  }, [searchTerm, selectedYear, activeCategory]);
+
+  const getTitle = () => {
+    console.log("SEARCH DEBUG: searchTerm=", searchTerm, "activeCategory=", activeCategory, "filteredCount=", filteredMovies.length);
+    switch(activeCategory) {
+      case 'series': return '🔍 Поиск сериалов';
+      case 'anime': return '🔍 Поиск аниме';
+      default: return '🔍 Поиск фильмов';
+    }
+  };
 
   return (
     <div className="search-movies-container">
-      <h2 className="page-title">🔍 Поиск фильмов</h2>
+      <h2 className="page-title">{getTitle()}</h2>
       
+      <div className="category-picker">
+        <button 
+          className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
+          onClick={() => { setActiveCategory('movie'); setSelectedYear(""); }}
+        >
+          Фильмы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
+          onClick={() => { setActiveCategory('series'); setSelectedYear(""); }}
+        >
+          Сериалы
+        </button>
+        <button 
+          className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
+          onClick={() => { setActiveCategory('anime'); setSelectedYear(""); }}
+        >
+          Аниме
+        </button>
+      </div>
+
       <div className="search-filters">
         <div className="search-box">
           <input
@@ -60,7 +95,7 @@ export default function SearchMovies({ decisions, onToggleLike }) {
         </div>
 
         <div className="search-result-count">
-          Найдено: <strong>{filteredMovies.length}</strong> фильмов
+          Найдено: <strong>{filteredMovies.length}</strong> {activeCategory === 'movie' ? 'фильмов' : activeCategory === 'series' ? 'сериалов' : 'аниме'}
         </div>
       </div>
 
