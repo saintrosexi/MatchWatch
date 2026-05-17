@@ -5,50 +5,130 @@ import DetailedMovieModal from "./DetailedMovieModal";
 const MOODS = [
   {
     id: "chill",
-    label: "Расслабиться",
     emoji: "😌",
-    keywords: ["comedy", "light", "feel-good", "adventure", "animation"]
+    getLabel: (cat) => {
+      if (cat === "movie") return "Посмеяться / Расслабиться";
+      if (cat === "series") return "Залипнуть / Отдохнуть";
+      return "Повседневность / Комедия";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Лёгкие комедии и весёлые приключения для отличного вечера.";
+      if (cat === "series") return "Расслабляющие сериалы, под которые приятно отдохнуть после работы.";
+      return "Уютное аниме про обычную жизнь, дружбу и с хорошим юмором.";
+    }
   },
   {
     id: "smart",
-    label: "Умное кино",
     emoji: "🧠",
-    keywords: ["drama", "crime", "mystery", "thriller", "psychological"]
-  },
-  {
-    id: "romance",
-    label: "Романтика",
-    emoji: "💕",
-    keywords: ["love", "romance", "drama", "family", "drama"]
+    getLabel: (cat) => {
+      if (cat === "movie") return "Умное кино";
+      if (cat === "series") return "Умный сюжет";
+      return "Умный сюжет / Психология";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Глубокие драмы, детективы и биографии, заставляющие задуматься.";
+      if (cat === "series") return "Сложные детективные интриги, заговоры и психологические игры.";
+      return "Аниме с глубоким смыслом, запутанными загадками и психологией.";
+    }
   },
   {
     id: "epic",
-    label: "Мощное кино",
     emoji: "💥",
-    keywords: ["action", "war", "epic", "science fiction", "fantasy"]
+    getLabel: (cat) => {
+      if (cat === "movie") return "Мощный экшен";
+      if (cat === "series") return "Эпичный экшен";
+      return "Мощный экшен / Сёнен";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Фантастика, фэнтези и масштабные боевики с крутыми битвами.";
+      if (cat === "series") return "Зрелищные фантастические миры, битвы и приключения.";
+      return "Эпичные сражения, превозмогания героев и захватывающие приключения.";
+    }
+  },
+  {
+    id: "romance",
+    emoji: "💕",
+    getLabel: (cat) => {
+      if (cat === "movie") return "Романтика";
+      if (cat === "series") return "Романтика";
+      return "Романтика / Сёдзё";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Красивые истории любви, теплые чувства и душевные мелодрамы.";
+      if (cat === "series") return "Сериалы про любовь, сложные взаимоотношения и искреннюю дружбу.";
+      return "Трогательное романтическое аниме о первой любви и нежных чувствах.";
+    }
+  },
+  {
+    id: "horror",
+    emoji: "👻",
+    getLabel: (cat) => {
+      if (cat === "movie") return "Жутко интересно";
+      if (cat === "series") return "Мистика / Хоррор";
+      return "Мрачное аниме / Триллер";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Триллер, мистика и ужасы для любителей пощекотать нервы.";
+      if (cat === "series") return "Остросюжетные триллеры, паранормальные явления и хорроры.";
+      return "Мрачные тайны, выживание, темное фэнтези и леденящие кровь триллеры.";
+    }
+  },
+  {
+    id: "drama",
+    emoji: "😭",
+    getLabel: (cat) => {
+      if (cat === "movie") return "Слезовыжималка";
+      if (cat === "series") return "Драматичные судьбы";
+      return "Драма / До слез";
+    },
+    getDescription: (cat) => {
+      if (cat === "movie") return "Сильные эмоциональные картины, трогающие до самой глубины души.";
+      if (cat === "series") return "Семейные трагедии, преодоление трудностей и искренние слезы.";
+      return "Шедевры, которые заставят вас сопереживать героям и пустить слезу.";
+    }
   }
 ];
 
-// Categorize movies into moods based on genres
 const getMoodCategory = (movie) => {
   const genres = (movie.genres || "").toLowerCase();
-  
-  // Проверяем по ключевым жанрам
-  if (genres.includes("комедия") || genres.includes("семейный") || genres.includes("мультфильм") || genres.includes("приключения")) {
-    return "chill";
-  }
-  if (genres.includes("мелодрама") || genres.includes("романтика")) {
+  const desc = (movie.description || "").toLowerCase();
+  const type = movie.type || "movie";
+
+  // 1. РОМАНТИКА (Romance)
+  if (genres.includes("мелодрама") || genres.includes("романтика") || genres.includes("любовь")) {
     return "romance";
   }
-  if (genres.includes("боевик") || genres.includes("фантастика") || genres.includes("фэнтези") || genres.includes("триллер") || genres.includes("военный")) {
-    return "epic";
+
+  // 2. ЖУТКО ИНТЕРЕСНО (Thriller/Mystery/Horror)
+  if (genres.includes("ужасы") || genres.includes("хоррор") || genres.includes("мистика") || (genres.includes("триллер") && (genres.includes("детектив") || genres.includes("криминал") || desc.includes("таинственн") || desc.includes("убийц")))) {
+    return "horror";
   }
-  if (genres.includes("драма") || genres.includes("криминал") || genres.includes("детектив") || genres.includes("биография") || genres.includes("история")) {
+
+  // 3. УМНЫЙ СЮЖЕТ (Smart)
+  if (genres.includes("детектив") || genres.includes("криминал") || genres.includes("биография") || genres.includes("история") || (genres.includes("драма") && !genres.includes("комедия") && !genres.includes("боевик"))) {
+    if (type === "anime" && (genres.includes("драма") || desc.includes("тяжел") || desc.includes("судьб"))) {
+      return "drama"; // "До слез"
+    }
     return "smart";
   }
-  
-  // Фолбэк, если жанры не подошли
-  const defaultMoods = ["chill", "smart", "romance", "epic"];
+
+  // 4. ДО СЛЕЗ / ДРАМА (Tear-jerker)
+  if (genres.includes("драма") && (genres.includes("семейный") || desc.includes("потер") || desc.includes("трагед") || desc.includes("слез") || desc.includes("судьб"))) {
+    return "drama";
+  }
+
+  // 5. МОЩНЫЙ ЭКШЕН (Action/Epic)
+  if (genres.includes("боевик") || genres.includes("военный") || genres.includes("фантастика") || genres.includes("фэнтези") || (type === "anime" && (genres.includes("приключения") || genres.includes("боевые искусства")))) {
+    return "epic";
+  }
+
+  // 6. РАССЛАБИТЬСЯ (Chill/Comedy)
+  if (genres.includes("комедия") || genres.includes("семейный") || genres.includes("детский") || genres.includes("мюзикл") || genres.includes("приключения")) {
+    return "chill";
+  }
+
+  // Фолбэк по умолчанию на основе ID фильма
+  const defaultMoods = ["chill", "smart", "epic", "romance", "horror", "drama"];
   return defaultMoods[movie.id % defaultMoods.length];
 };
 
@@ -106,7 +186,7 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
             onClick={() => setSelectedMood(mood.id)}
           >
             <div className="mood-emoji">{mood.emoji}</div>
-            <div className="mood-label">{mood.label}</div>
+            <div className="mood-label">{mood.getLabel(activeCategory)}</div>
           </button>
         ))}
       </div>
@@ -114,8 +194,11 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
       {selectedMood && (
         <div className="mood-results">
           <h3 className="mood-results-title">
-            {selectedMoodData?.emoji} {selectedMoodData?.label}
+            {selectedMoodData?.emoji} {selectedMoodData?.getLabel(activeCategory)}
           </h3>
+          <p className="mood-description-sub" style={{ color: "#aaa", fontSize: "0.95rem", marginTop: "-5px", marginBottom: "20px", fontStyle: "italic" }}>
+            {selectedMoodData?.getDescription(activeCategory)}
+          </p>
           <p className="mood-results-count">
             Найдено <strong>{filteredMovies.length}</strong> {getCategoryLabel()}
           </p>
