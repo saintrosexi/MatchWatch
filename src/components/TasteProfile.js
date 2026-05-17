@@ -5,7 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { motion } from "framer-motion";
 
-export default function TasteProfile({ likedMovies = [] }) {
+export default function TasteProfile({ likedMovies = [], favorites = {}, ratings = {} }) {
   const [user, setUser] = useState(null);
   const [aiSummary, setAiSummary] = useState("");
   const [loading, setLoading] = useState(false);
@@ -41,13 +41,20 @@ export default function TasteProfile({ likedMovies = [] }) {
     setLoading(true);
     setError("");
 
+    // Enrich movies with user's personal ratings and favorite flags
+    const enrichedMovies = likedMovies.map(m => ({
+      ...m,
+      personalRating: ratings?.[m.id] || null,
+      isFavorite: !!favorites?.[m.id]
+    }));
+
     try {
       const response = await fetch("/api/taste-analysis", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ likedMovies })
+        body: JSON.stringify({ likedMovies: enrichedMovies })
       });
 
       if (!response.ok) {

@@ -33,7 +33,7 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
   return (
     <>
       <div className="liked-grid-wrapper">
-        <TasteProfile likedMovies={liked} />
+        <TasteProfile likedMovies={liked} favorites={favorites} ratings={ratings} />
 
         <div className="liked-section">
           <h2 className="page-title">❤️ {getGridTitle()}</h2>
