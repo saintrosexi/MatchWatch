@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { ref, set, onValue } from "firebase/database";
+import { ref, set, onValue, get } from "firebase/database";
 import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
@@ -26,6 +26,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const [currentUser, setCurrentUser] = useState(null);
   const [friends, setFriends] = useState({});
+  const [friendAvatars, setFriendAvatars] = useState({});
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("movie");
 
@@ -105,6 +106,26 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       setFriends({});
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    const fetchAvatars = async () => {
+      const avatars = {};
+      for (const uid of Object.keys(friends)) {
+        try {
+          const snap = await get(ref(database, `users/${uid}/profile/avatar`));
+          if (snap.exists()) {
+            avatars[uid] = snap.val();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      setFriendAvatars(avatars);
+    };
+    if (Object.keys(friends).length > 0) {
+      fetchAvatars();
+    }
+  }, [friends]);
 
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите имя");
@@ -324,7 +345,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                     Object.entries(friends).map(([uid, tag]) => (
                       <div key={uid} className="invite-friend-row">
                         <div className="friend-info-mini">
-                          <div className="friend-avatar-mini">{tag[0].toUpperCase()}</div>
+                          <div className="friend-avatar-mini">
+                            {(friendAvatars[uid] && (friendAvatars[uid].startsWith("data:image/") || friendAvatars[uid].startsWith("http"))) ? (
+                              <img src={friendAvatars[uid]} alt="Avatar" />
+                            ) : (
+                              friendAvatars[uid] || "😎"
+                            )}
+                          </div>
                           <span>{tag}</span>
                         </div>
                         <button 
