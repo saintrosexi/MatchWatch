@@ -59,13 +59,21 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
     
     const genreCounts = {};
     const decadeCounts = {};
-    const likedMovies = [];
+    const likedMoviesList = [];
+    let likedMoviesCount = 0;
+    let likedSeriesCount = 0;
+    let likedAnimeCount = 0;
 
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
         const m = movies.find(x => x.id === parseInt(id));
         if (m) {
-          likedMovies.push(m);
+          likedMoviesList.push(m);
+          const t = m.type || "movie";
+          if (t === "movie") likedMoviesCount++;
+          if (t === "series") likedSeriesCount++;
+          if (t === "anime") likedAnimeCount++;
+
           if (m.genres) {
             m.genres.split(", ").forEach(g => {
               genreCounts[g] = (genreCounts[g] || 0) + 1;
@@ -90,7 +98,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
       favoriteDecade = `${topDecade}-е`;
     }
 
-    const shuffledLikes = [...likedMovies].sort(() => 0.5 - Math.random());
+    const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
     // Favorites calculations
@@ -102,7 +110,11 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
     const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
     
     const matches = targetData.appData.history ? targetData.appData.history.length : 0;
-    return { swiped, likes, matches, topGenres, favoriteDecade, recentLikes, favMovies, favSeries, favAnime, ratings };
+    return { 
+      swiped, likes, matches, topGenres, favoriteDecade, recentLikes, 
+      favMovies, favSeries, favAnime, ratings,
+      likedMoviesCount, likedSeriesCount, likedAnimeCount
+    };
   }, [targetData]);
 
   const handleAddFriend = async () => {
@@ -236,11 +248,11 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
             <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
               <div className="stat-card">
                 <div className="stat-value">{stats.swiped}</div>
-                <div className="stat-label">Фильмов оценено</div>
+                <div className="stat-label">Тайтлов оценено</div>
               </div>
               <div className="stat-card">
                 <div className="stat-value">{stats.likes}</div>
-                <div className="stat-label">Лайков</div>
+                <div className="stat-label">Просмотрено</div>
               </div>
               <div className="stat-card">
                 <div className="stat-value">{stats.matches}</div>

@@ -122,13 +122,21 @@ export default function Profile() {
     
     const genreCounts = {};
     const decadeCounts = {};
-    const likedMovies = [];
+    const likedMoviesList = [];
+    let likedMoviesCount = 0;
+    let likedSeriesCount = 0;
+    let likedAnimeCount = 0;
 
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
         const m = movies.find(x => x.id === parseInt(id));
         if (m) {
-          likedMovies.push(m);
+          likedMoviesList.push(m);
+          const t = m.type || "movie";
+          if (t === "movie") likedMoviesCount++;
+          if (t === "series") likedSeriesCount++;
+          if (t === "anime") likedAnimeCount++;
+
           if (m.genres) {
             m.genres.split(", ").forEach(g => {
               genreCounts[g] = (genreCounts[g] || 0) + 1;
@@ -153,7 +161,7 @@ export default function Profile() {
       favoriteDecade = `${topDecade}-е`;
     }
 
-    const shuffledLikes = [...likedMovies].sort(() => 0.5 - Math.random());
+    const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
     // Favorites calculations
@@ -164,14 +172,46 @@ export default function Profile() {
     const favSeries = favoriteMoviesList.filter(m => m.type === "series");
     const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
     
-    return { swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes, favMovies, favSeries, favAnime, ratings };
+    return { 
+      swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes, 
+      favMovies, favSeries, favAnime, ratings,
+      likedMoviesCount, likedSeriesCount, likedAnimeCount
+    };
   }, [appData, matchHistory]);
 
+  const ratingsCount = Object.keys(stats.ratings || {}).length;
+
   const achievements = [
-    { icon: "👶", title: "Новичок", desc: "Свайпнуть 10 фильмов", unlocked: stats.swiped >= 10 },
-    { icon: "🍿", title: "Киноманьяк", desc: "Свайпнуть 100 фильмов", unlocked: stats.swiped >= 100 },
-    { icon: "❤️", title: "Доброе сердце", desc: "Поставить 50 лайков", unlocked: stats.likes >= 50 },
+    { icon: "👶", title: "Новичок", desc: "Свайпнуть 10 тайтлов", unlocked: stats.swiped >= 10 },
+    { icon: "👀", title: "Смотрящий", desc: "Свайпнуть 50 тайтлов", unlocked: stats.swiped >= 50 },
+    { icon: "🍿", title: "Киноманьяк", desc: "Свайпнуть 100 тайтлов", unlocked: stats.swiped >= 100 },
+    { icon: "🚀", title: "Кибер-свайпер", desc: "Свайпнуть 500 тайтлов", unlocked: stats.swiped >= 500 },
+    { icon: "🏆", title: "Легенда свайпов", desc: "Свайпнуть 1000 тайтлов", unlocked: stats.swiped >= 1000 },
+    
+    { icon: "🤍", title: "Симпатия", desc: "Отметить 10 просмотренных", unlocked: stats.likes >= 10 },
+    { icon: "❤️", title: "Доброе сердце", desc: "Отметить 50 просмотренных", unlocked: stats.likes >= 50 },
+    { icon: "💖", title: "Всеядный", desc: "Отметить 100 просмотренных", unlocked: stats.likes >= 100 },
+    { icon: "🔥", title: "Пылающий экран", desc: "Отметить 250 просмотренных", unlocked: stats.likes >= 250 },
+    
+    { icon: "🤝", title: "Коннект", desc: "Получить 1 совпадение", unlocked: stats.matches >= 1 },
     { icon: "🥂", title: "Идеальная пара", desc: "Получить 5 совпадений", unlocked: stats.matches >= 5 },
+    { icon: "👯", title: "Свои люди", desc: "Получить 15 совпадений", unlocked: stats.matches >= 15 },
+    { icon: "🎉", title: "Душа компании", desc: "Получить 30 совпадений", unlocked: stats.matches >= 30 },
+    
+    { icon: "🎬", title: "Кинолюб", desc: "Посмотреть 20 фильмов", unlocked: stats.likedMoviesCount >= 20 },
+    { icon: "🎥", title: "Кинокритик", desc: "Посмотреть 100 фильмов", unlocked: stats.likedMoviesCount >= 100 },
+    { icon: "📺", title: "Сериаломан", desc: "Посмотреть 10 сериалов", unlocked: stats.likedSeriesCount >= 10 },
+    { icon: "🛋️", title: "Бинжвотчер", desc: "Посмотреть 30 сериалов", unlocked: stats.likedSeriesCount >= 30 },
+    { icon: "🌸", title: "Отаку", desc: "Посмотреть 10 аниме", unlocked: stats.likedAnimeCount >= 10 },
+    { icon: "⛩️", title: "Хокаге", desc: "Посмотреть 30 аниме", unlocked: stats.likedAnimeCount >= 30 },
+    
+    { icon: "⭐", title: "Первая оценка", desc: "Оценить 1 тайтл", unlocked: ratingsCount >= 1 },
+    { icon: "🌟", title: "Оценщик", desc: "Оценить 10 тайтлов", unlocked: ratingsCount >= 10 },
+    { icon: "💫", title: "Киноакадемик", desc: "Оценить 50 тайтлов", unlocked: ratingsCount >= 50 },
+    
+    { icon: "🔖", title: "Коллекционер", desc: "Добавить 5 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 5 },
+    { icon: "📚", title: "Библиотекарь", desc: "Добавить 20 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 20 },
+    { icon: "💎", title: "Сокровищница", desc: "Добавить 50 в избранное", unlocked: stats.favMovies.length + stats.favSeries.length + stats.favAnime.length >= 50 },
   ];
   
   const handleResetProgress = async () => {
@@ -375,11 +415,11 @@ export default function Profile() {
               <div className="stats-grid-2col" style={{marginBottom: "20px"}}>
                 <div className="stat-card">
                   <div className="stat-value">{stats.swiped}</div>
-                  <div className="stat-label">Фильмов оценено</div>
+                  <div className="stat-label">Тайтлов оценено</div>
                 </div>
                 <div className="stat-card">
                   <div className="stat-value">{stats.likes}</div>
-                  <div className="stat-label">Лайков</div>
+                  <div className="stat-label">Просмотрено</div>
                 </div>
                 <div className="stat-card">
                   <div className="stat-value">{stats.matches}</div>

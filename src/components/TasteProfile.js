@@ -51,7 +51,9 @@ export default function TasteProfile({ likedMovies = [] }) {
     // Top directors
     const directors = {};
     likedMovies.forEach(movie => {
-      directors[movie.director] = (directors[movie.director] || 0) + 1;
+      if (movie.director && movie.director.trim() !== "") {
+        directors[movie.director] = (directors[movie.director] || 0) + 1;
+      }
     });
 
     const topDirectors = Object.entries(directors)
@@ -73,7 +75,7 @@ export default function TasteProfile({ likedMovies = [] }) {
     return (
       <div className="taste-profile-container">
         <div className="empty-profile">
-          <p>😴 У вас пока нет понравившихся фильмов</p>
+          <p>😴 Вы пока ничего не посмотрели</p>
           <p>Начните свайпить, чтобы создать ваш профиль вкуса!</p>
         </div>
       </div>
@@ -88,7 +90,7 @@ export default function TasteProfile({ likedMovies = [] }) {
       <div className="profile-stats">
         <div className="stat-card">
           <div className="stat-value">{profile.totalMovies}</div>
-          <div className="stat-label">Фильмов понравилось</div>
+          <div className="stat-label">Просмотрено</div>
         </div>
         <div className="stat-card">
           <div className="stat-value">{profile.avgRating}</div>
@@ -161,7 +163,7 @@ export default function TasteProfile({ likedMovies = [] }) {
       <div className="profile-insights">
         <p>💡 <strong>Вывод:</strong></p>
         <p>
-          Вы предпочитаете фильмы 
+          Вы предпочитаете контент 
           {profile.topDecades.length > 0 && ` из ${profile.topDecades[0].decade.toLowerCase()}`}
           {profile.avgRating >= 8.5 && ' с высоким рейтингом'}
           {profile.avgRating < 7.5 && ' разнообразных рейтингов'}

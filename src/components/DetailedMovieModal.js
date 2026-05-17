@@ -48,9 +48,9 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             <button 
               className={`modal-action-btn modal-like-btn ${isLiked ? "active" : ""}`} 
               onClick={() => onToggleLike(movie)}
-              title={isLiked ? "Убрать из любимых" : "Добавить в любимые"}
+              title={isLiked ? "Убрать из просмотренного" : "Отметить как просмотренное"}
             >
-              {isLiked ? "❤️" : "🤍"}
+              {isLiked ? "👁️" : "👁️‍🗨️"}
             </button>
           )}
           {onToggleFavorite && (
@@ -59,7 +59,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               onClick={() => onToggleFavorite(movie)}
               title={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
             >
-              {isFavorite ? "🔖" : "📑"}
+              {isFavorite ? "❤️" : "🤍"}
             </button>
           )}
         </div>

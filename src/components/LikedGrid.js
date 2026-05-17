@@ -9,7 +9,7 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
 
   const filteredLiked = liked.filter(m => {
     if (activeCategory === "all") return true;
-    return m.type === activeCategory;
+    return (m.type || "movie") === activeCategory;
   });
 
   const getGridTitle = () => {
