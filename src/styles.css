@@ -2251,13 +2251,18 @@ html, body {
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 340px minmax(0, 1fr);
   gap: 30px;
   align-items: start;
 }
 
 @media (max-width: 800px) {
-  .profile-grid { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.profile-right {
+  min-width: 0;
+  width: 100%;
 }
 
 .profile-card-main,
