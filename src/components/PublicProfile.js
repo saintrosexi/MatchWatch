@@ -548,7 +548,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
       {/* Mixed Favorites Grid Modal */}
       {showAllFavorites && (
         <div className="modal-overlay" style={{zIndex: 1000}}>
-          <div className="modal-content" style={{maxWidth: "800px", width: "95%"}}>
+          <div className="modal-content" style={{maxWidth: "1100px", width: "95%"}}>
             <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px"}}>
               <h2 style={{margin: 0, color: "#fff"}}>⭐ Все избранное</h2>
               <button className="modal-close" onClick={() => setShowAllFavorites(false)}>✕</button>
