@@ -90,9 +90,9 @@ ${animeSummaryText}
 ### 🏆 РАЗДЕЛ 5: Итоговый кинокритический вердикт
 [Экспертное резюме профиля пользователя]`;
 
-    // Fetch call to Gemini REST API endpoint using the advanced gemini-2.5-pro model
+    // Fetch call to Gemini REST API endpoint using the high-speed gemini-2.5-flash model
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: {
