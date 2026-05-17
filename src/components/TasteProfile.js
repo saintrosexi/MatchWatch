@@ -10,6 +10,38 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
   const [aiSummary, setAiSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async () => {
+    if (!aiSummary) return;
+    
+    // Add call to action / invite text with verified link
+    const inviteText = `${aiSummary}\n\n🔮 Узнай свой кинопортрет от киноэксперта Жорика и найди идеальный фильм для совместного просмотра с друзьями: https://match-watch-zeta.vercel.app/`;
+    
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(inviteText);
+      } else {
+        // Fallback for older browsers / unsupported environments
+        const textArea = document.createElement("textarea");
+        textArea.value = inviteText;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+      
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+      setError("Не удалось скопировать текст в буфер обмена.");
+    }
+  };
 
   useEffect(() => {
     if (!auth) return;
@@ -252,15 +284,37 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
             <div className="ai-summary-title">
               <span>✨ ИИ-Анализ киновкусов</span>
             </div>
-            {user && (
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
               <button
-                className="btn-ai-regenerate"
-                onClick={generateAiSummary}
-                title="Обновить ИИ-анализ"
+                className="btn-ai-share"
+                onClick={handleShare}
+                style={{
+                  background: copied ? "rgba(46, 204, 113, 0.15)" : "rgba(138, 43, 226, 0.15)",
+                  border: copied ? "1px solid rgba(46, 204, 113, 0.4)" : "1px solid rgba(138, 43, 226, 0.4)",
+                  color: copied ? "#2ecc71" : "#cda4ff",
+                  padding: "6px 12px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontSize: "0.75rem",
+                  fontWeight: "600",
+                  transition: "all 0.2s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px"
+                }}
               >
-                🔄
+                {copied ? "✓ Скопировано!" : "🔗 Поделиться"}
               </button>
-            )}
+              {user && (
+                <button
+                  className="btn-ai-regenerate"
+                  onClick={generateAiSummary}
+                  title="Обновить ИИ-анализ"
+                >
+                  🔄
+                </button>
+              )}
+            </div>
           </div>
           <div className="ai-summary-text" style={{ whiteSpace: "pre-line" }}>
             {aiSummary}
