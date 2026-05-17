@@ -52,7 +52,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   }, [currentUser, targetData]);
 
   const stats = useMemo(() => {
-    if (!targetData || !targetData.appData) return { swiped: 0, likes: 0, matches: 0, topGenres: [], favoriteDecade: "—", recentLikes: [] };
+    if (!targetData || !targetData.appData) return { swiped: 0, likes: 0, matches: 0, topGenres: [], favoriteDecade: "—", recentLikes: [], favMovies: [], favSeries: [], favAnime: [], ratings: {} };
     const decs = targetData.appData.decisions || {};
     const swiped = Object.keys(decs).length;
     const likes = Object.values(decs).filter(d => d === "like").length;

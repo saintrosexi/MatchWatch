@@ -115,7 +115,7 @@ export default function Profile() {
 
   // Stats calculation
   const stats = useMemo(() => {
-    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, topGenres: [], favoriteDecade: "—", recentLikes: [] };
+    if (!appData) return { swiped: 0, likes: 0, matches: matchHistory.length, topGenres: [], favoriteDecade: "—", recentLikes: [], favMovies: [], favSeries: [], favAnime: [], ratings: {} };
     const decs = appData.decisions || {};
     const swiped = Object.keys(decs).length;
     const likes = Object.values(decs).filter(d => d === "like").length;
