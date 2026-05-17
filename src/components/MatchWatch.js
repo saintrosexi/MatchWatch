@@ -111,7 +111,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     
     // Фильтруем ID только для выбранной категории
     const categoryIds = movies
-      .filter(m => (m.type || "movie") === activeCategory)
+      .filter(m => activeCategory === 'all' || (m.type || "movie") === activeCategory)
       .map(m => m.id);
       
     const code = await createMatchRoom(userName, categoryIds);
@@ -134,7 +134,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   };
 
   const handleSwipe = (direction, movie) => {
-    swipeMovie(roomCode, role, movie.id, direction);
+    const decision = direction === "right" ? "like" : "dislike";
+    swipeMovie(roomCode, role, movie.id, decision);
     setSwipeHistory((prev) => [...prev, movie.id]);
     setSwipeHint({ x: 0, active: false });
     setCursor((prev) => prev + 1);
@@ -239,6 +240,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               onClick={() => setActiveCategory('anime')}
             >
               Аниме
+            </button>
+            <button 
+              className={`category-btn ${activeCategory === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('all')}
+            >
+              Всё
             </button>
           </div>
 

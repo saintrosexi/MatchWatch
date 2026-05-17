@@ -11,6 +11,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [reqStatus, setReqStatus] = useState("");
+  const [inviteCategory, setInviteCategory] = useState("movie");
   
   // Is this user already our friend?
   const [isFriend, setIsFriend] = useState(false);
@@ -123,7 +124,10 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const handleInviteToMatchWatch = async () => {
     if (!currentUser) return;
     try {
-      const roomCode = await createMatchRoom(currentUser.displayName);
+      const categoryIds = movies
+        .filter(m => inviteCategory === 'all' || (m.type || "movie") === inviteCategory)
+        .map(m => m.id);
+      const roomCode = await createMatchRoom(currentUser.displayName, categoryIds);
       await inviteToMatchWatch(targetData.uid, roomCode, currentUser.displayName);
       onGoToMatchWatch(roomCode);
     } catch (err) {
@@ -179,6 +183,15 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
                     <button className="btn-primary" onClick={handleAddFriend}>➕ Добавить друга</button>
                   ) : (
                     <>
+                      <div style={{display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '10px', marginTop: '10px'}}>
+                        <p style={{fontSize: '0.85rem', color: '#aaa', margin: '0 0 5px 0'}}>Что будем смотреть?</p>
+                        <div className="category-picker" style={{marginBottom: 0, justifyContent: 'space-between', gap: '4px'}}>
+                          <button onClick={() => setInviteCategory('movie')} className={`category-btn ${inviteCategory === 'movie' ? 'active' : ''}`} style={{padding: '6px 8px', fontSize: '0.8rem', flex: 1}}>Фильмы</button>
+                          <button onClick={() => setInviteCategory('series')} className={`category-btn ${inviteCategory === 'series' ? 'active' : ''}`} style={{padding: '6px 8px', fontSize: '0.8rem', flex: 1}}>Сериалы</button>
+                          <button onClick={() => setInviteCategory('anime')} className={`category-btn ${inviteCategory === 'anime' ? 'active' : ''}`} style={{padding: '6px 8px', fontSize: '0.8rem', flex: 1}}>Аниме</button>
+                          <button onClick={() => setInviteCategory('all')} className={`category-btn ${inviteCategory === 'all' ? 'active' : ''}`} style={{padding: '6px 8px', fontSize: '0.8rem', flex: 1}}>Всё</button>
+                        </div>
+                      </div>
                       <button className="btn-primary" style={{background: "linear-gradient(135deg, #4ade80 0%, #22c55e 100%)"}} onClick={handleInviteToMatchWatch}>🍿 Позвать в MatchWatch</button>
                       <button className="btn-secondary" onClick={handleRemoveFriend}>✅ Ваш друг (Удалить)</button>
                     </>
