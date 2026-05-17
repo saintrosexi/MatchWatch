@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
+import "./MovieModal.css";
 
 export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [currentUser, setCurrentUser] = useState(null);
