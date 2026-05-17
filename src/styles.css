@@ -2745,6 +2745,27 @@ html, body {
   border-radius: 10px;
 }
 
+.favorites-all-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .favorites-all-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites-all-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .favorite-item-card {
   position: relative;
   width: 100px;
@@ -2764,6 +2785,39 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.favorite-grid-card {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.favorite-grid-card:hover {
+  transform: translateY(-5px);
+}
+
+.favorite-grid-card img {
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.favorite-grid-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 4px;
 }
 
 .favorite-rating-badge {

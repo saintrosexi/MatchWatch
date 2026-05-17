@@ -552,37 +552,21 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
               <h2 style={{margin: 0, color: "#fff"}}>⭐ Все избранное</h2>
               <button className="modal-close" onClick={() => setShowAllFavorites(false)}>✕</button>
             </div>
-            <div className="favorites-all-grid" style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
-              gap: "15px",
-              maxHeight: "60vh",
-              overflowY: "auto",
-              paddingRight: "10px"
-            }}>
+            <div className="favorites-all-grid">
               {[...stats.favMovies, ...stats.favSeries, ...stats.favAnime].map(m => (
                 <div 
                   key={m.id} 
-                  className="favorite-item-card" 
-                  style={{cursor: "pointer", position: "relative"}}
+                  className="favorite-grid-card" 
                   onClick={() => {
                     setSelectedMovie(m);
                   }}
                 >
-                  <img src={m.poster} alt={m.title} style={{borderRadius: "8px", width: "100%", height: "190px", objectFit: "cover"}} />
-                  <div style={{
-                    fontSize: "0.85rem",
-                    marginTop: "6px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    color: "rgba(255,255,255,0.9)",
-                    textAlign: "center"
-                  }}>
+                  <img src={m.poster} alt={m.title} />
+                  <div className="favorite-grid-title">
                     {m.titleRu || m.title}
                   </div>
                   {stats.ratings[m.id] && (
-                    <div className="favorite-rating-badge" style={{position: "absolute", top: "5px", right: "5px", background: "rgba(0,0,0,0.75)"}}>
+                    <div className="favorite-rating-badge">
                       ★ {stats.ratings[m.id]}
                     </div>
                   )}

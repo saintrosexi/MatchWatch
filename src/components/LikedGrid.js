@@ -76,9 +76,30 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
                   key={m.id} 
                   className="grid-item"
                   onClick={() => setSelectedMovie(m)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", position: "relative" }}
                 >
                   <img src={m.poster} alt={m.title} />
+                  {ratings?.[m.id] && (
+                    <div 
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        background: "rgba(255, 138, 80, 0.95)",
+                        color: "#fff",
+                        padding: "4px 8px",
+                        borderRadius: "8px",
+                        fontSize: "0.75rem",
+                        fontWeight: "bold",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                        zIndex: 2,
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        letterSpacing: "-0.2px"
+                      }}
+                    >
+                      ★ {ratings[m.id]}
+                    </div>
+                  )}
                   <div className="movie-title">{m.titleRu || m.title}</div>
                 </div>
               ))
