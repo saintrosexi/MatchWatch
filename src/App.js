@@ -32,6 +32,8 @@ export default function App() {
   const [cursor, setCursor] = useState(0);
   const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
+  const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
+  const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
   const [screen, setScreen] = useState("matchwatch");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false, swiped: false });
   const [user, setUser] = useState(null);
@@ -63,6 +65,12 @@ export default function App() {
                 const combined = [...prev, ...data.history];
                 return Array.from(new Set(combined));
               });
+            }
+            if (data.favorites) {
+              setFavorites(prev => ({ ...prev, ...data.favorites }));
+            }
+            if (data.ratings) {
+              setRatings(prev => ({ ...prev, ...data.ratings }));
             }
           }
           setDataLoaded(true);
@@ -110,10 +118,12 @@ export default function App() {
     if (user && dataLoaded && database) {
       set(ref(database, `users/${user.uid}/appData`), {
         decisions,
-        history
+        history,
+        favorites,
+        ratings
       });
     }
-  }, [decisions, history, user, dataLoaded]);
+  }, [decisions, history, favorites, ratings, user, dataLoaded]);
 
   const liked = useMemo(
     () => deck.filter(m => decisions[m.id] === "like"),
@@ -238,6 +248,30 @@ export default function App() {
         delete next[movie.id];
       } else {
         next[movie.id] = "like";
+      }
+      return next;
+    });
+  };
+
+  const toggleFavorite = (movie) => {
+    setFavorites(prev => {
+      const next = { ...prev };
+      if (next[movie.id]) {
+        delete next[movie.id];
+      } else {
+        next[movie.id] = true;
+      }
+      return next;
+    });
+  };
+
+  const handleSetRating = (movie, rating) => {
+    setRatings(prev => {
+      const next = { ...prev };
+      if (rating === null || next[movie.id] === rating) {
+        delete next[movie.id];
+      } else {
+        next[movie.id] = rating;
       }
       return next;
     });
@@ -501,6 +535,10 @@ export default function App() {
             onClose={() => setSelectedMovieForDetails(null)}
             isLiked={decisions[selectedMovieForDetails.id] === "like"}
             onToggleLike={toggleLike}
+            isFavorite={!!favorites[selectedMovieForDetails.id]}
+            onToggleFavorite={toggleFavorite}
+            rating={ratings[selectedMovieForDetails.id]}
+            onSetRating={handleSetRating}
           />
         )}
         

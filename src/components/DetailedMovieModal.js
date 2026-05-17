@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import "./DetailedMovieModal.css";
 
-export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike }) {
+export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike, isFavorite, onToggleFavorite, rating, onSetRating }) {
+  const [hoverRating, setHoverRating] = useState(0);
   if (!movie) return null;
 
   const extendedDescription = movie.fullDescription || movie.description;
@@ -40,16 +42,27 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
           ✕
         </button>
 
-        {/* Favorite Button */}
-        {onToggleLike && (
-          <button 
-            className={`modal-favorite-btn ${isLiked ? "is-liked" : ""}`} 
-            onClick={() => onToggleLike(movie)}
-            title={isLiked ? "Убрать из избранного" : "Добавить в избранное"}
-          >
-            {isLiked ? "❤️" : "🤍"}
-          </button>
-        )}
+        {/* Top Actions */}
+        <div className="modal-top-actions">
+          {onToggleLike && (
+            <button 
+              className={`modal-action-btn modal-like-btn ${isLiked ? "active" : ""}`} 
+              onClick={() => onToggleLike(movie)}
+              title={isLiked ? "Убрать лайк" : "Поставить лайк"}
+            >
+              {isLiked ? "❤️" : "🤍"}
+            </button>
+          )}
+          {onToggleFavorite && (
+            <button 
+              className={`modal-action-btn modal-bookmark-btn ${isFavorite ? "active" : ""}`} 
+              onClick={() => onToggleFavorite(movie)}
+              title={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+            >
+              {isFavorite ? "🔖" : "📑"}
+            </button>
+          )}
+        </div>
 
         <div className="detailed-modal-wrapper">
           {/* Left Section: Poster */}
@@ -105,6 +118,26 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                 )}
               </div>
             </div>
+
+            {/* Personal Rating Section */}
+            {onSetRating && (
+              <div className="detailed-modal-section">
+                <h3 className="section-title">🌟 Моя оценка</h3>
+                <div className="star-rating-container" onMouseLeave={() => setHoverRating(0)}>
+                  {[1,2,3,4,5,6,7,8,9,10].map(star => (
+                    <span 
+                      key={star}
+                      className={`rating-star ${star <= (hoverRating || rating || 0) ? 'active' : ''}`}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onClick={() => onSetRating(movie, star === rating ? null : star)}
+                    >
+                      ★
+                    </span>
+                  ))}
+                  <span className="rating-value">{rating ? `${rating}/10` : '—/10'}</span>
+                </div>
+              </div>
+            )}
 
             {/* Description Section */}
             <div className="detailed-modal-section detailed-modal-section--grow">

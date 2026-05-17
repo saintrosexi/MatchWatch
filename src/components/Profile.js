@@ -156,7 +156,15 @@ export default function Profile() {
     const shuffledLikes = [...likedMovies].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
-    return { swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes };
+    // Favorites calculations
+    const favIds = Object.keys(appData.favorites || {}).filter(id => appData.favorites[id]);
+    const ratings = appData.ratings || {};
+    const favoriteMoviesList = favIds.map(id => movies.find(m => m.id === parseInt(id))).filter(Boolean);
+    const favMovies = favoriteMoviesList.filter(m => (m.type || "movie") === "movie");
+    const favSeries = favoriteMoviesList.filter(m => m.type === "series");
+    const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
+    
+    return { swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes, favMovies, favSeries, favAnime, ratings };
   }, [appData, matchHistory]);
 
   const achievements = [
@@ -392,17 +400,53 @@ export default function Profile() {
                 </div>
               </div>
 
-              {stats.recentLikes.length > 0 && (
-                <div className="stats-detailed-box">
-                  <h4>Случайные любимые фильмы</h4>
-                  <div className="recent-likes-row">
-                    {stats.recentLikes.map(m => (
-                      <div key={m.id} className="recent-like-item" title={m.titleRu || m.title}>
+            <div className="profile-card-stats profile-card-favorites" style={{marginTop: "20px"}}>
+              <h3>⭐️ Избранное</h3>
+              
+              {stats.favMovies.length > 0 && (
+                <div className="favorites-category-section">
+                  <h4>Любимые фильмы</h4>
+                  <div className="favorites-horizontal-scroll">
+                    {stats.favMovies.map(m => (
+                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
                         <img src={m.poster} alt={m.title} />
+                        {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
                       </div>
                     ))}
                   </div>
                 </div>
+              )}
+
+              {stats.favSeries.length > 0 && (
+                <div className="favorites-category-section">
+                  <h4>Любимые сериалы</h4>
+                  <div className="favorites-horizontal-scroll">
+                    {stats.favSeries.map(m => (
+                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
+                        <img src={m.poster} alt={m.title} />
+                        {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {stats.favAnime.length > 0 && (
+                <div className="favorites-category-section">
+                  <h4>Любимое аниме</h4>
+                  <div className="favorites-horizontal-scroll">
+                    {stats.favAnime.map(m => (
+                      <div key={m.id} className="favorite-item-card" title={m.titleRu || m.title}>
+                        <img src={m.poster} alt={m.title} />
+                        {stats.ratings[m.id] && <div className="favorite-rating-badge">★ {stats.ratings[m.id]}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {stats.favMovies.length === 0 && stats.favSeries.length === 0 && stats.favAnime.length === 0 && (
+                 <p className="setting-hint" style={{textAlign: "center", padding: "20px 0"}}>Вы пока не добавили ничего в избранное.</p>
               )}
             </div>
 
