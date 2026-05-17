@@ -258,10 +258,10 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
                 {stats.topGenres.length > 0 ? stats.topGenres.map(g => (
                   <span key={g} className="stats-tag">{g}</span>
                 )) : <span className="stats-tag dim">Нет данных</span>}
-              </div>
             </div>
+          </div>
 
-            <div className="profile-card-stats profile-card-favorites" style={{marginTop: "20px"}}>
+          <div className="profile-card-stats profile-card-favorites" style={{marginTop: "20px"}}>
               <h3>⭐️ Избранное</h3>
               
               {stats.favMovies.length > 0 && (

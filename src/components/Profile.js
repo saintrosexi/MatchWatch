@@ -399,6 +399,7 @@ export default function Profile() {
                   )) : <span className="stats-tag dim">Нет данных</span>}
                 </div>
               </div>
+            </div>
 
             <div className="profile-card-stats profile-card-favorites" style={{marginTop: "20px"}}>
               <h3>⭐️ Избранное</h3>
