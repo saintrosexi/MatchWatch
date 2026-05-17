@@ -111,7 +111,25 @@ ${animeSummaryText}
           generationConfig: {
             temperature: 0.75,
             maxOutputTokens: 1200
-          }
+          },
+          safetySettings: [
+            {
+              category: "HARM_CATEGORY_HARASSMENT",
+              threshold: "BLOCK_NONE"
+            },
+            {
+              category: "HARM_CATEGORY_HATE_SPEECH",
+              threshold: "BLOCK_NONE"
+            },
+            {
+              category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+              threshold: "BLOCK_NONE"
+            },
+            {
+              category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+              threshold: "BLOCK_NONE"
+            }
+          ]
         })
       }
     );
@@ -128,10 +146,17 @@ ${animeSummaryText}
       data.candidates &&
       data.candidates[0] &&
       data.candidates[0].content &&
-      data.candidates[0].content.parts &&
-      data.candidates[0].content.parts[0]
+      data.candidates[0].content.parts
     ) {
-      const summaryText = data.candidates[0].content.parts[0].text.trim();
+      const summaryText = data.candidates[0].content.parts
+        .map(part => part.text || "")
+        .join("")
+        .trim();
+      
+      if (!summaryText) {
+        throw new Error("Нейросеть вернула пустой результат.");
+      }
+
       return res.status(200).json({ summary: summaryText });
     } else {
       console.error("Unexpected Gemini API response structure:", JSON.stringify(data));
