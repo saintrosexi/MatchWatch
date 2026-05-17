@@ -356,8 +356,12 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
         {/* LEFT COLUMN */}
         <div className="profile-left">
           <div className="profile-card-main">
-            <div className="profile-avatar-large">
-              {targetData.profile.avatar || "😎"}
+            <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+              {(targetData.profile.avatar && (targetData.profile.avatar.startsWith("data:image/") || targetData.profile.avatar.startsWith("http"))) ? (
+                <img src={targetData.profile.avatar} alt="Avatar" />
+              ) : (
+                targetData.profile.avatar || "😎"
+              )}
             </div>
             <h2 className="profile-display-name">
               <span className="profile-name-bold">{namePart}</span>

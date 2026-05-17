@@ -35,6 +35,55 @@ export default function Profile() {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showAllFavorites, setShowAllFavorites] = useState(false);
+  const [avatarUploading, setAvatarUploading] = useState(false);
+
+  const handleAvatarUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Файл слишком большой. Выберите изображение менее 5 МБ.");
+      return;
+    }
+
+    setAvatarUploading(true);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = 150;
+        canvas.height = 150;
+        const ctx = canvas.getContext("2d");
+
+        const minDim = Math.min(img.width, img.height);
+        const sx = (img.width - minDim) / 2;
+        const sy = (img.height - minDim) / 2;
+
+        ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, 150, 150);
+
+        const compressedBase64 = canvas.toDataURL("image/jpeg", 0.85);
+
+        if (user) {
+          set(ref(database, `users/${user.uid}/profile/avatar`), compressedBase64)
+            .then(() => {
+              setAvatarUploading(false);
+            })
+            .catch((err) => {
+              console.error("Error saving avatar: ", err);
+              setAvatarUploading(false);
+              alert("Ошибка сохранения аватарки.");
+            });
+        }
+      };
+      img.onerror = () => {
+        setAvatarUploading(false);
+        alert("Не удалось загрузить изображение.");
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   const startEditingProfile = () => {
     if (user && user.displayName) {
@@ -452,8 +501,12 @@ export default function Profile() {
           {/* LEFT COLUMN */}
           <div className="profile-left">
             <div className="profile-card-main">
-              <div className="profile-avatar-large">
-                {profileData?.avatar || "😎"}
+              <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+                {(profileData?.avatar && (profileData.avatar.startsWith("data:image/") || profileData.avatar.startsWith("http"))) ? (
+                  <img src={profileData.avatar} alt="Avatar" />
+                ) : (
+                  profileData?.avatar || "😎"
+                )}
               </div>
               <h2 className="profile-display-name">
                 <span className="profile-name-bold">{namePart}</span>
@@ -473,7 +526,7 @@ export default function Profile() {
               
               <div className="setting-group">
                 <label>Аватар</label>
-                <div className="avatar-picker">
+                <div className="avatar-picker" style={{ marginBottom: "12px" }}>
                   {['😎','🤓','👽','👻','🤡','🤖','🐶','🐱'].map(emoji => (
                     <button 
                       key={emoji} 
@@ -483,6 +536,34 @@ export default function Profile() {
                       {emoji}
                     </button>
                   ))}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "12px" }}>
+                  <label htmlFor="avatar-upload" className="btn-secondary btn-small" style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
+                    cursor: "pointer",
+                    margin: 0,
+                    width: "100%",
+                    textAlign: "center",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "1px dashed rgba(255, 255, 255, 0.2)",
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    fontSize: "0.85rem",
+                    transition: "all 0.2s"
+                  }}>
+                    📷 Загрузить своё фото
+                  </label>
+                  <input 
+                    type="file" 
+                    id="avatar-upload" 
+                    accept="image/*" 
+                    onChange={handleAvatarUpload} 
+                    style={{ display: "none" }}
+                  />
+                  {avatarUploading && <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", textAlign: "center" }}>Обработка и сжатие...</span>}
                 </div>
               </div>
 

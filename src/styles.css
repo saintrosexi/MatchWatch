@@ -2297,6 +2297,13 @@ html, body {
   box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
 }
 
+.profile-avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .profile-display-name { margin: 0; line-height: 1.3; }
 .profile-name-bold { font-size: 2.2rem; font-weight: 800; color: #fff; }
 .profile-tag-dim { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.3); margin-left: 3px; }
