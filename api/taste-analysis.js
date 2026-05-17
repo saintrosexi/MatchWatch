@@ -111,7 +111,7 @@ ${animeSummaryText}
           ],
           generationConfig: {
             temperature: 0.75,
-            maxOutputTokens: 1200
+            maxOutputTokens: 8192
           },
           safetySettings: [
             {
