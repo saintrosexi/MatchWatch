@@ -154,7 +154,13 @@ export default function Friends({ onViewProfile }) {
                       onClick={() => onViewProfile(tag)}
                       title={`Посмотреть профиль ${namePart}`}
                     >
-                      <div className="friend-card-avatar">{friendAvatars[uid] || "😎"}</div>
+                      <div className="friend-card-avatar">
+                        {(friendAvatars[uid] && (friendAvatars[uid].startsWith("data:image/") || friendAvatars[uid].startsWith("http"))) ? (
+                          <img src={friendAvatars[uid]} alt="Avatar" />
+                        ) : (
+                          friendAvatars[uid] || "😎"
+                        )}
+                      </div>
                       <div className="friend-card-info">
                         <span className="friend-card-name">{namePart}</span>
                         <span className="friend-card-tag">{tagPart}</span>
