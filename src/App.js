@@ -360,22 +360,26 @@ export default function App() {
       );
     }
     if (screen === "liked") {
-      return <LikedGrid liked={liked} decisions={decisions} onToggleLike={toggleLike} />;
+      return <LikedGrid liked={liked} decisions={decisions} onToggleLike={toggleLike} favorites={favorites} onToggleFavorite={toggleFavorite} ratings={ratings} onSetRating={handleSetRating} />;
     }
     if (screen === "top") {
-      return <TopMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
+      return <TopMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} favorites={favorites} onToggleFavorite={toggleFavorite} ratings={ratings} onSetRating={handleSetRating} />;
     }
     if (screen === "search") {
-      return <SearchMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
+      return <SearchMovies stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} favorites={favorites} onToggleFavorite={toggleFavorite} ratings={ratings} onSetRating={handleSetRating} />;
     }
     if (screen === "mood") {
-      return <MoodPicker stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} />;
+      return <MoodPicker stopGenres={stopGenres} decisions={decisions} onToggleLike={toggleLike} favorites={favorites} onToggleFavorite={toggleFavorite} ratings={ratings} onSetRating={handleSetRating} />;
     }
     if (screen === "matchwatch") {
       return <MatchWatch 
         onLike={(movieId) => setDecisions(prev => ({ ...prev, [movieId]: "like" }))} 
         decisions={decisions}
         onToggleLike={toggleLike}
+        favorites={favorites}
+        onToggleFavorite={toggleFavorite}
+        ratings={ratings}
+        onSetRating={handleSetRating}
         initialRoomCode={initialRoomCode}
         onClearInitialRoomCode={() => setInitialRoomCode(null)}
         hostRoomCode={hostRoomCode}

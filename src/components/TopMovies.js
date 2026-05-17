@@ -2,7 +2,7 @@ import { useState } from "react";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function TopMovies({ decisions, onToggleLike }) {
+export default function TopMovies({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("movie");
 
@@ -80,6 +80,10 @@ export default function TopMovies({ decisions, onToggleLike }) {
           onClose={() => setSelectedMovie(null)}
           isLiked={decisions?.[selectedMovie.id] === "like"}
           onToggleLike={onToggleLike}
+          isFavorite={favorites?.[selectedMovie.id]}
+          onToggleFavorite={onToggleFavorite}
+          rating={ratings?.[selectedMovie.id]}
+          onSetRating={onSetRating}
         />
       )}
     </div>

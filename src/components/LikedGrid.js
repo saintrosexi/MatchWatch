@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import DetailedMovieModal from "./DetailedMovieModal";
 import TasteProfile from "./TasteProfile";
 
-export default function LikedGrid({ liked, decisions, onToggleLike }) {
+export default function LikedGrid({ liked, decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -94,6 +94,10 @@ export default function LikedGrid({ liked, decisions, onToggleLike }) {
             onClose={() => setSelectedMovie(null)}
             isLiked={decisions?.[selectedMovie.id] === "like"}
             onToggleLike={onToggleLike}
+            isFavorite={favorites?.[selectedMovie.id]}
+            onToggleFavorite={onToggleFavorite}
+            rating={ratings?.[selectedMovie.id]}
+            onSetRating={onSetRating}
           />
         )}
       </AnimatePresence>

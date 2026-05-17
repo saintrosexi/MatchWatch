@@ -52,7 +52,7 @@ const getMoodCategory = (movie) => {
   return defaultMoods[movie.id % defaultMoods.length];
 };
 
-export default function MoodPicker({ decisions, onToggleLike }) {
+export default function MoodPicker({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMood, setSelectedMood] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("movie");
@@ -153,6 +153,10 @@ export default function MoodPicker({ decisions, onToggleLike }) {
           onClose={() => setSelectedMovie(null)}
           isLiked={decisions?.[selectedMovie.id] === "like"}
           onToggleLike={onToggleLike}
+          isFavorite={favorites?.[selectedMovie.id]}
+          onToggleFavorite={onToggleFavorite}
+          rating={ratings?.[selectedMovie.id]}
+          onSetRating={onSetRating}
         />
       )}
     </div>

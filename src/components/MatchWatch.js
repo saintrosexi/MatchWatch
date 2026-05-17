@@ -7,7 +7,7 @@ import { movies } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -486,6 +486,10 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           onClose={() => setShowDetails(false)} 
           isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)] === "like"}
           onToggleLike={onToggleLike}
+          isFavorite={favorites?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)]}
+          onToggleFavorite={onToggleFavorite}
+          rating={ratings?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)]}
+          onSetRating={onSetRating}
         />
       )}
     </div>
