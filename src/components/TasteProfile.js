@@ -266,7 +266,7 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
             {aiSummary}
           </div>
           <div className="ai-summary-footer" style={{ marginTop: "20px", fontSize: "0.8rem", color: "rgba(255, 255, 255, 0.35)", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "12px", flexWrap: "wrap", gap: "10px" }}>
-            <span>🔮 Персональный кинопортрет составлен ИИ Gemini 2.5 Flash</span>
+            <span>🔮 Персональный кинопортрет составлен киноэкспертом - Жориком</span>
             <span style={{ background: "rgba(138, 43, 226, 0.15)", color: "#cda4ff", padding: "2px 8px", borderRadius: "10px", fontSize: "0.75rem", border: "1px solid rgba(138, 43, 226, 0.3)", fontWeight: "600" }}>✓ Индивидуальный расчет</span>
           </div>
           {error && <div className="ai-error-text">⚠️ {error}</div>}
