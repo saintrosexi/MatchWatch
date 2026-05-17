@@ -246,6 +246,12 @@ export default function App() {
       const next = { ...prev };
       if (current === "like") {
         delete next[movie.id];
+        // Also remove from favorites if it was there
+        setFavorites(f => {
+          const nextF = { ...f };
+          delete nextF[movie.id];
+          return nextF;
+        });
       } else {
         next[movie.id] = "like";
       }
@@ -260,6 +266,21 @@ export default function App() {
         delete next[movie.id];
       } else {
         next[movie.id] = true;
+        // Also make sure it is added to Decisions (liked)
+        setDecisions(d => {
+          const nextD = { ...d };
+          if (nextD[movie.id] !== "like") {
+            nextD[movie.id] = "like";
+            // Append to history as well
+            setHistory(h => {
+              if (!h.includes(movie.id)) {
+                return [...h, movie.id];
+              }
+              return h;
+            });
+          }
+          return nextD;
+        });
       }
       return next;
     });

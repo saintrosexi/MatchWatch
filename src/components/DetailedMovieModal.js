@@ -48,7 +48,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             <button 
               className={`modal-action-btn modal-like-btn ${isLiked ? "active" : ""}`} 
               onClick={() => onToggleLike(movie)}
-              title={isLiked ? "Убрать лайк" : "Поставить лайк"}
+              title={isLiked ? "Убрать из любимых" : "Добавить в любимые"}
             >
               {isLiked ? "❤️" : "🤍"}
             </button>
