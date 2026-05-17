@@ -1,7 +1,76 @@
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { movies } from "../data";
+import { auth, database } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, onValue, set } from "firebase/database";
+import { motion } from "framer-motion";
 
 export default function TasteProfile({ likedMovies = [] }) {
+  const [user, setUser] = useState(null);
+  const [aiSummary, setAiSummary] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!auth) return;
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        // Load existing summary from Firebase
+        const summaryRef = ref(database, `users/${currentUser.uid}/profile/aiTasteSummary`);
+        onValue(summaryRef, (snap) => {
+          setAiSummary(snap.val() || "");
+        });
+      } else {
+        setAiSummary("");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const generateAiSummary = async () => {
+    if (!user) {
+      setError("Войдите в аккаунт, чтобы запустить ИИ-анализ");
+      return;
+    }
+    if (likedMovies.length === 0) {
+      setError("У вас должно быть хотя бы несколько любимых фильмов для анализа.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/taste-analysis", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ likedMovies })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Не удалось сгенерировать ИИ-вывод.");
+      }
+
+      const data = await response.json();
+      if (data.summary) {
+        setAiSummary(data.summary);
+        // Save to Firebase securely under /profile/aiTasteSummary
+        await set(ref(database, `users/${user.uid}/profile/aiTasteSummary`), data.summary);
+      } else {
+        throw new Error("Не удалось получить ИИ-анализ.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Ошибка соединения с сервером кинокритики.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const profile = useMemo(() => {
     if (!likedMovies || likedMovies.length === 0) {
       return {
@@ -159,20 +228,63 @@ export default function TasteProfile({ likedMovies = [] }) {
         </div>
       )}
 
-      {/* Insights */}
-      <div className="profile-insights">
-        <p>💡 <strong>Вывод:</strong></p>
-        <p>
-          Вы предпочитаете контент 
-          {profile.topDecades.length > 0 && ` из ${profile.topDecades[0].decade.toLowerCase()}`}
-          {profile.avgRating >= 8.5 && ' с высоким рейтингом'}
-          {profile.avgRating < 7.5 && ' разнообразных рейтингов'}
-          . Ваш вкус 
-          {profile.compatibility > 80 && 'очень определён!'}
-          {profile.compatibility > 50 && 'хорошо сформирован.'}
-          {profile.compatibility <= 50 && 'только развивается!'}
-        </p>
-      </div>
+      {/* Insights (AI summary or basic fallback) */}
+      {loading ? (
+        <div className="profile-insights ai-loading-box">
+          <div className="ai-pulse-loader" />
+          <div className="ai-loading-text">🔮 Нейросеть сканирует ваши свайпы...</div>
+        </div>
+      ) : aiSummary ? (
+        <motion.div
+          className="profile-insights ai-summary-box"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="ai-summary-header">
+            <div className="ai-summary-title">
+              <span>✨ ИИ-Анализ киновкусов</span>
+            </div>
+            {user && (
+              <button
+                className="btn-ai-regenerate"
+                onClick={generateAiSummary}
+                title="Обновить ИИ-анализ"
+              >
+                🔄
+              </button>
+            )}
+          </div>
+          <div className="ai-summary-text">
+            {aiSummary}
+          </div>
+          {error && <div className="ai-error-text">⚠️ {error}</div>}
+        </motion.div>
+      ) : (
+        <div className="profile-insights">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
+            <div style={{ flex: "1 1 300px" }}>
+              <p>💡 <strong>Базовый вывод:</strong></p>
+              <p style={{ margin: 0 }}>
+                Вы предпочитаете контент 
+                {profile.topDecades.length > 0 && ` из ${profile.topDecades[0].decade.toLowerCase()}`}
+                {profile.avgRating >= 8.5 && " с высоким рейтингом"}
+                {profile.avgRating < 7.5 && " разнообразных рейтингов"}
+                . Ваш вкус 
+                {profile.compatibility > 80 && " очень определён!"}
+                {profile.compatibility > 50 && " хорошо сформирован."}
+                {profile.compatibility <= 50 && " только развивается!"}
+              </p>
+            </div>
+            {user && (
+              <button className="btn-ai-generate" onClick={generateAiSummary}>
+                ✨ Сгенерировать ИИ-вывод
+              </button>
+            )}
+          </div>
+          {error && <div className="ai-error-text">⚠️ {error}</div>}
+        </div>
+      )}
     </div>
   );
 }
