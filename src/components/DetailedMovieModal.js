@@ -38,7 +38,12 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Close Button */}
-        <button className="modal-close-btn" onClick={onClose} title="Закрыть">
+        <button
+          className="modal-close-btn"
+          onClick={onClose}
+          title="Закрыть"
+          aria-label="Закрыть"
+        >
           ✕
         </button>
 
@@ -49,6 +54,8 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               className={`modal-action-btn modal-like-btn ${isLiked ? "active" : ""}`} 
               onClick={() => onToggleLike(movie)}
               title={isLiked ? "Убрать из просмотренного" : "Отметить как просмотренное"}
+              aria-label={isLiked ? "Убрать из просмотренного" : "Отметить как просмотренное"}
+              aria-pressed={isLiked}
             >
               {isLiked ? "👁️" : "👁️‍🗨️"}
             </button>
@@ -58,6 +65,8 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               className={`modal-action-btn modal-bookmark-btn ${isFavorite ? "active" : ""}`} 
               onClick={() => onToggleFavorite(movie)}
               title={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+              aria-label={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+              aria-pressed={isFavorite}
             >
               {isFavorite ? "❤️" : "🤍"}
             </button>

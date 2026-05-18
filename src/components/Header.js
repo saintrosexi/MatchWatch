@@ -37,7 +37,18 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           {/* Desktop Left */}
           {!isMobile && (
             <div className="header-left">
-              <div className="header-logo" onClick={() => handleTabClick("swipe")}>
+              <div 
+                className="header-logo" 
+                onClick={() => handleTabClick("swipe")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleTabClick("swipe");
+                  }
+                }}
+              >
                 <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
               </div>
             </div>
