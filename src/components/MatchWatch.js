@@ -110,16 +110,18 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   useEffect(() => {
     const fetchAvatars = async () => {
       const avatars = {};
-      for (const uid of Object.keys(friends)) {
-        try {
-          const snap = await get(ref(database, `users/${uid}/profile/avatar`));
-          if (snap.exists()) {
-            avatars[uid] = snap.val();
+      await Promise.all(
+        Object.keys(friends).map(async (uid) => {
+          try {
+            const snap = await get(ref(database, `users/${uid}/profile/avatar`));
+            if (snap.exists()) {
+              avatars[uid] = snap.val();
+            }
+          } catch (e) {
+            console.error(e);
           }
-        } catch (e) {
-          console.error(e);
-        }
-      }
+        })
+      );
       setFriendAvatars(avatars);
     };
     if (Object.keys(friends).length > 0) {
