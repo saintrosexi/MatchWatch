@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing ARIA Labels on Icon Buttons and Unfocusable Divs
+**Learning:** Found a specific pattern in this app's components (`Header.js`, `DetailedMovieModal.js`) where icon-only buttons (`☰`, `✕`, `👁️`, `❤️`) were missing `aria-label`s. Also, interactive `div` elements used as buttons (like `header-logo`) lacked `role="button"`, `tabIndex`, and keyboard event handlers, making them inaccessible to screen readers and keyboard users.
+**Action:** Next time, explicitly check icon-only buttons for `aria-label`s and `aria-pressed` states (if toggles), and ensure any `div` with an `onClick` handler also has `role`, `tabIndex`, and `onKeyDown` to support full keyboard navigation.

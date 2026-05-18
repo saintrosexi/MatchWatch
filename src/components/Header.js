@@ -27,11 +27,27 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          <button className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={menuOpen}
+          >
             {menuOpen ? "✕" : "☰"}
           </button>
           
-          <div className="header-logo" onClick={() => handleTabClick("swipe")}>
+          <div
+            className="header-logo"
+            onClick={() => handleTabClick("swipe")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleTabClick("swipe");
+              }
+            }}
+          >
             <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
           </div>
         </div>
