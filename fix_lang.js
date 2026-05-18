@@ -128,60 +128,98 @@ const DESC_FIX = {
   }
 };
 
-// Read data
-let rawData = fs.readFileSync('src/data.js', 'utf8');
-const arrayStr = rawData.replace('export const movies = ', '').replace(/;\s*$/, '');
-const movies = eval('(' + arrayStr + ')');
+const https = require('https');
 
-let titleFixed = 0, descFixed = 0;
+function translate(text) {
+  return new Promise((resolve, reject) => {
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q=${encodeURIComponent(text)}`;
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          let translatedText = '';
+          if (parsed && parsed[0]) {
+            parsed[0].forEach(p => translatedText += p[0]);
+          }
+          resolve(translatedText || text);
+        } catch(e) {
+          resolve(text); // fallback to original on error
+        }
+      });
+    }).on('error', () => resolve(text)); // fallback on error
+  });
+}
 
-movies.forEach(m => {
-  if (m.id <= 10) return;
-  
-  // Fix titles
-  if (TITLE_FIX[m.title]) {
-    m.titleRu = TITLE_FIX[m.title];
-    titleFixed++;
+async function main() {
+  // Read data
+  let rawData = fs.readFileSync('src/data.js', 'utf8');
+  const arrayStr = rawData.replace('export const movies = ', '').replace(/;\s*$/, '');
+  const movies = eval('(' + arrayStr + ')');
+
+  let titleFixed = 0, descFixed = 0, autoTranslated = 0;
+
+  for (const m of movies) {
+    if (m.id <= 10) continue;
+
+    // Fix titles
+    if (TITLE_FIX[m.title]) {
+      m.titleRu = TITLE_FIX[m.title];
+      titleFixed++;
+    }
+
+    // Fix descriptions
+    if (DESC_FIX[m.title]) {
+      m.description = DESC_FIX[m.title].short;
+      m.fullDescription = DESC_FIX[m.title].full;
+      descFixed++;
+    }
+
+    // Also fix any remaining English descriptions that weren't in DESC_FIX
+    // by checking for Latin characters
+    if (m.description && /^[A-Z]/.test(m.description) && /[a-zA-Z]{5,}/.test(m.description)) {
+      console.log(`Translating description for ${m.id}: ${m.title}`);
+
+      try {
+        m.description = await translate(m.description);
+        if (m.fullDescription) {
+          m.fullDescription = await translate(m.fullDescription);
+        }
+        autoTranslated++;
+      } catch(e) {
+        console.error(`Failed to translate ${m.id}`, e);
+      }
+    }
   }
-  
-  // Fix descriptions
-  if (DESC_FIX[m.title]) {
-    m.description = DESC_FIX[m.title].short;
-    m.fullDescription = DESC_FIX[m.title].full;
-    descFixed++;
-  }
-  
-  // Also fix any remaining English descriptions that weren't in DESC_FIX
-  // by checking for Latin characters
-  if (m.description && /^[A-Z]/.test(m.description) && /[a-zA-Z]{5,}/.test(m.description)) {
-    // These are English descriptions that need manual translation
-    // Log them so we can check
-  }
-});
 
-console.log(`Titles fixed: ${titleFixed}`);
-console.log(`Descriptions fixed: ${descFixed}`);
+  console.log(`Titles fixed: ${titleFixed}`);
+  console.log(`Descriptions fixed manually: ${descFixed}`);
+  console.log(`Descriptions fixed automatically: ${autoTranslated}`);
 
-// Check remaining English content
-const remaining = movies.filter(m => m.id > 10 && m.description && /^[A-Z]/.test(m.description) && /[a-zA-Z]{5,}/.test(m.description));
-console.log(`\nRemaining English descriptions: ${remaining.length}`);
-remaining.forEach(m => console.log(`  ${m.id}: ${m.titleRu} | ${m.description.substring(0,50)}`));
+  // Check remaining English content
+  const remaining = movies.filter(m => m.id > 10 && m.description && /^[A-Z]/.test(m.description) && /[a-zA-Z]{5,}/.test(m.description));
+  console.log(`\nRemaining English descriptions: ${remaining.length}`);
+  remaining.forEach(m => console.log(`  ${m.id}: ${m.titleRu} | ${m.description.substring(0,50)}`));
 
-const remainTitle = movies.filter(m => m.id > 10 && m.titleRu === m.title);
-console.log(`\nRemaining English titles: ${remainTitle.length}`);
-remainTitle.forEach(m => console.log(`  ${m.id}: ${m.title}`));
+  const remainTitle = movies.filter(m => m.id > 10 && m.titleRu === m.title);
+  console.log(`\nRemaining English titles: ${remainTitle.length}`);
+  remainTitle.forEach(m => console.log(`  ${m.id}: ${m.title}`));
 
-// Write
-let out = 'export const movies = [\n';
-movies.forEach((m, i) => {
-  out += '  {\n';
-  for (const [k, v] of Object.entries(m)) {
-    if (v === null) out += `    ${k}: null,\n`;
-    else if (typeof v === 'number') out += `    ${k}: ${v},\n`;
-    else out += `    ${k}: ${JSON.stringify(v)},\n`;
-  }
-  out += '  }' + (i < movies.length - 1 ? ',' : '') + '\n';
-});
-out += '];\n';
-fs.writeFileSync('src/data.js', out);
-console.log('\nWritten!');
+  // Write
+  let out = 'export const movies = [\n';
+  movies.forEach((m, i) => {
+    out += '  {\n';
+    for (const [k, v] of Object.entries(m)) {
+      if (v === null) out += `    ${k}: null,\n`;
+      else if (typeof v === 'number') out += `    ${k}: ${v},\n`;
+      else out += `    ${k}: ${JSON.stringify(v)},\n`;
+    }
+    out += '  }' + (i < movies.length - 1 ? ',' : '') + '\n';
+  });
+  out += '];\n';
+  fs.writeFileSync('src/data.js', out);
+  console.log('\nWritten!');
+}
+
+main().catch(console.error);
