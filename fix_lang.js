@@ -144,7 +144,7 @@ movies.forEach(m => {
     titleFixed++;
   }
   
-  // Fix descriptions
+  // Applies manual description fixes to the movies array.
   if (DESC_FIX[m.title]) {
     m.description = DESC_FIX[m.title].short;
     m.fullDescription = DESC_FIX[m.title].full;
