@@ -1,60 +1,65 @@
 const { performance } = require('perf_hooks');
 
-const friends = {};
-for (let i = 0; i < 20; i++) {
-  friends[`uid${i}`] = `Friend ${i}`;
-}
+const simulateDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const getMock = async (uid) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ exists: () => true, val: () => 'avatar_url' });
-    }, 50); // mock network latency
-  });
+const mockGet = async (uid) => {
+    await simulateDelay(50); // 50ms latency per request
+    return { exists: () => true, val: () => 'http://example.com/avatar.png' };
 };
 
-const runSequential = async () => {
-  const start = performance.now();
-  const avatars = {};
-  for (const uid of Object.keys(friends)) {
-    try {
-      const snap = await getMock(uid);
-      if (snap.exists()) {
-        avatars[uid] = snap.val();
-      }
-    } catch (e) {
-      console.error(e);
+const friends = {
+    '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E',
+    '6': 'F', '7': 'G', '8': 'H', '9': 'I', '10': 'J'
+};
+
+const fetchAvatarsSequential = async () => {
+    const avatars = {};
+    for (const uid of Object.keys(friends)) {
+        try {
+            const snap = await mockGet(uid);
+            if (snap.exists()) {
+                avatars[uid] = snap.val();
+            }
+        } catch (e) {
+            console.error(e);
+        }
     }
-  }
-  const end = performance.now();
-  return end - start;
+    return avatars;
 };
 
-const runParallel = async () => {
-  const start = performance.now();
-  const avatars = {};
-  await Promise.all(Object.keys(friends).map(async (uid) => {
-    try {
-      const snap = await getMock(uid);
-      if (snap.exists()) {
-        avatars[uid] = snap.val();
-      }
-    } catch (e) {
-      console.error(e);
+const fetchAvatarsParallel = async () => {
+    const avatars = {};
+    const promises = Object.keys(friends).map(async (uid) => {
+        try {
+            const snap = await mockGet(uid);
+            if (snap.exists()) {
+                return { uid, val: snap.val() };
+            }
+        } catch (e) {
+            console.error(e);
+        }
+        return null;
+    });
+
+    const results = await Promise.all(promises);
+    for (const res of results) {
+        if (res) {
+            avatars[res.uid] = res.val;
+        }
     }
-  }));
-  const end = performance.now();
-  return end - start;
+    return avatars;
 };
 
-const run = async () => {
-  const seqTime = await runSequential();
-  console.log(`Sequential time: ${seqTime.toFixed(2)}ms`);
+const runBenchmark = async () => {
+    const start1 = performance.now();
+    await fetchAvatarsSequential();
+    const end1 = performance.now();
+    console.log(`Sequential: ${end1 - start1} ms`);
 
-  const parTime = await runParallel();
-  console.log(`Parallel time: ${parTime.toFixed(2)}ms`);
-
-  console.log(`Improvement: ${((seqTime - parTime) / seqTime * 100).toFixed(2)}%`);
+    const start2 = performance.now();
+    await fetchAvatarsParallel();
+    const end2 = performance.now();
+    console.log(`Parallel: ${end2 - start2} ms`);
 };
 
-run();
+runBenchmark();

@@ -16,14 +16,22 @@ export default function Friends({ onViewProfile }) {
   useEffect(() => {
     const fetchAvatars = async () => {
       const avatars = {};
-      for (const uid of Object.keys(friends)) {
+      const fetchPromises = Object.keys(friends).map(async (uid) => {
         try {
           const snap = await get(ref(database, `users/${uid}/profile/avatar`));
           if (snap.exists()) {
-            avatars[uid] = snap.val();
+            return { uid, val: snap.val() };
           }
         } catch (e) {
           console.error(e);
+        }
+        return null;
+      });
+
+      const results = await Promise.all(fetchPromises);
+      for (const res of results) {
+        if (res) {
+          avatars[res.uid] = res.val;
         }
       }
       setFriendAvatars(avatars);
