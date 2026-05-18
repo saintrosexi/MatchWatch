@@ -3002,3 +3002,337 @@ html, body {
   font-weight: 500;
   text-align: left;
 }
+
+/* ====== APPLE MOBILE STYLE UPDATES ====== */
+
+/* Typography updates */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile Top Header (iOS style) */
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+  height: 100%;
+}
+
+.mobile-header-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mobile-header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-header-title {
+  flex: 2;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 83px; /* Standard iOS tab bar height roughly */
+  background: rgba(25, 25, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 10px;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+  z-index: 1000;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  width: 20%;
+  transition: color 0.2s;
+}
+
+.bottom-nav-item.active {
+  color: #ff8a50; /* MatchWatch Orange/Accent */
+}
+
+.bottom-nav-icon {
+  font-size: 24px;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.bottom-nav-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.nav-badge-bottom {
+  position: absolute;
+  top: -2px;
+  right: 15px;
+  background: #ff4757;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Bottom Sheet */
+.bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1001;
+}
+
+.bottom-sheet-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 16px 20px 40px;
+  z-index: 1002;
+  transition: bottom 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-sheet.open {
+  bottom: 0;
+}
+
+.bottom-sheet-drag-handle {
+  width: 40px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  margin: 0 auto 15px;
+}
+
+.bottom-sheet-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.bottom-sheet-menu {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.bottom-sheet-item {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.1rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bottom-sheet-item:last-child {
+  border-bottom: none;
+}
+
+.bottom-sheet-item:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sheet-icon {
+  margin-right: 12px;
+  font-size: 1.3rem;
+}
+
+.sheet-badge {
+  background: #ff4757;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: auto;
+}
+
+.bottom-sheet-cancel {
+  width: 100%;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 16px;
+  color: #ff8a50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bottom-sheet-cancel:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Base structural adjustments for mobile */
+@media (max-width: 1100px) {
+  .header {
+    background: rgba(25, 25, 25, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .app-container {
+    padding-bottom: 90px !important; /* Space for bottom nav */
+  }
+
+  .btn-header-undo {
+    background: transparent;
+    border: none;
+    color: #ff8a50;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0;
+  }
+
+  .deck-container {
+    width: 92% !important; /* Slightly wider cards */
+    max-width: 400px !important;
+  }
+
+  /* Remove old hamburger menu bits if they interfere, just to be safe */
+  .mobile-menu-toggle { display: none !important; }
+  .nav-tabs.open { display: none !important; }
+  .active-tab-name { display: none !important; }
+}
+
+/* Fix category picker positioning */
+@media (max-width: 1100px) {
+  .category-picker {
+    margin-top: 10px !important;
+  }
+}
+
+/* Additional Apple-style refinements */
+button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
+  border-radius: 16px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-primary, .btn-create {
+  box-shadow: 0 4px 15px rgba(255, 138, 80, 0.3) !important;
+}
+
+.btn-primary:active, .btn-create:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 8px rgba(255, 138, 80, 0.2) !important;
+}
+
+.form-input {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #ff8a50 !important;
+  box-shadow: 0 0 0 4px rgba(255, 138, 80, 0.15) !important;
+}
+
+/* Rounded Cards */
+.top-movie-card, .mood-card, .search-result-card .result-poster, .mood-movie-poster, .liked-movie-poster {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+.movie-card, .deck-card {
+  border-radius: 24px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Glassmorphism for specific elements */
+.category-picker .category-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.category-picker .category-btn.active {
+  background: #3b82f6 !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Smooth lists and rows */
+.favorites-horizontal-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Additional spacing fixes for mobile elements due to new header/footer */
+
+@media (max-width: 1100px) {
+  /* Increase padding top so title isn't hidden under the header */
+  .app-container {
+    padding-top: calc(var(--header-height-mobile) + 20px) !important;
+  }
+
+  .swipe-wrapper {
+    /* Push cards up a bit since we have bottom bar now */
+    padding-bottom: 20px !important;
+  }
+}
+
+/* Fix category picker positioning */
+@media (max-width: 1100px) {
+  .category-picker {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+  }
+}
