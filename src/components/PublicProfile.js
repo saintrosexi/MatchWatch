@@ -7,6 +7,11 @@ import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 import "./MovieModal.css";
 
+const moviesDict = movies.reduce((acc, m) => {
+  acc[m.id] = m;
+  return acc;
+}, {});
+
 export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [targetData, setTargetData] = useState(null);
@@ -198,7 +203,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
 
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
-        const m = movies.find(x => x.id === parseInt(id));
+        const m = moviesDict[id];
         if (m) {
           likedMoviesList.push(m);
           const t = m.type || "movie";
@@ -273,7 +278,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
     const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
-    const favoriteMoviesList = favIds.map(id => movies.find(m => m.id === parseInt(id))).filter(Boolean);
+    const favoriteMoviesList = favIds.map(id => moviesDict[id]).filter(Boolean);
     const favMovies = favoriteMoviesList.filter(m => (m.type || "movie") === "movie");
     const favSeries = favoriteMoviesList.filter(m => m.type === "series");
     const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
