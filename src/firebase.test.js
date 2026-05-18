@@ -2,12 +2,12 @@ import { createMatchRoom } from './firebase';
 import { getDatabase, ref, set } from 'firebase/database';
 
 jest.mock('firebase/app', () => ({
-  initializeApp: jest.fn(),
+  initializeApp: jest.fn(() => ({})),
 }));
 
 jest.mock('firebase/database', () => ({
-  getDatabase: jest.fn(() => ({})), // Mock database object so !database check passes
-  ref: jest.fn((db, path) => path),
+  getDatabase: jest.fn(() => ({})),
+  ref: jest.fn().mockImplementation((db, path) => ({ isMockRef: true, path })),
   set: jest.fn(() => Promise.resolve()),
   get: jest.fn(),
   onValue: jest.fn(),
@@ -24,8 +24,6 @@ jest.mock('firebase/auth', () => ({
 }));
 
 describe('createMatchRoom', () => {
-  let originalDatabase;
-
   beforeAll(() => {
     // Math.random() in createMatchRoom generates string of max length 6:
     // Math.random().toString(36).substring(2, 8).toUpperCase()
@@ -41,6 +39,7 @@ describe('createMatchRoom', () => {
 
     // Using default Math.random behaviour
 
+    ref.mockImplementation((db, path) => ({ isMockRef: true, path }));
     const hostName = 'Alice';
     const roomCode = await createMatchRoom(hostName);
 
@@ -50,20 +49,20 @@ describe('createMatchRoom', () => {
 
     expect(ref).toHaveBeenCalledWith(expect.anything(), `matchRooms/${roomCode}`);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    expect(set).toHaveBeenCalledWith({ isMockRef: true, path: `matchRooms/${roomCode}` }, expect.objectContaining({
       hostName: 'Alice',
       status: 'waiting',
       createdAt: mockDate,
     }));
 
-    // Check if default deck was created and shuffled (512 cards)
+    // Check if default deck was created and shuffled (849 cards)
     const setCallArgs = set.mock.calls[0][1];
     expect(setCallArgs.deck).toBeInstanceOf(Array);
-    expect(setCallArgs.deck).toHaveLength(512);
+    expect(setCallArgs.deck).toHaveLength(849);
 
-    // Verify it contains numbers from 1 to 512
+    // Verify it contains numbers from 1 to 849
     expect(setCallArgs.deck).toContain(1);
-    expect(setCallArgs.deck).toContain(512);
+    expect(setCallArgs.deck).toContain(849);
 
     // Clean up
     jest.restoreAllMocks();
@@ -73,11 +72,12 @@ describe('createMatchRoom', () => {
     const mockDate = 1620000000000;
     jest.spyOn(Date, 'now').mockReturnValue(mockDate);
 
+    ref.mockImplementation((db, path) => ({ isMockRef: true, path }));
     const hostName = 'Bob';
     const customDeck = [10, 20, 30];
     const roomCode = await createMatchRoom(hostName, customDeck);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    expect(set).toHaveBeenCalledWith({ isMockRef: true, path: `matchRooms/${roomCode}` }, expect.objectContaining({
       hostName: 'Bob',
       status: 'waiting',
       createdAt: mockDate,
