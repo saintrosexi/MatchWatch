@@ -64,10 +64,14 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 {rightContent}
               </div>
               <div className="mobile-header-title">
-                {getScreenName(currentScreen)}
+                {currentScreen === "swipe" ? (
+                  <img src="/logo.png" alt="MatchWatch Logo" style={{ height: "24px" }} />
+                ) : (
+                  getScreenName(currentScreen)
+                )}
               </div>
               <div className="mobile-header-right">
-                {/* Could add a small icon or logo here if needed */}
+                {/* Empty for balance */}
               </div>
             </div>
           )}
