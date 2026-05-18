@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, get } from "firebase/database";
-import { movies } from "../data";
+import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
@@ -183,12 +183,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const currentMovieId = roomData && roomData.deck && cursor < roomData.deck.length
     ? roomData.deck[cursor]
     : null;
-  const currentMovie = currentMovieId ? movies.find(m => m.id === currentMovieId) : null;
+  const currentMovie = currentMovieId ? moviesById[currentMovieId] : null;
 
   const nextMovieId = roomData && roomData.deck && cursor + 1 < roomData.deck.length
     ? roomData.deck[cursor + 1]
     : null;
-  const nextMovie = nextMovieId ? movies.find(m => m.id === nextMovieId) : null;
+  const nextMovie = nextMovieId ? moviesById[nextMovieId] : null;
 
   // Рассчитываем ID совпадения для отображения
   const matchId = roomData?.match || (roomData ? Object.keys(roomData.hostLikes || {}).find(id => 
@@ -472,12 +472,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
             <div className="match-movie" style={{ textAlign: "center" }}>
               <img 
-                src={movies.find(m => m.id === parseInt(matchId))?.poster} 
+                src={moviesById[parseInt(matchId)]?.poster} 
                 alt="Match" 
                 style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto", cursor: "pointer" }} 
                 onClick={() => setShowDetails(parseInt(matchId))}
               />
-              <h2 style={{ marginTop: "15px" }}>{movies.find(m => m.id === parseInt(matchId))?.titleRu || movies.find(m => m.id === parseInt(matchId))?.title}</h2>
+              <h2 style={{ marginTop: "15px" }}>{moviesById[parseInt(matchId)]?.titleRu || moviesById[parseInt(matchId)]?.title}</h2>
               <p>Приятного просмотра!</p>
             </div>
             <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(parseInt(matchId))}>Подробнее о фильме</button>
@@ -494,7 +494,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           ) : (
             <div className="history-list" style={{ display: "flex", flexDirection: "column", gap: "10px", maxHeight: "400px", overflowY: "auto", paddingRight: "5px" }}>
               {matchHistory.map(item => {
-                const m = movies.find(x => x.id === item.movieId);
+                const m = moviesById[item.movieId];
                 if (!m) return null;
                 return (
                   <div key={item.id} className="history-item" style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.05)", padding: "10px", borderRadius: "12px", cursor: "pointer", transition: "background 0.2s" }} onClick={() => setShowDetails(item.movieId)} onMouseEnter={e => e.currentTarget.style.background="rgba(255,255,255,0.1)"} onMouseLeave={e => e.currentTarget.style.background="rgba(255,255,255,0.05)"}>
@@ -514,7 +514,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       {showDetails && (
         <DetailedMovieModal 
-          movie={movies.find(m => m.id === (typeof showDetails === 'number' ? showDetails : parseInt(matchId)))} 
+          movie={moviesById[(typeof showDetails === 'number' ? showDetails : parseInt(matchId))]} 
           onClose={() => setShowDetails(false)} 
           isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)] === "like"}
           onToggleLike={onToggleLike}
