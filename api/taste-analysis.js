@@ -1,7 +1,14 @@
 export default async function handler(req, res) {
-  // CORS Headers (in case of different origins in dev mode)
+  // 🛡️ Sentinel: Security fix - Restrict overly permissive CORS configuration
+  // Allow only specific origins instead of wildcard '*' to prevent unauthorized cross-origin requests
+  const allowedOrigins = ['http://localhost:3000', 'https://match-watch-zeta.vercel.app'];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
   res.setHeader(
     "Access-Control-Allow-Headers",
