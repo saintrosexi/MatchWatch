@@ -13,6 +13,7 @@ import MatchWatch from "./components/MatchWatch";
 import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
+import Settings from "./components/Settings";
 import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
@@ -28,6 +29,17 @@ const shuffle = (arr) => {
 };
 
 export default function App() {
+  const [theme, setTheme] = useState("dark");
+  const [language, setLanguage] = useState("ru");
+
+  useEffect(() => {
+    if (theme === "light") {
+      document.body.classList.add("light-theme");
+    } else {
+      document.body.classList.remove("light-theme");
+    }
+  }, [theme]);
+
   const [deck, setDeck] = useState(() => shuffle(movies));
   const [cursor, setCursor] = useState(0);
   const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
@@ -390,6 +402,9 @@ export default function App() {
     }
     if (screen === "profile") {
       return <Profile />;
+    }
+    if (screen === "settings") {
+      return <Settings theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} />;
     }
     if (screen === "friends") {
       return <Friends onViewProfile={(tag) => {

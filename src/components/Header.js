@@ -21,6 +21,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
       case "profile": return "Аккаунт";
       case "matchwatch": return "MatchWatch";
       case "publicProfile": return "Профиль";
+      case "settings": return "Параметры";
       default: return "";
     }
   };
@@ -110,6 +111,9 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
               <li>
                 <button className={`nav-tab ${currentScreen === "profile" ? "active" : ""}`} onClick={() => handleTabClick("profile")}>👤 Аккаунт</button>
               </li>
+              <li>
+                <button className={`nav-tab ${currentScreen === "settings" ? "active" : ""}`} onClick={() => handleTabClick("settings")}>⚙️ Параметры</button>
+              </li>
             </ul>
           )}
         </div>
@@ -163,6 +167,9 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
               </button>
               <button className="bottom-sheet-item" onClick={() => handleTabClick("profile")}>
                 <span className="sheet-icon">👤</span> Аккаунт
+              </button>
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("settings")}>
+                <span className="sheet-icon">⚙️</span> Параметры
               </button>
             </div>
             <button className="bottom-sheet-cancel" onClick={() => setMenuOpen(false)}>Отмена</button>
