@@ -33,7 +33,6 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
   }, [searchTerm, selectedYear, activeCategory]);
 
   const getTitle = () => {
-    console.log("SEARCH DEBUG: searchTerm=", searchTerm, "activeCategory=", activeCategory, "filteredCount=", filteredMovies.length);
     switch(activeCategory) {
       case 'series': return '🔍 Поиск сериалов';
       case 'anime': return '🔍 Поиск аниме';
