@@ -131,9 +131,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     if (!userName.trim()) return alert("Введите имя");
     
     // Фильтруем ID только для выбранной категории
-    const categoryIds = movies
-      .filter(m => activeCategory === 'all' || (m.type || "movie") === activeCategory)
-      .map(m => m.id);
+    const categoryIds = movies.reduce((acc, m) => {
+      if (activeCategory === 'all' || (m.type || "movie") === activeCategory) {
+        acc.push(m.id);
+      }
+      return acc;
+    }, []);
       
     const code = await createMatchRoom(userName, categoryIds);
     setRoomCode(code);
