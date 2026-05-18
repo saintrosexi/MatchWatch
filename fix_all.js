@@ -78,12 +78,11 @@ async function main() {
   console.log(`To fix: ${toFix.length}\n`);
   
   // Collect all IMDb IDs from movies to fix
-  const imdbIds = [];
-  for (const m of toFix) {
-    const match = (m.imdb || '').match(/tt\d+/);
-    if (match) imdbIds.push(match[0]);
-  }
-  const uniqueIds = [...new Set(imdbIds)];
+  const uniqueIds = [...new Set(
+    toFix
+      .map(m => (m.imdb || '').match(/tt\d+/)?.[0])
+      .filter(Boolean)
+  )];
   console.log(`Unique IMDb IDs to process: ${uniqueIds.length}\n`);
   
   // Fetch from KP API in batches (rate limit: 20 req/sec)
