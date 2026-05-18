@@ -4,7 +4,11 @@ build/
 
 # env
 .env
-.env.* 
+.env.local
+.env.development
+.env.test
+.env.production
+.env*.local
 
 # logs
 npm-debug.log*
