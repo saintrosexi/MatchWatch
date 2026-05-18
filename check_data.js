@@ -1,10 +1,16 @@
 const fs = require('fs');
 
+const JSON5 = require('json5');
+
 try {
   let rawData = fs.readFileSync('src/data.js', 'utf8');
   // strip export
   const arrayStr = rawData.replace('export const movies = ', '').replace(/;\s*$/, '');
-  const movies = eval('(' + arrayStr + ')');
+
+  // Replace undefined with null to make it valid JSON5, then parse safely
+  const validJson5Str = arrayStr.replace(/\bundefined\b/g, 'null');
+  const movies = JSON5.parse(validJson5Str);
+
   console.log(`Successfully loaded ${movies.length} items from data.js.`);
   
   const missingPosters = [];
