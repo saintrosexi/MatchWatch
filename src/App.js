@@ -392,10 +392,13 @@ export default function App() {
       return <Profile />;
     }
     if (screen === "friends") {
-      return <Friends onViewProfile={(tag) => {
-        setPublicProfileTag(tag);
-        setScreen("publicProfile");
-      }} />;
+      return <Friends
+        onViewProfile={(tag) => {
+          setPublicProfileTag(tag);
+          setScreen("publicProfile");
+        }}
+        onTabClick={handleTabClick}
+      />;
     }
     if (screen === "publicProfile") {
       return <PublicProfile 
@@ -542,16 +545,18 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header 
-        currentScreen={screen} 
-        onTabClick={handleTabClick} 
-        likedCount={liked.length} 
-        friendRequestsCount={Object.keys(friendRequests).length}
-        invitesCount={Object.keys(invites).length}
-        rightContent={undoHeaderButton}
-      />
+      {screen !== "friends" && (
+        <Header
+          currentScreen={screen}
+          onTabClick={handleTabClick}
+          likedCount={liked.length}
+          friendRequestsCount={Object.keys(friendRequests).length}
+          invitesCount={Object.keys(invites).length}
+          rightContent={undoHeaderButton}
+        />
+      )}
       
-      <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
+      <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "friends" ? "friends-layout" : ""}`}>
         {currentScreen}
         
         {selectedMovieForDetails && (

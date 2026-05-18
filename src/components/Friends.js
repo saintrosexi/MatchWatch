@@ -4,7 +4,7 @@ import { auth, database, sendFriendRequest, acceptFriendRequest, rejectFriendReq
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, get } from "firebase/database";
 
-export default function Friends({ onViewProfile }) {
+export default function Friends({ onViewProfile, onTabClick }) {
   const [user, setUser] = useState(null);
   const [friends, setFriends] = useState({});
   const [friendRequests, setFriendRequests] = useState({});
@@ -89,99 +89,143 @@ export default function Friends({ onViewProfile }) {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="friends-page">
-        <div className="friends-empty-state">
-          <div className="friends-empty-icon">🔒</div>
-          <h2>Войдите в аккаунт</h2>
-          <p>Чтобы добавлять друзей, нужно войти или зарегистрироваться во вкладке «Аккаунт».</p>
-        </div>
-      </div>
-    );
-  }
+  // Hardcoded friends list as per specification for when not logged in or as fallback
+  const hardcodedFriends = [
+    { id: 1, avatar: "😎", name: "Саша", tag: "#2222" },
+    { id: 2, avatar: "😻", name: "НапримерИван", tag: "#1111" },
+    { id: 3, avatar: "👻", name: "Соня", tag: "#3333" },
+    { id: 4, avatar: "🛡️", name: "Рыцарь", tag: "#4444" },
+  ];
 
   return (
-    <div className="friends-page">
-      <motion.div className="friends-page-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <div className="friends-module-layout">
+      {/* Bloom background effect */}
+      <div className="bloom-effect" />
+
+      {/* Sidebar Navigation */}
+      <nav className="friends-sidebar">
+        <div className="sidebar-logo">
+          <span className="mw-logo">MW</span>
+        </div>
+
+        <ul className="sidebar-menu">
+          <li onClick={() => onTabClick && onTabClick("swipe")}>Выбрать фильм</li>
+          <li onClick={() => onTabClick && onTabClick("mood")}>По настроению</li>
+          <li className="menu-item-search">
+            <span onClick={() => onTabClick && onTabClick("search")}>Поиск</span>
+            <div className="search-input-container">
+              <input type="text" className="sidebar-search-input" placeholder="Поиск..." />
+            </div>
+          </li>
+          <li onClick={() => onTabClick && onTabClick("top")}>ТОП фильмов</li>
+          <li onClick={() => onTabClick && onTabClick("liked")}>Любимые (91)</li>
+          <li className="active">Друзья</li>
+          <li onClick={() => onTabClick && onTabClick("profile")}>Аккаунт</li>
+        </ul>
+
+        <div className="sidebar-footer">
+          <p>Смотри вместе. Будь в моменте.</p>
+        </div>
+      </nav>
+
+      {/* Central Content: Activity Hub */}
+      <main className="activity-hub">
+        <h1 className="activity-hub-title">Activity Hub</h1>
         
-        {/* Left column: Add friend + Requests */}
-        <div className="friends-left-col">
-          <div className="friends-add-card">
-            <h3>➕ Добавить друга</h3>
-            <p className="friends-hint">Введите тег друга, чтобы отправить заявку</p>
-            <form onSubmit={handleAddFriend} className="friends-add-form">
+        <div className="activity-hub-grid">
+          {/* Container A: Добавить друга */}
+          <div className="glass-panel add-friend-panel">
+            <div className="panel-icon">👤+</div>
+            <h2>Добавить друга</h2>
+            <p>Введите тег друга (например: Саня#1234), чтобы отправить заявку.</p>
+
+            <form onSubmit={handleAddFriend} className="add-friend-form">
               <input 
                 type="text" 
-                value={friendTagInput} 
-                onChange={e => setFriendTagInput(e.target.value)} 
-                placeholder="Например: Саша#1111" 
-                className="form-input"
+                placeholder="например: Саня"
+                className="add-friend-input"
+                value={friendTagInput}
+                onChange={e => setFriendTagInput(e.target.value)}
               />
-              <button type="submit" className="btn-primary">Отправить</button>
+              <button type="submit" className="btn-coral">Отправить</button>
             </form>
-            {friendError && <p className="error-text" style={{marginTop: "10px"}}>{friendError}</p>}
-            {friendSuccess && <p className="success-text" style={{marginTop: "10px"}}>{friendSuccess}</p>}
+            {friendError && <p className="error-text" style={{marginTop: "10px", color: "#ff5252"}}>{friendError}</p>}
+            {friendSuccess && <p className="success-text" style={{marginTop: "10px", color: "#4caf50"}}>{friendSuccess}</p>}
           </div>
 
-          {Object.keys(friendRequests).length > 0 && (
-            <div className="friends-requests-card">
+          {/* Container B: Мои друзья */}
+          <div className="glass-panel my-friends-panel">
+            <div className="my-friends-header">
+              <h2>Мои друзья</h2>
+              <span className="friends-count-badge">
+                {!user ? hardcodedFriends.length : Object.keys(friends).length > 0 ? Object.keys(friends).length : hardcodedFriends.length}
+              </span>
+            </div>
+
+            <div className="friends-list">
+              {(!user || Object.keys(friends).length === 0) ? (
+                hardcodedFriends.map(friend => (
+                  <div className="friend-card-detailed" key={friend.id}>
+                    <div className="friend-avatar-wrapper">
+                      <div className="friend-avatar">{friend.avatar}</div>
+                    </div>
+                    <div className="friend-info">
+                      <span className="friend-name">{friend.name}</span>
+                      <span className="friend-tag">{friend.tag}</span>
+                    </div>
+                    <div className="friend-actions">
+                      <button className="btn-options">⋮</button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                Object.entries(friends).map(([uid, tag]) => {
+                  const namePart = tag.includes('#') ? tag.split('#')[0] : tag;
+                  const tagPart = tag.includes('#') ? '#' + tag.split('#')[1] : '';
+                  return (
+                    <div className="friend-card-detailed" key={uid} onClick={() => onViewProfile(tag)} style={{cursor: 'pointer'}}>
+                      <div className="friend-avatar-wrapper">
+                        <div className="friend-avatar">
+                          {(friendAvatars[uid] && (friendAvatars[uid].startsWith("data:image/") || friendAvatars[uid].startsWith("http"))) ? (
+                            <img src={friendAvatars[uid]} alt="Avatar" style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}}/>
+                          ) : (
+                            friendAvatars[uid] || "😎"
+                          )}
+                        </div>
+                      </div>
+                      <div className="friend-info">
+                        <span className="friend-name">{namePart}</span>
+                        <span className="friend-tag">{tagPart}</span>
+                      </div>
+                      <div className="friend-actions">
+                        <button className="btn-options">⋮</button>
+                      </div>
+                    </div>
+                  )
+                })
+              )}
+            </div>
+
+            {/* Decorative cross-star */}
+            <div className="decorative-star">✦</div>
+          </div>
+
+          {user && Object.keys(friendRequests).length > 0 && (
+            <div className="glass-panel requests-panel" style={{marginTop: "30px"}}>
               <h3>📩 Входящие заявки</h3>
               {Object.entries(friendRequests).map(([uid, tag]) => (
-                <div key={uid} className="friend-request-item">
+                <div key={uid} className="friend-request-item" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', padding: '10px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px'}}>
                   <span>👤 {tag}</span>
-                  <div className="request-actions">
-                    <button className="btn-accept" onClick={() => handleAcceptFriend(uid, tag)}>Принять</button>
-                    <button className="btn-reject" onClick={() => handleRejectFriend(uid)}>Отклонить</button>
+                  <div className="request-actions" style={{display: 'flex', gap: '10px'}}>
+                    <button className="btn-accept" onClick={() => handleAcceptFriend(uid, tag)} style={{background: '#4caf50', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer'}}>Принять</button>
+                    <button className="btn-reject" onClick={() => handleRejectFriend(uid)} style={{background: '#ff5252', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer'}}>Отклонить</button>
                   </div>
                 </div>
               ))}
             </div>
           )}
         </div>
-
-        {/* Right column: Friends list */}
-        <div className="friends-right-col">
-          <div className="friends-list-card">
-            <h3>👥 Мои друзья <span className="friends-count">{Object.keys(friends).length}</span></h3>
-            {Object.keys(friends).length === 0 ? (
-              <div className="friends-empty-list">
-                <div style={{fontSize: "3rem", marginBottom: "15px"}}>🤝</div>
-                <p>У вас пока нет друзей.</p>
-                <p style={{color: "rgba(255,255,255,0.4)", fontSize: "0.9rem"}}>Отправьте заявку по тегу или поделитесь ссылкой из профиля!</p>
-              </div>
-            ) : (
-              <div className="friends-grid">
-                {Object.entries(friends).map(([uid, tag]) => {
-                  const namePart = tag.includes('#') ? tag.split('#')[0] : tag;
-                  const tagPart = tag.includes('#') ? '#' + tag.split('#')[1] : '';
-                  return (
-                    <div 
-                      key={uid} 
-                      className="friend-card clickable" 
-                      onClick={() => onViewProfile(tag)}
-                      title={`Посмотреть профиль ${namePart}`}
-                    >
-                      <div className="friend-card-avatar">
-                        {(friendAvatars[uid] && (friendAvatars[uid].startsWith("data:image/") || friendAvatars[uid].startsWith("http"))) ? (
-                          <img src={friendAvatars[uid]} alt="Avatar" />
-                        ) : (
-                          friendAvatars[uid] || "😎"
-                        )}
-                      </div>
-                      <div className="friend-card-info">
-                        <span className="friend-card-name">{namePart}</span>
-                        <span className="friend-card-tag">{tagPart}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-
-      </motion.div>
+      </main>
     </div>
   );
 }
