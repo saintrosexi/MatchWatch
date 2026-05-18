@@ -4,14 +4,14 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyCQHQAL7LiMUQ8PkLeg-qePibn0M3FuqPA",
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "match-watch-f9eec.firebaseapp.com",
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL || "https://match-watch-f9eec-default-rtdb.firebaseio.com",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "match-watch-f9eec",
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "match-watch-f9eec.firebasestorage.app",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "896259439383",
+  appId: process.env.REACT_APP_FIREBASE_APP_ID || "1:896259439383:web:e242ba183ba638a40a1552",
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || "G-FS2CDSSF16"
 };
 
 let app, database, auth;
