@@ -15785,3 +15785,6 @@ export const movies = [
     id: 849,
   }
 ];
+
+export const moviesById = {};
+movies.forEach(m => { moviesById[m.id] = m; });

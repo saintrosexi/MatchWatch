@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut, updateUserTag } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
-import { movies } from "../data";
+import { movies, moviesById } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 import "./MovieModal.css";
 
@@ -299,7 +299,7 @@ export default function Profile() {
 
     Object.keys(decs).forEach(id => {
       if (decs[id] === "like") {
-        const m = movies.find(x => x.id === parseInt(id));
+        const m = moviesById[parseInt(id)];
         if (m) {
           likedMoviesList.push(m);
           const t = m.type || "movie";
@@ -374,7 +374,7 @@ export default function Profile() {
     const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
-    const favoriteMoviesList = favIds.map(id => movies.find(m => m.id === parseInt(id))).filter(Boolean);
+    const favoriteMoviesList = favIds.map(id => moviesById[parseInt(id)]).filter(Boolean);
     const favMovies = favoriteMoviesList.filter(m => (m.type || "movie") === "movie");
     const favSeries = favoriteMoviesList.filter(m => m.type === "series");
     const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
