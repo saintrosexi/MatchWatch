@@ -229,7 +229,11 @@ export const swipeMovie = async (roomCode, role, movieId, decision) => {
     if (snapshot.exists()) {
       const room = snapshot.val();
       const otherRole = role === 'host' ? 'guest' : 'host';
-      if (room[`${otherRole}Likes`] && room[`${otherRole}Likes`][movieId] === true) {
+      const otherLikes = room[`${otherRole}Likes`] || {};
+      const otherDecisions = room[`${otherRole}Decisions`] || {};
+      
+      const otherLiked = otherLikes[movieId] === true || otherDecisions[movieId] === "like";
+      if (otherLiked) {
         await update(roomRef, { match: movieId });
       }
     }

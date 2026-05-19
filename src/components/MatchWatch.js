@@ -7,7 +7,73 @@ import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating }) {
+const normalizeStopGenres = (sg) => {
+  if (!sg) return [];
+  if (Array.isArray(sg)) return sg;
+  if (typeof sg === 'object') return Object.values(sg);
+  if (typeof sg === 'string') return [sg];
+  return [];
+};
+
+const isMovieGenreStopped = (genresStr, stopGenres) => {
+  if (!genresStr || !stopGenres) return false;
+  const normalizedStop = normalizeStopGenres(stopGenres).map(g => g.toLowerCase().trim());
+  if (normalizedStop.length === 0) return false;
+  
+  const mGenres = genresStr.split(",").map(g => g.trim().toLowerCase());
+  
+  const expandedStop = new Set();
+  normalizedStop.forEach(sg => {
+    expandedStop.add(sg);
+    if (sg.includes("ужас") || sg.includes("хоррор") || sg.includes("ужастик")) {
+      expandedStop.add("ужасы");
+      expandedStop.add("ужастики");
+      expandedStop.add("хоррор");
+      expandedStop.add("horror");
+      expandedStop.add("мистика");
+    }
+    if (sg.includes("комеди")) {
+      expandedStop.add("комедия");
+      expandedStop.add("комедии");
+      expandedStop.add("comedy");
+    }
+    if (sg.includes("драм")) {
+      expandedStop.add("драма");
+      expandedStop.add("драмы");
+      expandedStop.add("drama");
+    }
+    if (sg.includes("боевик") || sg.includes("экшен") || sg.includes("action")) {
+      expandedStop.add("боевик");
+      expandedStop.add("боевики");
+      expandedStop.add("экшен");
+      expandedStop.add("action");
+    }
+    if (sg.includes("триллер") || sg.includes("thriller")) {
+      expandedStop.add("триллер");
+      expandedStop.add("триллеры");
+      expandedStop.add("thriller");
+    }
+    if (sg.includes("фантастик") || sg.includes("sci-fi")) {
+      expandedStop.add("фантастика");
+      expandedStop.add("фэнтези");
+      expandedStop.add("fantasy");
+      expandedStop.add("sci-fi");
+    }
+    if (sg.includes("документал") || sg.includes("doc")) {
+      expandedStop.add("документальный");
+      expandedStop.add("документалка");
+      expandedStop.add("documentary");
+    }
+  });
+  
+  return mGenres.some(mg => {
+    return Array.from(expandedStop).some(esg => 
+      mg.includes(esg) || esg.includes(mg)
+    );
+  });
+};
+
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [] }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -66,12 +132,25 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           setScreen("swiping");
         }
 
-        // Внедряем проверку на пересечение лайков (match)
+        // Внедряем проверку на пересечение лайков (match) с учетом профильных решений и сессионных лайков
         const hostLikes = data.hostLikes || {};
         const guestLikes = data.guestLikes || {};
-        const intersectionId = Object.keys(hostLikes).find(id => 
-          hostLikes[id] === true && guestLikes[id] === true
-        );
+        const hostDecisions = data.hostDecisions || {};
+        const guestDecisions = data.guestDecisions || {};
+
+        const allLikedIds = new Set([
+          ...Object.keys(hostLikes).filter(id => hostLikes[id] === true),
+          ...Object.keys(hostDecisions).filter(id => hostDecisions[id] === "like"),
+          ...Object.keys(guestLikes).filter(id => guestLikes[id] === true),
+          ...Object.keys(guestDecisions).filter(id => guestDecisions[id] === "like")
+        ]);
+
+        const intersectionId = Array.from(allLikedIds).find(id => {
+          const hostLiked = hostLikes[id] === true || hostDecisions[id] === "like";
+          const guestLiked = guestLikes[id] === true || guestDecisions[id] === "like";
+          return hostLiked && guestLiked;
+        });
+
         const effectiveMatch = data.match || (intersectionId ? parseInt(intersectionId) : null);
 
         if (effectiveMatch && screen !== "match") {
@@ -188,6 +267,17 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     const hostFav = roomData.hostFavorites || {};
     const guestFav = roomData.guestFavorites || {};
 
+    const hostLikes = roomData.hostLikes || {};
+    const guestLikes = roomData.guestLikes || {};
+
+    // Get current user's profile and session decisions
+    const isHost = role === "host";
+    const myDec = isHost ? hostDec : guestDec;
+    const myLikes = isHost ? hostLikes : guestLikes;
+    const partnerLikes = isHost ? guestLikes : hostLikes;
+    const partnerDec = isHost ? guestDec : hostDec;
+    const partnerFav = isHost ? guestFav : hostFav;
+
     // 1. Calculate genre preferences for Host
     const hostGenreScores = {};
     Object.entries(hostDec).forEach(([movieId, decision]) => {
@@ -201,6 +291,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       } else if (decision === "dislike") {
         weight = -1;
       }
+      genres.forEach(genre => {
+        hostGenreScores[genre] = (hostGenreScores[genre] || 0) + weight;
+      });
+    });
+    // Also include live host likes during session
+    Object.entries(hostLikes).forEach(([movieId, isLike]) => {
+      const m = moviesById[movieId];
+      if (!m || !m.genres) return;
+      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+      const weight = isLike ? 1 : -1;
       genres.forEach(genre => {
         hostGenreScores[genre] = (hostGenreScores[genre] || 0) + weight;
       });
@@ -223,65 +323,93 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         guestGenreScores[genre] = (guestGenreScores[genre] || 0) + weight;
       });
     });
-
-    // 3. Filter and score all movies in the room deck
-    const scoredDeck = roomData.deck
-      .filter(movieId => {
-        // Exclude movie if BOTH users have already made a decision (watched it)
-        const hasHostDec = hostDec[movieId] !== undefined;
-        const hasGuestDec = guestDec[movieId] !== undefined;
-        return !(hasHostDec && hasGuestDec);
-      })
-      .map(movieId => {
-        const m = moviesById[movieId];
-        if (!m) return { id: movieId, score: -9999 };
-
-        let score = (m.rating || 0) * 1.5;
-
-        // Genre matching
-        if (m.genres) {
-          const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-          genres.forEach(genre => {
-            const hScore = hostGenreScores[genre] || 0;
-            const gScore = guestGenreScores[genre] || 0;
-
-            if (hScore > 0 && gScore > 0) {
-              score += (hScore + gScore) * 5; // Shared interest boost
-            } else if (hScore < 0 && gScore < 0) {
-              score += (hScore + gScore) * 5; // Shared dislike penalty
-            } else {
-              score += (hScore + gScore) * 2; // Individual preference weight
-            }
-          });
-        }
-
-        // Favorites boost (if one partner has favorited)
-        const isHostFav = hostFav[movieId];
-        const isGuestFav = guestFav[movieId];
-        if (isHostFav || isGuestFav) {
-          score += 50;
-        }
-
-        // Likes boost (if one partner has liked)
-        const isHostLike = hostDec[movieId] === "like";
-        const isGuestLike = guestDec[movieId] === "like";
-        if (isHostLike || isGuestLike) {
-          score += 20;
-        }
-
-        return { id: movieId, score };
+    // Also include live guest likes during session
+    Object.entries(guestLikes).forEach(([movieId, isLike]) => {
+      const m = moviesById[movieId];
+      if (!m || !m.genres) return;
+      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+      const weight = isLike ? 1 : -1;
+      genres.forEach(genre => {
+        guestGenreScores[genre] = (guestGenreScores[genre] || 0) + weight;
       });
+    });
 
-    // 4. Sort based on score, and use original deck position as stable fallback
-    scoredDeck.sort((a, b) => {
+    // Filter out movies:
+    // 1. Swiped by the current user in the current session (to avoid seeing them again immediately)
+    // 2. Already matched (liked by both in either profile decisions or session likes)
+    // 3. Matching the current user's stopGenres (with synonyms)
+    const unswipedMovies = roomData.deck.filter(movieId => {
+      const m = moviesById[movieId];
+      if (!m) return false;
+
+      // 1. Filter by my live session swipes
+      if (myLikes[movieId] !== undefined) return false;
+
+      // 2. Filter out already matched movies (liked by both in profile or session)
+      const hostLiked = hostDec[movieId] === "like" || hostLikes[movieId] === true;
+      const guestLiked = guestDec[movieId] === "like" || guestLikes[movieId] === true;
+      if (hostLiked && guestLiked) return false;
+
+      // 3. Filter by my stopGenres (using robust check with synonyms)
+      if (isMovieGenreStopped(m.genres, stopGenres)) return false;
+
+      return true;
+    });
+
+    // Score the unswiped movies
+    const scoredUnswiped = unswipedMovies.map(movieId => {
+      const m = moviesById[movieId];
+      let score = (m.rating || 0) * 1.5;
+
+      // 1. Partner preference boost (if partner liked the movie itself, show it first!)
+      const partnerLiked = partnerDec[movieId] === "like" || partnerLikes[movieId] === true;
+      const partnerDisliked = partnerDec[movieId] === "dislike" || partnerLikes[movieId] === false;
+      
+      if (partnerLiked) {
+        score += 10000; // HUGE boost to bring partner likes to the absolute top of the deck!
+        if (partnerFav[movieId]) {
+          score += 1000; // Additional boost if partner favorited it
+        }
+      } else if (partnerDisliked) {
+        score -= 5000; // Heavy penalty if partner disliked it
+      }
+
+      // 2. Genre preference matching
+      if (m.genres) {
+        const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+        genres.forEach(genre => {
+          const hScore = hostGenreScores[genre] || 0;
+          const gScore = guestGenreScores[genre] || 0;
+
+          if (hScore > 0 && gScore > 0) {
+            score += (hScore + gScore) * 10; // Shared liked genre: highest boost
+          } else if (hScore < 0 && gScore < 0) {
+            score += (hScore + gScore) * 10; // Shared disliked genre: highest penalty
+          } else if (hScore > 0 || gScore > 0) {
+            score += Math.max(hScore, gScore) * 8; // Individually liked genre (liked by one of the two)
+          } else if (hScore < 0 || gScore < 0) {
+            score += Math.min(hScore, gScore) * 8; // Individually disliked genre
+          }
+        });
+      }
+
+      return { id: movieId, score };
+    });
+
+    // Sort the unswiped movies by score
+    scoredUnswiped.sort((a, b) => {
       if (b.score !== a.score) {
         return b.score - a.score;
       }
       return roomData.deck.indexOf(a.id) - roomData.deck.indexOf(b.id);
     });
 
-    return scoredDeck.map(item => item.id);
-  }, [roomData]);
+    const sortedUnswipedIds = scoredUnswiped.map(item => item.id);
+
+    // Maintain cursor stability by placing swiped session history first,
+    // followed by dynamically sorted remaining items.
+    return [...swipeHistory, ...sortedUnswipedIds];
+  }, [roomData, role, stopGenres, swipeHistory]);
 
   const currentMovieId = cursor < optimizedDeck.length
     ? optimizedDeck[cursor]

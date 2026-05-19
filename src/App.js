@@ -426,6 +426,7 @@ export default function App() {
         onClearHostRoomCode={() => setHostRoomCode(null)}
         invites={invites}
         disableOnboarding={disableOnboarding}
+        stopGenres={stopGenres}
       />;
     }
     if (screen === "profile") {
