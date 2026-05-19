@@ -3343,9 +3343,13 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
     padding-top: calc(var(--header-height-mobile) + 20px) !important;
   }
 
+  .app-container.swipe-layout {
+    padding-top: 15px !important;
+  }
+
   .swipe-wrapper {
     /* Push cards up a bit since we have bottom bar now */
-    padding-bottom: 20px !important;
+    padding-bottom: 10px !important;
   }
 }
 
@@ -3381,9 +3385,13 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
   /* Make category picker smaller to save space */
   .category-picker {
     flex: 0 0 auto;
-    margin-top: 5px !important;
-    margin-bottom: 10px !important;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
     gap: 8px !important;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 10;
   }
 
   .category-btn {

@@ -445,7 +445,7 @@ export default function App() {
 
     return (
       <div className="screen screen--center swipe-screen">
-        <CategoryPicker />
+        {!isMobile && <CategoryPicker />}
         <div className="swipe-wrapper">
           <div className="swipe-hints" aria-hidden="true">
             <div
@@ -558,6 +558,7 @@ export default function App() {
             </button>
           )}
         </div>
+        {isMobile && <CategoryPicker />}
       </div>
     );
   })();
@@ -587,8 +588,10 @@ export default function App() {
             friendRequestsCount={Object.keys(friendRequests).length}
             invitesCount={Object.keys(invites).length}
             rightContent={undoHeaderButton}
+            onUndo={handleUndo}
+            history={history}
           />
-          <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
+          <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
             {currentScreen}
           </div>
         </>

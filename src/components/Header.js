@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent }) {
+export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent, onUndo, history = [] }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
 
@@ -33,8 +33,9 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
 
   return (
     <>
-      <header className="header">
-        <div className="header-content">
+      {(!isMobile || currentScreen !== "swipe") && (
+        <header className="header">
+          <div className="header-content">
           {/* Desktop Left */}
           {!isMobile && (
             <div className="header-left">
@@ -122,14 +123,34 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           )}
         </div>
       </header>
+      )}
 
       {/* Mobile Bottom Navigation */}
       {isMobile && (
         <div className="mobile-bottom-nav">
-          <button className={`bottom-nav-item ${currentScreen === "swipe" ? "active" : ""}`} onClick={() => handleTabClick("swipe")}>
-            <span className="bottom-nav-icon">🎬</span>
-            <span className="bottom-nav-label">Выбор</span>
-          </button>
+          {currentScreen === "swipe" ? (
+            <button 
+              className="bottom-nav-item active" 
+              onClick={() => {
+                if (onUndo) onUndo();
+              }}
+              style={{ 
+                opacity: (!history || history.length === 0) ? 0.4 : 1,
+                transition: "opacity 0.2s"
+              }}
+            >
+              <span className="bottom-nav-icon">⏪</span>
+              <span className="bottom-nav-label">Назад</span>
+            </button>
+          ) : (
+            <button 
+              className="bottom-nav-item" 
+              onClick={() => handleTabClick("swipe")}
+            >
+              <span className="bottom-nav-icon">🎬</span>
+              <span className="bottom-nav-label">Выбор</span>
+            </button>
+          )}
           <button className={`bottom-nav-item ${currentScreen === "matchwatch" ? "active" : ""}`} onClick={() => handleTabClick("matchwatch")} style={{ position: 'relative' }}>
             <span className="bottom-nav-icon">🍿</span>
             <span className="bottom-nav-label">Match</span>
