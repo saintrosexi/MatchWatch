@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue, update, remove } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { movies } from "./data";
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
 const firebaseConfig = {
@@ -180,11 +181,126 @@ export const removeInvite = async (currentUid, roomCode) => {
   await remove(ref(database, `users/${currentUid}/invites/${roomCode}`));
 };
 
-export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}) => {
+const normalizeStopGenres = (sg) => {
+  if (!sg) return [];
+  let arr = [];
+  if (Array.isArray(sg)) {
+    arr = sg;
+  } else if (typeof sg === 'object') {
+    arr = Object.values(sg);
+  } else if (typeof sg === 'string') {
+    arr = [sg];
+  }
+  return arr.filter(item => typeof item === 'string' && item.trim() !== "");
+};
+
+const isMovieGenreStopped = (genresStr, stopGenres) => {
+  if (!genresStr || !stopGenres) return false;
+  const normalizedStop = normalizeStopGenres(stopGenres).map(g => g.toLowerCase().trim());
+  if (normalizedStop.length === 0) return false;
+  
+  const mGenres = genresStr.split(",").map(g => g.trim().toLowerCase());
+  
+  const expandedStop = new Set();
+  normalizedStop.forEach(sg => {
+    expandedStop.add(sg);
+    if (sg.includes("ужас") || sg.includes("хоррор") || sg.includes("ужастик")) {
+      expandedStop.add("ужасы");
+      expandedStop.add("ужастики");
+      expandedStop.add("хоррор");
+      expandedStop.add("horror");
+      expandedStop.add("мистика");
+    }
+    if (sg.includes("комеди")) {
+      expandedStop.add("комедия");
+      expandedStop.add("комедии");
+      expandedStop.add("comedy");
+    }
+    if (sg.includes("драм")) {
+      expandedStop.add("драма");
+      expandedStop.add("драмы");
+      expandedStop.add("drama");
+    }
+    if (sg.includes("боевик") || sg.includes("экшен") || sg.includes("action")) {
+      expandedStop.add("боевик");
+      expandedStop.add("боевики");
+      expandedStop.add("экшен");
+      expandedStop.add("action");
+    }
+    if (sg.includes("триллер") || sg.includes("thriller")) {
+      expandedStop.add("триллер");
+      expandedStop.add("триллеры");
+      expandedStop.add("thriller");
+    }
+    if (sg.includes("фантастик") || sg.includes("sci-fi")) {
+      expandedStop.add("фантастика");
+      expandedStop.add("фэнтези");
+      expandedStop.add("fantasy");
+      expandedStop.add("sci-fi");
+    }
+    if (sg.includes("документал") || sg.includes("doc")) {
+      expandedStop.add("документальный");
+      expandedStop.add("документалка");
+      expandedStop.add("documentary");
+    }
+  });
+  
+  return mGenres.some(mg => {
+    return Array.from(expandedStop).some(esg => 
+      mg.includes(esg) || esg.includes(mg)
+    );
+  });
+};
+
+const getFavoriteActorAndDirector = (decisions = {}, favorites = {}) => {
+  const actorScores = {};
+  const directorScores = {};
+  
+  const favIds = Object.keys(favorites).filter(id => favorites[id]);
+
+  Object.keys(decisions).forEach(id => {
+    if (decisions[id] === "like") {
+      const m = movies.find(movie => movie.id === parseInt(id));
+      if (m) {
+        const isFav = favIds.includes(id);
+        const weight = isFav ? 3 : 1;
+        const t = m.type || "movie";
+
+        // Director (ignore series/anime and N/A/—)
+        if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
+          m.director.split(", ").forEach(d => {
+            directorScores[d] = (directorScores[d] || 0) + weight;
+          });
+        }
+
+        // Actors (ignore N/A/—)
+        if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
+          m.actors.split(", ").forEach(a => {
+            actorScores[a] = (actorScores[a] || 0) + weight;
+          });
+        }
+      }
+    }
+  });
+
+  let favoriteDirector = "—";
+  if (Object.keys(directorScores).length > 0) {
+    favoriteDirector = Object.entries(directorScores).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  let favoriteActor = "—";
+  if (Object.keys(actorScores).length > 0) {
+    favoriteActor = Object.entries(actorScores).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  return { favoriteActor, favoriteDirector };
+};
+
+export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}, hostStopGenres = []) => {
   if (!database) return null;
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   
-  // Если передана кастомная колода, используем её, иначе - стандартную 1...512
+  // Если передана кастомная колода, используем её, иначе - стандартную 1...849
   const deck = customDeck || Array.from({length: 849}, (_, i) => i + 1);
   const shuffledDeck = [...deck];
   for (let i = shuffledDeck.length - 1; i > 0; i--) {
@@ -199,21 +315,125 @@ export const createMatchRoom = async (hostName, customDeck = null, hostDecisions
     deck: shuffledDeck,
     hostDecisions,
     hostFavorites,
+    hostStopGenres,
     createdAt: Date.now()
   });
   return roomCode;
 };
 
-export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}) => {
+export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}, guestStopGenres = []) => {
   if (!database) return false;
   const roomRef = ref(database, `matchRooms/${roomCode}`);
   const snapshot = await get(roomRef);
   if (snapshot.exists()) {
+    const room = snapshot.val();
+    const hostDecisions = room.hostDecisions || {};
+    const hostFavorites = room.hostFavorites || {};
+    const hostStopGenres = room.hostStopGenres || [];
+    
+    // Получаем список кандидатов из существующей (и уже отфильтрованной по категории) колоды
+    const candidateIds = room.deck || [];
+    
+    // Рассчитываем любимых актеров и режиссеров для обоих пользователей
+    const hostFavs = getFavoriteActorAndDirector(hostDecisions, hostFavorites);
+    const guestFavs = getFavoriteActorAndDirector(guestDecisions, guestFavorites);
+    
+    const hostFavActor = hostFavs.favoriteActor;
+    const hostFavDirector = hostFavs.favoriteDirector;
+    const guestFavActor = guestFavs.favoriteActor;
+    const guestFavDirector = guestFavs.favoriteDirector;
+    
+    const scoredDeck = [];
+    
+    // Карта фильмов по ID для быстрой фильтрации
+    const moviesMap = new Map();
+    movies.forEach(m => moviesMap.set(m.id, m));
+    
+    candidateIds.forEach(id => {
+      const m = moviesMap.get(parseInt(id));
+      if (!m) return;
+      
+      // Исключаем невышедшие фильмы: дата релиза после "2026-05-19"
+      if (m.releaseDate && new Date(m.releaseDate) > new Date("2026-05-19")) {
+        return;
+      }
+      
+      // Исключаем совпадения по лайкам (фильмы, которые оба уже лайкнули в профиле)
+      const hostLiked = hostDecisions[id] === "like";
+      const guestLiked = guestDecisions[id] === "like";
+      if (hostLiked && guestLiked) {
+        return;
+      }
+      
+      let score = 0;
+      
+      // 1. Фильмы, которые лайкнул только один пользователь
+      const likedByOnlyOne = (hostLiked && !guestLiked) || (guestLiked && !hostLiked);
+      if (likedByOnlyOne) {
+        score += 100;
+      }
+      
+      // 2. В ролях любимый актер одного из пользователей
+      let hasFavActor = false;
+      if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
+        const actorsList = m.actors.split(", ").map(a => a.trim().toLowerCase());
+        if (
+          (hostFavActor && hostFavActor !== "—" && actorsList.includes(hostFavActor.toLowerCase())) ||
+          (guestFavActor && guestFavActor !== "—" && actorsList.includes(guestFavActor.toLowerCase()))
+        ) {
+          hasFavActor = true;
+        }
+      }
+      if (hasFavActor) {
+        score += 30;
+      }
+      
+      // 3. Режиссер — любимый режиссер одного из пользователей
+      let hasFavDirector = false;
+      if (m.director && m.director !== "N/A" && m.director !== "—") {
+        const directorsList = m.director.split(", ").map(d => d.trim().toLowerCase());
+        if (
+          (hostFavDirector && hostFavDirector !== "—" && directorsList.includes(hostFavDirector.toLowerCase())) ||
+          (guestFavDirector && guestFavDirector !== "—" && directorsList.includes(guestFavDirector.toLowerCase()))
+        ) {
+          hasFavDirector = true;
+        }
+      }
+      if (hasFavDirector) {
+        score += 30;
+      }
+      
+      // 4. Фильмы в избранном у одного из пользователей
+      const hostFav = hostFavorites[id] === true;
+      const guestFav = guestFavorites[id] === true;
+      if (hostFav || guestFav) {
+        score += 50;
+      }
+      
+      // 5. Фильмы в стоп-листе (жанры) у любого из пользователей — уходят в самый низ
+      const isStopped = isMovieGenreStopped(m.genres, hostStopGenres) || isMovieGenreStopped(m.genres, guestStopGenres);
+      if (isStopped) {
+        score -= 1000;
+      }
+      
+      // Добавляем случайный разброс для одинаковых приоритетов
+      score += Math.random();
+      
+      scoredDeck.push({ id: m.id, score });
+    });
+    
+    // Сортируем колоду по убыванию очков приоритета
+    scoredDeck.sort((a, b) => b.score - a.score);
+    
+    const finalDeck = scoredDeck.map(item => item.id);
+    
     await update(roomRef, {
       guestName,
       status: 'active',
       guestDecisions,
-      guestFavorites
+      guestFavorites,
+      guestStopGenres,
+      deck: finalDeck
     });
     return true;
   }

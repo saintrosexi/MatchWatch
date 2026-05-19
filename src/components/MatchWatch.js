@@ -228,7 +228,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       return acc;
     }, []);
       
-    const code = await createMatchRoom(userName, categoryIds, decisions, favorites);
+    const code = await createMatchRoom(userName, categoryIds, decisions, favorites, stopGenres);
     setRoomCode(code);
     setRole("host");
     setScreen("waiting");
@@ -237,7 +237,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleJoinRoom = async () => {
     if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
-    const success = await joinMatchRoom(roomCode, userName, decisions, favorites);
+    const success = await joinMatchRoom(roomCode, userName, decisions, favorites, stopGenres);
     if (success) {
       setRole("guest");
       setScreen("swiping");
@@ -332,7 +332,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                       <button className="btn-primary btn-small" onClick={() => {
                         setRoomCode(code);
                         setRole("guest");
-                        joinMatchRoom(code, userName, decisions, favorites).then(success => {
+                        joinMatchRoom(code, userName, decisions, favorites, stopGenres).then(success => {
                           if (success) {
                             setScreen("swiping");
                             removeInvite(auth.currentUser.uid, code);
