@@ -374,13 +374,6 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
         {/* LEFT COLUMN */}
         <div className="profile-left">
           <div className="profile-card-main">
-            <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
-              {(targetData.profile.avatar && (targetData.profile.avatar.startsWith("data:image/") || targetData.profile.avatar.startsWith("http"))) ? (
-                <img src={targetData.profile.avatar} alt="Avatar" />
-              ) : (
-                targetData.profile.avatar || "😎"
-              )}
-            </div>
             <h2 className="profile-display-name">
               <span className="profile-name-bold">{namePart}</span>
               <span className="profile-tag-dim">{tagPart}</span>
@@ -453,6 +446,18 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
               <div className="stat-card" style={{ background: "linear-gradient(135deg, rgba(255, 138, 80, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%)", border: "1px solid rgba(255, 138, 80, 0.3)" }}>
                 <div className="stat-value" style={{ color: "#ff8a50" }}>⏳ {stats.waitingList?.length || 0}</div>
                 <div className="stat-label">В списке ожидания</div>
+              </div>
+              <div 
+                className="stat-card clickable-stat-card" 
+                style={{ 
+                  background: "linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%)", 
+                  border: "1px solid rgba(255, 215, 0, 0.3)",
+                  cursor: "pointer" 
+                }}
+                onClick={() => document.querySelector(".profile-card-favorites")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                <div className="stat-value" style={{ color: "#ffd700" }}>⭐ {stats.favMovies.length + stats.favSeries.length + stats.favAnime.length}</div>
+                <div className="stat-label">В избранном</div>
               </div>
             </div>
             

@@ -660,7 +660,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </div>
 
             <div className="deck-container">
-              {showTutorial ? (
+              {!roomData || !roomData.deck ? (
+                <div className="empty-profile" style={{ textAlign: "center", marginTop: "40px" }}>
+                  <div className="premium-loader" style={{ margin: "0 auto 20px auto" }} />
+                  <p style={{ color: "rgba(255,255,255,0.6)" }}>Загрузка карточек комнаты...</p>
+                </div>
+              ) : showTutorial ? (
                 <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
                   <SwipeCard 
                     isTutorial={true} 
