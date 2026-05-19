@@ -465,113 +465,54 @@ export default function Profile() {
           {/* LEFT COLUMN */}
           <div className="profile-left">
             <div className="profile-card-main">
+              <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+                {(profileData?.avatar && (profileData.avatar.startsWith("data:image/") || profileData.avatar.startsWith("http"))) ? (
+                  <img src={profileData.avatar} alt="Avatar" />
+                ) : (
+                  profileData?.avatar || "😎"
+                )}
+              </div>
               <h2 className="profile-display-name">
                 <span className="profile-name-bold">{namePart}</span>
                 <span className="profile-tag-dim">{tagPart}</span>
               </h2>
+
+              {/* Bio Block */}
+              <div className="profile-bio-container" style={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}>
+                {profileData?.bio ? (
+                  <p className="profile-bio" style={{
+                    color: "rgba(255, 255, 255, 0.85)",
+                    fontSize: "0.95rem",
+                    lineHeight: "1.4",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    padding: "10px 14px",
+                    borderRadius: "8px",
+                    borderLeft: "3px solid #ff8a50",
+                    textAlign: "left",
+                    margin: 0,
+                    wordBreak: "break-word"
+                  }}>
+                    {profileData.bio}
+                  </p>
+                ) : (
+                  <p className="profile-bio-placeholder" style={{
+                    color: "rgba(255, 255, 255, 0.4)",
+                    fontSize: "0.85rem",
+                    fontStyle: "italic",
+                    margin: 0,
+                    textAlign: "center"
+                  }}>
+                    Напишите что-нибудь о себе в настройках ⚙️
+                  </p>
+                )}
+              </div>
+
               <button 
                 className={`btn-share-profile ${copiedLink ? 'copied' : ''}`}
                 onClick={handleShareProfile}
               >
                 {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
               </button>
-            </div>
-
-            {/* Settings card */}
-            <div className="profile-card-settings">
-              <h3>⚙️ Настройки</h3>
-
-              <div className="setting-group">
-                <label>Обучение</label>
-                <div style={{display: "flex", alignItems: "center", gap: "10px", marginTop: "5px"}}>
-                  <input 
-                    type="checkbox" 
-                    id="disable-onboarding"
-                    checked={profileData?.disableOnboarding || false}
-                    onChange={(e) => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), e.target.checked)}
-                    style={{width: "20px", height: "20px", cursor: "pointer"}}
-                  />
-                  <label htmlFor="disable-onboarding" style={{fontSize: "0.95rem", cursor: "pointer"}}>Выключить обучение</label>
-                </div>
-                <p className="setting-hint">Если включено, подсказки не показываются.</p>
-              </div>
-
-              <div className="setting-group">
-                <label>Стоп-жанры</label>
-                <p className="setting-hint">Фильмы этих жанров не будут предлагаться.</p>
-                <div className="stop-genres-picker">
-                  {["Ужасы", "Драма", "Комедия", "Боевик", "Триллер", "Фантастика", "Документальный"].map(genre => {
-                    const rawStopGenres = profileData?.stopGenres || [];
-                    const stopGenresList = (Array.isArray(rawStopGenres)
-                      ? rawStopGenres
-                      : (rawStopGenres && typeof rawStopGenres === 'object' ? Object.values(rawStopGenres) : []))
-                      .filter(item => typeof item === 'string' && item.trim() !== "");
-                    const isStopped = stopGenresList.includes(genre);
-                    return (
-                      <button 
-                        key={genre}
-                        className={`genre-option ${isStopped ? 'stopped' : ''}`}
-                        onClick={() => {
-                          let current = stopGenresList;
-                          if (isStopped) {
-                            current = current.filter(g => g !== genre);
-                          } else {
-                            current = [...current, genre];
-                          }
-                          set(ref(database, `users/${user.uid}/profile/stopGenres`), current);
-                        }}
-                      >
-                        {isStopped ? '🚫 ' : ''}{genre}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="setting-group">
-                <label>Редактирование профиля</label>
-                {!isEditingProfile ? (
-                  <button className="btn-secondary btn-small" onClick={startEditingProfile}>✏️ Изменить имя и тег</button>
-                ) : (
-                  <form onSubmit={handleEditProfile} className="auth-form" style={{marginTop: "10px"}}>
-                    <input 
-                      type="text" 
-                      value={editName} 
-                      onChange={e => setEditName(e.target.value)} 
-                      placeholder="Новое имя" 
-                      required 
-                      className="form-input" 
-                      style={{marginBottom: "8px"}}
-                    />
-                    <input 
-                      type="text" 
-                      value={editTag} 
-                      onChange={e => setEditTag(e.target.value)} 
-                      placeholder="Новый тег (4 цифры)" 
-                      className="form-input" 
-                      maxLength={4}
-                      style={{marginBottom: "8px"}}
-                    />
-                    {editError && <div className="error-text">{editError}</div>}
-                    {editSuccess && <div className="success-text">{editSuccess}</div>}
-                    <div style={{display: "flex", gap: "8px", marginTop: "10px"}}>
-                      <button type="submit" className="btn-primary btn-small">Сохранить</button>
-                      <button type="button" className="btn-secondary btn-small" onClick={() => setIsEditingProfile(false)}>Отмена</button>
-                    </div>
-                  </form>
-                )}
-              </div>
-
-              <div className="setting-group danger-zone">
-                <label>Сброс прогресса</label>
-                <p className="setting-hint">Удалит все ваши лайки и дизлайки.</p>
-                <button className="btn-secondary btn-small" onClick={handleResetProgress}>🗑 Сбросить</button>
-              </div>
-
-              <div className="setting-group danger-zone" style={{marginTop: "15px"}}>
-                <label>Выход из аккаунта</label>
-                <button className="btn-secondary btn-small" onClick={handleLogout}>🚪 Выйти</button>
-              </div>
             </div>
           </div>
 

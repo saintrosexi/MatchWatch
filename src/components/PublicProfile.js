@@ -374,10 +374,37 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
         {/* LEFT COLUMN */}
         <div className="profile-left">
           <div className="profile-card-main">
+            <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+              {(targetData.profile?.avatar && (targetData.profile.avatar.startsWith("data:image/") || targetData.profile.avatar.startsWith("http"))) ? (
+                <img src={targetData.profile.avatar} alt="Avatar" />
+              ) : (
+                targetData.profile?.avatar || "😎"
+              )}
+            </div>
             <h2 className="profile-display-name">
               <span className="profile-name-bold">{namePart}</span>
               <span className="profile-tag-dim">{tagPart}</span>
             </h2>
+
+            {/* Bio Block */}
+            {targetData.profile?.bio && (
+              <div className="profile-bio-container" style={{ width: "100%", marginTop: "15px", marginBottom: "5px" }}>
+                <p className="profile-bio" style={{
+                  color: "rgba(255, 255, 255, 0.85)",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.4",
+                  background: "rgba(255, 255, 255, 0.05)",
+                  padding: "10px 14px",
+                  borderRadius: "8px",
+                  borderLeft: "3px solid #ff8a50",
+                  textAlign: "left",
+                  margin: 0,
+                  wordBreak: "break-word"
+                }}>
+                  {targetData.profile.bio}
+                </p>
+              </div>
+            )}
             
             <div style={{marginTop: "20px", width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
               {currentUser && currentUser.displayName === tag ? (
