@@ -277,154 +277,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     }
     const cleanDeck = deckArray.filter(id => id !== null && id !== undefined).map(id => parseInt(id));
 
-    const hostDec = roomData.hostDecisions || {};
-    const guestDec = roomData.guestDecisions || {};
-    const hostFav = roomData.hostFavorites || {};
-    const guestFav = roomData.guestFavorites || {};
-
-    const hostLikes = roomData.hostLikes || {};
-    const guestLikes = roomData.guestLikes || {};
-
-    // Get current user's profile and session decisions
+    // Находим лайки текущего пользователя в этой сессии
     const isHost = role === "host";
-    const myDec = isHost ? hostDec : guestDec;
-    const myLikes = isHost ? hostLikes : guestLikes;
-    const partnerLikes = isHost ? guestLikes : hostLikes;
-    const partnerDec = isHost ? guestDec : hostDec;
-    const partnerFav = isHost ? guestFav : hostFav;
+    const myLikes = isHost ? (roomData.hostLikes || {}) : (roomData.guestLikes || {});
 
-    // 1. Calculate genre preferences for Host
-    const hostGenreScores = {};
-    Object.entries(hostDec).forEach(([movieId, decision]) => {
-      const m = moviesById[movieId];
-      if (!m || !m.genres) return;
-      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-      let weight = 0;
-      if (decision === "like") {
-        weight = 1;
-        if (hostFav[movieId]) weight = 2;
-      } else if (decision === "dislike") {
-        weight = -1;
-      }
-      genres.forEach(genre => {
-        hostGenreScores[genre] = (hostGenreScores[genre] || 0) + weight;
-      });
-    });
-    // Also include live host likes during session
-    Object.entries(hostLikes).forEach(([movieId, isLike]) => {
-      const m = moviesById[movieId];
-      if (!m || !m.genres) return;
-      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-      const weight = isLike ? 1 : -1;
-      genres.forEach(genre => {
-        hostGenreScores[genre] = (hostGenreScores[genre] || 0) + weight;
-      });
-    });
+    // Фильтруем только те карточки, которые текущий пользователь уже свайпнул в этой сессии
+    const unswipedIds = cleanDeck.filter(movieId => myLikes[movieId] === undefined);
 
-    // 2. Calculate genre preferences for Guest
-    const guestGenreScores = {};
-    Object.entries(guestDec).forEach(([movieId, decision]) => {
-      const m = moviesById[movieId];
-      if (!m || !m.genres) return;
-      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-      let weight = 0;
-      if (decision === "like") {
-        weight = 1;
-        if (guestFav[movieId]) weight = 2;
-      } else if (decision === "dislike") {
-        weight = -1;
-      }
-      genres.forEach(genre => {
-        guestGenreScores[genre] = (guestGenreScores[genre] || 0) + weight;
-      });
-    });
-    // Also include live guest likes during session
-    Object.entries(guestLikes).forEach(([movieId, isLike]) => {
-      const m = moviesById[movieId];
-      if (!m || !m.genres) return;
-      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-      const weight = isLike ? 1 : -1;
-      genres.forEach(genre => {
-        guestGenreScores[genre] = (guestGenreScores[genre] || 0) + weight;
-      });
-    });
-
-    // Filter out movies:
-    // 1. Swiped by the current user in the current session (to avoid seeing them again immediately)
-    // 2. Already matched (liked by both in either profile decisions or session likes)
-    // 3. Matching the current user's stopGenres (with synonyms)
-    const unswipedMovies = cleanDeck.filter(movieId => {
-      const m = moviesById[movieId];
-      if (!m) return false;
-
-      // 1. Filter by my live session swipes
-      if (myLikes[movieId] !== undefined) return false;
-
-      // 2. Filter out already matched movies (liked by both in profile or session)
-      const hostLiked = hostDec[movieId] === "like" || hostLikes[movieId] === true;
-      const guestLiked = guestDec[movieId] === "like" || guestLikes[movieId] === true;
-      if (hostLiked && guestLiked) return false;
-
-      // 3. Filter by my stopGenres (using robust check with synonyms)
-      if (isMovieGenreStopped(m.genres, stopGenres)) return false;
-
-      return true;
-    });
-
-    // Score the unswiped movies
-    const scoredUnswiped = unswipedMovies.map(movieId => {
-      const m = moviesById[movieId];
-      let score = (m.rating || 0) * 1.5;
-
-      // 1. Partner preference boost (if partner liked the movie itself, show it first!)
-      const partnerLiked = partnerDec[movieId] === "like" || partnerLikes[movieId] === true;
-      const partnerDisliked = partnerDec[movieId] === "dislike" || partnerLikes[movieId] === false;
-      
-      if (partnerLiked) {
-        score += 10000; // HUGE boost to bring partner likes to the absolute top of the deck!
-        if (partnerFav[movieId]) {
-          score += 1000; // Additional boost if partner favorited it
-        }
-      } else if (partnerDisliked) {
-        score -= 5000; // Heavy penalty if partner disliked it
-      }
-
-      // 2. Genre preference matching
-      if (m.genres) {
-        const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
-        genres.forEach(genre => {
-          const hScore = hostGenreScores[genre] || 0;
-          const gScore = guestGenreScores[genre] || 0;
-
-          if (hScore > 0 && gScore > 0) {
-            score += (hScore + gScore) * 10; // Shared liked genre: highest boost
-          } else if (hScore < 0 && gScore < 0) {
-            score += (hScore + gScore) * 10; // Shared disliked genre: highest penalty
-          } else if (hScore > 0 || gScore > 0) {
-            score += Math.max(hScore, gScore) * 8; // Individually liked genre (liked by one of the two)
-          } else if (hScore < 0 || gScore < 0) {
-            score += Math.min(hScore, gScore) * 8; // Individually disliked genre
-          }
-        });
-      }
-
-      return { id: movieId, score };
-    });
-
-    // Sort the unswiped movies by score
-    scoredUnswiped.sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
-      }
-      return cleanDeck.indexOf(a.id) - cleanDeck.indexOf(b.id);
-    });
-
-    const sortedUnswipedIds = scoredUnswiped.map(item => item.id);
-
-    // Maintain cursor stability by placing swiped session history first,
-    // followed by dynamically sorted remaining items.
-    return [...swipeHistory, ...sortedUnswipedIds];
-  }, [roomData, role, stopGenres, swipeHistory]);
+    // Объединяем историю и невыбранные для сохранения стабильности курсора
+    return [...swipeHistory, ...unswipedIds];
+  }, [roomData, role, swipeHistory]);
 
   const currentMovieId = cursor < optimizedDeck.length
     ? optimizedDeck[cursor]
