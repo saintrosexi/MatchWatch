@@ -277,13 +277,14 @@ export default function Profile() {
       topGenres: [], favoriteDecade: "—", recentLikes: [], 
       favMovies: [], favSeries: [], favAnime: [], ratings: {},
       likedMoviesCount: 0, likedSeriesCount: 0, likedAnimeCount: 0,
-      favoriteDirector: "—", favoriteActor: "—", favoriteStudio: "—"
+      favoriteDirector: "—", favoriteActor: "—", favoriteStudio: "—",
+      waitingList: []
     };
     const decs = appData.decisions || {};
     const swiped = Object.keys(decs).length;
-    const likes = Object.values(decs).filter(d => d === "like").length;
     
     const likedMoviesList = [];
+    const waitingMoviesList = [];
     let likedMoviesCount = 0;
     let likedSeriesCount = 0;
     let likedAnimeCount = 0;
@@ -304,49 +305,56 @@ export default function Profile() {
       if (decs[id] === "like") {
         const m = moviesMap.get(parseInt(id));
         if (m) {
-          likedMoviesList.push(m);
-          const t = m.type || "movie";
-          if (t === "movie") likedMoviesCount++;
-          if (t === "series") likedSeriesCount++;
-          if (t === "anime") likedAnimeCount++;
+          const released = !m.releaseDate || new Date(m.releaseDate) <= new Date("2026-05-19");
+          if (released) {
+            likedMoviesList.push(m);
+            const t = m.type || "movie";
+            if (t === "movie") likedMoviesCount++;
+            if (t === "series") likedSeriesCount++;
+            if (t === "anime") likedAnimeCount++;
 
-          const isFav = favIds.includes(id);
-          const weight = isFav ? 3 : 1; // +1 for like, +2 extra for favorite
+            const isFav = favIds.includes(id);
+            const weight = isFav ? 3 : 1; // +1 for like, +2 extra for favorite
 
-          if (m.genres) {
-            m.genres.split(", ").forEach(g => {
-              genreScores[g] = (genreScores[g] || 0) + weight;
-            });
-          }
-          if (m.year) {
-            const decade = Math.floor(m.year / 10) * 10;
-            decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
-          }
-
-          // Director (ignore series/anime and N/A/—)
-          if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
-            m.director.split(", ").forEach(d => {
-              directorScores[d] = (directorScores[d] || 0) + weight;
-            });
-          }
-
-          // Actors (ignore N/A/—)
-          if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
-            m.actors.split(", ").forEach(a => {
-              actorScores[a] = (actorScores[a] || 0) + weight;
-            });
-          }
-
-          // Anime Studio
-          if (t === "anime") {
-            const studio = getAnimeStudio(m);
-            if (studio && studio !== "Другая студия") {
-              studioScores[studio] = (studioScores[studio] || 0) + weight;
+            if (m.genres) {
+              m.genres.split(", ").forEach(g => {
+                genreScores[g] = (genreScores[g] || 0) + weight;
+              });
             }
+            if (m.year) {
+              const decade = Math.floor(m.year / 10) * 10;
+              decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
+            }
+
+            // Director (ignore series/anime and N/A/—)
+            if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
+              m.director.split(", ").forEach(d => {
+                directorScores[d] = (directorScores[d] || 0) + weight;
+              });
+            }
+
+            // Actors (ignore N/A/—)
+            if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
+              m.actors.split(", ").forEach(a => {
+                actorScores[a] = (actorScores[a] || 0) + weight;
+              });
+            }
+
+            // Anime Studio
+            if (t === "anime") {
+              const studio = getAnimeStudio(m);
+              if (studio && studio !== "Другая студия") {
+                studioScores[studio] = (studioScores[studio] || 0) + weight;
+              }
+            }
+          } else {
+            waitingMoviesList.push(m);
           }
         }
       }
     });
+
+    const likes = likedMoviesList.length;
 
     const topGenres = Object.entries(genreScores)
       .sort((a, b) => b[1] - a[1])
@@ -386,7 +394,8 @@ export default function Profile() {
       swiped, likes, matches: matchHistory.length, topGenres, favoriteDecade, recentLikes, 
       favMovies, favSeries, favAnime, ratings,
       likedMoviesCount, likedSeriesCount, likedAnimeCount,
-      favoriteDirector, favoriteActor, favoriteStudio
+      favoriteDirector, favoriteActor, favoriteStudio,
+      waitingList: waitingMoviesList
     };
   }, [appData, matchHistory]);
 
@@ -676,20 +685,9 @@ export default function Profile() {
                   <div className="stat-value">{stats.likedAnimeCount}</div>
                   <div className="stat-label">Просмотрено аниме</div>
                 </div>
-                <div 
-                  className="stat-card clickable-stat-card" 
-                  style={{
-                    cursor: "pointer", 
-                    background: "linear-gradient(135deg, rgba(255, 138, 80, 0.15) 0%, rgba(233, 30, 99, 0.15) 100%)",
-                    border: "1px solid rgba(255, 138, 80, 0.4)",
-                    boxShadow: "0 4px 15px rgba(255, 138, 80, 0.15)"
-                  }}
-                  onClick={() => setShowAllFavorites(true)}
-                >
-                  <div className="stat-value" style={{color: "#ff8a50"}}>
-                    ★ {stats.favMovies.length + stats.favSeries.length + stats.favAnime.length}
-                  </div>
-                  <div className="stat-label" style={{color: "#fff", fontWeight: "bold"}}>Избранное ↗</div>
+                <div className="stat-card" style={{ background: "linear-gradient(135deg, rgba(255, 138, 80, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%)", border: "1px solid rgba(255, 138, 80, 0.3)" }}>
+                  <div className="stat-value" style={{ color: "#ff8a50" }}>⏳ {stats.waitingList?.length || 0}</div>
+                  <div className="stat-label">В списке ожидания</div>
                 </div>
               </div>
               
@@ -789,6 +787,50 @@ export default function Profile() {
                  <p className="setting-hint" style={{textAlign: "center", padding: "20px 0"}}>Вы пока не добавили ничего в избранное.</p>
               )}
             </div>
+
+            {stats.waitingList && stats.waitingList.length > 0 && (
+              <div className="profile-card-stats profile-card-favorites" style={{ marginTop: "20px" }}>
+                <h3>⏳ Список ожидания</h3>
+                <div className="favorites-category-section">
+                  <h4>Ожидаемые премьеры</h4>
+                  <div className="favorites-horizontal-scroll" style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "10px" }}>
+                    {stats.waitingList.map(m => {
+                      const days = Math.ceil((new Date(m.releaseDate) - new Date("2026-05-19")) / (1000 * 60 * 60 * 24));
+                      const text = days === 1 ? "Завтра!" : days === 2 ? "Послезавтра!" : days <= 30 ? `${days} дн.` : `${Math.floor(days / 30)} мес.`;
+                      return (
+                        <div 
+                          key={m.id} 
+                          className="favorite-item-card" 
+                          title={`${m.titleRu || m.title} (Релиз: ${m.releaseDate})`}
+                          onClick={() => setSelectedMovie(m)}
+                          style={{ cursor: "pointer", position: "relative" }}
+                        >
+                          <img src={m.poster} alt={m.title} />
+                          <div 
+                            style={{
+                              position: "absolute",
+                              bottom: "5px",
+                              left: "5px",
+                              right: "5px",
+                              background: "linear-gradient(135deg, rgba(255, 138, 80, 0.95) 0%, rgba(233, 30, 99, 0.95) 100%)",
+                              color: "#fff",
+                              padding: "2px 4px",
+                              borderRadius: "4px",
+                              fontSize: "0.6rem",
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              boxShadow: "0 1px 4px rgba(0,0,0,0.4)"
+                            }}
+                          >
+                            {text}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="profile-card-achievements">
               <h3>🏆 Достижения</h3>

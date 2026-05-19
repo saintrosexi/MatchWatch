@@ -2,6 +2,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import "./DetailedMovieModal.css";
 
+const formatReleaseDate = (dateStr) => {
+  if (!dateStr) return "";
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const months = [
+    "января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+  ];
+  return `${day} ${months[month - 1]} ${year}`;
+};
+
 export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike, isFavorite, onToggleFavorite, rating, onSetRating }) {
   const [hoverRating, setHoverRating] = useState(0);
   if (!movie) return null;
@@ -90,9 +100,27 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               <h1 className="detailed-modal-title">
                 {movie.titleRu || movie.title}
               </h1>
-              <div className="detailed-modal-meta">
+              <div className="detailed-modal-meta" style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                 <span className="modal-year">🗓️ {movie.year}</span>
-                <span className="modal-rating">⭐ {movie.rating}</span>
+                {movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") ? (
+                  <span className="modal-release-badge" style={{
+                    background: "linear-gradient(135deg, rgba(255, 138, 80, 0.2) 0%, rgba(233, 30, 99, 0.2) 100%)",
+                    border: "1px solid rgba(255, 138, 80, 0.4)",
+                    color: "#ff8a50",
+                    padding: "4px 10px",
+                    borderRadius: "8px",
+                    fontSize: "0.85rem",
+                    fontWeight: "bold",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "4px",
+                    boxShadow: "0 0 10px rgba(255, 138, 80, 0.1)"
+                  }}>
+                    ⏳ Ожидается: {formatReleaseDate(movie.releaseDate)}
+                  </span>
+                ) : (
+                  <span className="modal-rating">⭐ {movie.rating}</span>
+                )}
               </div>
             </div>
 

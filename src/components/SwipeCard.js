@@ -6,6 +6,16 @@ import {
 } from "framer-motion";
 import { useState, useEffect } from "react";
 
+const formatReleaseDate = (dateStr) => {
+  if (!dateStr) return "";
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const months = [
+    "января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+  ];
+  return `${day} ${months[month - 1]} ${year}`;
+};
+
 const TUTORIAL_MOVIE = {
   id: "tutorial",
   title: "Обучение",
@@ -216,7 +226,33 @@ export default function SwipeCard({
               transition: "height 0.3s ease",
             }}
           >
+            {!isTutorial && movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && (
+              <div
+                className="badge-coming-soon"
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "20px",
+                  background: "linear-gradient(135deg, rgba(255, 138, 80, 0.95) 0%, rgba(233, 30, 99, 0.95) 100%)",
+                  backdropFilter: "blur(10px)",
+                  color: "white",
+                  padding: "6px 12px",
+                  borderRadius: "12px",
+                  fontSize: "0.8rem",
+                  fontWeight: "bold",
+                  boxShadow: "0 4px 15px rgba(233, 30, 99, 0.35)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  zIndex: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px"
+                }}
+              >
+                🍿 Скоро в кино
+              </div>
+            )}
             {isTutorial ? (
+
               <div
                 className="tutorial-poster-content"
                 style={{
@@ -454,8 +490,9 @@ export default function SwipeCard({
                       marginBottom: "15px",
                     }}
                   >
-                    {movie.year} • {movie.genres}
+                    {movie.year} {movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && `(Ожидается: ${formatReleaseDate(movie.releaseDate)})`} • {movie.genres}
                   </p>
+
                   <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
                     {movie.description}
                   </p>
