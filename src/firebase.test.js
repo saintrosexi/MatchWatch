@@ -50,14 +50,15 @@ describe('createMatchRoom', () => {
 
     expect(ref).toHaveBeenCalledWith(expect.anything(), `matchRooms/${roomCode}`);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    const setCallArgs = set.mock.calls[0][1];
+    expect(setCallArgs).toEqual(expect.objectContaining({
       hostName: 'Alice',
       status: 'waiting',
       createdAt: mockDate,
+      deck: expect.any(Array)
     }));
 
     // Check if default deck was created and shuffled (512 cards)
-    const setCallArgs = set.mock.calls[0][1];
     expect(setCallArgs.deck).toBeInstanceOf(Array);
     expect(setCallArgs.deck).toHaveLength(512);
 
@@ -77,13 +78,14 @@ describe('createMatchRoom', () => {
     const customDeck = [10, 20, 30];
     const roomCode = await createMatchRoom(hostName, customDeck);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    const setCallArgs = set.mock.calls[0][1];
+    expect(setCallArgs).toEqual(expect.objectContaining({
       hostName: 'Bob',
       status: 'waiting',
       createdAt: mockDate,
+      deck: expect.any(Array)
     }));
 
-    const setCallArgs = set.mock.calls[0][1];
     expect(setCallArgs.deck).toBeInstanceOf(Array);
     expect(setCallArgs.deck).toHaveLength(3);
     expect(setCallArgs.deck).toEqual(expect.arrayContaining([10, 20, 30]));

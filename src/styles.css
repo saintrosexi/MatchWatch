@@ -3251,7 +3251,7 @@ body {
   .active-tab-name { display: none !important; }
 }
 
-/* Fix category picker positioning */
+/* Category picker positioning */
 @media (max-width: 1100px) {
   .category-picker {
     margin-top: 10px !important;
@@ -3329,7 +3329,7 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
   }
 }
 
-/* Fix category picker positioning */
+/* Category picker positioning */
 @media (max-width: 1100px) {
   .category-picker {
     margin-top: 15px !important;
