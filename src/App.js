@@ -36,18 +36,6 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentUserAvatar, setCurrentUserAvatar] = useState("😎");
-  const [showPwaPrompt, setShowPwaPrompt] = useState(false);
-
-  useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isStandalone = window.navigator.standalone === true;
-    const dismissed = sessionStorage.getItem("pwa_prompt_dismissed");
-    if (isIOS && !isStandalone && !dismissed && screen === "swipe") {
-      setShowPwaPrompt(true);
-    } else {
-      setShowPwaPrompt(false);
-    }
-  }, [screen]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -79,6 +67,19 @@ export default function App() {
   const [disableOnboarding, setDisableOnboarding] = useState(false);
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("movie"); // movie, series, anime
+
+  const [showPwaPrompt, setShowPwaPrompt] = useState(false);
+
+  useEffect(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.navigator.standalone === true;
+    const dismissed = sessionStorage.getItem("pwa_prompt_dismissed");
+    if (isIOS && !isStandalone && !dismissed && screen === "swipe") {
+      setShowPwaPrompt(true);
+    } else {
+      setShowPwaPrompt(false);
+    }
+  }, [screen]);
 
   useEffect(() => {
     if (!auth) {
