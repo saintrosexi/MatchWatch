@@ -185,7 +185,7 @@ export const createMatchRoom = async (hostName, customDeck = null) => {
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   
   // Если передана кастомная колода, используем её, иначе - стандартную 1...512
-  const deck = customDeck || Array.from({length: 512}, (_, i) => i + 1);
+  const deck = customDeck || Array.from({length: 849}, (_, i) => i + 1);
   const shuffledDeck = deck.sort(() => Math.random() - 0.5);
 
   const roomRef = ref(database, `matchRooms/${roomCode}`);
