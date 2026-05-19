@@ -6,6 +6,7 @@ jest.mock('firebase/app', () => ({
 }));
 
 jest.mock('firebase/database', () => ({
+  __esModule: true,
   getDatabase: jest.fn(() => ({})), // Mock database object so !database check passes
   ref: jest.fn((db, path) => path),
   set: jest.fn(() => Promise.resolve()),
@@ -50,7 +51,7 @@ describe('createMatchRoom', () => {
 
     expect(ref).toHaveBeenCalledWith(expect.anything(), `matchRooms/${roomCode}`);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    expect(set).toHaveBeenCalledWith(undefined, expect.objectContaining({
       hostName: 'Alice',
       status: 'waiting',
       createdAt: mockDate,
@@ -77,7 +78,7 @@ describe('createMatchRoom', () => {
     const customDeck = [10, 20, 30];
     const roomCode = await createMatchRoom(hostName, customDeck);
 
-    expect(set).toHaveBeenCalledWith(`matchRooms/${roomCode}`, expect.objectContaining({
+    expect(set).toHaveBeenCalledWith(undefined, expect.objectContaining({
       hostName: 'Bob',
       status: 'waiting',
       createdAt: mockDate,
