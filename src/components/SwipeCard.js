@@ -320,7 +320,7 @@ export default function SwipeCard({
                   >
                     <h2
                       style={{
-                        fontSize: "1.6rem",
+                        fontSize: "1.3rem",
                         fontWeight: "900",
                         margin: 0,
                         textShadow: "0 2px 4px rgba(0,0,0,0.5)",
@@ -464,10 +464,9 @@ export default function SwipeCard({
                 flex: 1,
                 overflowY: "auto",
                 color: "#444",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                padding: "10px 0",
                 textAlign: "center",
+                display: "block",
               }}
             >
               {isTutorial ? (

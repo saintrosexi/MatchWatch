@@ -307,7 +307,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           <div className="room-info" style={{ textAlign: "center", margin: "20px 0" }}>
             <p>Отправьте этот код другу:</p>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", margin: "10px 0" }}>
-              <h1 style={{ fontSize: "3rem", color: "#ff8a50", letterSpacing: "5px", margin: 0 }}>{roomCode}</h1>
+              <h1 className="room-code-header" style={{ color: "#ff8a50", letterSpacing: "5px", margin: 0 }}>{roomCode}</h1>
               <button 
                 onClick={() => {
                   navigator.clipboard.writeText(roomCode);

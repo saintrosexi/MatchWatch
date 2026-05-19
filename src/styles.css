@@ -416,7 +416,7 @@ html, body {
 
   .btn-primary, .btn-secondary {
     padding: 12px 20px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 12px;
     font-weight: 700;
   }
@@ -470,7 +470,7 @@ html, body {
   .deck-container {
     width: 85% !important;
     max-width: 380px !important;
-    height: 70vh !important;
+    height: 50vh !important;
     margin: 0 auto !important;
     border: none !important;
   }
@@ -531,17 +531,33 @@ html, body {
 
   /* MatchWatch increased */
   .matchwatch-container h2 {
-    font-size: 1.8rem !important;
+    font-size: 1.4rem !important;
   }
   
   .matchwatch-subtitle {
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
     margin-bottom: 15px !important;
   }
   
   .room-code-display {
+    font-size: 1.6rem !important;
+    padding: 12px !important;
+  }
+
+  .room-code-header {
     font-size: 2rem !important;
-    padding: 15px !important;
+  }
+
+  /* Page title optimization */
+  .page-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* MatchWatch form heading */
+  .matchwatch-form h2 {
+    font-size: 1.4rem !important;
+    margin-bottom: 20px !important;
   }
   
   .btn-matchwatch-action {
@@ -1891,6 +1907,10 @@ html, body {
 .room-info p {
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
+}
+
+.room-code-header {
+  font-size: 3rem;
 }
 
 .coming-soon {
@@ -3337,7 +3357,6 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
   }
 }
 
-<<<<<<< HEAD
 /* ==== FULLSCREEN SWIPE REFACTOR ==== */
 
 @media (max-width: 1100px) {
@@ -3385,7 +3404,7 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
   /* Deck container fills wrapper perfectly */
   .deck-container {
     flex: 1;
-    height: 100% !important;
+    height: 50vh !important; /* Reduced card height to 50vh so it fits beautifully on mobile viewports */
     width: 95% !important; /* maximum width */
     max-width: 420px !important;
     margin: 0 auto !important;
