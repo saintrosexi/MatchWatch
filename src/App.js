@@ -36,6 +36,18 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentUserAvatar, setCurrentUserAvatar] = useState("😎");
+  const [showPwaPrompt, setShowPwaPrompt] = useState(false);
+
+  useEffect(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.navigator.standalone === true;
+    const dismissed = sessionStorage.getItem("pwa_prompt_dismissed");
+    if (isIOS && !isStandalone && !dismissed && screen === "swipe") {
+      setShowPwaPrompt(true);
+    } else {
+      setShowPwaPrompt(false);
+    }
+  }, [screen]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -645,6 +657,22 @@ export default function App() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {showPwaPrompt && (
+        <div className="pwa-prompt-toast">
+          <div className="pwa-prompt-content">
+            <span className="pwa-prompt-icon">💡</span>
+            <div className="pwa-prompt-text">
+              <strong>Установите приложение!</strong><br />
+              Нажмите кнопку <strong>«Поделиться»</strong> (квадрат со стрелкой вверх) в Safari и выберите <strong>«На экран "Домой"»</strong> для полноэкранного режима без рамок.
+            </div>
+          </div>
+          <button className="pwa-prompt-close" onClick={() => {
+            setShowPwaPrompt(false);
+            sessionStorage.setItem("pwa_prompt_dismissed", "true");
+          }}>✕</button>
         </div>
       )}
     </div>

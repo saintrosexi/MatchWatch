@@ -3416,10 +3416,86 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
   /* Deck container fills wrapper perfectly */
   .deck-container {
     flex: 1;
-    height: 50vh !important; /* Reduced card height to 50vh so it fits beautifully on mobile viewports */
+    height: 42vh !important; /* Zoomed out card to 42vh so the categories are perfectly visible */
     width: 95% !important; /* maximum width */
     max-width: 420px !important;
     margin: 0 auto !important;
+  }
+
+  /* GPU Acceleration and heavy filter bypass on mobile to eliminate dragging lag */
+  .deck-card {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .movie-card {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #1c1c1e !important; /* solid premium card background for fluid 60fps animations */
+  }
+
+  /* iOS PWA Installation Banner Toast */
+  .pwa-prompt-toast {
+    position: fixed;
+    bottom: 95px; /* sit elegantly above the bottom nav */
+    left: 5%;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(28, 28, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 12px 14px;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 12px rgba(59, 130, 246, 0.2);
+    animation: pwaSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes pwaSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .pwa-prompt-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #f5f5f7;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .pwa-prompt-icon {
+    font-size: 1.2rem;
+    margin-top: 1px;
+  }
+
+  .share-icon-placeholder {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1px 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin: 0 2px;
+  }
+
+  .pwa-prompt-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    padding: 4px 6px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .pwa-prompt-close:active {
+    color: white;
   }
 }
 
