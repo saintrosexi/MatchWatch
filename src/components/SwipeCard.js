@@ -278,14 +278,14 @@ export default function SwipeCard({
                     style={{
                       textAlign: "center",
                       color: "white",
-                      fontWeight: "800",
-                      fontSize: "1.3rem",
+                      fontWeight: "600",
+                      fontSize: "1.1rem",
                       lineHeight: "1.4",
-                      textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                      textShadow: "0 2px 10px rgba(0,0,0,0.5)",
                       maxWidth: "280px",
                     }}
                   >
-                    нажми чтобы узнать подробнее о фильме
+                    Нажми, чтобы узнать подробнее о фильме
                   </div>
                 )}
               </div>
@@ -312,22 +312,20 @@ export default function SwipeCard({
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      padding: "60px 20px 25px",
-                      background:
-                        "linear-gradient(transparent, rgba(0,0,0,0.9))",
+                      padding: "80px 20px 25px",
+                      background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%)",
                       color: "white",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end"
                     }}
                   >
-                    <h2
-                      style={{
-                        fontSize: "1.6rem",
-                        fontWeight: "900",
-                        margin: 0,
-                        textShadow: "0 2px 4px rgba(0,0,0,0.5)",
-                      }}
-                    >
+                    <h2 className="swipe-card-title-mobile">
                       {movie.titleRu || movie.title}
                     </h2>
+                    <div className="swipe-card-meta-mobile">
+                      {movie.year} {movie.genres ? `• ${movie.genres.split(',')[0]}` : ''}
+                    </div>
                   </div>
                 )}
               </>
@@ -444,16 +442,15 @@ export default function SwipeCard({
             <div
               className="back-header"
               style={{
-                height: "10%",
                 display: "flex",
                 alignItems: "center",
-                borderBottom: "1px solid #eee",
+                justifyContent: "center",
+                borderBottom: "1px solid rgba(0,0,0,0.08)",
+                paddingBottom: "15px",
                 marginBottom: "15px",
               }}
             >
-              <h2
-                style={{ fontSize: "1.2rem", fontWeight: "800", color: "#333" }}
-              >
+              <h2 style={{ fontSize: "1.2rem", fontWeight: "700", color: "#1a1a1a", letterSpacing: "-0.5px" }}>
                 {isTutorial ? movie.backTitle : movie.titleRu || movie.title}
               </h2>
             </div>
@@ -473,10 +470,11 @@ export default function SwipeCard({
               {isTutorial ? (
                 <p
                   style={{
-                    fontSize: "1.1rem",
-                    lineHeight: "1.6",
-                    fontWeight: "600",
+                    fontSize: "1rem",
+                    lineHeight: "1.5",
+                    fontWeight: "500",
                     padding: "0 10px",
+                    color: "#333",
                   }}
                 >
                   {movie.backAction}
@@ -493,7 +491,7 @@ export default function SwipeCard({
                     {movie.year} {movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && `(Ожидается: ${formatReleaseDate(movie.releaseDate)})`} • {movie.genres}
                   </p>
 
-                  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+                  <p style={{ fontSize: "0.95rem", lineHeight: "1.5", color: "#1a1a1a" }}>
                     {movie.description}
                   </p>
                   {movie.director && (
@@ -517,9 +515,9 @@ export default function SwipeCard({
               <p
                 style={{
                   fontSize: "0.85rem",
-                  color: "#999",
-                  fontStyle: "italic",
+                  color: "#8e8e93",
                   lineHeight: "1.4",
+                  fontWeight: "500",
                 }}
               >
                 {!isTutorial && "Нажми, чтобы вернуться к постеру или свайпай"}
