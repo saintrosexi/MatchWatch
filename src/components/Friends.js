@@ -98,36 +98,7 @@ export default function Friends({ onViewProfile, onTabClick }) {
   ];
 
   return (
-    <div className="friends-module-layout">
-      {/* Bloom background effect */}
-      <div className="bloom-effect" />
-
-      {/* Sidebar Navigation */}
-      <nav className="friends-sidebar">
-        <div className="sidebar-logo">
-          <span className="mw-logo">MW</span>
-        </div>
-
-        <ul className="sidebar-menu">
-          <li onClick={() => onTabClick && onTabClick("swipe")}>Выбрать фильм</li>
-          <li onClick={() => onTabClick && onTabClick("mood")}>По настроению</li>
-          <li className="menu-item-search">
-            <span onClick={() => onTabClick && onTabClick("search")}>Поиск</span>
-            <div className="search-input-container">
-              <input type="text" className="sidebar-search-input" placeholder="Поиск..." />
-            </div>
-          </li>
-          <li onClick={() => onTabClick && onTabClick("top")}>ТОП фильмов</li>
-          <li onClick={() => onTabClick && onTabClick("liked")}>Любимые (91)</li>
-          <li className="active">Друзья</li>
-          <li onClick={() => onTabClick && onTabClick("profile")}>Аккаунт</li>
-        </ul>
-
-        <div className="sidebar-footer">
-          <p>Смотри вместе. Будь в моменте.</p>
-        </div>
-      </nav>
-
+    <div className="friends-activity-container">
       {/* Central Content: Activity Hub */}
       <main className="activity-hub">
         <h1 className="activity-hub-title">Activity Hub</h1>

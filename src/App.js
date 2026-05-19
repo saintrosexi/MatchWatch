@@ -12,6 +12,7 @@ import MoodPicker from "./components/MoodPicker";
 import MatchWatch from "./components/MatchWatch";
 import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import Friends from "./components/Friends";
@@ -31,6 +32,16 @@ const shuffle = (arr) => {
 export default function App() {
   const [theme, setTheme] = useState("dark");
   const [language, setLanguage] = useState("ru");
+  
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [currentUserAvatar, setCurrentUserAvatar] = useState("😎");
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1100);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (theme === "light") {
@@ -102,6 +113,10 @@ export default function App() {
         
         onValue(ref(database, `users/${currentUser.uid}/friendRequests`), (snap) => {
           setFriendRequests(snap.val() || {});
+        });
+
+        onValue(ref(database, `users/${currentUser.uid}/profile/avatar`), (snap) => {
+          setCurrentUserAvatar(snap.val() || "😎");
         });
       } else {
         setDataLoaded(true);
@@ -559,50 +574,76 @@ export default function App() {
   ) : null;
 
   return (
-    <div className="app">
-      {screen !== "friends" && (
-        <Header
-          currentScreen={screen}
-          onTabClick={handleTabClick}
-          likedCount={liked.length}
-          friendRequestsCount={Object.keys(friendRequests).length}
-          invitesCount={Object.keys(invites).length}
-          rightContent={undoHeaderButton}
+    <div className={`app ${!isMobile ? "desktop-layout-mode" : ""}`}>
+      {/* Bloom background effect rendered globally on desktop */}
+      {!isMobile && <div className="bloom-effect" />}
+
+      {isMobile ? (
+        <>
+          <Header
+            currentScreen={screen}
+            onTabClick={handleTabClick}
+            likedCount={liked.length}
+            friendRequestsCount={Object.keys(friendRequests).length}
+            invitesCount={Object.keys(invites).length}
+            rightContent={undoHeaderButton}
+          />
+          <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
+            {currentScreen}
+          </div>
+        </>
+      ) : (
+        <div className="app-desktop-wrapper">
+          <Sidebar
+            currentScreen={screen}
+            onTabClick={handleTabClick}
+            likedCount={liked.length}
+            friendRequestsCount={Object.keys(friendRequests).length}
+            invitesCount={Object.keys(invites).length}
+            user={user}
+            currentUserAvatar={currentUserAvatar}
+            sidebarCollapsed={sidebarCollapsed}
+            setSidebarCollapsed={setSidebarCollapsed}
+          />
+          <div className={`app-container-desktop ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
+            {screen === "swipe" && undoHeaderButton && (
+              <div className="desktop-floating-header-actions">
+                {undoHeaderButton}
+              </div>
+            )}
+            {currentScreen}
+          </div>
+        </div>
+      )}
+
+      {selectedMovieForDetails && (
+        <DetailedMovieModal 
+          movie={selectedMovieForDetails} 
+          onClose={() => setSelectedMovieForDetails(null)}
+          isLiked={decisions[selectedMovieForDetails.id] === "like"}
+          onToggleLike={toggleLike}
+          isFavorite={!!favorites[selectedMovieForDetails.id]}
+          onToggleFavorite={toggleFavorite}
+          rating={ratings[selectedMovieForDetails.id]}
+          onSetRating={handleSetRating}
         />
       )}
       
-      <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "friends" ? "friends-layout" : ""}`}>
-        {currentScreen}
-        
-        {selectedMovieForDetails && (
-          <DetailedMovieModal 
-            movie={selectedMovieForDetails} 
-            onClose={() => setSelectedMovieForDetails(null)}
-            isLiked={decisions[selectedMovieForDetails.id] === "like"}
-            onToggleLike={toggleLike}
-            isFavorite={!!favorites[selectedMovieForDetails.id]}
-            onToggleFavorite={toggleFavorite}
-            rating={ratings[selectedMovieForDetails.id]}
-            onSetRating={handleSetRating}
-          />
-        )}
-        
-        {Object.keys(invites).length > 0 && (
-          <div className="global-invites-overlay">
-            {Object.entries(invites).map(([code, info]) => (
-              <div key={code} className="invite-toast">
-                <div>
-                  <strong>👤 {info.from}</strong> зовет вас выбрать фильм!
-                </div>
-                <div className="invite-actions">
-                  <button className="btn-accept" onClick={() => handleAcceptInvite(code)}>Присоединиться</button>
-                  <button className="btn-reject" onClick={() => handleRejectInvite(code)}>Скрыть</button>
-                </div>
+      {Object.keys(invites).length > 0 && (
+        <div className="global-invites-overlay">
+          {Object.entries(invites).map(([code, info]) => (
+            <div key={code} className="invite-toast">
+              <div>
+                <strong>👤 {info.from}</strong> зовет вас выбрать фильм!
               </div>
-            ))}
-          </div>
-        )}
-      </div>
+              <div className="invite-actions">
+                <button className="btn-accept" onClick={() => handleAcceptInvite(code)}>Присоединиться</button>
+                <button className="btn-reject" onClick={() => handleRejectInvite(code)}>Скрыть</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
