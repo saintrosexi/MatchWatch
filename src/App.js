@@ -113,7 +113,17 @@ export default function App() {
         }, { onlyOnce: true });
         
         onValue(ref(database, `users/${currentUser.uid}/profile/stopGenres`), (snap) => {
-          setStopGenres(snap.val() || []);
+          const val = snap.val();
+          let arr = [];
+          if (Array.isArray(val)) {
+            arr = val;
+          } else if (val && typeof val === 'object') {
+            arr = Object.values(val);
+          } else if (typeof val === 'string') {
+            arr = [val];
+          }
+          const clean = arr.filter(item => typeof item === 'string' && item.trim() !== "");
+          setStopGenres(clean);
         });
 
         onValue(ref(database, `users/${currentUser.uid}/profile/disableOnboarding`), (snap) => {

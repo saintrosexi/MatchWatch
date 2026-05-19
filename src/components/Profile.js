@@ -599,13 +599,18 @@ export default function Profile() {
                 <p className="setting-hint">Фильмы этих жанров не будут предлагаться.</p>
                 <div className="stop-genres-picker">
                   {["Ужасы", "Драма", "Комедия", "Боевик", "Триллер", "Фантастика", "Документальный"].map(genre => {
-                    const isStopped = profileData?.stopGenres?.includes(genre);
+                    const rawStopGenres = profileData?.stopGenres || [];
+                    const stopGenresList = (Array.isArray(rawStopGenres)
+                      ? rawStopGenres
+                      : (rawStopGenres && typeof rawStopGenres === 'object' ? Object.values(rawStopGenres) : []))
+                      .filter(item => typeof item === 'string' && item.trim() !== "");
+                    const isStopped = stopGenresList.includes(genre);
                     return (
                       <button 
                         key={genre}
                         className={`genre-option ${isStopped ? 'stopped' : ''}`}
                         onClick={() => {
-                          let current = profileData?.stopGenres || [];
+                          let current = stopGenresList;
                           if (isStopped) {
                             current = current.filter(g => g !== genre);
                           } else {

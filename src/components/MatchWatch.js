@@ -9,10 +9,15 @@ import DetailedMovieModal from "./DetailedMovieModal";
 
 const normalizeStopGenres = (sg) => {
   if (!sg) return [];
-  if (Array.isArray(sg)) return sg;
-  if (typeof sg === 'object') return Object.values(sg);
-  if (typeof sg === 'string') return [sg];
-  return [];
+  let arr = [];
+  if (Array.isArray(sg)) {
+    arr = sg;
+  } else if (typeof sg === 'object') {
+    arr = Object.values(sg);
+  } else if (typeof sg === 'string') {
+    arr = [sg];
+  }
+  return arr.filter(item => typeof item === 'string' && item.trim() !== "");
 };
 
 const isMovieGenreStopped = (genresStr, stopGenres) => {
@@ -156,15 +161,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         if (effectiveMatch && screen !== "match") {
           setScreen("match");
           setMatchHistory(prev => {
-            const exists = prev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
-            if (exists) return prev;
+            const safePrev = Array.isArray(prev) ? prev : [];
+            const exists = safePrev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
+            if (exists) return safePrev;
             const partner = role === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
             const newHistory = [{
               id: Date.now(),
               movieId: effectiveMatch,
               partner: partner,
               date: new Date().toLocaleDateString()
-            }, ...prev];
+            }, ...safePrev];
             localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
             return newHistory;
           });
@@ -262,6 +268,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const optimizedDeck = useMemo(() => {
     if (!roomData || !roomData.deck) return [];
 
+    const rawDeck = roomData.deck;
+    let deckArray = [];
+    if (Array.isArray(rawDeck)) {
+      deckArray = rawDeck;
+    } else if (rawDeck && typeof rawDeck === 'object') {
+      deckArray = Object.values(rawDeck);
+    }
+    const cleanDeck = deckArray.filter(id => id !== null && id !== undefined).map(id => parseInt(id));
+
     const hostDec = roomData.hostDecisions || {};
     const guestDec = roomData.guestDecisions || {};
     const hostFav = roomData.hostFavorites || {};
@@ -338,7 +353,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     // 1. Swiped by the current user in the current session (to avoid seeing them again immediately)
     // 2. Already matched (liked by both in either profile decisions or session likes)
     // 3. Matching the current user's stopGenres (with synonyms)
-    const unswipedMovies = roomData.deck.filter(movieId => {
+    const unswipedMovies = cleanDeck.filter(movieId => {
       const m = moviesById[movieId];
       if (!m) return false;
 
@@ -401,7 +416,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       if (b.score !== a.score) {
         return b.score - a.score;
       }
-      return roomData.deck.indexOf(a.id) - roomData.deck.indexOf(b.id);
+      return cleanDeck.indexOf(a.id) - cleanDeck.indexOf(b.id);
     });
 
     const sortedUnswipedIds = scoredUnswiped.map(item => item.id);

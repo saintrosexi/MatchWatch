@@ -361,7 +361,11 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const namePart = tag.split('#')[0];
   const tagPart = '#' + tag.split('#')[1];
 
-  const stopGenres = targetData.profile?.stopGenres || [];
+  const rawStopGenres = targetData.profile?.stopGenres || [];
+  const stopGenres = (Array.isArray(rawStopGenres)
+    ? rawStopGenres
+    : (rawStopGenres && typeof rawStopGenres === 'object' ? Object.values(rawStopGenres) : []))
+    .filter(item => typeof item === 'string' && item.trim() !== "");
 
   return (
     <div className="profile-dashboard">
