@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -140,7 +140,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       return acc;
     }, []);
       
-    const code = await createMatchRoom(userName, categoryIds);
+    const code = await createMatchRoom(userName, categoryIds, decisions, favorites);
     setRoomCode(code);
     setRole("host");
     setScreen("waiting");
@@ -149,7 +149,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleJoinRoom = async () => {
     if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
-    const success = await joinMatchRoom(roomCode, userName);
+    const success = await joinMatchRoom(roomCode, userName, decisions, favorites);
     if (success) {
       setRole("guest");
       setScreen("swiping");
@@ -180,13 +180,116 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     await removeSwipe(roomCode, role, lastMovieId);
   };
 
-  const currentMovieId = roomData && roomData.deck && cursor < roomData.deck.length
-    ? roomData.deck[cursor]
+  const optimizedDeck = useMemo(() => {
+    if (!roomData || !roomData.deck) return [];
+
+    const hostDec = roomData.hostDecisions || {};
+    const guestDec = roomData.guestDecisions || {};
+    const hostFav = roomData.hostFavorites || {};
+    const guestFav = roomData.guestFavorites || {};
+
+    // 1. Calculate genre preferences for Host
+    const hostGenreScores = {};
+    Object.entries(hostDec).forEach(([movieId, decision]) => {
+      const m = moviesById[movieId];
+      if (!m || !m.genres) return;
+      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+      let weight = 0;
+      if (decision === "like") {
+        weight = 1;
+        if (hostFav[movieId]) weight = 2;
+      } else if (decision === "dislike") {
+        weight = -1;
+      }
+      genres.forEach(genre => {
+        hostGenreScores[genre] = (hostGenreScores[genre] || 0) + weight;
+      });
+    });
+
+    // 2. Calculate genre preferences for Guest
+    const guestGenreScores = {};
+    Object.entries(guestDec).forEach(([movieId, decision]) => {
+      const m = moviesById[movieId];
+      if (!m || !m.genres) return;
+      const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+      let weight = 0;
+      if (decision === "like") {
+        weight = 1;
+        if (guestFav[movieId]) weight = 2;
+      } else if (decision === "dislike") {
+        weight = -1;
+      }
+      genres.forEach(genre => {
+        guestGenreScores[genre] = (guestGenreScores[genre] || 0) + weight;
+      });
+    });
+
+    // 3. Filter and score all movies in the room deck
+    const scoredDeck = roomData.deck
+      .filter(movieId => {
+        // Exclude movie if BOTH users have already made a decision (watched it)
+        const hasHostDec = hostDec[movieId] !== undefined;
+        const hasGuestDec = guestDec[movieId] !== undefined;
+        return !(hasHostDec && hasGuestDec);
+      })
+      .map(movieId => {
+        const m = moviesById[movieId];
+        if (!m) return { id: movieId, score: -9999 };
+
+        let score = (m.rating || 0) * 1.5;
+
+        // Genre matching
+        if (m.genres) {
+          const genres = m.genres.split(",").map(g => g.trim().toLowerCase());
+          genres.forEach(genre => {
+            const hScore = hostGenreScores[genre] || 0;
+            const gScore = guestGenreScores[genre] || 0;
+
+            if (hScore > 0 && gScore > 0) {
+              score += (hScore + gScore) * 5; // Shared interest boost
+            } else if (hScore < 0 && gScore < 0) {
+              score += (hScore + gScore) * 5; // Shared dislike penalty
+            } else {
+              score += (hScore + gScore) * 2; // Individual preference weight
+            }
+          });
+        }
+
+        // Favorites boost (if one partner has favorited)
+        const isHostFav = hostFav[movieId];
+        const isGuestFav = guestFav[movieId];
+        if (isHostFav || isGuestFav) {
+          score += 50;
+        }
+
+        // Likes boost (if one partner has liked)
+        const isHostLike = hostDec[movieId] === "like";
+        const isGuestLike = guestDec[movieId] === "like";
+        if (isHostLike || isGuestLike) {
+          score += 20;
+        }
+
+        return { id: movieId, score };
+      });
+
+    // 4. Sort based on score, and use original deck position as stable fallback
+    scoredDeck.sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+      return roomData.deck.indexOf(a.id) - roomData.deck.indexOf(b.id);
+    });
+
+    return scoredDeck.map(item => item.id);
+  }, [roomData]);
+
+  const currentMovieId = cursor < optimizedDeck.length
+    ? optimizedDeck[cursor]
     : null;
   const currentMovie = currentMovieId ? moviesById[currentMovieId] : null;
 
-  const nextMovieId = roomData && roomData.deck && cursor + 1 < roomData.deck.length
-    ? roomData.deck[cursor + 1]
+  const nextMovieId = cursor + 1 < optimizedDeck.length
+    ? optimizedDeck[cursor + 1]
     : null;
   const nextMovie = nextMovieId ? moviesById[nextMovieId] : null;
 
@@ -221,7 +324,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                       <button className="btn-primary btn-small" onClick={() => {
                         setRoomCode(code);
                         setRole("guest");
-                        joinMatchRoom(code, userName).then(success => {
+                        joinMatchRoom(code, userName, decisions, favorites).then(success => {
                           if (success) {
                             setScreen("swiping");
                             removeInvite(auth.currentUser.uid, code);

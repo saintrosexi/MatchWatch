@@ -15842,4 +15842,7 @@ export const movies = [
   }
 ];
 
-export const moviesById = {};
+export const moviesById = movies.reduce((acc, m) => {
+  acc[m.id] = m;
+  return acc;
+}, {});

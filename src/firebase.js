@@ -180,7 +180,7 @@ export const removeInvite = async (currentUid, roomCode) => {
   await remove(ref(database, `users/${currentUid}/invites/${roomCode}`));
 };
 
-export const createMatchRoom = async (hostName, customDeck = null) => {
+export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}) => {
   if (!database) return null;
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   
@@ -193,19 +193,23 @@ export const createMatchRoom = async (hostName, customDeck = null) => {
     hostName,
     status: "waiting",
     deck: shuffledDeck,
+    hostDecisions,
+    hostFavorites,
     createdAt: Date.now()
   });
   return roomCode;
 };
 
-export const joinMatchRoom = async (roomCode, guestName) => {
+export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}) => {
   if (!database) return false;
   const roomRef = ref(database, `matchRooms/${roomCode}`);
   const snapshot = await get(roomRef);
   if (snapshot.exists()) {
     await update(roomRef, {
       guestName,
-      status: 'active'
+      status: 'active',
+      guestDecisions,
+      guestFavorites
     });
     return true;
   }
