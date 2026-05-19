@@ -102,6 +102,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [activeCategory, setActiveCategory] = useState("movie");
 
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       if (user) {
@@ -181,7 +182,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   }, [roomCode, screen, role]);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && database) {
       const friendsRef = ref(database, `users/${currentUser.uid}/friends`);
       const unsubscribe = onValue(friendsRef, (snap) => {
         setFriends(snap.val() || {});
@@ -194,6 +195,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   useEffect(() => {
     const fetchAvatars = async () => {
+      if (!database) return;
       const avatars = {};
       await Promise.all(
         Object.keys(friends).map(async (uid) => {

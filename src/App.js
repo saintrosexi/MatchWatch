@@ -82,7 +82,7 @@ export default function App() {
   }, [screen]);
 
   useEffect(() => {
-    if (!auth) {
+    if (!auth || !database) {
       setDataLoaded(true);
       return;
     }
@@ -383,13 +383,13 @@ export default function App() {
   const handleAcceptInvite = (code) => {
     setInitialRoomCode(code);
     setScreen("matchwatch");
-    if (user) {
+    if (user && database) {
       remove(ref(database, `users/${user.uid}/invites/${code}`));
     }
   };
 
   const handleRejectInvite = (code) => {
-    if (user) {
+    if (user && database) {
       remove(ref(database, `users/${user.uid}/invites/${code}`));
     }
   };

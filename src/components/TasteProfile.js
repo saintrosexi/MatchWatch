@@ -44,7 +44,7 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
   };
 
   useEffect(() => {
-    if (!auth) return;
+    if (!auth || !database) return;
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {

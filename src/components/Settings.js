@@ -24,7 +24,7 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
   const [bioSuccess, setBioSuccess] = useState("");
 
   useEffect(() => {
-    if (!auth) {
+    if (!auth || !database) {
       setLoading(false);
       return;
     }

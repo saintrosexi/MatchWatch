@@ -15,6 +15,7 @@ export default function Friends({ onViewProfile, onTabClick }) {
 
   useEffect(() => {
     const fetchAvatars = async () => {
+      if (!database) return;
       const avatars = {};
       const fetchPromises = Object.keys(friends).map(async (uid) => {
         try {
@@ -42,7 +43,7 @@ export default function Friends({ onViewProfile, onTabClick }) {
   }, [friends]);
 
   useEffect(() => {
-    if (!auth) return;
+    if (!auth || !database) return;
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {

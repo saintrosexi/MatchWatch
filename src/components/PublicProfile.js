@@ -28,7 +28,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [showAllFavorites, setShowAllFavorites] = useState(false);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && database) {
       const appDataRef = ref(database, `users/${currentUser.uid}/appData`);
       const unsub = onValue(appDataRef, (snap) => {
         setCurrentUserAppData(snap.val() || {});
@@ -38,6 +38,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   }, [currentUser]);
 
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
@@ -63,7 +64,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   }, [tag]);
 
   useEffect(() => {
-    if (currentUser && targetData) {
+    if (currentUser && targetData && database) {
       const friendRef = ref(database, `users/${currentUser.uid}/friends/${targetData.uid}`);
       const unsub = onValue(friendRef, (snap) => {
         setIsFriend(snap.exists());

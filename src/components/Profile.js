@@ -62,7 +62,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    if (!auth) {
+    if (!auth || !database) {
       setLoading(false);
       return;
     }
