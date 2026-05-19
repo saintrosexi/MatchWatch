@@ -567,9 +567,10 @@ export default function App() {
       className="btn-header-undo" 
       onClick={handleUndo} 
       disabled={history.length === 0}
-      style={{ opacity: history.length === 0 ? 0.5 : 1 }}
+      style={{ opacity: history.length === 0 ? 0.5 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', padding: 0, borderRadius: '50%', background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+      title="Отменить"
     >
-      ↩️ Назад
+      <span className="undo-icon" style={{ margin: 0, fontSize: '1.2rem', lineHeight: 1 }}>↩️</span>
     </button>
   ) : null;
 

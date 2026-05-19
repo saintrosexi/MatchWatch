@@ -314,6 +314,7 @@ export default function SwipeCard({
                       right: 0,
                       padding: "80px 20px 25px",
                       background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%)",
+                      zIndex: 5,
                       color: "white",
                       display: "flex",
                       flexDirection: "column",

@@ -867,7 +867,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0px; /* Fully removed since undo is in header */
+  padding-top: 0px;
+  flex: 1;
+  min-height: 0;
 }
 
 .swipe-hints {
@@ -989,13 +991,14 @@ html, body {
   position: relative;
   width: 100%;
   max-width: 380px;
-  height: calc(100vh - 200px);
-  max-height: 680px;
+  height: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 5;
   margin-top: 10px;
+  min-height: 0;
 }
 
 
@@ -3237,6 +3240,7 @@ body {
 
   .app-container {
     padding-bottom: 90px !important; /* Space for bottom nav */
+    padding-top: calc(var(--header-height-mobile) + 10px) !important;
   }
 
   .btn-header-undo {
@@ -3384,19 +3388,18 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    padding-bottom: 20px !important;
+    padding-bottom: 0 !important;
     padding-top: 0 !important;
   }
 
   /* Deck container fills wrapper perfectly */
   .deck-container {
     flex: 1;
-    height: 100% !important;
     width: 94% !important; /* maximum width */
     max-width: 400px !important;
     margin: 0 auto !important;
     min-height: 0; /* Important to not overflow parent flex */
-    max-height: none !important;
+    height: auto !important;
   }
 }
 
@@ -4218,6 +4221,8 @@ body.light-theme .auth-toggle, body.light-theme .auth-toggle button {
 
 
 .swipe-card-title-mobile {
+  position: relative;
+  z-index: 10;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0;

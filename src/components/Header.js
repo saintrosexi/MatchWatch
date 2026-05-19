@@ -72,9 +72,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
           {/* Mobile Top Header (iOS style) */}
           {isMobile && (
             <div className="mobile-header-top">
-              <div className="mobile-header-left">
-                {rightContent}
-              </div>
+              <div className="mobile-header-left"></div>
               <div className="mobile-header-title">
                 {currentScreen === "swipe" ? (
                   <img src="/logo.png" alt="MatchWatch Logo" style={{ height: "24px" }} />
@@ -83,7 +81,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 )}
               </div>
               <div className="mobile-header-right">
-                {/* Empty for balance */}
+                {rightContent}
               </div>
             </div>
           )}
