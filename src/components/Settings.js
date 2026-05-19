@@ -153,85 +153,79 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
   }
 
   return (
-    <div className="profile-container">
-      <h2 className="page-title">⚙️ Параметры</h2>
+    <div className="profile-dashboard">
+      <h2 className="page-title" style={{ marginBottom: "30px", textAlign: "left" }}>⚙️ Параметры</h2>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        
-        {/* Appearance & Language */}
-        <motion.div className="profile-card profile-card-settings" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h3>Внешний вид и язык</h3>
+      {user ? (
+        <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          
+          {/* LEFT COLUMN */}
+          <div className="profile-left" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+            
+            {/* Card 1: Appearance & Language */}
+            <div className="profile-card-settings">
+              <h3>Внешний вид и язык</h3>
 
-          <div className="setting-group" style={{ marginBottom: "20px" }}>
-            <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Тема оформления</label>
-            <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
-              <button
-                className={`btn-secondary ${theme === "dark" ? "active-theme" : ""}`}
-                onClick={() => setTheme("dark")}
-                style={{
-                  flex: 1,
-                  border: theme === "dark" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
-                  opacity: theme === "dark" ? 1 : 0.7
-                }}
-              >
-                🌙 Темная
-              </button>
-              <button
-                className={`btn-secondary ${theme === "light" ? "active-theme" : ""}`}
-                onClick={() => setTheme("light")}
-                style={{
-                  flex: 1,
-                  border: theme === "light" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
-                  opacity: theme === "light" ? 1 : 0.7
-                }}
-              >
-                ☀️ Светлая
-              </button>
+              <div className="setting-group" style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Тема оформления</label>
+                <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    className={`btn-secondary ${theme === "dark" ? "active-theme" : ""}`}
+                    onClick={() => setTheme("dark")}
+                    style={{
+                      flex: 1,
+                      border: theme === "dark" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: theme === "dark" ? 1 : 0.7
+                    }}
+                  >
+                    🌙 Темная
+                  </button>
+                  <button
+                    className={`btn-secondary ${theme === "light" ? "active-theme" : ""}`}
+                    onClick={() => setTheme("light")}
+                    style={{
+                      flex: 1,
+                      border: theme === "light" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: theme === "light" ? 1 : 0.7
+                    }}
+                  >
+                    ☀️ Светлая
+                  </button>
+                </div>
+              </div>
+
+              <div className="setting-group">
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Язык</label>
+                <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    className={`btn-secondary ${language === "ru" ? "active-lang" : ""}`}
+                    onClick={() => setLanguage("ru")}
+                    style={{
+                      flex: 1,
+                      border: language === "ru" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: language === "ru" ? 1 : 0.7
+                    }}
+                  >
+                    🇷🇺 Русский
+                  </button>
+                  <button
+                    className={`btn-secondary ${language === "en" ? "active-lang" : ""}`}
+                    onClick={() => setLanguage("en")}
+                    style={{
+                      flex: 1,
+                      border: language === "en" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: language === "en" ? 1 : 0.7
+                    }}
+                  >
+                    🇬🇧 Английский
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="setting-group">
-            <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Язык</label>
-            <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
-              <button
-                className={`btn-secondary ${language === "ru" ? "active-lang" : ""}`}
-                onClick={() => setLanguage("ru")}
-                style={{
-                  flex: 1,
-                  border: language === "ru" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
-                  opacity: language === "ru" ? 1 : 0.7
-                }}
-              >
-                🇷🇺 Русский
-              </button>
-              <button
-                className={`btn-secondary ${language === "en" ? "active-lang" : ""}`}
-                onClick={() => setLanguage("en")}
-                style={{
-                  flex: 1,
-                  border: language === "en" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
-                  opacity: language === "en" ? 1 : 0.7
-                }}
-              >
-                🇬🇧 Английский
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Firebase Profile settings (only visible if user is logged in) */}
-        {user ? (
-          <motion.div 
-            className="profile-card profile-card-settings" 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <h3>👤 Настройки профиля</h3>
-
-            {/* Avatar block */}
-            <div className="setting-group" style={{ marginBottom: "25px" }}>
-              <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Аватар</label>
+            {/* Card 2: Avatar selector */}
+            <div className="profile-card-settings">
+              <h3>👤 Аватар</h3>
               
               <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "15px" }}>
                 <div className="profile-avatar-large" style={{ overflow: "hidden", margin: 0, width: "60px", height: "60px", minWidth: "60px", fontSize: "2rem" }}>
@@ -289,11 +283,32 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
               </div>
             </div>
 
-            {/* Edit Name & Tag */}
-            <div className="setting-group" style={{ marginBottom: "25px", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px" }}>
-              <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Имя пользователя и тег</label>
+            {/* Card 3: Danger Zone */}
+            <div className="profile-card-settings danger-zone" style={{ border: "1px solid rgba(255, 82, 82, 0.2)" }}>
+              <h3 style={{ color: "#ff5252" }}>🚫 Опасная зона</h3>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                <div>
+                  <p className="setting-hint" style={{ marginBottom: "8px" }}>Удалит всю историю ваших оценок, лайков и дизлайков.</p>
+                  <button className="btn-secondary btn-small" onClick={handleResetProgress} style={{ width: "100%", borderColor: "rgba(255, 82, 82, 0.3)", color: "#ff5252" }}>🗑 Сбросить прогресс</button>
+                </div>
+                
+                <div style={{ marginTop: "5px" }}>
+                  <button className="btn-secondary btn-small" onClick={handleLogout} style={{ width: "100%" }}>🚪 Выйти из аккаунта</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="profile-right" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+            
+            {/* Card 4: Username & Tag Edit */}
+            <div className="profile-card-settings">
+              <h3>✏️ Имя пользователя и тег</h3>
               {!isEditingProfile ? (
-                <button className="btn-secondary btn-small" onClick={startEditingProfile} style={{ width: "100%" }}>✏️ Изменить имя и тег</button>
+                <button className="btn-secondary btn-small" onClick={startEditingProfile} style={{ width: "100%" }}>Изменить имя и тег</button>
               ) : (
                 <form onSubmit={handleEditProfile} className="auth-form" style={{ marginTop: "10px" }}>
                   <input 
@@ -324,10 +339,10 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
               )}
             </div>
 
-            {/* About Me (Bio) */}
-            <div className="setting-group" style={{ marginBottom: "25px", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px" }}>
-              <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>О себе</label>
-              <p className="setting-hint" style={{ marginBottom: "10px" }}>Напишите пару слов о своих вкусах в кино, чтобы друзья знали, что вы любите.</p>
+            {/* Card 5: About Me */}
+            <div className="profile-card-settings">
+              <h3>📝 О себе</h3>
+              <p className="setting-hint" style={{ marginBottom: "12px" }}>Напишите пару слов о своих вкусах в кино, чтобы друзья знали, что вы любите.</p>
               <form onSubmit={handleSaveBio} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <textarea
                   className="form-input"
@@ -337,7 +352,7 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
                   maxLength={180}
                   style={{
                     width: "100%",
-                    minHeight: "80px",
+                    minHeight: "100px",
                     background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.15)",
                     borderRadius: "8px",
@@ -359,88 +374,139 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
               </form>
             </div>
 
-            {/* MatchWatch settings (Onboarding, Stop genres) */}
-            <div className="setting-group" style={{ marginBottom: "25px", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px" }}>
-              <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Обучение</label>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "5px" }}>
-                <input 
-                  type="checkbox" 
-                  id="disable-onboarding"
-                  checked={profileData?.disableOnboarding || false}
-                  onChange={(e) => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), e.target.checked)}
-                  style={{ width: "20px", height: "20px", cursor: "pointer" }}
-                />
-                <label htmlFor="disable-onboarding" style={{ fontSize: "0.95rem", cursor: "pointer" }}>Выключить обучение</label>
-              </div>
-              <p className="setting-hint">Если включено, подсказки при свайпах не показываются.</p>
-            </div>
-
-            <div className="setting-group" style={{ marginBottom: "25px" }}>
-              <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Стоп-жанры</label>
-              <p className="setting-hint">Фильмы этих жанров не будут предлагаться в поиске и свайпах.</p>
-              <div className="stop-genres-picker" style={{ marginTop: "10px" }}>
-                {["Ужасы", "Драма", "Комедия", "Боевик", "Триллер", "Фантастика", "Документальный"].map(genre => {
-                  const rawStopGenres = profileData?.stopGenres || [];
-                  const stopGenresList = (Array.isArray(rawStopGenres)
-                    ? rawStopGenres
-                    : (rawStopGenres && typeof rawStopGenres === 'object' ? Object.values(rawStopGenres) : []))
-                    .filter(item => typeof item === 'string' && item.trim() !== "");
-                  const isStopped = stopGenresList.includes(genre);
-                  return (
-                    <button 
-                      key={genre}
-                      className={`genre-option ${isStopped ? 'stopped' : ''}`}
-                      onClick={() => {
-                        let current = stopGenresList;
-                        if (isStopped) {
-                          current = current.filter(g => g !== genre);
-                        } else {
-                          current = [...current, genre];
-                        }
-                        set(ref(database, `users/${user.uid}/profile/stopGenres`), current);
-                      }}
-                    >
-                      {isStopped ? '🚫 ' : ''}{genre}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Danger Zone */}
-            <div className="setting-group danger-zone" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px" }}>
-              <label style={{ display: "block", color: "#ff5252", fontWeight: "bold", marginBottom: "8px" }}>Опасная зона</label>
+            {/* Card 6: MatchWatch Preferences */}
+            <div className="profile-card-settings">
+              <h3>🍿 Настройки MatchWatch</h3>
               
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <div>
-                  <p className="setting-hint" style={{ marginBottom: "6px" }}>Удалит всю историю ваших оценок, лайков и дизлайков.</p>
-                  <button className="btn-secondary btn-small" onClick={handleResetProgress} style={{ width: "100%", borderColor: "rgba(255, 82, 82, 0.3)", color: "#ff5252" }}>🗑 Сбросить прогресс</button>
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Обучение</label>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "5px" }}>
+                  <input 
+                    type="checkbox" 
+                    id="disable-onboarding"
+                    checked={profileData?.disableOnboarding || false}
+                    onChange={(e) => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), e.target.checked)}
+                    style={{ width: "20px", height: "20px", cursor: "pointer" }}
+                  />
+                  <label htmlFor="disable-onboarding" style={{ fontSize: "0.95rem", cursor: "pointer" }}>Выключить обучение</label>
                 </div>
-                
-                <div style={{ marginTop: "10px" }}>
-                  <button className="btn-secondary btn-small" onClick={handleLogout} style={{ width: "100%" }}>🚪 Выйти из аккаунта</button>
+                <p className="setting-hint">Если включено, подсказки при свайпах не показываются.</p>
+              </div>
+
+              <div>
+                <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Стоп-жанры</label>
+                <p className="setting-hint">Фильмы этих жанров не будут предлагаться в поиске и свайпах.</p>
+                <div className="stop-genres-picker" style={{ marginTop: "12px" }}>
+                  {["Ужасы", "Драма", "Комедия", "Боевик", "Триллер", "Фантастика", "Документальный"].map(genre => {
+                    const rawStopGenres = profileData?.stopGenres || [];
+                    const stopGenresList = (Array.isArray(rawStopGenres)
+                      ? rawStopGenres
+                      : (rawStopGenres && typeof rawStopGenres === 'object' ? Object.values(rawStopGenres) : []))
+                      .filter(item => typeof item === 'string' && item.trim() !== "");
+                    const isStopped = stopGenresList.includes(genre);
+                    return (
+                      <button 
+                        key={genre}
+                        className={`genre-option ${isStopped ? 'stopped' : ''}`}
+                        onClick={() => {
+                          let current = stopGenresList;
+                          if (isStopped) {
+                            current = current.filter(g => g !== genre);
+                          } else {
+                            current = [...current, genre];
+                          }
+                          set(ref(database, `users/${user.uid}/profile/stopGenres`), current);
+                        }}
+                      >
+                        {isStopped ? '🚫 ' : ''}{genre}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-          </motion.div>
-        ) : (
-          <motion.div 
-            className="profile-card profile-card-settings" 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            style={{ textAlign: "center", padding: "30px 20px" }}
-          >
-            <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "15px" }}>👤</span>
-            <h3 style={{ marginBottom: "10px" }}>Настройки профиля недоступны</h3>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: "1.4", marginBottom: "20px" }}>
-              Войдите или зарегистрируйтесь во вкладке **«Аккаунт»**, чтобы редактировать свой аватар, имя, тег, описание «О себе» и синхронизировать стоп-жанры.
-            </p>
-          </motion.div>
-        )}
+          </div>
 
-      </div>
+        </motion.div>
+      ) : (
+        <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          {/* LEFT COLUMN */}
+          <div className="profile-left">
+            <div className="profile-card-settings">
+              <h3>Внешний вид и язык</h3>
+
+              <div className="setting-group" style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Тема оформления</label>
+                <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    className={`btn-secondary ${theme === "dark" ? "active-theme" : ""}`}
+                    onClick={() => setTheme("dark")}
+                    style={{
+                      flex: 1,
+                      border: theme === "dark" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: theme === "dark" ? 1 : 0.7
+                    }}
+                  >
+                    🌙 Темная
+                  </button>
+                  <button
+                    className={`btn-secondary ${theme === "light" ? "active-theme" : ""}`}
+                    onClick={() => setTheme("light")}
+                    style={{
+                      flex: 1,
+                      border: theme === "light" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: theme === "light" ? 1 : 0.7
+                    }}
+                  >
+                    ☀️ Светлая
+                  </button>
+                </div>
+              </div>
+
+              <div className="setting-group">
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>Язык</label>
+                <div className="toggle-container" style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    className={`btn-secondary ${language === "ru" ? "active-lang" : ""}`}
+                    onClick={() => setLanguage("ru")}
+                    style={{
+                      flex: 1,
+                      border: language === "ru" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: language === "ru" ? 1 : 0.7
+                    }}
+                  >
+                    🇷🇺 Русский
+                  </button>
+                  <button
+                    className={`btn-secondary ${language === "en" ? "active-lang" : ""}`}
+                    onClick={() => setLanguage("en")}
+                    style={{
+                      flex: 1,
+                      border: language === "en" ? "2px solid #ff8a50" : "1px solid rgba(255,255,255,0.2)",
+                      opacity: language === "en" ? 1 : 0.7
+                    }}
+                  >
+                    🇬🇧 Английский
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="profile-right">
+            <div className="profile-card-settings" style={{ textAlign: "center", padding: "40px 30px" }}>
+              <span style={{ fontSize: "3rem", display: "block", marginBottom: "15px" }}>👤</span>
+              <h3 style={{ marginBottom: "12px", fontSize: "1.3rem" }}>Настройки профиля недоступны</h3>
+              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem", lineHeight: "1.5", marginBottom: "0", maxWidth: "500px", margin: "0 auto" }}>
+                Войдите или зарегистрируйтесь во вкладке **«Аккаунт»**, чтобы редактировать свой аватар, имя, тег, описание «О себе» и синхронизировать стоп-жанры.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
+

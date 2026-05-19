@@ -463,8 +463,8 @@ export default function Profile() {
         <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           
           {/* LEFT COLUMN */}
-          <div className="profile-left">
-            <div className="profile-card-main">
+          <div className="profile-left" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+            <div className="profile-card-main" style={{ marginBottom: 0 }}>
               <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
                 {(profileData?.avatar && (profileData.avatar.startsWith("data:image/") || profileData.avatar.startsWith("http"))) ? (
                   <img src={profileData.avatar} alt="Avatar" />
@@ -513,6 +513,19 @@ export default function Profile() {
               >
                 {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
               </button>
+            </div>
+
+            <div className="profile-card-achievements">
+              <h3>🏆 Достижения</h3>
+              <div className="achievements-grid-2col">
+                {achievements.map(ach => (
+                  <div key={ach.title} className={`achievement-card ${ach.unlocked ? "unlocked" : "locked"}`}>
+                    <div className="ach-icon">{ach.icon}</div>
+                    <div className="ach-title">{ach.title}</div>
+                    <div className="ach-desc">{ach.desc}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -692,18 +705,6 @@ export default function Profile() {
               </div>
             )}
 
-            <div className="profile-card-achievements">
-              <h3>🏆 Достижения</h3>
-              <div className="achievements-grid-2col">
-                {achievements.map(ach => (
-                  <div key={ach.title} className={`achievement-card ${ach.unlocked ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">{ach.icon}</div>
-                    <div className="ach-title">{ach.title}</div>
-                    <div className="ach-desc">{ach.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
         </motion.div>
