@@ -3374,6 +3374,10 @@ button, .btn-primary, .btn-secondary, .form-input, .category-btn, .nav-tab {
     height: 100dvh; /* important for iOS */
   }
 
+  .app-container.no-scroll.swipe-layout {
+    padding-top: max(10px, env(safe-area-inset-top)) !important;
+  }
+
   .screen--center.swipe-screen {
     flex: 1;
     display: flex;
