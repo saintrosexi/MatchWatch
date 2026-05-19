@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -581,7 +582,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         </motion.div>
       )}
 
-      {screen === "match" && matchId && (
+      {screen === "match" && matchId && createPortal(
         <div className="match-screen-overlay">
           <motion.div className="matchwatch-form match-modal-content" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
             <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
@@ -598,7 +599,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(parseInt(matchId))}>Подробнее о фильме</button>
             <button className="btn-primary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Завершить</button>
           </motion.div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {screen === "history" && (
