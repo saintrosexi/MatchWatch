@@ -6,7 +6,8 @@ jest.mock('firebase/app', () => ({
 }));
 
 jest.mock('firebase/database', () => ({
-  getDatabase: jest.fn(() => ({})),
+  __esModule: true,
+  getDatabase: jest.fn(() => ({})), // Mock database object so !database check passes
   ref: jest.fn().mockImplementation((db, path) => ({ isMockRef: true, path })),
   set: jest.fn(() => Promise.resolve()),
   get: jest.fn(),
