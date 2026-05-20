@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, get } from "firebase/database";
@@ -170,6 +170,10 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       }
       return acc;
     }, []);
+    
+    if (categoryIds.length === 0) {
+      return alert("В этой категории пока нет фильмов! Пожалуйста, выберите другую.");
+    }
       
     const code = await createMatchRoom(userName, categoryIds, decisions, favorites, stopGenres);
     setRoomCode(code);
@@ -231,10 +235,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     // Находим лайки текущего пользователя в этой сессии
     const isHost = role === "host";
     const myLikes = isHost ? (roomData.hostLikes || {}) : (roomData.guestLikes || {});
+    const myDislikes = isHost ? (roomData.hostDislikes || {}) : (roomData.guestDislikes || {});
 
     // Оставляем только те карточки, которые не были свайпнуты (ни в Firebase, ни в локальной истории)
     return cleanDeck.filter(movieId => 
-      myLikes[movieId] == null && !swipeHistory.includes(movieId)
+      myLikes[movieId] == null && myDislikes[movieId] == null && !swipeHistory.includes(movieId)
     );
   }, [roomData, role, swipeHistory]);
 
@@ -255,7 +260,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const renderSwipingScreen = () => {
     try {
       return (
-        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <div className="matchwatch-swiping" style={{ width: "100%", height: "100%", minHeight: "600px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }}>
           <div className="room-header-compact matchwatch-swiping-header">
             <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
             <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
@@ -300,34 +305,52 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                   />
                 </div>
               ) : (
-                <>
+                <AnimatePresence>
                   {nextMovie && (
-                    <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
-                      <div className="card-placeholder">
-                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
+                    <motion.div 
+                      key={`next-${nextMovie.id}`}
+                      className="deck-card deck-position-1" 
+                      style={{ zIndex: 0, position: "absolute", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <div className="card-placeholder" style={{ width: "100%", height: "100%" }}>
+                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "24px" }} />
                         <div className="placeholder-overlay" />
                       </div>
-                    </div>
+                    </motion.div>
                   )}
                   
                   {currentMovie ? (
-                    <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
+                    <motion.div 
+                      key={currentMovie.id}
+                      className="deck-card deck-position-0" 
+                      style={{ zIndex: 1, position: "absolute", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
+                      exit={{ x: swipeHint.x > 0 ? 1000 : -1000, opacity: 0, rotate: swipeHint.x > 0 ? 20 : -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <SwipeCard
-                        key={currentMovie.id}
                         movie={currentMovie}
                         onSwipe={handleSwipe}
                         onDragProgress={(x, active) => setSwipeHint({ x, active })}
                         onShowDetails={() => setShowDetails(currentMovie.id)}
                       />
-                    </div>
+                    </motion.div>
                   ) : (
-                    <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
+                    <motion.div 
+                      key="empty"
+                      className="empty-profile" 
+                      style={{ textAlign: "center", marginTop: "100px", width: "100%", zIndex: 10 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                    >
                       <h2>Карточки закончились!</h2>
                       <p>Ждем, пока партнер досмотрит свой список...</p>
-                    </div>
+                    </motion.div>
                   )}
-                </>
-              )}
+                  </AnimatePresence>
+                )}
             </div>
 
             {!showTutorial && (
@@ -352,7 +375,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               <div>Raw Deck Size: {roomData?.deck ? (Array.isArray(roomData.deck) ? roomData.deck.length : Object.keys(roomData.deck).length) : 0}</div>
             </div>
           )}
-        </motion.div>
+        </div>
       );
     } catch (e) {
       console.error("MatchWatch render error:", e);
