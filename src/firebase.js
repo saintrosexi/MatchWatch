@@ -363,6 +363,7 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
     return true;
   }
   return false;
+};
 
 
 export const swipeMovie = async (roomCode, role, movieId, decision) => {
