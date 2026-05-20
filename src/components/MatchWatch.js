@@ -234,7 +234,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
     // Оставляем только те карточки, которые не были свайпнуты (ни в Firebase, ни в локальной истории)
     return cleanDeck.filter(movieId => 
-      myLikes[movieId] === undefined && !swipeHistory.includes(movieId)
+      myLikes[movieId] == null && !swipeHistory.includes(movieId)
     );
   }, [roomData, role, swipeHistory]);
 
@@ -342,12 +342,14 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             )}
           </div>
           
-          {process.env.NODE_ENV === 'development' && (
+          {true && (
             <div style={{ position: "fixed", bottom: 10, right: 10, background: "rgba(0,0,0,0.8)", padding: "10px", fontSize: "10px", color: "#0f0", zIndex: 9999, pointerEvents: "none" }}>
               <div>Screen: {screen}</div>
               <div>Role: {role}</div>
               <div>Deck Size: {unswipedDeck.length}</div>
               <div>Current Movie: {currentMovieId}</div>
+              <div>Room Code: {roomCode}</div>
+              <div>Raw Deck Size: {roomData?.deck ? (Array.isArray(roomData.deck) ? roomData.deck.length : Object.keys(roomData.deck).length) : 0}</div>
             </div>
           )}
         </motion.div>
