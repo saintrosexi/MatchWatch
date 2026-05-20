@@ -97,8 +97,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       const hostLikes = data.hostLikes || {};
       const guestLikes = data.guestLikes || {};
-      const hostDecisions = data.hostDecisions || {};
-      const guestDecisions = data.guestDecisions || {};
 
       const deckIds = data.deck || [];
       const deckArray = Array.isArray(deckIds) ? deckIds : Object.values(deckIds);
@@ -107,8 +105,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       deckArray.forEach(id => {
         if (!id) return;
         const movieId = parseInt(id);
-        const hostLiked = hostLikes[movieId] === true || hostDecisions[movieId] === "like";
-        const guestLiked = guestLikes[movieId] === true || guestDecisions[movieId] === "like";
+        const hostLiked = hostLikes[movieId] === true;
+        const guestLiked = guestLikes[movieId] === true;
 
         if (hostLiked && guestLiked) {
           allMatches.push(movieId);
