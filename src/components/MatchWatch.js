@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
@@ -8,87 +8,18 @@ import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-const normalizeStopGenres = (sg) => {
-  if (!sg) return [];
-  let arr = [];
-  if (Array.isArray(sg)) {
-    arr = sg;
-  } else if (typeof sg === 'object') {
-    arr = Object.values(sg);
-  } else if (typeof sg === 'string') {
-    arr = [sg];
-  }
-  return arr.filter(item => typeof item === 'string' && item.trim() !== "");
-};
-
-const isMovieGenreStopped = (genresStr, stopGenres) => {
-  if (!genresStr || !stopGenres) return false;
-  const normalizedStop = normalizeStopGenres(stopGenres).map(g => g.toLowerCase().trim());
-  if (normalizedStop.length === 0) return false;
-  
-  const mGenres = genresStr.split(",").map(g => g.trim().toLowerCase());
-  
-  const expandedStop = new Set();
-  normalizedStop.forEach(sg => {
-    expandedStop.add(sg);
-    if (sg.includes("ужас") || sg.includes("хоррор") || sg.includes("ужастик")) {
-      expandedStop.add("ужасы");
-      expandedStop.add("ужастики");
-      expandedStop.add("хоррор");
-      expandedStop.add("horror");
-      expandedStop.add("мистика");
-    }
-    if (sg.includes("комеди")) {
-      expandedStop.add("комедия");
-      expandedStop.add("комедии");
-      expandedStop.add("comedy");
-    }
-    if (sg.includes("драм")) {
-      expandedStop.add("драма");
-      expandedStop.add("драмы");
-      expandedStop.add("drama");
-    }
-    if (sg.includes("боевик") || sg.includes("экшен") || sg.includes("action")) {
-      expandedStop.add("боевик");
-      expandedStop.add("боевики");
-      expandedStop.add("экшен");
-      expandedStop.add("action");
-    }
-    if (sg.includes("триллер") || sg.includes("thriller")) {
-      expandedStop.add("триллер");
-      expandedStop.add("триллеры");
-      expandedStop.add("thriller");
-    }
-    if (sg.includes("фантастик") || sg.includes("sci-fi")) {
-      expandedStop.add("фантастика");
-      expandedStop.add("фэнтези");
-      expandedStop.add("fantasy");
-      expandedStop.add("sci-fi");
-    }
-    if (sg.includes("документал") || sg.includes("doc")) {
-      expandedStop.add("документальный");
-      expandedStop.add("документалка");
-      expandedStop.add("documentary");
-    }
-  });
-  
-  return mGenres.some(mg => {
-    return Array.from(expandedStop).some(esg => 
-      mg.includes(esg) || esg.includes(mg)
-    );
-  });
-};
-
 export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [] }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
   const [role, setRole] = useState(null); // 'host' or 'guest'
   const [roomData, setRoomData] = useState(null);
-  const [cursor, setCursor] = useState(0);
+  
+  // NO MORE CURSOR. We use a local swipe history to optimistically hide cards we just swiped.
+  const [swipeHistory, setSwipeHistory] = useState([]);
+  
   const [showDetails, setShowDetails] = useState(false);
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
-  const [swipeHistory, setSwipeHistory] = useState([]);
   const [matchHistory, setMatchHistory] = useState(() => {
     const saved = localStorage.getItem("matchwatch_history");
     return saved ? JSON.parse(saved) : [];
@@ -101,6 +32,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [friendAvatars, setFriendAvatars] = useState({});
   const [sessionTutorialSeen, setSessionTutorialSeen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("movie");
+
+  // Refs to prevent stale closures in Firebase callbacks
+  const screenRef = useRef(screen);
+  useEffect(() => { screenRef.current = screen; }, [screen]);
+  
+  const roleRef = useRef(role);
+  useEffect(() => { roleRef.current = role; }, [role]);
 
   useEffect(() => {
     if (!auth) return;
@@ -130,57 +68,62 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   }, [initialRoomCode, hostRoomCode, onClearInitialRoomCode, onClearHostRoomCode]);
 
   useEffect(() => {
-    if (roomCode && (screen === "swiping" || screen === "waiting")) {
-      const unsubscribe = subscribeToRoom(roomCode, (data) => {
-        if (!data) return;
-        setRoomData(data);
-        
-        if (data.status === "active" && screen === "waiting") {
-          setScreen("swiping");
-        }
+    if (!roomCode) return;
+    
+    // Subscribe ONLY ONCE when roomCode is set. 
+    // Do NOT depend on screen/role, as that caused constant resubscriptions and missed events.
+    const unsubscribe = subscribeToRoom(roomCode, (data) => {
+      if (!data) return;
+      setRoomData(data);
+      
+      const currentScreen = screenRef.current;
+      const currentRole = roleRef.current;
+      
+      if (data.status === "active" && currentScreen === "waiting") {
+        setScreen("swiping");
+      }
 
-        // Внедряем проверку на пересечение лайков (match) с учетом профильных решений и сессионных лайков
-        const hostLikes = data.hostLikes || {};
-        const guestLikes = data.guestLikes || {};
-        const hostDecisions = data.hostDecisions || {};
-        const guestDecisions = data.guestDecisions || {};
+      // Внедряем проверку на пересечение лайков (match) с учетом профильных решений и сессионных лайков
+      const hostLikes = data.hostLikes || {};
+      const guestLikes = data.guestLikes || {};
+      const hostDecisions = data.hostDecisions || {};
+      const guestDecisions = data.guestDecisions || {};
 
-        const allLikedIds = new Set([
-          ...Object.keys(hostLikes).filter(id => hostLikes[id] === true),
-          ...Object.keys(hostDecisions).filter(id => hostDecisions[id] === "like"),
-          ...Object.keys(guestLikes).filter(id => guestLikes[id] === true),
-          ...Object.keys(guestDecisions).filter(id => guestDecisions[id] === "like")
-        ]);
+      const allLikedIds = new Set([
+        ...Object.keys(hostLikes).filter(id => hostLikes[id] === true),
+        ...Object.keys(hostDecisions).filter(id => hostDecisions[id] === "like"),
+        ...Object.keys(guestLikes).filter(id => guestLikes[id] === true),
+        ...Object.keys(guestDecisions).filter(id => guestDecisions[id] === "like")
+      ]);
 
-        const intersectionId = Array.from(allLikedIds).find(id => {
-          const hostLiked = hostLikes[id] === true || hostDecisions[id] === "like";
-          const guestLiked = guestLikes[id] === true || guestDecisions[id] === "like";
-          return hostLiked && guestLiked;
-        });
-
-        const effectiveMatch = data.match || (intersectionId ? parseInt(intersectionId) : null);
-
-        if (effectiveMatch && screen !== "match") {
-          setScreen("match");
-          setMatchHistory(prev => {
-            const safePrev = Array.isArray(prev) ? prev : [];
-            const exists = safePrev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
-            if (exists) return safePrev;
-            const partner = role === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
-            const newHistory = [{
-              id: Date.now(),
-              movieId: effectiveMatch,
-              partner: partner,
-              date: new Date().toLocaleDateString()
-            }, ...safePrev];
-            localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
-            return newHistory;
-          });
-        }
+      const intersectionId = Array.from(allLikedIds).find(id => {
+        const hostLiked = hostLikes[id] === true || hostDecisions[id] === "like";
+        const guestLiked = guestLikes[id] === true || guestDecisions[id] === "like";
+        return hostLiked && guestLiked;
       });
-      return () => unsubscribe();
-    }
-  }, [roomCode, screen, role]);
+
+      const effectiveMatch = data.match || (intersectionId ? parseInt(intersectionId) : null);
+
+      if (effectiveMatch && screenRef.current !== "match") {
+        setScreen("match");
+        setMatchHistory(prev => {
+          const safePrev = Array.isArray(prev) ? prev : [];
+          const exists = safePrev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
+          if (exists) return safePrev;
+          const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+          const newHistory = [{
+            id: Date.now(),
+            movieId: effectiveMatch,
+            partner: partner,
+            date: new Date().toLocaleDateString()
+          }, ...safePrev];
+          localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
+          return newHistory;
+        });
+      }
+    });
+    return () => unsubscribe();
+  }, [roomCode]);
 
   useEffect(() => {
     if (currentUser && database) {
@@ -255,25 +198,24 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const handleSwipe = (direction, movie) => {
     const decision = direction === "right" ? "like" : "dislike";
     swipeMovie(roomCode, role, movie.id, decision);
+    
+    // Optimsitically add to local swipe history so it hides instantly
     setSwipeHistory((prev) => [...prev, movie.id]);
     setSwipeHint({ x: 0, active: false });
-    setCursor((prev) => prev + 1);
   };
-
-  useEffect(() => {
-    // Reset hints whenever cursor changes (new card)
-    setSwipeHint({ x: 0, active: false });
-  }, [cursor]);
 
   const handleUndo = async () => {
     if (swipeHistory.length === 0) return;
     const lastMovieId = swipeHistory[swipeHistory.length - 1];
+    
+    // Remove from local optimistic history
     setSwipeHistory(prev => prev.slice(0, -1));
-    setCursor(prev => Math.max(0, prev - 1));
+    
+    // Remove from Firebase
     await removeSwipe(roomCode, role, lastMovieId);
   };
 
-  const optimizedDeck = useMemo(() => {
+  const unswipedDeck = useMemo(() => {
     if (!roomData || !roomData.deck) return [];
 
     const rawDeck = roomData.deck;
@@ -283,27 +225,23 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     } else if (rawDeck && typeof rawDeck === 'object') {
       deckArray = Object.values(rawDeck);
     }
+    
     const cleanDeck = deckArray.filter(id => id !== null && id !== undefined).map(id => parseInt(id));
 
     // Находим лайки текущего пользователя в этой сессии
     const isHost = role === "host";
     const myLikes = isHost ? (roomData.hostLikes || {}) : (roomData.guestLikes || {});
 
-    // Фильтруем только те карточки, которые текущий пользователь уже свайпнул в этой сессии
-    const unswipedIds = cleanDeck.filter(movieId => myLikes[movieId] === undefined);
-
-    // Объединяем историю и невыбранные для сохранения стабильности курсора
-    return [...swipeHistory, ...unswipedIds];
+    // Оставляем только те карточки, которые не были свайпнуты (ни в Firebase, ни в локальной истории)
+    return cleanDeck.filter(movieId => 
+      myLikes[movieId] === undefined && !swipeHistory.includes(movieId)
+    );
   }, [roomData, role, swipeHistory]);
 
-  const currentMovieId = cursor < optimizedDeck.length
-    ? optimizedDeck[cursor]
-    : null;
+  const currentMovieId = unswipedDeck.length > 0 ? unswipedDeck[0] : null;
   const currentMovie = currentMovieId ? moviesById[currentMovieId] : null;
 
-  const nextMovieId = cursor + 1 < optimizedDeck.length
-    ? optimizedDeck[cursor + 1]
-    : null;
+  const nextMovieId = unswipedDeck.length > 1 ? unswipedDeck[1] : null;
   const nextMovie = nextMovieId ? moviesById[nextMovieId] : null;
 
   // Рассчитываем ID совпадения для отображения
@@ -312,6 +250,118 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   ) : null);
 
   const showTutorial = !disableOnboarding && !sessionTutorialSeen;
+
+  // Render Error Boundary Wrapper
+  const renderSwipingScreen = () => {
+    try {
+      return (
+        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div className="room-header-compact matchwatch-swiping-header">
+            <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
+            <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
+          </div>
+          
+          <div className="swipe-wrapper">
+            <div className="swipe-hints" aria-hidden="true">
+              <div
+                className="swipe-hint-icon swipe-hint-icon--dislike"
+                style={{
+                  opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
+                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
+                }}
+              >
+                ✕
+                <span className="swipe-hint-text">Пропустить</span>
+              </div>
+              <div
+                className="swipe-hint-icon swipe-hint-icon--like"
+                style={{
+                  opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
+                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
+                }}
+              >
+                ❤️
+                <span className="swipe-hint-text">Нравится</span>
+              </div>
+            </div>
+
+            <div className="deck-container">
+              {!roomData || !roomData.deck ? (
+                <div className="empty-profile" style={{ textAlign: "center", marginTop: "40px" }}>
+                  <div className="premium-loader" style={{ margin: "0 auto 20px auto" }} />
+                  <p style={{ color: "rgba(255,255,255,0.6)" }}>Загрузка карточек комнаты...</p>
+                </div>
+              ) : showTutorial ? (
+                <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
+                  <SwipeCard 
+                    isTutorial={true} 
+                    onSwipe={() => setSessionTutorialSeen(true)} 
+                    onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                  />
+                </div>
+              ) : (
+                <>
+                  {nextMovie && (
+                    <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
+                      <div className="card-placeholder">
+                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
+                        <div className="placeholder-overlay" />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {currentMovie ? (
+                    <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
+                      <SwipeCard
+                        key={currentMovie.id}
+                        movie={currentMovie}
+                        onSwipe={handleSwipe}
+                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
+                        onShowDetails={() => setShowDetails(currentMovie.id)}
+                      />
+                    </div>
+                  ) : (
+                    <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
+                      <h2>Карточки закончились!</h2>
+                      <p>Ждем, пока партнер досмотрит свой список...</p>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            {!showTutorial && (
+              <button 
+                className="btn-floating-undo desktop-only" 
+                onClick={handleUndo} 
+                disabled={swipeHistory.length === 0}
+                title="Отменить последний выбор"
+              >
+                ↩️
+              </button>
+            )}
+          </div>
+          
+          {process.env.NODE_ENV === 'development' && (
+            <div style={{ position: "fixed", bottom: 10, right: 10, background: "rgba(0,0,0,0.8)", padding: "10px", fontSize: "10px", color: "#0f0", zIndex: 9999, pointerEvents: "none" }}>
+              <div>Screen: {screen}</div>
+              <div>Role: {role}</div>
+              <div>Deck Size: {unswipedDeck.length}</div>
+              <div>Current Movie: {currentMovieId}</div>
+            </div>
+          )}
+        </motion.div>
+      );
+    } catch (e) {
+      console.error("MatchWatch render error:", e);
+      return (
+        <div style={{ color: "white", padding: "20px", textAlign: "center" }}>
+          <h2>Ошибка рендеринга</h2>
+          <p>Что-то пошло не так при отображении карточек. Пожалуйста, перезагрузите страницу.</p>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -498,94 +548,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         </motion.div>
       )}
 
-      {screen === "swiping" && (
-        <motion.div className="matchwatch-swiping" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="room-header-compact matchwatch-swiping-header">
-            <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
-            <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
-          </div>
-          
-          <div className="swipe-wrapper">
-            <div className="swipe-hints" aria-hidden="true">
-              <div
-                className="swipe-hint-icon swipe-hint-icon--dislike"
-                style={{
-                  opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
-                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
-                }}
-              >
-                ✕
-                <span className="swipe-hint-text">Пропустить</span>
-              </div>
-              <div
-                className="swipe-hint-icon swipe-hint-icon--like"
-                style={{
-                  opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
-                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
-                }}
-              >
-                ❤️
-                <span className="swipe-hint-text">Нравится</span>
-              </div>
-            </div>
-
-            <div className="deck-container">
-              {!roomData || !roomData.deck ? (
-                <div className="empty-profile" style={{ textAlign: "center", marginTop: "40px" }}>
-                  <div className="premium-loader" style={{ margin: "0 auto 20px auto" }} />
-                  <p style={{ color: "rgba(255,255,255,0.6)" }}>Загрузка карточек комнаты...</p>
-                </div>
-              ) : showTutorial ? (
-                <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
-                  <SwipeCard 
-                    isTutorial={true} 
-                    onSwipe={() => setSessionTutorialSeen(true)} 
-                    onDragProgress={(x, active) => setSwipeHint({ x, active })}
-                  />
-                </div>
-              ) : (
-                <>
-                  {nextMovie && (
-                    <div className="deck-card deck-position-1" style={{ zIndex: 0 }}>
-                      <div className="card-placeholder">
-                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} />
-                        <div className="placeholder-overlay" />
-                      </div>
-                    </div>
-                  )}
-                  
-                  {currentMovie ? (
-                    <div className="deck-card deck-position-0" style={{ zIndex: 1 }}>
-                      <SwipeCard
-                        key={currentMovie.id}
-                        movie={currentMovie}
-                        onSwipe={handleSwipe}
-                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
-                      />
-                    </div>
-                  ) : (
-                    <div className="empty-profile" style={{ textAlign: "center", marginTop: "100px" }}>
-                      <h2>Карточки закончились!</h2>
-                      <p>Ждем, пока партнер досмотрит свой список...</p>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-
-            {!showTutorial && (
-              <button 
-                className="btn-floating-undo desktop-only" 
-                onClick={handleUndo} 
-                disabled={swipeHistory.length === 0}
-                title="Отменить последний выбор"
-              >
-                ↩️
-              </button>
-            )}
-          </div>
-        </motion.div>
-      )}
+      {screen === "swiping" && renderSwipingScreen()}
 
       {screen === "match" && matchId && createPortal(
         <div className="match-screen-overlay">

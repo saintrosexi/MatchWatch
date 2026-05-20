@@ -455,10 +455,13 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
     
     const guestPayload = {
       guestName,
-      status: 'active',
-      deck: finalDeck
+      status: 'active'
     };
 
+    if (finalDeck.length > 0) {
+      guestPayload.deck = finalDeck;
+    }
+    
     if (guestDecisions && typeof guestDecisions === 'object' && Object.keys(guestDecisions).length > 0) {
       guestPayload.guestDecisions = guestDecisions;
     }
