@@ -396,6 +396,8 @@ export const subscribeToRoom = (roomCode, callback) => {
 
 export const removeSwipe = async (roomCode, role, movieId) => {
   if (!database) return;
-  const roomRef = ref(database, `matchRooms/${roomCode}/${role}Likes/${movieId}`);
-  await remove(roomRef);
+  const updates = {};
+  updates[`${role}Likes/${movieId}`] = null;
+  updates[`${role}Dislikes/${movieId}`] = null;
+  await update(ref(database, `matchRooms/${roomCode}`), updates);
 };

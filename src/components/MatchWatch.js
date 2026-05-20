@@ -22,6 +22,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
   const [matchQueue, setMatchQueue] = useState([]);
   const notifiedMatchesRef = useRef(new Set());
+  const isInitializedRef = useRef(false);
+
+  useEffect(() => {
+    if (!roomCode) {
+      notifiedMatchesRef.current.clear();
+      isInitializedRef.current = false;
+      setMatchQueue([]);
+    }
+  }, [roomCode]);
+
   const [matchHistory, setMatchHistory] = useState(() => {
     const saved = localStorage.getItem("matchwatch_history");
     return saved ? JSON.parse(saved) : [];
@@ -93,45 +103,82 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       const deckIds = data.deck || [];
       const deckArray = Array.isArray(deckIds) ? deckIds : Object.values(deckIds);
 
-      const newMatches = [];
-
+      const allMatches = [];
       deckArray.forEach(id => {
         if (!id) return;
         const movieId = parseInt(id);
         const hostLiked = hostLikes[movieId] === true || hostDecisions[movieId] === "like";
         const guestLiked = guestLikes[movieId] === true || guestDecisions[movieId] === "like";
 
-        if (hostLiked && guestLiked && !notifiedMatchesRef.current.has(movieId)) {
-          newMatches.push(movieId);
+        if (hostLiked && guestLiked) {
+          allMatches.push(movieId);
         }
       });
 
-      if (newMatches.length > 0) {
-        newMatches.forEach(id => notifiedMatchesRef.current.add(id));
-        setMatchQueue(prev => {
-          const filtered = newMatches.filter(id => !prev.includes(id));
-          return [...prev, ...filtered];
-        });
+      // 1. Silent initialization on the very first load
+      if (!isInitializedRef.current) {
+        allMatches.forEach(movieId => notifiedMatchesRef.current.add(movieId));
+        isInitializedRef.current = true;
 
-        setMatchHistory(prev => {
-          const safePrev = Array.isArray(prev) ? [...prev] : [];
-          const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
-
-          newMatches.forEach(matchId => {
-            const exists = safePrev.find(h => h.movieId === matchId && h.date === new Date().toLocaleDateString());
-            if (!exists) {
-              safePrev.unshift({
-                id: Date.now() + Math.random(),
-                movieId: matchId,
-                partner: partner,
-                date: new Date().toLocaleDateString()
-              });
+        // Silently add any existing session matches to the history if not already present
+        if (allMatches.length > 0) {
+          setMatchHistory(prev => {
+            const safePrev = Array.isArray(prev) ? prev : [];
+            let updated = false;
+            const newHistory = [...safePrev];
+            const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+            
+            allMatches.forEach(matchId => {
+              const exists = newHistory.find(h => h.movieId === matchId);
+              if (!exists) {
+                newHistory.push({
+                  id: Date.now() + matchId,
+                  movieId: matchId,
+                  partner: partner,
+                  date: new Date().toLocaleDateString()
+                });
+                updated = true;
+              }
+            });
+            
+            if (updated) {
+              localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
+              return newHistory;
             }
+            return safePrev;
+          });
+        }
+      } else {
+        // 2. Subsequent updates: detect new matches not in notifiedMatchesRef
+        const newMatches = allMatches.filter(movieId => !notifiedMatchesRef.current.has(movieId));
+
+        if (newMatches.length > 0) {
+          newMatches.forEach(id => notifiedMatchesRef.current.add(id));
+          setMatchQueue(prev => {
+            const filtered = newMatches.filter(id => !prev.includes(id));
+            return [...prev, ...filtered];
           });
 
-          localStorage.setItem("matchwatch_history", JSON.stringify(safePrev));
-          return safePrev;
-        });
+          setMatchHistory(prev => {
+            const safePrev = Array.isArray(prev) ? [...prev] : [];
+            const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+
+            newMatches.forEach(matchId => {
+              const exists = safePrev.find(h => h.movieId === matchId && h.date === new Date().toLocaleDateString());
+              if (!exists) {
+                safePrev.unshift({
+                  id: Date.now() + Math.random(),
+                  movieId: matchId,
+                  partner: partner,
+                  date: new Date().toLocaleDateString()
+                });
+              }
+            });
+
+            localStorage.setItem("matchwatch_history", JSON.stringify(safePrev));
+            return safePrev;
+          });
+        }
       }
     });
     return () => unsubscribe();
@@ -599,7 +646,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               <p>Приятного просмотра!</p>
             </div>
             <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(matchQueue[0])}>Подробнее о фильме</button>
-            <button className="btn-primary" style={{ width: "100%" }} onClick={() => setMatchQueue(prev => prev.slice(1))}>Продолжить</button>
+            <button className="btn-primary" style={{ width: "100%", marginBottom: "10px" }} onClick={() => setMatchQueue(prev => prev.slice(1))}>Продолжить выбор</button>
+            <button className="btn-secondary" style={{ width: "100%", background: "rgba(255,255,255,0.05)" }} onClick={() => { setMatchQueue([]); setScreen("start"); }}>Завершить</button>
           </motion.div>
         </div>,
         document.body
