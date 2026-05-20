@@ -237,13 +237,18 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleJoinRoom = async () => {
     if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
-    const success = await joinMatchRoom(roomCode, userName, decisions, favorites, stopGenres);
-    if (success) {
-      setRole("guest");
-      setScreen("swiping");
-      setSessionTutorialSeen(false);
-    } else {
-      alert("Комната не найдена");
+    try {
+      const success = await joinMatchRoom(roomCode, userName, decisions, favorites, stopGenres);
+      if (success) {
+        setRole("guest");
+        setScreen("swiping");
+        setSessionTutorialSeen(false);
+      } else {
+        alert("Комната не найдена");
+      }
+    } catch (err) {
+      console.error("Ошибка при подключении к комнате:", err);
+      alert("Ошибка при подключении к комнате. Попробуйте ещё раз.");
     }
   };
 

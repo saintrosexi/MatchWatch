@@ -253,13 +253,15 @@ const isMovieGenreStopped = (genresStr, stopGenres) => {
 };
 
 const getFavoriteActorAndDirector = (decisions = {}, favorites = {}) => {
+  const safeDecisions = decisions || {};
+  const safeFavorites = favorites || {};
   const actorScores = {};
   const directorScores = {};
   
-  const favIds = Object.keys(favorites).filter(id => favorites[id]);
+  const favIds = Object.keys(safeFavorites).filter(id => safeFavorites[id]);
 
-  Object.keys(decisions).forEach(id => {
-    if (decisions[id] === "like") {
+  Object.keys(safeDecisions).forEach(id => {
+    if (safeDecisions[id] === "like") {
       const m = movies.find(movie => movie.id === parseInt(id));
       if (m) {
         const isFav = favIds.includes(id);
@@ -309,15 +311,28 @@ export const createMatchRoom = async (hostName, customDeck = null, hostDecisions
   }
 
   const roomRef = ref(database, `matchRooms/${roomCode}`);
-  await set(roomRef, {
+  
+  const roomPayload = {
     hostName,
     status: "waiting",
     deck: shuffledDeck,
-    hostDecisions,
-    hostFavorites,
-    hostStopGenres,
     createdAt: Date.now()
-  });
+  };
+
+  if (hostDecisions && typeof hostDecisions === 'object' && Object.keys(hostDecisions).length > 0) {
+    roomPayload.hostDecisions = hostDecisions;
+  }
+  if (hostFavorites && typeof hostFavorites === 'object' && Object.keys(hostFavorites).length > 0) {
+    roomPayload.hostFavorites = hostFavorites;
+  }
+  if (hostStopGenres) {
+    const normalized = normalizeStopGenres(hostStopGenres);
+    if (normalized.length > 0) {
+      roomPayload.hostStopGenres = normalized;
+    }
+  }
+
+  await set(roomRef, roomPayload);
   return roomCode;
 };
 
@@ -331,12 +346,23 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
     const hostFavorites = room.hostFavorites || {};
     const hostStopGenres = room.hostStopGenres || [];
     
+    const safeGuestDecisions = guestDecisions || {};
+    const safeGuestFavorites = guestFavorites || {};
+    const safeGuestStopGenres = guestStopGenres || [];
+    
     // Получаем список кандидатов из существующей (и уже отфильтрованной по категории) колоды
-    const candidateIds = room.deck || [];
+    // Firebase RTDB может вернуть массив как объект {0: val, 1: val, ...}
+    const rawDeck = room.deck || [];
+    let candidateIds = [];
+    if (Array.isArray(rawDeck)) {
+      candidateIds = rawDeck;
+    } else if (rawDeck && typeof rawDeck === 'object') {
+      candidateIds = Object.values(rawDeck);
+    }
     
     // Рассчитываем любимых актеров и режиссеров для обоих пользователей
     const hostFavs = getFavoriteActorAndDirector(hostDecisions, hostFavorites);
-    const guestFavs = getFavoriteActorAndDirector(guestDecisions, guestFavorites);
+    const guestFavs = getFavoriteActorAndDirector(safeGuestDecisions, safeGuestFavorites);
     
     const hostFavActor = hostFavs.favoriteActor;
     const hostFavDirector = hostFavs.favoriteDirector;
@@ -360,7 +386,7 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
       
       // Исключаем совпадения по лайкам (фильмы, которые оба уже лайкнули в профиле)
       const hostLiked = hostDecisions[id] === "like";
-      const guestLiked = guestDecisions[id] === "like";
+      const guestLiked = safeGuestDecisions[id] === "like";
       if (hostLiked && guestLiked) {
         return;
       }
@@ -405,13 +431,13 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
       
       // 4. Фильмы в избранном у одного из пользователей
       const hostFav = hostFavorites[id] === true;
-      const guestFav = guestFavorites[id] === true;
+      const guestFav = safeGuestFavorites[id] === true;
       if (hostFav || guestFav) {
         score += 50;
       }
       
       // 5. Фильмы в стоп-листе (жанры) у любого из пользователей — уходят в самый низ
-      const isStopped = isMovieGenreStopped(m.genres, hostStopGenres) || isMovieGenreStopped(m.genres, guestStopGenres);
+      const isStopped = isMovieGenreStopped(m.genres, hostStopGenres) || isMovieGenreStopped(m.genres, safeGuestStopGenres);
       if (isStopped) {
         score -= 1000;
       }
@@ -427,14 +453,26 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
     
     const finalDeck = scoredDeck.map(item => item.id);
     
-    await update(roomRef, {
+    const guestPayload = {
       guestName,
       status: 'active',
-      guestDecisions,
-      guestFavorites,
-      guestStopGenres,
       deck: finalDeck
-    });
+    };
+
+    if (guestDecisions && typeof guestDecisions === 'object' && Object.keys(guestDecisions).length > 0) {
+      guestPayload.guestDecisions = guestDecisions;
+    }
+    if (guestFavorites && typeof guestFavorites === 'object' && Object.keys(guestFavorites).length > 0) {
+      guestPayload.guestFavorites = guestFavorites;
+    }
+    if (guestStopGenres) {
+      const normalized = normalizeStopGenres(guestStopGenres);
+      if (normalized.length > 0) {
+        guestPayload.guestStopGenres = normalized;
+      }
+    }
+    
+    await update(roomRef, guestPayload);
     return true;
   }
   return false;

@@ -194,4 +194,62 @@ describe('joinMatchRoom cooperative logic', () => {
     expect(idx3).toBeLessThan(idx5);
     expect(idx4).toBeLessThan(idx5);
   });
+
+  it('should not crash when parameters are null, undefined or empty, and should omit undefined/empty fields from the database payload', async () => {
+    const mockRoomData = {
+      hostName: 'HostUser',
+      status: 'waiting',
+      deck: [1, 2, 3, 4, 5],
+      createdAt: 123456789
+      // hostDecisions, hostFavorites, hostStopGenres are omitted (empty)
+    };
+
+    const snapshot = {
+      exists: () => true,
+      val: () => mockRoomData
+    };
+    
+    const { get: mockGet, update: mockUpdate } = require('firebase/database');
+    mockGet.mockResolvedValue(snapshot);
+    mockUpdate.mockResolvedValue(true);
+
+    // Call joinMatchRoom with null/undefined values
+    const success = await joinMatchRoom('ROOM123', 'GuestUser', null, undefined, null);
+    expect(success).toBe(true);
+
+    expect(mockUpdate).toHaveBeenCalled();
+    const updateCallArgs = mockUpdate.mock.calls[0][1];
+    
+    // Check that optional fields were not added to payload as undefined or empty objects/arrays
+    expect(updateCallArgs.guestDecisions).toBeUndefined();
+    expect(updateCallArgs.guestFavorites).toBeUndefined();
+    expect(updateCallArgs.guestStopGenres).toBeUndefined();
+    expect(updateCallArgs.guestName).toBe('GuestUser');
+    expect(updateCallArgs.status).toBe('active');
+    expect(updateCallArgs.deck).toBeInstanceOf(Array);
+  });
+});
+
+describe('createMatchRoom sanitization', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should omit empty or null/undefined decisions, favorites, and stopGenres from the database payload', async () => {
+    const { set: mockSet } = require('firebase/database');
+    mockSet.mockResolvedValue(true);
+
+    const roomCode = await createMatchRoom('HostUser', [1, 2], null, undefined, null);
+    expect(roomCode).toBeTruthy();
+
+    expect(mockSet).toHaveBeenCalled();
+    const setCallArgs = mockSet.mock.calls[0][1];
+
+    expect(setCallArgs.hostName).toBe('HostUser');
+    expect(setCallArgs.status).toBe('waiting');
+    expect(setCallArgs.deck).toEqual(expect.arrayContaining([1, 2]));
+    expect(setCallArgs.hostDecisions).toBeUndefined();
+    expect(setCallArgs.hostFavorites).toBeUndefined();
+    expect(setCallArgs.hostStopGenres).toBeUndefined();
+  });
 });
