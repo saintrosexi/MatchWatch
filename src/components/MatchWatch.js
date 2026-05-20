@@ -407,16 +407,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                 )}
             </div>
 
-            {!showTutorial && (
-              <button 
-                className="btn-floating-undo desktop-only" 
-                onClick={handleUndo} 
-                disabled={swipeHistory.length === 0}
-                title="Отменить последний выбор"
-              >
-                ↩️
-              </button>
-            )}
+
           </div>
           
           {true && (
