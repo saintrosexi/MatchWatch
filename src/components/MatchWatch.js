@@ -20,6 +20,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   
   const [showDetails, setShowDetails] = useState(false);
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
+  const [matchQueue, setMatchQueue] = useState([]);
+  const notifiedMatchesRef = useRef(new Set());
   const [matchHistory, setMatchHistory] = useState(() => {
     const saved = localStorage.getItem("matchwatch_history");
     return saved ? JSON.parse(saved) : [];
@@ -83,42 +85,52 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         setScreen("swiping");
       }
 
-      // Внедряем проверку на пересечение лайков (match) с учетом профильных решений и сессионных лайков
       const hostLikes = data.hostLikes || {};
       const guestLikes = data.guestLikes || {};
       const hostDecisions = data.hostDecisions || {};
       const guestDecisions = data.guestDecisions || {};
 
-      const allLikedIds = new Set([
-        ...Object.keys(hostLikes).filter(id => hostLikes[id] === true),
-        ...Object.keys(hostDecisions).filter(id => hostDecisions[id] === "like"),
-        ...Object.keys(guestLikes).filter(id => guestLikes[id] === true),
-        ...Object.keys(guestDecisions).filter(id => guestDecisions[id] === "like")
-      ]);
+      const deckIds = data.deck || [];
+      const deckArray = Array.isArray(deckIds) ? deckIds : Object.values(deckIds);
 
-      const intersectionId = Array.from(allLikedIds).find(id => {
-        const hostLiked = hostLikes[id] === true || hostDecisions[id] === "like";
-        const guestLiked = guestLikes[id] === true || guestDecisions[id] === "like";
-        return hostLiked && guestLiked;
+      const newMatches = [];
+
+      deckArray.forEach(id => {
+        if (!id) return;
+        const movieId = parseInt(id);
+        const hostLiked = hostLikes[movieId] === true || hostDecisions[movieId] === "like";
+        const guestLiked = guestLikes[movieId] === true || guestDecisions[movieId] === "like";
+
+        if (hostLiked && guestLiked && !notifiedMatchesRef.current.has(movieId)) {
+          newMatches.push(movieId);
+        }
       });
 
-      const effectiveMatch = data.match || (intersectionId ? parseInt(intersectionId) : null);
+      if (newMatches.length > 0) {
+        newMatches.forEach(id => notifiedMatchesRef.current.add(id));
+        setMatchQueue(prev => {
+          const filtered = newMatches.filter(id => !prev.includes(id));
+          return [...prev, ...filtered];
+        });
 
-      if (effectiveMatch && screenRef.current !== "match") {
-        setScreen("match");
         setMatchHistory(prev => {
-          const safePrev = Array.isArray(prev) ? prev : [];
-          const exists = safePrev.find(h => h.movieId === effectiveMatch && h.date === new Date().toLocaleDateString());
-          if (exists) return safePrev;
+          const safePrev = Array.isArray(prev) ? [...prev] : [];
           const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
-          const newHistory = [{
-            id: Date.now(),
-            movieId: effectiveMatch,
-            partner: partner,
-            date: new Date().toLocaleDateString()
-          }, ...safePrev];
-          localStorage.setItem("matchwatch_history", JSON.stringify(newHistory));
-          return newHistory;
+
+          newMatches.forEach(matchId => {
+            const exists = safePrev.find(h => h.movieId === matchId && h.date === new Date().toLocaleDateString());
+            if (!exists) {
+              safePrev.unshift({
+                id: Date.now() + Math.random(),
+                movieId: matchId,
+                partner: partner,
+                date: new Date().toLocaleDateString()
+              });
+            }
+          });
+
+          localStorage.setItem("matchwatch_history", JSON.stringify(safePrev));
+          return safePrev;
         });
       }
     });
@@ -249,10 +261,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const nextMovieId = unswipedDeck.length > 1 ? unswipedDeck[1] : null;
   const nextMovie = nextMovieId ? moviesById[nextMovieId] : null;
 
-  // Рассчитываем ID совпадения для отображения
-  const matchId = roomData?.match || (roomData ? Object.keys(roomData.hostLikes || {}).find(id => 
-    roomData.hostLikes[id] === true && (roomData.guestLikes || {})[id] === true
-  ) : null);
+
 
   const showTutorial = !disableOnboarding && !sessionTutorialSeen;
 
@@ -575,22 +584,22 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       {screen === "swiping" && renderSwipingScreen()}
 
-      {screen === "match" && matchId && createPortal(
+      {matchQueue.length > 0 && createPortal(
         <div className="match-screen-overlay">
           <motion.div className="matchwatch-form match-modal-content" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
             <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
             <div className="match-movie" style={{ textAlign: "center" }}>
               <img 
-                src={moviesById[parseInt(matchId)]?.poster} 
+                src={moviesById[matchQueue[0]]?.poster}
                 alt="Match" 
                 style={{ width: "200px", borderRadius: "12px", boxShadow: "0 10px 20px rgba(0,0,0,0.5)", margin: "0 auto", cursor: "pointer" }} 
-                onClick={() => setShowDetails(parseInt(matchId))}
+                onClick={() => setShowDetails(matchQueue[0])}
               />
-              <h2 style={{ marginTop: "15px" }}>{moviesById[parseInt(matchId)]?.titleRu || moviesById[parseInt(matchId)]?.title}</h2>
+              <h2 style={{ marginTop: "15px" }}>{moviesById[matchQueue[0]]?.titleRu || moviesById[matchQueue[0]]?.title}</h2>
               <p>Приятного просмотра!</p>
             </div>
-            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(parseInt(matchId))}>Подробнее о фильме</button>
-            <button className="btn-primary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Завершить</button>
+            <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(matchQueue[0])}>Подробнее о фильме</button>
+            <button className="btn-primary" style={{ width: "100%" }} onClick={() => setMatchQueue(prev => prev.slice(1))}>Продолжить</button>
           </motion.div>
         </div>,
         document.body
@@ -624,13 +633,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
       {showDetails && (
         <DetailedMovieModal 
-          movie={moviesById[(typeof showDetails === 'number' ? showDetails : parseInt(matchId))]} 
+          movie={moviesById[(typeof showDetails === 'number' ? showDetails : matchQueue[0])]}
           onClose={() => setShowDetails(false)} 
-          isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)] === "like"}
+          isLiked={decisions?.[typeof showDetails === 'number' ? showDetails : matchQueue[0]] === "like"}
           onToggleLike={onToggleLike}
-          isFavorite={favorites?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)]}
+          isFavorite={favorites?.[typeof showDetails === 'number' ? showDetails : matchQueue[0]]}
           onToggleFavorite={onToggleFavorite}
-          rating={ratings?.[typeof showDetails === 'number' ? showDetails : parseInt(matchId)]}
+          rating={ratings?.[typeof showDetails === 'number' ? showDetails : matchQueue[0]]}
           onSetRating={onSetRating}
         />
       )}
