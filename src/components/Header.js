@@ -1,47 +1,14 @@
 import { useState, useEffect } from "react";
 
-export default function Header({ 
-  currentScreen, 
-  onTabClick, 
-  likedCount, 
-  friendRequestsCount = 0, 
-  invitesCount = 0, 
-  rightContent, 
-  onUndo, 
-  history = [],
-  isTabSwitcherOpen,
-  setIsTabSwitcherOpen,
-  tabHistory = [],
-  goBackTab,
-  changeScreen
-}) {
+export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent, onUndo, history = [] }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
-  const [shareSheetOpen, setShareSheetOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [isReloading, setIsReloading] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const getScreenPath = (screen) => {
-    switch(screen) {
-      case "swipe": return "swipe";
-      case "mood": return "mood";
-      case "search": return "search";
-      case "top": return "top-movies";
-      case "liked": return "favorites";
-      case "friends": return "friends";
-      case "profile": return "profile";
-      case "matchwatch": return "matchwatch-room";
-      case "publicProfile": return "user-profile";
-      case "settings": return "settings";
-      case "final": return "final-screen";
-      default: return "";
-    }
-  };
 
   const getScreenName = (screen) => {
     switch(screen) {
@@ -55,58 +22,22 @@ export default function Header({
       case "matchwatch": return "MatchWatch";
       case "publicProfile": return "Профиль";
       case "settings": return "Параметры";
-      default: return "Браузер";
+      default: return "";
     }
   };
 
   const handleTabClick = (tab) => {
     onTabClick(tab);
-  };
-
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage("");
-    }, 2000);
-  };
-
-  const handleReload = () => {
-    if (isReloading) return;
-    setIsReloading(true);
-    showToast("Страница обновлена");
-    setTimeout(() => {
-      setIsReloading(false);
-    }, 600);
-  };
-
-  const copyAppAddress = () => {
-    const link = `${window.location.origin}?ref=safari`;
-    navigator.clipboard.writeText(link).then(() => {
-      showToast("Ссылка скопирована!");
-      setShareSheetOpen(false);
-    });
-  };
-
-  // Back action in footer
-  const canGoBack = currentScreen === "swipe" ? history.length > 0 : tabHistory.length > 1;
-  const handleBackAction = () => {
-    if (currentScreen === "swipe") {
-      if (onUndo && history.length > 0) {
-        onUndo();
-      }
-    } else {
-      if (goBackTab) goBackTab();
-    }
+    setMenuOpen(false);
   };
 
   return (
     <>
-      {toastMessage && <div className="safari-toast">{toastMessage}</div>}
-
-      {/* 1. DESKTOP HEADER (Unchanged) */}
-      {!isMobile && (
+      {(!isMobile || currentScreen !== "swipe") && (
         <header className="header">
           <div className="header-content">
+          {/* Desktop Left */}
+          {!isMobile && (
             <div className="header-left">
               <div 
                 className="header-logo" 
@@ -123,7 +54,10 @@ export default function Header({
                 <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
               </div>
             </div>
+          )}
 
+          {/* Desktop Center */}
+          {!isMobile && (
             <div className="header-center desktop-only">
               <button
                 className={`nav-tab tab-matchwatch ${currentScreen === "matchwatch" ? "active" : ""}`}
@@ -134,7 +68,29 @@ export default function Header({
                 {invitesCount > 0 && <span className="nav-badge">{invitesCount}</span>}
               </button>
             </div>
+          )}
 
+          {/* Mobile Top Header (iOS style) */}
+          {isMobile && (
+            <div className="mobile-header-top">
+              <div className="mobile-header-left">
+                {rightContent}
+              </div>
+              <div className="mobile-header-title">
+                {currentScreen === "swipe" ? (
+                  <img src="/logo.png" alt="MatchWatch Logo" style={{ height: "24px" }} />
+                ) : (
+                  getScreenName(currentScreen)
+                )}
+              </div>
+              <div className="mobile-header-right">
+                {/* Empty for balance */}
+              </div>
+            </div>
+          )}
+
+          {/* Desktop Right Nav Tabs */}
+          {!isMobile && (
             <ul className="nav-tabs desktop-only">
               <li>
                 <button className={`nav-tab ${currentScreen === "swipe" ? "active" : ""}`} onClick={() => handleTabClick("swipe")}>🎬 Выбрать фильм</button>
@@ -164,146 +120,84 @@ export default function Header({
                 <button className={`nav-tab ${currentScreen === "settings" ? "active" : ""}`} onClick={() => handleTabClick("settings")}>⚙️ Параметры</button>
               </li>
             </ul>
-          </div>
-        </header>
+          )}
+        </div>
+      </header>
       )}
 
-      {/* 2. MOBILE iOS SAFARI HEADER (Address Bar) */}
+      {/* Mobile Bottom Navigation */}
       {isMobile && (
-        <header className="mobile-safari-header">
-          <div className="safari-header-left">
-            <span className="safari-text-action">Aa</span>
-          </div>
-          
-          <div className="safari-address-bar" onClick={() => onTabClick("search")}>
-            <span className="safari-ssl-lock">🔒</span>
-            <span className="safari-domain-text">
-              matchwatch.app
-              <span className="safari-path-text">/{getScreenPath(currentScreen)}</span>
-            </span>
-          </div>
-          
-          <div className="safari-header-right" onClick={handleReload}>
-            <span className={`safari-reload-btn ${isReloading ? "spinning" : ""}`}>🔄</span>
-          </div>
-        </header>
-      )}
-
-      {/* 3. MOBILE iOS SAFARI FOOTER (Controls Bar) */}
-      {isMobile && (
-        <div className="mobile-safari-footer">
-          {/* Back arrow */}
-          <button 
-            className="safari-footer-item"
-            disabled={!canGoBack}
-            onClick={handleBackAction}
-            title={currentScreen === "swipe" ? "Отменить свайп" : "Назад"}
-          >
-            <span className="safari-footer-icon">◀</span>
+        <div className="mobile-bottom-nav">
+          {currentScreen === "swipe" ? (
+            <button 
+              className="bottom-nav-item active" 
+              onClick={() => {
+                if (onUndo) onUndo();
+              }}
+              style={{ 
+                opacity: (!history || history.length === 0) ? 0.4 : 1,
+                transition: "opacity 0.2s"
+              }}
+            >
+              <span className="bottom-nav-icon">⏪</span>
+              <span className="bottom-nav-label">Назад</span>
+            </button>
+          ) : (
+            <button 
+              className="bottom-nav-item" 
+              onClick={() => handleTabClick("swipe")}
+            >
+              <span className="bottom-nav-icon">🎬</span>
+              <span className="bottom-nav-label">Выбор</span>
+            </button>
+          )}
+          <button className={`bottom-nav-item ${currentScreen === "matchwatch" ? "active" : ""}`} onClick={() => handleTabClick("matchwatch")} style={{ position: 'relative' }}>
+            <span className="bottom-nav-icon">🍿</span>
+            <span className="bottom-nav-label">Match</span>
+            {invitesCount > 0 && <span className="nav-badge-bottom">{invitesCount}</span>}
           </button>
-
-          {/* Forward arrow */}
-          <button 
-            className="safari-footer-item"
-            disabled={true} // standard for simple single line web views
-            onClick={() => {}}
-          >
-            <span className="safari-footer-icon">▶</span>
+          <button className={`bottom-nav-item ${currentScreen === "search" ? "active" : ""}`} onClick={() => handleTabClick("search")}>
+            <span className="bottom-nav-icon">🔍</span>
+            <span className="bottom-nav-label">Поиск</span>
           </button>
-
-          {/* Share/Actions icon */}
-          <button 
-            className="safari-footer-item"
-            onClick={() => setShareSheetOpen(true)}
-            title="Поделиться"
-          >
-            <span className="safari-footer-icon font-large">📤</span>
+          <button className={`bottom-nav-item ${currentScreen === "liked" ? "active" : ""}`} onClick={() => handleTabClick("liked")}>
+            <span className="bottom-nav-icon">❤️</span>
+            <span className="bottom-nav-label">Любимые</span>
           </button>
-
-          {/* Favorites Bookmark icon */}
-          <button 
-            className={`safari-footer-item ${currentScreen === "liked" ? "active" : ""}`}
-            onClick={() => onTabClick("liked")}
-            title="Закладки"
-          >
-            <span className="safari-footer-icon font-large">📖</span>
-          </button>
-
-          {/* Tab Switcher icon */}
-          <button 
-            className="safari-footer-item"
-            onClick={() => setIsTabSwitcherOpen(true)}
-            title="Вкладки"
-            style={{ position: "relative" }}
-          >
-            <div className="safari-tab-icon">
-              <span className="tab-count-badge">9</span>
-            </div>
+          <button className={`bottom-nav-item ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(true)} style={{ position: 'relative' }}>
+            <span className="bottom-nav-icon">≡</span>
+            <span className="bottom-nav-label">Ещё</span>
+            {friendRequestsCount > 0 && <span className="nav-badge-bottom">{friendRequestsCount}</span>}
           </button>
         </div>
       )}
 
-      {/* 4. iOS SHARE SHEET MODAL */}
+      {/* iOS style Bottom Sheet for Menu */}
       {isMobile && (
         <>
-          <div 
-            className={`share-sheet-overlay ${shareSheetOpen ? "open" : ""}`} 
-            onClick={() => setShareSheetOpen(false)}
-          />
-          <div className={`share-sheet ${shareSheetOpen ? "open" : ""}`}>
-            <div className="share-sheet-drag-handle"></div>
-            
-            <div className="share-sheet-meta">
-              <div className="share-sheet-favicon">🍿</div>
-              <div className="share-sheet-info">
-                <h4>MatchWatch Web</h4>
-                <p>matchwatch.app</p>
-              </div>
-            </div>
-
-            <div className="share-sheet-grid-contacts">
-              <div className="contact-item" onClick={() => showToast("Отправлено в Telegram (эмуляция)") || setShareSheetOpen(false)}>
-                <div className="contact-icon tg">✈️</div>
-                <span className="contact-label">Telegram</span>
-              </div>
-              <div className="contact-item" onClick={() => showToast("Отправлено в WhatsApp (эмуляция)") || setShareSheetOpen(false)}>
-                <div className="contact-icon wa">💬</div>
-                <span className="contact-label">WhatsApp</span>
-              </div>
-              <div className="contact-item" onClick={copyAppAddress}>
-                <div className="contact-icon mail">✉️</div>
-                <span className="contact-label">Почта</span>
-              </div>
-              <div className="contact-item" onClick={() => showToast("Открыто в Сообщениях (эмуляция)") || setShareSheetOpen(false)}>
-                <div className="contact-icon msg">💬</div>
-                <span className="contact-label">Сообщения</span>
-              </div>
-            </div>
-
-            <div className="share-sheet-actions-list">
-              <button className="share-sheet-action" onClick={copyAppAddress}>
-                <span className="action-icon">🔗</span>
-                <span className="action-text">Скопировать ссылку</span>
+          <div className={`bottom-sheet-overlay ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(false)}></div>
+          <div className={`bottom-sheet ${menuOpen ? "open" : ""}`}>
+            <div className="bottom-sheet-drag-handle"></div>
+            <h3 className="bottom-sheet-title">Меню</h3>
+            <div className="bottom-sheet-menu">
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("mood")}>
+                <span className="sheet-icon">🎲</span> По настроению
               </button>
-              <button className="share-sheet-action" onClick={() => onTabClick("matchwatch") || setShareSheetOpen(false)}>
-                <span className="action-icon">🍿</span>
-                <span className="action-text">Пригласить в MatchWatch-комнату</span>
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("top")}>
+                <span className="sheet-icon">⭐</span> Топ фильмов
               </button>
-              <button className="share-sheet-action" onClick={() => onTabClick("friends") || setShareSheetOpen(false)}>
-                <span className="action-icon">👥</span>
-                <span className="action-text">Добавить в друзья</span>
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("friends")}>
+                <span className="sheet-icon">👥</span> Друзья
+                {friendRequestsCount > 0 && <span className="sheet-badge">{friendRequestsCount}</span>}
               </button>
-              <button className="share-sheet-action" onClick={() => {
-                setShareSheetOpen(false);
-                // Trigger PWA Alert
-                showToast("Используйте Поделиться > На экран Домой в Safari");
-              }}>
-                <span className="action-icon">📲</span>
-                <span className="action-text">Установить на экран «Домой»</span>
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("profile")}>
+                <span className="sheet-icon">👤</span> Аккаунт
+              </button>
+              <button className="bottom-sheet-item" onClick={() => handleTabClick("settings")}>
+                <span className="sheet-icon">⚙️</span> Параметры
               </button>
             </div>
-
-            <button className="share-sheet-cancel" onClick={() => setShareSheetOpen(false)}>Отмена</button>
+            <button className="bottom-sheet-cancel" onClick={() => setMenuOpen(false)}>Отмена</button>
           </div>
         </>
       )}

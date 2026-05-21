@@ -57,38 +57,7 @@ export default function App() {
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
   const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
   const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
-  const [screen, setScreenState] = useState("matchwatch");
-  const [isTabSwitcherOpen, setIsTabSwitcherOpen] = useState(false);
-  const [tabHistory, setTabHistory] = useState(["matchwatch"]);
-
-  const changeScreen = (newScreen, pushToHistory = true) => {
-    if (pushToHistory) {
-      setTabHistory(prev => {
-        if (prev[prev.length - 1] === newScreen) return prev;
-        return [...prev, newScreen];
-      });
-    }
-    setScreenState(newScreen);
-    setIsTabSwitcherOpen(false);
-  };
-
-  const setScreen = (newScreen) => {
-    changeScreen(newScreen, true);
-  };
-
-  const goBackTab = () => {
-    setTabHistory(prev => {
-      if (prev.length <= 1) {
-        changeScreen("swipe", false);
-        return ["swipe"];
-      }
-      const newHistory = prev.slice(0, -1);
-      const prevScreen = newHistory[newHistory.length - 1];
-      changeScreen(prevScreen, false);
-      return newHistory;
-    });
-  };
-
+  const [screen, setScreen] = useState("matchwatch");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false, swiped: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -102,14 +71,8 @@ export default function App() {
   const [showPwaPrompt, setShowPwaPrompt] = useState(false);
 
   useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isStandalone = window.navigator.standalone === true;
-    const dismissed = sessionStorage.getItem("pwa_prompt_dismissed");
-    if (isIOS && !isStandalone && !dismissed && screen === "swipe") {
-      setShowPwaPrompt(true);
-    } else {
-      setShowPwaPrompt(false);
-    }
+    // Disabled automatic PWA prompt trigger to keep the movie-swiping screen clean and focus-oriented.
+    setShowPwaPrompt(false);
   }, [screen]);
 
   useEffect(() => {
@@ -425,149 +388,6 @@ export default function App() {
     }
   };
 
-  const renderTabSwitcher = () => {
-    const tabsList = [
-      { id: "swipe", title: "Выбрать фильм", emoji: "🎬", previewClass: "preview-swipe" },
-      { id: "matchwatch", title: "MatchWatch", emoji: "🍿", previewClass: "preview-matchwatch" },
-      { id: "search", title: "Поиск", emoji: "🔍", previewClass: "preview-search" },
-      { id: "mood", title: "По настроению", emoji: "🎲", previewClass: "preview-mood" },
-      { id: "top", title: "Топ фильмов", emoji: "⭐", previewClass: "preview-top" },
-      { id: "liked", title: "Любимые", emoji: "❤️", previewClass: "preview-liked" },
-      { id: "friends", title: "Друзья", emoji: "👥", previewClass: "preview-friends" },
-      { id: "profile", title: "Аккаунт", emoji: "👤", previewClass: "preview-profile" },
-      { id: "settings", title: "Параметры", emoji: "⚙️", previewClass: "preview-settings" }
-    ];
-
-    return (
-      <div className="tab-switcher-overlay">
-        <div className="tab-switcher-header">
-          <span className="tab-switcher-count">{tabsList.length} вкладок</span>
-          <h3 className="tab-switcher-title">Вкладки</h3>
-          <button className="tab-switcher-done" onClick={() => setIsTabSwitcherOpen(false)}>Готово</button>
-        </div>
-        <div className="tab-switcher-grid">
-          {tabsList.map(t => (
-            <div 
-              key={t.id} 
-              className={`tab-switcher-card ${screen === t.id ? "active" : ""}`}
-              onClick={() => changeScreen(t.id)}
-            >
-              <div className="tab-card-header">
-                <div className="tab-card-header-left">
-                  <span className="tab-card-favicon">{t.emoji}</span>
-                  <span className="tab-card-title">{t.title}</span>
-                </div>
-                <button 
-                  className="tab-card-close" 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (screen === t.id) {
-                      changeScreen("swipe");
-                    }
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-              <div className="tab-card-preview-body">
-                <div className={`tab-mini-preview ${t.previewClass}`}>
-                  {t.id === "swipe" && (
-                    <div className="mini-swipe-deck">
-                      <div className="mini-swipe-card back"></div>
-                      <div className="mini-swipe-card middle"></div>
-                      <div className="mini-swipe-card front">
-                        <div className="mini-poster"></div>
-                        <div className="mini-text-line short"></div>
-                        <div className="mini-text-line long"></div>
-                      </div>
-                    </div>
-                  )}
-                  {t.id === "matchwatch" && (
-                    <div className="mini-matchwatch-room">
-                      <div className="mini-avatars">
-                        <div className="mini-avatar red">😎</div>
-                        <div className="mini-vs">♥</div>
-                        <div className="mini-avatar blue">😍</div>
-                      </div>
-                      <div className="mini-pulse"></div>
-                    </div>
-                  )}
-                  {t.id === "search" && (
-                    <div className="mini-search-page">
-                      <div className="mini-search-bar"></div>
-                      <div className="mini-search-grid">
-                        <div className="mini-grid-item"></div>
-                        <div className="mini-grid-item"></div>
-                        <div className="mini-grid-item"></div>
-                        <div className="mini-grid-item"></div>
-                      </div>
-                    </div>
-                  )}
-                  {t.id === "mood" && (
-                    <div className="mini-mood-page">
-                      <div className="mini-moods-grid">
-                        <div className="mini-mood-btn yellow">😌</div>
-                        <div className="mini-mood-btn purple">🧠</div>
-                        <div className="mini-mood-btn red">💥</div>
-                        <div className="mini-mood-btn pink">💕</div>
-                      </div>
-                    </div>
-                  )}
-                  {t.id === "top" && (
-                    <div className="mini-top-page">
-                      <div className="mini-list-item"><span className="num">1</span><span className="line"></span></div>
-                      <div className="mini-list-item"><span className="num">2</span><span className="line"></span></div>
-                      <div className="mini-list-item"><span className="num">3</span><span className="line"></span></div>
-                    </div>
-                  )}
-                  {t.id === "liked" && (
-                    <div className="mini-liked-page">
-                      <div className="mini-liked-grid">
-                        <div className="mini-liked-item">❤️</div>
-                        <div className="mini-liked-item">❤️</div>
-                        <div className="mini-liked-item">❤️</div>
-                        <div className="mini-liked-item">❤️</div>
-                      </div>
-                    </div>
-                  )}
-                  {t.id === "friends" && (
-                    <div className="mini-friends-page">
-                      <div className="mini-friend-row"><div className="avatar"></div><div className="text"></div></div>
-                      <div className="mini-friend-row"><div className="avatar"></div><div className="text"></div></div>
-                      <div className="mini-friend-row"><div className="avatar"></div><div className="text"></div></div>
-                    </div>
-                  )}
-                  {t.id === "profile" && (
-                    <div className="mini-profile-page">
-                      <div className="mini-profile-avatar">😎</div>
-                      <div className="mini-profile-line"></div>
-                      <div className="mini-profile-stats">
-                        <div className="bar green"></div>
-                        <div className="bar orange"></div>
-                      </div>
-                    </div>
-                  )}
-                  {t.id === "settings" && (
-                    <div className="mini-settings-page">
-                      <div className="mini-toggle-row"><span className="dot"></span></div>
-                      <div className="mini-toggle-row active"><span className="dot"></span></div>
-                      <div className="mini-toggle-row"><span className="dot"></span></div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="tab-switcher-footer">
-          <button className="tab-switcher-plus-btn" onClick={() => { changeScreen("swipe"); setIsTabSwitcherOpen(false); }}>
-            <span className="plus-icon">+</span> Новая вкладка
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   const currentScreen = (() => {
     if (screen === "final") {
       return (
@@ -778,50 +598,21 @@ export default function App() {
       {!isMobile && <div className="bloom-effect" />}
 
       {isMobile ? (
-        <div className="mobile-layout-wrapper">
-          <AnimatePresence mode="wait">
-            {isTabSwitcherOpen ? (
-              <motion.div
-                key="tab-switcher"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 10000 }}
-              >
-                {renderTabSwitcher()}
-              </motion.div>
-            ) : (
-              <motion.div
-                key="browser-view"
-                initial={{ opacity: 0, scale: 1.02 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                style={{ width: "100%", height: "100%" }}
-              >
-                <Header
-                  currentScreen={screen}
-                  onTabClick={handleTabClick}
-                  likedCount={liked.length}
-                  friendRequestsCount={Object.keys(friendRequests).length}
-                  invitesCount={Object.keys(invites).length}
-                  rightContent={undoHeaderButton}
-                  onUndo={handleUndo}
-                  history={history}
-                  isTabSwitcherOpen={isTabSwitcherOpen}
-                  setIsTabSwitcherOpen={setIsTabSwitcherOpen}
-                  tabHistory={tabHistory}
-                  goBackTab={goBackTab}
-                  changeScreen={changeScreen}
-                />
-                <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
-                  {currentScreen}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <>
+          <Header
+            currentScreen={screen}
+            onTabClick={handleTabClick}
+            likedCount={liked.length}
+            friendRequestsCount={Object.keys(friendRequests).length}
+            invitesCount={Object.keys(invites).length}
+            rightContent={undoHeaderButton}
+            onUndo={handleUndo}
+            history={history}
+          />
+          <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
+            {currentScreen}
+          </div>
+        </>
       ) : (
         <div className="app-desktop-wrapper">
           <Sidebar
