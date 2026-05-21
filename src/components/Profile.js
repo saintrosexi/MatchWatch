@@ -514,19 +514,6 @@ export default function Profile() {
                 {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться профилем"}
               </button>
             </div>
-
-            <div className="profile-card-achievements">
-              <h3>🏆 Достижения</h3>
-              <div className="achievements-grid-2col">
-                {achievements.map(ach => (
-                  <div key={ach.title} className={`achievement-card ${ach.unlocked ? "unlocked" : "locked"}`}>
-                    <div className="ach-icon">{ach.icon}</div>
-                    <div className="ach-title">{ach.title}</div>
-                    <div className="ach-desc">{ach.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* RIGHT COLUMN */}
@@ -705,6 +692,19 @@ export default function Profile() {
               </div>
             )}
 
+          </div>
+
+          <div className="profile-card-achievements">
+            <h3>🏆 Достижения</h3>
+            <div className="achievements-grid-2col">
+              {achievements.map(ach => (
+                <div key={ach.title} className={`achievement-card ${ach.unlocked ? "unlocked" : "locked"}`}>
+                  <div className="ach-icon">{ach.icon}</div>
+                  <div className="ach-title">{ach.title}</div>
+                  <div className="ach-desc">{ach.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </motion.div>
