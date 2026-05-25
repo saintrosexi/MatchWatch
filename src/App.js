@@ -18,6 +18,7 @@ import Settings from "./components/Settings";
 import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
+import ActorModal from "./components/ActorModal";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -157,6 +158,15 @@ export default function App() {
   }, []);
 
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
+  const [selectedActorName, setSelectedActorName] = useState(null);
+
+  useEffect(() => {
+    const handleShowActor = (e) => {
+      setSelectedActorName(e.detail);
+    };
+    window.addEventListener("show-actor-details", handleShowActor);
+    return () => window.removeEventListener("show-actor-details", handleShowActor);
+  }, []);
 
   useEffect(() => {
     if (user && dataLoaded && database) {
@@ -634,6 +644,17 @@ export default function App() {
           onToggleFavorite={toggleFavorite}
           rating={ratings[selectedMovieForDetails.id]}
           onSetRating={handleSetRating}
+        />
+      )}
+
+      {selectedActorName && (
+        <ActorModal
+          actorName={selectedActorName}
+          onClose={() => setSelectedActorName(null)}
+          onMovieSelect={(m) => {
+            setSelectedMovieForDetails(m);
+            setSelectedActorName(null);
+          }}
         />
       )}
       

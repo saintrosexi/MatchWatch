@@ -264,7 +264,28 @@ export default function SwipeCard({
                 )}
                 {movie.actors && (
                   <p className="info-detail-line">
-                    <strong>В ролях:</strong> {movie.actors}
+                    <strong>В ролях:</strong>{" "}
+                    {movie.actors.split(",").map((actor, idx, arr) => {
+                      const trimmed = actor.trim();
+                      return (
+                        <span key={trimmed}>
+                          <span
+                            className="clickable-actor-link"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.dispatchEvent(
+                                new CustomEvent("show-actor-details", {
+                                  detail: trimmed,
+                                })
+                              );
+                            }}
+                          >
+                            {trimmed}
+                          </span>
+                          {idx < arr.length - 1 ? ", " : ""}
+                        </span>
+                      );
+                    })}
                   </p>
                 )}
               </div>

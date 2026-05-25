@@ -144,9 +144,34 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                     <strong>Режиссер:</strong> {movie.director}
                   </p>
                 )}
-                {actors && (
+                {movie.actors && (
                   <p className="info-line">
-                    <strong>Актёры:</strong> {actors}
+                    <strong>Актёры:</strong>{" "}
+                    {movie.actors
+                      .split(",")
+                      .map((s) => s.trim())
+                      .filter(Boolean)
+                      .slice(0, 5)
+                      .map((actor, idx, arr) => {
+                        return (
+                          <span key={actor}>
+                            <span
+                              className="clickable-actor-link"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.dispatchEvent(
+                                  new CustomEvent("show-actor-details", {
+                                    detail: actor,
+                                  })
+                                );
+                              }}
+                            >
+                              {actor}
+                            </span>
+                            {idx < arr.length - 1 ? ", " : ""}
+                          </span>
+                        );
+                      })}
                   </p>
                 )}
                 {movie.duration && (
