@@ -8,12 +8,16 @@ import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [] }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
   const [role, setRole] = useState(null); // 'host' or 'guest'
   const [roomData, setRoomData] = useState(null);
+
+  useEffect(() => {
+    onScreenChange?.(screen);
+  }, [screen, onScreenChange]);
   
   // NO MORE CURSOR. We use a local swipe history to optimistically hide cards we just swiped.
   const [swipeHistory, setSwipeHistory] = useState([]);

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent, onUndo, history = [] }) {
+export default function Header({ currentScreen, onTabClick, likedCount, friendRequestsCount = 0, invitesCount = 0, rightContent, onUndo, history = [], matchWatchScreen = "start" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [navExpanded, setNavExpanded] = useState(false);
@@ -21,7 +21,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
     };
   }, []);
 
-  const isSwipeScreen = currentScreen === "swipe" || currentScreen === "matchwatch";
+  const isSwipeScreen = currentScreen === "swipe" || (currentScreen === "matchwatch" && matchWatchScreen === "swiping");
   const showFullNav = !isSwipeScreen || navExpanded;
 
   const handleExpandClick = () => {
@@ -175,116 +175,139 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
 
       {/* Mobile Bottom Navigation - Floating Premium Glass Capsule */}
       {isMobile && (
-        <div className={`mobile-bottom-nav ${!showFullNav ? 'collapsed' : ''}`}>
-          {/* Swipe Tab Button */}
-          {currentScreen === "swipe" ? (
+        <>
+          {/* Full Navigation Capsule */}
+          <div className={`mobile-bottom-nav ${isSwipeScreen && !navExpanded ? 'collapsed-hidden' : ''}`}>
+            {/* Swipe Tab Button */}
+            {currentScreen === "swipe" ? (
+              <button 
+                className="bottom-nav-item bottom-nav-item--undo" 
+                onClick={() => {
+                  onUndo?.();
+                  setNavExpanded(false);
+                  if (expandTimeoutRef.current) clearTimeout(expandTimeoutRef.current);
+                }}
+                style={{ 
+                  opacity: (!history || history.length === 0) ? 0.35 : 1,
+                  transform: (!history || history.length === 0) ? "none" : "scale(1)"
+                }}
+                disabled={!history || history.length === 0}
+              >
+                <span className="bottom-nav-icon">⏪</span>
+                <span className="bottom-nav-label">Назад</span>
+              </button>
+            ) : (
+              <button 
+                className={`bottom-nav-item ${currentScreen === "swipe" ? "active" : ""}`} 
+                onClick={() => handleTabClickWithCollapse("swipe")}
+              >
+                {currentScreen === "swipe" && (
+                  <motion.div 
+                    layoutId="mobileActiveTab" 
+                    className="bottom-nav-item-bg"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="bottom-nav-icon">🎬</span>
+                <span className="bottom-nav-label">Выбор</span>
+              </button>
+            )}
+
+            {/* MatchWatch Tab Button */}
             <button 
-              className="bottom-nav-item bottom-nav-item--undo" 
-              onClick={() => onUndo?.()}
-              style={{ 
-                opacity: (!history || history.length === 0) ? 0.35 : 1,
-                transform: (!history || history.length === 0) ? "none" : "scale(1)"
-              }}
-              disabled={!history || history.length === 0}
+              className={`bottom-nav-item ${currentScreen === "matchwatch" ? "active" : ""}`} 
+              onClick={() => handleTabClickWithCollapse("matchwatch")}
             >
-              <span className="bottom-nav-icon">⏪</span>
-            </button>
-          ) : (
-            <button 
-              className={`bottom-nav-item ${currentScreen === "swipe" ? "active" : ""}`} 
-              onClick={() => handleTabClickWithCollapse("swipe")}
-            >
-              {currentScreen === "swipe" && (
+              {currentScreen === "matchwatch" && (
                 <motion.div 
                   layoutId="mobileActiveTab" 
                   className="bottom-nav-item-bg"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="bottom-nav-icon">🎬</span>
-              <span className="bottom-nav-label">Выбор</span>
+              <span className="bottom-nav-icon">🍿</span>
+              <span className="bottom-nav-label">Match</span>
+              {invitesCount > 0 && <span className="nav-badge-bottom">{invitesCount}</span>}
             </button>
-          )}
 
-          {/* Collapsible middle buttons wrapper using Framer Motion */}
-          <AnimatePresence>
-            {showFullNav && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.15 }}
-                style={{ display: "flex", gap: "10px", justifyContent: "space-around", flex: 1 }}
+            {/* Search Tab Button */}
+            <button 
+              className={`bottom-nav-item ${currentScreen === "search" ? "active" : ""}`} 
+              onClick={() => handleTabClickWithCollapse("search")}
+            >
+              {currentScreen === "search" && (
+                <motion.div 
+                  layoutId="mobileActiveTab" 
+                  className="bottom-nav-item-bg"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="bottom-nav-icon">🔍</span>
+              <span className="bottom-nav-label">Поиск</span>
+            </button>
+
+            {/* Liked Tab Button */}
+            <button 
+              className={`bottom-nav-item ${currentScreen === "liked" ? "active" : ""}`} 
+              onClick={() => handleTabClickWithCollapse("liked")}
+            >
+              {currentScreen === "liked" && (
+                <motion.div 
+                  layoutId="mobileActiveTab" 
+                  className="bottom-nav-item-bg"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="bottom-nav-icon">❤️</span>
+              <span className="bottom-nav-label">Любимые</span>
+            </button>
+
+            {/* More Tab Button */}
+            <button 
+              className={`bottom-nav-item ${menuOpen ? "active" : ""}`} 
+              onClick={handleExpandClick}
+            >
+              {menuOpen && (
+                <motion.div 
+                  layoutId="mobileActiveTab" 
+                  className="bottom-nav-item-bg"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="bottom-nav-icon">≡</span>
+              <span className="bottom-nav-label">Ещё</span>
+              {friendRequestsCount > 0 && <span className="nav-badge-bottom">{friendRequestsCount}</span>}
+            </button>
+          </div>
+
+          {/* Collapsed Corner Floating Buttons (Rendered only on swipe screens when collapsed) */}
+          {isSwipeScreen && (
+            <div className={`mobile-swipe-corner-buttons ${navExpanded ? 'hidden' : ''}`}>
+              {/* Bottom-left corner button: Назад (Undo) */}
+              <button 
+                className="swipe-corner-btn swipe-corner-btn--left" 
+                onClick={() => onUndo?.()}
+                style={{ 
+                  opacity: (!history || history.length === 0) ? 0.35 : 1,
+                  transform: (!history || history.length === 0) ? "none" : "scale(1)"
+                }}
+                disabled={!history || history.length === 0}
+                title="Назад"
               >
-                {/* MatchWatch Tab Button */}
-                <button 
-                  className={`bottom-nav-item ${currentScreen === "matchwatch" ? "active" : ""}`} 
-                  onClick={() => handleTabClickWithCollapse("matchwatch")}
-                >
-                  {currentScreen === "matchwatch" && (
-                    <motion.div 
-                      layoutId="mobileActiveTab" 
-                      className="bottom-nav-item-bg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="bottom-nav-icon">🍿</span>
-                  <span className="bottom-nav-label">Match</span>
-                  {invitesCount > 0 && <span className="nav-badge-bottom">{invitesCount}</span>}
-                </button>
+                <span className="corner-btn-icon">⏪</span>
+              </button>
 
-                {/* Search Tab Button */}
-                <button 
-                  className={`bottom-nav-item ${currentScreen === "search" ? "active" : ""}`} 
-                  onClick={() => handleTabClickWithCollapse("search")}
-                >
-                  {currentScreen === "search" && (
-                    <motion.div 
-                      layoutId="mobileActiveTab" 
-                      className="bottom-nav-item-bg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="bottom-nav-icon">🔍</span>
-                  <span className="bottom-nav-label">Поиск</span>
-                </button>
-
-                {/* Liked Tab Button */}
-                <button 
-                  className={`bottom-nav-item ${currentScreen === "liked" ? "active" : ""}`} 
-                  onClick={() => handleTabClickWithCollapse("liked")}
-                >
-                  {currentScreen === "liked" && (
-                    <motion.div 
-                      layoutId="mobileActiveTab" 
-                      className="bottom-nav-item-bg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="bottom-nav-icon">❤️</span>
-                  <span className="bottom-nav-label">Любимые</span>
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Menu / Expand Tab Button */}
-          <button 
-            className={`bottom-nav-item ${menuOpen ? "active" : ""}`} 
-            onClick={handleExpandClick}
-          >
-            {menuOpen && (
-              <motion.div 
-                layoutId="mobileActiveTab" 
-                className="bottom-nav-item-bg"
-                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-              />
-            )}
-            <span className="bottom-nav-icon">{isSwipeScreen ? (navExpanded ? "≡" : "▲") : "≡"}</span>
-            {!isSwipeScreen && <span className="bottom-nav-label">Ещё</span>}
-            {friendRequestsCount > 0 && <span className="nav-badge-bottom">{friendRequestsCount}</span>}
-          </button>
-        </div>
+              {/* Bottom-right corner button: Раскрыть (Expand) */}
+              <button 
+                className="swipe-corner-btn swipe-corner-btn--right" 
+                onClick={handleExpandClick}
+                title="Раскрыть"
+              >
+                <span className="corner-btn-icon">▲</span>
+              </button>
+            </div>
+          )}
+        </>
       )}
 
       {/* iOS style Bottom Sheet for Menu with AnimatePresence */}

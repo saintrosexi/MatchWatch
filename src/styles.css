@@ -3665,16 +3665,71 @@ body {
     z-index: 5 !important;
   }
 
-  /* Collapsed mobile bottom navigation capsule */
-  .mobile-bottom-nav.collapsed {
-    width: 140px !important;
-    left: calc(50% - 70px) !important;
-    justify-content: space-between !important;
-    padding: 0 18px !important;
+  /* Collapsed-hidden mobile bottom navigation capsule */
+  .mobile-bottom-nav.collapsed-hidden {
+    transform: translateY(120px) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
-  
-  .mobile-bottom-nav.collapsed .bottom-nav-item--undo {
-    margin-right: 0 !important;
+
+  /* Collapsed mobile swipe corner buttons container */
+  .mobile-swipe-corner-buttons {
+    position: fixed !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 16px !important;
+    right: 16px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .mobile-swipe-corner-buttons.hidden {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    pointer-events: none !important;
+  }
+
+  /* Compact floating glass circle buttons for corner UI */
+  .swipe-corner-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(18, 18, 20, 0.76) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .swipe-corner-btn:active {
+    transform: scale(0.88) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .swipe-corner-btn[disabled] {
+    opacity: 0.35 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+
+  .corner-btn-icon {
+    font-size: 1.15rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 

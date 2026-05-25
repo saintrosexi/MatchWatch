@@ -58,6 +58,7 @@ export default function App() {
   const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
   const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
   const [screen, setScreen] = useState("matchwatch");
+  const [matchWatchScreen, setMatchWatchScreen] = useState("start");
   const [swipeHint, setSwipeHint] = useState({ x: 0, active: false, swiped: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -438,6 +439,7 @@ export default function App() {
         invites={invites}
         disableOnboarding={disableOnboarding}
         stopGenres={stopGenres}
+        onScreenChange={setMatchWatchScreen}
       />;
     }
     if (screen === "profile") {
@@ -622,6 +624,7 @@ export default function App() {
             rightContent={undoHeaderButton}
             onUndo={handleUndo}
             history={history}
+            matchWatchScreen={matchWatchScreen}
           />
           <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
             {currentScreen}
