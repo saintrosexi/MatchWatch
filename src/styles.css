@@ -3638,8 +3638,8 @@ body {
   .deck-container {
     width: 82% !important;
     max-width: 360px !important;
-    height: 52vh !important;
-    height: 52dvh !important; /* Perfect height ratio for dead centering on all screen sizes */
+    height: 68vh !important;
+    height: 68dvh !important; /* Premium tall cinematic ratio, stretching to fill safe space perfectly */
     margin: 0 auto !important;
   }
 
@@ -4539,7 +4539,8 @@ body.light-theme .auth-toggle, body.light-theme .auth-toggle button {
   .matchwatch-swiping .deck-container {
     width: 82% !important;
     max-width: 360px !important;
-    height: 54vh !important;
+    height: 68vh !important;
+    height: 68dvh !important;
     margin: 0 auto !important;
     position: relative !important;
   }
