@@ -59,7 +59,6 @@ export default function App() {
   const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
   const [screen, setScreen] = useState("matchwatch");
   const [matchWatchScreen, setMatchWatchScreen] = useState("start");
-  const [swipeHint, setSwipeHint] = useState({ x: 0, active: false, swiped: false });
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [stopGenres, setStopGenres] = useState([]);
@@ -287,7 +286,6 @@ export default function App() {
       });
       const idx = filteredDeck.findIndex(m => m.id === lastId);
       setCursor(idx >= 0 ? idx : 0);
-      setSwipeHint({ x: 0, active: false, swiped: false });
       return prev.slice(0, -1);
     });
   };
@@ -474,27 +472,6 @@ export default function App() {
       <div className="screen screen--center swipe-screen">
         <CategoryPicker />
         <div className="swipe-wrapper">
-          <div className="swipe-hints" aria-hidden="true">
-            <div
-              className={`swipe-hint-icon swipe-hint-icon--dislike ${swipeHint.active && swipeHint.x < -50 ? 'active' : ''}`}
-              style={{
-                opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
-                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
-              }}
-            >
-              ✕
-            </div>
-            <div
-              className={`swipe-hint-icon swipe-hint-icon--like ${swipeHint.active && swipeHint.x > 50 ? 'active' : ''}`}
-              style={{
-                opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
-                transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
-              }}
-            >
-              ❤️
-            </div>
-          </div>
-
           <div className="deck-container">
             <AnimatePresence initial={false}>
               {showTutorial ? (
@@ -509,12 +486,8 @@ export default function App() {
                     isTutorial={true} 
                     onShowDetails={() => {}}
                     onSwipe={() => {
-                      setSwipeHint({ x: 0, active: false, swiped: false });
                       setSessionTutorialSeen(true);
                     }} 
-                    onDragProgress={(x, active) => {
-                       setSwipeHint({ x, active, swiped: false });
-                    }}
                   />
                 </motion.div>
               ) : (
@@ -537,7 +510,7 @@ export default function App() {
                       }}
                       exit={{ 
                         y: 1200, 
-                        rotate: swipeHint.x > 0 ? 25 : -25, 
+                        rotate: 0, 
                         opacity: 0,
                         transition: { duration: 0.5, ease: "easeIn" }
                       }}
@@ -548,9 +521,6 @@ export default function App() {
                           onShowDetails={(m) => setSelectedMovieForDetails(m)}
                           onSwipe={(dir, movie) => {
                             handleSwipe(dir, movie);
-                          }}
-                          onDragProgress={(x, active) => {
-                            setSwipeHint({ x, active, swiped: false });
                           }}
                         />
                       ) : (

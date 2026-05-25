@@ -23,7 +23,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [swipeHistory, setSwipeHistory] = useState([]);
   
   const [showDetails, setShowDetails] = useState(false);
-  const [swipeHint, setSwipeHint] = useState({ x: 0, active: false });
   const [matchQueue, setMatchQueue] = useState([]);
   const notifiedMatchesRef = useRef(new Set());
   const isInitializedRef = useRef(false);
@@ -266,7 +265,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     
     // Optimsitically add to local swipe history so it hides instantly
     setSwipeHistory((prev) => [...prev, movie.id]);
-    setSwipeHint({ x: 0, active: false });
   };
 
   const handleUndo = async () => {
@@ -325,29 +323,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           </div>
           
           <div className="swipe-wrapper">
-            <div className="swipe-hints" aria-hidden="true">
-              <div
-                className="swipe-hint-icon swipe-hint-icon--dislike"
-                style={{
-                  opacity: swipeHint.active ? Math.min(1, Math.max(0, -swipeHint.x / 120)) : 0,
-                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, -swipeHint.x / 600))})`
-                }}
-              >
-                ✕
-                <span className="swipe-hint-text">Пропустить</span>
-              </div>
-              <div
-                className="swipe-hint-icon swipe-hint-icon--like"
-                style={{
-                  opacity: swipeHint.active ? Math.min(1, Math.max(0, swipeHint.x / 120)) : 0,
-                  transform: `translateY(-50%) scale(${0.95 + Math.min(0.15, Math.max(0, swipeHint.x / 600))})`
-                }}
-              >
-                ❤️
-                <span className="swipe-hint-text">Нравится</span>
-              </div>
-            </div>
-
             <div className="deck-container">
               {!roomData || !roomData.deck ? (
                 <div className="empty-profile" style={{ textAlign: "center", marginTop: "40px" }}>
@@ -359,7 +334,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                   <SwipeCard 
                     isTutorial={true} 
                     onSwipe={() => setSessionTutorialSeen(true)} 
-                    onDragProgress={(x, active) => setSwipeHint({ x, active })}
                   />
                 </div>
               ) : (
@@ -385,13 +359,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                       key={currentMovie.id}
                       className="deck-card deck-position-0" 
                       style={{ zIndex: 1, position: "absolute", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
-                      exit={{ x: swipeHint.x > 0 ? 1000 : -1000, opacity: 0, rotate: swipeHint.x > 0 ? 20 : -20 }}
+                      exit={{ x: 1000, opacity: 0, rotate: 20 }}
                       transition={{ duration: 0.3 }}
                     >
                       <SwipeCard
                         movie={currentMovie}
                         onSwipe={handleSwipe}
-                        onDragProgress={(x, active) => setSwipeHint({ x, active })}
                         onShowDetails={() => setShowDetails(currentMovie.id)}
                       />
                     </motion.div>

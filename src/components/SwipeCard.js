@@ -33,7 +33,6 @@ const TUTORIAL_MOVIE = {
 export default function SwipeCard({
   movie: inputMovie,
   onSwipe,
-  onDragProgress,
   onShowDetails,
   isTutorial = false,
 }) {
@@ -71,11 +70,10 @@ export default function SwipeCard({
 
   const handleDragStart = () => {
     setIsDragging(true);
-    onDragProgress?.(0, true);
   };
 
   const handleDrag = (event, info) => {
-    onDragProgress?.(info.offset.x, true);
+    // Hardware accelerated dragging, no React re-renders!
   };
 
   const handleDragEnd = (event, info) => {
@@ -86,9 +84,6 @@ export default function SwipeCard({
     if (Math.abs(offset) > 100 || Math.abs(velocity) > 600) {
       const dir = offset > 0 ? "right" : "left";
       onSwipe(dir, movie);
-      onDragProgress?.(0, false);
-    } else {
-      onDragProgress?.(0, false);
     }
   };
 
@@ -201,6 +196,7 @@ export default function SwipeCard({
                 alt={movie.titleRu || movie.title}
                 onLoad={() => setImageLoaded(true)}
                 draggable={false}
+                decoding="async"
               />
             </>
           )}
