@@ -105,18 +105,9 @@ export default function SwipeCard({
     // Check if clicked specifically on the "подробнее" / "свернуть" action indicator
     const isIndicatorClick = e.target.closest(".info-overlay-action-indicator");
     
-    if (isMobile) {
-      // On mobile, clicking anywhere on the card toggles the expanded drawer
+    if (isIndicatorClick) {
+      // Toggle the local expandable description drawer inside the card
       setIsExpanded(!isExpanded);
-    } else {
-      // On desktop:
-      if (isIndicatorClick) {
-        // Clicking specifically on "подробнее" toggles the local drawer inside the card
-        setIsExpanded(!isExpanded);
-      } else {
-        // Clicking anywhere else on the card opens the detailed modal popup description
-        onShowDetails?.(movie);
-      }
     }
   };
 
