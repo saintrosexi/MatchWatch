@@ -294,94 +294,122 @@
   transform: translateY(0);
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
+/* Responsive Design (Sleek Apple style Bottom Sheet for viewport widths <= 1100px) */
+@media (max-width: 1100px) {
+  .detailed-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+
   .detailed-modal-content {
-    max-height: 90vh;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 80vh !important;
+    height: 80dvh !important;
+    max-height: 80vh !important;
+    max-height: 80dvh !important;
+    margin: 0 !important;
+    border-radius: 28px 28px 0 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-top: 1px solid rgba(255, 138, 80, 0.3) !important;
+    background: #0f0f11 !important;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.6) !important;
   }
 
   .detailed-modal-wrapper {
     flex-direction: column;
-    gap: 16px;
-    padding: 24px;
+    padding: 12px 20px 30px;
+    height: 100%;
+    gap: 0;
   }
 
   .detailed-modal-left {
-    width: 100%;
-    max-height: 300px;
-  }
-
-  .detailed-modal-poster {
-    width: auto;
-    height: 250px;
-  }
-
-  .detailed-modal-title {
-    font-size: 24px;
+    display: none !important; /* Hide left column / poster on mobile to save vertical scrolling space */
   }
 
   .detailed-modal-right {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 4px;
-  }
-}
-
-@media (max-width: 640px) {
-  .detailed-modal-overlay {
-    align-items: flex-start;
-  }
-
-  .detailed-modal-content {
-    width: 95%;
-    height: auto;
-    max-height: none;
-    border-radius: 12px;
-    margin: 20px auto;
-  }
-
-  .detailed-modal-wrapper {
+    padding-right: 0;
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .detailed-modal-left {
-    max-height: none;
+  .detailed-modal-drag-handle {
+    width: 44px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.24);
+    border-radius: 3px;
+    margin: 8px auto 0;
+    display: block !important;
   }
 
-  .detailed-modal-poster {
-    height: 220px;
+  .detailed-modal-header {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
   }
 
   .detailed-modal-title {
-    font-size: 20px;
+    font-size: 20px !important;
+    font-weight: 800;
   }
 
   .detailed-modal-meta {
-    flex-wrap: wrap;
-    font-size: 14px;
+    font-size: 13px !important;
+    gap: 12px;
   }
 
   .section-title {
-    font-size: 14px;
+    font-size: 13px !important;
+    margin-bottom: 8px;
   }
 
   .info-line,
   .section-description {
-    font-size: 13px;
+    font-size: 13px !important;
+    line-height: 1.5;
+  }
+
+  .detailed-modal-section-links {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    margin-top: 15px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(255, 138, 80, 0.1) !important;
+    border-bottom: none !important;
   }
 
   .btn-watch-trailer,
-  .btn-imdb-link {
-    font-size: 13px;
-    padding: 10px 16px;
+  .btn-imdb-link,
+  .btn-kp-link {
+    font-size: 13px !important;
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+    margin-top: 0 !important;
+    flex: 1;
   }
 
   .modal-close-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2rem;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    border-width: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
 

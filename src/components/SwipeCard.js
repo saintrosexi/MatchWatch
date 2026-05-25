@@ -24,12 +24,10 @@ const TUTORIAL_MOVIE = {
   poster:
     "https://images.unsplash.com/photo-1585647347384-2593bcac5503?q=80&w=1000&auto=format&fit=crop",
   description:
-    "Перетяни карточку налево если тебе не нравится, Перетяни направо если тебе нравится, Нажми на карточку чтобы узнать больше о фильме",
+    "Смахни карточку направо, если фильм нравится, или налево, если хочешь пропустить. Нажми в любое место, чтобы открыть подробное описание.",
   pcDescription:
     "Перетяни карточку налево если тебе не нравится, Перетяни направо если тебе нравится, Нажми на карточку чтобы узнать больше о фильме",
   backTitle: "Обучение",
-  backAction:
-    "Нажми еще раз чтобы вернуться к постеру или перетяни в любую сторону.",
 };
 
 export default function SwipeCard({
@@ -43,8 +41,7 @@ export default function SwipeCard({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
-  const [showInfo, setShowInfo] = useState(false);
-  const [isSwiped, setIsSwiped] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -52,20 +49,25 @@ export default function SwipeCard({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [movie?.id]);
+
   const x = useMotionValue(0);
 
-  const rotate = useTransform(x, [-150, 0, 150], [-15, 0, 15]);
+  const rotate = useTransform(x, [-200, 0, 200], [-12, 0, 12]);
   const opacity = useTransform(
     x,
-    [-150, -100, 0, 100, 150],
-    [0.5, 1, 1, 1, 0.5],
+    [-200, -150, 0, 150, 200],
+    [0.6, 1, 1, 1, 0.6]
   );
 
-  const feedbackScale = useTransform(x, [-150, 0, 150], [2.5, 0, 2.5], {
-    clamp: true,
-  });
-  const heartOpacity = useTransform(x, [0, 50], [0, 1], { clamp: true });
-  const crossOpacity = useTransform(x, [-50, 0], [1, 0], { clamp: true });
+  // Tinder/Bumble style diagonal badges
+  const likeBadgeOpacity = useTransform(x, [10, 80], [0, 1], { clamp: true });
+  const skipBadgeOpacity = useTransform(x, [-80, -10], [1, 0], { clamp: true });
+  
+  const likeBadgeScale = useTransform(x, [0, 100], [0.8, 1], { clamp: true });
+  const skipBadgeScale = useTransform(x, [-100, 0], [1, 0.8], { clamp: true });
 
   const handleDragStart = () => {
     setIsDragging(true);
@@ -81,11 +83,9 @@ export default function SwipeCard({
     const offset = info.offset.x;
     const velocity = info.velocity.x;
 
-    if (Math.abs(offset) > 70 || Math.abs(velocity) > 400) {
+    if (Math.abs(offset) > 100 || Math.abs(velocity) > 600) {
       const dir = offset > 0 ? "right" : "left";
-      setIsSwiped(true);
       onSwipe(dir, movie);
-      // Reset hints in parent immediately
       onDragProgress?.(0, false);
     } else {
       onDragProgress?.(0, false);
@@ -93,46 +93,21 @@ export default function SwipeCard({
   };
 
   const handleCardClick = (e) => {
+    // If the user was dragging, do not toggle expand
     if (Math.abs(x.get()) > 10) return;
-
+    
     if (isMobile) {
-      setShowInfo(!showInfo);
-    }
-  };
-
-  const handleInfoClick = (e) => {
-    if (Math.abs(x.get()) > 10) return;
-
-    if (!isMobile) {
-      onShowDetails?.(movie);
+      setIsExpanded(!isExpanded);
     } else {
-      setShowInfo(!showInfo);
+      onShowDetails?.(movie);
     }
   };
-
-  // PC: Static 60/40 split. Mobile: Mode 1 (100% overlay), Mode 2 (10/90)
-  const posterHeight = isMobile ? (showInfo ? "10%" : "100%") : "60%";
-  const infoHeight = isMobile ? (showInfo ? "90%" : "0%") : "40%";
 
   return (
-    <div
-      className="swipe-card-perspective"
-      style={{
-        perspective: "1200px",
-        width: "100%",
-        height: "100%",
-        position: "relative",
-      }}
-    >
+    <div className="swipe-card-perspective">
       <motion.div
         className="swipe-card-inner"
-        onClick={isMobile ? handleCardClick : undefined}
-        animate={{
-          rotateY: isMobile && showInfo ? 180 : 0,
-        }}
-        transition={{
-          rotateY: { type: "spring", stiffness: 260, damping: 20 },
-        }}
+        onClick={handleCardClick}
         style={{
           x,
           rotate,
@@ -143,389 +118,155 @@ export default function SwipeCard({
           borderRadius: "24px",
           display: "flex",
           flexDirection: "column",
-          transformStyle: "preserve-3d",
           position: "relative",
+          overflow: "hidden"
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={1}
+        dragElastic={0.7}
         onDragStart={handleDragStart}
         onDrag={handleDrag}
         onDragEnd={handleDragEnd}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        {/* FRONT FACE */}
-        <div
-          className="card-face card-front"
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            backfaceVisibility: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            background: "white",
-            borderRadius: "24px",
-            overflow: "hidden",
-          }}
-        >
-          <AnimatePresence>
-            {isMobile && !isSwiped && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  exit={{ opacity: 0 }}
-                  style={{
-                    scale: feedbackScale,
-                    opacity: heartOpacity,
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    x: "-50%",
-                    y: "-50%",
-                    fontSize: "6rem",
-                    zIndex: 100,
-                    pointerEvents: "none",
-                    textShadow: "0 0 40px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  ❤️
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  exit={{ opacity: 0 }}
-                  style={{
-                    scale: feedbackScale,
-                    opacity: crossOpacity,
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    x: "-50%",
-                    y: "-50%",
-                    fontSize: "6rem",
-                    zIndex: 100,
-                    pointerEvents: "none",
-                    color: "#ff4757",
-                    textShadow: "0 0 40px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  ✕
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
-
-          <div
-            className="poster-container"
-            style={{
-              pointerEvents: "none",
-              height: posterHeight,
-              flex: `0 0 ${posterHeight}`,
-              width: "100%",
-              overflow: "hidden",
-              position: "relative",
-              transition: "height 0.3s ease",
-            }}
-          >
-            {!isTutorial && movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && (
-              <div
-                className="badge-coming-soon"
+        {/* Glowing Swipe Feedback Badges */}
+        <AnimatePresence>
+          {isMobile && (
+            <>
+              {/* LIKE BADGE (Top Left, Green Glow) */}
+              <motion.div
                 style={{
+                  opacity: likeBadgeOpacity,
+                  scale: likeBadgeScale,
                   position: "absolute",
-                  top: "20px",
-                  left: "20px",
-                  background: "linear-gradient(135deg, rgba(255, 138, 80, 0.95) 0%, rgba(233, 30, 99, 0.95) 100%)",
-                  backdropFilter: "blur(10px)",
-                  color: "white",
-                  padding: "6px 12px",
-                  borderRadius: "12px",
-                  fontSize: "0.8rem",
-                  fontWeight: "bold",
-                  boxShadow: "0 4px 15px rgba(233, 30, 99, 0.35)",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
-                  zIndex: 10,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px"
+                  top: "30px",
+                  left: "30px",
+                  zIndex: 200,
+                  transform: "rotate(-15deg)",
+                  pointerEvents: "none"
                 }}
               >
-                🍿 Скоро в кино
-              </div>
-            )}
-            {isTutorial ? (
+                <div className="swipe-feedback-badge swipe-feedback-badge--like">
+                  МАТЧ
+                </div>
+              </motion.div>
 
-              <div
-                className="tutorial-poster-content"
+              {/* SKIP BADGE (Top Right, Red Glow) */}
+              <motion.div
                 style={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)",
-                  position: "relative",
-                  padding: "20px",
+                  opacity: skipBadgeOpacity,
+                  scale: skipBadgeScale,
+                  position: "absolute",
+                  top: "30px",
+                  right: "30px",
+                  zIndex: 200,
+                  transform: "rotate(15deg)",
+                  pointerEvents: "none"
                 }}
               >
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                  style={{ fontSize: "6rem", marginBottom: "20px" }}
-                >
-                  ✨
-                </motion.div>
-                {isMobile && !showInfo && (
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "white",
-                      fontWeight: "800",
-                      fontSize: "1.3rem",
-                      lineHeight: "1.4",
-                      textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-                      maxWidth: "280px",
-                    }}
-                  >
-                    нажми чтобы узнать подробнее о фильме
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                {!imageLoaded && <div className="image-skeleton" />}
-                <img
-                  className="poster"
-                  src={movie.poster}
-                  alt={movie.title}
-                  onLoad={() => setImageLoaded(true)}
-                  draggable={false}
-                  style={{
-                    pointerEvents: "none",
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-                {isMobile && !showInfo && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: "60px 20px 25px",
-                      background:
-                        "linear-gradient(transparent, rgba(0,0,0,0.9))",
-                      color: "white",
-                    }}
-                  >
-                    <h2
-                      style={{
-                        fontSize: "1.3rem",
-                        fontWeight: "900",
-                        margin: 0,
-                        textShadow: "0 2px 4px rgba(0,0,0,0.5)",
-                      }}
-                    >
-                      {movie.titleRu || movie.title}
-                    </h2>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
+                <div className="swipe-feedback-badge swipe-feedback-badge--skip">
+                  МИМО
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
-          <div
-            className="info-front"
-            onClick={!isMobile ? handleInfoClick : undefined}
-            style={{
-              height: infoHeight,
-              flex: `0 0 ${infoHeight}`,
-              display: isMobile && !showInfo ? "none" : "flex",
-              flexDirection: "column",
-              padding: isMobile ? "20px" : "15px 20px",
-              background: "white",
-              color: "#000",
-              overflow: "hidden",
-              justifyContent: isMobile ? "flex-start" : "flex-start",
-              transition: "height 0.3s ease",
-            }}
-          >
-            <div style={{ marginBottom: isMobile ? "8px" : "8px" }}>
-              <h2
-                style={{
-                  fontSize: isMobile ? "1.3rem" : "1.2rem",
-                  fontWeight: "800",
-                  margin: 0,
-                  whiteSpace: isMobile ? "normal" : "normal",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {movie.titleRu || movie.title}
-              </h2>
-              {!isMobile && (
-                <p
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "#888",
-                    fontWeight: "500",
-                    marginTop: "2px",
-                  }}
-                >
-                  {movie.year}
-                </p>
-              )}
+        {/* Poster Media Section */}
+        <div className="swipe-card-poster-container">
+          {!isTutorial && movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && (
+            <div className="badge-coming-soon-mobile">
+              🍿 Скоро в кино
             </div>
+          )}
 
-            {!isMobile && (
-              <>
-                <div
-                  style={{
-                    fontSize: "0.8rem",
-                    color: "#333",
-                    marginBottom: "8px",
-                    lineHeight: "1.3",
-                  }}
-                >
-                  {movie.director && (
-                    <div style={{ marginBottom: "2px" }}>
-                      <b>Режиссер:</b> {movie.director}
-                    </div>
-                  )}
-                  {movie.actors && (
-                    <div
-                      style={{
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      <b>В ролях:</b> {movie.actors}
-                    </div>
-                  )}
-                </div>
-                <div style={{ flex: 1, overflow: "hidden" }}>
-                  <p
-                    style={{
-                      fontSize: "0.8rem",
-                      color: "#444",
-                      lineHeight: "1.4",
-                      margin: 0,
-                    }}
-                  >
-                    {isTutorial ? movie.pcDescription : movie.description}
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
+          {isTutorial ? (
+            <div className="tutorial-poster-content-mobile">
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                style={{ fontSize: "5.5rem", filter: "drop-shadow(0 0 20px rgba(59,130,246,0.6))" }}
+              >
+                🎬
+              </motion.div>
+              <div className="tutorial-title">Свайпай и выбирай</div>
+            </div>
+          ) : (
+            <>
+              {!imageLoaded && <div className="image-skeleton-premium" />}
+              <img
+                className="poster-premium"
+                src={movie.poster}
+                alt={movie.titleRu || movie.title}
+                onLoad={() => setImageLoaded(true)}
+                draggable={false}
+              />
+            </>
+          )}
         </div>
 
-        {/* BACK FACE (Mobile only flip) */}
-        {isMobile && (
-          <div
-            className="card-face card-back"
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              backfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
-              display: "flex",
-              flexDirection: "column",
-              background: "white",
-              borderRadius: "24px",
-              overflow: "hidden",
-              padding: "20px",
-            }}
-          >
-            <div
-              className="back-header"
-              style={{
-                height: "10%",
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #eee",
-                marginBottom: "15px",
-              }}
-            >
-              <h2
-                style={{ fontSize: "1.2rem", fontWeight: "800", color: "#333" }}
-              >
-                {isTutorial ? movie.backTitle : movie.titleRu || movie.title}
+        {/* Premium Integrated Info overlay */}
+        <div className={`swipe-card-info-overlay ${isExpanded ? "expanded" : ""}`}>
+          <div className="info-overlay-gradient" />
+          
+          <div className="info-overlay-content" style={{ pointerEvents: "auto" }}>
+            <div className="info-overlay-top-row">
+              <h2 className="info-overlay-title">
+                {movie.titleRu || movie.title}
               </h2>
             </div>
 
-            <div
-              className="back-content"
-              style={{
-                flex: 1,
-                overflowY: "auto",
-                color: "#444",
-                padding: "10px 0",
-                textAlign: "center",
-                display: "block",
-              }}
-            >
-              {isTutorial ? (
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    lineHeight: "1.6",
-                    fontWeight: "600",
-                    padding: "0 10px",
-                  }}
-                >
-                  {movie.backAction}
-                </p>
-              ) : (
-                <>
-                  <p
-                    style={{
-                      fontSize: "0.9rem",
-                      color: "#888",
-                      marginBottom: "15px",
-                    }}
-                  >
-                    {movie.year} {movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && `(Ожидается: ${formatReleaseDate(movie.releaseDate)})`} • {movie.genres}
-                  </p>
-
-                  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-                    {movie.description}
-                  </p>
-                  {movie.director && (
-                    <p style={{ marginTop: "15px", fontSize: "0.9rem" }}>
-                      <b>Режиссер:</b> {movie.director}
-                    </p>
-                  )}
-                </>
+            <div className="info-overlay-pills">
+              <span className="info-pill info-pill--year">
+                {movie.year}
+              </span>
+              
+              {!isTutorial && movie.rating && (
+                <span className="info-pill info-pill--rating">
+                  ⭐ {movie.rating}
+                </span>
+              )}
+              
+              {movie.genres && (
+                <span className="info-pill info-pill--genre">
+                  {movie.genres.split(",")[0]}
+                </span>
               )}
             </div>
 
-            <div
-              className="back-footer"
-              style={{
-                marginTop: "15px",
-                paddingTop: "15px",
-                borderTop: "1px solid #eee",
-                textAlign: "center",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "0.85rem",
-                  color: "#999",
-                  fontStyle: "italic",
-                  lineHeight: "1.4",
-                }}
+            <p className={`info-overlay-desc ${isExpanded ? "expanded" : ""}`}>
+              {movie.description}
+            </p>
+
+            {/* Extra details when expanded */}
+            {isExpanded && !isTutorial && (
+              <div className="info-overlay-extra-details">
+                {movie.director && (
+                  <p className="info-detail-line">
+                    <strong>Режиссер:</strong> {movie.director}
+                  </p>
+                )}
+                {movie.actors && (
+                  <p className="info-detail-line">
+                    <strong>В ролях:</strong> {movie.actors}
+                  </p>
+                )}
+              </div>
+            )}
+
+            <div className="info-overlay-action-indicator">
+              <span>{isExpanded ? "Свернуть" : "Подробнее"}</span>
+              <motion.span 
+                animate={isExpanded ? { y: [0, 3, 0] } : { y: [0, -3, 0] }} 
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="indicator-chevron"
               >
-                {!isTutorial && "Нажми, чтобы вернуться к постеру или свайпай"}
-              </p>
+                {isExpanded ? "▼" : "▲"}
+              </motion.span>
             </div>
           </div>
-        )}
+        </div>
       </motion.div>
     </div>
   );

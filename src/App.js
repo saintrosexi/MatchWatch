@@ -190,6 +190,13 @@ export default function App() {
     });
   }, [deck, stopGenres, activeCategory]);
 
+  const currentMoviePoster = useMemo(() => {
+    if (screen === "swipe" && filteredDeck && cursor < filteredDeck.length) {
+      return filteredDeck[cursor].poster;
+    }
+    return null;
+  }, [screen, filteredDeck, cursor]);
+
   const isDecided = (movie) => Boolean(decisions[movie.id]);
 
   const nextUndecidedFrom = (startIndex) => {
@@ -463,7 +470,7 @@ export default function App() {
 
     return (
       <div className="screen screen--center swipe-screen">
-        {!isMobile && <CategoryPicker />}
+        <CategoryPicker />
         <div className="swipe-wrapper">
           <div className="swipe-hints" aria-hidden="true">
             <div
@@ -576,7 +583,6 @@ export default function App() {
             </button>
           )}
         </div>
-        {isMobile && <CategoryPicker />}
       </div>
     );
   })();
@@ -594,6 +600,14 @@ export default function App() {
 
   return (
     <div className={`app ${!isMobile ? "desktop-layout-mode" : ""}`}>
+      {/* Dynamic blurred poster background for premium mobile swipe screen */}
+      {isMobile && currentMoviePoster && (
+        <div 
+          className="mobile-ambient-backdrop" 
+          style={{ backgroundImage: `url(${currentMoviePoster})` }} 
+        />
+      )}
+
       {/* Bloom background effect rendered globally on desktop */}
       {!isMobile && <div className="bloom-effect" />}
 

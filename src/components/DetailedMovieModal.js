@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./DetailedMovieModal.css";
 
@@ -14,12 +14,21 @@ const formatReleaseDate = (dateStr) => {
 
 export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike, isFavorite, onToggleFavorite, rating, onSetRating }) {
   const [hoverRating, setHoverRating] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1100);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!movie) return null;
 
   const extendedDescription = movie.fullDescription || movie.description;
   const kinopoiskUrl = movie.kinopoiskId 
     ? `https://www.kinopoisk.ru/film/${movie.kinopoiskId}/` 
     : `https://www.kinopoisk.ru/index.php?kp_query=${encodeURIComponent(movie.titleRu || movie.title)}`;
+  
   const actors = (() => {
     const raw = movie.actors;
     if (!raw || typeof raw !== "string") return "";
@@ -37,16 +46,19 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.28 }}
     >
       <motion.div
         className="detailed-modal-content"
         onClick={e => e.stopPropagation()}
-        initial={{ scale: 0.85, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.85, opacity: 0, y: 20 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        initial={isMobile ? { y: "100%" } : { scale: 0.85, opacity: 0, y: 20 }}
+        animate={isMobile ? { y: 0 } : { scale: 1, opacity: 1, y: 0 }}
+        exit={isMobile ? { y: "100%" } : { scale: 0.85, opacity: 0, y: 20 }}
+        transition={{ type: "spring", stiffness: 350, damping: 32 }}
       >
+        {/* Mobile Swipe-down Drag Handle Indicator */}
+        <div className="detailed-modal-drag-handle" />
+
         {/* Close Button */}
         <button
           className="modal-close-btn"
@@ -84,7 +96,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
         </div>
 
         <div className="detailed-modal-wrapper">
-          {/* Left Section: Poster */}
+          {/* Left Section: Poster (Hidden or adapted in mobile layout via CSS) */}
           <div className="detailed-modal-left">
             <img
               src={movie.poster}
@@ -93,29 +105,18 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             />
           </div>
 
-          {/* Right Section: Info (no internal scroll) */}
+          {/* Right Section: Info */}
           <div className="detailed-modal-right">
             {/* Header Info */}
             <div className="detailed-modal-header">
               <h1 className="detailed-modal-title">
                 {movie.titleRu || movie.title}
               </h1>
-              <div className="detailed-modal-meta" style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+              
+              <div className="detailed-modal-meta">
                 <span className="modal-year">🗓️ {movie.year}</span>
                 {movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") ? (
-                  <span className="modal-release-badge" style={{
-                    background: "linear-gradient(135deg, rgba(255, 138, 80, 0.2) 0%, rgba(233, 30, 99, 0.2) 100%)",
-                    border: "1px solid rgba(255, 138, 80, 0.4)",
-                    color: "#ff8a50",
-                    padding: "4px 10px",
-                    borderRadius: "8px",
-                    fontSize: "0.85rem",
-                    fontWeight: "bold",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "4px",
-                    boxShadow: "0 0 10px rgba(255, 138, 80, 0.1)"
-                  }}>
+                  <span className="modal-release-badge">
                     ⏳ Ожидается: {formatReleaseDate(movie.releaseDate)}
                   </span>
                 ) : (
@@ -185,7 +186,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             </div>
 
             {/* Links */}
-            <div className="detailed-modal-section">
+            <div className="detailed-modal-section detailed-modal-section-links">
               <a
                 href={movie.imdb || `https://www.imdb.com/find/?q=${encodeURIComponent(movie.title)}`}
                 target="_blank"
