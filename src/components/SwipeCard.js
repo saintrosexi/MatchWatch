@@ -61,6 +61,17 @@ export default function SwipeCard({
     [0.6, 1, 1, 1, 0.6]
   );
 
+  // Dynamic Neon Glow based on drag direction
+  const cardGlow = useTransform(
+    x,
+    [-150, 0, 150],
+    [
+      "0 15px 40px rgba(255, 71, 87, 0.4), 0 0 60px rgba(255, 71, 87, 0.5), 0 0 120px rgba(255, 71, 87, 0.3), 0 0 0 3px rgba(255, 71, 87, 0.7)",
+      "0 24px 50px rgba(0, 0, 0, 0.6), 0 0 0px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0), 0 0 0 1px rgba(255, 255, 255, 0.08)",
+      "0 15px 40px rgba(46, 213, 115, 0.4), 0 0 60px rgba(46, 213, 115, 0.5), 0 0 120px rgba(46, 213, 115, 0.3), 0 0 0 3px rgba(46, 213, 115, 0.7)"
+    ]
+  );
+
   // Tinder/Bumble style diagonal badges
   const likeBadgeOpacity = useTransform(x, [10, 80], [0, 1], { clamp: true });
   const skipBadgeOpacity = useTransform(x, [-80, -10], [1, 0], { clamp: true });
@@ -91,10 +102,21 @@ export default function SwipeCard({
     // If the user was dragging, do not toggle expand
     if (Math.abs(x.get()) > 10) return;
     
+    // Check if clicked specifically on the "подробнее" / "свернуть" action indicator
+    const isIndicatorClick = e.target.closest(".info-overlay-action-indicator");
+    
     if (isMobile) {
+      // On mobile, clicking anywhere on the card toggles the expanded drawer
       setIsExpanded(!isExpanded);
     } else {
-      onShowDetails?.(movie);
+      // On desktop:
+      if (isIndicatorClick) {
+        // Clicking specifically on "подробнее" toggles the local drawer inside the card
+        setIsExpanded(!isExpanded);
+      } else {
+        // Clicking anywhere else on the card opens the detailed modal popup description
+        onShowDetails?.(movie);
+      }
     }
   };
 
@@ -107,6 +129,7 @@ export default function SwipeCard({
           x,
           rotate,
           opacity,
+          boxShadow: cardGlow,
           cursor: isDragging ? "grabbing" : "grab",
           width: "100%",
           height: "100%",
