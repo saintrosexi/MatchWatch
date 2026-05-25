@@ -3664,6 +3664,18 @@ body {
     margin: 0 !important;
     z-index: 5 !important;
   }
+
+  /* Collapsed mobile bottom navigation capsule */
+  .mobile-bottom-nav.collapsed {
+    width: 140px !important;
+    left: calc(50% - 70px) !important;
+    justify-content: space-between !important;
+    padding: 0 18px !important;
+  }
+  
+  .mobile-bottom-nav.collapsed .bottom-nav-item--undo {
+    margin-right: 0 !important;
+  }
 }
 
 /* Light Theme Overrides */
