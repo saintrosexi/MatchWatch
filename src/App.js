@@ -18,7 +18,7 @@ import Settings from "./components/Settings";
 import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
-import ActorModal from "./components/ActorModal";
+import ActorProfilePage from "./components/ActorProfilePage";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -159,14 +159,17 @@ export default function App() {
 
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
   const [selectedActorName, setSelectedActorName] = useState(null);
+  const [previousScreen, setPreviousScreen] = useState("swipe");
 
   useEffect(() => {
     const handleShowActor = (e) => {
+      setPreviousScreen(prev => screen !== "actorProfile" ? screen : prev);
       setSelectedActorName(e.detail);
+      setScreen("actorProfile");
     };
     window.addEventListener("show-actor-details", handleShowActor);
     return () => window.removeEventListener("show-actor-details", handleShowActor);
-  }, []);
+  }, [screen]);
 
   useEffect(() => {
     if (user && dataLoaded && database) {
@@ -475,6 +478,14 @@ export default function App() {
         }}
       />;
     }
+    if (screen === "actorProfile") {
+      return <ActorProfilePage 
+        actorName={selectedActorName} 
+        onBack={() => setScreen(previousScreen || "swipe")} 
+        onMovieSelect={(m) => setSelectedMovieForDetails(m)}
+        userAppData={{ decisions, favorites, ratings }}
+      />;
+    }
 
     const showTutorial = !disableOnboarding && !sessionTutorialSeen;
 
@@ -644,17 +655,6 @@ export default function App() {
           onToggleFavorite={toggleFavorite}
           rating={ratings[selectedMovieForDetails.id]}
           onSetRating={handleSetRating}
-        />
-      )}
-
-      {selectedActorName && (
-        <ActorModal
-          actorName={selectedActorName}
-          onClose={() => setSelectedActorName(null)}
-          onMovieSelect={(m) => {
-            setSelectedMovieForDetails(m);
-            setSelectedActorName(null);
-          }}
         />
       )}
       
