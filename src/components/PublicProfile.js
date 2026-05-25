@@ -507,7 +507,26 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
                 
                 <div className="detail-stat-row" style={{background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.05)"}}>
                   <div style={{fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: "4px"}}>Любимый актер</div>
-                  <div style={{fontWeight: "bold", fontSize: "0.95rem", color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}} title={stats.favoriteActor}>{stats.favoriteActor}</div>
+                  <div 
+                    style={{
+                      fontWeight: "bold", 
+                      fontSize: "0.95rem", 
+                      color: stats.favoriteActor !== "—" ? "#ff8a50" : "#fff", 
+                      whiteSpace: "nowrap", 
+                      overflow: "hidden", 
+                      textOverflow: "ellipsis",
+                      cursor: stats.favoriteActor !== "—" ? "pointer" : "default",
+                      textDecoration: stats.favoriteActor !== "—" ? "underline dashed rgba(255, 138, 80, 0.4)" : "none"
+                    }} 
+                    title={stats.favoriteActor}
+                    onClick={() => {
+                      if (stats.favoriteActor !== "—") {
+                        window.dispatchEvent(new CustomEvent("show-actor-details", { detail: stats.favoriteActor }));
+                      }
+                    }}
+                  >
+                    {stats.favoriteActor}
+                  </div>
                 </div>
               </div>
 
