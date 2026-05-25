@@ -113,6 +113,16 @@ export default function Sidebar({
           <span className="sidebar-menu-icon">❤️</span>
           {!sidebarCollapsed && <span className="sidebar-menu-label">Любимые ({likedCount})</span>}
         </li>
+      
+        <li 
+          className={currentScreen === "popularActors" ? "active" : ""} 
+          onClick={() => handleTabClick("popularActors")} 
+          title={sidebarCollapsed ? "Популярные актеры" : ""}
+          style={{ position: 'relative' }}
+        >
+          <span className="sidebar-menu-icon">⭐</span>
+          {!sidebarCollapsed && <span className="sidebar-menu-label">Популярные актеры</span>}
+        </li>
       </ul>
 
       {/* Sidebar Menu - Lower Part (Friends, Account/Avatar, Settings) */}

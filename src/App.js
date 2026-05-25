@@ -19,6 +19,7 @@ import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
 import ActorProfilePage from "./components/ActorProfilePage";
+import PopularActors from "./components/PopularActors";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -369,6 +370,13 @@ export default function App() {
       setScreen(tab);
     }
   };
+  // Handle actor selection from PopularActors tab
+  const handleActorSelect = (actorKey) => {
+    setPreviousScreen(screen);
+    setSelectedActorName(actorKey);
+    setScreen("actorProfile");
+  };
+
 
   const CategoryPicker = () => (
     <div className="category-picker">
@@ -485,6 +493,9 @@ export default function App() {
         onMovieSelect={(m) => setSelectedMovieForDetails(m)}
         userAppData={{ decisions, favorites, ratings }}
       />;
+    }
+    if (screen === "popularActors") {
+      return <PopularActors onActorSelect={handleActorSelect} />;
     }
 
     const showTutorial = !disableOnboarding && !sessionTutorialSeen;
