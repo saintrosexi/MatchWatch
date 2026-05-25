@@ -3592,8 +3592,30 @@ body {
     padding-top: calc(var(--header-height-mobile) + 16px) !important;
   }
 
+  .app-container.no-scroll {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    height: 100dvh !important; /* Critical for dynamic viewport height calculation on iOS Safari */
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
   .app-container.swipe-layout {
-    padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+    padding: 0 !important;
+  }
+
+  .screen--center.swipe-screen {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    padding-top: calc(var(--header-height-mobile) + 10px) !important;
+    padding-bottom: 96px !important; /* Elegant spacing above the bottom nav capsule */
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+    align-items: center !important;
   }
 
   .btn-header-undo {
@@ -3606,19 +3628,21 @@ body {
   }
 
   .deck-container {
-    width: 82% !important; /* Centered, solid margins */
+    width: 82% !important;
     max-width: 360px !important;
-    height: 60vh !important;
+    height: 54vh !important; /* Safe relative height for all iPhone screen aspect ratios */
     margin: 0 auto !important;
   }
 
   .swipe-wrapper {
-    padding-bottom: 10px !important;
-    padding-top: 0 !important;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -4500,7 +4524,7 @@ body.light-theme .auth-toggle, body.light-theme .auth-toggle button {
   .matchwatch-swiping .deck-container {
     width: 82% !important;
     max-width: 360px !important;
-    height: 60vh !important;
+    height: 54vh !important;
     margin: 0 auto !important;
     position: relative !important;
   }
