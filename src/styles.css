@@ -3607,15 +3607,23 @@ body {
   }
 
   .screen--center.swipe-screen {
+    position: relative !important;
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
     min-height: 100% !important;
-    padding-top: calc(var(--header-height-mobile) + 10px) !important;
-    padding-bottom: 96px !important; /* Elegant spacing above the bottom nav capsule */
+    width: 100% !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
-    justify-content: space-between !important;
-    align-items: center !important;
+  }
+
+  .category-picker {
+    position: absolute !important;
+    top: max(16px, env(safe-area-inset-top, 16px)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
   }
 
   .btn-header-undo {
@@ -3630,12 +3638,17 @@ body {
   .deck-container {
     width: 82% !important;
     max-width: 360px !important;
-    height: 54vh !important; /* Safe relative height for all iPhone screen aspect ratios */
+    height: 52vh !important;
+    height: 52dvh !important; /* Perfect height ratio for dead centering on all screen sizes */
     margin: 0 auto !important;
   }
 
   .swipe-wrapper {
-    flex: 1 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -3643,6 +3656,8 @@ body {
     width: 100% !important;
     min-height: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
+    z-index: 5 !important;
   }
 }
 
