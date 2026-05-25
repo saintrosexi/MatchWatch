@@ -246,6 +246,11 @@ export default function SwipeCard({
             </div>
 
             <p className={`info-overlay-desc ${isExpanded ? "expanded" : ""}`}>
+              {movie.releaseDate && new Date(movie.releaseDate) > new Date() && (
+                <span className="coming-soon-date-tag" style={{ display: "block", color: "#ff8a50", fontWeight: "bold", marginBottom: "6px", fontSize: "0.82rem" }}>
+                  📅 Премьера: {formatReleaseDate(movie.releaseDate)}
+                </span>
+              )}
               {movie.description}
             </p>
 
