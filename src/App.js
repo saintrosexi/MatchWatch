@@ -19,7 +19,7 @@ import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
 import ActorProfilePage from "./components/ActorProfilePage";
-import PopularActors from "./components/PopularActors";
+import PopularActorsPage from "./components/PopularActorsPage";
 import "./styles.css";
 
 const shuffle = (arr) => {
@@ -370,13 +370,6 @@ export default function App() {
       setScreen(tab);
     }
   };
-  // Handle actor selection from PopularActors tab
-  const handleActorSelect = (actorKey) => {
-    setPreviousScreen(screen);
-    setSelectedActorName(actorKey);
-    setScreen("actorProfile");
-  };
-
 
   const CategoryPicker = () => (
     <div className="category-picker">
@@ -495,7 +488,14 @@ export default function App() {
       />;
     }
     if (screen === "popularActors") {
-      return <PopularActors onActorSelect={handleActorSelect} />;
+      return <PopularActorsPage 
+        onActorSelect={(name) => {
+          setPreviousScreen("popularActors");
+          setSelectedActorName(name);
+          setScreen("actorProfile");
+        }}
+        userAppData={{ decisions, favorites, ratings }}
+      />;
     }
 
     const showTutorial = !disableOnboarding && !sessionTutorialSeen;

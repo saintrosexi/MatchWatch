@@ -56,6 +56,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
       case "mood": return "По настроению";
       case "search": return "Поиск";
       case "top": return "Топ фильмов";
+      case "popularActors": return "Лучшие актеры";
       case "liked": return "Любимые";
       case "friends": return "Друзья";
       case "profile": return "Аккаунт";
@@ -74,6 +75,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
   const menuItems = [
     { id: "mood", label: "По настроению", icon: "🎲" },
     { id: "top", label: "Топ фильмов", icon: "⭐" },
+    { id: "popularActors", label: "Лучшие актеры", icon: "🌟" },
     { id: "friends", label: "Друзья", icon: "👥", badge: friendRequestsCount },
     { id: "profile", label: "Аккаунт", icon: "👤" },
     { id: "settings", label: "Параметры", icon: "⚙️" },
@@ -151,6 +153,9 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 </li>
                 <li>
                   <button className={`nav-tab ${currentScreen === "top" ? "active" : ""}`} onClick={() => handleTabClick("top")}>⭐ Топ фильмов</button>
+                </li>
+                <li>
+                  <button className={`nav-tab ${currentScreen === "popularActors" ? "active" : ""}`} onClick={() => handleTabClick("popularActors")}>🌟 Актеры</button>
                 </li>
                 <li>
                   <button className={`nav-tab ${currentScreen === "liked" ? "active" : ""}`} onClick={() => handleTabClick("liked")}>❤️ Любимые ({likedCount})</button>

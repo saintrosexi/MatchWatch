@@ -576,47 +576,7 @@ html, body {
     margin-bottom: 20px !important;
   }
 
-  /* Popular Actors page */
-.popular-actors-page {
-  padding: 20px;
-}
-
-.popular-actors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-  justify-items: center;
-}
-
-.actor-card {
-  cursor: pointer;
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.actor-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-.actor-photo {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.actor-name {
-  margin-top: 8px;
-  font-size: 1rem;
-  color: #fff;
-}
-
-/* MatchWatch form heading */
+  /* MatchWatch form heading */
   .matchwatch-form h2 {
     font-size: 1.4rem !important;
     margin-bottom: 20px !important;
@@ -5747,3 +5707,321 @@ body.light-theme .no-results-text {
     font-size: 1.8rem;
   }
 }
+
+/* Popular Actors Gallery Page Styles */
+.popular-actors-page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.actors-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.actors-page-tagline {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #ff8a50;
+  font-weight: 800;
+}
+
+body.light-theme .actors-page-tagline {
+  color: #e65100;
+}
+
+.actors-page-title {
+  font-size: 2.6rem;
+  font-weight: 850;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light-theme .actors-page-title {
+  color: #1d1d1f;
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.actors-page-desc {
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 720px;
+  margin: 8px 0 0 0;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+body.light-theme .actors-page-desc {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.search-icon-inside {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+body.light-theme .search-icon-inside {
+  opacity: 0.5;
+}
+
+.popular-actors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 25px;
+  margin-top: 10px;
+}
+
+.popular-actor-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.popular-actor-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 138, 80, 0.35);
+  box-shadow: 0 16px 48px rgba(255, 138, 80, 0.15);
+  transform: translateY(-5px);
+}
+
+body.light-theme .popular-actor-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .popular-actor-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(230, 81, 0, 0.35);
+  box-shadow: 0 16px 48px rgba(230, 81, 0, 0.08);
+}
+
+.popular-actor-avatar-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.popular-actor-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popular-actor-card:hover .popular-actor-portrait {
+  transform: scale(1.06);
+}
+
+.popular-actor-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(18, 18, 22, 0.92) 100%);
+  pointer-events: none;
+}
+
+body.light-theme .popular-actor-card-overlay {
+  background: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.actor-completion-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #e91e63 0%, #ff8a50 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 850;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
+  letter-spacing: 0.2px;
+  z-index: 3;
+}
+
+body.light-theme .actor-completion-badge {
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.2);
+}
+
+.popular-actor-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.popular-actor-name {
+  font-size: 1.2rem;
+  font-weight: 750;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.popular-actor-card:hover .popular-actor-name {
+  color: #ff8a50;
+}
+
+body.light-theme .popular-actor-name {
+  color: #1d1d1f;
+}
+
+body.light-theme .popular-actor-card:hover .popular-actor-name {
+  color: #e65100;
+}
+
+.popular-actor-name-en {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+}
+
+body.light-theme .popular-actor-name-en {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.popular-actor-stat-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.actor-stat-capsule {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.actor-stat-capsule--films {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.light-theme .actor-stat-capsule--films {
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.65);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.actor-stat-capsule--liked {
+  background: rgba(255, 138, 80, 0.1);
+  color: #ff8a50;
+  border: 1px solid rgba(255, 138, 80, 0.16);
+}
+
+body.light-theme .actor-stat-capsule--liked {
+  background: rgba(230, 81, 0, 0.06);
+  color: #e65100;
+  border-color: rgba(230, 81, 0, 0.12);
+}
+
+.actor-progress-bar-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+body.light-theme .actor-progress-bar-container {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.actor-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #ff8a50, #e91e63);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+body.light-theme .actor-progress-bar-fill {
+  background: linear-gradient(to right, #e65100, #e91e63);
+}
+
+@media (max-width: 768px) {
+  .actors-page-title {
+    font-size: 2.0rem;
+  }
+
+  .actors-page-desc {
+    font-size: 0.95rem;
+  }
+
+  .popular-actors-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  .popular-actor-info {
+    padding: 15px;
+  }
+
+  .popular-actor-name {
+    font-size: 1.05rem;
+  }
+
+  .popular-actor-name-en {
+    font-size: 0.78rem;
+  }
+
+  .actor-stat-capsule {
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-actors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+
+
+  
+
+
+
+

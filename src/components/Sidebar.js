@@ -17,6 +17,7 @@ export default function Sidebar({
       case "mood": return "По настроению";
       case "search": return "Поиск";
       case "top": return "Топ фильмов";
+      case "popularActors": return "Лучшие актеры";
       case "liked": return `Любимые`;
       case "friends": return "Друзья";
       case "profile": return "Аккаунт";
@@ -105,6 +106,15 @@ export default function Sidebar({
         </li>
 
         <li 
+          className={currentScreen === "popularActors" ? "active" : ""} 
+          onClick={() => handleTabClick("popularActors")}
+          title={sidebarCollapsed ? getScreenName("popularActors") : ""}
+        >
+          <span className="sidebar-menu-icon">🌟</span>
+          {!sidebarCollapsed && <span className="sidebar-menu-label">Лучшие актеры</span>}
+        </li>
+
+        <li 
           className={currentScreen === "liked" ? "active" : ""} 
           onClick={() => handleTabClick("liked")}
           title={sidebarCollapsed ? `${getScreenName("liked")} (${likedCount})` : ""}
@@ -112,16 +122,6 @@ export default function Sidebar({
         >
           <span className="sidebar-menu-icon">❤️</span>
           {!sidebarCollapsed && <span className="sidebar-menu-label">Любимые ({likedCount})</span>}
-        </li>
-      
-        <li 
-          className={currentScreen === "popularActors" ? "active" : ""} 
-          onClick={() => handleTabClick("popularActors")} 
-          title={sidebarCollapsed ? "Популярные актеры" : ""}
-          style={{ position: 'relative' }}
-        >
-          <span className="sidebar-menu-icon">⭐</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Популярные актеры</span>}
         </li>
       </ul>
 
