@@ -291,7 +291,7 @@ export const actorsData = {
   },
   "Тим Роббинс": {
     "name": "Тим Роббинс",
-    "nameEn": "Тим Роббинс",
+    "nameEn": "Tim Robbins",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/1/18/TimRobbinsTIFFSept2012.jpg",
     "facts": [
       "Тимоти Фрэнсис «Тим» Роббинс (англ.",
@@ -301,7 +301,7 @@ export const actorsData = {
   },
   "Марлон Брандо": {
     "name": "Марлон Брандо",
-    "nameEn": "Марлон Брандо",
+    "nameEn": "Marlon Brando",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Marlon_Brando_in_The_Men.jpg/960px-Marlon_Brando_in_The_Men.jpg",
     "facts": [
       "Ма́рлон Бра́ндо или Марло́н Брандо́ (полное имя — Марлон Брандо-младший (англ.",
@@ -311,7 +311,7 @@ export const actorsData = {
   },
   "Аарон Экхарт": {
     "name": "Аарон Экхарт",
-    "nameEn": "Аарон Экхарт",
+    "nameEn": "Aaron Eckhart",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Aaron_Eckhart_%2829830286295%29_%28cropped%29.jpg/960px-Aaron_Eckhart_%2829830286295%29_%28cropped%29.jpg",
     "facts": [
       "Аарон Эдвард Экхарт (англ.",
@@ -321,7 +321,7 @@ export const actorsData = {
   },
   "Ли Дж. Кобб": {
     "name": "Ли Дж. Кобб",
-    "nameEn": "Ли Дж. Кобб",
+    "nameEn": "Lee J. Cobb",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Lee_J._Cobb_1960s.JPG",
     "facts": [
       "Ли Джей Кобб (англ.",
@@ -331,7 +331,7 @@ export const actorsData = {
   },
   "Лиам Нисон": {
     "name": "Лиам Нисон",
-    "nameEn": "Лиам Нисон",
+    "nameEn": "Liam Neeson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Liam_Neeson_Deauville_2012.jpg",
     "facts": [
       "Уильям Джон (Лиам) Ни́сон (англ.",
@@ -341,7 +341,7 @@ export const actorsData = {
   },
   "Бен Кингсли": {
     "name": "Бен Кингсли",
-    "nameEn": "Бен Кингсли",
+    "nameEn": "Ben Kingsley",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Ben_Kingsley_by_Gage_Skidmore.jpg/960px-Ben_Kingsley_by_Gage_Skidmore.jpg",
     "facts": [
       "Бен Ки́нгсли (англ.",
@@ -351,7 +351,7 @@ export const actorsData = {
   },
   "Джон Траволта": {
     "name": "Джон Траволта",
-    "nameEn": "Джон Траволта",
+    "nameEn": "John Travolta",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3e/John_Travolta_Cannes_2018_%28cropped%29.jpg",
     "facts": [
       "Джон Джо́зеф Траво́лта (англ.",
@@ -361,7 +361,7 @@ export const actorsData = {
   },
   "Ума Турман": {
     "name": "Ума Турман",
-    "nameEn": "Ума Турман",
+    "nameEn": "Uma Thurman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/UmaThurman-byPhilipRomano.jpg/960px-UmaThurman-byPhilipRomano.jpg",
     "facts": [
       "У́ма Кару́на Ту́рман (англ.",
@@ -371,7 +371,7 @@ export const actorsData = {
   },
   "Салли Филд": {
     "name": "Салли Филд",
-    "nameEn": "Салли Филд",
+    "nameEn": "Sally Field",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sally_Field_%2811205%29_%28cropped%29.jpg/960px-Sally_Field_%2811205%29_%28cropped%29.jpg",
     "facts": [
       "Са́лли Ма́ргарет Филд (англ.",
@@ -381,7 +381,7 @@ export const actorsData = {
   },
   "Майкл Кейн": {
     "name": "Майкл Кейн",
-    "nameEn": "Майкл Кейн",
+    "nameEn": "Michael Caine",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Sir_Michael_Caine%2C_28th_EFA_Awards_2015%2C_Berlin_%28cropped%29.jpg",
     "facts": [
       "Майкл Кейн (англ.",
@@ -391,7 +391,7 @@ export const actorsData = {
   },
   "Вигго Мортенсен": {
     "name": "Вигго Мортенсен",
-    "nameEn": "Вигго Мортенсен",
+    "nameEn": "Viggo Mortensen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/6/64/Viggo_Mortensen_B_%282020%29.jpg",
     "facts": [
       "Ви́гго Пи́тер Мо́ртенсен-мла́дший (англ.",
@@ -401,7 +401,7 @@ export const actorsData = {
   },
   "Иэн МакКеллен": {
     "name": "Иэн МакКеллен",
-    "nameEn": "Иэн МакКеллен",
+    "nameEn": "Ian McKellen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/McKellenRichmnd040219-5_%2846275370484%29_%28cropped%29.jpg/960px-McKellenRichmnd040219-5_%2846275370484%29_%28cropped%29.jpg",
     "facts": [
       "И́эн Мю́ррей Макке́ллен (англ.",
@@ -411,7 +411,7 @@ export const actorsData = {
   },
   "Орландо Блум": {
     "name": "Орландо Блум",
-    "nameEn": "Орландо Блум",
+    "nameEn": "Orlando Bloom",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Orlando_Bloom_at_the_2024_Toronto_International_Film_Festival_%28cropped2%29.jpg/960px-Orlando_Bloom_at_the_2024_Toronto_International_Film_Festival_%28cropped2%29.jpg",
     "facts": [
       "Орла́ндо Джо́натан Бла́нчард Блум (англ.",
@@ -421,7 +421,7 @@ export const actorsData = {
   },
   "Ли Ван Клиф": {
     "name": "Ли Ван Клиф",
-    "nameEn": "Ли Ван Клиф",
+    "nameEn": "Lee Van Cleef",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Lee_Van_Cleef_in_Kansas_City_Confidential.jpg",
     "facts": [
       "Кларенс Лирой (Ли) Ван Клиф-младший (англ.",
@@ -431,7 +431,7 @@ export const actorsData = {
   },
   "Эдвард Нортон": {
     "name": "Эдвард Нортон",
-    "nameEn": "Эдвард Нортон",
+    "nameEn": "Edward Norton",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Ed_Norton_and_Shauna_Robertson_TIFF_2025_%28cropped%29.jpg/960px-Ed_Norton_and_Shauna_Robertson_TIFF_2025_%28cropped%29.jpg",
     "facts": [
       "Э́двард Ха́ррисон Но́ртон (англ.",
@@ -441,7 +441,7 @@ export const actorsData = {
   },
   "Марк Хэмилл": {
     "name": "Марк Хэмилл",
-    "nameEn": "Марк Хэмилл",
+    "nameEn": "Mark Hamill",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mark_Hamill_by_Gage_Skidmore_3.jpg/960px-Mark_Hamill_by_Gage_Skidmore_3.jpg",
     "facts": [
       "Марк Ри́чард Хэ́милл (англ.",
@@ -451,7 +451,7 @@ export const actorsData = {
   },
   "Кэрри Фишер": {
     "name": "Кэрри Фишер",
-    "nameEn": "Кэрри Фишер",
+    "nameEn": "Carrie Fisher",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Carrie_Fisher_2013-a_straightened.jpg/960px-Carrie_Fisher_2013-a_straightened.jpg",
     "facts": [
       "Кэрри Фрэнсис Фишер (англ.",
@@ -461,7 +461,7 @@ export const actorsData = {
   },
   "Джо Пеши": {
     "name": "Джо Пеши",
-    "nameEn": "Джо Пеши",
+    "nameEn": "Joe Pesci",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/JoePesci-2009.jpg/960px-JoePesci-2009.jpg",
     "facts": [
       "Джозеф Фрэнк (Джо) Пеши (англ.",
@@ -471,7 +471,7 @@ export const actorsData = {
   },
   "Джоди Фостер": {
     "name": "Джоди Фостер",
-    "nameEn": "Джоди Фостер",
+    "nameEn": "Jodie Foster",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Jodie_Foster_and_Rebecca_Zlotowski_at_NYFF_2025_02_%28cropped_headshot%29.jpg/960px-Jodie_Foster_and_Rebecca_Zlotowski_at_NYFF_2025_02_%28cropped_headshot%29.jpg",
     "facts": [
       "Али́сия Кри́стиан (Джо́ди) Фо́стер (англ.",
@@ -481,7 +481,7 @@ export const actorsData = {
   },
   "Энтони Хопкинс": {
     "name": "Энтони Хопкинс",
-    "nameEn": "Энтони Хопкинс",
+    "nameEn": "Anthony Hopkins",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Anthony_Hopkins_Red_Sea_Festival_2025_Portrait_%28cropped%29.jpg/960px-Anthony_Hopkins_Red_Sea_Festival_2025_Portrait_%28cropped%29.jpg",
     "facts": [
       "Фи́лип Э́нтони Хо́пкинс (англ.",
@@ -491,8 +491,8 @@ export const actorsData = {
   },
   "Джеймс Стюарт": {
     "name": "Джеймс Стюарт",
-    "nameEn": "Джеймс Стюарт",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "James Stewart",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/James_Stewart_in_It%27s_a_Wonderful_Life.jpg/960px-James_Stewart_in_It%27s_a_Wonderful_Life.jpg",
     "facts": [
       "Джеймс Стю́арт:\n\nСтюарт, Джеймс, «Стюарт Афинский» (1713—1788) — британский археолог, архитектор и художник, открыватель античных Афин.",
       "Стюарт, Джеймс (1934—2013) — ирландский политик, деятель Коммунистической партии Ирландии.",
@@ -501,7 +501,7 @@ export const actorsData = {
   },
   "Гэри Олдман": {
     "name": "Гэри Олдман",
-    "nameEn": "Гэри Олдман",
+    "nameEn": "Gary Oldman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Gary_Oldman_by_Gage_Skidmore.jpg/960px-Gary_Oldman_by_Gage_Skidmore.jpg",
     "facts": [
       "Гэ́ри Ле́онард О́лдмен (англ.",
@@ -511,7 +511,7 @@ export const actorsData = {
   },
   "Генри Фонда": {
     "name": "Генри Фонда",
-    "nameEn": "Генри Фонда",
+    "nameEn": "Henry Fonda",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Henry_Fonda_in_Warlock.jpg/960px-Henry_Fonda_in_Warlock.jpg",
     "facts": [
       "Генри Джейнс Фонда (англ.",
@@ -521,7 +521,7 @@ export const actorsData = {
   },
   "Клаудия Кардинале": {
     "name": "Клаудия Кардинале",
-    "nameEn": "Клаудия Кардинале",
+    "nameEn": "Claudia Cardinale",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Claudia_Cardinale_1960.jpg",
     "facts": [
       "Кла́удия Кардина́ле (итал.",
@@ -531,7 +531,7 @@ export const actorsData = {
   },
   "Хамфри Богарт": {
     "name": "Хамфри Богарт",
-    "nameEn": "Хамфри Богарт",
+    "nameEn": "Humphrey Bogart",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Humphrey_Bogart_publicity.jpg/960px-Humphrey_Bogart_publicity.jpg",
     "facts": [
       "Ха́мфри Дефо́рест Бо́гарт (англ.",
@@ -541,7 +541,7 @@ export const actorsData = {
   },
   "Ингрид Бергман": {
     "name": "Ингрид Бергман",
-    "nameEn": "Ингрид Бергман",
+    "nameEn": "Ingrid Bergman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Ingrid_Bergman%2C_Gaslight_1944.jpg",
     "facts": [
       "И́нгрид Бе́ргман (швед.",
@@ -551,8 +551,8 @@ export const actorsData = {
   },
   "Тоширо Мифунэ": {
     "name": "Тоширо Мифунэ",
-    "nameEn": "Тоширо Мифунэ",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Toshiro Mifune",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Toshiro_Mifune_in_1954.jpg/960px-Toshiro_Mifune_in_1954.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -561,7 +561,7 @@ export const actorsData = {
   },
   "Такаси Симура": {
     "name": "Такаси Симура",
-    "nameEn": "Такаси Симура",
+    "nameEn": "Takashi Shimura",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Shimura_Takashi.JPG",
     "facts": [
       "Такаси Симура (яп.",
@@ -571,7 +571,7 @@ export const actorsData = {
   },
   "Мартин Шин": {
     "name": "Мартин Шин",
-    "nameEn": "Мартин Шин",
+    "nameEn": "Martin Sheen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Martin_Sheen_%2854429290460%29.jpg/960px-Martin_Sheen_%2854429290460%29.jpg",
     "facts": [
       "Рамо́н Хера́рдо Анто́нио Эсте́вес (исп.",
@@ -581,7 +581,7 @@ export const actorsData = {
   },
   "Роберт Дювалл": {
     "name": "Роберт Дювалл",
-    "nameEn": "Роберт Дювалл",
+    "nameEn": "Robert Duvall",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Robert_Duvall_%28actor%2C_at_home%2C_New_York_City_apartment%2C_1984%29_%28cropped%29.jpg/960px-Robert_Duvall_%28actor%2C_at_home%2C_New_York_City_apartment%2C_1984%29_%28cropped%29.jpg",
     "facts": [
       "Ро́берт Се́лден Дюва́ль (/duːˈvɔːl/, англ.",
@@ -591,7 +591,7 @@ export const actorsData = {
   },
   "Джанет Ли": {
     "name": "Джанет Ли",
-    "nameEn": "Джанет Ли",
+    "nameEn": "Janet Leigh",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Janet_Leigh_1940s_publicity_photo.jpg",
     "facts": [
       "Джанет Ли (англ.",
@@ -601,7 +601,7 @@ export const actorsData = {
   },
   "Гай Пирс": {
     "name": "Гай Пирс",
-    "nameEn": "Гай Пирс",
+    "nameEn": "Guy Pearce",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/8/88/Crew_members_of_the_movie_%22Genius%22_at_the_Berlinale_party_%2825036107966%29_%28cropped%29.jpg",
     "facts": [
       "Гай Э́двард Пирс (англ.",
@@ -611,7 +611,7 @@ export const actorsData = {
   },
   "Кэрри-Энн Мосс": {
     "name": "Кэрри-Энн Мосс",
-    "nameEn": "Кэрри-Энн Мосс",
+    "nameEn": "Carrie-Anne Moss",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Carrie-Anne_Moss_May_2016.jpg/960px-Carrie-Anne_Moss_May_2016.jpg",
     "facts": [
       "Ке́рри-Энн Мосс (англ.",
@@ -621,7 +621,7 @@ export const actorsData = {
   },
   "Джо Пантолиано": {
     "name": "Джо Пантолиано",
-    "nameEn": "Джо Пантолиано",
+    "nameEn": "Joe Pantoliano",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/7/74/JoePantolianoFeb2009.jpg",
     "facts": [
       "Джозеф Питер «Джо» Пантолиано (англ.",
@@ -631,7 +631,7 @@ export const actorsData = {
   },
   "Чарльз Чаплин": {
     "name": "Чарльз Чаплин",
-    "nameEn": "Чарльз Чаплин",
+    "nameEn": "Charlie Chaplin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Charlie_Chaplin.jpg/960px-Charlie_Chaplin.jpg",
     "facts": [
       "Чарльз Спе́нсер (Ча́рли) Ча́плин — младший (англ.",
@@ -641,7 +641,7 @@ export const actorsData = {
   },
   "Джон Хёрт": {
     "name": "Джон Хёрт",
-    "nameEn": "Джон Хёрт",
+    "nameEn": "John Hurt",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/John_Hurt_Cannes_2013.JPG/960px-John_Hurt_Cannes_2013.JPG",
     "facts": [
       "Джон Ви́нсент Хёрт (англ.",
@@ -651,7 +651,7 @@ export const actorsData = {
   },
   "Уильям Холден": {
     "name": "Уильям Холден",
-    "nameEn": "Уильям Холден",
+    "nameEn": "William Holden",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Holden-portrait.jpg/960px-Holden-portrait.jpg",
     "facts": [
       "Уильям Холден (англ.",
@@ -661,7 +661,7 @@ export const actorsData = {
   },
   "Кэри Грант": {
     "name": "Кэри Грант",
-    "nameEn": "Кэри Грант",
+    "nameEn": "Cary Grant",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Grant%2C_Cary_%28Suspicion%29_01_Crisco_edit.jpg/960px-Grant%2C_Cary_%28Suspicion%29_01_Crisco_edit.jpg",
     "facts": [
       "Кэ́ри Грант (англ.",
@@ -671,7 +671,7 @@ export const actorsData = {
   },
   "Майкл Бин": {
     "name": "Майкл Бин",
-    "nameEn": "Майкл Бин",
+    "nameEn": "Michael Biehn",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Michael_Biehn_by_Gage_Skidmore.jpg/960px-Michael_Biehn_by_Gage_Skidmore.jpg",
     "facts": [
       "Майкл Коннелл Бин (англ.",
@@ -681,7 +681,7 @@ export const actorsData = {
   },
   "Матье Кассовиц": {
     "name": "Матье Кассовиц",
-    "nameEn": "Матье Кассовиц",
+    "nameEn": "Mathieu Kassovitz",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/54/Mathieu_Kassovitz_Cannes_2017.jpg",
     "facts": [
       "Матьё Кассовиц (фр.",
@@ -691,7 +691,7 @@ export const actorsData = {
   },
   "Ф. Мюррэй Абрахам": {
     "name": "Ф. Мюррэй Абрахам",
-    "nameEn": "Ф. Мюррэй Абрахам",
+    "nameEn": "F. Murray Abraham",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/FMurrayAbraham-byPhilipRomano.jpg/960px-FMurrayAbraham-byPhilipRomano.jpg",
     "facts": [
       "Мю́ррей А́брахам (англ.",
@@ -701,7 +701,7 @@ export const actorsData = {
   },
   "Тим Рот": {
     "name": "Тим Рот",
-    "nameEn": "Тим Рот",
+    "nameEn": "Tim Roth",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tim_Roth_by_Gage_Skidmore_2.jpg/960px-Tim_Roth_by_Gage_Skidmore_2.jpg",
     "facts": [
       "Tim Roth), настоящее имя и фамилия — Ти́моти Са́ймон Смит (англ.",
@@ -711,7 +711,7 @@ export const actorsData = {
   },
   "Эллен Берстин": {
     "name": "Эллен Берстин",
-    "nameEn": "Эллен Берстин",
+    "nameEn": "Ellen Burstyn",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ellen_Burstyn_at_the_2009_Tribeca_Film_Festival.jpg/960px-Ellen_Burstyn_at_the_2009_Tribeca_Film_Festival.jpg",
     "facts": [
       "Э́ллен Бёрстин (англ.",
@@ -721,7 +721,7 @@ export const actorsData = {
   },
   "Джаред Лето": {
     "name": "Джаред Лето",
-    "nameEn": "Джаред Лето",
+    "nameEn": "Jared Leto",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Jared_Leto_by_Gage_Skidmore_2.jpg/960px-Jared_Leto_by_Gage_Skidmore_2.jpg",
     "facts": [
       "Джа́ред Джо́зеф Ле́то (англ.",
@@ -731,7 +731,7 @@ export const actorsData = {
   },
   "Дженнифер Коннелли": {
     "name": "Дженнифер Коннелли",
-    "nameEn": "Дженнифер Коннелли",
+    "nameEn": "Jennifer Connelly",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Jennifer_Connelly_2012.jpg",
     "facts": [
       "Дже́ннифер Линн Ко́ннелли (англ.",
@@ -741,7 +741,7 @@ export const actorsData = {
   },
   "Мэл Гибсон": {
     "name": "Мэл Гибсон",
-    "nameEn": "Мэл Гибсон",
+    "nameEn": "Mel Gibson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/58/Mel_Gibson_Cannes_2016.jpg",
     "facts": [
       "Мел Колм-Килле Дже́рард Ги́бсон (англ.",
@@ -751,7 +751,7 @@ export const actorsData = {
   },
   "Тацуя Накадай": {
     "name": "Тацуя Накадай",
-    "nameEn": "Тацуя Накадай",
+    "nameEn": "Tatsuya Nakadai",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Nakadai.jpg/960px-Nakadai.jpg",
     "facts": [
       "Тацуя Накадай (яп.",
@@ -761,7 +761,7 @@ export const actorsData = {
   },
   "Хоакин Феникс": {
     "name": "Хоакин Феникс",
-    "nameEn": "Хоакин Феникс",
+    "nameEn": "Joaquin Phoenix",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Joaquin_Phoenix-64908_%28cropped%29.jpg/960px-Joaquin_Phoenix-64908_%28cropped%29.jpg",
     "facts": [
       "Хоаки́н Рафаэ́ль Фе́никс (исп.",
@@ -771,7 +771,7 @@ export const actorsData = {
   },
   "Хью Джекман": {
     "name": "Хью Джекман",
-    "nameEn": "Хью Джекман",
+    "nameEn": "Hugh Jackman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Hugh_Jackman_Is_This_Thing_On-68_%28cropped%29.jpg/960px-Hugh_Jackman_Is_This_Thing_On-68_%28cropped%29.jpg",
     "facts": [
       "Хью Майкл Дже́кман (англ.",
@@ -781,7 +781,7 @@ export const actorsData = {
   },
   "Скарлетт Йоханссон": {
     "name": "Скарлетт Йоханссон",
-    "nameEn": "Скарлетт Йоханссон",
+    "nameEn": "Scarlett Johansson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Scarlett_Johansson-8588.jpg/960px-Scarlett_Johansson-8588.jpg",
     "facts": [
       "Ска́рлетт И́нгрид Йо́ханссон (англ.",
@@ -791,7 +791,7 @@ export const actorsData = {
   },
   "Кейт Уинслет": {
     "name": "Кейт Уинслет",
-    "nameEn": "Кейт Уинслет",
+    "nameEn": "Kate Winslet",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/KateWinslet_%28cropped%29.jpg/960px-KateWinslet_%28cropped%29.jpg",
     "facts": [
       "Кейт Эли́забет Уи́нслет (англ.",
@@ -801,7 +801,7 @@ export const actorsData = {
   },
   "Тим Аллен": {
     "name": "Тим Аллен",
-    "nameEn": "Тим Аллен",
+    "nameEn": "Tim Allen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Tim_Allen_2012.jpg",
     "facts": [
       "Ти́моти А́лан Дик (англ.",
@@ -811,7 +811,7 @@ export const actorsData = {
   },
   "Джереми Айронс": {
     "name": "Джереми Айронс",
-    "nameEn": "Джереми Айронс",
+    "nameEn": "Jeremy Irons",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/SDCC_2015_-_Jeremy_Irons_%2819524260758%29_%28cropped%29.jpg/960px-SDCC_2015_-_Jeremy_Irons_%2819524260758%29_%28cropped%29.jpg",
     "facts": [
       "Дже́реми Джон А́йронс (англ.",
@@ -821,7 +821,7 @@ export const actorsData = {
   },
   "Дон Чидл": {
     "name": "Дон Чидл",
-    "nameEn": "Дон Чидл",
+    "nameEn": "Don Cheadle",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Don_Cheadle_at_Jimmy_Kimmel_Live%21_%28cropped%29.jpg/960px-Don_Cheadle_at_Jimmy_Kimmel_Live%21_%28cropped%29.jpg",
     "facts": [
       "До́нальд Фрэнк Чидл-младший (англ.",
@@ -831,7 +831,7 @@ export const actorsData = {
   },
   "Алек Гиннесс": {
     "name": "Алек Гиннесс",
-    "nameEn": "Алек Гиннесс",
+    "nameEn": "Alec Guinness",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Alec_Guinness_6_Allan_Warren.jpg/960px-Alec_Guinness_6_Allan_Warren.jpg",
     "facts": [
       "Алек Ги́ннесс (англ.",
@@ -841,7 +841,7 @@ export const actorsData = {
   },
   "Энтони Куинн": {
     "name": "Энтони Куинн",
-    "nameEn": "Энтони Куинн",
+    "nameEn": "Anthony Quinn",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Anthony_Quinn_around_the_1960s.jpg/960px-Anthony_Quinn_around_the_1960s.jpg",
     "facts": [
       "Анто́нио Родо́льфо Ку́инн Оаха́ка (исп.",
@@ -851,7 +851,7 @@ export const actorsData = {
   },
   "Джек Леммон": {
     "name": "Джек Леммон",
-    "nameEn": "Джек Леммон",
+    "nameEn": "Jack Lemmon",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Jack_Lemmon_-_1968.jpg",
     "facts": [
       "Джон Юлер (Джек) Ле́ммон III (англ.",
@@ -861,7 +861,7 @@ export const actorsData = {
   },
   "Арнольд Шварценеггер": {
     "name": "Арнольд Шварценеггер",
-    "nameEn": "Арнольд Шварценеггер",
+    "nameEn": "Arnold Schwarzenegger",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg/960px-Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg",
     "facts": [
       "Арно́льд Ало́ис Шварцене́ггер (нем.",
@@ -871,7 +871,7 @@ export const actorsData = {
   },
   "Линда Хэмилтон": {
     "name": "Линда Хэмилтон",
-    "nameEn": "Линда Хэмилтон",
+    "nameEn": "Linda Hamilton",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Linda_Hamilton_Photo_Op_GalaxyCon_Raleigh_2024.jpg/960px-Linda_Hamilton_Photo_Op_GalaxyCon_Raleigh_2024.jpg",
     "facts": [
       "Линда Кэрролл Хэмилтон (англ.",
@@ -881,7 +881,7 @@ export const actorsData = {
   },
   "Эдвард Ферлонг": {
     "name": "Эдвард Ферлонг",
-    "nameEn": "Эдвард Ферлонг",
+    "nameEn": "Edward Furlong",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Edward_Furlong_%2853725363105%29.jpg/960px-Edward_Furlong_%2853725363105%29.jpg",
     "facts": [
       "Э́двард Уо́лтер Фёрлонг (англ.",
@@ -891,7 +891,7 @@ export const actorsData = {
   },
   "Шон Коннери": {
     "name": "Шон Коннери",
-    "nameEn": "Шон Коннери",
+    "nameEn": "Sean Connery",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sean_Connery_%281983%29.jpg/960px-Sean_Connery_%281983%29.jpg",
     "facts": [
       "То́мас Шон Ко́ннери (англ.",
@@ -901,7 +901,7 @@ export const actorsData = {
   },
   "Майлз Теллер": {
     "name": "Майлз Теллер",
-    "nameEn": "Майлз Теллер",
+    "nameEn": "Miles Teller",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/MilesTellerTIFF2025-01.png/960px-MilesTellerTIFF2025-01.png",
     "facts": [
       "Майлз Алекса́ндр Те́ллер (англ.",
@@ -911,7 +911,7 @@ export const actorsData = {
   },
   "Грейс Келли": {
     "name": "Грейс Келли",
-    "nameEn": "Грейс Келли",
+    "nameEn": "Grace Kelly",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Grace_Kelly30419.jpg",
     "facts": [
       "Грейс Патриция Ке́лли (англ.",
@@ -921,7 +921,7 @@ export const actorsData = {
   },
   "Аамир Кхан": {
     "name": "Аамир Кхан",
-    "nameEn": "Аамир Кхан",
+    "nameEn": "Aamir Khan",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Aamir_Khan_at_92.7_BIG_FM_to_promote_Satyamev_Jayate_07.jpg",
     "facts": [
       "Аамир Хан (урду عامر خان‎, хинди आमिर ख़ान, англ.",
@@ -931,7 +931,7 @@ export const actorsData = {
   },
   "Патрик Мэги": {
     "name": "Патрик Мэги",
-    "nameEn": "Патрик Мэги",
+    "nameEn": "Patrick Magee (actor)",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Dementia13.jpg",
     "facts": [
       "Патрик Мэги (англ.",
@@ -941,8 +941,8 @@ export const actorsData = {
   },
   "Грэм Чепмен": {
     "name": "Грэм Чепмен",
-    "nameEn": "Грэм Чепмен",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Graham Chapman",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Graham_Chapman_on_SNL_Newsbreaks_%28cropped%29.jpg/960px-Graham_Chapman_on_SNL_Newsbreaks_%28cropped%29.jpg",
     "facts": [
       "Грэм Че́пмен (англ.",
       "Известный актер кино и телевидения.",
@@ -951,7 +951,7 @@ export const actorsData = {
   },
   "Джон Клиз": {
     "name": "Джон Клиз",
-    "nameEn": "Джон Клиз",
+    "nameEn": "John Cleese",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/John_Cleese_Photo_Op_GalaxyCon_San_Jose_2024.jpg/960px-John_Cleese_Photo_Op_GalaxyCon_San_Jose_2024.jpg",
     "facts": [
       "Джон Ма́рвуд Клиз (англ.",
@@ -961,7 +961,7 @@ export const actorsData = {
   },
   "Джейсон Стэйтем": {
     "name": "Джейсон Стэйтем",
-    "nameEn": "Джейсон Стэйтем",
+    "nameEn": "Jason Statham",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Jason_Statham_2018.jpg",
     "facts": [
       "Дже́йсон Сте́йтем (также распространены написания «Стэйтем», «Стэтхэм» и «Стэтем»; англ.",
@@ -971,7 +971,7 @@ export const actorsData = {
   },
   "Орсон Уэллс": {
     "name": "Орсон Уэллс",
-    "nameEn": "Орсон Уэллс",
+    "nameEn": "Orson Welles",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Orson_Welles_1937.jpg/960px-Orson_Welles_1937.jpg",
     "facts": [
       "Джордж О́рсон Уэ́ллс (англ.",
@@ -981,7 +981,7 @@ export const actorsData = {
   },
   "Кристоф Вальц": {
     "name": "Кристоф Вальц",
-    "nameEn": "Кристоф Вальц",
+    "nameEn": "Christoph Waltz",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg/960px-Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg",
     "facts": [
       "Кри́стоф Вальц (нем.",
@@ -991,7 +991,7 @@ export const actorsData = {
   },
   "Брюс Уиллис": {
     "name": "Брюс Уиллис",
-    "nameEn": "Брюс Уиллис",
+    "nameEn": "Bruce Willis",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Bruce_Willis_by_Gage_Skidmore_3.jpg/960px-Bruce_Willis_by_Gage_Skidmore_3.jpg",
     "facts": [
       "Уо́лтер Брюс Уи́ллис (англ.",
@@ -1001,7 +1001,7 @@ export const actorsData = {
   },
   "Джек Хокинс": {
     "name": "Джек Хокинс",
-    "nameEn": "Джек Хокинс",
+    "nameEn": "Jack Hawkins",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Jack_Hawkins_12_Allan_Warren.jpg/960px-Jack_Hawkins_12_Allan_Warren.jpg",
     "facts": [
       "Джон Эдвард «Джек» Хокинс (англ.",
@@ -1011,7 +1011,7 @@ export const actorsData = {
   },
   "Джордж Сандерс": {
     "name": "Джордж Сандерс",
-    "nameEn": "Джордж Сандерс",
+    "nameEn": "George Sanders",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/6/64/George_Sanders_Allan_Warren.jpg",
     "facts": [
       "Джордж Ге́нри Са́ндерс (англ.",
@@ -1021,7 +1021,7 @@ export const actorsData = {
   },
   "Джеймс Гарнер": {
     "name": "Джеймс Гарнер",
-    "nameEn": "Джеймс Гарнер",
+    "nameEn": "James Garner",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/dc/James_Garner_Bret_Maverick.JPG",
     "facts": [
       "Джеймс Гарнер (англ.",
@@ -1031,7 +1031,7 @@ export const actorsData = {
   },
   "Робин Уильямс": {
     "name": "Робин Уильямс",
-    "nameEn": "Робин Уильямс",
+    "nameEn": "Robin Williams",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/59/Robin_Williams_Happy_Feet_premiere.jpg",
     "facts": [
       "Ро́бин Макло́рин Уи́льямс (англ.",
@@ -1041,7 +1041,7 @@ export const actorsData = {
   },
   "Бен Аффлек": {
     "name": "Бен Аффлек",
-    "nameEn": "Бен Аффлек",
+    "nameEn": "Ben Affleck",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Ben_Affleck_on_the_Red_Carpet%2C_SXSW_2023_%28cropped%29.jpg/960px-Ben_Affleck_on_the_Red_Carpet%2C_SXSW_2023_%28cropped%29.jpg",
     "facts": [
       "Бе́нджамин Ге́за А́ффлек-Болдт (англ.",
@@ -1051,7 +1051,7 @@ export const actorsData = {
   },
   "Роберт Шоу": {
     "name": "Роберт Шоу",
-    "nameEn": "Роберт Шоу",
+    "nameEn": "Robert Shaw",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Robert_Shaw.jpg",
     "facts": [
       "Роберт Арчибальд Шоу (9 августа 1927 — 28 августа 1978) — британский киноактёр, сценарист и писатель.",
@@ -1061,7 +1061,7 @@ export const actorsData = {
   },
   "Кларк Гейбл": {
     "name": "Кларк Гейбл",
-    "nameEn": "Кларк Гейбл",
+    "nameEn": "Clark Gable",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Clark_Gable_Publicity_Photo%2C_1945.jpg/960px-Clark_Gable_Publicity_Photo%2C_1945.jpg",
     "facts": [
       "Уильям Кларк Гейбл (англ.",
@@ -1071,8 +1071,8 @@ export const actorsData = {
   },
   "Томас Митчелл": {
     "name": "Томас Митчелл",
-    "nameEn": "Томас Митчелл",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Thomas Mitchell",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Thomas_Mitchell_1953.JPG/960px-Thomas_Mitchell_1953.JPG",
     "facts": [
       "Томас Митчелл\n\nМитчелл, Томас (1792—1855) — шотландский путешественник и землемер, исследователь Австралии.",
       "Митчелл, Томас (1892—1962) — американский актёр.",
@@ -1081,7 +1081,7 @@ export const actorsData = {
   },
   "Мэнди Пэтинкин": {
     "name": "Мэнди Пэтинкин",
-    "nameEn": "Мэнди Пэтинкин",
+    "nameEn": "Mandy Patinkin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/6/63/MandyPatinkin.jpg",
     "facts": [
       "Мэ́нди (Мэндель Брюс) Пати́нкин (англ.",
@@ -1091,7 +1091,7 @@ export const actorsData = {
   },
   "Чарлтон Хестон": {
     "name": "Чарлтон Хестон",
-    "nameEn": "Чарлтон Хестон",
+    "nameEn": "Charlton Heston",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Charlton_Heston_-_1953.jpg",
     "facts": [
       "Ча́рлтон Хе́стон (англ.",
@@ -1101,7 +1101,7 @@ export const actorsData = {
   },
   "Фэй Данауэй": {
     "name": "Фэй Данауэй",
-    "nameEn": "Фэй Данауэй",
+    "nameEn": "Faye Dunaway",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/07/Faye_Dunaway_Cannes_2016.jpg",
     "facts": [
       "Дороти Фэй Данауэй (англ.",
@@ -1111,7 +1111,7 @@ export const actorsData = {
   },
   "Курт Рассел": {
     "name": "Курт Рассел",
-    "nameEn": "Курт Рассел",
+    "nameEn": "Kurt Russell",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Kurt_Russell_by_Gage_Skidmore_2.jpg/960px-Kurt_Russell_by_Gage_Skidmore_2.jpg",
     "facts": [
       "Курт Фо́гель Ра́ссел (англ.",
@@ -1121,7 +1121,7 @@ export const actorsData = {
   },
   "Итан Хоук": {
     "name": "Итан Хоук",
-    "nameEn": "Итан Хоук",
+    "nameEn": "Ethan Hawke",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/BlueMoonBFILFF161025-53_%2854875551295%29_%28cropped_2%29.jpg/960px-BlueMoonBFILFF161025-53_%2854875551295%29_%28cropped_2%29.jpg",
     "facts": [
       "И́тан Грин Хо́ук (англ.",
@@ -1131,7 +1131,7 @@ export const actorsData = {
   },
   "Жюли Дельпи": {
     "name": "Жюли Дельпи",
-    "nameEn": "Жюли Дельпи",
+    "nameEn": "Julie Delpy",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Julie_Delpy_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Julie_Delpy_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg",
     "facts": [
       "Жюли́ Дельпи́ (фр.",
@@ -1141,7 +1141,7 @@ export const actorsData = {
   },
   "Джон Гудман": {
     "name": "Джон Гудман",
-    "nameEn": "Джон Гудман",
+    "nameEn": "John Goodman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/John_Goodman_by_Gage_Skidmore.jpg/960px-John_Goodman_by_Gage_Skidmore.jpg",
     "facts": [
       "Джон Сти́вен Гу́дмен (англ.",
@@ -1151,7 +1151,7 @@ export const actorsData = {
   },
   "Лоуренс Оливье": {
     "name": "Лоуренс Оливье",
-    "nameEn": "Лоуренс Оливье",
+    "nameEn": "Laurence Olivier",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Laurence_Olivier_-_1961_-_Boston.jpg",
     "facts": [
       "Ло́ренс Керр Оливье́, барон Оливье́ (англ.",
@@ -1161,7 +1161,7 @@ export const actorsData = {
   },
   "Биби Андерссон": {
     "name": "Биби Андерссон",
-    "nameEn": "Биби Андерссон",
+    "nameEn": "Bibi Andersson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Bibi_Andersson_%281961%29.jpg/960px-Bibi_Andersson_%281961%29.jpg",
     "facts": [
       "Биби Андерссон, также Андерсон (швед.",
@@ -1171,7 +1171,7 @@ export const actorsData = {
   },
   "Макс фон Сюдов": {
     "name": "Макс фон Сюдов",
-    "nameEn": "Макс фон Сюдов",
+    "nameEn": "Max von Sydow",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Max_Von_Sydow_%28Premio_Donosti_-_conferencia_de_prensa%292.jpg",
     "facts": [
       "Карл Адольф фон Сю́дов (швед.",
@@ -1181,7 +1181,7 @@ export const actorsData = {
   },
   "Хьюго Уивинг": {
     "name": "Хьюго Уивинг",
-    "nameEn": "Хьюго Уивинг",
+    "nameEn": "Hugo Weaving",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/MJK_08925_Hugo_Weaving_%28Berlinale_2018%29_bw43.jpg/960px-MJK_08925_Hugo_Weaving_%28Berlinale_2018%29_bw43.jpg",
     "facts": [
       "Хью́го Уо́ллес Уи́винг (англ.",
@@ -1191,7 +1191,7 @@ export const actorsData = {
   },
   "Гаэль Гарсиа Берналь": {
     "name": "Гаэль Гарсиа Берналь",
-    "nameEn": "Гаэль Гарсиа Берналь",
+    "nameEn": "Gael García Bernal",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/MKr386832_Gael_Garc%C3%ADa_Bernal_%28Amores_Perros%2C_Cannes_2025%29.jpg/960px-MKr386832_Gael_Garc%C3%ADa_Bernal_%28Amores_Perros%2C_Cannes_2025%29.jpg",
     "facts": [
       "Гаэ́ль Гарси́а Берна́ль (исп.",
@@ -1201,7 +1201,7 @@ export const actorsData = {
   },
   "Кристофер Уокен": {
     "name": "Кристофер Уокен",
-    "nameEn": "Кристофер Уокен",
+    "nameEn": "Christopher Walken",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Christopher_Walken_2018.jpg/960px-Christopher_Walken_2018.jpg",
     "facts": [
       "Кри́стофер Уо́кен (англ.",
@@ -1211,7 +1211,7 @@ export const actorsData = {
   },
   "Уильям Х. Мэйси": {
     "name": "Уильям Х. Мэйси",
-    "nameEn": "Уильям Х. Мэйси",
+    "nameEn": "William H. Macy",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/d/da/WilliamHMacyTIFFSept2012.jpg",
     "facts": [
       "13 марта 1950) — американский актёр и сценарист, номинировавшийся на «Оскар» за роль второго плана в фильме братьев Коэнов «Фарго» (1996).",
@@ -1221,7 +1221,7 @@ export const actorsData = {
   },
   "Стив Бушеми": {
     "name": "Стив Бушеми",
-    "nameEn": "Стив Бушеми",
+    "nameEn": "Steve Buscemi",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/SteveBuscemi-byPhilipRomano.jpg/960px-SteveBuscemi-byPhilipRomano.jpg",
     "facts": [
       "Сти́вен Ви́нсент (Стив) Буше́ми (англ.",
@@ -1231,7 +1231,7 @@ export const actorsData = {
   },
   "Джон Бернтал": {
     "name": "Джон Бернтал",
-    "nameEn": "Джон Бернтал",
+    "nameEn": "Jon Bernthal",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/JonBernthal-byPhilipRomano.jpg/960px-JonBernthal-byPhilipRomano.jpg",
     "facts": [
       "Джо́натан Э́двард «Джон» Бе́рнтал (англ.",
@@ -1241,7 +1241,7 @@ export const actorsData = {
   },
   "Джоан Аллен": {
     "name": "Джоан Аллен",
-    "nameEn": "Джоан Аллен",
+    "nameEn": "Joan Allen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/1/1b/JoanAllen2000TIFF.jpg",
     "facts": [
       "Джоан Аллен (англ.",
@@ -1251,7 +1251,7 @@ export const actorsData = {
   },
   "Томми Ли Джонс": {
     "name": "Томми Ли Джонс",
-    "nameEn": "Томми Ли Джонс",
+    "nameEn": "Tommy Lee Jones",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tommy_Lee_Jones_2017.jpg/960px-Tommy_Lee_Jones_2017.jpg",
     "facts": [
       "Томми Ли Джонс (англ.",
@@ -1261,7 +1261,7 @@ export const actorsData = {
   },
   "Хавьер Бардем": {
     "name": "Хавьер Бардем",
-    "nameEn": "Хавьер Бардем",
+    "nameEn": "Javier Bardem",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Javier_Bardem_Cannes_2018.jpg",
     "facts": [
       "Хавье́р А́нхель Энси́нас Барде́м (исп.",
@@ -1271,7 +1271,7 @@ export const actorsData = {
   },
   "Джош Бролин": {
     "name": "Джош Бролин",
-    "nameEn": "Джош Бролин",
+    "nameEn": "Josh Brolin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Josh_Brolin_TIFF_2025_%28cropped%29.jpg/960px-Josh_Brolin_TIFF_2025_%28cropped%29.jpg",
     "facts": [
       "Джош Джеймс Бро́лин (англ.",
@@ -1281,7 +1281,7 @@ export const actorsData = {
   },
   "Винс Вон": {
     "name": "Винс Вон",
-    "nameEn": "Винс Вон",
+    "nameEn": "Vince Vaughn",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/9/98/Actor_Vince_Vaughn_2025_%28cropped%29.jpg",
     "facts": [
       "Ви́нсент Э́нтони (Винс) Вон (англ.",
@@ -1291,7 +1291,7 @@ export const actorsData = {
   },
   "Джефф Голдблюм": {
     "name": "Джефф Голдблюм",
-    "nameEn": "Джефф Голдблюм",
+    "nameEn": "Jeff Goldblum",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Jeff_Goldblum_by_Gage_Skidmore.jpg/960px-Jeff_Goldblum_by_Gage_Skidmore.jpg",
     "facts": [
       "Джеффри Линн Голдблюм (англ.",
@@ -1301,7 +1301,7 @@ export const actorsData = {
   },
   "Юэн МакГрегор": {
     "name": "Юэн МакГрегор",
-    "nameEn": "Юэн МакГрегор",
+    "nameEn": "Ewan McGregor",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg/960px-Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg",
     "facts": [
       "Ю́эн Го́рдон Макгре́гор (англ.",
@@ -1311,7 +1311,7 @@ export const actorsData = {
   },
   "Тони Коллетт": {
     "name": "Тони Коллетт",
-    "nameEn": "Тони Коллетт",
+    "nameEn": "Toni Collette",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Toni_Collette_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Toni_Collette_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg",
     "facts": [
       "То́ни Колле́тт (англ.",
@@ -1321,7 +1321,7 @@ export const actorsData = {
   },
   "Эрик Бана": {
     "name": "Эрик Бана",
-    "nameEn": "Эрик Бана",
+    "nameEn": "Eric Bana",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Eric_Bana_at_the_2009_Tribeca_Film_Festival.jpg/960px-Eric_Bana_at_the_2009_Tribeca_Film_Festival.jpg",
     "facts": [
       "Эрик Бана (англ.",
@@ -1331,7 +1331,7 @@ export const actorsData = {
   },
   "Алек Болдуин": {
     "name": "Алек Болдуин",
-    "nameEn": "Алек Болдуин",
+    "nameEn": "Alec Baldwin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Alec_Baldwin_2018.jpg/960px-Alec_Baldwin_2018.jpg",
     "facts": [
       "Алекса́ндр Рэй «А́лек» Бо́лдуин III (англ.",
@@ -1341,7 +1341,7 @@ export const actorsData = {
   },
   "Майкл Китон": {
     "name": "Майкл Китон",
-    "nameEn": "Майкл Китон",
+    "nameEn": "Michael Keaton",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Michael_Keaton-63916_%28cropped%29.jpg/960px-Michael_Keaton-63916_%28cropped%29.jpg",
     "facts": [
       "Майкл Ки́тон (англ.",
@@ -1351,7 +1351,7 @@ export const actorsData = {
   },
   "Деми Мур": {
     "name": "Деми Мур",
-    "nameEn": "Деми Мур",
+    "nameEn": "Demi Moore",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Demi_Moore_at_the_2024_Toronto_International_Film_Festival_3_%28cropped%29_%282%29.jpg/960px-Demi_Moore_at_the_2024_Toronto_International_Film_Festival_3_%28cropped%29_%282%29.jpg",
     "facts": [
       "Деми́ Джин Мур (англ.",
@@ -1361,7 +1361,7 @@ export const actorsData = {
   },
   "Шон Пенн": {
     "name": "Шон Пенн",
-    "nameEn": "Шон Пенн",
+    "nameEn": "Sean Penn",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Superpower_%282023%29-60523_%28cropped%29.jpg/960px-Superpower_%282023%29-60523_%28cropped%29.jpg",
     "facts": [
       "Шон Джастин Пенн (англ.",
@@ -1371,7 +1371,7 @@ export const actorsData = {
   },
   "Билл Мюррэй": {
     "name": "Билл Мюррэй",
-    "nameEn": "Билл Мюррэй",
+    "nameEn": "Bill Murray",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Bill_Murray_at_the_2025_Sundance_Film_Festival_2_%28cropped%29.jpg/960px-Bill_Murray_at_the_2025_Sundance_Film_Festival_2_%28cropped%29.jpg",
     "facts": [
       "Уи́льям Джеймс Мю́ррей (англ.",
@@ -1381,7 +1381,7 @@ export const actorsData = {
   },
   "Билл Пэкстон": {
     "name": "Билл Пэкстон",
-    "nameEn": "Билл Пэкстон",
+    "nameEn": "Bill Paxton",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Bill_Paxton_by_Gage_Skidmore_2.jpg/960px-Bill_Paxton_by_Gage_Skidmore_2.jpg",
     "facts": [
       "Уи́льям Пэ́кстон (англ.",
@@ -1391,7 +1391,7 @@ export const actorsData = {
   },
   "Кевин Бэйкон": {
     "name": "Кевин Бэйкон",
-    "nameEn": "Кевин Бэйкон",
+    "nameEn": "Kevin Bacon",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kevin_Bacon_The_Best_You_Can-55_%28cropped%29.jpg/960px-Kevin_Bacon_The_Best_You_Can-55_%28cropped%29.jpg",
     "facts": [
       "Ке́вин Но́рвуд Бе́йкон (англ.",
@@ -1401,7 +1401,7 @@ export const actorsData = {
   },
   "Роуэн Аткинсон": {
     "name": "Роуэн Аткинсон",
-    "nameEn": "Роуэн Аткинсон",
+    "nameEn": "Rowan Atkinson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Rowan_Atkinson%2C_2011.jpg",
     "facts": [
       "Ро́уэн Себа́стьян А́ткинсон (англ.",
@@ -1411,7 +1411,7 @@ export const actorsData = {
   },
   "Майкл Дуглас": {
     "name": "Майкл Дуглас",
-    "nameEn": "Майкл Дуглас",
+    "nameEn": "Michael Douglas",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/59th_Karlovy_Vary_International_Film_Festival%2C_Michael_Douglas_07_%28cropped%29.jpg/960px-59th_Karlovy_Vary_International_Film_Festival%2C_Michael_Douglas_07_%28cropped%29.jpg",
     "facts": [
       "Майкл Кирк Ду́глас (англ.",
@@ -1421,7 +1421,7 @@ export const actorsData = {
   },
   "Эд Харрис": {
     "name": "Эд Харрис",
-    "nameEn": "Эд Харрис",
+    "nameEn": "Ed Harris",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Ed_Harris_by_Gage_Skidmore.jpg/960px-Ed_Harris_by_Gage_Skidmore.jpg",
     "facts": [
       "Эд Ха́ррис (англ.",
@@ -1431,7 +1431,7 @@ export const actorsData = {
   },
   "Лора Линни": {
     "name": "Лора Линни",
-    "nameEn": "Лора Линни",
+    "nameEn": "Laura Linney",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/2/25/Laura_Linney_Berlinale_2017.jpg",
     "facts": [
       "Ло́ра Ле́ггет Ли́нни (англ.",
@@ -1441,7 +1441,7 @@ export const actorsData = {
   },
   "Хейден Кристенсен": {
     "name": "Хейден Кристенсен",
-    "nameEn": "Хейден Кристенсен",
+    "nameEn": "Hayden Christensen",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Hayden_Christensen_-_GalaxyCon_Columbus_2024_%28A20929%29.jpg",
     "facts": [
       "Хе́йден Кри́стенсен (англ.",
@@ -1451,7 +1451,7 @@ export const actorsData = {
   },
   "Джулия Робертс": {
     "name": "Джулия Робертс",
-    "nameEn": "Джулия Робертс",
+    "nameEn": "Julia Roberts",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Julia_Roberts_2025.jpg/960px-Julia_Roberts_2025.jpg",
     "facts": [
       "Джу́лия Фио́на Ро́бертс (англ.",
@@ -1461,7 +1461,7 @@ export const actorsData = {
   },
   "Майк Майерс": {
     "name": "Майк Майерс",
-    "nameEn": "Майк Майерс",
+    "nameEn": "Mike Myers",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mike_Myers_2017_%2837220071326%29_%28cropped%29.jpg/960px-Mike_Myers_2017_%2837220071326%29_%28cropped%29.jpg",
     "facts": [
       "Майкл Джон (Майк) Ма́йерс (англ.",
@@ -1471,7 +1471,7 @@ export const actorsData = {
   },
   "Эдди Мерфи": {
     "name": "Эдди Мерфи",
-    "nameEn": "Эдди Мерфи",
+    "nameEn": "Eddie Murphy",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Eddie_Murphy_by_David_Shankbone.jpg",
     "facts": [
       "Э́двард Ри́ган (Э́дди) Ме́рфи (англ.",
@@ -1481,7 +1481,7 @@ export const actorsData = {
   },
   "Кэмерон Диас": {
     "name": "Кэмерон Диас",
-    "nameEn": "Кэмерон Диас",
+    "nameEn": "Cameron Diaz",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cameron_Diaz_at_WWD_Style_Awards_2026-1998.jpg/960px-Cameron_Diaz_at_WWD_Style_Awards_2026-1998.jpg",
     "facts": [
       "Кэ́мерон Мише́ль Ди́ас (англ.",
@@ -1491,7 +1491,7 @@ export const actorsData = {
   },
   "Гвинет Пэлтроу": {
     "name": "Гвинет Пэлтроу",
-    "nameEn": "Гвинет Пэлтроу",
+    "nameEn": "Gwyneth Paltrow",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gwyneth_Paltrow_-_Marty_Supreme.jpg/960px-Gwyneth_Paltrow_-_Marty_Supreme.jpg",
     "facts": [
       "Гви́нет Кейт Пэ́лтроу Ма́ртин (англ.",
@@ -1501,7 +1501,7 @@ export const actorsData = {
   },
   "Джуд Лоу": {
     "name": "Джуд Лоу",
-    "nameEn": "Джуд Лоу",
+    "nameEn": "Jude Law",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Jude_Law_at_MEGACON_Orlando_2025.png/960px-Jude_Law_at_MEGACON_Orlando_2025.png",
     "facts": [
       "Дэ́вид Джуд Хе́йворт Ло́у (англ.",
@@ -1511,8 +1511,8 @@ export const actorsData = {
   },
   "Хейли Джоэл Осмент": {
     "name": "Хейли Джоэл Осмент",
-    "nameEn": "Хейли Джоэл Осмент",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Haley Joel Osment",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Haley_Joel_Osment_at_the_2022_DGA_Awards_%28cropped%29.jpg/960px-Haley_Joel_Osment_at_the_2022_DGA_Awards_%28cropped%29.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -1521,7 +1521,7 @@ export const actorsData = {
   },
   "Мэри МакДоннелл": {
     "name": "Мэри МакДоннелл",
-    "nameEn": "Мэри МакДоннелл",
+    "nameEn": "Mary McDonnell",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mary_McDonnell_cropped.jpg",
     "facts": [
       "Мэри Айлин Макдоннелл (англ.",
@@ -1531,7 +1531,7 @@ export const actorsData = {
   },
   "Руперт Гринт": {
     "name": "Руперт Гринт",
-    "nameEn": "Руперт Гринт",
+    "nameEn": "Rupert Grint",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Rupert_Grint_at_Berlin_Film_Festival_2026%2C_%28P1230675%29_%28cropped%29.jpg/960px-Rupert_Grint_at_Berlin_Film_Festival_2026%2C_%28P1230675%29_%28cropped%29.jpg",
     "facts": [
       "Ру́перт Алекса́ндр Ллойд Гринт (англ.",
@@ -1541,7 +1541,7 @@ export const actorsData = {
   },
   "Сэмюэл Л. Джексон": {
     "name": "Сэмюэл Л. Джексон",
-    "nameEn": "Сэмюэл Л. Джексон",
+    "nameEn": "Samuel L. Jackson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/SamuelLJackson.jpg/960px-SamuelLJackson.jpg",
     "facts": [
       "Сэ́мюэл Леро́й Дже́ксон (англ.",
@@ -1551,7 +1551,7 @@ export const actorsData = {
   },
   "Джеффри Раш": {
     "name": "Джеффри Раш",
-    "nameEn": "Джеффри Раш",
+    "nameEn": "Geoffrey Rush",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Geoffrey_Rush_Final_Portrait_Red_Carpet_Berlinale_2017_01_%28cropped%29.jpg/960px-Geoffrey_Rush_Final_Portrait_Red_Carpet_Berlinale_2017_01_%28cropped%29.jpg",
     "facts": [
       "Дже́ффри Рой Раш (англ.",
@@ -1561,7 +1561,7 @@ export const actorsData = {
   },
   "Рэйчел МакАдамс": {
     "name": "Рэйчел МакАдамс",
-    "nameEn": "Рэйчел МакАдамс",
+    "nameEn": "Rachel McAdams",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rachel_McAdams_2016.jpg/960px-Rachel_McAdams_2016.jpg",
     "facts": [
       "Ре́йчел Энн Мака́дамс (англ.",
@@ -1571,7 +1571,7 @@ export const actorsData = {
   },
   "Джордж Клуни": {
     "name": "Джордж Клуни",
-    "nameEn": "Джордж Клуни",
+    "nameEn": "George Clooney",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/George_Clooney_Jay_Kelly-19_%28cropped%29.jpg/960px-George_Clooney_Jay_Kelly-19_%28cropped%29.jpg",
     "facts": [
       "Джордж Ти́моти Клу́ни (англ.",
@@ -1581,7 +1581,7 @@ export const actorsData = {
   },
   "Стив Карелл": {
     "name": "Стив Карелл",
-    "nameEn": "Стив Карелл",
+    "nameEn": "Steve Carell",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Steve_Carell_-_The_40-Year-Old-Virgin.jpg/960px-Steve_Carell_-_The_40-Year-Old-Virgin.jpg",
     "facts": [
       "Сти́вен Джон Каре́лл (англ.",
@@ -1591,7 +1591,7 @@ export const actorsData = {
   },
   "Николас Кейдж": {
     "name": "Николас Кейдж",
-    "nameEn": "Николас Кейдж",
+    "nameEn": "Nicolas Cage",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Festival_de_cinema_de_Sitges_2018_%2830240292207%29_%28cropped%29.jpg/960px-Festival_de_cinema_de_Sitges_2018_%2830240292207%29_%28cropped%29.jpg",
     "facts": [
       "Ни́колас Кейдж (англ.",
@@ -1601,7 +1601,7 @@ export const actorsData = {
   },
   "Дакота Фаннинг": {
     "name": "Дакота Фаннинг",
-    "nameEn": "Дакота Фаннинг",
+    "nameEn": "Dakota Fanning",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Dakota_Fanning_SAG_AWARDS_2020.jpg/960px-Dakota_Fanning_SAG_AWARDS_2020.jpg",
     "facts": [
       "Ха́нна Дако́та Фаннинг (англ.",
@@ -1611,7 +1611,7 @@ export const actorsData = {
   },
   "Дэниэл Крэйг": {
     "name": "Дэниэл Крэйг",
-    "nameEn": "Дэниэл Крэйг",
+    "nameEn": "Daniel Craig",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Daniel_Craig_TIFF_2025_Red_Carpet_%28cropped%29.jpg/960px-Daniel_Craig_TIFF_2025_Red_Carpet_%28cropped%29.jpg",
     "facts": [
       "Дэ́ниел Ро́утон Крейг (англ.",
@@ -1621,7 +1621,7 @@ export const actorsData = {
   },
   "Джерард Батлер": {
     "name": "Джерард Батлер",
-    "nameEn": "Джерард Батлер",
+    "nameEn": "Gerard Butler",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/53/Gerard_Butler_%2829681162176%29.jpg",
     "facts": [
       "Дже́рард Джеймс Ба́тлер (англ.",
@@ -1631,7 +1631,7 @@ export const actorsData = {
   },
   "Мерил Стрип": {
     "name": "Мерил Стрип",
-    "nameEn": "Мерил Стрип",
+    "nameEn": "Meryl Streep",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Meryl_Streep_interview_at_Festival_de_Cannes_2024_%28cropped%29.jpg/960px-Meryl_Streep_interview_at_Festival_de_Cannes_2024_%28cropped%29.jpg",
     "facts": [
       "Мэ́ри Луи́з (Ме́рил) Стрип (англ.",
@@ -1641,7 +1641,7 @@ export const actorsData = {
   },
   "Роберт Дауни мл.": {
     "name": "Роберт Дауни мл.",
-    "nameEn": "Роберт Дауни мл.",
+    "nameEn": "Robert Downey Jr.",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/RobertDowneyJr-byPhilipRomano3.jpg/960px-RobertDowneyJr-byPhilipRomano3.jpg",
     "facts": [
       "Ро́берт Джон Да́уни — мла́дший (англ.",
@@ -1651,7 +1651,7 @@ export const actorsData = {
   },
   "Крис Эванс": {
     "name": "Крис Эванс",
-    "nameEn": "Крис Эванс",
+    "nameEn": "Chris Evans (actor)",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Chris_Evans_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Chris_Evans_at_the_2025_Toronto_International_Film_Festival_%28cropped%29.jpg",
     "facts": [
       "Кри́стофер Ро́берт Э́ванс (англ.",
@@ -1661,7 +1661,7 @@ export const actorsData = {
   },
   "Сэм Уортингтон": {
     "name": "Сэм Уортингтон",
-    "nameEn": "Сэм Уортингтон",
+    "nameEn": "Sam Worthington",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sam_Worthington_2013.jpg/960px-Sam_Worthington_2013.jpg",
     "facts": [
       "Сэмюэл Генри Джон Уортингтон (англ.",
@@ -1671,7 +1671,7 @@ export const actorsData = {
   },
   "Зои Салданья": {
     "name": "Зои Салданья",
-    "nameEn": "Зои Салданья",
+    "nameEn": "Zoe Saldaña",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Zoe_Salda%C3%B1a_at_the_2024_Toronto_International_Film_Festival_2_%28cropped_2%29.jpg/960px-Zoe_Salda%C3%B1a_at_the_2024_Toronto_International_Film_Festival_2_%28cropped_2%29.jpg",
     "facts": [
       "Зои Ядира Салдана-Перего (исп.",
@@ -1681,7 +1681,7 @@ export const actorsData = {
   },
   "Мартин Фриман": {
     "name": "Мартин Фриман",
-    "nameEn": "Мартин Фриман",
+    "nameEn": "Martin Freeman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Martin_Freeman-5341.jpg/960px-Martin_Freeman-5341.jpg",
     "facts": [
       "Марти́н Джон Кри́стофер Фри́мен (англ.",
@@ -1691,7 +1691,7 @@ export const actorsData = {
   },
   "Джефф Гарлин": {
     "name": "Джефф Гарлин",
-    "nameEn": "Джефф Гарлин",
+    "nameEn": "Jeff Garlin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Jeff_Garlin_photo_by_Josh_Alder.jpg",
     "facts": [
       "Джефф Гарлин (англ.",
@@ -1701,7 +1701,7 @@ export const actorsData = {
   },
   "Марго Робби": {
     "name": "Марго Робби",
-    "nameEn": "Марго Робби",
+    "nameEn": "Margot Robbie",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/2/24/Margot_Robbie_at_29th_Critics%27_Choice_Awards.jpg_%28brightened%29.png",
     "facts": [
       "Ма́рго Эли́с Ро́бби (англ.",
@@ -1711,7 +1711,7 @@ export const actorsData = {
   },
   "Эмили Мортимер": {
     "name": "Эмили Мортимер",
-    "nameEn": "Эмили Мортимер",
+    "nameEn": "Emily Mortimer",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Premios_Goya_2018_-_Emily_Mortimer_%28cropped%29_%28cropped%29.jpg/960px-Premios_Goya_2018_-_Emily_Mortimer_%28cropped%29_%28cropped%29.jpg",
     "facts": [
       "Эмили Кэтлин Энн Мортимер (англ.",
@@ -1721,7 +1721,7 @@ export const actorsData = {
   },
   "Джесси Айзенберг": {
     "name": "Джесси Айзенберг",
-    "nameEn": "Джесси Айзенберг",
+    "nameEn": "Jesse Eisenberg",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/JesseEisenberg-byPhilipRomano.jpg/960px-JesseEisenberg-byPhilipRomano.jpg",
     "facts": [
       "Дже́сси А́дам А́йзенберг (англ.",
@@ -1731,7 +1731,7 @@ export const actorsData = {
   },
   "Шарлиз Терон": {
     "name": "Шарлиз Терон",
-    "nameEn": "Шарлиз Терон",
+    "nameEn": "Charlize Theron",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/960px-Charlize-theron-IMG_6045.jpg",
     "facts": [
       "Шарли́з Те́рон (африк.",
@@ -1741,7 +1741,7 @@ export const actorsData = {
   },
   "Николас Холт": {
     "name": "Николас Холт",
-    "nameEn": "Николас Холт",
+    "nameEn": "Nicholas Hoult",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Nicholas_Hoult_at_MEGACON_Orlando_2025.png/960px-Nicholas_Hoult_at_MEGACON_Orlando_2025.png",
     "facts": [
       "Ни́колас Кэ́радок Холт (англ.",
@@ -1751,7 +1751,7 @@ export const actorsData = {
   },
   "Финн Вулфард": {
     "name": "Финн Вулфард",
-    "nameEn": "Финн Вулфард",
+    "nameEn": "Finn Wolfhard",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Finn_Wolfhard_2025_%28crop%29.png",
     "facts": [
       "Финн Майкл Ву́лфхард (англ.",
@@ -1761,7 +1761,7 @@ export const actorsData = {
   },
   "Виола Дэвис": {
     "name": "Виола Дэвис",
-    "nameEn": "Виола Дэвис",
+    "nameEn": "Viola Davis",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Viola_Davis_at_the_Air_Premiere_at_SXSW_%28cropped%29.jpg",
     "facts": [
       "Вио́ла Дэ́вис (англ.",
@@ -1771,7 +1771,7 @@ export const actorsData = {
   },
   "Эмма Стоун": {
     "name": "Эмма Стоун",
-    "nameEn": "Эмма Стоун",
+    "nameEn": "Emma Stone",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Emma_Stone_at_the_2025_Venice_Film_Festival-6313_%28cropped%29.jpg/960px-Emma_Stone_at_the_2025_Venice_Film_Festival-6313_%28cropped%29.jpg",
     "facts": [
       "Э́мили Джин Сто́ун (англ.",
@@ -1781,7 +1781,7 @@ export const actorsData = {
   },
   "Райан Гослинг": {
     "name": "Райан Гослинг",
-    "nameEn": "Райан Гослинг",
+    "nameEn": "Ryan Gosling",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/GoslingBFI081223_%2822_of_30%29_%2853388157347%29_%28cropped%29.jpg/960px-GoslingBFI081223_%2822_of_30%29_%2853388157347%29_%28cropped%29.jpg",
     "facts": [
       "Ра́йан То́мас Го́слинг (англ.",
@@ -1791,7 +1791,7 @@ export const actorsData = {
   },
   "Дензел Вашингтон": {
     "name": "Дензел Вашингтон",
-    "nameEn": "Дензел Вашингтон",
+    "nameEn": "Denzel Washington",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Denzel_Washington_at_the_2025_Cannes_Film_Festival.jpg/960px-Denzel_Washington_at_the_2025_Cannes_Film_Festival.jpg",
     "facts": [
       "Де́нзел Хэйс Ва́шингтон-мл.",
@@ -1801,7 +1801,7 @@ export const actorsData = {
   },
   "Крис Хемсворт": {
     "name": "Крис Хемсворт",
-    "nameEn": "Крис Хемсворт",
+    "nameEn": "Chris Hemsworth",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Chris_Hemsworth_by_Gage_Skidmore_3.jpg/960px-Chris_Hemsworth_by_Gage_Skidmore_3.jpg",
     "facts": [
       "Кри́стофер «Крис» Хе́мсворт (англ.",
@@ -1851,7 +1851,7 @@ export const actorsData = {
   },
   "Кристофер Ллойд": {
     "name": "Кристофер Ллойд",
-    "nameEn": "Кристофер Ллойд",
+    "nameEn": "Christopher Lloyd",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/ChristopherLloyd2022.jpg/960px-ChristopherLloyd2022.jpg",
     "facts": [
       "Кри́стофер А́ллен Ллойд (англ.",
@@ -1881,7 +1881,7 @@ export const actorsData = {
   },
   "Патрик Суэйзи": {
     "name": "Патрик Суэйзи",
-    "nameEn": "Патрик Суэйзи",
+    "nameEn": "Patrick Swayze",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Patrick_Swayze_-_1990_Grammy_Awards_%28cropped%29.jpg",
     "facts": [
       "Па́трик Уэ́йн Суэйзи (англ.",
@@ -1891,7 +1891,7 @@ export const actorsData = {
   },
   "Эмили Блант": {
     "name": "Эмили Блант",
-    "nameEn": "Эмили Блант",
+    "nameEn": "Emily Blunt",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/960px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg",
     "facts": [
       "Э́мили Оли́вия Ло́ра Блант (англ.",
@@ -1912,7 +1912,7 @@ export const actorsData = {
   "Дэниэл Стерн": {
     "name": "Дэниэл Стерн",
     "nameEn": "Daniel Stern",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Daniel_Stern_July_9%2C_2014_%28cropped%29.jpg/960px-Daniel_Stern_July_9%2C_2014_%28cropped%29.jpg",
     "facts": [
       "Дэниел Стерн:\n\nСтерн, Дэниел (1934—2012) — американский психиатр, психоаналитик, исследователь и теоретик когнитивного развития ребёнка.",
       "Известный актер кино и телевидения.",
@@ -2041,7 +2041,7 @@ export const actorsData = {
   },
   "Майкл С. Холл": {
     "name": "Майкл С. Холл",
-    "nameEn": "Майкл С. Холл",
+    "nameEn": "Michael C. Hall",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Michael_C._Hall_Comic-Con_2012.jpg/960px-Michael_C._Hall_Comic-Con_2012.jpg",
     "facts": [
       "Ма́йкл Карла́йл Холл (англ.",
@@ -2131,7 +2131,7 @@ export const actorsData = {
   },
   "Джереми Кларксон": {
     "name": "Джереми Кларксон",
-    "nameEn": "Джереми Кларксон",
+    "nameEn": "Jeremy Clarkson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Jeremy_Clarkson%2C_Top_Gear_Live_2012_%28cropped%29.jpg",
     "facts": [
       "Дже́реми Чарльз Ро́берт Кларксон (англ.",
@@ -2141,7 +2141,7 @@ export const actorsData = {
   },
   "Джеймс Мэй": {
     "name": "Джеймс Мэй",
-    "nameEn": "Джеймс Мэй",
+    "nameEn": "James May",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b9/James_May.jpg",
     "facts": [
       "Джеймс Дэ́ниел Мэй (англ.",
@@ -2151,7 +2151,7 @@ export const actorsData = {
   },
   "Ричард Хаммонд": {
     "name": "Ричард Хаммонд",
-    "nameEn": "Ричард Хаммонд",
+    "nameEn": "Richard Hammond",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Richard_Hammond.jpg",
     "facts": [
       "Ри́чард Марк Ха́ммонд (англ.",
@@ -2161,7 +2161,7 @@ export const actorsData = {
   },
   "Дэмиан Льюис": {
     "name": "Дэмиан Льюис",
-    "nameEn": "Дэмиан Льюис",
+    "nameEn": "Damian Lewis",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/5/54/Damian_Lewis_Berlin_2015.jpg",
     "facts": [
       "Дэ́миэн Уо́ткин Лью́ис (англ.",
@@ -2171,7 +2171,7 @@ export const actorsData = {
   },
   "Франсуа Арно": {
     "name": "Франсуа Арно",
-    "nameEn": "Франсуа Арно",
+    "nameEn": "François Arnaud (actor)",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Fran%C3%A7ois_Arnaud_%2839032922585%29_%28cropped%29.jpg/960px-Fran%C3%A7ois_Arnaud_%2839032922585%29_%28cropped%29.jpg",
     "facts": [
       "Франсуа́ Арно́ (фр.",
@@ -2192,7 +2192,7 @@ export const actorsData = {
   "Дэниэл Ингс": {
     "name": "Дэниэл Ингс",
     "nameEn": "Дэниэл Ингс",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Daniel_Ings_2024.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2241,7 +2241,7 @@ export const actorsData = {
   },
   "Марк Хип": {
     "name": "Марк Хип",
-    "nameEn": "Марк Хип",
+    "nameEn": "Mark Heap",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Mark_Heap_in_The_World%27s_End_2013.jpg",
     "facts": [
       "13 мая 1957, Кодаиканал, Тамилнад, Индия) — английский актёр.",
@@ -2252,7 +2252,7 @@ export const actorsData = {
   "Эрика Харлахер": {
     "name": "Эрика Харлахер",
     "nameEn": "Эрика Харлахер",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/d/db/Erika_Harlacher.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2261,7 +2261,7 @@ export const actorsData = {
   },
   "Дэвид Аттенборо": {
     "name": "Дэвид Аттенборо",
-    "nameEn": "Дэвид Аттенборо",
+    "nameEn": "David Attenborough",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A6rekraftsprisen_2018_%28cropped%29.jpg",
     "facts": [
       "Дэ́вид Фре́дерик А́ттенборо (англ.",
@@ -2271,7 +2271,7 @@ export const actorsData = {
   },
   "Джесси Бакли": {
     "name": "Джесси Бакли",
-    "nameEn": "Джесси Бакли",
+    "nameEn": "Jessie Buckley",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/06/Jessie_Buckley_at_the_Toronto_International_Film_Festival_01.jpg_%28Cropped_%26_Centered%29.jpg",
     "facts": [
       "Дже́сси Ба́кли (англ.",
@@ -2291,7 +2291,7 @@ export const actorsData = {
   },
   "Карл Саган": {
     "name": "Карл Саган",
-    "nameEn": "Карл Саган",
+    "nameEn": "Carl Sagan",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/b/be/Carl_Sagan_Planetary_Society.JPG",
     "facts": [
       "Карл Э́двард Са́ган (Се́йген, Сейган; англ.",
@@ -2301,7 +2301,7 @@ export const actorsData = {
   },
   "Джон Леннон": {
     "name": "Джон Леннон",
-    "nameEn": "Джон Леннон",
+    "nameEn": "John Lennon",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/John_Lennon%2C_1974_%28restored_cropped%29.jpg/960px-John_Lennon%2C_1974_%28restored_cropped%29.jpg",
     "facts": [
       "Джон Уи́нстон О́но Ле́ннон (англ.",
@@ -2311,7 +2311,7 @@ export const actorsData = {
   },
   "Пол Маккартни": {
     "name": "Пол Маккартни",
-    "nameEn": "Пол Маккартни",
+    "nameEn": "Paul McCartney",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Paul_McCartney_Royal_Festival_Hall_2021_%28cropped%29.jpg/960px-Paul_McCartney_Royal_Festival_Hall_2021_%28cropped%29.jpg",
     "facts": [
       "Джеймс Пол Макка́ртни (англ.",
@@ -2321,7 +2321,7 @@ export const actorsData = {
   },
   "Нэйтан Филдер": {
     "name": "Нэйтан Филдер",
-    "nameEn": "Нэйтан Филдер",
+    "nameEn": "Nathan Fielder",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Nathan_Fielder.jpg/960px-Nathan_Fielder.jpg",
     "facts": [
       "Не́йтан Джо́зеф Фи́лдер (англ.",
@@ -2331,7 +2331,7 @@ export const actorsData = {
   },
   "Адольф Гитлер": {
     "name": "Адольф Гитлер",
-    "nameEn": "Адольф Гитлер",
+    "nameEn": "Adolf Hitler",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hitler_portrait_crop.jpg/960px-Hitler_portrait_crop.jpg",
     "facts": [
       "Адо́льф Ги́тлер (нем.",
@@ -2341,7 +2341,7 @@ export const actorsData = {
   },
   "Чарли Дэй": {
     "name": "Чарли Дэй",
-    "nameEn": "Чарли Дэй",
+    "nameEn": "Charlie Day",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Charlie_Day_by_Gage_Skidmore.jpg/960px-Charlie_Day_by_Gage_Skidmore.jpg",
     "facts": [
       "Чарльз Пекэм «Чарли» Дэй (англ.",
@@ -2351,8 +2351,8 @@ export const actorsData = {
   },
   "Пак Бо Гом": {
     "name": "Пак Бо Гом",
-    "nameEn": "Пак Бо Гом",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Park Bo-gum",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Park_Bo-gum_in_August_2024.jpg/960px-Park_Bo-gum_in_August_2024.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2361,8 +2361,8 @@ export const actorsData = {
   },
   "Навин Кастурия": {
     "name": "Навин Кастурия",
-    "nameEn": "Навин Кастурия",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Naveen Kasturia",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Naveen_Kasturia_interacting_with_media_in_2019.jpg/960px-Naveen_Kasturia_interacting_with_media_in_2019.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2371,8 +2371,8 @@ export const actorsData = {
   },
   "Джитендра Кумар": {
     "name": "Джитендра Кумар",
-    "nameEn": "Джитендра Кумар",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Jitendra Kumar",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Jitendra_Kumar_during_media_interaction.jpg/960px-Jitendra_Kumar_during_media_interaction.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2381,7 +2381,7 @@ export const actorsData = {
   },
   "Тони Робинсон": {
     "name": "Тони Робинсон",
-    "nameEn": "Тони Робинсон",
+    "nameEn": "Tony Robinson",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Tony_Robinson.jpg/960px-Tony_Robinson.jpg",
     "facts": [
       "Энтони Робинсон (более известный как Тони Робинсон, 15 августа 1946) — британский актёр, комик, историк-любитель.",
@@ -2391,7 +2391,7 @@ export const actorsData = {
   },
   "Стивен Фрай": {
     "name": "Стивен Фрай",
-    "nameEn": "Стивен Фрай",
+    "nameEn": "Stephen Fry",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Stephen_Fry_at_Berlinale_2024_Ausschnitt.jpg/960px-Stephen_Fry_at_Berlinale_2024_Ausschnitt.jpg",
     "facts": [
       "Сти́вен Джон Фрай (англ.",
@@ -2401,8 +2401,8 @@ export const actorsData = {
   },
   "Кайл МакЛоклен": {
     "name": "Кайл МакЛоклен",
-    "nameEn": "Кайл МакЛоклен",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Kyle MacLachlan",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Kyle_MacLachlan_2017.jpg/960px-Kyle_MacLachlan_2017.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2411,7 +2411,7 @@ export const actorsData = {
   },
   "Кристин Милиоти": {
     "name": "Кристин Милиоти",
-    "nameEn": "Кристин Милиоти",
+    "nameEn": "Cristin Milioti",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cristin_Milioti_at_Vulture_Festival_2024.jpg/960px-Cristin_Milioti_at_Vulture_Festival_2024.jpg",
     "facts": [
       "Кристи́н Милио́ти (англ.",
@@ -2421,7 +2421,7 @@ export const actorsData = {
   },
   "Джесси Племонс": {
     "name": "Джесси Племонс",
-    "nameEn": "Джесси Племонс",
+    "nameEn": "Jesse Plemons",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Plemons_at_London_Bugonia_Premiere.jpg/960px-Plemons_at_London_Bugonia_Premiere.jpg",
     "facts": [
       "Дже́сси Лон Пле́монс (англ.",
@@ -2431,7 +2431,7 @@ export const actorsData = {
   },
   "Киллиан Мерфи": {
     "name": "Киллиан Мерфи",
-    "nameEn": "Киллиан Мерфи",
+    "nameEn": "Cillian Murphy",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/CillianMurphy-TIFF2025-01-Cropped_%28cropped%29.png/960px-CillianMurphy-TIFF2025-01-Cropped_%28cropped%29.png",
     "facts": [
       "Ки́ллиан Мерфи (англ.",
@@ -2441,7 +2441,7 @@ export const actorsData = {
   },
   "Стивен Юн": {
     "name": "Стивен Юн",
-    "nameEn": "Стивен Юн",
+    "nameEn": "Steven Yeun",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Steven_Yeun_at_the_2025_Sundance_Film_Festival_%28cropped%29.jpg/960px-Steven_Yeun_at_the_2025_Sundance_Film_Festival_%28cropped%29.jpg",
     "facts": [
       "Стивен Ён (англ.",
@@ -2451,7 +2451,7 @@ export const actorsData = {
   },
   "Эдвард Джеймс Олмос": {
     "name": "Эдвард Джеймс Олмос",
-    "nameEn": "Эдвард Джеймс Олмос",
+    "nameEn": "Edward James Olmos",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Edward_James_Olmos_by_Gage_Skidmore.jpg/960px-Edward_James_Olmos_by_Gage_Skidmore.jpg",
     "facts": [
       "Э́двард Джеймс О́лмос (англ.",
@@ -2461,8 +2461,8 @@ export const actorsData = {
   },
   "Джереми Бретт": {
     "name": "Джереми Бретт",
-    "nameEn": "Джереми Бретт",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Jeremy Brett",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Jeremy_Brett_in_1963.jpg/960px-Jeremy_Brett_in_1963.jpg",
     "facts": [
       "Пи́тер Дже́реми Уи́льям Ха́ггинс (англ.",
       "Peter Jeremy William Huggins; 3 ноября 1933, Берксвелл, Уэст-Мидлендс — 12 сентября 1995, Лондон), известный под псевдонимом Дже́реми Бретт (англ.",
@@ -2471,8 +2471,8 @@ export const actorsData = {
   },
   "Розали Уильямс": {
     "name": "Розали Уильямс",
-    "nameEn": "Розали Уильямс",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Rosalie Williams",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Rosalie_Williams.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2481,7 +2481,7 @@ export const actorsData = {
   },
   "Джейсон Бэйтман": {
     "name": "Джейсон Бэйтман",
-    "nameEn": "Джейсон Бэйтман",
+    "nameEn": "Jason Bateman",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/8/87/Jason_Batement_at_the_Air_Premiere_%28cropped%29.jpg",
     "facts": [
       "Дже́йсон Кент Бе́йтман (англ.",
@@ -2491,7 +2491,7 @@ export const actorsData = {
   },
   "Карл Урбан": {
     "name": "Карл Урбан",
-    "nameEn": "Карл Урбан",
+    "nameEn": "Karl Urban",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Karl_Urban_at_53rd_Saturn_Awards_2026.jpg/960px-Karl_Urban_at_53rd_Saturn_Awards_2026.jpg",
     "facts": [
       "Карл-Хайнц У́рбан (англ.",
@@ -2501,7 +2501,7 @@ export const actorsData = {
   },
   "Пол Эддингтон": {
     "name": "Пол Эддингтон",
-    "nameEn": "Пол Эддингтон",
+    "nameEn": "Paul Eddington",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Paul_Eddington.jpg/960px-Paul_Eddington.jpg",
     "facts": [
       "Пол Кларк Э́ддингтон (англ.",
@@ -2511,7 +2511,7 @@ export const actorsData = {
   },
   "Найджел Хоторн": {
     "name": "Найджел Хоторн",
-    "nameEn": "Найджел Хоторн",
+    "nameEn": "Nigel Hawthorne",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Nigel_Hawthorne_1988_PBS_publicity.jpeg",
     "facts": [
       "На́йджел Ба́рнард Хо́торн (англ.",
@@ -2521,8 +2521,8 @@ export const actorsData = {
   },
   "Дерек Фаулдс": {
     "name": "Дерек Фаулдс",
-    "nameEn": "Дерек Фаулдс",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Derek Fowlds",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/0/05/Derek_Fowlds_at_memorabilia_fair_in_2013_%28cropped%29.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2541,8 +2541,8 @@ export const actorsData = {
   },
   "Джессика МакНэми": {
     "name": "Джессика МакНэми",
-    "nameEn": "Джессика МакНэми",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Jessica McNamee",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jessica_McNamee_at_the_Mortal_Kombat_premiere_in_2021.jpg/960px-Jessica_McNamee_at_the_Mortal_Kombat_premiere_in_2021.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2552,7 +2552,7 @@ export const actorsData = {
   "Том Холланд": {
     "name": "Том Холланд",
     "nameEn": "Tom Holland",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/960px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg",
     "facts": [
       "Том Холланд:\n\nХолланд, Том (1885—1946) — австралийский футболист.",
       "Холланд, Том (1902—1987) — британский футболист.",
@@ -2561,7 +2561,7 @@ export const actorsData = {
   },
   "Николас Голицын": {
     "name": "Николас Голицын",
-    "nameEn": "Николас Голицын",
+    "nameEn": "Nicholas Galitzine",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Nicholas_Galitzine_on_Dulce_Osuna.jpg/960px-Nicholas_Galitzine_on_Dulce_Osuna.jpg",
     "facts": [
       "Ни́колас Галицин (англ.",
@@ -2611,7 +2611,7 @@ export const actorsData = {
   },
   "Морена Баккарин": {
     "name": "Морена Баккарин",
-    "nameEn": "Морена Баккарин",
+    "nameEn": "Morena Baccarin",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Morena_Baccarin_by_Gage_Skidmore_2.jpg/960px-Morena_Baccarin_by_Gage_Skidmore_2.jpg",
     "facts": [
       "Море́на Си́лва де Ваз Се́тта Баккари́н (порт.",
@@ -2621,8 +2621,8 @@ export const actorsData = {
   },
   "Кали Рейс": {
     "name": "Кали Рейс",
-    "nameEn": "Кали Рейс",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "nameEn": "Kali Reis",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kali_Reis_in_2020.jpg/960px-Kali_Reis_in_2020.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2631,7 +2631,7 @@ export const actorsData = {
   },
   "Санджай Датт": {
     "name": "Санджай Датт",
-    "nameEn": "Санджай Датт",
+    "nameEn": "Sanjay Dutt",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/3/33/Sanjay_dutt_department.jpg",
     "facts": [
       "Санджай Датт (хинди संजय दत्त, англ.",
@@ -2662,7 +2662,7 @@ export const actorsData = {
   "Пол Мескаль": {
     "name": "Пол Мескаль",
     "nameEn": "Paul Mescal",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Paul_Mescal_at_the_Toronto_International_Film_Festival_in_2025_2_%28cropped_2%29.jpg/960px-Paul_Mescal_at_the_Toronto_International_Film_Festival_in_2025_2_%28cropped_2%29.jpg",
     "facts": [
       "Снимался в фильмах, представленных на нашем сайте.",
       "Известный актер кино и телевидения.",
@@ -2682,7 +2682,7 @@ export const actorsData = {
   "Ребекка Фергюсон": {
     "name": "Ребекка Фергюсон",
     "nameEn": "Rebecca Ferguson",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Rebecca_Ferguson_A_House_of_Dynamite-67_%28cropped2%29.jpg/960px-Rebecca_Ferguson_A_House_of_Dynamite-67_%28cropped2%29.jpg",
     "facts": [
       "Ре́бекка Фе́ргюсон (англ.",
       "1983) — шведская актриса.",
