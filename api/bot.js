@@ -3,6 +3,28 @@
 
 const FIREBASE_DB_URL = "https://match-watch-f9eec-default-rtdb.firebaseio.com";
 
+async function getTelegramUserAvatarUrl(botToken, userId) {
+  if (!botToken || !userId) return null;
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${botToken}/getUserProfilePhotos?user_id=${userId}&limit=1`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.ok && data.result && data.result.total_count > 0 && data.result.photos.length > 0) {
+      const photos = data.result.photos[0];
+      const largestPhoto = photos[photos.length - 1];
+      const fileRes = await fetch(`https://api.telegram.org/bot${botToken}/getFile?file_id=${largestPhoto.file_id}`);
+      if (!fileRes.ok) return null;
+      const fileData = await fileRes.json();
+      if (fileData.ok && fileData.result && fileData.result.file_path) {
+        return `https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`;
+      }
+    }
+  } catch (e) {
+    console.error("Avatar fetch error:", e);
+  }
+  return null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(200).json({ status: 'MatchWatch Telegram Bot API is running' });
@@ -29,6 +51,8 @@ export default async function handler(req, res) {
       const parts = text.split(' ');
       const startParam = parts[1] || '';
 
+      const photoUrl = await getTelegramUserAvatarUrl(botToken, from.id);
+
       const tgUserData = {
         status: 'approved',
         tgId: from.id,
@@ -36,14 +60,16 @@ export default async function handler(req, res) {
         lastName,
         username,
         name: [firstName, lastName].filter(Boolean).join(' ') || username || 'Пользователь',
-        photoUrl: null,
+        photoUrl: photoUrl || null,
+        avatar: photoUrl || '✈️',
         updatedAt: Date.now()
       };
 
-      // If startParam exists (e.g., login token login_xxxxxx or room code), write to Firebase Realtime Database via REST API
-      if (startParam) {
+      // Write user profile to Firebase DB using startParam token OR direct tgId token
+      const tokensToSave = [startParam, `tg_user_${from.id}`].filter(Boolean);
+      for (const token of tokensToSave) {
         try {
-          await fetch(`${FIREBASE_DB_URL}/authTokens/${startParam}.json`, {
+          await fetch(`${FIREBASE_DB_URL}/authTokens/${token}.json`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(tgUserData)

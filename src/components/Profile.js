@@ -469,8 +469,13 @@ export default function Profile() {
           <div className="profile-left" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
             <div className="profile-card-main" style={{ marginBottom: 0 }}>
               <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
-                {(profileData?.avatar && (profileData.avatar.startsWith("data:image/") || profileData.avatar.startsWith("http"))) ? (
-                  <img src={profileData.avatar} alt="Avatar" />
+                {((profileData?.avatar && (profileData.avatar.startsWith("data:image/") || profileData.avatar.startsWith("http"))) || (profileData?.photoUrl && profileData.photoUrl.startsWith("http"))) ? (
+                  <img 
+                    src={(profileData?.avatar && profileData.avatar.startsWith("http")) ? profileData.avatar : (profileData?.photoUrl || profileData?.avatar)} 
+                    alt="Avatar" 
+                    referrerPolicy="no-referrer"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 ) : (
                   profileData?.avatar || "😎"
                 )}
@@ -815,6 +820,7 @@ export default function Profile() {
               const botUsername = getBotUsername();
 
               listenToTelegramAuthToken(code, (user) => {
+                setUser(user);
                 setAuthLoading(false);
                 setPendingTgCode(null);
               });
