@@ -431,7 +431,7 @@ export default function Profile() {
   }
 
   if (user) {
-    if (!user.displayName || !user.displayName.includes("#")) {
+    if (!user.displayName) {
       return (
         <div className="profile-container">
           <motion.div className="auth-form-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -457,8 +457,9 @@ export default function Profile() {
       );
     }
 
-    const namePart = user.displayName.split('#')[0];
-    const tagPart = '#' + user.displayName.split('#')[1];
+    const hasHashTag = user.displayName.includes('#');
+    const namePart = hasHashTag ? user.displayName.split('#')[0] : user.displayName;
+    const tagPart = hasHashTag ? ('#' + user.displayName.split('#')[1]) : '';
 
     return (
       <div className="profile-dashboard">
