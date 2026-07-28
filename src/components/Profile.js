@@ -825,7 +825,15 @@ export default function Profile() {
                 setPendingTgCode(null);
               });
 
-              window.open(`https://t.me/${botUsername}?start=${code}`, "_blank");
+              const tgUrl = `https://t.me/${botUsername}?start=${code}`;
+              try {
+                const newWin = window.open(tgUrl, "_blank");
+                if (!newWin || newWin.closed || typeof newWin.closed === "undefined") {
+                  window.location.href = tgUrl;
+                }
+              } catch (e) {
+                window.location.href = tgUrl;
+              }
             } catch (err) {
               console.error("Telegram auth button error:", err);
               setAuthError((err && err.message) ? err.message : "Ошибка входа через Telegram. Попробуйте еще раз.");
