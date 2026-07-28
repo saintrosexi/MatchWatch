@@ -80,10 +80,22 @@ export default function App() {
 
   useEffect(() => {
     initTelegramWebApp();
-    const tgUser = getTelegramUser();
-    if (tgUser) {
-      signInWithTelegram(tgUser);
-    }
+
+    const tryTgAuth = async () => {
+      const tgUser = getTelegramUser();
+      if (tgUser) {
+        await signInWithTelegram(tgUser);
+      }
+    };
+
+    tryTgAuth();
+    const timer1 = setTimeout(tryTgAuth, 300);
+    const timer2 = setTimeout(tryTgAuth, 1000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
 
   useEffect(() => {
