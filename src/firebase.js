@@ -28,13 +28,20 @@ try {
 export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, updateProfile };
 
 export const signInWithTelegram = async (tgUser) => {
-  if (!auth || !database || !tgUser) return null;
+  if (!auth || !database || !tgUser || !tgUser.id) return null;
+
+  const tgEmail = `tg_${tgUser.id}@matchwatch.internal`;
+  const tgPassword = `mw_tg_secret_${tgUser.id}_pass!`;
 
   try {
-    let currentUser = auth.currentUser;
-    if (!currentUser) {
-      const userCred = await signInAnonymously(auth);
+    let currentUser = null;
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, tgEmail, tgPassword);
       currentUser = userCred.user;
+    } catch (signInErr) {
+      // If user account doesn't exist yet, create it automatically!
+      const newCred = await createUserWithEmailAndPassword(auth, tgEmail, tgPassword);
+      currentUser = newCred.user;
     }
 
     const baseTag = tgUser.username ? `@${tgUser.username}` : (tgUser.name || "User");
@@ -64,7 +71,7 @@ export const signInWithTelegram = async (tgUser) => {
     return currentUser;
   } catch (e) {
     console.error("Telegram Firebase login error:", e);
-    return null;
+    throw e;
   }
 };
 

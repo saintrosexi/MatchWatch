@@ -820,8 +820,8 @@ export default function Profile() {
 
               window.open(`https://t.me/${botUsername}?start=${code}`, "_blank");
             } catch (err) {
-              console.error(err);
-              setAuthError("Ошибка входа через Telegram. Попробуйте еще раз.");
+              console.error("Telegram auth button error:", err);
+              setAuthError((err && err.message) ? err.message : "Ошибка входа через Telegram. Попробуйте еще раз.");
               setAuthLoading(false);
             }
           }}
