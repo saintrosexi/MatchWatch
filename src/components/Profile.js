@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { auth, database, registerWithTag, signInWithEmailAndPassword, signInWithTelegram, signOut, updateUserTag } from "../firebase";
+import { auth, database, registerWithTag, signInWithEmailAndPassword, signInWithTelegram, createTelegramAuthToken, listenToTelegramAuthToken, signOut, updateUserTag } from "../firebase";
 import { getTelegramUser, getBotUsername } from "../tma";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
@@ -19,6 +19,7 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
+  const [pendingTgCode, setPendingTgCode] = useState(null);
   
   const [profileData, setProfileData] = useState(null);
   const [appData, setAppData] = useState(null);
@@ -803,13 +804,24 @@ export default function Profile() {
               const tgUser = getTelegramUser();
               if (tgUser) {
                 await signInWithTelegram(tgUser);
-              } else {
-                const botUsername = getBotUsername();
-                window.open(`https://t.me/${botUsername}/app`, "_blank");
+                setAuthLoading(false);
+                return;
               }
+
+              // Generate unique auth code & open Telegram bot with start=code parameter
+              const code = await createTelegramAuthToken();
+              setPendingTgCode(code);
+              const botUsername = getBotUsername();
+
+              listenToTelegramAuthToken(code, (user) => {
+                setAuthLoading(false);
+                setPendingTgCode(null);
+              });
+
+              window.open(`https://t.me/${botUsername}?start=${code}`, "_blank");
             } catch (err) {
+              console.error(err);
               setAuthError("Ошибка входа через Telegram. Попробуйте еще раз.");
-            } finally {
               setAuthLoading(false);
             }
           }}
@@ -834,6 +846,33 @@ export default function Profile() {
         >
           <span style={{ fontSize: "1.3rem" }}>✈️</span> Войти через Telegram
         </button>
+
+        {pendingTgCode && (
+          <div style={{
+            background: "rgba(0, 136, 204, 0.15)",
+            border: "1px solid rgba(0, 136, 204, 0.4)",
+            padding: "14px",
+            borderRadius: "12px",
+            marginBottom: "20px",
+            textAlign: "center"
+          }}>
+            <div style={{ fontSize: "1.2rem", marginBottom: "6px" }}>⏳ Ожидание нажатия «Запустить» в Telegram...</div>
+            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", margin: "0 0 10px 0" }}>
+              Мы открыли бота в Telegram. Нажмите в нем <b>Запустить</b>, и сайт автоматически авторизует вас!
+            </p>
+            <button
+              type="button"
+              className="btn-text"
+              style={{ fontSize: "0.8rem", color: "#ff8a50" }}
+              onClick={() => {
+                const botUsername = getBotUsername();
+                window.open(`https://t.me/${botUsername}?start=${pendingTgCode}`, "_blank");
+              }}
+            >
+              🔗 Повторно открыть бота в Telegram
+            </button>
+          </div>
+        )}
 
         <div style={{ display: "flex", alignItems: "center", margin: "0 0 20px 0", color: "rgba(255,255,255,0.3)" }}>
           <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.1)" }} />

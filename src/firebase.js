@@ -68,6 +68,29 @@ export const signInWithTelegram = async (tgUser) => {
   }
 };
 
+export const createTelegramAuthToken = async () => {
+  const code = 'login_' + Math.random().toString(36).substring(2, 9);
+  if (database) {
+    await set(ref(database, `authTokens/${code}`), { status: 'pending', createdAt: Date.now() });
+  }
+  return code;
+};
+
+export const listenToTelegramAuthToken = (code, onSuccess) => {
+  if (!database || !code) return () => {};
+  const tokenRef = ref(database, `authTokens/${code}`);
+  const unsubscribe = onValue(tokenRef, async (snapshot) => {
+    const val = snapshot.val();
+    if (val && val.status === 'approved') {
+      const user = await signInWithTelegram(val);
+      if (user && onSuccess) {
+        onSuccess(user);
+      }
+    }
+  });
+  return unsubscribe;
+};
+
 const getTagKey = (tag) => tag.replace('#', '-');
 
 export const generateUniqueTag = async (baseName, customCode = null) => {
