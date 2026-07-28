@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { auth, database, registerWithTag, signInWithEmailAndPassword, signOut, updateUserTag } from "../firebase";
+import { auth, database, registerWithTag, signInWithEmailAndPassword, signInWithTelegram, signOut, updateUserTag } from "../firebase";
+import { getTelegramUser } from "../tma";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
@@ -790,6 +791,55 @@ export default function Profile() {
         <h3>{isLoginMode ? "Вход" : "Регистрация"}</h3>
         
         {authError && <div className="auth-error">{authError}</div>}
+
+        {/* Telegram One-Click Login Button */}
+        <button
+          type="button"
+          className="btn-telegram-auth-primary"
+          onClick={async () => {
+            setAuthLoading(true);
+            setAuthError("");
+            try {
+              const tgUser = getTelegramUser();
+              if (tgUser) {
+                await signInWithTelegram(tgUser);
+              } else {
+                const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "MatchWatchBot";
+                window.open(`https://t.me/${botUsername}/app`, "_blank");
+              }
+            } catch (err) {
+              setAuthError("Ошибка входа через Telegram. Попробуйте еще раз.");
+            } finally {
+              setAuthLoading(false);
+            }
+          }}
+          style={{
+            width: "100%",
+            marginBottom: "20px",
+            padding: "14px 18px",
+            borderRadius: "14px",
+            background: "linear-gradient(135deg, #0088cc 0%, #00a8e8 100%)",
+            color: "#ffffff",
+            border: "none",
+            fontWeight: "700",
+            fontSize: "1rem",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
+            boxShadow: "0 6px 20px rgba(0, 136, 204, 0.4)",
+            transition: "transform 0.2s, box-shadow 0.2s"
+          }}
+        >
+          <span style={{ fontSize: "1.3rem" }}>✈️</span> Войти через Telegram
+        </button>
+
+        <div style={{ display: "flex", alignItems: "center", margin: "0 0 20px 0", color: "rgba(255,255,255,0.3)" }}>
+          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.1)" }} />
+          <span style={{ padding: "0 12px", fontSize: "0.8rem", textTransform: "uppercase" }}>или по почте</span>
+          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.1)" }} />
+        </div>
         
         <form onSubmit={handleAuth} className="auth-form">
           {!isLoginMode && (

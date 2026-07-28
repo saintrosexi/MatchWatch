@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue, update, remove } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, updateProfile } from "firebase/auth";
 import { movies } from "./data";
 
 // ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
@@ -25,7 +25,48 @@ try {
   console.warn("Firebase is not fully configured yet. Please add your credentials.");
 }
 
-export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile };
+export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, updateProfile };
+
+export const signInWithTelegram = async (tgUser) => {
+  if (!auth || !database || !tgUser) return null;
+
+  try {
+    let currentUser = auth.currentUser;
+    if (!currentUser) {
+      const userCred = await signInAnonymously(auth);
+      currentUser = userCred.user;
+    }
+
+    const baseTag = tgUser.username ? `@${tgUser.username}` : (tgUser.name || "User");
+    const cleanTag = baseTag.startsWith('@') ? baseTag : `${baseTag}#${String(tgUser.id).slice(-4)}`;
+    
+    try {
+      await updateProfile(currentUser, { 
+        displayName: cleanTag,
+        photoURL: tgUser.photoUrl || null 
+      });
+    } catch (e) {}
+
+    await set(ref(database, `userTags/${getTagKey(cleanTag)}`), currentUser.uid);
+    await update(ref(database, `users/${currentUser.uid}/profile`), {
+      tag: cleanTag,
+      tgId: tgUser.id,
+      username: tgUser.username || "",
+      firstName: tgUser.firstName || "",
+      lastName: tgUser.lastName || "",
+      photoUrl: tgUser.photoUrl || null,
+      name: tgUser.name,
+      avatar: tgUser.photoUrl ? '📷' : '✈️',
+      authProvider: 'telegram',
+      updatedAt: Date.now()
+    });
+
+    return currentUser;
+  } catch (e) {
+    console.error("Telegram Firebase login error:", e);
+    return null;
+  }
+};
 
 const getTagKey = (tag) => tag.replace('#', '-');
 

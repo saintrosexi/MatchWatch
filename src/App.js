@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { movies } from "./data";
-import { auth, database } from "./firebase";
+import { auth, database, signInWithTelegram } from "./firebase";
+import { initTelegramWebApp, getTelegramUser } from "./tma";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, set, onValue, remove } from "firebase/database";
 import { AnimatePresence, motion } from "framer-motion";
@@ -76,6 +77,14 @@ export default function App() {
     // Disabled automatic PWA prompt trigger to keep the movie-swiping screen clean and focus-oriented.
     setShowPwaPrompt(false);
   }, [screen]);
+
+  useEffect(() => {
+    initTelegramWebApp();
+    const tgUser = getTelegramUser();
+    if (tgUser) {
+      signInWithTelegram(tgUser);
+    }
+  }, []);
 
   useEffect(() => {
     if (!auth || !database) {
