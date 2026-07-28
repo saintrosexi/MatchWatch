@@ -60,7 +60,16 @@ export default function App() {
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
   const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
   const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
-  const [screen, setScreen] = useState("matchwatch");
+  const [screen, setScreen] = useState(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const targetScreen = params.get("screen") || params.get("startapp");
+      if (targetScreen === "profile") return "profile";
+      if (targetScreen === "liked") return "liked";
+      if (targetScreen === "popularActors") return "popularActors";
+    }
+    return "matchwatch";
+  });
   const [matchWatchScreen, setMatchWatchScreen] = useState("start");
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
