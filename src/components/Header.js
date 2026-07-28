@@ -5,6 +5,8 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [navExpanded, setNavExpanded] = useState(false);
+  const [logoClicks, setLogoClicks] = useState(0);
+  const [showPopcornToast, setShowPopcornToast] = useState(false);
   const expandTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -91,7 +93,18 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
               <div className="header-left">
                 <div 
                   className="header-logo" 
-                  onClick={() => handleTabClick("swipe")}
+                  onClick={() => {
+                    handleTabClick("swipe");
+                    setLogoClicks(prev => {
+                      const next = prev + 1;
+                      if (next >= 5) {
+                        setShowPopcornToast(true);
+                        setTimeout(() => setShowPopcornToast(false), 3000);
+                        return 0;
+                      }
+                      return next;
+                    });
+                  }}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -103,6 +116,29 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 >
                   <img src="/logo.png" alt="MatchWatch Logo" className="logo-img" />
                 </div>
+                {showPopcornToast && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    style={{
+                      position: "absolute",
+                      top: "70px",
+                      left: "20px",
+                      background: "linear-gradient(135deg, #ff8a50 0%, #e91e63 100%)",
+                      color: "#fff",
+                      padding: "8px 16px",
+                      borderRadius: "20px",
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                      boxShadow: "0 4px 15px rgba(233,30,99,0.4)",
+                      zIndex: 9999,
+                      pointerEvents: "none"
+                    }}
+                  >
+                    🍿 Секретный режим супер-киномана!
+                  </motion.div>
+                )}
               </div>
             )}
 
