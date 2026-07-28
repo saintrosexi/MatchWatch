@@ -5,6 +5,8 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useState, useEffect } from "react";
+import { triggerHaptic } from "../tma";
+import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
 
 const formatReleaseDate = (dateStr) => {
   if (!dateStr) return "";
@@ -41,6 +43,36 @@ export default function SwipeCard({
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Poster candidate state algorithm
+  const [posterCandidates, setPosterCandidates] = useState([]);
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [currentPosterSrc, setCurrentPosterSrc] = useState("");
+
+  useEffect(() => {
+    if (movie) {
+      const candidates = getPosterCandidates(movie);
+      setPosterCandidates(candidates);
+      setCandidateIndex(0);
+      setCurrentPosterSrc(candidates[0] || "");
+      setImageLoaded(false);
+    }
+  }, [movie?.id]);
+
+  const handleImageError = async () => {
+    // Try next precomputed candidate URL first
+    if (candidateIndex + 1 < posterCandidates.length) {
+      const nextIdx = candidateIndex + 1;
+      setCandidateIndex(nextIdx);
+      setCurrentPosterSrc(posterCandidates[nextIdx]);
+    } else {
+      // If candidates exhausted, try a live API search lookup by title & year (NO placeholders!)
+      const livePoster = await fetchLivePosterFromApi(movie.titleRu || movie.title, movie.year);
+      if (livePoster && livePoster !== currentPosterSrc) {
+        setCurrentPosterSrc(livePoster);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -94,6 +126,7 @@ export default function SwipeCard({
 
     if (Math.abs(offset) > 100 || Math.abs(velocity) > 600) {
       const dir = offset > 0 ? "right" : "left";
+      triggerHaptic(dir === "right" ? "medium" : "light");
       onSwipe(dir, movie);
     }
   };
@@ -206,9 +239,10 @@ export default function SwipeCard({
               {!imageLoaded && <div className="image-skeleton-premium" />}
               <img
                 className="poster-premium"
-                src={movie.poster}
+                src={currentPosterSrc || movie.poster}
                 alt={movie.titleRu || movie.title}
                 onLoad={() => setImageLoaded(true)}
+                onError={handleImageError}
                 draggable={false}
                 decoding="async"
               />

@@ -7,6 +7,9 @@ import { ref, onValue, get } from "firebase/database";
 import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
+import SessionFiltersModal from "./SessionFiltersModal";
+import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoom, initTelegramWebApp } from "../tma";
+import { getPosterCandidates } from "../posterResolver";
 
 export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange }) {
   const [screen, setScreen] = useState("start");
@@ -14,6 +17,27 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [userName, setUserName] = useState("");
   const [role, setRole] = useState(null); // 'host' or 'guest'
   const [roomData, setRoomData] = useState(null);
+
+  // Dynamic Session Cap (+25 per continue)
+  const [sessionCap, setSessionCap] = useState(25);
+  const [sessionFilters, setSessionFilters] = useState(null);
+  const [showFiltersModal, setShowFiltersModal] = useState(false);
+  const [selectedMovieRecap, setSelectedMovieRecap] = useState(null);
+
+  // Initialize Telegram WebApp & auto-join on startapp parameter
+  useEffect(() => {
+    initTelegramWebApp();
+    const tgUser = getTelegramUser();
+    if (tgUser && tgUser.name && !userName) {
+      setUserName(tgUser.name);
+    }
+    const startParam = getTelegramStartParam();
+    if (startParam) {
+      setRoomCode(startParam.toUpperCase());
+      setRole("guest");
+      setScreen("join");
+    }
+  }, []);
 
   useEffect(() => {
     onScreenChange?.(screen);
@@ -154,6 +178,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         const newMatches = allMatches.filter(movieId => !notifiedMatchesRef.current.has(movieId));
 
         if (newMatches.length > 0) {
+          triggerHaptic("success");
           newMatches.forEach(id => notifiedMatchesRef.current.add(id));
           setMatchQueue(prev => {
             const filtered = newMatches.filter(id => !prev.includes(id));
@@ -223,21 +248,50 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const handleCreateRoom = async () => {
     if (!userName.trim()) return alert("Введите имя");
     
-    // Фильтруем ID только для выбранной категории
+    // Фильтруем фильмы по активной категории и сессионным пре-фильтрам
     const categoryIds = movies.reduce((acc, m) => {
-      if (activeCategory === 'all' || (m.type || "movie") === activeCategory) {
-        acc.push(m.id);
+      // Check category
+      const matchCat = activeCategory === 'all' || (m.type || "movie") === activeCategory;
+      if (!matchCat) return acc;
+
+      // Check sessionFilters if applied
+      if (sessionFilters) {
+        // Genres filter
+        if (sessionFilters.genres && sessionFilters.genres.length > 0) {
+          const mGenres = (m.genres || "").split(",").map(g => g.trim());
+          const hasGenre = sessionFilters.genres.some(g => mGenres.includes(g));
+          if (!hasGenre) return acc;
+        }
+        // Decade filter
+        if (sessionFilters.decade && sessionFilters.decade !== "all") {
+          const y = parseInt(m.year);
+          if (sessionFilters.decade === "2020-2026" && (y < 2020 || y > 2026)) return acc;
+          if (sessionFilters.decade === "2010-2019" && (y < 2010 || y > 2019)) return acc;
+          if (sessionFilters.decade === "2000-2009" && (y < 2000 || y > 2009)) return acc;
+          if (sessionFilters.decade === "vintage" && y >= 2000) return acc;
+        }
+        // Duration filter
+        if (sessionFilters.maxDuration && sessionFilters.maxDuration > 0) {
+          const durMatch = (m.duration || "").match(/\d+/);
+          if (durMatch) {
+            const dur = parseInt(durMatch[0]);
+            if (dur > sessionFilters.maxDuration) return acc;
+          }
+        }
       }
+
+      acc.push(m.id);
       return acc;
     }, []);
     
     if (categoryIds.length === 0) {
-      return alert("В этой категории пока нет фильмов! Пожалуйста, выберите другую.");
+      return alert("По выбранным фильтрам не найдено фильмов! Попробуйте сбросить некоторые фильтры.");
     }
       
     const code = await createMatchRoom(userName, categoryIds, decisions, favorites, stopGenres);
     setRoomCode(code);
     setRole("host");
+    setSessionCap(25);
     setScreen("waiting");
     setSessionTutorialSeen(false);
   };
@@ -491,6 +545,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           <div className="form-group">
             <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Ваше имя" className="form-input" />
           </div>
+
+          <button
+            type="button"
+            className="btn-secondary"
+            style={{ width: "100%", marginBottom: "15px", background: "rgba(255,255,255,0.08)", border: "1px dashed rgba(255,255,255,0.25)" }}
+            onClick={() => setShowFiltersModal(true)}
+          >
+            ⚙️ Настроить фильтры сессии {sessionFilters ? "(Применены)" : "(По умолчанию)"}
+          </button>
+
           <div className="form-buttons">
             <button className="btn-primary" onClick={handleCreateRoom}>Создать</button>
             <button className="btn-secondary" onClick={() => setScreen("start")}>Назад</button>
@@ -612,11 +676,109 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               <p>Приятного просмотра!</p>
             </div>
             <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(matchQueue[0])}>Подробнее о фильме</button>
-            <button className="btn-primary" style={{ width: "100%", marginBottom: "10px" }} onClick={() => setMatchQueue(prev => prev.slice(1))}>Продолжить выбор</button>
-            <button className="btn-secondary" style={{ width: "100%", background: "rgba(255,255,255,0.05)" }} onClick={() => { setMatchQueue([]); setScreen("start"); }}>Завершить</button>
+            <button className="btn-primary" style={{ width: "100%", marginBottom: "10px" }} onClick={() => {
+              setSessionCap(prev => prev + 25);
+              setMatchQueue(prev => prev.slice(1));
+            }}>Продолжить выбор (+25 фильмов) 🚀</button>
+            <button className="btn-secondary" style={{ width: "100%", background: "rgba(255,255,255,0.05)" }} onClick={() => { setMatchQueue([]); setScreen("recap"); }}>К итогам сессии 📊</button>
           </motion.div>
         </div>,
         document.body
+      )}
+
+      {screen === "recap" && (
+        <motion.div className="matchwatch-form" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} style={{ maxWidth: "550px", width: "100%" }}>
+          <h2 style={{ textAlign: "center", margin: "0 0 10px 0" }}>📊 Итоги вашей сессии</h2>
+          <p style={{ textAlign: "center", color: "#aaa", fontSize: "0.9rem", margin: "0 0 20px 0" }}>
+            {roomData?.hostName || "Вы"} & {roomData?.guestName || "Партнер"}
+          </p>
+
+          {/* Movie Chemistry Indicator */}
+          <div className="recap-chemistry-card" style={{ background: "linear-gradient(135deg, rgba(255,71,87,0.2), rgba(59,130,246,0.2))", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "18px", padding: "20px", textAlign: "center", marginBottom: "20px" }}>
+            <span style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "2px", color: "rgba(255,255,255,0.7)" }}>Совместимость вкусов</span>
+            <div style={{ fontSize: "3rem", fontWeight: "900", background: "linear-gradient(90deg, #ff4757, #3b82f6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: "5px 0" }}>
+              {Math.min(99, Math.max(65, Math.round(((notifiedMatchesRef.current.size || 1) / Math.max(1, swipeHistory.length)) * 100 + 55)))}%
+            </div>
+            <p style={{ margin: 0, fontSize: "0.9rem", color: "#ddd" }}>
+              Совпало <strong>{notifiedMatchesRef.current.size}</strong> из {swipeHistory.length || sessionCap} просмотренных фильмов!
+            </p>
+          </div>
+
+          {/* Matched Movies list */}
+          <h3 style={{ margin: "0 0 12px 0", fontSize: "1.05rem" }}>Найденные совпадения:</h3>
+          {notifiedMatchesRef.current.size === 0 ? (
+            <p style={{ textAlign: "center", color: "#aaa", padding: "15px" }}>В этой сессии совпадений пока нет. Нажмите «Еще +25 фильмов», чтобы продолжить выбор!</p>
+          ) : (
+            <div className="recap-matches-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "12px", maxHeight: "250px", overflowY: "auto", marginBottom: "20px" }}>
+              {Array.from(notifiedMatchesRef.current).map((mId) => {
+                const m = moviesById[mId];
+                if (!m) return null;
+                const isSelected = selectedMovieRecap?.id === m.id;
+                return (
+                  <div
+                    key={m.id}
+                    onClick={() => setShowDetails(m.id)}
+                    style={{
+                      position: "relative",
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      border: isSelected ? "2px solid #ff4757" : "1px solid rgba(255,255,255,0.1)",
+                      boxShadow: isSelected ? "0 0 15px rgba(255,71,87,0.6)" : "none",
+                      transform: isSelected ? "scale(1.05)" : "scale(1)",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    <img src={m.poster} alt={m.title} style={{ width: "100%", height: "140px", objectFit: "cover" }} />
+                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(0,0,0,0.9))", padding: "6px 4px", textAlign: "center" }}>
+                      <span style={{ fontSize: "0.75rem", fontWeight: "bold", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" }}>{m.titleRu || m.title}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {notifiedMatchesRef.current.size > 0 && (
+              <button
+                className="btn-primary"
+                onClick={() => {
+                  const matchesArr = Array.from(notifiedMatchesRef.current).map(id => moviesById[id]).filter(Boolean);
+                  const randomMovie = matchesArr[Math.floor(Math.random() * matchesArr.length)];
+                  setSelectedMovieRecap(randomMovie);
+                  triggerHaptic("medium");
+                  setShowDetails(randomMovie.id);
+                }}
+              >
+                🎲 Что смотрим сегодня? (Рулетка)
+              </button>
+            )}
+
+            <button
+              className="btn-secondary"
+              onClick={() => {
+                setSessionCap(prev => prev + 25);
+                setScreen("swiping");
+              }}
+            >
+              ➕ Пролистать еще +25 фильмов
+            </button>
+
+            <button
+              className="btn-secondary"
+              onClick={() => shareTelegramRoom(roomCode)}
+              style={{ background: "rgba(59,130,246,0.2)", border: "1px solid rgba(59,130,246,0.4)" }}
+            >
+              📱 Поделиться в Telegram
+            </button>
+
+            <button className="btn-secondary" style={{ opacity: 0.7 }} onClick={() => setScreen("start")}>
+              В главное меню
+            </button>
+          </div>
+        </motion.div>
       )}
 
       {screen === "history" && (
@@ -657,6 +819,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           onSetRating={onSetRating}
         />
       )}
+
+      <SessionFiltersModal
+        isOpen={showFiltersModal}
+        onClose={() => setShowFiltersModal(false)}
+        initialFilters={sessionFilters}
+        onApply={(filters) => setSessionFilters(filters)}
+      />
     </div>
   );
 }

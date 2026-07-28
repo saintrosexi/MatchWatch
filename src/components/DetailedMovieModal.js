@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./DetailedMovieModal.css";
+import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
 
 const formatReleaseDate = (dateStr) => {
   if (!dateStr) return "";
@@ -15,6 +16,32 @@ const formatReleaseDate = (dateStr) => {
 export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLike, isFavorite, onToggleFavorite, rating, onSetRating }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
+
+  const [posterCandidates, setPosterCandidates] = useState([]);
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [currentPosterSrc, setCurrentPosterSrc] = useState("");
+
+  useEffect(() => {
+    if (movie) {
+      const candidates = getPosterCandidates(movie);
+      setPosterCandidates(candidates);
+      setCandidateIndex(0);
+      setCurrentPosterSrc(candidates[0] || movie.poster || "");
+    }
+  }, [movie]);
+
+  const handleImageError = async () => {
+    if (candidateIndex + 1 < posterCandidates.length) {
+      const nextIdx = candidateIndex + 1;
+      setCandidateIndex(nextIdx);
+      setCurrentPosterSrc(posterCandidates[nextIdx]);
+    } else {
+      const livePoster = await fetchLivePosterFromApi(movie.titleRu || movie.title, movie.year);
+      if (livePoster && livePoster !== currentPosterSrc) {
+        setCurrentPosterSrc(livePoster);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1100);
@@ -99,9 +126,10 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
           {/* Left Section: Poster (Hidden or adapted in mobile layout via CSS) */}
           <div className="detailed-modal-left">
             <img
-              src={movie.poster}
+              src={currentPosterSrc || movie.poster}
               alt={movie.titleRu || movie.title}
               className="detailed-modal-poster"
+              onError={handleImageError}
             />
           </div>
 
@@ -210,7 +238,58 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               </p>
             </div>
 
-            {/* Links */}
+            {/* Links & Streaming Services */}
+            <div className="detailed-modal-section">
+              <h3 className="section-title">🍿 Где посмотреть онлайн</h3>
+              <div className="streaming-services-grid" style={{ display: "flex", flexWrap: "wrap", gap: "8px", margin: "10px 0 15px 0" }}>
+                <a
+                  href={`https://hd.kinopoisk.ru/search?query=${encodeURIComponent(movie.titleRu || movie.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-badge streaming-kp"
+                  style={{ background: "#ff5500", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                >
+                  ▶ Кинопоиск HD
+                </a>
+                <a
+                  href={`https://www.ivi.ru/search/?q=${encodeURIComponent(movie.titleRu || movie.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-badge streaming-ivi"
+                  style={{ background: "#ea0042", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                >
+                  ▶ Иви
+                </a>
+                <a
+                  href={`https://okko.tv/search/${encodeURIComponent(movie.titleRu || movie.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-badge streaming-okko"
+                  style={{ background: "#5d15a5", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                >
+                  ▶ Okko
+                </a>
+                <a
+                  href={`https://wink.ru/search?query=${encodeURIComponent(movie.titleRu || movie.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-badge streaming-wink"
+                  style={{ background: "#ff3366", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                >
+                  ▶ Wink
+                </a>
+                <a
+                  href={movie.trailer || `https://www.youtube.com/results?search_query=${encodeURIComponent((movie.titleRu || movie.title) + " трейлер")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="streaming-badge streaming-yt"
+                  style={{ background: "#cc0000", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                >
+                  🎬 Трейлер
+                </a>
+              </div>
+            </div>
+
             <div className="detailed-modal-section detailed-modal-section-links">
               <a
                 href={movie.imdb || `https://www.imdb.com/find/?q=${encodeURIComponent(movie.title)}`}
