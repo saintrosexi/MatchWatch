@@ -17,10 +17,10 @@
 
 .detailed-modal-content {
   position: relative;
-  width: min(1200px, 92vw);
-  max-width: 1200px;
-  height: min(900px, 94vh);
-  max-height: min(900px, 94vh);
+  width: min(1050px, 92vw);
+  max-width: 1050px;
+  height: min(840px, 90vh);
+  max-height: 90vh;
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
   border: 1px solid rgba(255, 138, 80, 0.2);
   border-radius: 16px;
@@ -62,7 +62,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 18px;
+  gap: 20px;
   padding: 24px;
   box-sizing: border-box;
 }
@@ -70,7 +70,8 @@
 /* Left Section: Poster */
 .detailed-modal-left {
   flex-shrink: 0;
-  width: 40%;
+  width: 320px;
+  max-width: 35%;
   max-height: 100%;
   display: flex;
   align-items: center;
@@ -96,7 +97,8 @@
   flex-direction: column;
   overflow-y: auto;
   min-width: 0;
-  padding-right: 8px;
+  padding-right: 12px;
+  padding-bottom: 24px;
 }
 
 /* Sleek custom scrollbar for the right column */
@@ -154,14 +156,14 @@
 
 /* Section Styling */
 .detailed-modal-section {
-  margin-bottom: 14px;
-  padding-bottom: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(255, 138, 80, 0.1);
+  display: block;
 }
 
 .detailed-modal-section--grow {
-  flex: 1;
-  min-height: 0;
+  display: block;
 }
 
 .detailed-modal-section:last-child {
@@ -201,12 +203,11 @@
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0;
-  text-align: justify;
+  text-align: left;
 }
 
 .detailed-modal-description {
-  flex: 1;
-  min-height: 0;
+  display: block;
 }
 
 /* (no scrollbar in modal description) */
