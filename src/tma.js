@@ -58,6 +58,50 @@ export const getTelegramUser = () => {
       photoUrl: user.photo_url || null
     };
   }
+
+  // Fallback 1: Parse window.Telegram.WebApp.initData string
+  if (tg && tg.initData) {
+    try {
+      const searchParams = new URLSearchParams(tg.initData);
+      const userStr = searchParams.get("user");
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        return {
+          id: user.id,
+          firstName: user.first_name || "",
+          lastName: user.last_name || "",
+          username: user.username || "",
+          name: [user.first_name, user.last_name].filter(Boolean).join(" ") || user.username || "Пользователь",
+          photoUrl: user.photo_url || null
+        };
+      }
+    } catch (e) {}
+  }
+
+  // Fallback 2: Parse location.hash or location.search if passed in URL
+  if (typeof window !== "undefined") {
+    try {
+      const hashOrSearch = window.location.hash || window.location.search;
+      const cleanParams = new URLSearchParams(hashOrSearch.replace(/^#/, "").replace(/^\?/, ""));
+      const tgWebAppData = cleanParams.get("tgWebAppData") || cleanParams.get("initData");
+      if (tgWebAppData) {
+        const innerParams = new URLSearchParams(tgWebAppData);
+        const userStr = innerParams.get("user");
+        if (userStr) {
+          const user = JSON.parse(userStr);
+          return {
+            id: user.id,
+            firstName: user.first_name || "",
+            lastName: user.last_name || "",
+            username: user.username || "",
+            name: [user.first_name, user.last_name].filter(Boolean).join(" ") || user.username || "Пользователь",
+            photoUrl: user.photo_url || null
+          };
+        }
+      }
+    } catch (e) {}
+  }
+
   return null;
 };
 
