@@ -615,6 +615,14 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             >
               ➕ Пригласить друга
             </button>
+
+            <button 
+              className="btn-secondary" 
+              style={{ marginTop: "10px", width: "100%", background: "linear-gradient(135deg, rgba(0, 136, 204, 0.25) 0%, rgba(0, 168, 232, 0.25) 100%)", border: "1px solid rgba(0, 136, 204, 0.4)", color: "#fff" }}
+              onClick={() => shareTelegramRoom(roomCode)}
+            >
+              ✈️ Отправить ссылку в Telegram
+            </button>
           </div>
           <button className="btn-secondary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Отмена</button>
 

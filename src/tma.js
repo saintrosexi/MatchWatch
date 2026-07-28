@@ -61,9 +61,17 @@ export const getTelegramUser = () => {
   return null;
 };
 
+export const getBotUsername = () => {
+  const envUser = process.env.REACT_APP_TELEGRAM_BOT_USERNAME;
+  if (envUser && envUser.toLowerCase() !== "matchwatchbot") {
+    return envUser;
+  }
+  return "matchwatch_together_bot";
+};
+
 export const shareTelegramRoom = (roomCode) => {
   const tg = getTelegramWebApp();
-  const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "matchwatch_together_bot";
+  const botUsername = getBotUsername();
   const inviteUrl = `https://t.me/${botUsername}/app?startapp=${roomCode}`;
   const text = `Давай выберем фильм вместе в MatchWatch! 🎬🍿\nКод комнаты: ${roomCode}`;
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { auth, database, registerWithTag, signInWithEmailAndPassword, signInWithTelegram, signOut, updateUserTag } from "../firebase";
-import { getTelegramUser } from "../tma";
+import { getTelegramUser, getBotUsername } from "../tma";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
@@ -804,7 +804,7 @@ export default function Profile() {
               if (tgUser) {
                 await signInWithTelegram(tgUser);
               } else {
-                const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "matchwatch_together_bot";
+                const botUsername = getBotUsername();
                 window.open(`https://t.me/${botUsername}/app`, "_blank");
               }
             } catch (err) {
