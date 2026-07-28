@@ -60,12 +60,6 @@ export default function SwipeCard({
     }
   }, [movie?.id]);
 
-  useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
-      setImageLoaded(true);
-    }
-  }, [currentPosterSrc]);
-
   const handleImageError = async () => {
     // Try next precomputed candidate URL first
     if (candidateIndex + 1 < posterCandidates.length) {

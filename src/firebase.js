@@ -54,19 +54,24 @@ export const signInWithTelegram = async (tgUser) => {
       });
     } catch (e) {}
 
-    await set(ref(database, `userTags/${getTagKey(cleanTag)}`), currentUser.uid);
-    await update(ref(database, `users/${currentUser.uid}/profile`), {
-      tag: cleanTag,
-      tgId: tgUser.id,
-      username: tgUser.username || "",
-      firstName: tgUser.firstName || "",
-      lastName: tgUser.lastName || "",
-      photoUrl: tgUser.photoUrl || null,
-      name: tgUser.name,
-      avatar: tgUser.photoUrl ? '📷' : '✈️',
-      authProvider: 'telegram',
-      updatedAt: Date.now()
-    });
+    try {
+      await set(ref(database, `userTags/${getTagKey(cleanTag)}`), currentUser.uid);
+    } catch (e) {}
+
+    try {
+      await update(ref(database, `users/${currentUser.uid}/profile`), {
+        tag: cleanTag,
+        tgId: tgUser.id,
+        username: tgUser.username || "",
+        firstName: tgUser.firstName || "",
+        lastName: tgUser.lastName || "",
+        photoUrl: tgUser.photoUrl || null,
+        name: tgUser.name,
+        avatar: tgUser.photoUrl ? '📷' : '✈️',
+        authProvider: 'telegram',
+        updatedAt: Date.now()
+      });
+    } catch (e) {}
 
     return currentUser;
   } catch (e) {
@@ -78,7 +83,11 @@ export const signInWithTelegram = async (tgUser) => {
 export const createTelegramAuthToken = async () => {
   const code = 'login_' + Math.random().toString(36).substring(2, 9);
   if (database) {
-    await set(ref(database, `authTokens/${code}`), { status: 'pending', createdAt: Date.now() });
+    try {
+      await set(ref(database, `authTokens/${code}`), { status: 'pending', createdAt: Date.now() });
+    } catch (e) {
+      console.warn("createTelegramAuthToken pending write skipped:", e);
+    }
   }
   return code;
 };
