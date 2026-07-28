@@ -3,7 +3,7 @@
 
 const FIREBASE_DB_URL = "https://match-watch-f9eec-default-rtdb.firebaseio.com";
 
-async function getTelegramUserAvatarUrl(botToken, userId) {
+async function getTelegramUserAvatarBase64(botToken, userId) {
   if (!botToken || !userId) return null;
   try {
     const res = await fetch(`https://api.telegram.org/bot${botToken}/getUserProfilePhotos?user_id=${userId}&limit=1`);
@@ -16,7 +16,13 @@ async function getTelegramUserAvatarUrl(botToken, userId) {
       if (!fileRes.ok) return null;
       const fileData = await fileRes.json();
       if (fileData.ok && fileData.result && fileData.result.file_path) {
-        return `https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`;
+        const imgUrl = `https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`;
+        const imgRes = await fetch(imgUrl);
+        if (imgRes.ok) {
+          const arrayBuffer = await imgRes.arrayBuffer();
+          const base64 = Buffer.from(arrayBuffer).toString('base64');
+          return `data:image/jpeg;base64,${base64}`;
+        }
       }
     }
   } catch (e) {
@@ -51,7 +57,7 @@ export default async function handler(req, res) {
       const parts = text.split(' ');
       const startParam = parts[1] || '';
 
-      const photoUrl = await getTelegramUserAvatarUrl(botToken, from.id);
+      const photoUrl = await getTelegramUserAvatarBase64(botToken, from.id);
 
       const tgUserData = {
         status: 'approved',

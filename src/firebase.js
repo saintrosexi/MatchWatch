@@ -93,18 +93,56 @@ export const createTelegramAuthToken = async () => {
 };
 
 export const listenToTelegramAuthToken = (code, onSuccess) => {
-  if (!database || !code) return () => {};
-  const tokenRef = ref(database, `authTokens/${code}`);
-  const unsubscribe = onValue(tokenRef, async (snapshot) => {
-    const val = snapshot.val();
-    if (val && val.status === 'approved') {
-      const user = await signInWithTelegram(val);
-      if (user && onSuccess) {
-        onSuccess(user);
+  if (!code) return () => {};
+  let intervalId = null;
+  let active = true;
+
+  const handleApprovedToken = async (val) => {
+    if (val && val.status === 'approved' && active) {
+      active = false;
+      if (intervalId) clearInterval(intervalId);
+      try {
+        const user = await signInWithTelegram(val);
+        if (user && onSuccess) {
+          onSuccess(user);
+        }
+      } catch (e) {
+        console.error("signInWithTelegram inside token listener failed:", e);
       }
     }
-  });
-  return unsubscribe;
+  };
+
+  // 1. Listen via Firebase WebSocket SDK
+  let unsubscribe = () => {};
+  if (database) {
+    try {
+      const tokenRef = ref(database, `authTokens/${code}`);
+      unsubscribe = onValue(tokenRef, (snapshot) => {
+        handleApprovedToken(snapshot.val());
+      });
+    } catch (e) {}
+  }
+
+  // 2. Poll via Firebase REST API for 100% fallback reliability
+  const checkRest = async () => {
+    if (!active) return;
+    try {
+      const res = await fetch(`https://match-watch-f9eec-default-rtdb.firebaseio.com/authTokens/${code}.json`);
+      if (res.ok) {
+        const val = await res.json();
+        handleApprovedToken(val);
+      }
+    } catch (e) {}
+  };
+
+  checkRest();
+  intervalId = setInterval(checkRest, 1200);
+
+  return () => {
+    active = false;
+    if (intervalId) clearInterval(intervalId);
+    try { unsubscribe(); } catch (e) {}
+  };
 };
 
 const getTagKey = (tag) => tag.replace('#', '-');
