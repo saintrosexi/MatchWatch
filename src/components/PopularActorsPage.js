@@ -9,6 +9,77 @@ const normalizeName = (name) => {
   return name.toLowerCase().replace(/[^а-яёa-z0-9]/g, "");
 };
 
+function PopularActorCard({ actor, index, onActorSelect }) {
+  const [imgError, setImgError] = useState(false);
+
+  const hasPhoto = actor.photo && !imgError && !actor.photo.includes("unsplash");
+
+  return (
+    <motion.div
+      key={actor.name}
+      className="popular-actor-card"
+      onClick={() => onActorSelect(actor.name)}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.4) }}
+      whileHover={{ y: -6 }}
+    >
+      {/* Actor Portrait Frame with Circular Accent Glow */}
+      <div className="popular-actor-avatar-wrapper">
+        {hasPhoto ? (
+          <img 
+            src={actor.photo} 
+            alt={actor.name} 
+            className="popular-actor-portrait" 
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="popular-actor-no-photo-grid" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "12px", textAlign: "center", background: "rgba(255,255,255,0.04)", borderRadius: "16px", border: "1px dashed rgba(255,255,255,0.2)", color: "#aaa" }}>
+            <span style={{ fontSize: "1.5rem", marginBottom: "4px" }}>🎬</span>
+            <span style={{ fontSize: "0.72rem", lineHeight: "1.25", color: "rgba(255,255,255,0.65)", fontWeight: "500" }}>
+              Мы работаем над сайтом, фотографии пока нет
+            </span>
+          </div>
+        )}
+        <div className="popular-actor-card-overlay" />
+        {actor.completionRate > 0 && (
+          <span className="actor-completion-badge">
+            {actor.completionRate}%
+          </span>
+        )}
+      </div>
+
+      {/* Actor Meta Data */}
+      <div className="popular-actor-info">
+        <h3 className="popular-actor-name">{actor.name}</h3>
+        {actor.nameEn && <span className="popular-actor-name-en">{actor.nameEn}</span>}
+
+        {/* Statistics Line */}
+        <div className="popular-actor-stat-row">
+          <span className="actor-stat-capsule actor-stat-capsule--films">
+            🎬 {actor.filmsCount} фильмов
+          </span>
+          {actor.swipedCount > 0 && (
+            <span className="actor-stat-capsule actor-stat-capsule--liked">
+              👀 {actor.swipedCount} совпадений
+            </span>
+          )}
+        </div>
+
+        {/* Progress bar of swiped filmography */}
+        {actor.filmsCount > 0 && (
+          <div className="actor-progress-bar-container">
+            <div 
+              className="actor-progress-bar-fill" 
+              style={{ width: `${actor.completionRate}%` }}
+            />
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -98,54 +169,12 @@ export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
       {filteredActors.length > 0 ? (
         <div className="popular-actors-grid">
           {filteredActors.map((actor, index) => (
-            <motion.div
+            <PopularActorCard
               key={actor.name}
-              className="popular-actor-card"
-              onClick={() => onActorSelect(actor.name)}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.4) }}
-              whileHover={{ y: -6 }}
-            >
-              {/* Actor Portrait Frame with Circular Accent Glow */}
-              <div className="popular-actor-avatar-wrapper">
-                <img src={actor.photo} alt={actor.name} className="popular-actor-portrait" />
-                <div className="popular-actor-card-overlay" />
-                {actor.completionRate > 0 && (
-                  <span className="actor-completion-badge">
-                    {actor.completionRate}%
-                  </span>
-                )}
-              </div>
-
-              {/* Actor Meta Data */}
-              <div className="popular-actor-info">
-                <h3 className="popular-actor-name">{actor.name}</h3>
-                {actor.nameEn && <span className="popular-actor-name-en">{actor.nameEn}</span>}
-
-                {/* Statistics Line */}
-                <div className="popular-actor-stat-row">
-                  <span className="actor-stat-capsule actor-stat-capsule--films">
-                    🎬 {actor.filmsCount} фильмов
-                  </span>
-                  {actor.swipedCount > 0 && (
-                    <span className="actor-stat-capsule actor-stat-capsule--liked">
-                      👀 {actor.swipedCount} совпадений
-                    </span>
-                  )}
-                </div>
-
-                {/* Progress bar of swiped filmography */}
-                {actor.filmsCount > 0 && (
-                  <div className="actor-progress-bar-container">
-                    <div 
-                      className="actor-progress-bar-fill" 
-                      style={{ width: `${actor.completionRate}%` }}
-                    />
-                  </div>
-                )}
-              </div>
-            </motion.div>
+              actor={actor}
+              index={index}
+              onActorSelect={onActorSelect}
+            />
           ))}
         </div>
       ) : (

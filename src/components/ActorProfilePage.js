@@ -13,9 +13,12 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all"); // all, movie, series, anime
 
+  const [imageError, setImageError] = useState(false);
+
   // Scroll to top of the page on mount or actor change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setImageError(false);
   }, [actorName]);
 
   const actor = useMemo(() => {
@@ -34,7 +37,7 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
     return {
       name: actorName,
       nameEn: "Movie Star",
-      photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop",
+      photo: null,
       facts: [
         "Харизматичный и талантливый артист, полюбившийся публике выразительной игрой и глубиной образов.",
         "Признанный мастер перевоплощений, снискавший уважение коллег по цеху и признание критиков.",
@@ -114,7 +117,7 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
     <div className="actor-profile-page-wrapper">
       {/* Ambient background glow matching the actor's portrait */}
       <div className="actor-ambient-glow">
-        <img src={actor.photo} alt="" aria-hidden="true" />
+        {actor.photo && !imageError && <img src={actor.photo} alt="" aria-hidden="true" />}
         <div className="actor-ambient-overlay" />
       </div>
 
@@ -135,7 +138,21 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
         {/* Hero Section */}
         <div className="actor-hero-container">
           <div className="actor-hero-avatar-frame">
-            <img src={actor.photo} alt={actor.name} className="actor-hero-img" />
+            {actor.photo && !imageError && !actor.photo.includes("unsplash") ? (
+              <img 
+                src={actor.photo} 
+                alt={actor.name} 
+                className="actor-hero-img" 
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="actor-no-photo-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "20px", textAlign: "center", background: "rgba(255,255,255,0.05)", borderRadius: "20px", border: "1px dashed rgba(255,255,255,0.2)", color: "#ccc" }}>
+                <span style={{ fontSize: "2rem", marginBottom: "8px" }}>🎬</span>
+                <span style={{ fontSize: "0.82rem", lineHeight: "1.3", color: "rgba(255,255,255,0.7)", fontWeight: "500" }}>
+                  Мы работаем над сайтом, фотографии пока нет
+                </span>
+              </div>
+            )}
             <div className="actor-hero-photo-ring" />
           </div>
 
