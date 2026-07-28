@@ -6,7 +6,7 @@ import {
 } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { triggerHaptic } from "../tma";
-import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
+import { getPosterCandidates, getBestPosterUrl, fetchLivePosterFromApi } from "../posterResolver";
 
 const formatReleaseDate = (dateStr) => {
   if (!dateStr) return "";
@@ -39,7 +39,6 @@ export default function SwipeCard({
   isTutorial = false,
 }) {
   const movie = isTutorial ? TUTORIAL_MOVIE : inputMovie;
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -49,21 +48,15 @@ export default function SwipeCard({
   // Poster candidate state algorithm
   const [posterCandidates, setPosterCandidates] = useState([]);
   const [candidateIndex, setCandidateIndex] = useState(0);
-  const [currentPosterSrc, setCurrentPosterSrc] = useState("");
+  const [currentPosterSrc, setCurrentPosterSrc] = useState(() => getBestPosterUrl(movie));
 
   useEffect(() => {
     if (movie) {
+      const best = getBestPosterUrl(movie);
       const candidates = getPosterCandidates(movie);
       setPosterCandidates(candidates);
       setCandidateIndex(0);
-      setCurrentPosterSrc(candidates[0] || movie.poster || "");
-      setImageLoaded(false);
-
-      // Safety timeout: never leave skeleton loader visible for more than 700ms
-      const timer = setTimeout(() => {
-        setImageLoaded(true);
-      }, 700);
-      return () => clearTimeout(timer);
+      setCurrentPosterSrc(best);
     }
   }, [movie?.id]);
 
@@ -249,20 +242,16 @@ export default function SwipeCard({
               <div className="tutorial-title">Свайпай и выбирай</div>
             </div>
           ) : (
-            <>
-              {!imageLoaded && <div className="image-skeleton-premium" />}
-              <img
-                ref={imgRef}
-                className="poster-premium"
-                src={currentPosterSrc || movie.poster}
-                alt={movie.titleRu || movie.title}
-                onLoad={() => setImageLoaded(true)}
-                onError={handleImageError}
-                referrerPolicy="no-referrer"
-                draggable={false}
-                decoding="async"
-              />
-            </>
+            <img
+              ref={imgRef}
+              className="poster-premium"
+              src={currentPosterSrc || getBestPosterUrl(movie)}
+              alt={movie.titleRu || movie.title}
+              onError={handleImageError}
+              referrerPolicy="no-referrer"
+              draggable={false}
+              decoding="async"
+            />
           )}
         </div>
 

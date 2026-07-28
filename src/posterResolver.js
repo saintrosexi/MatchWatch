@@ -2,31 +2,42 @@
 
 const KP_API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 
+/**
+ * Returns the single best, deterministic poster URL for a movie.
+ * Uses Kinopoisk HD CDN as primary source when kinopoiskId is present to guarantee 100% matching URLs across background & foreground card deck.
+ */
+export const getBestPosterUrl = (movie) => {
+  if (!movie) return "";
+  if (movie.kinopoiskId) {
+    return `https://kinopoiskapiunofficial.tech/images/posters/kp/${movie.kinopoiskId}.jpg`;
+  }
+  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A")) {
+    return movie.poster.trim();
+  }
+  if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
+    return movie.posterPreview.trim();
+  }
+  return "";
+};
+
 export const getPosterCandidates = (movie) => {
   if (!movie) return [];
   const candidates = [];
+  const best = getBestPosterUrl(movie);
+  if (best) candidates.push(best);
 
-  // 1. Kinopoisk HD poster CDN URL using kinopoiskId (Highest reliability, fast & no CORS issues with no-referrer)
-  if (movie.kinopoiskId) {
-    const kpId = movie.kinopoiskId;
-    const kpMainUrl = `https://kinopoiskapiunofficial.tech/images/posters/kp/${kpId}.jpg`;
-    candidates.push(kpMainUrl);
-  }
-
-  // 2. Direct poster URL from data
+  // Fallbacks if best fails
   if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A")) {
     const trimmed = movie.poster.trim();
     if (!candidates.includes(trimmed)) candidates.push(trimmed);
   }
 
-  // 3. Kinopoisk Small CDN URL
   if (movie.kinopoiskId) {
     const kpId = movie.kinopoiskId;
     const kpSmallUrl = `https://kinopoiskapiunofficial.tech/images/posters/kp_small/${kpId}.jpg`;
     if (!candidates.includes(kpSmallUrl)) candidates.push(kpSmallUrl);
   }
 
-  // 4. Alternate posterPreview URL if provided
   if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
     const trimmed = movie.posterPreview.trim();
     if (!candidates.includes(trimmed)) candidates.push(trimmed);

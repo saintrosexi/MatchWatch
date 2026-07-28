@@ -9,7 +9,7 @@ import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 import SessionFiltersModal from "./SessionFiltersModal";
 import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoom, initTelegramWebApp } from "../tma";
-import { getPosterCandidates } from "../posterResolver";
+import { getPosterCandidates, getBestPosterUrl } from "../posterResolver";
 
 export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange }) {
   const [screen, setScreen] = useState("start");
@@ -403,7 +403,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                     >
                       <div className="card-placeholder" style={{ width: "100%", height: "100%" }}>
                         <img 
-                          src={getPosterCandidates(nextMovie)[0] || nextMovie.poster} 
+                          src={getBestPosterUrl(nextMovie)} 
                           alt={nextMovie.titleRu || nextMovie.title} 
                           referrerPolicy="no-referrer"
                           style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "24px" }} 
