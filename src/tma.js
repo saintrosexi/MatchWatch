@@ -63,7 +63,7 @@ export const getTelegramUser = () => {
 
 export const shareTelegramRoom = (roomCode) => {
   const tg = getTelegramWebApp();
-  const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "MatchWatchBot";
+  const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "matchwatch_together_bot";
   const inviteUrl = `https://t.me/${botUsername}/app?startapp=${roomCode}`;
   const text = `Давай выберем фильм вместе в MatchWatch! 🎬🍿\nКод комнаты: ${roomCode}`;
 

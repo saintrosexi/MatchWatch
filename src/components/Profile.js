@@ -804,7 +804,7 @@ export default function Profile() {
               if (tgUser) {
                 await signInWithTelegram(tgUser);
               } else {
-                const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "MatchWatchBot";
+                const botUsername = process.env.REACT_APP_TELEGRAM_BOT_USERNAME || "matchwatch_together_bot";
                 window.open(`https://t.me/${botUsername}/app`, "_blank");
               }
             } catch (err) {
