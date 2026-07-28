@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     const firstName = from.first_name || from.username || 'Друг';
     const lastName = from.last_name || '';
     const username = from.username || '';
-    const botToken = process.env.TELEGRAM_BOT_TOKEN || process.env.REACT_APP_TELEGRAM_BOT_TOKEN;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN || process.env.REACT_APP_TELEGRAM_BOT_TOKEN || "7952088614:AAHwV0ZjaWIWPd3RJY5AAN7yYBj6Dub47ho";
 
     const webAppUrl = 'https://match-watch-zeta.vercel.app';
 
