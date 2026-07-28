@@ -402,7 +402,12 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                       exit={{ opacity: 0 }}
                     >
                       <div className="card-placeholder" style={{ width: "100%", height: "100%" }}>
-                        <img src={nextMovie.poster} alt={nextMovie.titleRu || nextMovie.title} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "24px" }} />
+                        <img 
+                          src={getPosterCandidates(nextMovie)[0] || nextMovie.poster} 
+                          alt={nextMovie.titleRu || nextMovie.title} 
+                          referrerPolicy="no-referrer"
+                          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "24px" }} 
+                        />
                         <div className="placeholder-overlay" />
                       </div>
                     </motion.div>

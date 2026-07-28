@@ -6,24 +6,30 @@ export const getPosterCandidates = (movie) => {
   if (!movie) return [];
   const candidates = [];
 
-  // 1. Direct poster URL from data
-  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A")) {
-    candidates.push(movie.poster.trim());
-  }
-
-  // 2. Kinopoisk HD poster CDN URL using kinopoiskId
+  // 1. Kinopoisk HD poster CDN URL using kinopoiskId (Highest reliability, fast & no CORS issues with no-referrer)
   if (movie.kinopoiskId) {
     const kpId = movie.kinopoiskId;
     const kpMainUrl = `https://kinopoiskapiunofficial.tech/images/posters/kp/${kpId}.jpg`;
-    if (!candidates.includes(kpMainUrl)) candidates.push(kpMainUrl);
-    
+    candidates.push(kpMainUrl);
+  }
+
+  // 2. Direct poster URL from data
+  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A")) {
+    const trimmed = movie.poster.trim();
+    if (!candidates.includes(trimmed)) candidates.push(trimmed);
+  }
+
+  // 3. Kinopoisk Small CDN URL
+  if (movie.kinopoiskId) {
+    const kpId = movie.kinopoiskId;
     const kpSmallUrl = `https://kinopoiskapiunofficial.tech/images/posters/kp_small/${kpId}.jpg`;
     if (!candidates.includes(kpSmallUrl)) candidates.push(kpSmallUrl);
   }
 
-  // 3. Alternate posterPreview URL if provided
+  // 4. Alternate posterPreview URL if provided
   if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
-    if (!candidates.includes(movie.posterPreview.trim())) candidates.push(movie.posterPreview.trim());
+    const trimmed = movie.posterPreview.trim();
+    if (!candidates.includes(trimmed)) candidates.push(trimmed);
   }
 
   return candidates;

@@ -4,7 +4,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { triggerHaptic } from "../tma";
 import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
 
@@ -44,6 +44,8 @@ export default function SwipeCard({
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const imgRef = useRef(null);
+
   // Poster candidate state algorithm
   const [posterCandidates, setPosterCandidates] = useState([]);
   const [candidateIndex, setCandidateIndex] = useState(0);
@@ -54,10 +56,22 @@ export default function SwipeCard({
       const candidates = getPosterCandidates(movie);
       setPosterCandidates(candidates);
       setCandidateIndex(0);
-      setCurrentPosterSrc(candidates[0] || "");
+      setCurrentPosterSrc(candidates[0] || movie.poster || "");
       setImageLoaded(false);
+
+      // Safety timeout: never leave skeleton loader visible for more than 700ms
+      const timer = setTimeout(() => {
+        setImageLoaded(true);
+      }, 700);
+      return () => clearTimeout(timer);
     }
   }, [movie?.id]);
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setImageLoaded(true);
+    }
+  }, [currentPosterSrc]);
 
   const handleImageError = async () => {
     // Try next precomputed candidate URL first
@@ -66,7 +80,7 @@ export default function SwipeCard({
       setCandidateIndex(nextIdx);
       setCurrentPosterSrc(posterCandidates[nextIdx]);
     } else {
-      // If candidates exhausted, try a live API search lookup by title & year (NO placeholders!)
+      // If candidates exhausted, try a live API search lookup by title & year
       const livePoster = await fetchLivePosterFromApi(movie.titleRu || movie.title, movie.year);
       if (livePoster && livePoster !== currentPosterSrc) {
         setCurrentPosterSrc(livePoster);
@@ -238,11 +252,13 @@ export default function SwipeCard({
             <>
               {!imageLoaded && <div className="image-skeleton-premium" />}
               <img
+                ref={imgRef}
                 className="poster-premium"
                 src={currentPosterSrc || movie.poster}
                 alt={movie.titleRu || movie.title}
                 onLoad={() => setImageLoaded(true)}
                 onError={handleImageError}
+                referrerPolicy="no-referrer"
                 draggable={false}
                 decoding="async"
               />
