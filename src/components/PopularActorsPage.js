@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { movies } from "../data";
 import { actorsData } from "../actorsData";
+import { fetchRealActorProfile } from "../actorResolver";
 
 // Robust string normalization for matching actor names
 const normalizeName = (name) => {
@@ -11,8 +12,21 @@ const normalizeName = (name) => {
 
 function PopularActorCard({ actor, index, onActorSelect }) {
   const [imgError, setImgError] = useState(false);
+  const [livePhoto, setLivePhoto] = useState(null);
 
-  const hasPhoto = actor.photo && !imgError && !actor.photo.includes("unsplash");
+  useEffect(() => {
+    if (!actor.photo || imgError) {
+      fetchRealActorProfile(actor.name).then((profile) => {
+        if (profile && profile.photo) {
+          setLivePhoto(profile.photo);
+          setImgError(false);
+        }
+      });
+    }
+  }, [actor.name, actor.photo, imgError]);
+
+  const currentPhoto = (actor.photo && !actor.photo.includes("unsplash")) ? actor.photo : livePhoto;
+  const hasPhoto = currentPhoto && !imgError;
 
   return (
     <motion.div
@@ -28,7 +42,7 @@ function PopularActorCard({ actor, index, onActorSelect }) {
       <div className="popular-actor-avatar-wrapper">
         {hasPhoto ? (
           <img 
-            src={actor.photo} 
+            src={currentPhoto} 
             alt={actor.name} 
             className="popular-actor-portrait" 
             onError={() => setImgError(true)}

@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { movies } from "../data";
 import { actorsData } from "../actorsData";
+import { fetchRealActorProfile } from "../actorResolver";
 
 // Robust string normalization for matching actor names
 const normalizeName = (name) => {
@@ -14,11 +15,21 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
   const [filterType, setFilterType] = useState("all"); // all, movie, series, anime
 
   const [imageError, setImageError] = useState(false);
+  const [livePhoto, setLivePhoto] = useState(null);
 
-  // Scroll to top of the page on mount or actor change
+  // Scroll to top of the page on mount or actor change & fetch live real actor photo if missing/failed
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setImageError(false);
+    setLivePhoto(null);
+
+    if (actorName) {
+      fetchRealActorProfile(actorName).then((profile) => {
+        if (profile && profile.photo) {
+          setLivePhoto(profile.photo);
+        }
+      });
+    }
   }, [actorName]);
 
   const actor = useMemo(() => {
@@ -29,12 +40,7 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
       (key) => normalizeName(key) === normalizedTarget
     );
     
-    if (matchKey) {
-      return actorsData[matchKey];
-    }
-    
-    // Dynamic fallback profile
-    return {
+    const baseActor = matchKey ? actorsData[matchKey] : {
       name: actorName,
       nameEn: "Movie Star",
       photo: null,
@@ -44,7 +50,12 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
         "Внес неоценимый творческий вклад в развитие современного кинематографа."
       ]
     };
-  }, [actorName]);
+
+    return {
+      ...baseActor,
+      photo: baseActor.photo || livePhoto
+    };
+  }, [actorName, livePhoto]);
 
   // Dynamically filter all movies starring this actor in real-time
   const actorMovies = useMemo(() => {
