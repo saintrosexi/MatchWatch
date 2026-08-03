@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import "./MovieModal.css";
+import "../styles/MovieModal.css";
 
 export default function MovieModal({ movie, onClose }) {
   if (!movie) return null;
@@ -19,7 +19,7 @@ export default function MovieModal({ movie, onClose }) {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
       >
-        <button className="modal-close" onClick={onClose}>✕</button>
+        <button className="close-btn modal-close-btn" onClick={onClose}>✕</button>
 
         <div className="modal-poster">
           <img src={movie.poster} alt={movie.titleRu} />
@@ -36,7 +36,7 @@ export default function MovieModal({ movie, onClose }) {
               href={movie.trailer} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn-trailer"
+              className="btn btn-primary btn-trailer"
             >
               ▶ Трейлер
             </a>
@@ -44,7 +44,7 @@ export default function MovieModal({ movie, onClose }) {
               href={movie.imdb} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn-imdb"
+              className="btn btn-secondary btn-imdb"
             >
               Подробнее на IMDb
             </a>

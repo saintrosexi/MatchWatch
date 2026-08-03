@@ -15,7 +15,20 @@ export const movies = [
     "duration": "142 мин",
     "trailer": "https://www.youtube.com/watch?v=NmzuHjWmXOc",
     "kinopoiskId": 326,
-    "imdb": "https://www.imdb.com/title/tt0111161"
+    "imdb": "https://www.imdb.com/title/tt0111161",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 2,
@@ -33,7 +46,20 @@ export const movies = [
     "duration": "175 мин",
     "trailer": "https://www.youtube.com/watch?v=EzNhaLUT520",
     "kinopoiskId": 325,
-    "imdb": "https://www.imdb.com/title/tt0068646"
+    "imdb": "https://www.imdb.com/title/tt0068646",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 3,
@@ -51,7 +77,20 @@ export const movies = [
     "duration": "152 мин",
     "trailer": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
     "kinopoiskId": 111543,
-    "imdb": "https://www.imdb.com/title/tt0468569"
+    "imdb": "https://www.imdb.com/title/tt0468569",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 4,
@@ -69,7 +108,20 @@ export const movies = [
     "duration": "96 мин",
     "trailer": "https://www.youtube.com/watch?v=A7CBVER0glE",
     "kinopoiskId": 346,
-    "imdb": "https://www.imdb.com/title/tt0050083"
+    "imdb": "https://www.imdb.com/title/tt0050083",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 5,
@@ -87,7 +139,20 @@ export const movies = [
     "duration": "195 мин",
     "trailer": "https://www.youtube.com/watch?v=gG22XNhtnoY",
     "kinopoiskId": 329,
-    "imdb": "https://www.imdb.com/title/tt0108052"
+    "imdb": "https://www.imdb.com/title/tt0108052",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 6,
@@ -105,7 +170,20 @@ export const movies = [
     "duration": "154 мин",
     "trailer": "https://www.youtube.com/watch?v=s7EdQ4FqJDE",
     "kinopoiskId": 342,
-    "imdb": "https://www.imdb.com/title/tt0110912"
+    "imdb": "https://www.imdb.com/title/tt0110912",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 7,
@@ -123,7 +201,20 @@ export const movies = [
     "duration": "148 мин",
     "trailer": "https://www.youtube.com/watch?v=YoHD_XwIlNY",
     "kinopoiskId": 447301,
-    "imdb": "https://www.imdb.com/title/tt1375666"
+    "imdb": "https://www.imdb.com/title/tt1375666",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 8,
@@ -141,7 +232,20 @@ export const movies = [
     "duration": "142 мин",
     "trailer": "https://www.youtube.com/watch?v=bIvC-5paragE",
     "kinopoiskId": 448,
-    "imdb": "https://www.imdb.com/title/tt0109830"
+    "imdb": "https://www.imdb.com/title/tt0109830",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 9,
@@ -159,7 +263,20 @@ export const movies = [
     "duration": "136 мин",
     "trailer": "https://www.youtube.com/watch?v=jYzcLE7L7Ps",
     "kinopoiskId": 301,
-    "imdb": "https://www.imdb.com/title/tt0133093"
+    "imdb": "https://www.imdb.com/title/tt0133093",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🧩 Tactical Sci-Fi / Mystery"
+    ]
   },
   {
     "id": 10,
@@ -177,7 +294,20 @@ export const movies = [
     "duration": "169 мин",
     "trailer": "https://www.youtube.com/watch?v=zSAJ0l4OBLU",
     "kinopoiskId": 258687,
-    "imdb": "https://www.imdb.com/title/tt0816692"
+    "imdb": "https://www.imdb.com/title/tt0816692",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 11,
@@ -195,7 +325,20 @@ export const movies = [
     "duration": "202 min",
     "trailer": "",
     "kinopoiskId": 327,
-    "imdb": "https://www.imdb.com/title/tt0071562"
+    "imdb": "https://www.imdb.com/title/tt0071562",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 12,
@@ -213,7 +356,20 @@ export const movies = [
     "duration": "201 min",
     "trailer": "",
     "kinopoiskId": 3498,
-    "imdb": "https://www.imdb.com/title/tt0167260"
+    "imdb": "https://www.imdb.com/title/tt0167260",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 13,
@@ -231,7 +387,20 @@ export const movies = [
     "duration": "178 min",
     "trailer": "",
     "kinopoiskId": 328,
-    "imdb": "https://www.imdb.com/title/tt0120737"
+    "imdb": "https://www.imdb.com/title/tt0120737",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 14,
@@ -249,7 +418,20 @@ export const movies = [
     "duration": "178 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0060196"
+    "imdb": "https://www.imdb.com/title/tt0060196",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 15,
@@ -267,7 +449,20 @@ export const movies = [
     "duration": "139 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0137523"
+    "imdb": "https://www.imdb.com/title/tt0137523",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 16,
@@ -285,7 +480,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 338,
-    "imdb": "https://www.imdb.com/title/tt0080684"
+    "imdb": "https://www.imdb.com/title/tt0080684",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🧩 Tactical Sci-Fi / Mystery"
+    ]
   },
   {
     "id": 17,
@@ -303,7 +511,20 @@ export const movies = [
     "duration": "179 min",
     "trailer": "",
     "kinopoiskId": 312,
-    "imdb": "https://www.imdb.com/title/tt0167261"
+    "imdb": "https://www.imdb.com/title/tt0167261",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 18,
@@ -321,7 +542,20 @@ export const movies = [
     "duration": "133 min",
     "trailer": "",
     "kinopoiskId": 336,
-    "imdb": "https://www.imdb.com/title/tt0073486"
+    "imdb": "https://www.imdb.com/title/tt0073486",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 19,
@@ -339,7 +573,20 @@ export const movies = [
     "duration": "145 min",
     "trailer": "",
     "kinopoiskId": 350,
-    "imdb": "https://www.imdb.com/title/tt0099685"
+    "imdb": "https://www.imdb.com/title/tt0099685",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 20,
@@ -357,7 +604,20 @@ export const movies = [
     "duration": "121 min",
     "trailer": "",
     "kinopoiskId": 333,
-    "imdb": "https://www.imdb.com/title/tt0076759"
+    "imdb": "https://www.imdb.com/title/tt0076759",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🧩 Tactical Sci-Fi / Mystery"
+    ]
   },
   {
     "id": 21,
@@ -375,7 +635,20 @@ export const movies = [
     "duration": "127 min",
     "trailer": "",
     "kinopoiskId": 377,
-    "imdb": "https://www.imdb.com/title/tt0114369"
+    "imdb": "https://www.imdb.com/title/tt0114369",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 22,
@@ -393,7 +666,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 439,
-    "imdb": "https://www.imdb.com/title/tt0317248"
+    "imdb": "https://www.imdb.com/title/tt0317248",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 23,
@@ -411,7 +697,20 @@ export const movies = [
     "duration": "118 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0102926"
+    "imdb": "https://www.imdb.com/title/tt0102926",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 24,
@@ -429,7 +728,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0038650"
+    "imdb": "https://www.imdb.com/title/tt0038650",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 25,
@@ -447,7 +759,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 381,
-    "imdb": "https://www.imdb.com/title/tt0118799"
+    "imdb": "https://www.imdb.com/title/tt0118799",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 26,
@@ -465,7 +790,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 370,
-    "imdb": "https://www.imdb.com/title/tt0245429"
+    "imdb": "https://www.imdb.com/title/tt0245429",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 27,
@@ -483,7 +821,20 @@ export const movies = [
     "duration": "169 min",
     "trailer": "",
     "kinopoiskId": 371,
-    "imdb": "https://www.imdb.com/title/tt0120815"
+    "imdb": "https://www.imdb.com/title/tt0120815",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 28,
@@ -501,7 +852,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0110413"
+    "imdb": "https://www.imdb.com/title/tt0110413",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 29,
@@ -519,7 +883,20 @@ export const movies = [
     "duration": "189 min",
     "trailer": "",
     "kinopoiskId": 435,
-    "imdb": "https://www.imdb.com/title/tt0120689"
+    "imdb": "https://www.imdb.com/title/tt0120689",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 30,
@@ -537,7 +914,20 @@ export const movies = [
     "duration": "106 min",
     "trailer": "",
     "kinopoiskId": 340,
-    "imdb": "https://www.imdb.com/title/tt0114814"
+    "imdb": "https://www.imdb.com/title/tt0114814",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 31,
@@ -555,7 +945,19 @@ export const movies = [
     "duration": "145 min",
     "trailer": "",
     "kinopoiskId": 376,
-    "imdb": "https://www.imdb.com/title/tt0064116"
+    "imdb": "https://www.imdb.com/title/tt0064116",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 32,
@@ -573,7 +975,20 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 330,
-    "imdb": "https://www.imdb.com/title/tt0034583"
+    "imdb": "https://www.imdb.com/title/tt0034583",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 33,
@@ -591,7 +1006,20 @@ export const movies = [
     "duration": "207 min",
     "trailer": "",
     "kinopoiskId": 332,
-    "imdb": "https://www.imdb.com/title/tt0047478"
+    "imdb": "https://www.imdb.com/title/tt0047478",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🖤 Dark Romance / Melancholy",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 34,
@@ -609,7 +1037,20 @@ export const movies = [
     "duration": "115 min",
     "trailer": "",
     "kinopoiskId": 339,
-    "imdb": "https://www.imdb.com/title/tt0082971"
+    "imdb": "https://www.imdb.com/title/tt0082971",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 35,
@@ -627,7 +1068,20 @@ export const movies = [
     "duration": "147 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0078788"
+    "imdb": "https://www.imdb.com/title/tt0078788",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 36,
@@ -645,7 +1099,20 @@ export const movies = [
     "duration": "109 min",
     "trailer": "",
     "kinopoiskId": 344,
-    "imdb": "https://www.imdb.com/title/tt0054215"
+    "imdb": "https://www.imdb.com/title/tt0054215",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 37,
@@ -663,7 +1130,20 @@ export const movies = [
     "duration": "113 min",
     "trailer": "",
     "kinopoiskId": 335,
-    "imdb": "https://www.imdb.com/title/tt0209144"
+    "imdb": "https://www.imdb.com/title/tt0209144",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 38,
@@ -681,7 +1161,20 @@ export const movies = [
     "duration": "87 min",
     "trailer": "",
     "kinopoiskId": 414,
-    "imdb": "https://www.imdb.com/title/tt0021749"
+    "imdb": "https://www.imdb.com/title/tt0021749",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 39,
@@ -699,7 +1192,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 386,
-    "imdb": "https://www.imdb.com/title/tt0078748"
+    "imdb": "https://www.imdb.com/title/tt0078748",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 40,
@@ -717,7 +1223,20 @@ export const movies = [
     "duration": "137 min",
     "trailer": "",
     "kinopoiskId": 126196,
-    "imdb": "https://www.imdb.com/title/tt0405094"
+    "imdb": "https://www.imdb.com/title/tt0405094",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 41,
@@ -735,7 +1254,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": 353,
-    "imdb": "https://www.imdb.com/title/tt0043014"
+    "imdb": "https://www.imdb.com/title/tt0043014",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 42,
@@ -753,7 +1285,19 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 360,
-    "imdb": "https://www.imdb.com/title/tt0050825"
+    "imdb": "https://www.imdb.com/title/tt0050825",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 43,
@@ -771,7 +1315,20 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 379,
-    "imdb": "https://www.imdb.com/title/tt0032138"
+    "imdb": "https://www.imdb.com/title/tt0032138",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 4,
+      "emotion": 7,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 44,
@@ -789,7 +1346,20 @@ export const movies = [
     "duration": "136 min",
     "trailer": "",
     "kinopoiskId": 343,
-    "imdb": "https://www.imdb.com/title/tt0053125"
+    "imdb": "https://www.imdb.com/title/tt0053125",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 45,
@@ -807,7 +1377,20 @@ export const movies = [
     "duration": "137 min",
     "trailer": "",
     "kinopoiskId": 406,
-    "imdb": "https://www.imdb.com/title/tt0090605"
+    "imdb": "https://www.imdb.com/title/tt0090605",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 46,
@@ -825,7 +1408,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 351,
-    "imdb": "https://www.imdb.com/title/tt0169547"
+    "imdb": "https://www.imdb.com/title/tt0169547",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 47,
@@ -843,7 +1439,19 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0057012"
+    "imdb": "https://www.imdb.com/title/tt0057012",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 48,
@@ -861,7 +1469,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 341,
-    "imdb": "https://www.imdb.com/title/tt0211915"
+    "imdb": "https://www.imdb.com/title/tt0211915",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 49,
@@ -879,7 +1500,20 @@ export const movies = [
     "duration": "149 min",
     "trailer": "",
     "kinopoiskId": 362,
-    "imdb": "https://www.imdb.com/title/tt0082096"
+    "imdb": "https://www.imdb.com/title/tt0082096",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 50,
@@ -897,7 +1531,20 @@ export const movies = [
     "duration": "153 min",
     "trailer": "",
     "kinopoiskId": 9691,
-    "imdb": "https://www.imdb.com/title/tt0361748"
+    "imdb": "https://www.imdb.com/title/tt0361748",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 51,
@@ -915,7 +1562,20 @@ export const movies = [
     "duration": "131 min",
     "trailer": "",
     "kinopoiskId": 447,
-    "imdb": "https://www.imdb.com/title/tt0086190"
+    "imdb": "https://www.imdb.com/title/tt0086190",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 52,
@@ -933,7 +1593,19 @@ export const movies = [
     "duration": "89 min",
     "trailer": "",
     "kinopoiskId": 432,
-    "imdb": "https://www.imdb.com/title/tt0040522"
+    "imdb": "https://www.imdb.com/title/tt0040522",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 53,
@@ -951,7 +1623,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 489,
-    "imdb": "https://www.imdb.com/title/tt0051201"
+    "imdb": "https://www.imdb.com/title/tt0051201",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 54,
@@ -969,7 +1654,20 @@ export const movies = [
     "duration": "133 min",
     "trailer": "",
     "kinopoiskId": 441,
-    "imdb": "https://www.imdb.com/title/tt0119698"
+    "imdb": "https://www.imdb.com/title/tt0119698",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 55,
@@ -987,7 +1685,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 75871,
-    "imdb": "https://www.imdb.com/title/tt0364569"
+    "imdb": "https://www.imdb.com/title/tt0364569",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 56,
@@ -1005,7 +1716,20 @@ export const movies = [
     "duration": "160 min",
     "trailer": "",
     "kinopoiskId": 397,
-    "imdb": "https://www.imdb.com/title/tt0086879"
+    "imdb": "https://www.imdb.com/title/tt0086879",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 57,
@@ -1023,7 +1747,20 @@ export const movies = [
     "duration": "99 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0105236"
+    "imdb": "https://www.imdb.com/title/tt0105236",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 58,
@@ -1041,7 +1778,20 @@ export const movies = [
     "duration": "229 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0087843"
+    "imdb": "https://www.imdb.com/title/tt0087843",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 59,
@@ -1059,7 +1809,20 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 367,
-    "imdb": "https://www.imdb.com/title/tt0180093"
+    "imdb": "https://www.imdb.com/title/tt0180093",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 60,
@@ -1077,7 +1840,19 @@ export const movies = [
     "duration": "178 min",
     "trailer": "",
     "kinopoiskId": 399,
-    "imdb": "https://www.imdb.com/title/tt0112573"
+    "imdb": "https://www.imdb.com/title/tt0112573",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 61,
@@ -1095,7 +1870,20 @@ export const movies = [
     "duration": "151 min",
     "trailer": "",
     "kinopoiskId": 81314,
-    "imdb": "https://www.imdb.com/title/tt0407887"
+    "imdb": "https://www.imdb.com/title/tt0407887",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 62,
@@ -1113,7 +1901,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 363,
-    "imdb": "https://www.imdb.com/title/tt0119488"
+    "imdb": "https://www.imdb.com/title/tt0119488",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 63,
@@ -1131,7 +1932,20 @@ export const movies = [
     "duration": "143 min",
     "trailer": "",
     "kinopoiskId": 8412,
-    "imdb": "https://www.imdb.com/title/tt0057565"
+    "imdb": "https://www.imdb.com/title/tt0057565",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 64,
@@ -1149,7 +1963,20 @@ export const movies = [
     "duration": "155 min",
     "trailer": "",
     "kinopoiskId": 474,
-    "imdb": "https://www.imdb.com/title/tt0172495"
+    "imdb": "https://www.imdb.com/title/tt0172495",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 65,
@@ -1167,7 +1994,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 195334,
-    "imdb": "https://www.imdb.com/title/tt0482571"
+    "imdb": "https://www.imdb.com/title/tt0482571",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 66,
@@ -1185,7 +2025,20 @@ export const movies = [
     "duration": "108 min",
     "trailer": "",
     "kinopoiskId": 5492,
-    "imdb": "https://www.imdb.com/title/tt0338013"
+    "imdb": "https://www.imdb.com/title/tt0338013",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 67,
@@ -1203,7 +2056,20 @@ export const movies = [
     "duration": "81 min",
     "trailer": "",
     "kinopoiskId": 482,
-    "imdb": "https://www.imdb.com/title/tt0114709"
+    "imdb": "https://www.imdb.com/title/tt0114709",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 68,
@@ -1221,7 +2087,20 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 2360,
-    "imdb": "https://www.imdb.com/title/tt0110357"
+    "imdb": "https://www.imdb.com/title/tt0110357",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 69,
@@ -1239,7 +2118,20 @@ export const movies = [
     "duration": "121 min",
     "trailer": "",
     "kinopoiskId": 77859,
-    "imdb": "https://www.imdb.com/title/tt0395169"
+    "imdb": "https://www.imdb.com/title/tt0395169",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 70,
@@ -1257,7 +2149,20 @@ export const movies = [
     "duration": "227 min",
     "trailer": "",
     "kinopoiskId": 347,
-    "imdb": "https://www.imdb.com/title/tt0056172"
+    "imdb": "https://www.imdb.com/title/tt0056172",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 71,
@@ -1275,7 +2180,20 @@ export const movies = [
     "duration": "125 min",
     "trailer": "",
     "kinopoiskId": 404,
-    "imdb": "https://www.imdb.com/title/tt0053604"
+    "imdb": "https://www.imdb.com/title/tt0053604",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 72,
@@ -1293,7 +2211,20 @@ export const movies = [
     "duration": "112 min",
     "trailer": "",
     "kinopoiskId": 535341,
-    "imdb": "https://www.imdb.com/title/tt1675434"
+    "imdb": "https://www.imdb.com/title/tt1675434",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 73,
@@ -1311,7 +2242,20 @@ export const movies = [
     "duration": "87 min",
     "trailer": "",
     "kinopoiskId": 408,
-    "imdb": "https://www.imdb.com/title/tt0027977"
+    "imdb": "https://www.imdb.com/title/tt0027977",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 74,
@@ -1329,7 +2273,20 @@ export const movies = [
     "duration": "137 min",
     "trailer": "",
     "kinopoiskId": 444,
-    "imdb": "https://www.imdb.com/title/tt0103064"
+    "imdb": "https://www.imdb.com/title/tt0103064",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 75,
@@ -1347,7 +2304,20 @@ export const movies = [
     "duration": "146 min",
     "trailer": "",
     "kinopoiskId": 409,
-    "imdb": "https://www.imdb.com/title/tt0081505"
+    "imdb": "https://www.imdb.com/title/tt0081505",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 76,
@@ -1365,7 +2335,20 @@ export const movies = [
     "duration": "127 min",
     "trailer": "",
     "kinopoiskId": 472,
-    "imdb": "https://www.imdb.com/title/tt0097576"
+    "imdb": "https://www.imdb.com/title/tt0097576",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 77,
@@ -1383,7 +2366,20 @@ export const movies = [
     "duration": "119 min",
     "trailer": "",
     "kinopoiskId": 382,
-    "imdb": "https://www.imdb.com/title/tt0120586"
+    "imdb": "https://www.imdb.com/title/tt0120586",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 78,
@@ -1401,7 +2397,20 @@ export const movies = [
     "duration": "150 min",
     "trailer": "",
     "kinopoiskId": 355,
-    "imdb": "https://www.imdb.com/title/tt0253474"
+    "imdb": "https://www.imdb.com/title/tt0253474",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 79,
@@ -1419,7 +2428,20 @@ export const movies = [
     "duration": "106 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt2582802"
+    "imdb": "https://www.imdb.com/title/tt2582802",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 80,
@@ -1437,7 +2459,20 @@ export const movies = [
     "duration": "112 min",
     "trailer": "",
     "kinopoiskId": 337,
-    "imdb": "https://www.imdb.com/title/tt0047396"
+    "imdb": "https://www.imdb.com/title/tt0047396",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 81,
@@ -1455,7 +2490,20 @@ export const movies = [
     "duration": "45 min",
     "trailer": "",
     "kinopoiskId": 11380,
-    "imdb": "https://www.imdb.com/title/tt0015324"
+    "imdb": "https://www.imdb.com/title/tt0015324",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 82,
@@ -1473,7 +2521,20 @@ export const movies = [
     "duration": "128 min",
     "trailer": "",
     "kinopoiskId": 352,
-    "imdb": "https://www.imdb.com/title/tt0052357"
+    "imdb": "https://www.imdb.com/title/tt0052357",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 83,
@@ -1491,7 +2552,20 @@ export const movies = [
     "duration": "162 min",
     "trailer": "",
     "kinopoiskId": 280562,
-    "imdb": "https://www.imdb.com/title/tt0986264"
+    "imdb": "https://www.imdb.com/title/tt0986264",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 84,
@@ -1509,7 +2583,20 @@ export const movies = [
     "duration": "174 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0095765"
+    "imdb": "https://www.imdb.com/title/tt0095765",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 85,
@@ -1527,7 +2614,20 @@ export const movies = [
     "duration": "142 min",
     "trailer": "",
     "kinopoiskId": 42571,
-    "imdb": "https://www.imdb.com/title/tt0091251"
+    "imdb": "https://www.imdb.com/title/tt0091251",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 86,
@@ -1545,7 +2645,20 @@ export const movies = [
     "duration": "140 min",
     "trailer": "",
     "kinopoiskId": 47237,
-    "imdb": "https://www.imdb.com/title/tt0372784"
+    "imdb": "https://www.imdb.com/title/tt0372784",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 87,
@@ -1563,7 +2676,20 @@ export const movies = [
     "duration": "136 min",
     "trailer": "",
     "kinopoiskId": 391,
-    "imdb": "https://www.imdb.com/title/tt0066921"
+    "imdb": "https://www.imdb.com/title/tt0066921",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 9,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 88,
@@ -1581,7 +2707,20 @@ export const movies = [
     "duration": "153 min",
     "trailer": "",
     "kinopoiskId": 417,
-    "imdb": "https://www.imdb.com/title/tt0017136"
+    "imdb": "https://www.imdb.com/title/tt0017136",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 89,
@@ -1599,7 +2738,20 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 8219,
-    "imdb": "https://www.imdb.com/title/tt0095327"
+    "imdb": "https://www.imdb.com/title/tt0095327",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 90,
@@ -1617,7 +2769,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 364,
-    "imdb": "https://www.imdb.com/title/tt0036775"
+    "imdb": "https://www.imdb.com/title/tt0036775",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 91,
@@ -1635,7 +2800,20 @@ export const movies = [
     "duration": "103 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0045152"
+    "imdb": "https://www.imdb.com/title/tt0045152",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 92,
@@ -1653,7 +2831,20 @@ export const movies = [
     "duration": "132 min",
     "trailer": "",
     "kinopoiskId": 8190,
-    "imdb": "https://www.imdb.com/title/tt0059578"
+    "imdb": "https://www.imdb.com/title/tt0059578",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 93,
@@ -1671,7 +2862,20 @@ export const movies = [
     "duration": "103 min",
     "trailer": "",
     "kinopoiskId": 258328,
-    "imdb": "https://www.imdb.com/title/tt0435761"
+    "imdb": "https://www.imdb.com/title/tt0435761",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 94,
@@ -1689,7 +2893,20 @@ export const movies = [
     "duration": "126 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0040897"
+    "imdb": "https://www.imdb.com/title/tt0040897",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 95,
@@ -1707,7 +2924,20 @@ export const movies = [
     "duration": "91 min",
     "trailer": "",
     "kinopoiskId": 375,
-    "imdb": "https://www.imdb.com/title/tt0071853"
+    "imdb": "https://www.imdb.com/title/tt0071853",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 96,
@@ -1725,7 +2955,18 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 526,
-    "imdb": "https://www.imdb.com/title/tt0208092"
+    "imdb": "https://www.imdb.com/title/tt0208092",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "id": 97,
@@ -1743,7 +2984,20 @@ export const movies = [
     "duration": "170 min",
     "trailer": "",
     "kinopoiskId": 4695,
-    "imdb": "https://www.imdb.com/title/tt0086250"
+    "imdb": "https://www.imdb.com/title/tt0086250",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 98,
@@ -1761,7 +3015,20 @@ export const movies = [
     "duration": "149 min",
     "trailer": "",
     "kinopoiskId": 380,
-    "imdb": "https://www.imdb.com/title/tt0062622"
+    "imdb": "https://www.imdb.com/title/tt0062622",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 9,
+      "emotion": 5,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 99,
@@ -1779,7 +3046,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 451,
-    "imdb": "https://www.imdb.com/title/tt0105695"
+    "imdb": "https://www.imdb.com/title/tt0105695",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 3
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 100,
@@ -1797,7 +3077,20 @@ export const movies = [
     "duration": "119 min",
     "trailer": "",
     "kinopoiskId": 331,
-    "imdb": "https://www.imdb.com/title/tt0033467"
+    "imdb": "https://www.imdb.com/title/tt0033467",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 101,
@@ -1815,7 +3108,20 @@ export const movies = [
     "duration": "99 min",
     "trailer": "",
     "kinopoiskId": 373,
-    "imdb": "https://www.imdb.com/title/tt0022100"
+    "imdb": "https://www.imdb.com/title/tt0022100",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 102,
@@ -1833,7 +3139,20 @@ export const movies = [
     "duration": "114 min",
     "trailer": "",
     "kinopoiskId": 358,
-    "imdb": "https://www.imdb.com/title/tt0075314"
+    "imdb": "https://www.imdb.com/title/tt0075314",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 103,
@@ -1851,7 +3170,19 @@ export const movies = [
     "duration": "165 min",
     "trailer": "",
     "kinopoiskId": 586397,
-    "imdb": "https://www.imdb.com/title/tt1853728"
+    "imdb": "https://www.imdb.com/title/tt1853728",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 104,
@@ -1869,7 +3200,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 418,
-    "imdb": "https://www.imdb.com/title/tt0093058"
+    "imdb": "https://www.imdb.com/title/tt0093058",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 105,
@@ -1887,7 +3231,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 357,
-    "imdb": "https://www.imdb.com/title/tt0056592"
+    "imdb": "https://www.imdb.com/title/tt0056592",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 106,
@@ -1905,7 +3262,20 @@ export const movies = [
     "duration": "132 min",
     "trailer": "",
     "kinopoiskId": 471,
-    "imdb": "https://www.imdb.com/title/tt0095016"
+    "imdb": "https://www.imdb.com/title/tt0095016",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 107,
@@ -1923,7 +3293,20 @@ export const movies = [
     "duration": "161 min",
     "trailer": "",
     "kinopoiskId": 369,
-    "imdb": "https://www.imdb.com/title/tt0050212"
+    "imdb": "https://www.imdb.com/title/tt0050212",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 108,
@@ -1941,7 +3324,20 @@ export const movies = [
     "duration": "143 min",
     "trailer": "",
     "kinopoiskId": 64131,
-    "imdb": "https://www.imdb.com/title/tt0044741"
+    "imdb": "https://www.imdb.com/title/tt0044741",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 109,
@@ -1959,7 +3355,20 @@ export const movies = [
     "duration": "83 min",
     "trailer": "",
     "kinopoiskId": 551,
-    "imdb": "https://www.imdb.com/title/tt0029583"
+    "imdb": "https://www.imdb.com/title/tt0029583",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 110,
@@ -1977,7 +3386,20 @@ export const movies = [
     "duration": "121 min",
     "trailer": "",
     "kinopoiskId": 356,
-    "imdb": "https://www.imdb.com/title/tt0053291"
+    "imdb": "https://www.imdb.com/title/tt0053291",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 111,
@@ -1995,7 +3417,19 @@ export const movies = [
     "duration": "145 min",
     "trailer": "",
     "kinopoiskId": 4401,
-    "imdb": "https://www.imdb.com/title/tt0087884"
+    "imdb": "https://www.imdb.com/title/tt0087884",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 112,
@@ -2013,7 +3447,20 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 388,
-    "imdb": "https://www.imdb.com/title/tt0042876"
+    "imdb": "https://www.imdb.com/title/tt0042876",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 113,
@@ -2031,7 +3478,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 372,
-    "imdb": "https://www.imdb.com/title/tt0042192"
+    "imdb": "https://www.imdb.com/title/tt0042192",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 114,
@@ -2049,7 +3509,20 @@ export const movies = [
     "duration": "172 min",
     "trailer": "",
     "kinopoiskId": 392,
-    "imdb": "https://www.imdb.com/title/tt0057115"
+    "imdb": "https://www.imdb.com/title/tt0057115",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 9,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 115,
@@ -2067,7 +3540,19 @@ export const movies = [
     "duration": "126 min",
     "trailer": "",
     "kinopoiskId": 539,
-    "imdb": "https://www.imdb.com/title/tt0119217"
+    "imdb": "https://www.imdb.com/title/tt0119217",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 116,
@@ -2085,7 +3570,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 383,
-    "imdb": "https://www.imdb.com/title/tt0070735"
+    "imdb": "https://www.imdb.com/title/tt0070735",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 117,
@@ -2103,7 +3601,20 @@ export const movies = [
     "duration": "238 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0031381"
+    "imdb": "https://www.imdb.com/title/tt0031381",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 118,
@@ -2121,7 +3632,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 535,
-    "imdb": "https://www.imdb.com/title/tt0056801"
+    "imdb": "https://www.imdb.com/title/tt0056801",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 119,
@@ -2139,7 +3663,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 446,
-    "imdb": "https://www.imdb.com/title/tt0032551"
+    "imdb": "https://www.imdb.com/title/tt0032551",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 120,
@@ -2157,7 +3694,20 @@ export const movies = [
     "duration": "105 min",
     "trailer": "",
     "kinopoiskId": 9028,
-    "imdb": "https://www.imdb.com/title/tt0046912"
+    "imdb": "https://www.imdb.com/title/tt0046912",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 121,
@@ -2175,7 +3725,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": 412,
-    "imdb": "https://www.imdb.com/title/tt0093779"
+    "imdb": "https://www.imdb.com/title/tt0093779",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 4,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 122,
@@ -2193,7 +3756,20 @@ export const movies = [
     "duration": "164 min",
     "trailer": "",
     "kinopoiskId": 437410,
-    "imdb": "https://www.imdb.com/title/tt1345836"
+    "imdb": "https://www.imdb.com/title/tt1345836",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 123,
@@ -2211,7 +3787,20 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": 384,
-    "imdb": "https://www.imdb.com/title/tt0052311"
+    "imdb": "https://www.imdb.com/title/tt0052311",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 124,
@@ -2229,7 +3818,19 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 6462,
-    "imdb": "https://www.imdb.com/title/tt0075148"
+    "imdb": "https://www.imdb.com/title/tt0075148",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 125,
@@ -2247,7 +3848,20 @@ export const movies = [
     "duration": "170 min",
     "trailer": "",
     "kinopoiskId": 429,
-    "imdb": "https://www.imdb.com/title/tt0036868"
+    "imdb": "https://www.imdb.com/title/tt0036868",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 126,
@@ -2265,7 +3879,20 @@ export const movies = [
     "duration": "178 min",
     "trailer": "",
     "kinopoiskId": 2494,
-    "imdb": "https://www.imdb.com/title/tt0112641"
+    "imdb": "https://www.imdb.com/title/tt0112641",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 127,
@@ -2283,7 +3910,20 @@ export const movies = [
     "duration": "170 min",
     "trailer": "",
     "kinopoiskId": 571,
-    "imdb": "https://www.imdb.com/title/tt0113277"
+    "imdb": "https://www.imdb.com/title/tt0113277",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 128,
@@ -2301,7 +3941,20 @@ export const movies = [
     "duration": "160 min",
     "trailer": "",
     "kinopoiskId": 400,
-    "imdb": "https://www.imdb.com/title/tt0089881"
+    "imdb": "https://www.imdb.com/title/tt0089881",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 129,
@@ -2319,7 +3972,20 @@ export const movies = [
     "duration": "212 min",
     "trailer": "",
     "kinopoiskId": 436,
-    "imdb": "https://www.imdb.com/title/tt0052618"
+    "imdb": "https://www.imdb.com/title/tt0052618",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 130,
@@ -2337,7 +4003,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 407,
-    "imdb": "https://www.imdb.com/title/tt0044079"
+    "imdb": "https://www.imdb.com/title/tt0044079",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 131,
@@ -2355,7 +4034,20 @@ export const movies = [
     "duration": "170 min",
     "trailer": "",
     "kinopoiskId": 423210,
-    "imdb": "https://www.imdb.com/title/tt1187043"
+    "imdb": "https://www.imdb.com/title/tt1187043",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 132,
@@ -2373,7 +4065,20 @@ export const movies = [
     "duration": "185 min",
     "trailer": "",
     "kinopoiskId": 5032,
-    "imdb": "https://www.imdb.com/title/tt0072684"
+    "imdb": "https://www.imdb.com/title/tt0072684",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 133,
@@ -2391,7 +4096,20 @@ export const movies = [
     "duration": "112 min",
     "trailer": "",
     "kinopoiskId": 231096,
-    "imdb": "https://www.imdb.com/title/tt0476735"
+    "imdb": "https://www.imdb.com/title/tt0476735",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 134,
@@ -2409,7 +4127,20 @@ export const movies = [
     "duration": "156 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0046268"
+    "imdb": "https://www.imdb.com/title/tt0046268",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 135,
@@ -2427,7 +4158,20 @@ export const movies = [
     "duration": "119 min",
     "trailer": "",
     "kinopoiskId": 49684,
-    "imdb": "https://www.imdb.com/title/tt0347149"
+    "imdb": "https://www.imdb.com/title/tt0347149",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 136,
@@ -2445,7 +4189,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 365,
-    "imdb": "https://www.imdb.com/title/tt0071315"
+    "imdb": "https://www.imdb.com/title/tt0071315",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 137,
@@ -2463,7 +4220,20 @@ export const movies = [
     "duration": "109 min",
     "trailer": "",
     "kinopoiskId": 8366,
-    "imdb": "https://www.imdb.com/title/tt0084787"
+    "imdb": "https://www.imdb.com/title/tt0084787",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 138,
@@ -2481,7 +4251,20 @@ export const movies = [
     "duration": "111 min",
     "trailer": "",
     "kinopoiskId": 2717,
-    "imdb": "https://www.imdb.com/title/tt0266697"
+    "imdb": "https://www.imdb.com/title/tt0266697",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 4,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 139,
@@ -2499,7 +4282,20 @@ export const movies = [
     "duration": "86 min",
     "trailer": "",
     "kinopoiskId": 8221,
-    "imdb": "https://www.imdb.com/title/tt0096283"
+    "imdb": "https://www.imdb.com/title/tt0096283",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 140,
@@ -2517,7 +4313,20 @@ export const movies = [
     "duration": "115 min",
     "trailer": "",
     "kinopoiskId": 647671,
-    "imdb": "https://www.imdb.com/title/tt2106476"
+    "imdb": "https://www.imdb.com/title/tt2106476",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 141,
@@ -2535,7 +4344,19 @@ export const movies = [
     "duration": "121 min",
     "trailer": "",
     "kinopoiskId": 8384,
-    "imdb": "https://www.imdb.com/title/tt0058946"
+    "imdb": "https://www.imdb.com/title/tt0058946",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 142,
@@ -2553,7 +4374,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 18368,
-    "imdb": "https://www.imdb.com/title/tt0112471"
+    "imdb": "https://www.imdb.com/title/tt0112471",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 143,
@@ -2571,7 +4405,20 @@ export const movies = [
     "duration": "179 min",
     "trailer": "",
     "kinopoiskId": 13738,
-    "imdb": "https://www.imdb.com/title/tt0055031"
+    "imdb": "https://www.imdb.com/title/tt0055031",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 144,
@@ -2589,7 +4436,20 @@ export const movies = [
     "duration": "100 min",
     "trailer": "",
     "kinopoiskId": 7908,
-    "imdb": "https://www.imdb.com/title/tt0266543"
+    "imdb": "https://www.imdb.com/title/tt0266543",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 145,
@@ -2607,7 +4467,20 @@ export const movies = [
     "duration": "174 min",
     "trailer": "",
     "kinopoiskId": 7665,
-    "imdb": "https://www.imdb.com/title/tt0059742"
+    "imdb": "https://www.imdb.com/title/tt0059742",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 146,
@@ -2625,7 +4498,19 @@ export const movies = [
     "duration": "94 min",
     "trailer": "",
     "kinopoiskId": 485,
-    "imdb": "https://www.imdb.com/title/tt0079470"
+    "imdb": "https://www.imdb.com/title/tt0079470",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 147,
@@ -2643,7 +4528,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 428003,
-    "imdb": "https://www.imdb.com/title/tt1305806"
+    "imdb": "https://www.imdb.com/title/tt1305806",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 148,
@@ -2661,7 +4559,20 @@ export const movies = [
     "duration": "100 min",
     "trailer": "",
     "kinopoiskId": 366,
-    "imdb": "https://www.imdb.com/title/tt0033870"
+    "imdb": "https://www.imdb.com/title/tt0033870",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 149,
@@ -2679,7 +4590,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 403,
-    "imdb": "https://www.imdb.com/title/tt0083658"
+    "imdb": "https://www.imdb.com/title/tt0083658",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 150,
@@ -2697,7 +4621,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 555,
-    "imdb": "https://www.imdb.com/title/tt0118715"
+    "imdb": "https://www.imdb.com/title/tt0118715",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 151,
@@ -2715,7 +4652,20 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 419,
-    "imdb": "https://www.imdb.com/title/tt0038787"
+    "imdb": "https://www.imdb.com/title/tt0038787",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 152,
@@ -2733,7 +4683,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 426,
-    "imdb": "https://www.imdb.com/title/tt0032976"
+    "imdb": "https://www.imdb.com/title/tt0032976",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 153,
@@ -2751,7 +4714,20 @@ export const movies = [
     "duration": "83 min",
     "trailer": "",
     "kinopoiskId": 79506,
-    "imdb": "https://www.imdb.com/title/tt0060827"
+    "imdb": "https://www.imdb.com/title/tt0060827",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 154,
@@ -2769,7 +4745,20 @@ export const movies = [
     "duration": "137 min",
     "trailer": "",
     "kinopoiskId": 79836,
-    "imdb": "https://www.imdb.com/title/tt0046438"
+    "imdb": "https://www.imdb.com/title/tt0046438",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 155,
@@ -2787,7 +4776,20 @@ export const movies = [
     "duration": "99 min",
     "trailer": "",
     "kinopoiskId": 510,
-    "imdb": "https://www.imdb.com/title/tt0053198"
+    "imdb": "https://www.imdb.com/title/tt0053198",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 156,
@@ -2805,7 +4807,20 @@ export const movies = [
     "duration": "96 min",
     "trailer": "",
     "kinopoiskId": 425,
-    "imdb": "https://www.imdb.com/title/tt0050976"
+    "imdb": "https://www.imdb.com/title/tt0050976",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 157,
@@ -2823,7 +4838,20 @@ export const movies = [
     "duration": "128 min",
     "trailer": "",
     "kinopoiskId": 4996,
-    "imdb": "https://www.imdb.com/title/tt0097165"
+    "imdb": "https://www.imdb.com/title/tt0097165",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 158,
@@ -2841,7 +4869,20 @@ export const movies = [
     "duration": "132 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0434409"
+    "imdb": "https://www.imdb.com/title/tt0434409",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 159,
@@ -2859,7 +4900,20 @@ export const movies = [
     "duration": "92 min",
     "trailer": "",
     "kinopoiskId": 508,
-    "imdb": "https://www.imdb.com/title/tt0050986"
+    "imdb": "https://www.imdb.com/title/tt0050986",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 160,
@@ -2877,7 +4931,20 @@ export const movies = [
     "duration": "154 min",
     "trailer": "",
     "kinopoiskId": 488,
-    "imdb": "https://www.imdb.com/title/tt0245712"
+    "imdb": "https://www.imdb.com/title/tt0245712",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 161,
@@ -2895,7 +4962,20 @@ export const movies = [
     "duration": "128 min",
     "trailer": "",
     "kinopoiskId": 71179,
-    "imdb": "https://www.imdb.com/title/tt0116231"
+    "imdb": "https://www.imdb.com/title/tt0116231",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 162,
@@ -2913,7 +4993,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 39775,
-    "imdb": "https://www.imdb.com/title/tt0066763"
+    "imdb": "https://www.imdb.com/title/tt0066763",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 163,
@@ -2931,7 +5024,20 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": 478,
-    "imdb": "https://www.imdb.com/title/tt0015864"
+    "imdb": "https://www.imdb.com/title/tt0015864",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 164,
@@ -2949,7 +5055,20 @@ export const movies = [
     "duration": "108 min",
     "trailer": "",
     "kinopoiskId": 398,
-    "imdb": "https://www.imdb.com/title/tt0047296"
+    "imdb": "https://www.imdb.com/title/tt0047296",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 165,
@@ -2967,7 +5086,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": 445,
-    "imdb": "https://www.imdb.com/title/tt0055630"
+    "imdb": "https://www.imdb.com/title/tt0055630",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 166,
@@ -2985,7 +5117,19 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 79856,
-    "imdb": "https://www.imdb.com/title/tt0050706"
+    "imdb": "https://www.imdb.com/title/tt0050706",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 167,
@@ -3003,7 +5147,20 @@ export const movies = [
     "duration": "89 min",
     "trailer": "",
     "kinopoiskId": 76749,
-    "imdb": "https://www.imdb.com/title/tt0118849"
+    "imdb": "https://www.imdb.com/title/tt0118849",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 168,
@@ -3021,7 +5178,20 @@ export const movies = [
     "duration": "93 min",
     "trailer": "",
     "kinopoiskId": 390,
-    "imdb": "https://www.imdb.com/title/tt0075686"
+    "imdb": "https://www.imdb.com/title/tt0075686",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 169,
@@ -3039,7 +5209,20 @@ export const movies = [
     "duration": "183 min",
     "trailer": "",
     "kinopoiskId": 428,
-    "imdb": "https://www.imdb.com/title/tt0077416"
+    "imdb": "https://www.imdb.com/title/tt0077416",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 170,
@@ -3057,7 +5240,20 @@ export const movies = [
     "duration": "133 min",
     "trailer": "",
     "kinopoiskId": 4885,
-    "imdb": "https://www.imdb.com/title/tt0107207"
+    "imdb": "https://www.imdb.com/title/tt0107207",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 171,
@@ -3075,7 +5271,20 @@ export const movies = [
     "duration": "85 min",
     "trailer": "",
     "kinopoiskId": 401,
-    "imdb": "https://www.imdb.com/title/tt0044706"
+    "imdb": "https://www.imdb.com/title/tt0044706",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 172,
@@ -3093,7 +5302,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 396,
-    "imdb": "https://www.imdb.com/title/tt0073195"
+    "imdb": "https://www.imdb.com/title/tt0073195",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 173,
@@ -3111,7 +5333,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0116282"
+    "imdb": "https://www.imdb.com/title/tt0116282",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 174,
@@ -3129,7 +5364,20 @@ export const movies = [
     "duration": "105 min",
     "trailer": "",
     "kinopoiskId": 437,
-    "imdb": "https://www.imdb.com/title/tt0025316"
+    "imdb": "https://www.imdb.com/title/tt0025316",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 175,
@@ -3147,7 +5395,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 464,
-    "imdb": "https://www.imdb.com/title/tt0080678"
+    "imdb": "https://www.imdb.com/title/tt0080678",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 176,
@@ -3165,7 +5426,20 @@ export const movies = [
     "duration": "131 min",
     "trailer": "",
     "kinopoiskId": 65770,
-    "imdb": "https://www.imdb.com/title/tt0353969"
+    "imdb": "https://www.imdb.com/title/tt0353969",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 177,
@@ -3183,7 +5457,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 468,
-    "imdb": "https://www.imdb.com/title/tt0091763"
+    "imdb": "https://www.imdb.com/title/tt0091763",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 178,
@@ -3201,7 +5488,20 @@ export const movies = [
     "duration": "152 min",
     "trailer": "",
     "kinopoiskId": 835086,
-    "imdb": "https://www.imdb.com/title/tt1950186"
+    "imdb": "https://www.imdb.com/title/tt1950186",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 179,
@@ -3219,7 +5519,20 @@ export const movies = [
     "duration": "121 min",
     "trailer": "",
     "kinopoiskId": 520,
-    "imdb": "https://www.imdb.com/title/tt0074958"
+    "imdb": "https://www.imdb.com/title/tt0074958",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 180,
@@ -3237,7 +5550,20 @@ export const movies = [
     "duration": "93 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt1028532"
+    "imdb": "https://www.imdb.com/title/tt1028532",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 181,
@@ -3255,7 +5581,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0046911"
+    "imdb": "https://www.imdb.com/title/tt0046911",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 182,
@@ -3273,7 +5612,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 195434,
-    "imdb": "https://www.imdb.com/title/tt0477348"
+    "imdb": "https://www.imdb.com/title/tt0477348",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 183,
@@ -3291,7 +5643,20 @@ export const movies = [
     "duration": "148 min",
     "trailer": "",
     "kinopoiskId": 252626,
-    "imdb": "https://www.imdb.com/title/tt0758758"
+    "imdb": "https://www.imdb.com/title/tt0758758",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 184,
@@ -3309,7 +5674,20 @@ export const movies = [
     "duration": "149 min",
     "trailer": "",
     "kinopoiskId": 692861,
-    "imdb": "https://www.imdb.com/title/tt2267998"
+    "imdb": "https://www.imdb.com/title/tt2267998",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 185,
@@ -3327,7 +5705,20 @@ export const movies = [
     "duration": "111 min",
     "trailer": "",
     "kinopoiskId": 89514,
-    "imdb": "https://www.imdb.com/title/tt0382932"
+    "imdb": "https://www.imdb.com/title/tt0382932",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 186,
@@ -3345,7 +5736,20 @@ export const movies = [
     "duration": "132 min",
     "trailer": "",
     "kinopoiskId": 81297,
-    "imdb": "https://www.imdb.com/title/tt0405159"
+    "imdb": "https://www.imdb.com/title/tt0405159",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 187,
@@ -3363,7 +5767,20 @@ export const movies = [
     "duration": "118 min",
     "trailer": "",
     "kinopoiskId": 103733,
-    "imdb": "https://www.imdb.com/title/tt0457430"
+    "imdb": "https://www.imdb.com/title/tt0457430",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 188,
@@ -3381,7 +5798,20 @@ export const movies = [
     "duration": "127 min",
     "trailer": "",
     "kinopoiskId": 7121,
-    "imdb": "https://www.imdb.com/title/tt0107290"
+    "imdb": "https://www.imdb.com/title/tt0107290",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 189,
@@ -3399,7 +5829,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 374,
-    "imdb": "https://www.imdb.com/title/tt0081398"
+    "imdb": "https://www.imdb.com/title/tt0081398",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 190,
@@ -3417,7 +5860,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 491,
-    "imdb": "https://www.imdb.com/title/tt0070047"
+    "imdb": "https://www.imdb.com/title/tt0070047",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 191,
@@ -3435,7 +5891,20 @@ export const movies = [
     "duration": "123 min",
     "trailer": "",
     "kinopoiskId": 579739,
-    "imdb": "https://www.imdb.com/title/tt1832382"
+    "imdb": "https://www.imdb.com/title/tt1832382",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 192,
@@ -3453,7 +5922,20 @@ export const movies = [
     "duration": "93 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0117951"
+    "imdb": "https://www.imdb.com/title/tt0117951",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 193,
@@ -3471,7 +5953,20 @@ export const movies = [
     "duration": "92 min",
     "trailer": "",
     "kinopoiskId": 378246,
-    "imdb": "https://www.imdb.com/title/tt0978762"
+    "imdb": "https://www.imdb.com/title/tt0978762",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 194,
@@ -3489,7 +5984,20 @@ export const movies = [
     "duration": "188 min",
     "trailer": "",
     "kinopoiskId": 8400,
-    "imdb": "https://www.imdb.com/title/tt0083922"
+    "imdb": "https://www.imdb.com/title/tt0083922",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 195,
@@ -3507,7 +6015,18 @@ export const movies = [
     "duration": "92 min",
     "trailer": "",
     "kinopoiskId": 2389,
-    "imdb": "https://www.imdb.com/title/tt0094721"
+    "imdb": "https://www.imdb.com/title/tt0094721",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 196,
@@ -3525,7 +6044,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 4328,
-    "imdb": "https://www.imdb.com/title/tt0097216"
+    "imdb": "https://www.imdb.com/title/tt0097216",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 197,
@@ -3543,7 +6075,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": 245805,
-    "imdb": "https://www.imdb.com/title/tt0100234"
+    "imdb": "https://www.imdb.com/title/tt0100234",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 198,
@@ -3561,7 +6106,20 @@ export const movies = [
     "duration": "90 min",
     "trailer": "",
     "kinopoiskId": 2361,
-    "imdb": "https://www.imdb.com/title/tt0103639"
+    "imdb": "https://www.imdb.com/title/tt0103639",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 199,
@@ -3579,7 +6137,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 1588,
-    "imdb": "https://www.imdb.com/title/tt0104257"
+    "imdb": "https://www.imdb.com/title/tt0104257",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 200,
@@ -3597,7 +6168,20 @@ export const movies = [
     "duration": "144 min",
     "trailer": "",
     "kinopoiskId": 4275,
-    "imdb": "https://www.imdb.com/title/tt0106519"
+    "imdb": "https://www.imdb.com/title/tt0106519",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 201,
@@ -3615,7 +6199,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 527,
-    "imdb": "https://www.imdb.com/title/tt0107048"
+    "imdb": "https://www.imdb.com/title/tt0107048",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 202,
@@ -3633,7 +6230,20 @@ export const movies = [
     "duration": "105 min",
     "trailer": "",
     "kinopoiskId": 1573,
-    "imdb": "https://www.imdb.com/title/tt0108160"
+    "imdb": "https://www.imdb.com/title/tt0108160",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 203,
@@ -3651,7 +6261,20 @@ export const movies = [
     "duration": "123 min",
     "trailer": "",
     "kinopoiskId": 8151,
-    "imdb": "https://www.imdb.com/title/tt0110148"
+    "imdb": "https://www.imdb.com/title/tt0110148",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 204,
@@ -3669,7 +6292,20 @@ export const movies = [
     "duration": "140 min",
     "trailer": "",
     "kinopoiskId": 2217,
-    "imdb": "https://www.imdb.com/title/tt0112384"
+    "imdb": "https://www.imdb.com/title/tt0112384",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 205,
@@ -3687,7 +6323,20 @@ export const movies = [
     "duration": "145 min",
     "trailer": "",
     "kinopoiskId": 2022,
-    "imdb": "https://www.imdb.com/title/tt0116629"
+    "imdb": "https://www.imdb.com/title/tt0116629",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 206,
@@ -3705,7 +6354,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": 3961,
-    "imdb": "https://www.imdb.com/title/tt0117060"
+    "imdb": "https://www.imdb.com/title/tt0117060",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 207,
@@ -3723,7 +6385,20 @@ export const movies = [
     "duration": "89 min",
     "trailer": "",
     "kinopoiskId": 8163,
-    "imdb": "https://www.imdb.com/title/tt0118689"
+    "imdb": "https://www.imdb.com/title/tt0118689",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 208,
@@ -3741,7 +6416,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 12198,
-    "imdb": "https://www.imdb.com/title/tt0119174"
+    "imdb": "https://www.imdb.com/title/tt0119174",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 209,
@@ -3759,7 +6447,20 @@ export const movies = [
     "duration": "103 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0120382"
+    "imdb": "https://www.imdb.com/title/tt0120382",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 210,
@@ -3777,7 +6478,19 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 522,
-    "imdb": "https://www.imdb.com/title/tt0120735"
+    "imdb": "https://www.imdb.com/title/tt0120735",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🔥 Pure Action",
+      "⚡ High Energy",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "id": 211,
@@ -3795,7 +6508,20 @@ export const movies = [
     "duration": "140 min",
     "trailer": "",
     "kinopoiskId": 5619,
-    "imdb": "https://www.imdb.com/title/tt0121766"
+    "imdb": "https://www.imdb.com/title/tt0121766",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 7,
+      "intellect": 4,
+      "emotion": 6,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 212,
@@ -3813,7 +6539,20 @@ export const movies = [
     "duration": "142 min",
     "trailer": "",
     "kinopoiskId": 844,
-    "imdb": "https://www.imdb.com/title/tt0121765"
+    "imdb": "https://www.imdb.com/title/tt0121765",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 213,
@@ -3831,7 +6570,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 6146,
-    "imdb": "https://www.imdb.com/title/tt0125439"
+    "imdb": "https://www.imdb.com/title/tt0125439",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 214,
@@ -3849,7 +6601,20 @@ export const movies = [
     "duration": "90 min",
     "trailer": "",
     "kinopoiskId": 430,
-    "imdb": "https://www.imdb.com/title/tt0126029"
+    "imdb": "https://www.imdb.com/title/tt0126029",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 4,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 215,
@@ -3867,7 +6632,20 @@ export const movies = [
     "duration": "139 min",
     "trailer": "",
     "kinopoiskId": 5558,
-    "imdb": "https://www.imdb.com/title/tt0134119"
+    "imdb": "https://www.imdb.com/title/tt0134119",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 216,
@@ -3885,7 +6663,20 @@ export const movies = [
     "duration": "119 min",
     "trailer": "",
     "kinopoiskId": 6871,
-    "imdb": "https://www.imdb.com/title/tt0163978"
+    "imdb": "https://www.imdb.com/title/tt0163978",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 217,
@@ -3903,7 +6694,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 395,
-    "imdb": "https://www.imdb.com/title/tt0167404"
+    "imdb": "https://www.imdb.com/title/tt0167404",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 218,
@@ -3921,7 +6725,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 378,
-    "imdb": "https://www.imdb.com/title/tt0190332"
+    "imdb": "https://www.imdb.com/title/tt0190332",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 219,
@@ -3939,7 +6756,20 @@ export const movies = [
     "duration": "92 min",
     "trailer": "",
     "kinopoiskId": 458,
-    "imdb": "https://www.imdb.com/title/tt0198781"
+    "imdb": "https://www.imdb.com/title/tt0198781",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 220,
@@ -3957,7 +6787,20 @@ export const movies = [
     "duration": "113 min",
     "trailer": "",
     "kinopoiskId": 410,
-    "imdb": "https://www.imdb.com/title/tt0246578"
+    "imdb": "https://www.imdb.com/title/tt0246578",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 221,
@@ -3975,7 +6818,20 @@ export const movies = [
     "duration": "141 min",
     "trailer": "",
     "kinopoiskId": 324,
-    "imdb": "https://www.imdb.com/title/tt0264464"
+    "imdb": "https://www.imdb.com/title/tt0264464",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 222,
@@ -3993,7 +6849,20 @@ export const movies = [
     "duration": "135 min",
     "trailer": "",
     "kinopoiskId": 530,
-    "imdb": "https://www.imdb.com/title/tt0268978"
+    "imdb": "https://www.imdb.com/title/tt0268978",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 9,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 223,
@@ -4011,7 +6880,20 @@ export const movies = [
     "duration": "137 min",
     "trailer": "",
     "kinopoiskId": 683,
-    "imdb": "https://www.imdb.com/title/tt0280707"
+    "imdb": "https://www.imdb.com/title/tt0280707",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 224,
@@ -4029,7 +6911,20 @@ export const movies = [
     "duration": "161 min",
     "trailer": "",
     "kinopoiskId": 688,
-    "imdb": "https://www.imdb.com/title/tt0295297"
+    "imdb": "https://www.imdb.com/title/tt0295297",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 225,
@@ -4047,7 +6942,20 @@ export const movies = [
     "duration": "142 min",
     "trailer": "",
     "kinopoiskId": 322,
-    "imdb": "https://www.imdb.com/title/tt0304141"
+    "imdb": "https://www.imdb.com/title/tt0304141",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 226,
@@ -4065,7 +6973,20 @@ export const movies = [
     "duration": "115 min",
     "trailer": "",
     "kinopoiskId": 38903,
-    "imdb": "https://www.imdb.com/title/tt0317705"
+    "imdb": "https://www.imdb.com/title/tt0317705",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 227,
@@ -4083,7 +7004,20 @@ export const movies = [
     "duration": "143 min",
     "trailer": "",
     "kinopoiskId": 4374,
-    "imdb": "https://www.imdb.com/title/tt0325980"
+    "imdb": "https://www.imdb.com/title/tt0325980",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 228,
@@ -4101,7 +7035,20 @@ export const movies = [
     "duration": "123 min",
     "trailer": "",
     "kinopoiskId": 3561,
-    "imdb": "https://www.imdb.com/title/tt0332280"
+    "imdb": "https://www.imdb.com/title/tt0332280",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 229,
@@ -4119,7 +7066,20 @@ export const movies = [
     "duration": "102 min",
     "trailer": "",
     "kinopoiskId": 5930,
-    "imdb": "https://www.imdb.com/title/tt0335266"
+    "imdb": "https://www.imdb.com/title/tt0335266",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 230,
@@ -4137,7 +7097,20 @@ export const movies = [
     "duration": "115 min",
     "trailer": "",
     "kinopoiskId": 4886,
-    "imdb": "https://www.imdb.com/title/tt0343818"
+    "imdb": "https://www.imdb.com/title/tt0343818",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 231,
@@ -4155,7 +7128,20 @@ export const movies = [
     "duration": "125 min",
     "trailer": "",
     "kinopoiskId": 18294,
-    "imdb": "https://www.imdb.com/title/tt0349903"
+    "imdb": "https://www.imdb.com/title/tt0349903",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 232,
@@ -4173,7 +7159,18 @@ export const movies = [
     "duration": "94 min",
     "trailer": "",
     "kinopoiskId": 23956,
-    "imdb": "https://www.imdb.com/title/tt0357413"
+    "imdb": "https://www.imdb.com/title/tt0357413",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 233,
@@ -4191,7 +7188,20 @@ export const movies = [
     "duration": "112 min",
     "trailer": "",
     "kinopoiskId": 61297,
-    "imdb": "https://www.imdb.com/title/tt0375679"
+    "imdb": "https://www.imdb.com/title/tt0375679",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 234,
@@ -4209,7 +7219,20 @@ export const movies = [
     "duration": "80 min",
     "trailer": "",
     "kinopoiskId": 50598,
-    "imdb": "https://www.imdb.com/title/tt0381681"
+    "imdb": "https://www.imdb.com/title/tt0381681",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 235,
@@ -4227,7 +7250,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 77439,
-    "imdb": "https://www.imdb.com/title/tt0399295"
+    "imdb": "https://www.imdb.com/title/tt0399295",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 236,
@@ -4245,7 +7281,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 81289,
-    "imdb": "https://www.imdb.com/title/tt0407304"
+    "imdb": "https://www.imdb.com/title/tt0407304",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 6,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 237,
@@ -4263,7 +7312,20 @@ export const movies = [
     "duration": "164 min",
     "trailer": "",
     "kinopoiskId": 81287,
-    "imdb": "https://www.imdb.com/title/tt0408306"
+    "imdb": "https://www.imdb.com/title/tt0408306",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 238,
@@ -4281,7 +7343,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0416449"
+    "imdb": "https://www.imdb.com/title/tt0416449",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 239,
@@ -4299,7 +7374,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt0425210"
+    "imdb": "https://www.imdb.com/title/tt0425210",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 240,
@@ -4317,7 +7405,20 @@ export const movies = [
     "duration": "87 min",
     "trailer": "",
     "kinopoiskId": 86621,
-    "imdb": "https://www.imdb.com/title/tt0432283"
+    "imdb": "https://www.imdb.com/title/tt0432283",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 4,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 241,
@@ -4335,7 +7436,20 @@ export const movies = [
     "duration": "157 min",
     "trailer": "",
     "kinopoiskId": 102838,
-    "imdb": "https://www.imdb.com/title/tt0443706"
+    "imdb": "https://www.imdb.com/title/tt0443706",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 242,
@@ -4353,7 +7467,20 @@ export const movies = [
     "duration": "127 min",
     "trailer": "",
     "kinopoiskId": 158786,
-    "imdb": "https://www.imdb.com/title/tt0454876"
+    "imdb": "https://www.imdb.com/title/tt0454876",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 243,
@@ -4371,7 +7498,20 @@ export const movies = [
     "duration": "124 min",
     "trailer": "",
     "kinopoiskId": 160946,
-    "imdb": "https://www.imdb.com/title/tt0458339"
+    "imdb": "https://www.imdb.com/title/tt0458339",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 244,
@@ -4389,7 +7529,20 @@ export const movies = [
     "duration": "191 min",
     "trailer": "",
     "kinopoiskId": 103572,
-    "imdb": "https://www.imdb.com/title/tt0462322"
+    "imdb": "https://www.imdb.com/title/tt0462322",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 245,
@@ -4407,7 +7560,20 @@ export const movies = [
     "duration": "62 min",
     "trailer": "",
     "kinopoiskId": 195523,
-    "imdb": "https://www.imdb.com/title/tt0475784"
+    "imdb": "https://www.imdb.com/title/tt0475784",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 246,
@@ -4425,7 +7591,20 @@ export const movies = [
     "duration": "162 min",
     "trailer": "",
     "kinopoiskId": 251733,
-    "imdb": "https://www.imdb.com/title/tt0499549"
+    "imdb": "https://www.imdb.com/title/tt0499549",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 247,
@@ -4443,7 +7622,20 @@ export const movies = [
     "duration": "169 min",
     "trailer": "",
     "kinopoiskId": 278522,
-    "imdb": "https://www.imdb.com/title/tt0903624"
+    "imdb": "https://www.imdb.com/title/tt0903624",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 248,
@@ -4461,7 +7653,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": 279102,
-    "imdb": "https://www.imdb.com/title/tt0910970"
+    "imdb": "https://www.imdb.com/title/tt0910970",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 249,
@@ -4479,7 +7684,20 @@ export const movies = [
     "duration": "180 min",
     "trailer": "",
     "kinopoiskId": 462682,
-    "imdb": "https://www.imdb.com/title/tt0993846"
+    "imdb": "https://www.imdb.com/title/tt0993846",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🧩 Tactical Sci-Fi / Mystery",
+      "🧠 Thought-Provoking",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 250,
@@ -4497,7 +7715,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 413362,
-    "imdb": "https://www.imdb.com/title/tt1010048"
+    "imdb": "https://www.imdb.com/title/tt1010048",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 251,
@@ -4515,7 +7746,20 @@ export const movies = [
     "duration": "96 min",
     "trailer": "",
     "kinopoiskId": 325381,
-    "imdb": "https://www.imdb.com/title/tt1049413"
+    "imdb": "https://www.imdb.com/title/tt1049413",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 252,
@@ -4533,7 +7777,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt1130884"
+    "imdb": "https://www.imdb.com/title/tt1130884",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 253,
@@ -4551,7 +7808,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 407636,
-    "imdb": "https://www.imdb.com/title/tt1201607"
+    "imdb": "https://www.imdb.com/title/tt1201607",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 254,
@@ -4569,7 +7839,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 408410,
-    "imdb": "https://www.imdb.com/title/tt1205489"
+    "imdb": "https://www.imdb.com/title/tt1205489",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 255,
@@ -4587,7 +7870,20 @@ export const movies = [
     "duration": "131 min",
     "trailer": "",
     "kinopoiskId": 425400,
-    "imdb": "https://www.imdb.com/title/tt1255953"
+    "imdb": "https://www.imdb.com/title/tt1255953",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 256,
@@ -4605,7 +7901,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 427198,
-    "imdb": "https://www.imdb.com/title/tt1285016"
+    "imdb": "https://www.imdb.com/title/tt1285016",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 257,
@@ -4623,7 +7932,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 453406,
-    "imdb": "https://www.imdb.com/title/tt1392190"
+    "imdb": "https://www.imdb.com/title/tt1392190",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 258,
@@ -4641,7 +7963,20 @@ export const movies = [
     "duration": "135 min",
     "trailer": "",
     "kinopoiskId": 453397,
-    "imdb": "https://www.imdb.com/title/tt1396484"
+    "imdb": "https://www.imdb.com/title/tt1396484",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 259,
@@ -4659,7 +7994,20 @@ export const movies = [
     "duration": "146 min",
     "trailer": "",
     "kinopoiskId": 470553,
-    "imdb": "https://www.imdb.com/title/tt1454029"
+    "imdb": "https://www.imdb.com/title/tt1454029",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 260,
@@ -4677,7 +8025,20 @@ export const movies = [
     "duration": "118 min",
     "trailer": "",
     "kinopoiskId": 485311,
-    "imdb": "https://www.imdb.com/title/tt1504320"
+    "imdb": "https://www.imdb.com/title/tt1504320",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 261,
@@ -4695,7 +8056,20 @@ export const movies = [
     "duration": "130 min",
     "trailer": "",
     "kinopoiskId": 501333,
-    "imdb": "https://www.imdb.com/title/tt1596363"
+    "imdb": "https://www.imdb.com/title/tt1596363",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 262,
@@ -4713,7 +8087,20 @@ export const movies = [
     "duration": "156 min",
     "trailer": "",
     "kinopoiskId": 522941,
-    "imdb": "https://www.imdb.com/title/tt1663202"
+    "imdb": "https://www.imdb.com/title/tt1663202",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 263,
@@ -4731,7 +8118,20 @@ export const movies = [
     "duration": "126 min",
     "trailer": "",
     "kinopoiskId": 577488,
-    "imdb": "https://www.imdb.com/title/tt1798709"
+    "imdb": "https://www.imdb.com/title/tt1798709",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 264,
@@ -4749,7 +8149,20 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 834394,
-    "imdb": "https://www.imdb.com/title/tt1895587"
+    "imdb": "https://www.imdb.com/title/tt1895587",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 265,
@@ -4767,7 +8180,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 592203,
-    "imdb": "https://www.imdb.com/title/tt1907668"
+    "imdb": "https://www.imdb.com/title/tt1907668",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 266,
@@ -4785,7 +8211,20 @@ export const movies = [
     "duration": "123 min",
     "trailer": "",
     "kinopoiskId": 596125,
-    "imdb": "https://www.imdb.com/title/tt1979320"
+    "imdb": "https://www.imdb.com/title/tt1979320",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "id": 267,
@@ -4803,7 +8242,20 @@ export const movies = [
     "duration": "134 min",
     "trailer": "",
     "kinopoiskId": 606646,
-    "imdb": "https://www.imdb.com/title/tt2024544"
+    "imdb": "https://www.imdb.com/title/tt2024544",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 268,
@@ -4821,7 +8273,20 @@ export const movies = [
     "duration": "114 min",
     "trailer": "",
     "kinopoiskId": 635772,
-    "imdb": "https://www.imdb.com/title/tt2084970"
+    "imdb": "https://www.imdb.com/title/tt2084970",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 269,
@@ -4839,7 +8304,20 @@ export const movies = [
     "duration": "139 min",
     "trailer": "",
     "kinopoiskId": 649917,
-    "imdb": "https://www.imdb.com/title/tt2119532"
+    "imdb": "https://www.imdb.com/title/tt2119532",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 270,
@@ -4857,7 +8335,20 @@ export const movies = [
     "duration": "99 min",
     "trailer": "",
     "kinopoiskId": 683999,
-    "imdb": "https://www.imdb.com/title/tt2278388"
+    "imdb": "https://www.imdb.com/title/tt2278388",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 271,
@@ -4875,7 +8366,20 @@ export const movies = [
     "duration": "105 min",
     "trailer": "",
     "kinopoiskId": 679486,
-    "imdb": "https://www.imdb.com/title/tt2380307"
+    "imdb": "https://www.imdb.com/title/tt2380307",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 272,
@@ -4893,7 +8397,20 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 42664,
-    "imdb": "https://www.imdb.com/title/tt0070233"
+    "imdb": "https://www.imdb.com/title/tt0070233",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 273,
@@ -4911,7 +8428,20 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": 42782,
-    "imdb": "https://www.imdb.com/title/tt0059550"
+    "imdb": "https://www.imdb.com/title/tt0059550",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 274,
@@ -4929,7 +8459,20 @@ export const movies = [
     "duration": "94 min",
     "trailer": "",
     "kinopoiskId": 46225,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 275,
@@ -4947,7 +8490,20 @@ export const movies = [
     "duration": "88 min",
     "trailer": "",
     "kinopoiskId": 44386,
-    "imdb": "https://www.imdb.com/title/tt0068519"
+    "imdb": "https://www.imdb.com/title/tt0068519",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 276,
@@ -4965,7 +8521,20 @@ export const movies = [
     "duration": "82 min",
     "trailer": "",
     "kinopoiskId": 44745,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 277,
@@ -4983,7 +8552,20 @@ export const movies = [
     "duration": "87 min",
     "trailer": "",
     "kinopoiskId": 25108,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 278,
@@ -5001,7 +8583,20 @@ export const movies = [
     "duration": "136 min",
     "trailer": "",
     "kinopoiskId": 77335,
-    "imdb": "https://www.imdb.com/title/tt0096126"
+    "imdb": "https://www.imdb.com/title/tt0096126",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 279,
@@ -5019,7 +8614,20 @@ export const movies = [
     "duration": "150 min",
     "trailer": "",
     "kinopoiskId": 46708,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 280,
@@ -5037,7 +8645,20 @@ export const movies = [
     "duration": "159 min",
     "trailer": "",
     "kinopoiskId": 43869,
-    "imdb": "https://www.imdb.com/title/tt0076727"
+    "imdb": "https://www.imdb.com/title/tt0076727",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 281,
@@ -5055,7 +8676,20 @@ export const movies = [
     "duration": "154 min",
     "trailer": "",
     "kinopoiskId": 77263,
-    "imdb": "https://www.imdb.com/title/tt0083100"
+    "imdb": "https://www.imdb.com/title/tt0083100",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧩 Tactical Sci-Fi / Mystery",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 282,
@@ -5073,7 +8707,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 476,
-    "imdb": "https://www.imdb.com/title/tt0088763"
+    "imdb": "https://www.imdb.com/title/tt0088763",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 283,
@@ -5091,7 +8738,20 @@ export const movies = [
     "duration": "108 min",
     "trailer": "",
     "kinopoiskId": 5502,
-    "imdb": "https://www.imdb.com/title/tt0096874"
+    "imdb": "https://www.imdb.com/title/tt0096874",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 284,
@@ -5109,7 +8769,20 @@ export const movies = [
     "duration": "118 min",
     "trailer": "",
     "kinopoiskId": 7103,
-    "imdb": "https://www.imdb.com/title/tt0099088"
+    "imdb": "https://www.imdb.com/title/tt0099088",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 285,
@@ -5127,7 +8800,20 @@ export const movies = [
     "duration": "87 min",
     "trailer": "",
     "kinopoiskId": 32898,
-    "imdb": "https://www.imdb.com/title/tt0119472"
+    "imdb": "https://www.imdb.com/title/tt0119472",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 286,
@@ -5145,7 +8831,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 507,
-    "imdb": "https://www.imdb.com/title/tt0088247"
+    "imdb": "https://www.imdb.com/title/tt0088247",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 287,
@@ -5163,7 +8862,20 @@ export const movies = [
     "duration": "126 min",
     "trailer": "",
     "kinopoiskId": 2656,
-    "imdb": "https://www.imdb.com/title/tt0119116"
+    "imdb": "https://www.imdb.com/title/tt0119116",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 288,
@@ -5181,7 +8893,20 @@ export const movies = [
     "duration": "93 min",
     "trailer": "",
     "kinopoiskId": 5273,
-    "imdb": "https://www.imdb.com/title/tt0298148"
+    "imdb": "https://www.imdb.com/title/tt0298148",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 289,
@@ -5199,7 +8924,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": 44168,
-    "imdb": "https://www.imdb.com/title/tt0134614"
+    "imdb": "https://www.imdb.com/title/tt0134614",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 290,
@@ -5217,7 +8955,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 45146,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 291,
@@ -5235,7 +8986,20 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": 7724,
-    "imdb": "https://www.imdb.com/title/tt0050634"
+    "imdb": "https://www.imdb.com/title/tt0050634",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 292,
@@ -5253,7 +9017,20 @@ export const movies = [
     "duration": "160 min",
     "trailer": "",
     "kinopoiskId": 43395,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 293,
@@ -5271,7 +9048,20 @@ export const movies = [
     "duration": "96 min",
     "trailer": "",
     "kinopoiskId": 42736,
-    "imdb": "https://www.imdb.com/title/tt0067517"
+    "imdb": "https://www.imdb.com/title/tt0067517",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 294,
@@ -5289,7 +9079,20 @@ export const movies = [
     "duration": "140 min",
     "trailer": "",
     "kinopoiskId": 77203,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 295,
@@ -5307,7 +9110,20 @@ export const movies = [
     "duration": "183 min",
     "trailer": "",
     "kinopoiskId": 46068,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 296,
@@ -5325,7 +9141,20 @@ export const movies = [
     "duration": "99 min",
     "trailer": "",
     "kinopoiskId": 41519,
-    "imdb": "https://www.imdb.com/title/tt0118767"
+    "imdb": "https://www.imdb.com/title/tt0118767",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 297,
@@ -5343,7 +9172,20 @@ export const movies = [
     "duration": "122 min",
     "trailer": "",
     "kinopoiskId": 41520,
-    "imdb": "https://www.imdb.com/title/tt0238883"
+    "imdb": "https://www.imdb.com/title/tt0238883",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 298,
@@ -5361,7 +9203,20 @@ export const movies = [
     "duration": "111 min",
     "trailer": "",
     "kinopoiskId": 84830,
-    "imdb": "https://www.imdb.com/title/tt0420982"
+    "imdb": "https://www.imdb.com/title/tt0420982",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 299,
@@ -5379,7 +9234,20 @@ export const movies = [
     "duration": "110 min",
     "trailer": "",
     "kinopoiskId": 57166,
-    "imdb": "https://www.imdb.com/title/tt0381936"
+    "imdb": "https://www.imdb.com/title/tt0381936",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 300,
@@ -5397,7 +9265,18 @@ export const movies = [
     "duration": "93 min",
     "trailer": "",
     "kinopoiskId": 7653,
-    "imdb": "https://www.imdb.com/title/tt0114055"
+    "imdb": "https://www.imdb.com/title/tt0114055",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 301,
@@ -5415,7 +9294,19 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 808639,
-    "imdb": "https://www.imdb.com/title/tt3560686"
+    "imdb": "https://www.imdb.com/title/tt3560686",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 302,
@@ -5433,7 +9324,20 @@ export const movies = [
     "duration": "134 min",
     "trailer": "",
     "kinopoiskId": 601564,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 303,
@@ -5451,7 +9355,19 @@ export const movies = [
     "duration": "133 min",
     "trailer": "",
     "kinopoiskId": 840817,
-    "imdb": "https://www.imdb.com/title/tt5987402"
+    "imdb": "https://www.imdb.com/title/tt5987402",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 304,
@@ -5469,7 +9385,20 @@ export const movies = [
     "duration": "194 min",
     "trailer": "",
     "kinopoiskId": 2213,
-    "imdb": "https://www.imdb.com/title/tt0120338"
+    "imdb": "https://www.imdb.com/title/tt0120338",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 305,
@@ -5487,7 +9416,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 104938,
-    "imdb": "https://www.imdb.com/title/tt0454921"
+    "imdb": "https://www.imdb.com/title/tt0454921",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 306,
@@ -5505,7 +9447,20 @@ export const movies = [
     "duration": "128 min",
     "trailer": "",
     "kinopoiskId": 6877,
-    "imdb": "https://www.imdb.com/title/tt0362227"
+    "imdb": "https://www.imdb.com/title/tt0362227",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 307,
@@ -5523,7 +9478,20 @@ export const movies = [
     "duration": "143 min",
     "trailer": "",
     "kinopoiskId": 627,
-    "imdb": "https://www.imdb.com/title/tt0162222"
+    "imdb": "https://www.imdb.com/title/tt0162222",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 308,
@@ -5541,7 +9509,20 @@ export const movies = [
     "duration": "156 min",
     "trailer": "",
     "kinopoiskId": 4871,
-    "imdb": "https://www.imdb.com/title/tt0105323"
+    "imdb": "https://www.imdb.com/title/tt0105323",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 309,
@@ -5559,7 +9540,20 @@ export const movies = [
     "duration": "133 min",
     "trailer": "",
     "kinopoiskId": 519,
-    "imdb": "https://www.imdb.com/title/tt0095953"
+    "imdb": "https://www.imdb.com/title/tt0095953",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 310,
@@ -5577,7 +9571,20 @@ export const movies = [
     "duration": "94 min",
     "trailer": "",
     "kinopoiskId": 281251,
-    "imdb": "https://www.imdb.com/title/tt0914798"
+    "imdb": "https://www.imdb.com/title/tt0914798",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 311,
@@ -5595,7 +9602,20 @@ export const movies = [
     "duration": "100 min",
     "trailer": "",
     "kinopoiskId": 1996,
-    "imdb": "https://www.imdb.com/title/tt0092890"
+    "imdb": "https://www.imdb.com/title/tt0092890",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 312,
@@ -5613,7 +9633,20 @@ export const movies = [
     "duration": "126 min",
     "trailer": "",
     "kinopoiskId": 1991,
-    "imdb": "https://www.imdb.com/title/tt0099653"
+    "imdb": "https://www.imdb.com/title/tt0099653",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 313,
@@ -5631,7 +9664,19 @@ export const movies = [
     "duration": "129 min",
     "trailer": "",
     "kinopoiskId": 81733,
-    "imdb": "https://www.imdb.com/title/tt0414387"
+    "imdb": "https://www.imdb.com/title/tt0414387",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 314,
@@ -5649,7 +9694,20 @@ export const movies = [
     "duration": "146 min",
     "trailer": "",
     "kinopoiskId": 594,
-    "imdb": "https://www.imdb.com/title/tt0212720"
+    "imdb": "https://www.imdb.com/title/tt0212720",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 315,
@@ -5667,7 +9725,20 @@ export const movies = [
     "duration": "152 min",
     "trailer": "",
     "kinopoiskId": 689,
-    "imdb": "https://www.imdb.com/title/tt0241527"
+    "imdb": "https://www.imdb.com/title/tt0241527",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 316,
@@ -5685,7 +9756,20 @@ export const movies = [
     "duration": "144 min",
     "trailer": "",
     "kinopoiskId": 841700,
-    "imdb": "https://www.imdb.com/title/tt3659388"
+    "imdb": "https://www.imdb.com/title/tt3659388",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 8,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 317,
@@ -5703,7 +9787,20 @@ export const movies = [
     "duration": "113 min",
     "trailer": "",
     "kinopoiskId": 505851,
-    "imdb": "https://www.imdb.com/title/tt1631867"
+    "imdb": "https://www.imdb.com/title/tt1631867",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 318,
@@ -5721,7 +9818,20 @@ export const movies = [
     "duration": "113 мин.",
     "trailer": "https://www.youtube.com/watch?v=B8_dgqfPXFg",
     "kinopoiskId": 784396,
-    "imdb": "https://www.imdb.com/title/tt27191706"
+    "imdb": "https://www.imdb.com/title/tt27191706",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 319,
@@ -5739,7 +9849,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 6303,
-    "imdb": "https://www.imdb.com/title/tt0093773"
+    "imdb": "https://www.imdb.com/title/tt0093773",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 320,
@@ -5757,7 +9880,20 @@ export const movies = [
     "duration": "103 min",
     "trailer": "",
     "kinopoiskId": 8124,
-    "imdb": "https://www.imdb.com/title/tt0099785"
+    "imdb": "https://www.imdb.com/title/tt0099785",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 4,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 321,
@@ -5775,7 +9911,20 @@ export const movies = [
     "duration": "120 min",
     "trailer": "",
     "kinopoiskId": 5928,
-    "imdb": "https://www.imdb.com/title/tt0104431"
+    "imdb": "https://www.imdb.com/title/tt0104431",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 4,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 322,
@@ -5793,7 +9942,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 6039,
-    "imdb": "https://www.imdb.com/title/tt0110475"
+    "imdb": "https://www.imdb.com/title/tt0110475",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 323,
@@ -5811,7 +9973,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 39577,
-    "imdb": "https://www.imdb.com/title/tt0315327"
+    "imdb": "https://www.imdb.com/title/tt0315327",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 324,
@@ -5829,7 +10004,18 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 5185,
-    "imdb": "https://www.imdb.com/title/tt0109686"
+    "imdb": "https://www.imdb.com/title/tt0109686",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "id": 325,
@@ -5847,7 +10033,20 @@ export const movies = [
     "duration": "89 min",
     "trailer": "",
     "kinopoiskId": 14349,
-    "imdb": "https://www.imdb.com/title/tt0152930"
+    "imdb": "https://www.imdb.com/title/tt0152930",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 326,
@@ -5865,7 +10064,19 @@ export const movies = [
     "duration": "100 min",
     "trailer": "",
     "kinopoiskId": 426004,
-    "imdb": "https://www.imdb.com/title/tt1119646"
+    "imdb": "https://www.imdb.com/title/tt1119646",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 327,
@@ -5883,7 +10094,18 @@ export const movies = [
     "duration": "92 min",
     "trailer": "",
     "kinopoiskId": 5090,
-    "imdb": "https://www.imdb.com/title/tt0356150"
+    "imdb": "https://www.imdb.com/title/tt0356150",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 328,
@@ -5901,7 +10123,20 @@ export const movies = [
     "duration": "107 min",
     "trailer": "",
     "kinopoiskId": 63912,
-    "imdb": "https://www.imdb.com/title/tt0080439"
+    "imdb": "https://www.imdb.com/title/tt0080439",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 329,
@@ -5919,7 +10154,20 @@ export const movies = [
     "duration": "105 min",
     "trailer": "",
     "kinopoiskId": 10179,
-    "imdb": "https://www.imdb.com/title/tt0076101"
+    "imdb": "https://www.imdb.com/title/tt0076101",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 330,
@@ -5937,7 +10185,20 @@ export const movies = [
     "duration": "109 min",
     "trailer": "",
     "kinopoiskId": 15061,
-    "imdb": "https://www.imdb.com/title/tt0093409"
+    "imdb": "https://www.imdb.com/title/tt0093409",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 331,
@@ -5955,7 +10216,20 @@ export const movies = [
     "duration": "136 min",
     "trailer": "",
     "kinopoiskId": 2333,
-    "imdb": "https://www.imdb.com/title/tt0117500"
+    "imdb": "https://www.imdb.com/title/tt0117500",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 332,
@@ -5973,7 +10247,20 @@ export const movies = [
     "duration": "138 min",
     "trailer": "",
     "kinopoiskId": 4606,
-    "imdb": "https://www.imdb.com/title/tt0119094"
+    "imdb": "https://www.imdb.com/title/tt0119094",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 333,
@@ -5991,7 +10278,20 @@ export const movies = [
     "duration": "101 min",
     "trailer": "",
     "kinopoiskId": 762738,
-    "imdb": "https://www.imdb.com/title/tt2911666"
+    "imdb": "https://www.imdb.com/title/tt2911666",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 334,
@@ -6009,7 +10309,20 @@ export const movies = [
     "duration": "153 min",
     "trailer": "",
     "kinopoiskId": 455194,
-    "imdb": "https://www.imdb.com/title/tt1392214"
+    "imdb": "https://www.imdb.com/title/tt1392214",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 335,
@@ -6027,7 +10340,20 @@ export const movies = [
     "duration": "115 min",
     "trailer": "",
     "kinopoiskId": 522892,
-    "imdb": "https://www.imdb.com/title/tt1670345"
+    "imdb": "https://www.imdb.com/title/tt1670345",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧩 Tactical Sci-Fi / Mystery"
+    ]
   },
   {
     "id": 336,
@@ -6045,7 +10371,20 @@ export const movies = [
     "duration": "81 min",
     "trailer": "",
     "kinopoiskId": 707,
-    "imdb": "https://www.imdb.com/title/tt0268380"
+    "imdb": "https://www.imdb.com/title/tt0268380",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 337,
@@ -6063,7 +10402,20 @@ export const movies = [
     "duration": "86 min",
     "trailer": "",
     "kinopoiskId": 6006,
-    "imdb": "https://www.imdb.com/title/tt0351283"
+    "imdb": "https://www.imdb.com/title/tt0351283",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 338,
@@ -6081,7 +10433,20 @@ export const movies = [
     "duration": "108 min",
     "trailer": "",
     "kinopoiskId": 775276,
-    "imdb": "https://www.imdb.com/title/tt2948356"
+    "imdb": "https://www.imdb.com/title/tt2948356",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 339,
@@ -6099,7 +10464,20 @@ export const movies = [
     "duration": "95 min",
     "trailer": "",
     "kinopoiskId": 645118,
-    "imdb": "https://www.imdb.com/title/tt2096673"
+    "imdb": "https://www.imdb.com/title/tt2096673",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 340,
@@ -6117,7 +10495,20 @@ export const movies = [
     "duration": "100 min",
     "trailer": "",
     "kinopoiskId": 84049,
-    "imdb": "https://www.imdb.com/title/tt0398286"
+    "imdb": "https://www.imdb.com/title/tt0398286",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 341,
@@ -6135,7 +10526,20 @@ export const movies = [
     "duration": "117 min",
     "trailer": "",
     "kinopoiskId": 920265,
-    "imdb": "https://www.imdb.com/title/tt4633694"
+    "imdb": "https://www.imdb.com/title/tt4633694",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 342,
@@ -6154,7 +10558,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 963343,
     "imdb": "https://www.imdb.com/title/tt5323662",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 343,
@@ -6172,7 +10589,18 @@ export const movies = [
     "duration": "104 min",
     "trailer": "",
     "kinopoiskId": 391772,
-    "imdb": "https://www.imdb.com/title/tt1068680"
+    "imdb": "https://www.imdb.com/title/tt1068680",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 344,
@@ -6191,7 +10619,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 958722,
     "imdb": "https://www.imdb.com/title/tt5311514",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 345,
@@ -6209,7 +10650,20 @@ export const movies = [
     "duration": "113 min",
     "trailer": "",
     "kinopoiskId": 335,
-    "imdb": "https://www.imdb.com/title/tt0209144"
+    "imdb": "https://www.imdb.com/title/tt0209144",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 346,
@@ -6227,7 +10681,20 @@ export const movies = [
     "duration": "116 min",
     "trailer": "",
     "kinopoiskId": 3563,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 347,
@@ -6245,7 +10712,20 @@ export const movies = [
     "duration": "98 min",
     "trailer": "",
     "kinopoiskId": 1091,
-    "imdb": "https://www.imdb.com/title/tt0119654"
+    "imdb": "https://www.imdb.com/title/tt0119654",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 348,
@@ -6263,7 +10743,20 @@ export const movies = [
     "duration": "90 min",
     "trailer": "",
     "kinopoiskId": 276376,
-    "imdb": null
+    "imdb": null,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 4,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 349,
@@ -6282,7 +10775,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 404900,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 350,
@@ -6301,7 +10807,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 464963,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 351,
@@ -6320,7 +10839,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 77271,
     "imdb": "https://www.imdb.com/title/tt0391920",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 352,
@@ -6339,7 +10871,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 93356,
     "imdb": "https://www.imdb.com/title/tt0299278",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 353,
@@ -6358,7 +10903,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 3682,
     "imdb": "https://www.imdb.com/title/tt0120787",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 354,
@@ -6377,7 +10935,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 681831,
     "imdb": "https://www.imdb.com/title/tt2356777",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 355,
@@ -6396,7 +10967,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 77044,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 356,
@@ -6415,7 +10999,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 253245,
     "imdb": "https://www.imdb.com/title/tt0386676",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 357,
@@ -6434,7 +11031,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 502838,
     "imdb": "https://www.imdb.com/title/tt1475582",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 358,
@@ -6453,7 +11063,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 230159,
     "imdb": "https://www.imdb.com/title/tt13945256",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 359,
@@ -6472,7 +11095,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 915196,
     "imdb": "https://www.imdb.com/title/tt4574334",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 360,
@@ -6491,7 +11127,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 178710,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 361,
@@ -6510,7 +11159,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 767379,
     "imdb": "https://www.imdb.com/title/tt2802850",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 362,
@@ -6529,7 +11191,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 84227,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 363,
@@ -6548,7 +11223,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 277537,
     "imdb": "https://www.imdb.com/title/tt0785280",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 364,
@@ -6567,7 +11255,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1309707,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 365,
@@ -6586,7 +11286,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 986788,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 366,
@@ -6605,7 +11318,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 821565,
     "imdb": "https://www.imdb.com/title/tt2707408",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 367,
@@ -6624,7 +11350,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 178720,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 368,
@@ -6643,7 +11382,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 257386,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 369,
@@ -6662,7 +11414,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 958500,
     "imdb": "https://www.imdb.com/title/tt5290382",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 370,
@@ -6680,7 +11445,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt15043468",
     "type": "series",
     "director": null,
-    "actors": null
+    "actors": null,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 371,
@@ -6699,7 +11477,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 991739,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 372,
@@ -6718,7 +11509,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 391889,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 373,
@@ -6737,7 +11541,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 94138,
     "imdb": "https://www.imdb.com/title/tt0411008",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 374,
@@ -6756,7 +11573,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1316601,
     "imdb": "https://www.imdb.com/title/tt11198330",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 375,
@@ -6775,7 +11605,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 839458,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 376,
@@ -6794,7 +11637,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1343318,
     "imdb": "https://www.imdb.com/title/tt11280740",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 377,
@@ -6813,7 +11669,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 591929,
     "imdb": "https://www.imdb.com/title/tt1865718",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 378,
@@ -6832,7 +11701,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 178707,
     "imdb": "https://www.imdb.com/title/tt0460681",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 379,
@@ -6851,7 +11733,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 306084,
     "imdb": "https://www.imdb.com/title/tt1147717",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 380,
@@ -6870,7 +11765,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 401522,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 381,
@@ -6889,7 +11797,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 714102,
     "imdb": "https://www.imdb.com/title/tt2467372",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🔥 Pure Action",
+      "⚡ High Energy",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "id": 382,
@@ -6908,7 +11828,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 682468,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 383,
@@ -6927,7 +11860,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 682255,
     "imdb": "https://www.imdb.com/title/tt2306299",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 384,
@@ -6946,7 +11892,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 417846,
     "imdb": "https://www.imdb.com/title/tt1124373",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 385,
@@ -6965,7 +11924,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 474779,
     "imdb": "https://www.imdb.com/title/tt0979432",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 386,
@@ -6984,7 +11956,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 89518,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 387,
@@ -7003,7 +11988,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 77046,
     "imdb": "https://www.imdb.com/title/tt0106179",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 388,
@@ -7022,7 +12020,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 394375,
     "imdb": "https://www.imdb.com/title/tt0904208",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 389,
@@ -7041,7 +12052,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 571335,
     "imdb": "https://www.imdb.com/title/tt1586680",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 390,
@@ -7060,7 +12084,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 820540,
     "imdb": "https://www.imdb.com/title/tt2049116",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 391,
@@ -7079,7 +12116,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1118138,
     "imdb": "https://www.imdb.com/title/tt8111088",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "id": 392,
@@ -7098,7 +12148,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 818185,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 393,
@@ -7117,7 +12180,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 685246,
     "imdb": "https://www.imdb.com/title/tt2861424",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 394,
@@ -7136,7 +12212,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 229080,
     "imdb": "https://www.imdb.com/title/tt0286486",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 395,
@@ -7155,7 +12244,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 500600,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 396,
@@ -7174,7 +12276,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 251568,
     "imdb": "https://www.imdb.com/title/tt0285403",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 397,
@@ -7193,7 +12308,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 255671,
     "imdb": "https://www.imdb.com/title/tt0348914",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 398,
@@ -7212,7 +12340,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 518192,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 399,
@@ -7231,7 +12372,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 181807,
     "imdb": "https://www.imdb.com/title/tt0248654",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 400,
@@ -7250,7 +12404,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 924910,
     "imdb": "https://www.imdb.com/title/tt4786824",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 401,
@@ -7269,7 +12435,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 994468,
     "imdb": "https://www.imdb.com/title/tt5788792",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 402,
@@ -7288,7 +12467,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 731962,
     "imdb": "https://www.imdb.com/title/tt2384811",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 403,
@@ -7307,7 +12499,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 258048,
     "imdb": "https://www.imdb.com/title/tt0455275",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 404,
@@ -7326,7 +12531,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 5231086,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 405,
@@ -7345,7 +12563,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 737589,
     "imdb": "https://www.imdb.com/title/tt2699128",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 406,
@@ -7364,7 +12595,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 581937,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 407,
@@ -7383,7 +12627,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 982730,
     "imdb": "https://www.imdb.com/title/tt5712554",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 408,
@@ -7402,7 +12658,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 518075,
     "imdb": "https://www.imdb.com/title/tt1637727",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 409,
@@ -7421,7 +12690,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 972587,
     "imdb": "https://www.imdb.com/title/tt5348176",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 410,
@@ -7440,7 +12722,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 947758,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 411,
@@ -7459,7 +12754,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 508161,
     "imdb": "https://www.imdb.com/title/tt1520211",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 412,
@@ -7478,7 +12786,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 863009,
     "imdb": "https://www.imdb.com/title/tt4270492",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "id": 413,
@@ -7497,7 +12817,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 667871,
     "imdb": "https://www.imdb.com/title/tt2249007",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 414,
@@ -7516,7 +12849,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 749562,
     "imdb": "https://www.imdb.com/title/tt2788316",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 415,
@@ -7535,7 +12881,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1045553,
     "imdb": "https://www.imdb.com/title/tt5071412",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 416,
@@ -7554,7 +12913,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 412344,
     "imdb": "https://www.imdb.com/title/tt1196946",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 417,
@@ -7573,7 +12945,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 521722,
     "imdb": "https://www.imdb.com/title/tt1582457",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 418,
@@ -7592,7 +12977,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 978853,
     "imdb": "https://www.imdb.com/title/tt5675620",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 419,
@@ -7611,7 +13009,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 817509,
     "imdb": "https://www.imdb.com/title/tt3322312",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 420,
@@ -7630,7 +13041,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 469619,
     "imdb": "https://www.imdb.com/title/tt1442449",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 421,
@@ -7649,7 +13073,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 574497,
     "imdb": "https://www.imdb.com/title/tt1733785",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 4,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 422,
@@ -7668,7 +13105,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 736182,
     "imdb": "https://www.imdb.com/title/tt2249364",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 423,
@@ -7687,7 +13137,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 958543,
     "imdb": "https://www.imdb.com/title/tt4643084",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 424,
@@ -7706,7 +13169,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 859908,
     "imdb": "https://www.imdb.com/title/tt4158110",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 425,
@@ -7725,7 +13201,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 574688,
     "imdb": "https://www.imdb.com/title/tt1796960",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 426,
@@ -7744,7 +13233,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 932068,
     "imdb": "https://www.imdb.com/title/tt3647998",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 427,
@@ -7763,7 +13265,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 674019,
     "imdb": "https://www.imdb.com/title/tt2294189",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 428,
@@ -7782,7 +13297,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1435343,
     "imdb": "https://www.imdb.com/title/tt13210838",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "id": 429,
@@ -7801,7 +13329,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 891337,
     "imdb": "https://www.imdb.com/title/tt2879552",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "id": 430,
@@ -7820,7 +13361,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 4553901,
     "imdb": "https://www.imdb.com/title/tt2788432",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 431,
@@ -7839,7 +13393,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 893361,
     "imdb": null,
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 432,
@@ -7858,7 +13425,18 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 455368,
     "imdb": "https://www.imdb.com/title/tt1266020",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "id": 433,
@@ -7877,7 +13455,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 232247,
     "imdb": "https://www.imdb.com/title/tt0369179",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 434,
@@ -7896,7 +13487,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 893621,
     "imdb": "https://www.imdb.com/title/tt4052886",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 435,
@@ -7915,7 +13519,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 409640,
     "imdb": "https://www.imdb.com/title/tt1219024",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 436,
@@ -7934,7 +13551,19 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 386715,
     "imdb": "https://www.imdb.com/title/tt0487831",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 437,
@@ -7953,7 +13582,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 445186,
     "imdb": "https://www.imdb.com/title/tt1358522",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 438,
@@ -7972,7 +13614,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 557806,
     "imdb": "https://www.imdb.com/title/tt1632701",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 439,
@@ -7991,7 +13646,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 428930,
     "imdb": "https://www.imdb.com/title/tt1235099",
-    "type": "series"
+    "type": "series",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "id": 440,
@@ -8010,7 +13678,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 406148,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 441,
@@ -8029,7 +13710,18 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 461533,
     "imdb": "https://www.imdb.com/title/tt1224443",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "id": 442,
@@ -8048,7 +13740,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 79244,
     "imdb": "https://www.imdb.com/title/tt0202245",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "id": 443,
@@ -8067,7 +13772,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 8173,
     "imdb": "https://www.imdb.com/title/tt0086034",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 444,
@@ -8086,7 +13804,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 896351,
     "imdb": "https://www.imdb.com/title/tt3553820",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 445,
@@ -8105,7 +13836,18 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1386280,
     "imdb": null,
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "id": 446,
@@ -8124,7 +13866,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 175140,
     "imdb": "https://www.imdb.com/title/tt0291229",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "id": 447,
@@ -8143,7 +13898,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1391515,
     "imdb": "https://www.imdb.com/title/tt12564514",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "id": 448,
@@ -8162,7 +13930,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 4789626,
     "imdb": "https://www.imdb.com/title/tt14986406",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 449,
@@ -8181,7 +13962,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 364563,
     "imdb": "https://www.imdb.com/title/tt0439553",
-    "type": "movie"
+    "type": "movie",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "id": 450,
@@ -8200,7 +13994,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 77045,
     "imdb": "https://www.imdb.com/title/tt1484155",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 451,
@@ -8219,7 +14026,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 256147,
     "imdb": "https://www.imdb.com/title/tt0423731",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 452,
@@ -8238,7 +14058,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1002686,
     "imdb": "https://www.imdb.com/title/tt5897304",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 453,
@@ -8257,7 +14090,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1097392,
     "imdb": "https://www.imdb.com/title/tt7078180",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 454,
@@ -8276,7 +14122,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 2040161,
     "imdb": "https://www.imdb.com/title/tt13616990",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 455,
@@ -8295,7 +14154,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1047593,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 456,
@@ -8314,7 +14186,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 840073,
     "imdb": "https://www.imdb.com/title/tt3398540",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 457,
@@ -8333,7 +14218,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 846825,
     "imdb": "https://www.imdb.com/title/tt3895150",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 458,
@@ -8352,7 +14250,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 957840,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 459,
@@ -8371,7 +14282,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 257376,
     "imdb": "https://www.imdb.com/title/tt0318871",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 460,
@@ -8390,7 +14314,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 258622,
     "imdb": "https://www.imdb.com/title/tt0807832",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "id": 461,
@@ -8409,7 +14346,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 408596,
     "imdb": "https://www.imdb.com/title/tt0315008",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 462,
@@ -8428,7 +14378,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 707090,
     "imdb": "https://www.imdb.com/title/tt2379308",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 463,
@@ -8447,7 +14410,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 481534,
     "imdb": "https://www.imdb.com/title/tt1352421",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 464,
@@ -8466,7 +14442,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 4686248,
     "imdb": "https://www.imdb.com/title/tt13706018",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 465,
@@ -8485,7 +14474,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 8240,
     "imdb": "https://www.imdb.com/title/tt0087544",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 466,
@@ -8504,7 +14506,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1226631,
     "imdb": "https://www.imdb.com/title/tt9458304",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 467,
@@ -8523,7 +14538,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 841681,
     "imdb": "https://www.imdb.com/title/tt3741634",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 468,
@@ -8542,7 +14570,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 843954,
     "imdb": "https://www.imdb.com/title/tt3909224",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 469,
@@ -8561,7 +14602,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 480158,
     "imdb": "https://www.imdb.com/title/tt1528406",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 470,
@@ -8580,7 +14634,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 843221,
     "imdb": "https://www.imdb.com/title/tt3358020",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 471,
@@ -8599,7 +14666,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1048155,
     "imdb": "https://www.imdb.com/title/tt7263328",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "id": 472,
@@ -8618,7 +14698,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 818883,
     "imdb": "https://www.imdb.com/title/tt3225270",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 473,
@@ -8637,7 +14730,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 880618,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 474,
@@ -8656,7 +14762,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 676672,
     "imdb": "https://www.imdb.com/title/tt2348803",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy"
+    ]
   },
   {
     "id": 475,
@@ -8675,7 +14794,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 574182,
     "imdb": "https://www.imdb.com/title/tt1799631",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 476,
@@ -8694,7 +14826,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 691223,
     "imdb": "https://www.imdb.com/title/tt2250192",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 477,
@@ -8713,7 +14858,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1231054,
     "imdb": "https://www.imdb.com/title/tt9522300",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 478,
@@ -8732,7 +14890,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 652741,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 479,
@@ -8751,7 +14922,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 5190537,
     "imdb": null,
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 480,
@@ -8770,7 +14954,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1224030,
     "imdb": "https://www.imdb.com/title/tt9054364",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 481,
@@ -8789,7 +14986,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1235052,
     "imdb": "https://www.imdb.com/title/tt9529546",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 482,
@@ -8808,7 +15018,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 923115,
     "imdb": "https://www.imdb.com/title/tt4869896",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 483,
@@ -8827,7 +15050,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1249511,
     "imdb": "https://www.imdb.com/title/tt9679542",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 484,
@@ -8846,7 +15082,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1179789,
     "imdb": "https://www.imdb.com/title/tt8788458",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 485,
@@ -8865,7 +15114,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1047454,
     "imdb": "https://www.imdb.com/title/tt7131720",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 486,
@@ -8884,7 +15146,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 4786341,
     "imdb": "https://www.imdb.com/title/tt13911284",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 487,
@@ -8903,7 +15178,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 840972,
     "imdb": "https://www.imdb.com/title/tt3613454",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 488,
@@ -8922,7 +15210,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1002694,
     "imdb": "https://www.imdb.com/title/tt5839706",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 489,
@@ -8941,7 +15242,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 452973,
     "imdb": "https://www.imdb.com/title/tt0948103",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 490,
@@ -8960,7 +15274,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 652740,
     "imdb": "https://www.imdb.com/title/tt2122656",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 491,
@@ -8979,7 +15306,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 842575,
     "imdb": "https://www.imdb.com/title/tt3544556",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 492,
@@ -8998,7 +15338,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 361699,
     "imdb": "https://www.imdb.com/title/tt0421357",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 493,
@@ -9017,7 +15370,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 4294422,
     "imdb": "https://www.imdb.com/title/tt13196080",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 494,
@@ -9036,7 +15402,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 975895,
     "imdb": "https://www.imdb.com/title/tt5679720",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 495,
@@ -9055,7 +15434,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 454868,
     "imdb": "https://www.imdb.com/title/tt1343645",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 496,
@@ -9074,7 +15466,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 408655,
     "imdb": "https://www.imdb.com/title/tt0899258",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 497,
@@ -9093,7 +15498,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 425925,
     "imdb": "https://www.imdb.com/title/tt1214085",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 498,
@@ -9112,7 +15530,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 258621,
     "imdb": "https://www.imdb.com/title/tt0434665",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 499,
@@ -9131,7 +15562,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1007561,
     "imdb": "https://www.imdb.com/title/tt6112556",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 500,
@@ -9150,7 +15594,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1219417,
     "imdb": "https://www.imdb.com/title/tt9426210",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 501,
@@ -9169,7 +15626,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 730665,
     "imdb": "https://www.imdb.com/title/tt2591814",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "id": 502,
@@ -9188,7 +15658,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 280961,
     "imdb": "https://www.imdb.com/title/tt0983213",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 503,
@@ -9207,7 +15690,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 581102,
     "imdb": "https://www.imdb.com/title/tt1839494",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 504,
@@ -9226,7 +15722,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 247926,
     "imdb": "https://www.imdb.com/title/tt0381348",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 505,
@@ -9245,7 +15754,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 311132,
     "imdb": "https://www.imdb.com/title/tt0373960",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 506,
@@ -9264,7 +15786,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 2428,
     "imdb": "https://www.imdb.com/title/tt0097814",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "id": 507,
@@ -9283,7 +15818,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 1846,
     "imdb": "https://www.imdb.com/title/tt0092067",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "id": 508,
@@ -9302,7 +15850,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 8229,
     "imdb": "https://www.imdb.com/title/tt0104652",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 509,
@@ -9321,7 +15882,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 693969,
     "imdb": "https://www.imdb.com/title/tt2013293",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "id": 510,
@@ -9340,7 +15914,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 261127,
     "imdb": "https://www.imdb.com/title/tt0876563",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 4,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "id": 511,
@@ -9359,7 +15946,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 492366,
     "imdb": "https://www.imdb.com/title/tt1568921",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 4,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "id": 512,
@@ -9378,7 +15978,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 723841,
     "imdb": "https://www.imdb.com/title/tt2576852",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "id": 513,
@@ -9397,7 +16010,20 @@ export const movies = [
     "trailer": "",
     "kinopoiskId": 817623,
     "imdb": "https://www.imdb.com/title/tt3398268",
-    "type": "anime"
+    "type": "anime",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Атака титанов",
@@ -9416,7 +16042,20 @@ export const movies = [
     "kinopoiskId": 749374,
     "imdb": "https://www.imdb.com/title/tt2560140",
     "type": "anime",
-    "id": 514
+    "id": 514,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Ван-Пис",
@@ -9435,7 +16074,20 @@ export const movies = [
     "kinopoiskId": 382731,
     "imdb": "https://www.imdb.com/title/tt0388629",
     "type": "anime",
-    "id": 515
+    "id": 515,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Магическая битва",
@@ -9454,7 +16106,20 @@ export const movies = [
     "kinopoiskId": 1381125,
     "imdb": "https://www.imdb.com/title/tt12343534",
     "type": "anime",
-    "id": 516
+    "id": 516,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 10,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Re: Ноль - Начало жизни в другом мире",
@@ -9473,7 +16138,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt5607616",
     "type": "anime",
-    "id": 517
+    "id": 517,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Моя геройская академия",
@@ -9492,7 +16170,20 @@ export const movies = [
     "kinopoiskId": 975897,
     "imdb": "https://www.imdb.com/title/tt5626028",
     "type": "anime",
-    "id": 518
+    "id": 518,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Ателье колдовских колпаков",
@@ -9512,7 +16203,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32550889",
     "type": "anime",
     "id": 519,
-    "releaseDate": "2026-07-15"
+    "releaseDate": "2026-07-15",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Сага о Винланде",
@@ -9531,7 +16235,20 @@ export const movies = [
     "kinopoiskId": 1274280,
     "imdb": "https://www.imdb.com/title/tt10233448",
     "type": "anime",
-    "id": 520
+    "id": 520,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 4,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Истребитель демонов",
@@ -9550,7 +16267,20 @@ export const movies = [
     "kinopoiskId": 1220920,
     "imdb": "https://www.imdb.com/title/tt9335498",
     "type": "anime",
-    "id": 521
+    "id": 521,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Поднятие уровня в одиночку",
@@ -9569,7 +16299,20 @@ export const movies = [
     "kinopoiskId": 5230828,
     "imdb": "https://www.imdb.com/title/tt21209876",
     "type": "anime",
-    "id": 522
+    "id": 522,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Провожающая в последний путь Фрирен",
@@ -9588,7 +16331,20 @@ export const movies = [
     "kinopoiskId": 5401195,
     "imdb": "https://www.imdb.com/title/tt22248376",
     "type": "anime",
-    "id": 523
+    "id": 523,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Стальной алхимик: Братство",
@@ -9607,7 +16363,20 @@ export const movies = [
     "kinopoiskId": 452838,
     "imdb": "https://www.imdb.com/title/tt1355642",
     "type": "anime",
-    "id": 524
+    "id": 524,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Невероятные приключения ДжоДжо",
@@ -9626,7 +16395,20 @@ export const movies = [
     "kinopoiskId": 707636,
     "imdb": "https://www.imdb.com/title/tt2359704",
     "type": "anime",
-    "id": 525
+    "id": 525,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Меч и жезл Вистории",
@@ -9645,7 +16427,20 @@ export const movies = [
     "kinopoiskId": 6527083,
     "imdb": "https://www.imdb.com/title/tt31889371",
     "type": "anime",
-    "id": 526
+    "id": 526,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Охотник х Охотник",
@@ -9664,7 +16459,20 @@ export const movies = [
     "kinopoiskId": 647602,
     "imdb": "https://www.imdb.com/title/tt2098220",
     "type": "anime",
-    "id": 527
+    "id": 527,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Цугаи загробного мира",
@@ -9684,7 +16492,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt37532356",
     "type": "anime",
     "id": 528,
-    "releaseDate": "2026-10-05"
+    "releaseDate": "2026-10-05",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Наруто: Ураганные хроники",
@@ -9703,7 +16524,20 @@ export const movies = [
     "kinopoiskId": 281884,
     "imdb": "https://www.imdb.com/title/tt0988824",
     "type": "anime",
-    "id": 529
+    "id": 529,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Наруто",
@@ -9722,7 +16556,20 @@ export const movies = [
     "kinopoiskId": 283290,
     "imdb": "https://www.imdb.com/title/tt0409591",
     "type": "anime",
-    "id": 530
+    "id": 530,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Монстр",
@@ -9741,7 +16588,20 @@ export const movies = [
     "kinopoiskId": 258582,
     "imdb": "https://www.imdb.com/title/tt0434706",
     "type": "anime",
-    "id": 531
+    "id": 531,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Легенда о Корре",
@@ -9760,7 +16620,20 @@ export const movies = [
     "kinopoiskId": 565035,
     "imdb": "https://www.imdb.com/title/tt1695360",
     "type": "anime",
-    "id": 532
+    "id": 532,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Чёрный клевер",
@@ -9779,7 +16652,20 @@ export const movies = [
     "kinopoiskId": 1049731,
     "imdb": "https://www.imdb.com/title/tt7441658",
     "type": "anime",
-    "id": 533
+    "id": 533,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Киберпанк: Бегущие по краю",
@@ -9798,7 +16684,20 @@ export const movies = [
     "kinopoiskId": 2000102,
     "imdb": "https://www.imdb.com/title/tt12590266",
     "type": "anime",
-    "id": 534
+    "id": 534,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Ванпанчмен",
@@ -9817,7 +16716,20 @@ export const movies = [
     "kinopoiskId": 1382669,
     "imdb": "https://www.imdb.com/title/tt4508902",
     "type": "anime",
-    "id": 535
+    "id": 535,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Дьявол может заплакать",
@@ -9836,7 +16748,20 @@ export const movies = [
     "kinopoiskId": 4771175,
     "imdb": "https://www.imdb.com/title/tt15716776",
     "type": "anime",
-    "id": 536
+    "id": 536,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Код Гиас: Восставший Лелуш",
@@ -9855,7 +16780,20 @@ export const movies = [
     "kinopoiskId": 408674,
     "imdb": "https://www.imdb.com/title/tt0994314",
     "type": "anime",
-    "id": 537
+    "id": 537,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Ковбой Бибоп",
@@ -9874,7 +16812,20 @@ export const movies = [
     "kinopoiskId": 229653,
     "imdb": "https://www.imdb.com/title/tt0213338",
     "type": "anime",
-    "id": 538
+    "id": 538,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Дорохедоро",
@@ -9893,7 +16844,20 @@ export const movies = [
     "kinopoiskId": 1311143,
     "imdb": "https://www.imdb.com/title/tt11147852",
     "type": "anime",
-    "id": 539
+    "id": 539,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Реинкарнация безработного: История о приключениях в другом мире",
@@ -9912,7 +16876,20 @@ export const movies = [
     "kinopoiskId": 1312253,
     "imdb": "https://www.imdb.com/title/tt13293588",
     "type": "anime",
-    "id": 540
+    "id": 540,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Евангелион",
@@ -9931,7 +16908,20 @@ export const movies = [
     "kinopoiskId": 95323,
     "imdb": "https://www.imdb.com/title/tt0112159",
     "type": "anime",
-    "id": 541
+    "id": 541,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Драконий жемчуг Зет",
@@ -9950,7 +16940,20 @@ export const movies = [
     "kinopoiskId": 230594,
     "imdb": "https://www.imdb.com/title/tt0214341",
     "type": "anime",
-    "id": 542
+    "id": 542,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Врата Штейна",
@@ -9969,7 +16972,20 @@ export const movies = [
     "kinopoiskId": 586251,
     "imdb": "https://www.imdb.com/title/tt1910272",
     "type": "anime",
-    "id": 543
+    "id": 543,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Гинтама",
@@ -9988,7 +17004,20 @@ export const movies = [
     "kinopoiskId": 490128,
     "imdb": "https://www.imdb.com/title/tt0988818",
     "type": "anime",
-    "id": 544
+    "id": 544,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Монолог фармацевта",
@@ -10007,7 +17036,20 @@ export const movies = [
     "kinopoiskId": 5258557,
     "imdb": "https://www.imdb.com/title/tt26743760",
     "type": "anime",
-    "id": 545
+    "id": 545,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Гетто",
@@ -10026,7 +17068,20 @@ export const movies = [
     "kinopoiskId": 401157,
     "imdb": "https://www.imdb.com/title/tt0373732",
     "type": "anime",
-    "id": 546
+    "id": 546,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Любовь с иголочки",
@@ -10045,7 +17100,20 @@ export const movies = [
     "kinopoiskId": 4836543,
     "imdb": "https://www.imdb.com/title/tt15765670",
     "type": "anime",
-    "id": 547
+    "id": 547,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Синяя тюрьма: Блю Лок",
@@ -10064,7 +17132,20 @@ export const movies = [
     "kinopoiskId": 4624770,
     "imdb": "https://www.imdb.com/title/tt15222080",
     "type": "anime",
-    "id": 548
+    "id": 548,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Невероятное приключение ДжоДжо: Гонка «Стальной шар»",
@@ -10084,7 +17165,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt38268282",
     "type": "anime",
     "id": 549,
-    "releaseDate": "2026-12-25"
+    "releaseDate": "2026-12-25",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Дандадан",
@@ -10103,7 +17197,20 @@ export const movies = [
     "kinopoiskId": 5458831,
     "imdb": "https://www.imdb.com/title/tt30217403",
     "type": "anime",
-    "id": 550
+    "id": 550,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Гачиакута",
@@ -10122,7 +17229,20 @@ export const movies = [
     "kinopoiskId": 7524629,
     "imdb": "https://www.imdb.com/title/tt32612521",
     "type": "anime",
-    "id": 551
+    "id": 551,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Пламенная бригада пожарных",
@@ -10141,7 +17261,20 @@ export const movies = [
     "kinopoiskId": 1235054,
     "imdb": "https://www.imdb.com/title/tt9307686",
     "type": "anime",
-    "id": 552
+    "id": 552,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Покемон",
@@ -10160,7 +17293,20 @@ export const movies = [
     "kinopoiskId": 408476,
     "imdb": "https://www.imdb.com/title/tt0168366",
     "type": "anime",
-    "id": 553
+    "id": 553,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Наказание для храброго героя",
@@ -10179,7 +17325,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt32536168",
     "type": "anime",
-    "id": 554
+    "id": 554,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Старшая школа DxD",
@@ -10198,7 +17357,20 @@ export const movies = [
     "kinopoiskId": 666587,
     "imdb": "https://www.imdb.com/title/tt2230051",
     "type": "anime",
-    "id": 555
+    "id": 555,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Дни Сакамото",
@@ -10217,7 +17389,20 @@ export const movies = [
     "kinopoiskId": 4870795,
     "imdb": "https://www.imdb.com/title/tt17069148",
     "type": "anime",
-    "id": 556
+    "id": 556,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Первородный грех Такопи",
@@ -10236,7 +17421,20 @@ export const movies = [
     "kinopoiskId": 8624606,
     "imdb": "https://www.imdb.com/title/tt36988358",
     "type": "anime",
-    "id": 557
+    "id": 557,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Благоухающий цветок расцветает с достоинством",
@@ -10255,7 +17453,20 @@ export const movies = [
     "kinopoiskId": 8624619,
     "imdb": "https://www.imdb.com/title/tt36592690",
     "type": "anime",
-    "id": 558
+    "id": 558,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Восхождение в тени!",
@@ -10274,7 +17485,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt14115938",
     "type": "anime",
-    "id": 559
+    "id": 559,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Кайдзю No 8",
@@ -10293,7 +17517,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt21975436",
     "type": "anime",
-    "id": 560
+    "id": 560,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "86",
@@ -10312,7 +17549,20 @@ export const movies = [
     "kinopoiskId": 4428441,
     "imdb": "https://www.imdb.com/title/tt13718450",
     "type": "anime",
-    "id": 561
+    "id": 561,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Ангел по соседству",
@@ -10331,7 +17581,20 @@ export const movies = [
     "kinopoiskId": 5050688,
     "imdb": "https://www.imdb.com/title/tt19064770",
     "type": "anime",
-    "id": 562
+    "id": 562,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Легенда о героях галактики",
@@ -10350,7 +17613,20 @@ export const movies = [
     "kinopoiskId": 425875,
     "imdb": "https://www.imdb.com/title/tt0096633",
     "type": "anime",
-    "id": 563
+    "id": 563,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Драконий жемчуг: Супер",
@@ -10369,7 +17645,20 @@ export const movies = [
     "kinopoiskId": 921973,
     "imdb": "https://www.imdb.com/title/tt4644488",
     "type": "anime",
-    "id": 564
+    "id": 564,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Девушка на час",
@@ -10388,7 +17677,20 @@ export const movies = [
     "kinopoiskId": 1332676,
     "imdb": "https://www.imdb.com/title/tt11448214",
     "type": "anime",
-    "id": 565
+    "id": 565,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Юные Титаны",
@@ -10407,7 +17709,20 @@ export const movies = [
     "kinopoiskId": 481396,
     "imdb": "https://www.imdb.com/title/tt0343314",
     "type": "anime",
-    "id": 566
+    "id": 566,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "О движении Земли",
@@ -10426,7 +17741,20 @@ export const movies = [
     "kinopoiskId": 7436588,
     "imdb": "https://www.imdb.com/title/tt33044444",
     "type": "anime",
-    "id": 567
+    "id": 567,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Кабанери железной крепости",
@@ -10445,7 +17773,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt5556656",
     "type": "anime",
-    "id": 568
+    "id": 568,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Топор: Нет поражения",
@@ -10465,7 +17806,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt37968925",
     "type": "anime",
     "id": 569,
-    "releaseDate": "2026-06-18"
+    "releaseDate": "2026-06-18",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Нана",
@@ -10484,7 +17838,20 @@ export const movies = [
     "kinopoiskId": 400122,
     "imdb": "https://www.imdb.com/title/tt0810705",
     "type": "anime",
-    "id": 570
+    "id": 570,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Лето, когда умер Хикару",
@@ -10503,7 +17870,20 @@ export const movies = [
     "kinopoiskId": 6612504,
     "imdb": "https://www.imdb.com/title/tt33028568",
     "type": "anime",
-    "id": 571
+    "id": 571,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Плутон",
@@ -10522,7 +17902,20 @@ export const movies = [
     "kinopoiskId": 5351506,
     "imdb": "https://www.imdb.com/title/tt26737616",
     "type": "anime",
-    "id": 572
+    "id": 572,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Хоримия",
@@ -10541,7 +17934,20 @@ export const movies = [
     "kinopoiskId": 2000743,
     "imdb": "https://www.imdb.com/title/tt13103134",
     "type": "anime",
-    "id": 573
+    "id": 573,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Детектив Конан",
@@ -10560,7 +17966,20 @@ export const movies = [
     "kinopoiskId": 391104,
     "imdb": "https://www.imdb.com/title/tt0131179",
     "type": "anime",
-    "id": 574
+    "id": 574,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Звездное дитя",
@@ -10579,7 +17998,20 @@ export const movies = [
     "kinopoiskId": 5308105,
     "imdb": "https://www.imdb.com/title/tt21030032",
     "type": "anime",
-    "id": 575
+    "id": 575,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Магия и мускулы",
@@ -10598,7 +18030,20 @@ export const movies = [
     "kinopoiskId": 5332447,
     "imdb": "https://www.imdb.com/title/tt21209804",
     "type": "anime",
-    "id": 576
+    "id": 576,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Драконий жемчуг",
@@ -10617,7 +18062,20 @@ export const movies = [
     "kinopoiskId": 230611,
     "imdb": "https://www.imdb.com/title/tt0280249",
     "type": "anime",
-    "id": 577
+    "id": 577,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Эксперименты Лэйн",
@@ -10636,7 +18094,20 @@ export const movies = [
     "kinopoiskId": 321835,
     "imdb": "https://www.imdb.com/title/tt0500092",
     "type": "anime",
-    "id": 578
+    "id": 578,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Драконий жемчуг Зет",
@@ -10655,7 +18126,20 @@ export const movies = [
     "kinopoiskId": 230603,
     "imdb": "https://www.imdb.com/title/tt0121220",
     "type": "anime",
-    "id": 579
+    "id": 579,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Брачный токсин",
@@ -10675,7 +18159,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt39122769",
     "type": "anime",
     "id": 580,
-    "releaseDate": "2026-09-12"
+    "releaseDate": "2026-09-12",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Этот глупый свин не понимает мечту девочки-зайки",
@@ -10694,7 +18191,20 @@ export const movies = [
     "kinopoiskId": 1198791,
     "imdb": "https://www.imdb.com/title/tt8993398",
     "type": "anime",
-    "id": 581
+    "id": 581,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Подземелье вкусностей",
@@ -10713,7 +18223,20 @@ export const movies = [
     "kinopoiskId": 5351514,
     "imdb": "https://www.imdb.com/title/tt21621494",
     "type": "anime",
-    "id": 582
+    "id": 582,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Боруто: Новое поколение Наруто",
@@ -10732,7 +18255,20 @@ export const movies = [
     "kinopoiskId": 1042757,
     "imdb": "https://www.imdb.com/title/tt6342474",
     "type": "anime",
-    "id": 583
+    "id": 583,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Убийца Акамэ!",
@@ -10751,7 +18287,20 @@ export const movies = [
     "kinopoiskId": 841026,
     "imdb": "https://www.imdb.com/title/tt3742982",
     "type": "anime",
-    "id": 584
+    "id": 584,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Фруктовая корзина",
@@ -10770,7 +18319,20 @@ export const movies = [
     "kinopoiskId": 1214123,
     "imdb": "https://www.imdb.com/title/tt9304350",
     "type": "anime",
-    "id": 585
+    "id": 585,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Планета Земля 2",
@@ -10789,7 +18351,18 @@ export const movies = [
     "kinopoiskId": 1007472,
     "imdb": "https://www.imdb.com/title/tt5491994",
     "type": "series",
-    "id": 586
+    "id": 586,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "BBC: Планета Земля",
@@ -10808,7 +18381,20 @@ export const movies = [
     "kinopoiskId": 279548,
     "imdb": "https://www.imdb.com/title/tt0795176",
     "type": "series",
-    "id": 587
+    "id": 587,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Братья по оружию",
@@ -10827,7 +18413,20 @@ export const movies = [
     "kinopoiskId": 94249,
     "imdb": "https://www.imdb.com/title/tt0185906",
     "type": "series",
-    "id": 588
+    "id": 588,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Чернобыль",
@@ -10846,7 +18445,20 @@ export const movies = [
     "kinopoiskId": 1227803,
     "imdb": "https://www.imdb.com/title/tt7366338",
     "type": "series",
-    "id": 589
+    "id": 589,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Прослушка",
@@ -10865,7 +18477,20 @@ export const movies = [
     "kinopoiskId": 402955,
     "imdb": "https://www.imdb.com/title/tt0306414",
     "type": "series",
-    "id": 590
+    "id": 590,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Аватар: Легенда об Аанге",
@@ -10884,7 +18509,20 @@ export const movies = [
     "kinopoiskId": 1243816,
     "imdb": "https://www.imdb.com/title/tt0417299",
     "type": "series",
-    "id": 591
+    "id": 591,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "title": "Сопрано",
@@ -10903,7 +18541,20 @@ export const movies = [
     "kinopoiskId": 79848,
     "imdb": "https://www.imdb.com/title/tt0141842",
     "type": "series",
-    "id": 592
+    "id": 592,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Голубая планета 2",
@@ -10922,7 +18573,19 @@ export const movies = [
     "kinopoiskId": 1073233,
     "imdb": "https://www.imdb.com/title/tt6769208",
     "type": "series",
-    "id": 593
+    "id": 593,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Космос: Пространство и время",
@@ -10941,7 +18604,18 @@ export const movies = [
     "kinopoiskId": 762381,
     "imdb": "https://www.imdb.com/title/tt2395695",
     "type": "series",
-    "id": 594
+    "id": 594,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Космос",
@@ -10960,7 +18634,18 @@ export const movies = [
     "kinopoiskId": 420068,
     "imdb": "https://www.imdb.com/title/tt0081846",
     "type": "series",
-    "id": 595
+    "id": 595,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Наша планета",
@@ -10979,7 +18664,20 @@ export const movies = [
     "kinopoiskId": 1235081,
     "imdb": "https://www.imdb.com/title/tt9253866",
     "type": "series",
-    "id": 596
+    "id": 596,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🌙 Dark Mood",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Блуи",
@@ -10998,7 +18696,20 @@ export const movies = [
     "kinopoiskId": 1338495,
     "imdb": "https://www.imdb.com/title/tt7678620",
     "type": "series",
-    "id": 597
+    "id": 597,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Мир в войне",
@@ -11017,7 +18728,19 @@ export const movies = [
     "kinopoiskId": 254886,
     "imdb": "https://www.imdb.com/title/tt0071075",
     "type": "series",
-    "id": 598
+    "id": 598,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Dark Mood",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "BBC: Жизнь",
@@ -11036,7 +18759,20 @@ export const movies = [
     "kinopoiskId": 500289,
     "imdb": "https://www.imdb.com/title/tt1533395",
     "type": "series",
-    "id": 599
+    "id": 599,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🌙 Dark Mood",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Последний танец",
@@ -11055,7 +18791,18 @@ export const movies = [
     "kinopoiskId": 1162628,
     "imdb": "https://www.imdb.com/title/tt8420184",
     "type": "series",
-    "id": 600
+    "id": 600,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 4,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "title": "Сумеречная зона",
@@ -11074,7 +18821,20 @@ export const movies = [
     "kinopoiskId": 229159,
     "imdb": "https://www.imdb.com/title/tt0052520",
     "type": "series",
-    "id": 601
+    "id": 601,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Вьетнам",
@@ -11093,7 +18853,18 @@ export const movies = [
     "kinopoiskId": 775289,
     "imdb": "https://www.imdb.com/title/tt1877514",
     "type": "series",
-    "id": 602
+    "id": 602,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "title": "Бэтмен",
@@ -11112,7 +18883,20 @@ export const movies = [
     "kinopoiskId": 94681,
     "imdb": "https://www.imdb.com/title/tt0103359",
     "type": "series",
-    "id": 603
+    "id": 603,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Лучше звоните Солу",
@@ -11131,7 +18915,20 @@ export const movies = [
     "kinopoiskId": 796660,
     "imdb": "https://www.imdb.com/title/tt3032476",
     "type": "series",
-    "id": 604
+    "id": 604,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Аркейн",
@@ -11150,7 +18947,20 @@ export const movies = [
     "kinopoiskId": 4445150,
     "imdb": "https://www.imdb.com/title/tt11126994",
     "type": "series",
-    "id": 605
+    "id": 605,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Голубая планета",
@@ -11169,7 +18979,18 @@ export const movies = [
     "kinopoiskId": 252059,
     "imdb": "https://www.imdb.com/title/tt0296310",
     "type": "series",
-    "id": 606
+    "id": 606,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "title": "Ферма Кларксона",
@@ -11188,7 +19009,19 @@ export const movies = [
     "kinopoiskId": 4475473,
     "imdb": "https://www.imdb.com/title/tt10541088",
     "type": "series",
-    "id": 607
+    "id": 607,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Жульничество 1992: История Харшада Мехты",
@@ -11207,7 +19040,20 @@ export const movies = [
     "kinopoiskId": 1393461,
     "imdb": "https://www.imdb.com/title/tt12392504",
     "type": "series",
-    "id": 608
+    "id": 608,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "BBC: Замерзшая планета",
@@ -11226,7 +19072,18 @@ export const movies = [
     "kinopoiskId": 652564,
     "imdb": "https://www.imdb.com/title/tt2092588",
     "type": "series",
-    "id": 609
+    "id": 609,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "title": "Дуракам везет",
@@ -11245,7 +19102,19 @@ export const movies = [
     "kinopoiskId": 471405,
     "imdb": "https://www.imdb.com/title/tt0081912",
     "type": "series",
-    "id": 610
+    "id": 610,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 4,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "BBC: Планета людей",
@@ -11264,7 +19133,18 @@ export const movies = [
     "kinopoiskId": 591822,
     "imdb": "https://www.imdb.com/title/tt1806234",
     "type": "series",
-    "id": 611
+    "id": 611,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "title": "Антология The Beatles",
@@ -11283,7 +19163,18 @@ export const movies = [
     "kinopoiskId": 383870,
     "imdb": "https://www.imdb.com/title/tt0111893",
     "type": "series",
-    "id": 612
+    "id": 612,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Dark Mood",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "title": "Декстер: Воскрешение",
@@ -11302,7 +19193,20 @@ export const movies = [
     "kinopoiskId": 6058297,
     "imdb": "https://www.imdb.com/title/tt33043892",
     "type": "series",
-    "id": 613
+    "id": 613,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Питт",
@@ -11321,7 +19225,20 @@ export const movies = [
     "kinopoiskId": 6589776,
     "imdb": "https://www.imdb.com/title/tt31938062",
     "type": "series",
-    "id": 614
+    "id": 614,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Гражданская война",
@@ -11340,7 +19257,18 @@ export const movies = [
     "kinopoiskId": 521770,
     "imdb": "https://www.imdb.com/title/tt0098769",
     "type": "series",
-    "id": 615
+    "id": 615,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Dark Mood",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "title": "Гиби",
@@ -11359,7 +19287,19 @@ export const movies = [
     "kinopoiskId": 4424713,
     "imdb": "https://www.imdb.com/title/tt13675832",
     "type": "series",
-    "id": 616
+    "id": 616,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Таскмастер",
@@ -11378,7 +19318,20 @@ export const movies = [
     "kinopoiskId": 934169,
     "imdb": "https://www.imdb.com/title/tt4934214",
     "type": "series",
-    "id": 617
+    "id": 617,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Сайнфелд",
@@ -11397,7 +19350,18 @@ export const movies = [
     "kinopoiskId": 277627,
     "imdb": "https://www.imdb.com/title/tt0098904",
     "type": "series",
-    "id": 618
+    "id": 618,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Декалог",
@@ -11416,7 +19380,20 @@ export const movies = [
     "kinopoiskId": 94660,
     "imdb": "https://www.imdb.com/title/tt0092337",
     "type": "series",
-    "id": 619
+    "id": 619,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Битлз: Вернись",
@@ -11435,7 +19412,20 @@ export const movies = [
     "kinopoiskId": 1355015,
     "imdb": "https://www.imdb.com/title/tt9735318",
     "type": "series",
-    "id": 620
+    "id": 620,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🧠 Thought-Provoking",
+      "⚡ High Energy",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "title": "Нэйтан спешит на выручку",
@@ -11454,7 +19444,18 @@ export const movies = [
     "kinopoiskId": 734884,
     "imdb": "https://www.imdb.com/title/tt2297757",
     "type": "series",
-    "id": 621
+    "id": 621,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "title": "Апокалипсис: Вторая мировая война",
@@ -11473,7 +19474,18 @@ export const movies = [
     "kinopoiskId": 478013,
     "imdb": "https://www.imdb.com/title/tt1508238",
     "type": "series",
-    "id": 622
+    "id": 622,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Dark Mood",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "title": "Личность",
@@ -11492,7 +19504,20 @@ export const movies = [
     "kinopoiskId": 1112358,
     "imdb": "https://www.imdb.com/title/tt7920978",
     "type": "series",
-    "id": 623
+    "id": 623,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Африка",
@@ -11511,7 +19536,18 @@ export const movies = [
     "kinopoiskId": 743965,
     "imdb": "https://www.imdb.com/title/tt2571774",
     "type": "series",
-    "id": 624
+    "id": 624,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "title": "Избранные",
@@ -11530,7 +19566,20 @@ export const movies = [
     "kinopoiskId": 1228882,
     "imdb": "https://www.imdb.com/title/tt5622316",
     "type": "series",
-    "id": 625
+    "id": 625,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Западное крыло",
@@ -11549,7 +19598,20 @@ export const movies = [
     "kinopoiskId": 94224,
     "imdb": "https://www.imdb.com/title/tt0200276",
     "type": "series",
-    "id": 626
+    "id": 626,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Когда они нас увидят",
@@ -11568,7 +19630,20 @@ export const movies = [
     "kinopoiskId": 1174230,
     "imdb": "https://www.imdb.com/title/tt7137906",
     "type": "series",
-    "id": 627
+    "id": 627,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🖤 Dark Romance / Melancholy",
+      "🌙 Dark & Gritty",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "В Филадельфии всегда солнечно",
@@ -11587,7 +19662,20 @@ export const movies = [
     "kinopoiskId": 401515,
     "imdb": "https://www.imdb.com/title/tt0472954",
     "type": "series",
-    "id": 628
+    "id": 628,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Когда жизнь даёт тебе мандарины",
@@ -11606,7 +19694,20 @@ export const movies = [
     "kinopoiskId": 5249436,
     "imdb": "https://www.imdb.com/title/tt26471411",
     "type": "series",
-    "id": 629
+    "id": 629,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "События прошедшей недели с Джоном Оливером",
@@ -11625,7 +19726,18 @@ export const movies = [
     "kinopoiskId": 839427,
     "imdb": "https://www.imdb.com/title/tt3530232",
     "type": "series",
-    "id": 630
+    "id": 630,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "✨ Баланс & Атмосфера"
+    ]
   },
   {
     "title": "ТВФ Питчеры",
@@ -11644,7 +19756,20 @@ export const movies = [
     "kinopoiskId": 952178,
     "imdb": "https://www.imdb.com/title/tt4742876",
     "type": "series",
-    "id": 631
+    "id": 631,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Умерь свой энтузиазм",
@@ -11663,7 +19788,19 @@ export const movies = [
     "kinopoiskId": 277559,
     "imdb": "https://www.imdb.com/title/tt0264235",
     "type": "series",
-    "id": 632
+    "id": 632,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Монти Пайтон: Летающий цирк",
@@ -11682,7 +19819,18 @@ export const movies = [
     "kinopoiskId": 94730,
     "imdb": "https://www.imdb.com/title/tt0063929",
     "type": "series",
-    "id": 633
+    "id": 633,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Панчаят",
@@ -11701,7 +19849,20 @@ export const movies = [
     "kinopoiskId": 1359425,
     "imdb": "https://www.imdb.com/title/tt12004706",
     "type": "series",
-    "id": 634
+    "id": 634,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Отель «Фолти Тауэрс»",
@@ -11720,7 +19881,20 @@ export const movies = [
     "kinopoiskId": 438208,
     "imdb": "https://www.imdb.com/title/tt0072500",
     "type": "series",
-    "id": 635
+    "id": 635,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Копилка",
@@ -11739,7 +19913,20 @@ export const movies = [
     "kinopoiskId": 1277337,
     "imdb": "https://www.imdb.com/title/tt10530900",
     "type": "series",
-    "id": 636
+    "id": 636,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Чёрная гадюка 4",
@@ -11758,7 +19945,20 @@ export const movies = [
     "kinopoiskId": 89626,
     "imdb": "https://www.imdb.com/title/tt0096548",
     "type": "series",
-    "id": 637
+    "id": 637,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Лейла и Меджнун",
@@ -11777,7 +19977,20 @@ export const movies = [
     "kinopoiskId": 591995,
     "imdb": "https://www.imdb.com/title/tt1831164",
     "type": "series",
-    "id": 638
+    "id": 638,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Хулиганы и ботаны",
@@ -11796,7 +20009,20 @@ export const movies = [
     "kinopoiskId": 401639,
     "imdb": "https://www.imdb.com/title/tt0193676",
     "type": "series",
-    "id": 639
+    "id": 639,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 3,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Шоу Шаппелла",
@@ -11815,7 +20041,18 @@ export const movies = [
     "kinopoiskId": 403956,
     "imdb": "https://www.imdb.com/title/tt0353049",
     "type": "series",
-    "id": 640
+    "id": 640,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Твин Пикс",
@@ -11834,7 +20071,20 @@ export const movies = [
     "kinopoiskId": 84358,
     "imdb": "https://www.imdb.com/title/tt0098936",
     "type": "series",
-    "id": 641
+    "id": 641,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Вернуться в 1988",
@@ -11853,7 +20103,20 @@ export const movies = [
     "kinopoiskId": 944829,
     "imdb": "https://www.imdb.com/title/tt5182866",
     "type": "series",
-    "id": 642
+    "id": 642,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Я, Клавдий",
@@ -11872,7 +20135,20 @@ export const movies = [
     "kinopoiskId": 566991,
     "imdb": "https://www.imdb.com/title/tt0074006",
     "type": "series",
-    "id": 643
+    "id": 643,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Южный Парк",
@@ -11891,7 +20167,20 @@ export const movies = [
     "kinopoiskId": 161252,
     "imdb": "https://www.imdb.com/title/tt0121955",
     "type": "series",
-    "id": 644
+    "id": 644,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Фабрика гениев",
@@ -11910,7 +20199,20 @@ export const movies = [
     "kinopoiskId": 1255656,
     "imdb": "https://www.imdb.com/title/tt9432978",
     "type": "series",
-    "id": 645
+    "id": 645,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "По ту сторону изгороди",
@@ -11929,7 +20231,20 @@ export const movies = [
     "kinopoiskId": 841914,
     "imdb": "https://www.imdb.com/title/tt3718778",
     "type": "series",
-    "id": 646
+    "id": 646,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Мой аджосси",
@@ -11948,7 +20263,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt7923710",
     "type": "series",
-    "id": 647
+    "id": 647,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Чёрное зеркало",
@@ -11967,7 +20295,20 @@ export const movies = [
     "kinopoiskId": 655800,
     "imdb": "https://www.imdb.com/title/tt2085059",
     "type": "series",
-    "id": 648
+    "id": 648,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Острые козырьки",
@@ -11986,7 +20327,20 @@ export const movies = [
     "kinopoiskId": 716587,
     "imdb": "https://www.imdb.com/title/tt2442560",
     "type": "series",
-    "id": 649
+    "id": 649,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Тюрьма «ОZ»",
@@ -12005,7 +20359,20 @@ export const movies = [
     "kinopoiskId": 258070,
     "imdb": "https://www.imdb.com/title/tt0118421",
     "type": "series",
-    "id": 650
+    "id": 650,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Люди Икс ’97",
@@ -12024,7 +20391,20 @@ export const movies = [
     "kinopoiskId": 4711940,
     "imdb": "https://www.imdb.com/title/tt16026746",
     "type": "series",
-    "id": 651
+    "id": 651,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Непобедимый",
@@ -12043,7 +20423,20 @@ export const movies = [
     "kinopoiskId": 1171895,
     "imdb": "https://www.imdb.com/title/tt6741278",
     "type": "series",
-    "id": 652
+    "id": 652,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Звёздный крейсер «Галактика»",
@@ -12062,7 +20455,20 @@ export const movies = [
     "kinopoiskId": 153013,
     "imdb": "https://www.imdb.com/title/tt0407362",
     "type": "series",
-    "id": 653
+    "id": 653,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Пип шоу",
@@ -12081,7 +20487,18 @@ export const movies = [
     "kinopoiskId": 412006,
     "imdb": "https://www.imdb.com/title/tt0387764",
     "type": "series",
-    "id": 654
+    "id": 654,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Звездный путь: Следующее поколение",
@@ -12100,7 +20517,20 @@ export const movies = [
     "kinopoiskId": 229996,
     "imdb": "https://www.imdb.com/title/tt0092455",
     "type": "series",
-    "id": 655
+    "id": 655,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Всё ещё игра",
@@ -12119,7 +20549,20 @@ export const movies = [
     "kinopoiskId": 372637,
     "imdb": "https://www.imdb.com/title/tt0281491",
     "type": "series",
-    "id": 656
+    "id": 656,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "title": "Голубоглазый самурай",
@@ -12138,7 +20581,20 @@ export const movies = [
     "kinopoiskId": 4992678,
     "imdb": "https://www.imdb.com/title/tt13309742",
     "type": "series",
-    "id": 657
+    "id": 657,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Махабхарата",
@@ -12157,7 +20613,20 @@ export const movies = [
     "kinopoiskId": 453176,
     "imdb": "https://www.imdb.com/title/tt0158417",
     "type": "series",
-    "id": 658
+    "id": 658,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Симпсоны",
@@ -12176,7 +20645,20 @@ export const movies = [
     "kinopoiskId": 77164,
     "imdb": "https://www.imdb.com/title/tt0096697",
     "type": "series",
-    "id": 659
+    "id": 659,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Лига справедливости: Без границ",
@@ -12195,7 +20677,20 @@ export const movies = [
     "kinopoiskId": 1009665,
     "imdb": "https://www.imdb.com/title/tt6025022",
     "type": "series",
-    "id": 660
+    "id": 660,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Приключения Шерлока Холмса",
@@ -12214,7 +20709,20 @@ export const movies = [
     "kinopoiskId": 402506,
     "imdb": "https://www.imdb.com/title/tt0086661",
     "type": "series",
-    "id": 661
+    "id": 661,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "По долгу службы",
@@ -12233,7 +20741,20 @@ export const movies = [
     "kinopoiskId": 688829,
     "imdb": "https://www.imdb.com/title/tt2303687",
     "type": "series",
-    "id": 662
+    "id": 662,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Топ Гир",
@@ -12252,7 +20773,18 @@ export const movies = [
     "kinopoiskId": 566602,
     "imdb": "https://www.imdb.com/title/tt1628033",
     "type": "series",
-    "id": 663
+    "id": 663,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Задержка в развитии",
@@ -12271,7 +20803,20 @@ export const movies = [
     "kinopoiskId": 277569,
     "imdb": "https://www.imdb.com/title/tt0367279",
     "type": "series",
-    "id": 664
+    "id": 664,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Огни ночной пятницы",
@@ -12290,7 +20835,20 @@ export const movies = [
     "kinopoiskId": 400030,
     "imdb": "https://www.imdb.com/title/tt0758745",
     "type": "series",
-    "id": 665
+    "id": 665,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Рамаяна",
@@ -12309,7 +20867,20 @@ export const movies = [
     "kinopoiskId": 574668,
     "imdb": "https://www.imdb.com/title/tt0268093",
     "type": "series",
-    "id": 666
+    "id": 666,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Полезные советы от Джона Уилсона",
@@ -12328,7 +20899,20 @@ export const movies = [
     "kinopoiskId": 1406458,
     "imdb": "https://www.imdb.com/title/tt10801534",
     "type": "series",
-    "id": 667
+    "id": 667,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Бехзат: Серийные преступления в Анкаре",
@@ -12347,7 +20931,20 @@ export const movies = [
     "kinopoiskId": 579611,
     "imdb": "https://www.imdb.com/title/tt1795096",
     "type": "series",
-    "id": 668
+    "id": 668,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Это мы",
@@ -12366,7 +20963,20 @@ export const movies = [
     "kinopoiskId": 969141,
     "imdb": "https://www.imdb.com/title/tt5555260",
     "type": "series",
-    "id": 669
+    "id": 669,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Гуща событий",
@@ -12385,7 +20995,19 @@ export const movies = [
     "kinopoiskId": 570010,
     "imdb": "https://www.imdb.com/title/tt0459159",
     "type": "series",
-    "id": 670
+    "id": 670,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Рыцарь Семи Королевств",
@@ -12405,7 +21027,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27497448",
     "type": "series",
     "id": 671,
-    "releaseDate": "2026-01-18"
+    "releaseDate": "2026-01-18",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Кандидаты",
@@ -12424,7 +21059,20 @@ export const movies = [
     "kinopoiskId": 4438142,
     "imdb": "https://www.imdb.com/title/tt14392248",
     "type": "series",
-    "id": 672
+    "id": 672,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Отец Тед",
@@ -12443,7 +21091,20 @@ export const movies = [
     "kinopoiskId": 439912,
     "imdb": "https://www.imdb.com/title/tt0111958",
     "type": "series",
-    "id": 673
+    "id": 673,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Время приключений",
@@ -12462,7 +21123,20 @@ export const movies = [
     "kinopoiskId": 602284,
     "imdb": "https://www.imdb.com/title/tt1305826",
     "type": "series",
-    "id": 674
+    "id": 674,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Решала",
@@ -12481,7 +21155,20 @@ export const movies = [
     "kinopoiskId": 1179409,
     "imdb": "https://www.imdb.com/title/tt7472896",
     "type": "series",
-    "id": 675
+    "id": 675,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "1883",
@@ -12500,7 +21187,20 @@ export const movies = [
     "kinopoiskId": 4397594,
     "imdb": "https://www.imdb.com/title/tt13991232",
     "type": "series",
-    "id": 676
+    "id": 676,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Умар ибн аль-Хаттаб",
@@ -12519,7 +21219,20 @@ export const movies = [
     "kinopoiskId": 734161,
     "imdb": "https://www.imdb.com/title/tt2063241",
     "type": "series",
-    "id": 677
+    "id": 677,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Сарабхай против Сарабхай",
@@ -12538,7 +21251,20 @@ export const movies = [
     "kinopoiskId": 838879,
     "imdb": "https://www.imdb.com/title/tt1518542",
     "type": "series",
-    "id": 678
+    "id": 678,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Cozy & Feel-Good",
+      "👥 Character Driven",
+      "⚡ High Energy",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Пуаро",
@@ -12557,7 +21283,20 @@ export const movies = [
     "kinopoiskId": 85208,
     "imdb": "https://www.imdb.com/title/tt0094525",
     "type": "series",
-    "id": 679
+    "id": 679,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Атланта",
@@ -12576,7 +21315,20 @@ export const movies = [
     "kinopoiskId": 882408,
     "imdb": "https://www.imdb.com/title/tt4288182",
     "type": "series",
-    "id": 680
+    "id": 680,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Пацаны",
@@ -12595,7 +21347,20 @@ export const movies = [
     "kinopoiskId": 460586,
     "imdb": "https://www.imdb.com/title/tt1190634",
     "type": "series",
-    "id": 681
+    "id": 681,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Это грех",
@@ -12614,7 +21379,20 @@ export const movies = [
     "kinopoiskId": 1311396,
     "imdb": "https://www.imdb.com/title/tt9140342",
     "type": "series",
-    "id": 682
+    "id": 682,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Одинокий голубь",
@@ -12633,7 +21411,20 @@ export const movies = [
     "kinopoiskId": 276113,
     "imdb": "https://www.imdb.com/title/tt0096639",
     "type": "series",
-    "id": 683
+    "id": 683,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Первобытный",
@@ -12652,7 +21443,20 @@ export const movies = [
     "kinopoiskId": 1263399,
     "imdb": "https://www.imdb.com/title/tt10332508",
     "type": "series",
-    "id": 684
+    "id": 684,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Чёрная гадюка 2",
@@ -12671,7 +21475,20 @@ export const movies = [
     "kinopoiskId": 89623,
     "imdb": "https://www.imdb.com/title/tt0088484",
     "type": "series",
-    "id": 685
+    "id": 685,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Аварийная посадка любви",
@@ -12690,7 +21507,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt10850932",
     "type": "series",
-    "id": 686
+    "id": 686,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Жаркое соперничество",
@@ -12709,7 +21539,20 @@ export const movies = [
     "kinopoiskId": 463191,
     "imdb": "https://www.imdb.com/title/tt35495073",
     "type": "series",
-    "id": 687
+    "id": 687,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🍿 Cozy & Feel-Good",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Бюро легенд",
@@ -12728,7 +21571,20 @@ export const movies = [
     "kinopoiskId": 935095,
     "imdb": "https://www.imdb.com/title/tt4063800",
     "type": "series",
-    "id": 688
+    "id": 688,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Предложение",
@@ -12747,7 +21603,20 @@ export const movies = [
     "kinopoiskId": 1407744,
     "imdb": "https://www.imdb.com/title/tt13111040",
     "type": "series",
-    "id": 689
+    "id": 689,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Да, господин министр",
@@ -12766,7 +21635,18 @@ export const movies = [
     "kinopoiskId": 89609,
     "imdb": "https://www.imdb.com/title/tt0080306",
     "type": "series",
-    "id": 690
+    "id": 690,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Возвращение Шерлока Холмса",
@@ -12785,7 +21665,20 @@ export const movies = [
     "kinopoiskId": 402507,
     "imdb": "https://www.imdb.com/title/tt0090509",
     "type": "series",
-    "id": 691
+    "id": 691,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Поза",
@@ -12804,7 +21697,20 @@ export const movies = [
     "kinopoiskId": 1118137,
     "imdb": "https://www.imdb.com/title/tt7562112",
     "type": "series",
-    "id": 692
+    "id": 692,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Чаво с восьмого",
@@ -12823,7 +21729,20 @@ export const movies = [
     "kinopoiskId": 565046,
     "imdb": "https://www.imdb.com/title/tt0229889",
     "type": "series",
-    "id": 693
+    "id": 693,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Андор",
@@ -12842,7 +21761,20 @@ export const movies = [
     "kinopoiskId": 1209850,
     "imdb": "https://www.imdb.com/title/tt9253284",
     "type": "series",
-    "id": 694
+    "id": 694,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Величайшие события Второй мировой войны",
@@ -12861,7 +21793,20 @@ export const movies = [
     "kinopoiskId": 1371988,
     "imdb": "https://www.imdb.com/title/tt9103932",
     "type": "series",
-    "id": 695
+    "id": 695,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🌙 Dark Mood",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Тайны миллиардера",
@@ -12880,7 +21825,20 @@ export const movies = [
     "kinopoiskId": 870265,
     "imdb": "https://www.imdb.com/title/tt4299972",
     "type": "series",
-    "id": 696
+    "id": 696,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Чёрная гадюка 3",
@@ -12899,7 +21857,20 @@ export const movies = [
     "kinopoiskId": 89625,
     "imdb": "https://www.imdb.com/title/tt0092324",
     "type": "series",
-    "id": 697
+    "id": 697,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Пингвин",
@@ -12918,7 +21889,20 @@ export const movies = [
     "kinopoiskId": 4635062,
     "imdb": "https://www.imdb.com/title/tt15435876",
     "type": "series",
-    "id": 698
+    "id": 698,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Служба новостей",
@@ -12937,7 +21921,19 @@ export const movies = [
     "kinopoiskId": 584777,
     "imdb": "https://www.imdb.com/title/tt1870479",
     "type": "series",
-    "id": 699
+    "id": 699,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "title": "Энн",
@@ -12956,7 +21952,20 @@ export const movies = [
     "kinopoiskId": 1009510,
     "imdb": "https://www.imdb.com/title/tt5421602",
     "type": "series",
-    "id": 700
+    "id": 700,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Убойный отдел",
@@ -12975,7 +21984,20 @@ export const movies = [
     "kinopoiskId": 252102,
     "imdb": "https://www.imdb.com/title/tt0106028",
     "type": "series",
-    "id": 701
+    "id": 701,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Критикал рол",
@@ -12994,7 +22016,20 @@ export const movies = [
     "kinopoiskId": 1346691,
     "imdb": "https://www.imdb.com/title/tt4834232",
     "type": "series",
-    "id": 702
+    "id": 702,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "title": "Царство падальщиков",
@@ -13013,7 +22048,20 @@ export const movies = [
     "kinopoiskId": 5002282,
     "imdb": "https://www.imdb.com/title/tt21056886",
     "type": "series",
-    "id": 703
+    "id": 703,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Арчер",
@@ -13032,7 +22080,20 @@ export const movies = [
     "kinopoiskId": 491547,
     "imdb": "https://www.imdb.com/title/tt1486217",
     "type": "series",
-    "id": 704
+    "id": 704,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Ломка",
@@ -13051,7 +22112,20 @@ export const movies = [
     "kinopoiskId": 1390826,
     "imdb": "https://www.imdb.com/title/tt9174558",
     "type": "series",
-    "id": 705
+    "id": 705,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Таинственный театр 3000 года",
@@ -13070,7 +22144,20 @@ export const movies = [
     "kinopoiskId": 353893,
     "imdb": "https://www.imdb.com/title/tt0094517",
     "type": "series",
-    "id": 706
+    "id": 706,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Семья Йе Мери",
@@ -13089,7 +22176,20 @@ export const movies = [
     "kinopoiskId": 1165887,
     "imdb": "https://www.imdb.com/title/tt8595766",
     "type": "series",
-    "id": 707
+    "id": 707,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Шоу Багса Банни",
@@ -13108,7 +22208,20 @@ export const movies = [
     "kinopoiskId": 447320,
     "imdb": "https://www.imdb.com/title/tt0053488",
     "type": "series",
-    "id": 708
+    "id": 708,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "КьюАй. Весьма интересно",
@@ -13127,7 +22240,20 @@ export const movies = [
     "kinopoiskId": 493902,
     "imdb": "https://www.imdb.com/title/tt0380136",
     "type": "series",
-    "id": 709
+    "id": 709,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Звёздный крейсер «Галактика»",
@@ -13146,7 +22272,20 @@ export const movies = [
     "kinopoiskId": 229162,
     "imdb": "https://www.imdb.com/title/tt0314979",
     "type": "series",
-    "id": 710
+    "id": 710,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 9,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Индевор",
@@ -13165,7 +22304,20 @@ export const movies = [
     "kinopoiskId": 614196,
     "imdb": "https://www.imdb.com/title/tt2701582",
     "type": "series",
-    "id": 711
+    "id": 711,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Драконий жемчуг",
@@ -13184,7 +22336,20 @@ export const movies = [
     "kinopoiskId": 230604,
     "imdb": "https://www.imdb.com/title/tt0088509",
     "type": "series",
-    "id": 712
+    "id": 712,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Братья Вентура",
@@ -13203,7 +22368,20 @@ export const movies = [
     "kinopoiskId": 281897,
     "imdb": "https://www.imdb.com/title/tt0417373",
     "type": "series",
-    "id": 713
+    "id": 713,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Юная Лига Справедливости",
@@ -13222,7 +22400,20 @@ export const movies = [
     "kinopoiskId": 570073,
     "imdb": "https://www.imdb.com/title/tt1641384",
     "type": "series",
-    "id": 714
+    "id": 714,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Лига справедливости",
@@ -13241,7 +22432,20 @@ export const movies = [
     "kinopoiskId": 229167,
     "imdb": "https://www.imdb.com/title/tt0275137",
     "type": "series",
-    "id": 715
+    "id": 715,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Тени над Балканами",
@@ -13260,7 +22464,20 @@ export const movies = [
     "kinopoiskId": 1195676,
     "imdb": "https://www.imdb.com/title/tt6108262",
     "type": "series",
-    "id": 716
+    "id": 716,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Да, господин Премьер-министр",
@@ -13279,7 +22496,18 @@ export const movies = [
     "kinopoiskId": 89608,
     "imdb": "https://www.imdb.com/title/tt0086831",
     "type": "series",
-    "id": 717
+    "id": 717,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Чем мы заняты в тени",
@@ -13298,7 +22526,20 @@ export const movies = [
     "kinopoiskId": 1113116,
     "imdb": "https://www.imdb.com/title/tt7908628",
     "type": "series",
-    "id": 718
+    "id": 718,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Звёздные войны. Дарт Мол: Повелитель теней",
@@ -13318,7 +22559,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt36594331",
     "type": "series",
     "id": 719,
-    "releaseDate": "2026-11-15"
+    "releaseDate": "2026-11-15",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Обычный мультик: Утерянные пленки",
@@ -13338,7 +22592,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt1710308",
     "type": "series",
     "id": 720,
-    "releaseDate": "2026-08-20"
+    "releaseDate": "2026-08-20",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Призрак дома на холме",
@@ -13357,7 +22624,20 @@ export const movies = [
     "kinopoiskId": 1044279,
     "imdb": "https://www.imdb.com/title/tt6763664",
     "type": "series",
-    "id": 721
+    "id": 721,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Сапне против всех",
@@ -13376,7 +22656,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt30263074",
     "type": "series",
-    "id": 722
+    "id": 722,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Искатели сокровищ",
@@ -13395,7 +22688,20 @@ export const movies = [
     "kinopoiskId": 846937,
     "imdb": "https://www.imdb.com/title/tt4082744",
     "type": "series",
-    "id": 723
+    "id": 723,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Полет Конкордов",
@@ -13414,7 +22720,19 @@ export const movies = [
     "kinopoiskId": 399984,
     "imdb": "https://www.imdb.com/title/tt0863046",
     "type": "series",
-    "id": 724
+    "id": 724,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Семьянин",
@@ -13433,7 +22751,20 @@ export const movies = [
     "kinopoiskId": 1226828,
     "imdb": "https://www.imdb.com/title/tt9544034",
     "type": "series",
-    "id": 725
+    "id": 725,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Любовь на шестерых",
@@ -13452,7 +22783,20 @@ export const movies = [
     "kinopoiskId": 248134,
     "imdb": "https://www.imdb.com/title/tt0237123",
     "type": "series",
-    "id": 726
+    "id": 726,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Я – Алан Партридж",
@@ -13471,7 +22815,20 @@ export const movies = [
     "kinopoiskId": 230897,
     "imdb": "https://www.imdb.com/title/tt0129690",
     "type": "series",
-    "id": 727
+    "id": 727,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Эзель",
@@ -13490,7 +22847,20 @@ export const movies = [
     "kinopoiskId": 497667,
     "imdb": "https://www.imdb.com/title/tt1534360",
     "type": "series",
-    "id": 728
+    "id": 728,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 10,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Ракетные мальчики",
@@ -13509,7 +22879,20 @@ export const movies = [
     "kinopoiskId": 4672473,
     "imdb": "https://www.imdb.com/title/tt13868972",
     "type": "series",
-    "id": 729
+    "id": 729,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Ход королевы",
@@ -13528,7 +22911,20 @@ export const movies = [
     "kinopoiskId": 1253633,
     "imdb": "https://www.imdb.com/title/tt10048342",
     "type": "series",
-    "id": 730
+    "id": 730,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🌙 Dark Mood"
+    ]
   },
   {
     "title": "Самурай Джек",
@@ -13547,7 +22943,20 @@ export const movies = [
     "kinopoiskId": 295050,
     "imdb": "https://www.imdb.com/title/tt0278238",
     "type": "series",
-    "id": 731
+    "id": 731,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 10,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Счастливая долина",
@@ -13566,7 +22975,20 @@ export const movies = [
     "kinopoiskId": 818955,
     "imdb": "https://www.imdb.com/title/tt3428912",
     "type": "series",
-    "id": 732
+    "id": 732,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Девчонки из Дерри",
@@ -13585,7 +23007,20 @@ export const movies = [
     "kinopoiskId": 1111962,
     "imdb": "https://www.imdb.com/title/tt7120662",
     "type": "series",
-    "id": 733
+    "id": 733,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Репетиция",
@@ -13604,7 +23039,20 @@ export const movies = [
     "kinopoiskId": 5030035,
     "imdb": "https://www.imdb.com/title/tt10802170",
     "type": "series",
-    "id": 734
+    "id": 734,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Долгий путь вокруг Земли",
@@ -13623,7 +23071,20 @@ export const movies = [
     "kinopoiskId": 257333,
     "imdb": "https://www.imdb.com/title/tt0403778",
     "type": "series",
-    "id": 735
+    "id": 735,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "title": "Создавая убийцу",
@@ -13642,7 +23103,20 @@ export const movies = [
     "kinopoiskId": 957236,
     "imdb": "https://www.imdb.com/title/tt5189670",
     "type": "series",
-    "id": 736
+    "id": 736,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💀 Violent Survival",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Твин Пикс",
@@ -13661,7 +23135,20 @@ export const movies = [
     "kinopoiskId": 843207,
     "imdb": "https://www.imdb.com/title/tt4093826",
     "type": "series",
-    "id": 737
+    "id": 737,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Алхимия душ",
@@ -13680,7 +23167,20 @@ export const movies = [
     "kinopoiskId": 4872515,
     "imdb": "https://www.imdb.com/title/tt20859920",
     "type": "series",
-    "id": 738
+    "id": 738,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Долбанутые",
@@ -13699,7 +23199,20 @@ export const movies = [
     "kinopoiskId": 281874,
     "imdb": "https://www.imdb.com/title/tt0187664",
     "type": "series",
-    "id": 739
+    "id": 739,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "О всех созданиях — больших и малых",
@@ -13718,7 +23231,20 @@ export const movies = [
     "kinopoiskId": 1309507,
     "imdb": "https://www.imdb.com/title/tt10590066",
     "type": "series",
-    "id": 740
+    "id": 740,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Невозможные шутники",
@@ -13737,7 +23263,18 @@ export const movies = [
     "kinopoiskId": 652825,
     "imdb": "https://www.imdb.com/title/tt2100976",
     "type": "series",
-    "id": 741
+    "id": 741,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Так чья сейчас реплика?",
@@ -13756,7 +23293,19 @@ export const movies = [
     "kinopoiskId": 678761,
     "imdb": "https://www.imdb.com/title/tt0163507",
     "type": "series",
-    "id": 742
+    "id": 742,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Выбирайте выражения",
@@ -13775,7 +23324,20 @@ export const movies = [
     "kinopoiskId": 395130,
     "imdb": "https://www.imdb.com/title/tt0075537",
     "type": "series",
-    "id": 743
+    "id": 743,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Discovery: Сквозь пространство и время с Морганом Фрименом",
@@ -13794,7 +23356,19 @@ export const movies = [
     "kinopoiskId": 542041,
     "imdb": "https://www.imdb.com/title/tt1513168",
     "type": "series",
-    "id": 744
+    "id": 744,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🧠 Thought-Provoking",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Луи",
@@ -13813,7 +23387,20 @@ export const movies = [
     "kinopoiskId": 505736,
     "imdb": "https://www.imdb.com/title/tt1492966",
     "type": "series",
-    "id": 745
+    "id": 745,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Парни из Трейлерпарка",
@@ -13832,7 +23419,20 @@ export const movies = [
     "kinopoiskId": 412485,
     "imdb": "https://www.imdb.com/title/tt0290988",
     "type": "series",
-    "id": 746
+    "id": 746,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Моя гениальная подруга",
@@ -13851,7 +23451,20 @@ export const movies = [
     "kinopoiskId": 1176172,
     "imdb": "https://www.imdb.com/title/tt7278862",
     "type": "series",
-    "id": 747
+    "id": 747,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Шоу Эрика Андре",
@@ -13870,7 +23483,20 @@ export const movies = [
     "kinopoiskId": 703286,
     "imdb": "https://www.imdb.com/title/tt2244495",
     "type": "series",
-    "id": 748
+    "id": 748,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Йеллоустоун",
@@ -13889,7 +23515,20 @@ export const movies = [
     "kinopoiskId": 1045172,
     "imdb": "https://www.imdb.com/title/tt4236770",
     "type": "series",
-    "id": 749
+    "id": 749,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Шиттс Крик",
@@ -13908,7 +23547,20 @@ export const movies = [
     "kinopoiskId": 869554,
     "imdb": "https://www.imdb.com/title/tt3526078",
     "type": "series",
-    "id": 750
+    "id": 750,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Таш ма Таш",
@@ -13927,7 +23579,20 @@ export const movies = [
     "kinopoiskId": 1144913,
     "imdb": "https://www.imdb.com/title/tt5851616",
     "type": "series",
-    "id": 751
+    "id": 751,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Задорные друзья",
@@ -13946,7 +23611,20 @@ export const movies = [
     "kinopoiskId": 1363973,
     "imdb": "https://www.imdb.com/title/tt12074628",
     "type": "series",
-    "id": 752
+    "id": 752,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Заднепроходнее отверстие",
@@ -13965,7 +23643,18 @@ export const movies = [
     "kinopoiskId": 633644,
     "imdb": "https://www.imdb.com/title/tt0118273",
     "type": "series",
-    "id": 753
+    "id": 753,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 2,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Пространство",
@@ -13984,7 +23673,20 @@ export const movies = [
     "kinopoiskId": 805092,
     "imdb": "https://www.imdb.com/title/tt3230854",
     "type": "series",
-    "id": 754
+    "id": 754,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Великий пекарь Британии",
@@ -14003,7 +23705,19 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt1877368",
     "type": "series",
-    "id": 755
+    "id": 755,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ High Energy",
+      "🧠 Mind Bender",
+      "🎬 Fast Paced"
+    ]
   },
   {
     "title": "Бродяга Кэнсин: Воспоминания",
@@ -14022,7 +23736,20 @@ export const movies = [
     "kinopoiskId": 335184,
     "imdb": "https://www.imdb.com/title/tt0203082",
     "type": "series",
-    "id": 756
+    "id": 756,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Силиконовая долина",
@@ -14041,7 +23768,20 @@ export const movies = [
     "kinopoiskId": 723959,
     "imdb": "https://www.imdb.com/title/tt2575988",
     "type": "series",
-    "id": 757
+    "id": 757,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🍿 Уютный & Легкий",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Искрящийся арбуз",
@@ -14060,7 +23800,20 @@ export const movies = [
     "kinopoiskId": null,
     "imdb": "https://www.imdb.com/title/tt27446493",
     "type": "series",
-    "id": 758
+    "id": 758,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Майкл",
@@ -14080,7 +23833,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt11378946",
     "type": "movie",
     "id": 759,
-    "releaseDate": "2025-04-18"
+    "releaseDate": "2025-04-18",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Мортал Комбат 2",
@@ -14100,7 +23866,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt17490712",
     "type": "movie",
     "id": 760,
-    "releaseDate": "2025-10-24"
+    "releaseDate": "2025-10-24",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Необычайно умные создания",
@@ -14120,7 +23899,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33100314",
     "type": "movie",
     "id": 761,
-    "releaseDate": "2026-11-27"
+    "releaseDate": "2026-11-27",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Дьявол носит Prada 2",
@@ -14140,7 +23932,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33612209",
     "type": "movie",
     "id": 762,
-    "releaseDate": "2026-12-04"
+    "releaseDate": "2026-12-04",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Одиссея",
@@ -14160,7 +23965,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33764258",
     "type": "movie",
     "id": 763,
-    "releaseDate": "2026-09-30"
+    "releaseDate": "2026-09-30",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Вершина",
@@ -14180,7 +23998,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt16431404",
     "type": "movie",
     "id": 764,
-    "releaseDate": "2026-08-14"
+    "releaseDate": "2026-08-14",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Проект «Конец света»",
@@ -14200,7 +24031,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt12042730",
     "type": "movie",
     "id": 765,
-    "releaseDate": "2026-03-20"
+    "releaseDate": "2026-03-20",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 3,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Следствие ведут овечки",
@@ -14220,7 +24064,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32565993",
     "type": "movie",
     "id": 766,
-    "releaseDate": "2026-07-29"
+    "releaseDate": "2026-07-29",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "На помощь!",
@@ -14240,7 +24097,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt8036976",
     "type": "movie",
     "id": 767,
-    "releaseDate": "2026-06-25"
+    "releaseDate": "2026-06-25",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "⚡ Заряжающий энергией",
+      "🍿 Cozy & Feel-Good",
+      "⚡ Adrenaline Rush",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "В чужой шкуре",
@@ -14259,7 +24129,20 @@ export const movies = [
     "kinopoiskId": 89937,
     "imdb": "https://www.imdb.com/title/tt29552248",
     "type": "movie",
-    "id": 768
+    "id": 768,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Дьявол носит Prada",
@@ -14278,7 +24161,20 @@ export const movies = [
     "kinopoiskId": 104992,
     "imdb": "https://www.imdb.com/title/tt0458352",
     "type": "movie",
-    "id": 769
+    "id": 769,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🎉 Uplifting Spirit",
+      "🍿 Cozy & Feel-Good"
+    ]
   },
   {
     "title": "Вот это драма!",
@@ -14298,7 +24194,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33071426",
     "type": "movie",
     "id": 770,
-    "releaseDate": "2026-10-14"
+    "releaseDate": "2026-10-14",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Хокум",
@@ -14317,7 +24226,20 @@ export const movies = [
     "kinopoiskId": 1293481,
     "imdb": "https://www.imdb.com/title/tt35672862",
     "type": "movie",
-    "id": 771
+    "id": 771,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Грозовой перевал",
@@ -14337,7 +24259,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32897959",
     "type": "movie",
     "id": 772,
-    "releaseDate": "2026-11-06"
+    "releaseDate": "2026-11-06",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 7,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir",
+      "🖤 Dark Romance / Melancholy",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Мортал Комбат",
@@ -14356,7 +24291,20 @@ export const movies = [
     "kinopoiskId": 8062,
     "imdb": "https://www.imdb.com/title/tt0293429",
     "type": "movie",
-    "id": 773
+    "id": 773,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Обсессия",
@@ -14376,7 +24324,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt37287335",
     "type": "movie",
     "id": 774,
-    "releaseDate": "2026-09-18"
+    "releaseDate": "2026-09-18",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Супер Марио: Галактическое кино",
@@ -14396,7 +24357,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt28650488",
     "type": "movie",
     "id": 775,
-    "releaseDate": "2026-04-03"
+    "releaseDate": "2026-04-03",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Мумия",
@@ -14416,7 +24390,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32612507",
     "type": "movie",
     "id": 776,
-    "releaseDate": "2027-04-05"
+    "releaseDate": "2027-04-05",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 7,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Я иду искать 2",
@@ -14436,7 +24423,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33978029",
     "type": "movie",
     "id": 777,
-    "releaseDate": "2026-10-31"
+    "releaseDate": "2026-10-31",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Горничная",
@@ -14455,7 +24455,20 @@ export const movies = [
     "kinopoiskId": 6750360,
     "imdb": "https://www.imdb.com/title/tt27543632",
     "type": "movie",
-    "id": 778
+    "id": 778,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Марти Великолепный",
@@ -14474,7 +24487,20 @@ export const movies = [
     "kinopoiskId": 6290547,
     "imdb": "https://www.imdb.com/title/tt32916440",
     "type": "movie",
-    "id": 779
+    "id": 779,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Гренландия 2. Миграция",
@@ -14494,7 +24520,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt14850054",
     "type": "movie",
     "id": 780,
-    "releaseDate": "2026-12-11"
+    "releaseDate": "2026-12-11",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 6,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🍿 Cozy & Feel-Good",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Прыгуны",
@@ -14514,7 +24553,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt26443616",
     "type": "movie",
     "id": 781,
-    "releaseDate": "2026-07-10"
+    "releaseDate": "2026-07-10",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Они придут за тобой",
@@ -14534,7 +24586,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt31728330",
     "type": "movie",
     "id": 782,
-    "releaseDate": "2026-10-16"
+    "releaseDate": "2026-10-16",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 6,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Ограбление в Лос-Анджелесе",
@@ -14554,7 +24619,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32430579",
     "type": "movie",
     "id": 783,
-    "releaseDate": "2026-08-28"
+    "releaseDate": "2026-08-28",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Закулисье реальности",
@@ -14574,7 +24652,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt26657236",
     "type": "movie",
     "id": 784,
-    "releaseDate": "2026-09-04"
+    "releaseDate": "2026-09-04",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 9,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Обитель зла",
@@ -14594,7 +24685,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt35538033",
     "type": "movie",
     "id": 785,
-    "releaseDate": "2026-10-23"
+    "releaseDate": "2026-10-23",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Раджа Шиваджи",
@@ -14614,7 +24718,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt31390893",
     "type": "movie",
     "id": 786,
-    "releaseDate": "2026-06-12"
+    "releaseDate": "2026-06-12",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 6,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Бой со зверем",
@@ -14634,7 +24751,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt7708226",
     "type": "movie",
     "id": 787,
-    "releaseDate": "2026-11-20"
+    "releaseDate": "2026-11-20",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Мандалорец и Грогу",
@@ -14654,7 +24784,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt30825738",
     "type": "movie",
     "id": 788,
-    "releaseDate": "2026-05-22"
+    "releaseDate": "2026-05-22",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 3,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Грязные деньги",
@@ -14674,7 +24817,19 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27681354",
     "type": "movie",
     "id": 789,
-    "releaseDate": "2026-09-25"
+    "releaseDate": "2026-09-25",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "❤️ Heartfelt Story"
+    ]
   },
   {
     "title": "Властелины вселенной",
@@ -14694,7 +24849,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt0427340",
     "type": "movie",
     "id": 790,
-    "releaseDate": "2026-06-05"
+    "releaseDate": "2026-06-05",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Аватар: Пламя и пепел",
@@ -14713,7 +24881,20 @@ export const movies = [
     "kinopoiskId": 570402,
     "imdb": "https://www.imdb.com/title/tt1757678",
     "type": "movie",
-    "id": 791
+    "id": 791,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "title": "Скотный двор",
@@ -14732,7 +24913,20 @@ export const movies = [
     "kinopoiskId": 714085,
     "imdb": "https://www.imdb.com/title/tt2467700",
     "type": "movie",
-    "id": 792
+    "id": 792,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 1,
+      "intellect": 7,
+      "emotion": 10,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🌌 Philosophical Journey"
+    ]
   },
   {
     "title": "Битва за битвой",
@@ -14751,7 +24945,20 @@ export const movies = [
     "kinopoiskId": 5437094,
     "imdb": "https://www.imdb.com/title/tt30144839",
     "type": "movie",
-    "id": 793
+    "id": 793,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Дхурандхар Месть",
@@ -14771,7 +24978,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt39139925",
     "type": "movie",
     "id": 794,
-    "releaseDate": "2026-07-04"
+    "releaseDate": "2026-07-04",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Бегущий человек",
@@ -14790,7 +25010,20 @@ export const movies = [
     "kinopoiskId": 4387862,
     "imdb": "https://www.imdb.com/title/tt14107334",
     "type": "movie",
-    "id": 795
+    "id": 795,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival"
+    ]
   },
   {
     "title": "Тони",
@@ -14809,7 +25042,20 @@ export const movies = [
     "kinopoiskId": 419356,
     "imdb": "https://www.imdb.com/title/tt1120945",
     "type": "movie",
-    "id": 796
+    "id": 796,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Гренландия",
@@ -14828,7 +25074,20 @@ export const movies = [
     "kinopoiskId": 1164520,
     "imdb": "https://www.imdb.com/title/tt7737786",
     "type": "movie",
-    "id": 797
+    "id": 797,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 7,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🎉 Uplifting Spirit"
+    ]
   },
   {
     "title": "Орудия",
@@ -14847,7 +25106,20 @@ export const movies = [
     "kinopoiskId": 6782779,
     "imdb": "https://www.imdb.com/title/tt26581740",
     "type": "movie",
-    "id": 798
+    "id": 798,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🌙 Dark & Gritty",
+      "🌙 Dark Mood",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Глубокие воды",
@@ -14867,7 +25139,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt29516222",
     "type": "movie",
     "id": 799,
-    "releaseDate": "2026-08-07"
+    "releaseDate": "2026-08-07",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 8,
+      "intellect": 6,
+      "emotion": 7,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Бугония",
@@ -14886,7 +25171,20 @@ export const movies = [
     "kinopoiskId": 1378893,
     "imdb": "https://www.imdb.com/title/tt12300742",
     "type": "movie",
-    "id": 800
+    "id": 800,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Я иду искать",
@@ -14905,7 +25203,20 @@ export const movies = [
     "kinopoiskId": 1198736,
     "imdb": "https://www.imdb.com/title/tt7798634",
     "type": "movie",
-    "id": 801
+    "id": 801,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Шары вверх",
@@ -14924,7 +25235,18 @@ export const movies = [
     "kinopoiskId": 330197,
     "imdb": "https://www.imdb.com/title/tt0208715",
     "type": "movie",
-    "id": 802
+    "id": 802,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "⚡ Adrenaline Rush",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Грешники",
@@ -14943,7 +25265,20 @@ export const movies = [
     "kinopoiskId": 5499518,
     "imdb": "https://www.imdb.com/title/tt31193180",
     "type": "movie",
-    "id": 803
+    "id": 803,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Нюрнберг",
@@ -14962,7 +25297,20 @@ export const movies = [
     "kinopoiskId": 5427688,
     "imdb": "https://www.imdb.com/title/tt29567915",
     "type": "movie",
-    "id": 804
+    "id": 804,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 8,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "28 лет спустя: Храм костей",
@@ -14982,7 +25330,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32141377",
     "type": "movie",
     "id": 805,
-    "releaseDate": "2026-06-19"
+    "releaseDate": "2026-06-19",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 8,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Кровавая любовь убийцы",
@@ -15002,7 +25363,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt39749979",
     "type": "movie",
     "id": 806,
-    "releaseDate": "2026-08-07"
+    "releaseDate": "2026-08-07",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Удачи, веселья, не сдохни",
@@ -15021,7 +25395,20 @@ export const movies = [
     "kinopoiskId": 463492,
     "imdb": "https://www.imdb.com/title/tt1341338",
     "type": "movie",
-    "id": 807
+    "id": 807,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 2,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Человек-паук: Новый день",
@@ -15041,7 +25428,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt22084616",
     "type": "movie",
     "id": 808,
-    "releaseDate": "2026-07-31"
+    "releaseDate": "2026-07-31",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Первые люди на Луне",
@@ -15060,7 +25460,20 @@ export const movies = [
     "kinopoiskId": 18923,
     "imdb": "https://www.imdb.com/title/tt0058100",
     "type": "movie",
-    "id": 809
+    "id": 809,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Несносные леди",
@@ -15079,7 +25492,20 @@ export const movies = [
     "kinopoiskId": 923901,
     "imdb": "https://www.imdb.com/title/tt4824302",
     "type": "movie",
-    "id": 810
+    "id": 810,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 10,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "День разоблачения",
@@ -15099,7 +25525,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt15047880",
     "type": "movie",
     "id": 811,
-    "releaseDate": "2026-10-09"
+    "releaseDate": "2026-10-09",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Хамнет: История, вдохновившая «Гамлета»",
@@ -15118,7 +25557,20 @@ export const movies = [
     "kinopoiskId": 5454868,
     "imdb": "https://www.imdb.com/title/tt14905854",
     "type": "movie",
-    "id": 812
+    "id": 812,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "⚡ High Energy"
+    ]
   },
   {
     "title": "Военная машина",
@@ -15138,7 +25590,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt15940132",
     "type": "movie",
     "id": 813,
-    "releaseDate": "2026-11-13"
+    "releaseDate": "2026-11-13",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🧩 Tactical Sci-Fi / Mystery"
+    ]
   },
   {
     "title": "F1: Фильм",
@@ -15157,7 +25622,20 @@ export const movies = [
     "kinopoiskId": 5003510,
     "imdb": "https://www.imdb.com/title/tt16311594",
     "type": "movie",
-    "id": 814
+    "id": 814,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "GOAT: Мечтай по-крупному",
@@ -15177,7 +25655,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27613895",
     "type": "movie",
     "id": 815,
-    "releaseDate": "2026-07-17"
+    "releaseDate": "2026-07-17",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 8,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Легенда об Аанге: Последний маг воздуха",
@@ -15197,7 +25688,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt18259538",
     "type": "movie",
     "id": 816,
-    "releaseDate": "2026-01-20"
+    "releaseDate": "2026-01-20",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 1,
+      "intellect": 5,
+      "emotion": 7,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Зверополис 2",
@@ -15216,7 +25720,20 @@ export const movies = [
     "kinopoiskId": 5265603,
     "imdb": "https://www.imdb.com/title/tt26443597",
     "type": "movie",
-    "id": 817
+    "id": 817,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Последствия",
@@ -15236,7 +25753,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt23724682",
     "type": "movie",
     "id": 818,
-    "releaseDate": "2026-09-11"
+    "releaseDate": "2026-09-11",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Смертельная битва",
@@ -15255,7 +25785,20 @@ export const movies = [
     "kinopoiskId": 22355,
     "imdb": "https://www.imdb.com/title/tt0113855",
     "type": "movie",
-    "id": 819
+    "id": 819,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "💀 Violent Survival",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Долгая прогулка",
@@ -15274,7 +25817,20 @@ export const movies = [
     "kinopoiskId": 1290942,
     "imdb": "https://www.imdb.com/title/tt10374610",
     "type": "movie",
-    "id": 820
+    "id": 820,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Супермен",
@@ -15293,7 +25849,20 @@ export const movies = [
     "kinopoiskId": 997647,
     "imdb": "https://www.imdb.com/title/tt5950044",
     "type": "movie",
-    "id": 821
+    "id": 821,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Я ругаюсь",
@@ -15312,7 +25881,20 @@ export const movies = [
     "kinopoiskId": 8472578,
     "imdb": "https://www.imdb.com/title/tt31514146",
     "type": "movie",
-    "id": 822
+    "id": 822,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Билли Айлиш: Ударь меня сильно и мягко - тур в прямом эфире в 3D",
@@ -15332,7 +25914,18 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt39018643",
     "type": "movie",
     "id": 823,
-    "releaseDate": "2026-12-12"
+    "releaseDate": "2026-12-12",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "✨ Баланс & Атмосфера",
+      "🎬 Classic Storytelling"
+    ]
   },
   {
     "title": "Гнев",
@@ -15351,7 +25944,20 @@ export const movies = [
     "kinopoiskId": 6889,
     "imdb": "https://www.imdb.com/title/tt0328107",
     "type": "movie",
-    "id": 824
+    "id": 824,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм"
+    ]
   },
   {
     "title": "Казнить нельзя помиловать",
@@ -15371,7 +25977,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt31050594",
     "type": "movie",
     "id": 825,
-    "releaseDate": "2026-05-29"
+    "releaseDate": "2026-05-29",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 10,
+      "intellect": 7,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "🏎️ Non-Stop Thrill",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Выход 8",
@@ -15390,7 +26009,20 @@ export const movies = [
     "kinopoiskId": 7519616,
     "imdb": "https://www.imdb.com/title/tt35222590",
     "type": "movie",
-    "id": 826
+    "id": 826,
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 9,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Лакомый кусок",
@@ -15409,7 +26041,20 @@ export const movies = [
     "kinopoiskId": 6398494,
     "imdb": "https://www.imdb.com/title/tt32642706",
     "type": "movie",
-    "id": 827
+    "id": 827,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Сожалею о тебе",
@@ -15428,7 +26073,20 @@ export const movies = [
     "kinopoiskId": 8075521,
     "imdb": "https://www.imdb.com/title/tt33088452",
     "type": "movie",
-    "id": 828
+    "id": 828,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 5
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🌌 Philosophical Journey",
+      "🧠 Thought-Provoking",
+      "💔 Emotional Rollercoaster"
+    ]
   },
   {
     "title": "Тело Дженнифер",
@@ -15447,7 +26105,20 @@ export const movies = [
     "kinopoiskId": 404510,
     "imdb": "https://www.imdb.com/title/tt1131734",
     "type": "movie",
-    "id": 829
+    "id": 829,
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 8,
+      "emotion": 6,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking",
+      "🌙 Dark & Gritty"
+    ]
   },
   {
     "title": "Дракула",
@@ -15466,7 +26137,20 @@ export const movies = [
     "kinopoiskId": 5456450,
     "imdb": "https://www.imdb.com/title/tt31434030",
     "type": "movie",
-    "id": 830
+    "id": 830,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 10,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "КД: Дьявол",
@@ -15486,7 +26170,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt15295368",
     "type": "movie",
     "id": 831,
-    "releaseDate": "2026-10-30"
+    "releaseDate": "2026-10-30",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 7,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "🏎️ Non-Stop Thrill",
+      "🖤 Dark Romance / Melancholy"
+    ]
   },
   {
     "title": "Убежище",
@@ -15506,7 +26203,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32357218",
     "type": "movie",
     "id": 832,
-    "releaseDate": "2026-08-21"
+    "releaseDate": "2026-08-21",
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 4,
+      "intellect": 8,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Зараза",
@@ -15526,7 +26236,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt8879928",
     "type": "movie",
     "id": 833,
-    "releaseDate": "2026-07-24"
+    "releaseDate": "2026-07-24",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "🍿 Cozy & Feel-Good",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven"
+    ]
   },
   {
     "title": "Мстители: Доктор Дум",
@@ -15546,7 +26269,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt21357150",
     "type": "movie",
     "id": 834,
-    "releaseDate": "2026-07-03"
+    "releaseDate": "2026-07-03",
+    "sensationVector": {
+      "energy": 7,
+      "darkness": 4,
+      "intellect": 5,
+      "emotion": 4,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action",
+      "⚡ Adrenaline Rush"
+    ]
   },
   {
     "title": "Топ Ган: Мэверик",
@@ -15565,7 +26301,20 @@ export const movies = [
     "kinopoiskId": 572032,
     "imdb": "https://www.imdb.com/title/tt1745960",
     "type": "movie",
-    "id": 835
+    "id": 835,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Острые козырьки: Бессмертный",
@@ -15585,7 +26334,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt15574124",
     "type": "movie",
     "id": 836,
-    "releaseDate": "2026-11-20"
+    "releaseDate": "2026-11-20",
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 8,
+      "intellect": 10,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Братья Супер Марио в кино",
@@ -15604,7 +26366,20 @@ export const movies = [
     "kinopoiskId": 1111005,
     "imdb": "https://www.imdb.com/title/tt6718170",
     "type": "movie",
-    "id": 837
+    "id": 837,
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 1,
+      "intellect": 6,
+      "emotion": 9,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🍿 Уютный & Легкий"
+    ]
   },
   {
     "title": "Мстители: Финал",
@@ -15623,7 +26398,20 @@ export const movies = [
     "kinopoiskId": 843650,
     "imdb": "https://www.imdb.com/title/tt4154796",
     "type": "movie",
-    "id": 838
+    "id": 838,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Спящие",
@@ -15642,7 +26430,20 @@ export const movies = [
     "kinopoiskId": 4515,
     "imdb": "https://www.imdb.com/title/tt0117665",
     "type": "movie",
-    "id": 839
+    "id": 839,
+    "sensationVector": {
+      "energy": 6,
+      "darkness": 10,
+      "intellect": 9,
+      "emotion": 9,
+      "dynamism": 7
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "💔 Эмоциональный шторм",
+      "🕵️ Psychological Noir"
+    ]
   },
   {
     "title": "Оппенгеймер",
@@ -15661,7 +26462,20 @@ export const movies = [
     "kinopoiskId": 4664634,
     "imdb": "https://www.imdb.com/title/tt15398776",
     "type": "movie",
-    "id": 840
+    "id": 840,
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Майк и Ник и Ник и Элис",
@@ -15681,7 +26495,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27552099",
     "type": "movie",
     "id": 841,
-    "releaseDate": "2026-12-18"
+    "releaseDate": "2026-12-18",
+    "sensationVector": {
+      "energy": 10,
+      "darkness": 5,
+      "intellect": 5,
+      "emotion": 5,
+      "dynamism": 10
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill",
+      "🔥 Pure Action"
+    ]
   },
   {
     "title": "Гладиатор II",
@@ -15700,7 +26527,20 @@ export const movies = [
     "kinopoiskId": 1207839,
     "imdb": "https://www.imdb.com/title/tt9218128",
     "type": "movie",
-    "id": 842
+    "id": 842,
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 6,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Хищный рывок",
@@ -15720,7 +26560,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt32362890",
     "type": "movie",
     "id": 843,
-    "releaseDate": "2026-06-26"
+    "releaseDate": "2026-06-26",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 4,
+      "intellect": 6,
+      "emotion": 8,
+      "dynamism": 4
+    },
+    "vibeBadges": [
+      "💔 Эмоциональный шторм",
+      "💔 Emotional Rollercoaster",
+      "👥 Character Driven",
+      "🧠 Mind Bender"
+    ]
   },
   {
     "title": "Зловещие мертвецы: Пекло",
@@ -15740,7 +26593,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt31170389",
     "type": "movie",
     "id": 844,
-    "releaseDate": "2026-10-16"
+    "releaseDate": "2026-10-16",
+    "sensationVector": {
+      "energy": 5,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Уличный боец",
@@ -15760,7 +26626,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27419420",
     "type": "movie",
     "id": 845,
-    "releaseDate": "2026-03-20"
+    "releaseDate": "2026-03-20",
+    "sensationVector": {
+      "energy": 9,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Крик 7",
@@ -15780,7 +26659,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt27047903",
     "type": "movie",
     "id": 846,
-    "releaseDate": "2026-02-27"
+    "releaseDate": "2026-02-27",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   },
   {
     "title": "Франкенштейн",
@@ -15799,7 +26691,20 @@ export const movies = [
     "kinopoiskId": 464475,
     "imdb": "https://www.imdb.com/title/tt1312221",
     "type": "movie",
-    "id": 847
+    "id": 847,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 5,
+      "intellect": 7,
+      "emotion": 9,
+      "dynamism": 9
+    },
+    "vibeBadges": [
+      "🔥 Экшен & Драйв",
+      "💔 Эмоциональный шторм",
+      "⚡ Заряжающий энергией",
+      "🏎️ Non-Stop Thrill"
+    ]
   },
   {
     "title": "Достать ножи: Воскрешение покойника",
@@ -15818,7 +26723,20 @@ export const movies = [
     "kinopoiskId": 4421816,
     "imdb": "https://www.imdb.com/title/tt14364480",
     "type": "movie",
-    "id": 848
+    "id": 848,
+    "sensationVector": {
+      "energy": 8,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 6,
+      "dynamism": 8
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🔥 Экшен & Драйв",
+      "🌙 Мрачная атмосфера",
+      "⚡ Заряжающий энергией"
+    ]
   },
   {
     "title": "Пассажир",
@@ -15838,7 +26756,20 @@ export const movies = [
     "imdb": "https://www.imdb.com/title/tt33763941",
     "type": "movie",
     "id": 849,
-    "releaseDate": "2026-09-18"
+    "releaseDate": "2026-09-18",
+    "sensationVector": {
+      "energy": 4,
+      "darkness": 10,
+      "intellect": 8,
+      "emotion": 5,
+      "dynamism": 6
+    },
+    "vibeBadges": [
+      "🧠 На подумать",
+      "🌙 Мрачная атмосфера",
+      "🕵️ Psychological Noir",
+      "🧠 Thought-Provoking"
+    ]
   }
 ];
 

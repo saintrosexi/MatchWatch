@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "../styles.css";
+import "../styles/index.css";
 
 const ALL_GENRES = [
   "Драма",
@@ -60,9 +60,9 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
 
   return (
     <AnimatePresence>
-      <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-overlay" onClick={onClose}>
         <motion.div
-          className="filters-modal-card"
+          className="modal-content filters-modal-card"
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -70,7 +70,7 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
         >
           <div className="filters-header">
             <h3>⚙️ Пре-фильтры сессии свайпов</h3>
-            <button className="close-btn" onClick={onClose}>✕</button>
+            <button className="close-btn modal-close-btn" onClick={onClose}>✕</button>
           </div>
 
           <div className="filters-body">
@@ -79,25 +79,25 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
               <label className="filter-label">Тип контента</label>
               <div className="filter-chips">
                 <button
-                  className={`chip ${contentType === "all" ? "active" : ""}`}
+                  className={`category-btn chip ${contentType === "all" ? "active" : ""}`}
                   onClick={() => setContentType("all")}
                 >
                   Все
                 </button>
                 <button
-                  className={`chip ${contentType === "movie" ? "active" : ""}`}
+                  className={`category-btn chip ${contentType === "movie" ? "active" : ""}`}
                   onClick={() => setContentType("movie")}
                 >
                   🎬 Фильмы
                 </button>
                 <button
-                  className={`chip ${contentType === "series" ? "active" : ""}`}
+                  className={`category-btn chip ${contentType === "series" ? "active" : ""}`}
                   onClick={() => setContentType("series")}
                 >
                   📺 Сериалы
                 </button>
                 <button
-                  className={`chip ${contentType === "anime" ? "active" : ""}`}
+                  className={`category-btn chip ${contentType === "anime" ? "active" : ""}`}
                   onClick={() => setContentType("anime")}
                 >
                   ⛩️ Аниме
@@ -112,7 +112,7 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
                 {ALL_GENRES.map((g) => (
                   <button
                     key={g}
-                    className={`chip ${selectedGenres.includes(g) ? "active" : ""}`}
+                    className={`category-btn chip ${selectedGenres.includes(g) ? "active" : ""}`}
                     onClick={() => toggleGenre(g)}
                   >
                     {g}
@@ -128,7 +128,7 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
                 {DECADES.map((d) => (
                   <button
                     key={d.value}
-                    className={`chip ${selectedDecade === d.value ? "active" : ""}`}
+                    className={`category-btn chip ${selectedDecade === d.value ? "active" : ""}`}
                     onClick={() => setSelectedDecade(d.value)}
                   >
                     {d.label}
@@ -142,19 +142,19 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
               <label className="filter-label">Хронометраж</label>
               <div className="filter-chips">
                 <button
-                  className={`chip ${maxDuration === 0 ? "active" : ""}`}
+                  className={`category-btn chip ${maxDuration === 0 ? "active" : ""}`}
                   onClick={() => setMaxDuration(0)}
                 >
                   Любой
                 </button>
                 <button
-                  className={`chip ${maxDuration === 90 ? "active" : ""}`}
+                  className={`category-btn chip ${maxDuration === 90 ? "active" : ""}`}
                   onClick={() => setMaxDuration(90)}
                 >
                   ⚡ До 90 мин
                 </button>
                 <button
-                  className={`chip ${maxDuration === 120 ? "active" : ""}`}
+                  className={`category-btn chip ${maxDuration === 120 ? "active" : ""}`}
                   onClick={() => setMaxDuration(120)}
                 >
                   🍿 До 2 часов
@@ -164,10 +164,10 @@ export default function SessionFiltersModal({ isOpen, onClose, onApply, initialF
           </div>
 
           <div className="filters-footer">
-            <button className="reset-btn" onClick={handleReset}>
+            <button className="btn btn-secondary reset-btn" onClick={handleReset}>
               Сбросить
             </button>
-            <button className="apply-btn" onClick={handleApply}>
+            <button className="btn btn-primary apply-btn" onClick={handleApply}>
               Применить и продолжить 🚀
             </button>
           </div>

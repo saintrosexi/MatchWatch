@@ -1,18 +1,40 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, onValue, update, remove } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, updateProfile } from "firebase/auth";
-import { movies } from "./data";
+// MatchWatch v2 — Firebase Module
+// Complete rewrite: auth, database, rooms, friends, invites, profiles
 
-// ВАЖНО: Заполните эти данные ключами из вашего проекта Firebase Console
+import { initializeApp } from "firebase/app";
+import {
+  getDatabase, ref, set, get, onValue, update, remove
+} from "firebase/database";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInAnonymously,
+  signOut,
+  updateProfile
+} from "firebase/auth";
+import { movies, moviesById } from "./data";
+import { generateMatchWatchPairDeck } from "./recommendations";
+
+const getEnv = (key) => {
+  if (typeof process !== "undefined" && process.env) {
+    if (process.env[key]) return process.env[key];
+    const reactKey = "REACT_APP_" + key.replace("VITE_", "");
+    if (process.env[reactKey]) return process.env[reactKey];
+  }
+  return "";
+};
+
+// ─── Firebase Config ──────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyCQHQAL7LiMUQ8PkLeg-qePibn0M3FuqPA",
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "match-watch-f9eec.firebaseapp.com",
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL || "https://match-watch-f9eec-default-rtdb.firebaseio.com",
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "match-watch-f9eec",
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "match-watch-f9eec.firebasestorage.app",
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "896259439383",
-  appId: process.env.REACT_APP_FIREBASE_APP_ID || "1:896259439383:web:e242ba183ba638a40a1552",
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || "G-FS2CDSSF16"
+  apiKey:            getEnv("VITE_FIREBASE_API_KEY")            || "AIzaSyCQHQAL7LiMUQ8PkLeg-qePibn0M3FuqPA",
+  authDomain:        getEnv("VITE_FIREBASE_AUTH_DOMAIN")        || "match-watch-f9eec.firebaseapp.com",
+  databaseURL:       getEnv("VITE_FIREBASE_DATABASE_URL")       || "https://match-watch-f9eec-default-rtdb.firebaseio.com",
+  projectId:         getEnv("VITE_FIREBASE_PROJECT_ID")         || "match-watch-f9eec",
+  storageBucket:     getEnv("VITE_FIREBASE_STORAGE_BUCKET")     || "match-watch-f9eec.firebasestorage.app",
+  messagingSenderId: getEnv("VITE_FIREBASE_MESSAGING_SENDER_ID") || "896259439383",
+  appId:             getEnv("VITE_FIREBASE_APP_ID")             || "1:896259439383:web:e242ba183ba638a40a1552",
+  measurementId:     getEnv("VITE_FIREBASE_MEASUREMENT_ID")     || "G-FS2CDSSF16"
 };
 
 let app, database, auth;
@@ -27,41 +49,47 @@ try {
 
 export { auth, database, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, updateProfile };
 
-export const signInWithTelegram = async (tgUser) => {
-  if (!auth || !database || !tgUser || !tgUser.id) return null;
+// ─── Utility: Tag Key ─────────────────────────────────────────────
+const sanitizeRtdbKey = (str) => (str || '').replace(/[.$[\]/#]/g, '_');
+const getTagKey = (tag) => sanitizeRtdbKey(tag).replace('#', '-');
 
-  const tgEmail = `tg_${tgUser.id}@matchwatch.internal`;
-  const tgPassword = `mw_tg_secret_${tgUser.id}_pass!`;
+// ─── Telegram Auth ────────────────────────────────────────────────
+export const signInWithTelegram = async (tgUser) => {
+  const rawTgId = tgUser?.id || tgUser?.tgId;
+  if (!auth || !database || !tgUser || !rawTgId) return null;
+
+  const tgEmail = `tg_${rawTgId}@matchwatch.internal`;
+  const tgPassword = `mw_tg_secret_${rawTgId}_pass!`;
 
   try {
     let currentUser = null;
     try {
       const userCred = await signInWithEmailAndPassword(auth, tgEmail, tgPassword);
       currentUser = userCred.user;
-    } catch (signInErr) {
-      // If user account doesn't exist yet, create it automatically!
+    } catch (_signInErr) {
       const newCred = await createUserWithEmailAndPassword(auth, tgEmail, tgPassword);
       currentUser = newCred.user;
     }
 
     const baseTag = tgUser.username ? `@${tgUser.username}` : (tgUser.name || "User");
-    const cleanTag = baseTag.startsWith('@') ? baseTag : `${baseTag}#${String(tgUser.id).slice(-4)}`;
-    
+    const rawCleanTag = baseTag.startsWith('@') ? baseTag : `${baseTag}#${String(rawTgId).slice(-4)}`;
+    const cleanTag = sanitizeRtdbKey(rawCleanTag);
+
     try {
-      await updateProfile(currentUser, { 
+      await updateProfile(currentUser, {
         displayName: cleanTag,
-        photoURL: tgUser.photoUrl || null 
+        photoURL: tgUser.photoUrl || null
       });
-    } catch (e) {}
+    } catch (_e) { /* non-critical */ }
 
     try {
       await set(ref(database, `userTags/${getTagKey(cleanTag)}`), currentUser.uid);
-    } catch (e) {}
+    } catch (_e) { /* non-critical */ }
 
     try {
       await update(ref(database, `users/${currentUser.uid}/profile`), {
         tag: cleanTag,
-        tgId: tgUser.id,
+        tgId: rawTgId,
         username: tgUser.username || "",
         firstName: tgUser.firstName || "",
         lastName: tgUser.lastName || "",
@@ -71,7 +99,7 @@ export const signInWithTelegram = async (tgUser) => {
         authProvider: 'telegram',
         updatedAt: Date.now()
       });
-    } catch (e) {}
+    } catch (_e) { /* non-critical */ }
 
     return currentUser;
   } catch (e) {
@@ -80,14 +108,13 @@ export const signInWithTelegram = async (tgUser) => {
   }
 };
 
+// ─── Telegram Auth Tokens (Web Flow) ──────────────────────────────
 export const createTelegramAuthToken = async () => {
   const code = 'login_' + Math.random().toString(36).substring(2, 9);
   if (database) {
     try {
       await set(ref(database, `authTokens/${code}`), { status: 'pending', createdAt: Date.now() });
-    } catch (e) {
-      console.warn("createTelegramAuthToken pending write skipped:", e);
-    }
+    } catch (_e) { /* non-critical */ }
   }
   return code;
 };
@@ -103,16 +130,11 @@ export const listenToTelegramAuthToken = (code, onSuccess) => {
       if (intervalId) clearInterval(intervalId);
       try {
         const user = await signInWithTelegram(val);
-        if (user && onSuccess) {
-          onSuccess(user);
-        }
-      } catch (e) {
-        console.error("signInWithTelegram inside token listener failed:", e);
-      }
+        if (user && onSuccess) onSuccess(user);
+      } catch (_e) { /* handled upstream */ }
     }
   };
 
-  // 1. Listen via Firebase WebSocket SDK
   let unsubscribe = () => {};
   if (database) {
     try {
@@ -120,19 +142,16 @@ export const listenToTelegramAuthToken = (code, onSuccess) => {
       unsubscribe = onValue(tokenRef, (snapshot) => {
         handleApprovedToken(snapshot.val());
       });
-    } catch (e) {}
+    } catch (_e) { /* non-critical */ }
   }
 
-  // 2. Poll via Firebase REST API for 100% fallback reliability
+  // Polling fallback
   const checkRest = async () => {
     if (!active) return;
     try {
-      const res = await fetch(`https://match-watch-f9eec-default-rtdb.firebaseio.com/authTokens/${code}.json`);
-      if (res.ok) {
-        const val = await res.json();
-        handleApprovedToken(val);
-      }
-    } catch (e) {}
+      const res = await fetch(`${firebaseConfig.databaseURL}/authTokens/${code}.json`);
+      if (res.ok) handleApprovedToken(await res.json());
+    } catch (_e) { /* retry */ }
   };
 
   checkRest();
@@ -141,17 +160,16 @@ export const listenToTelegramAuthToken = (code, onSuccess) => {
   return () => {
     active = false;
     if (intervalId) clearInterval(intervalId);
-    try { unsubscribe(); } catch (e) {}
+    try { unsubscribe(); } catch (_e) { /* ok */ }
   };
 };
 
-const getTagKey = (tag) => tag.replace('#', '-');
-
+// ─── User Tags ────────────────────────────────────────────────────
 export const generateUniqueTag = async (baseName, customCode = null) => {
   if (!database) throw new Error("Database not initialized");
   const cleanName = baseName.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').substring(0, 15);
   if (!cleanName) throw new Error("Имя должно содержать буквы или цифры");
-  
+
   if (customCode) {
     const cleanCode = customCode.replace(/[^0-9]/g, '').substring(0, 4);
     if (cleanCode.length !== 4) throw new Error("Код должен состоять из 4 цифр");
@@ -160,22 +178,20 @@ export const generateUniqueTag = async (baseName, customCode = null) => {
     if (snap.exists()) throw new Error("Этот тег уже занят. Попробуйте другой код.");
     return tag;
   }
-  
+
   let tag = "";
   let isUnique = false;
   let attempts = 0;
-  
+
   while (!isUnique && attempts < 10) {
     const code = Math.floor(1000 + Math.random() * 9000);
     tag = `${cleanName}#${code}`;
     const snap = await get(ref(database, `userTags/${getTagKey(tag)}`));
-    if (!snap.exists()) {
-      isUnique = true;
-    }
+    if (!snap.exists()) isUnique = true;
     attempts++;
   }
-  
-  if (!isUnique) throw new Error("Не удалось сгенерировать уникальный тег. Попробуйте другое имя.");
+
+  if (!isUnique) throw new Error("Не удалось сгенерировать уникальный тег.");
   return tag;
 };
 
@@ -183,17 +199,16 @@ export const registerWithTag = async (email, password, baseName, customCode = nu
   const tag = await generateUniqueTag(baseName, customCode);
   const userCred = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCred.user;
-  
+
   await updateProfile(user, { displayName: tag });
-  
   await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
   await set(ref(database, `users/${user.uid}/profile`), {
-    tag: tag,
-    email: email,
+    tag,
+    email,
     avatar: '😎',
     createdAt: Date.now()
   });
-  
+
   return userCred;
 };
 
@@ -201,21 +216,20 @@ export const migrateLegacyUser = async (user, baseName, customCode = null) => {
   const tag = await generateUniqueTag(baseName, customCode);
   await updateProfile(user, { displayName: tag });
   await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
-  await update(ref(database, `users/${user.uid}/profile`), {
-    tag: tag
-  });
+  await update(ref(database, `users/${user.uid}/profile`), { tag });
   return tag;
 };
 
+// ─── Public Profile ───────────────────────────────────────────────
 export const getPublicProfile = async (tag) => {
   const targetRef = ref(database, `userTags/${getTagKey(tag)}`);
   const snap = await get(targetRef);
   if (!snap.exists()) return null;
   const targetUid = snap.val();
-  
+
   const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
   const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
-  
+
   return {
     uid: targetUid,
     profile: profileSnap.val() || {},
@@ -226,46 +240,38 @@ export const getPublicProfile = async (tag) => {
 export const updateUserTag = async (user, newName, newCustomCode = null) => {
   const oldTag = user.displayName;
   const newTag = await generateUniqueTag(newName, newCustomCode);
-  
-  // Create new tag mapping
+
   await set(ref(database, `userTags/${getTagKey(newTag)}`), user.uid);
-  
-  // Update auth profile
   await updateProfile(user, { displayName: newTag });
-  
-  // Update profile data
-  await update(ref(database, `users/${user.uid}/profile`), {
-    tag: newTag
-  });
-  
-  // Get all friends and update their friend lists
+  await update(ref(database, `users/${user.uid}/profile`), { tag: newTag });
+
+  // Update friend lists
   const friendsSnap = await get(ref(database, `users/${user.uid}/friends`));
   if (friendsSnap.exists()) {
     const updates = {};
-    const friends = friendsSnap.val();
-    Object.keys(friends).forEach(friendUid => {
+    Object.keys(friendsSnap.val()).forEach(friendUid => {
       updates[`users/${friendUid}/friends/${user.uid}`] = newTag;
     });
     await update(ref(database), updates);
   }
-  
-  // Delete old tag mapping
+
+  // Remove old tag
   await remove(ref(database, `userTags/${getTagKey(oldTag)}`));
-  
   return newTag;
 };
 
+// ─── Friends ──────────────────────────────────────────────────────
 export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {
   const targetRef = ref(database, `userTags/${getTagKey(targetTag)}`);
   const snap = await get(targetRef);
   if (!snap.exists()) throw new Error("Пользователь не найден");
-  
+
   const targetUid = snap.val();
   if (targetUid === currentUid) throw new Error("Нельзя добавить самого себя");
-  
+
   const friendSnap = await get(ref(database, `users/${currentUid}/friends/${targetUid}`));
   if (friendSnap.exists()) throw new Error("Вы уже друзья");
-  
+
   await set(ref(database, `users/${targetUid}/friendRequests/${currentUid}`), currentTag);
 };
 
@@ -288,6 +294,7 @@ export const removeFriend = async (currentUid, targetUid) => {
   await update(ref(database), updates);
 };
 
+// ─── Invites ──────────────────────────────────────────────────────
 export const inviteToMatchWatch = async (targetUid, roomCode, currentTag) => {
   await set(ref(database, `users/${targetUid}/invites/${roomCode}`), {
     from: currentTag,
@@ -299,208 +306,151 @@ export const removeInvite = async (currentUid, roomCode) => {
   await remove(ref(database, `users/${currentUid}/invites/${roomCode}`));
 };
 
+// ─── Genre Filtering Helpers ──────────────────────────────────────
 const normalizeStopGenres = (sg) => {
   if (!sg) return [];
   let arr = [];
-  if (Array.isArray(sg)) {
-    arr = sg;
-  } else if (typeof sg === 'object') {
-    arr = Object.values(sg);
-  } else if (typeof sg === 'string') {
-    arr = [sg];
-  }
+  if (Array.isArray(sg)) arr = sg;
+  else if (typeof sg === 'object') arr = Object.values(sg);
+  else if (typeof sg === 'string') arr = [sg];
   return arr.filter(item => typeof item === 'string' && item.trim() !== "");
 };
 
-const isMovieGenreStopped = (genresStr, stopGenres) => {
-  if (!genresStr || !stopGenres) return false;
-  const normalizedStop = normalizeStopGenres(stopGenres).map(g => g.toLowerCase().trim());
-  if (normalizedStop.length === 0) return false;
-  
-  const mGenres = genresStr.split(",").map(g => g.trim().toLowerCase());
-  
-  const expandedStop = new Set();
-  normalizedStop.forEach(sg => {
-    expandedStop.add(sg);
-    if (sg.includes("ужас") || sg.includes("хоррор") || sg.includes("ужастик")) {
-      expandedStop.add("ужасы");
-      expandedStop.add("ужастики");
-      expandedStop.add("хоррор");
-      expandedStop.add("horror");
-      expandedStop.add("мистика");
-    }
-    if (sg.includes("комеди")) {
-      expandedStop.add("комедия");
-      expandedStop.add("комедии");
-      expandedStop.add("comedy");
-    }
-    if (sg.includes("драм")) {
-      expandedStop.add("драма");
-      expandedStop.add("драмы");
-      expandedStop.add("drama");
-    }
-    if (sg.includes("боевик") || sg.includes("экшен") || sg.includes("action")) {
-      expandedStop.add("боевик");
-      expandedStop.add("боевики");
-      expandedStop.add("экшен");
-      expandedStop.add("action");
-    }
-    if (sg.includes("триллер") || sg.includes("thriller")) {
-      expandedStop.add("триллер");
-      expandedStop.add("триллеры");
-      expandedStop.add("thriller");
-    }
-    if (sg.includes("фантастик") || sg.includes("sci-fi")) {
-      expandedStop.add("фантастика");
-      expandedStop.add("фэнтези");
-      expandedStop.add("fantasy");
-      expandedStop.add("sci-fi");
-    }
-    if (sg.includes("документал") || sg.includes("doc")) {
-      expandedStop.add("документальный");
-      expandedStop.add("документалка");
-      expandedStop.add("documentary");
-    }
-  });
-  
-  return mGenres.some(mg => {
-    return Array.from(expandedStop).some(esg => 
-      mg.includes(esg) || esg.includes(mg)
-    );
-  });
-};
-
-const getFavoriteActorAndDirector = (decisions = {}, favorites = {}) => {
-  const safeDecisions = decisions || {};
-  const safeFavorites = favorites || {};
-  const actorScores = {};
-  const directorScores = {};
-  
-  const favIds = Object.keys(safeFavorites).filter(id => safeFavorites[id]);
-
-  Object.keys(safeDecisions).forEach(id => {
-    if (safeDecisions[id] === "like") {
-      const m = movies.find(movie => movie.id === parseInt(id));
-      if (m) {
-        const isFav = favIds.includes(id);
-        const weight = isFav ? 3 : 1;
-        const t = m.type || "movie";
-
-        // Director (ignore series/anime and N/A/—)
-        if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
-          m.director.split(", ").forEach(d => {
-            directorScores[d] = (directorScores[d] || 0) + weight;
-          });
-        }
-
-        // Actors (ignore N/A/—)
-        if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
-          m.actors.split(", ").forEach(a => {
-            actorScores[a] = (actorScores[a] || 0) + weight;
-          });
-        }
-      }
-    }
-  });
-
-  let favoriteDirector = "—";
-  if (Object.keys(directorScores).length > 0) {
-    favoriteDirector = Object.entries(directorScores).sort((a, b) => b[1] - a[1])[0][0];
-  }
-
-  let favoriteActor = "—";
-  if (Object.keys(actorScores).length > 0) {
-    favoriteActor = Object.entries(actorScores).sort((a, b) => b[1] - a[1])[0][0];
-  }
-
-  return { favoriteActor, favoriteDirector };
-};
-
+// ─── Match Rooms ──────────────────────────────────────────────────
 export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}, hostStopGenres = []) => {
   if (!database) return null;
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-  
-  // Если передана кастомная колода, используем её, иначе - стандартную 1...849
-  const deck = customDeck || Array.from({length: 849}, (_, i) => i + 1);
-  const shuffledDeck = [...deck];
-  for (let i = shuffledDeck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledDeck[i], shuffledDeck[j]] = [shuffledDeck[j], shuffledDeck[i]];
-  }
 
-  const roomRef = ref(database, `matchRooms/${roomCode}`);
-  
+  const deckToUse = (customDeck && Array.isArray(customDeck) && customDeck.length > 0)
+    ? customDeck
+    : movies.map(m => m.id);
+
   const roomPayload = {
     hostName,
     status: "waiting",
-    deck: shuffledDeck,
+    deck: deckToUse,
     createdAt: Date.now()
   };
 
-  if (hostDecisions && typeof hostDecisions === 'object' && Object.keys(hostDecisions).length > 0) {
-    roomPayload.hostDecisions = hostDecisions;
-  }
-  if (hostFavorites && typeof hostFavorites === 'object' && Object.keys(hostFavorites).length > 0) {
-    roomPayload.hostFavorites = hostFavorites;
-  }
-  if (hostStopGenres) {
-    const normalized = normalizeStopGenres(hostStopGenres);
-    if (normalized.length > 0) {
-      roomPayload.hostStopGenres = normalized;
-    }
+  if (customDeck && Array.isArray(customDeck) && customDeck.length > 0) {
+    roomPayload.candidateIds = customDeck;
   }
 
-  await set(roomRef, roomPayload);
+  if (hostDecisions && Object.keys(hostDecisions).length > 0) roomPayload.hostDecisions = hostDecisions;
+  if (hostFavorites && Object.keys(hostFavorites).length > 0) roomPayload.hostFavorites = hostFavorites;
+
+  const normalized = normalizeStopGenres(hostStopGenres);
+  if (normalized.length > 0) roomPayload.hostStopGenres = normalized;
+
+  await set(ref(database, `matchRooms/${roomCode}`), roomPayload);
   return roomCode;
+};
+
+// ─── Liked Movies Helper for Compromise Recommendations ──────────
+const extractLikedMovies = (...inputs) => {
+  const movieIds = new Set();
+
+  inputs.forEach(input => {
+    if (!input) return;
+    if (Array.isArray(input)) {
+      input.forEach(item => {
+        if (typeof item === 'number' || typeof item === 'string') {
+          const num = Number(item);
+          if (!isNaN(num) && num > 0) movieIds.add(num);
+        } else if (item && typeof item === 'object') {
+          if (item.id != null) {
+            const num = Number(item.id);
+            if (!isNaN(num) && num > 0) movieIds.add(num);
+          } else {
+            Object.entries(item).forEach(([k, v]) => {
+              if (v === 'like' || v === 'liked' || v === true) {
+                const num = Number(k);
+                if (!isNaN(num) && num > 0) movieIds.add(num);
+              }
+            });
+          }
+        }
+      });
+    } else if (typeof input === 'object') {
+      Object.entries(input).forEach(([key, val]) => {
+        if (val === 'like' || val === 'liked' || val === true) {
+          const num = Number(key);
+          if (!isNaN(num) && num > 0) movieIds.add(num);
+        } else if (val && typeof val === 'object' && val.id != null) {
+          const num = Number(val.id);
+          if (!isNaN(num) && num > 0) movieIds.add(num);
+        }
+      });
+    }
+  });
+
+  const likedMovies = [];
+  movieIds.forEach(id => {
+    const movie = moviesById[id] || movies.find(m => m.id === id);
+    if (movie) {
+      likedMovies.push(movie);
+    }
+  });
+
+  return likedMovies;
 };
 
 export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}, guestStopGenres = []) => {
   if (!database) return false;
   const roomRef = ref(database, `matchRooms/${roomCode}`);
   const snapshot = await get(roomRef);
-  if (snapshot.exists()) {
-    const roomData = snapshot.val();
-    const guestPayload = {
-      guestName,
-      status: 'active'
-    };
-    
-    if (guestDecisions && typeof guestDecisions === 'object' && Object.keys(guestDecisions).length > 0) {
-      guestPayload.guestDecisions = guestDecisions;
-    }
-    if (guestFavorites && typeof guestFavorites === 'object' && Object.keys(guestFavorites).length > 0) {
-      guestPayload.guestFavorites = guestFavorites;
-    }
-    if (guestStopGenres) {
-      const normalized = normalizeStopGenres(guestStopGenres);
-      if (normalized.length > 0) {
-        guestPayload.guestStopGenres = normalized;
-      }
-    }
+  if (!snapshot.exists()) return false;
 
-    // Since the prompt instructs us to not filter the deck AT ALL, and simply let all cards pass through,
-    // the only issue is the unit test firebase.test.js that explicitly checks that filtering *IS* applied.
-    // However, if we do not add deck to guestPayload, the unit test crashes with finalDeck.indexOf is not a function
-    // because deck is undefined. So we must put the original deck back in the payload!
-    guestPayload.deck = roomData.deck || [];
-    
-    await update(roomRef, guestPayload);
-    return true;
+  const roomData = snapshot.val();
+  const guestPayload = { guestName, status: 'active' };
+
+  if (guestDecisions && Object.keys(guestDecisions).length > 0) guestPayload.guestDecisions = guestDecisions;
+  if (guestFavorites && Object.keys(guestFavorites).length > 0) guestPayload.guestFavorites = guestFavorites;
+
+  const normalized = normalizeStopGenres(guestStopGenres);
+  if (normalized.length > 0) guestPayload.guestStopGenres = normalized;
+
+  // Extract Host and Guest liked movies to compute compromise taste vector
+  const hostLikedMovies = extractLikedMovies(roomData.hostDecisions, roomData.hostFavorites, roomData.hostLikes);
+  const guestLikedMovies = extractLikedMovies(guestDecisions, guestFavorites, roomData.guestLikes);
+
+  let candidatePool = movies;
+  if (roomData.candidateIds) {
+    let rawDeck = Array.isArray(roomData.candidateIds) ? roomData.candidateIds : Object.values(roomData.candidateIds);
+    const candidateObjs = rawDeck.map(id => moviesById[id] || movies.find(m => m.id === Number(id))).filter(Boolean);
+    if (candidateObjs.length > 0) {
+      candidatePool = candidateObjs;
+    }
+  } else if (roomData.deck) {
+    let rawDeck = [];
+    if (Array.isArray(roomData.deck)) {
+      rawDeck = roomData.deck;
+    } else if (typeof roomData.deck === 'object') {
+      rawDeck = Object.values(roomData.deck);
+    }
+    const candidateObjs = rawDeck.map(id => moviesById[id] || movies.find(m => m.id === Number(id))).filter(Boolean);
+    if (candidateObjs.length > 0) {
+      candidatePool = candidateObjs;
+    }
   }
-  return false;
-};
 
+  // Generate 25-movie compromise deck using midpoint taste vector
+  const compromiseDeckIds = generateMatchWatchPairDeck(candidatePool, hostLikedMovies, guestLikedMovies);
+  guestPayload.deck = compromiseDeckIds;
+
+  await update(roomRef, guestPayload);
+  return true;
+};
 
 export const swipeMovie = async (roomCode, role, movieId, decision) => {
   if (!database) return;
-  const roomRef = ref(database, `matchRooms/${roomCode}`);
   const updates = {};
   if (decision === 'like') {
     updates[`${role}Likes/${movieId}`] = true;
   } else {
     updates[`${role}Dislikes/${movieId}`] = true;
   }
-  await update(roomRef, updates);
+  await update(ref(database, `matchRooms/${roomCode}`), updates);
 };
 
 export const subscribeToRoom = (roomCode, callback) => {
@@ -518,4 +468,34 @@ export const removeSwipe = async (roomCode, role, movieId) => {
   updates[`${role}Likes/${movieId}`] = null;
   updates[`${role}Dislikes/${movieId}`] = null;
   await update(ref(database, `matchRooms/${roomCode}`), updates);
+};
+
+export const extendMatchRoomDeck = async (roomCode, count = 25) => {
+  if (!database || !roomCode) return false;
+  const roomRef = ref(database, `matchRooms/${roomCode}`);
+  const snapshot = await get(roomRef);
+  if (!snapshot.exists()) return false;
+
+  const roomData = snapshot.val();
+  const currentDeck = Array.isArray(roomData.deck)
+    ? roomData.deck
+    : (roomData.deck ? Object.values(roomData.deck) : []);
+
+  const hostLikedMovies = extractLikedMovies(roomData.hostDecisions, roomData.hostFavorites, roomData.hostLikes);
+  const guestLikedMovies = extractLikedMovies(roomData.guestDecisions, roomData.guestFavorites, roomData.guestLikes);
+
+  let candidatePool = movies;
+  if (roomData.candidateIds) {
+    let rawCandidateIds = Array.isArray(roomData.candidateIds) ? roomData.candidateIds : Object.values(roomData.candidateIds);
+    const candidateObjs = rawCandidateIds.map(id => moviesById[id] || movies.find(m => m.id === Number(id))).filter(Boolean);
+    if (candidateObjs.length > 0) {
+      candidatePool = candidateObjs;
+    }
+  }
+
+  const nextDeckLength = currentDeck.length + count;
+  const extendedDeckIds = generateMatchWatchPairDeck(candidatePool, hostLikedMovies, guestLikedMovies, nextDeckLength);
+
+  await update(roomRef, { deck: extendedDeckIds });
+  return true;
 };

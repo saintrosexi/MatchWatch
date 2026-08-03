@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { auth, database, signOut, updateUserTag } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
+import { ChamaBackgroundArt } from "../chamaAssets";
 
 export default function Settings({ theme, setTheme, language, setLanguage }) {
   const [user, setUser] = useState(null);
@@ -153,7 +154,8 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
   }
 
   return (
-    <div className="profile-dashboard">
+    <div className="profile-dashboard relative overflow-hidden">
+      <ChamaBackgroundArt type="SUNGLASSES" opacity={0.06} />
       <h2 className="page-title" style={{ marginBottom: "30px", textAlign: "left" }}>⚙️ Параметры</h2>
 
       {user ? (
@@ -345,22 +347,11 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
               <p className="setting-hint" style={{ marginBottom: "12px" }}>Напишите пару слов о своих вкусах в кино, чтобы друзья знали, что вы любите.</p>
               <form onSubmit={handleSaveBio} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <textarea
-                  className="form-input"
+                  className="form-textarea"
                   value={bio}
                   onChange={e => setBio(e.target.value)}
                   placeholder="Люблю научную фантастику, ненавижу спойлеры..."
                   maxLength={180}
-                  style={{
-                    width: "100%",
-                    minHeight: "100px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    borderRadius: "8px",
-                    padding: "10px",
-                    color: "#fff",
-                    fontSize: "0.9rem",
-                    resize: "none"
-                  }}
                 />
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>
@@ -380,17 +371,17 @@ export default function Settings({ theme, setTheme, language, setLanguage }) {
               
               <div style={{ marginBottom: "20px" }}>
                 <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Обучение</label>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "5px" }}>
-                  <input 
-                    type="checkbox" 
-                    id="disable-onboarding"
-                    checked={profileData?.disableOnboarding || false}
-                    onChange={(e) => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), e.target.checked)}
-                    style={{ width: "20px", height: "20px", cursor: "pointer" }}
-                  />
-                  <label htmlFor="disable-onboarding" style={{ fontSize: "0.95rem", cursor: "pointer" }}>Выключить обучение</label>
+                <div 
+                  className="glass-switch-container" 
+                  style={{ marginTop: "8px" }}
+                  onClick={() => set(ref(database, `users/${user.uid}/profile/disableOnboarding`), !profileData?.disableOnboarding)}
+                >
+                  <div className={`glass-switch ${profileData?.disableOnboarding ? "active" : ""}`}>
+                    <div className="glass-switch-thumb" />
+                  </div>
+                  <span style={{ fontSize: "0.95rem" }}>Выключить обучение</span>
                 </div>
-                <p className="setting-hint">Если включено, подсказки при свайпах не показываются.</p>
+                <p className="setting-hint" style={{ marginTop: "6px" }}>Если включено, подсказки при свайпах не показываются.</p>
               </div>
 
               <div>

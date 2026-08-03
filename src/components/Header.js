@@ -83,6 +83,8 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
     { id: "settings", label: "Параметры", icon: "⚙️" },
   ];
 
+  const [showChamaTip, setShowChamaTip] = useState(false);
+
   return (
     <>
       {(!isMobile || currentScreen !== "swipe") && (
@@ -121,20 +123,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                     initial={{ opacity: 0, y: 10, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10 }}
-                    style={{
-                      position: "absolute",
-                      top: "70px",
-                      left: "20px",
-                      background: "linear-gradient(135deg, #ff8a50 0%, #e91e63 100%)",
-                      color: "#fff",
-                      padding: "8px 16px",
-                      borderRadius: "20px",
-                      fontSize: "0.8rem",
-                      fontWeight: "bold",
-                      boxShadow: "0 4px 15px rgba(233,30,99,0.4)",
-                      zIndex: 9999,
-                      pointerEvents: "none"
-                    }}
+                    className="popcorn-toast"
                   >
                     🍿 Секретный режим супер-киномана!
                   </motion.div>
@@ -170,7 +159,21 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                   )}
                 </div>
                 <div className="mobile-header-right">
-                  {/* Empty for balance */}
+                  <div style={{ position: "relative" }}>
+                    <button
+                      className="btn-matchwatch-secondary"
+                      onClick={() => setShowChamaTip(!showChamaTip)}
+                      style={{ background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center" }}
+                      title="Помощник Чама 🐾"
+                    >
+                      <img src="/chama/Mascot_waving_paw_smiling_202607301353.jpeg" alt="Чама" style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.3)" }} />
+                    </button>
+                    {showChamaTip && (
+                      <div className="glass-panel" style={{ position: "absolute", right: 0, top: "34px", width: "220px", padding: "10px", zIndex: 1000, fontSize: "0.8rem" }}>
+                        🐾 <strong>Чама:</strong> Свайпай карточки вправо для лайка!
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -386,7 +389,7 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 ))}
               </div>
               
-              <button className="bottom-sheet-cancel" onClick={() => setMenuOpen(false)}>Отмена</button>
+              <button className="bottom-sheet-cancel btn btn-secondary" onClick={() => setMenuOpen(false)}>Отмена</button>
             </motion.div>
           </>
         )}

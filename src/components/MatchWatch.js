@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe, extendMatchRoomDeck } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, get } from "firebase/database";
 import { movies, moviesById } from "../data";
@@ -10,6 +10,7 @@ import DetailedMovieModal from "./DetailedMovieModal";
 import SessionFiltersModal from "./SessionFiltersModal";
 import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoom, initTelegramWebApp } from "../tma";
 import { getPosterCandidates, getBestPosterUrl } from "../posterResolver";
+import { ChamaBanner } from "../chamaAssets";
 
 export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange }) {
   const [screen, setScreen] = useState("start");
@@ -28,14 +29,38 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   useEffect(() => {
     initTelegramWebApp();
     const tgUser = getTelegramUser();
+    const startParam = getTelegramStartParam();
+    const nameToUse = (tgUser && tgUser.name) || userName || auth?.currentUser?.displayName;
+
     if (tgUser && tgUser.name && !userName) {
       setUserName(tgUser.name);
     }
-    const startParam = getTelegramStartParam();
+
     if (startParam) {
-      setRoomCode(startParam.toUpperCase());
+      const code = startParam.toUpperCase();
+      setRoomCode(code);
       setRole("guest");
-      setScreen("join");
+
+      if (typeof window !== "undefined" && window.location.search.includes("startapp")) {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.delete("startapp");
+          url.searchParams.delete("start_param");
+          window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
+        } catch (_e) { /* fallthrough */ }
+      }
+
+      if (nameToUse) {
+        joinMatchRoom(code, nameToUse, decisions, favorites, stopGenres).then((success) => {
+          if (success) {
+            setScreen("swiping");
+          } else {
+            setScreen("join");
+          }
+        }).catch(() => setScreen("join"));
+      } else {
+        setScreen("join");
+      }
     }
   }, []);
 
@@ -116,7 +141,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       setRoomData(data);
       
       const currentScreen = screenRef.current;
-      const currentRole = roleRef.current;
+      const currentRole = roleRef.current || role;
+      const activeRole = currentRole || (userName && data.hostName && userName === data.hostName ? "host" : (userName && data.guestName && userName === data.guestName ? "guest" : "guest"));
       
       if (data.status === "active" && currentScreen === "waiting") {
         setScreen("swiping");
@@ -151,7 +177,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             const safePrev = Array.isArray(prev) ? prev : [];
             let updated = false;
             const newHistory = [...safePrev];
-            const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+            const partner = activeRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
             
             allMatches.forEach(matchId => {
               const exists = newHistory.find(h => h.movieId === matchId);
@@ -187,7 +213,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
           setMatchHistory(prev => {
             const safePrev = Array.isArray(prev) ? [...prev] : [];
-            const partner = currentRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
+            const partner = activeRole === "host" ? (data.guestName || "Партнер") : (data.hostName || "Партнер");
 
             newMatches.forEach(matchId => {
               const exists = safePrev.find(h => h.movieId === matchId && h.date === new Date().toLocaleDateString());
@@ -209,6 +235,17 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     });
     return () => unsubscribe();
   }, [roomCode]);
+
+  const handleExtendDeck = async () => {
+    setSessionCap(prev => prev + 25);
+    if (roomCode) {
+      try {
+        await extendMatchRoomDeck(roomCode, 25);
+      } catch (err) {
+        console.error("Error extending deck:", err);
+      }
+    }
+  };
 
   useEffect(() => {
     if (currentUser && database) {
@@ -370,7 +407,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const renderSwipingScreen = () => {
     try {
       return (
-        <div className="matchwatch-swiping" style={{ width: "100%", height: "100%", minHeight: "600px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "80px" }}>
+        <div className="matchwatch-swiping" style={{ width: "100%", height: "100%", minHeight: "600px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: "120px" }}>
           <div className="room-header-compact matchwatch-swiping-header">
             <div className="room-info-item">Комната: <strong className="room-code-tag">{roomCode}</strong></div>
             <div className="room-info-item users-line">{roomData?.hostName} & {roomData?.guestName || '...'}</div>
@@ -378,10 +415,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           
           <div className="swipe-wrapper">
             <div className="deck-container">
-              {!roomData || !roomData.deck ? (
-                <div className="empty-profile" style={{ textAlign: "center", marginTop: "40px" }}>
+              {!roomData || !roomData.deck || (Array.isArray(roomData.deck) && roomData.deck.length === 0) ? (
+                <div className="empty-profile flex flex-col items-center justify-center p-6" style={{ textAlign: "center", marginTop: "20px" }}>
                   <div className="premium-loader" style={{ margin: "0 auto 20px auto" }} />
-                  <p style={{ color: "rgba(255,255,255,0.6)" }}>Загрузка карточек комнаты...</p>
+                  <p style={{ color: "rgba(255,255,255,0.6)", marginBottom: "12px" }}>Подбираем 25 идеальных фильмов для вашей пары...</p>
+                  <ChamaBanner 
+                    type="WRAPPED_BLANKET"
+                    title="Умный подбор вкусов"
+                    text="Подбираем 25 идеальных фильмов для вашей пары на основе 5D-векторов вкусов..."
+                    size="large"
+                  />
                 </div>
               ) : showTutorial ? (
                 <div className="deck-card deck-position-0" style={{ zIndex: 100 }}>
@@ -480,7 +523,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
           <div className="matchwatch-buttons">
             <button className="btn-matchwatch btn-create" onClick={() => setScreen("create")}>🎬 Создать комнату</button>
             <button className="btn-matchwatch btn-join" onClick={() => setScreen("join")}>🔗 Присоединиться</button>
-            <button className="btn-matchwatch" onClick={() => setScreen("history")} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>📜 Вы выбирали</button>
+            <button className="btn-matchwatch btn-matchwatch-secondary" onClick={() => setScreen("history")}>📜 Вы выбирали</button>
           </div>
           {Object.keys(invites).length > 0 && (
             <div className="matchwatch-invites" style={{marginTop: "30px", background: "rgba(255,71,87,0.1)", border: "1px solid rgba(255,71,87,0.3)", padding: "15px", borderRadius: "14px"}}>
@@ -586,11 +629,19 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       {screen === "waiting" && (
         <motion.div className="matchwatch-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <h2>Ожидание партнера...</h2>
+          <ChamaBanner
+            type="FILM_REEL"
+            title="Ожидаем второго зрителя..."
+            text="Чама уже уселся на бобину с плёнкой и готов к совместному просмотру!"
+            size="large"
+            className="mb-4"
+          />
           <div className="room-info" style={{ textAlign: "center", margin: "20px 0" }}>
             <p>Отправьте этот код другу:</p>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", margin: "10px 0" }}>
               <h1 className="room-code-header" style={{ color: "#ff8a50", letterSpacing: "5px", margin: 0 }}>{roomCode}</h1>
               <button 
+                className="btn-matchwatch-secondary"
                 onClick={() => {
                   navigator.clipboard.writeText(roomCode);
                   setCopied(true);
@@ -617,8 +668,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </button>
 
             <button 
-              className="btn-secondary" 
-              style={{ marginTop: "10px", width: "100%", background: "linear-gradient(135deg, rgba(0, 136, 204, 0.25) 0%, rgba(0, 168, 232, 0.25) 100%)", border: "1px solid rgba(0, 136, 204, 0.4)", color: "#fff" }}
+              className="btn-telegram-glass" 
+              style={{ marginTop: "10px", width: "100%" }}
               onClick={() => shareTelegramRoom(roomCode)}
             >
               ✈️ Отправить ссылку в Telegram
@@ -631,7 +682,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
               <div className="invite-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="invite-modal-header">
                   <h3>Ваши друзья</h3>
-                  <button className="close-modal" onClick={() => setShowInviteModal(false)}>✕</button>
+                  <button className="close-btn modal-close-btn" onClick={() => setShowInviteModal(false)}>✕</button>
                 </div>
                 <div className="friends-invite-list-scroll">
                   {Object.keys(friends).length === 0 ? (
@@ -650,7 +701,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
                           <span>{tag}</span>
                         </div>
                         <button 
-                          className="btn-invite-action"
+                          className="btn btn-primary btn-small"
                           onClick={async () => {
                             try {
                               await inviteToMatchWatch(uid, roomCode, auth.currentUser.displayName || auth.currentUser.email);
@@ -677,7 +728,14 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       {matchQueue.length > 0 && createPortal(
         <div className="match-screen-overlay">
           <motion.div className="matchwatch-form match-modal-content" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-            <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "20px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
+            <h1 style={{ color: "#ff8a50", textAlign: "center", marginBottom: "15px" }}>У ВАС СОВПАДЕНИЕ! 🎉</h1>
+            <ChamaBanner
+              type="CROWN_CAPE"
+              title="Королевский выбор!"
+              text="Вы оба выбрали этот фильм! Чама аплодирует вашему совпадению 👑"
+              size="large"
+              className="mb-4"
+            />
             <div className="match-movie" style={{ textAlign: "center" }}>
               <img 
                 src={moviesById[matchQueue[0]]?.poster}
@@ -690,9 +748,19 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             </div>
             <button className="btn-secondary" style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }} onClick={() => setShowDetails(matchQueue[0])}>Подробнее о фильме</button>
             <button className="btn-primary" style={{ width: "100%", marginBottom: "10px" }} onClick={() => {
-              setSessionCap(prev => prev + 25);
+              handleExtendDeck();
               setMatchQueue(prev => prev.slice(1));
             }}>Продолжить выбор (+25 фильмов) 🚀</button>
+
+            <button
+              className="btn-secondary"
+              onClick={() => {
+                handleExtendDeck();
+                setScreen("swiping");
+              }}
+            >
+              ➕ Пролистать еще +25 фильмов
+            </button>
             <button className="btn-secondary" style={{ width: "100%", background: "rgba(255,255,255,0.05)" }} onClick={() => { setMatchQueue([]); setScreen("recap"); }}>К итогам сессии 📊</button>
           </motion.div>
         </div>,
@@ -772,7 +840,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
             <button
               className="btn-secondary"
               onClick={() => {
-                setSessionCap(prev => prev + 25);
+                handleExtendDeck();
                 setScreen("swiping");
               }}
             >

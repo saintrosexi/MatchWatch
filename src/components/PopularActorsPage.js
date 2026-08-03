@@ -168,12 +168,12 @@ export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
           placeholder="Поиск любимого актера по имени..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="actor-search-input"
+          className="search-input actor-search-input"
           style={{ paddingLeft: "45px" }}
         />
         <span className="search-icon-inside" style={{ position: "absolute", left: "18px", top: "50%", transform: "translateY(-50%)", opacity: 0.5 }}>🔍</span>
         {searchQuery && (
-          <button className="actor-search-clear" onClick={() => setSearchQuery("")}>
+          <button className="btn btn-secondary actor-search-clear" onClick={() => setSearchQuery("")}>
             ✕
           </button>
         )}

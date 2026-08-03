@@ -7,40 +7,28 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { triggerHaptic } from "../tma";
 import { getPosterCandidates, getBestPosterUrl, fetchLivePosterFromApi } from "../posterResolver";
-
-const formatReleaseDate = (dateStr) => {
-  if (!dateStr) return "";
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const months = [
-    "января", "февраля", "марта", "апреля", "мая", "июня",
-    "июля", "августа", "сентября", "октября", "ноября", "декабря"
-  ];
-  return `${day} ${months[month - 1]} ${year}`;
-};
+import { getMovieVibeBadge } from "../recommendations";
 
 const TUTORIAL_MOVIE = {
   id: "tutorial",
-  title: "Обучение",
-  titleRu: "Обучение",
-  year: "MatchWatch",
-  poster:
-    "https://images.unsplash.com/photo-1585647347384-2593bcac5503?q=80&w=1000&auto=format&fit=crop",
-  description:
-    "Смахни карточку направо, если фильм нравится, или налево, если хочешь пропустить. Нажми в любое место, чтобы открыть подробное описание.",
-  pcDescription:
-    "Перетяни карточку налево если тебе не нравится, Перетяни направо если тебе нравится, Нажми на карточку чтобы узнать больше о фильме",
-  backTitle: "Обучение",
+  title: "Обучение с Чамой 🐾",
+  titleRu: "Обучение с Чамой 🐾",
+  year: "MatchWatch v2",
+  poster: "/chama/Mascot_demonstrating_swipe_gestures_202607301352.jpeg",
+  description: "Привет! Я песик Чама 🐾 Смахни карточку вправо (лайк 👉) или влево (пропустить 👈). Нажимай ⭐ для Избранного и ℹ️ для деталей. Алгоритм MatchWatch создаст твой 5D вектор (Энергия, Мрачность, Интеллект, Эмоции, Динамика)!",
 };
 
 export default function SwipeCard({
   movie: inputMovie,
   onSwipe,
   onShowDetails,
+  onUndo,
+  onToggleFavorite,
+  isFavorite = false,
   isTutorial = false,
 }) {
   const movie = isTutorial ? TUTORIAL_MOVIE : inputMovie;
   const [isDragging, setIsDragging] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const imgRef = useRef(null);
@@ -61,13 +49,11 @@ export default function SwipeCard({
   }, [movie?.id]);
 
   const handleImageError = async () => {
-    // Try next precomputed candidate URL first
     if (candidateIndex + 1 < posterCandidates.length) {
       const nextIdx = candidateIndex + 1;
       setCandidateIndex(nextIdx);
       setCurrentPosterSrc(posterCandidates[nextIdx]);
     } else {
-      // If candidates exhausted, try a live API search lookup by title & year
       const livePoster = await fetchLivePosterFromApi(movie.titleRu || movie.title, movie.year);
       if (livePoster && livePoster !== currentPosterSrc) {
         setCurrentPosterSrc(livePoster);
@@ -76,267 +62,109 @@ export default function SwipeCard({
   };
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1100);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
     setIsExpanded(false);
   }, [movie?.id]);
 
   const x = useMotionValue(0);
+  const rotate = useTransform(x, [-250, 0, 250], [-18, 0, 18]);
+  const opacity = useTransform(x, [-300, -180, 0, 180, 300], [0.4, 1, 1, 1, 0.4]);
 
-  const rotate = useTransform(x, [-200, 0, 200], [-12, 0, 12]);
-  const opacity = useTransform(
-    x,
-    [-200, -150, 0, 150, 200],
-    [0.6, 1, 1, 1, 0.6]
-  );
-
-  // Dynamic Neon Glow based on drag direction
-  const cardGlow = useTransform(
-    x,
-    [-150, 0, 150],
-    [
-      "0 15px 40px rgba(255, 71, 87, 0.4), 0 0 60px rgba(255, 71, 87, 0.5), 0 0 120px rgba(255, 71, 87, 0.3), 0 0 0 3px rgba(255, 71, 87, 0.7)",
-      "0 24px 50px rgba(0, 0, 0, 0.6), 0 0 0px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0), 0 0 0 1px rgba(255, 255, 255, 0.08)",
-      "0 15px 40px rgba(46, 213, 115, 0.4), 0 0 60px rgba(46, 213, 115, 0.5), 0 0 120px rgba(46, 213, 115, 0.3), 0 0 0 3px rgba(46, 213, 115, 0.7)"
-    ]
-  );
-
-  // Tinder/Bumble style diagonal badges
-  const likeBadgeOpacity = useTransform(x, [10, 80], [0, 1], { clamp: true });
-  const skipBadgeOpacity = useTransform(x, [-80, -10], [1, 0], { clamp: true });
-  
-  const likeBadgeScale = useTransform(x, [0, 100], [0.8, 1], { clamp: true });
-  const skipBadgeScale = useTransform(x, [-100, 0], [1, 0.8], { clamp: true });
-
-  const handleDragStart = () => {
-    setIsDragging(true);
-  };
-
-  const handleDrag = (event, info) => {
-    // Hardware accelerated dragging, no React re-renders!
-  };
-
-  const handleDragEnd = (event, info) => {
+  const handleDragEnd = (_, info) => {
     setIsDragging(false);
-    const offset = info.offset.x;
-    const velocity = info.velocity.x;
-
-    if (Math.abs(offset) > 100 || Math.abs(velocity) > 600) {
-      const dir = offset > 0 ? "right" : "left";
-      triggerHaptic(dir === "right" ? "medium" : "light");
-      onSwipe(dir, movie);
+    const threshold = 100;
+    if (info.offset.x > threshold) {
+      triggerHaptic("success");
+      onSwipe("like", movie);
+    } else if (info.offset.x < -threshold) {
+      triggerHaptic("light");
+      onSwipe("dislike", movie);
     }
   };
 
-  const handleCardClick = (e) => {
-    // If the user was dragging, do not toggle expand
-    if (Math.abs(x.get()) > 10) return;
-    
-    // Check if clicked specifically on the "подробнее" / "свернуть" action indicator
-    const isIndicatorClick = e.target.closest(".info-overlay-action-indicator");
-    
-    if (isIndicatorClick) {
-      // Toggle the local expandable description drawer inside the card
-      setIsExpanded(!isExpanded);
-    }
-  };
+  const vibeBadge = isTutorial ? { emoji: "🐾", label: "5D Вектор Вкуса" } : getMovieVibeBadge(movie);
 
   return (
-    <div className="swipe-card-perspective">
+    <motion.div
+      className="swipe-card"
+      style={{ x, rotate, opacity }}
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={handleDragEnd}
+      onClick={() => {
+        if (!isDragging && onShowDetails) {
+          onShowDetails(movie);
+        }
+      }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Dynamic Glowing Feedback Stamp */}
       <motion.div
-        className="swipe-card-inner"
-        onClick={handleCardClick}
-        style={{
-          x,
-          rotate,
-          opacity,
-          boxShadow: cardGlow,
-          cursor: isDragging ? "grabbing" : "grab",
-          width: "100%",
-          height: "100%",
-          borderRadius: "24px",
-          display: "flex",
-          flexDirection: "column",
-          position: "relative",
-          overflow: "hidden"
-        }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.7}
-        onDragStart={handleDragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
-        whileTap={{ scale: 0.98 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="swipe-badge like"
+        style={{ opacity: useTransform(x, [20, 120], [0, 1]) }}
       >
-        {/* Glowing Swipe Feedback Badges */}
-        <AnimatePresence>
-          {isMobile && (
-            <>
-              {/* LIKE BADGE (Top Left, Green Glow) */}
-              <motion.div
-                style={{
-                  opacity: likeBadgeOpacity,
-                  scale: likeBadgeScale,
-                  position: "absolute",
-                  top: "30px",
-                  left: "30px",
-                  zIndex: 200,
-                  transform: "rotate(-15deg)",
-                  pointerEvents: "none"
-                }}
-              >
-                <div className="swipe-feedback-badge swipe-feedback-badge--like">
-                  МАТЧ
-                </div>
-              </motion.div>
-
-              {/* SKIP BADGE (Top Right, Red Glow) */}
-              <motion.div
-                style={{
-                  opacity: skipBadgeOpacity,
-                  scale: skipBadgeScale,
-                  position: "absolute",
-                  top: "30px",
-                  right: "30px",
-                  zIndex: 200,
-                  transform: "rotate(15deg)",
-                  pointerEvents: "none"
-                }}
-              >
-                <div className="swipe-feedback-badge swipe-feedback-badge--skip">
-                  МИМО
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Poster Media Section */}
-        <div className="swipe-card-poster-container">
-          {!isTutorial && movie.releaseDate && new Date(movie.releaseDate) > new Date("2026-05-19") && (
-            <div className="badge-coming-soon-mobile">
-              🍿 Скоро в кино
-            </div>
-          )}
-
-          {isTutorial ? (
-            <div className="tutorial-poster-content-mobile">
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                style={{ fontSize: "5.5rem", filter: "drop-shadow(0 0 20px rgba(59,130,246,0.6))" }}
-              >
-                🎬
-              </motion.div>
-              <div className="tutorial-title">Свайпай и выбирай</div>
-            </div>
-          ) : (
-            <img
-              ref={imgRef}
-              className="poster-premium"
-              src={currentPosterSrc || getBestPosterUrl(movie)}
-              alt={movie.titleRu || movie.title}
-              onError={handleImageError}
-              referrerPolicy="no-referrer"
-              draggable={false}
-              decoding="async"
-            />
-          )}
-        </div>
-
-        {/* Premium Integrated Info overlay */}
-        <div className={`swipe-card-info-overlay ${isExpanded ? "expanded" : ""}`}>
-          <div className="info-overlay-gradient" />
-          
-          <div className="info-overlay-content" style={{ pointerEvents: "auto" }}>
-            <div className="info-overlay-top-row">
-              <h2 className="info-overlay-title">
-                {movie.titleRu || movie.title}
-              </h2>
-            </div>
-
-            <div className="info-overlay-pills">
-              <span className="info-pill info-pill--year">
-                {movie.year}
-              </span>
-              
-              {!isTutorial && movie.rating && (
-                <span className="info-pill info-pill--rating">
-                  ⭐ {movie.rating}
-                </span>
-              )}
-              
-              {movie.genres && (
-                <span className="info-pill info-pill--genre">
-                  {movie.genres.split(",")[0]}
-                </span>
-              )}
-            </div>
-
-            <p className={`info-overlay-desc ${isExpanded ? "expanded" : ""}`}>
-              {movie.releaseDate && new Date(movie.releaseDate) > new Date() && (
-                <span className="coming-soon-date-tag" style={{ display: "block", color: "#ff8a50", fontWeight: "bold", marginBottom: "6px", fontSize: "0.82rem" }}>
-                  📅 Премьера: {formatReleaseDate(movie.releaseDate)}
-                </span>
-              )}
-              {movie.description}
-            </p>
-
-            {/* Extra details when expanded */}
-            {isExpanded && !isTutorial && (
-              <div className="info-overlay-extra-details">
-                {movie.director && (
-                  <p className="info-detail-line">
-                    <strong>Режиссер:</strong> {movie.director}
-                  </p>
-                )}
-                {movie.actors && (
-                  <p className="info-detail-line">
-                    <strong>В ролях:</strong>{" "}
-                    {movie.actors.split(",").map((actor, idx, arr) => {
-                      const trimmed = actor.trim();
-                      return (
-                        <span key={trimmed}>
-                          <span
-                            className="clickable-actor-link"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.dispatchEvent(
-                                new CustomEvent("show-actor-details", {
-                                  detail: trimmed,
-                                })
-                              );
-                            }}
-                          >
-                            {trimmed}
-                          </span>
-                          {idx < arr.length - 1 ? ", " : ""}
-                        </span>
-                      );
-                    })}
-                  </p>
-                )}
-              </div>
-            )}
-
-            <div className="info-overlay-action-indicator">
-              <span>{isExpanded ? "Свернуть" : "Подробнее"}</span>
-              <motion.span 
-                animate={isExpanded ? { y: [0, 3, 0] } : { y: [0, -3, 0] }} 
-                transition={{ repeat: Infinity, duration: 1.5 }}
-                className="indicator-chevron"
-              >
-                {isExpanded ? "▼" : "▲"}
-              </motion.span>
-            </div>
-          </div>
-        </div>
+        МАТЧ
       </motion.div>
-    </div>
+      <motion.div
+        className="swipe-badge nope"
+        style={{ opacity: useTransform(x, [-20, -120], [0, 1]) }}
+      >
+        МИМО
+      </motion.div>
+
+      {/* Poster Image */}
+      <div className="swipe-card-poster-container">
+        {vibeBadge && (
+          <div
+            className="vibe-sensation-badge"
+            style={{
+              background: `${vibeBadge.color}25`,
+              borderColor: vibeBadge.color,
+              color: vibeBadge.color,
+            }}
+          >
+            {vibeBadge.label}
+          </div>
+        )}
+
+        <img
+          ref={imgRef}
+          className="swipe-card-poster"
+          src={currentPosterSrc || getBestPosterUrl(movie)}
+          alt={movie.titleRu || movie.title}
+          onError={handleImageError}
+          referrerPolicy="no-referrer"
+          draggable={false}
+          style={{
+            objectFit: "cover",
+            objectPosition: isTutorial ? "center 75%" : "center center"
+          }}
+        />
+      </div>
+
+      {/* Minimal Glass Content Overlay */}
+      <div className="swipe-card-overlay">
+        <div className="swipe-card-meta">
+          {!isTutorial && movie.rating && (
+            <span className="meta-rating">⭐ {movie.rating}</span>
+          )}
+          <span>{movie.year}</span>
+          {movie.duration && <span>• {movie.duration}</span>}
+        </div>
+
+        <h2 className="swipe-card-title">{movie.titleRu || movie.title}</h2>
+
+        <div className="swipe-card-genres">
+          {movie.genres &&
+            movie.genres.split(",").map((g) => (
+              <span key={g} className="genre-badge">
+                {g.trim()}
+              </span>
+            ))}
+        </div>
+
+        <p className="swipe-card-description">{movie.description}</p>
+      </div>
+    </motion.div>
   );
 }

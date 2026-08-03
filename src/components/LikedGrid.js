@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import DetailedMovieModal from "./DetailedMovieModal";
 import TasteProfile from "./TasteProfile";
+import { ChamaBanner, ChamaBackgroundArt } from "../chamaAssets";
 
 const getDaysUntilRelease = (releaseDateStr) => {
   const currentDate = new Date("2026-05-19");
@@ -63,7 +64,8 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
 
   return (
     <>
-      <div className="liked-grid-wrapper">
+      <div className="liked-grid-wrapper relative overflow-hidden">
+        <ChamaBackgroundArt type="EATING_NACHOS" opacity={0.06} />
         <TasteProfile likedMovies={releasedLiked} favorites={favorites} ratings={ratings} />
 
         <div className="liked-section">
@@ -98,8 +100,13 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
 
           <div className="grid">
             {filteredReleasedLiked.length === 0 ? (
-              <div className="empty-message">
-                {getEmptyMessage()}
+              <div className="empty-message-container w-full col-span-full py-6">
+                <ChamaBanner 
+                  type="EMPTY_POPCORN"
+                  title="Чама скучает..."
+                  text={getEmptyMessage()}
+                  size="large"
+                />
               </div>
             ) : (
               filteredReleasedLiked.map(m => (
@@ -111,23 +118,7 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
                 >
                   <img src={m.poster} alt={m.title} />
                   {ratings?.[m.id] && (
-                    <div 
-                      style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        background: "rgba(255, 138, 80, 0.95)",
-                        color: "#fff",
-                        padding: "4px 8px",
-                        borderRadius: "8px",
-                        fontSize: "0.75rem",
-                        fontWeight: "bold",
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
-                        zIndex: 2,
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        letterSpacing: "-0.2px"
-                      }}
-                    >
+                    <div className="glass-badge-rating">
                       ★ {ratings[m.id]}
                     </div>
                   )}
@@ -160,25 +151,7 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
                   }}
                 >
                   <img src={m.poster} alt={m.title} style={{ transition: "all 0.3s ease" }} />
-                  <div 
-                    style={{
-                      position: "absolute",
-                      top: "10px",
-                      left: "10px",
-                      right: "10px",
-                      background: "linear-gradient(135deg, rgba(255, 138, 80, 0.95) 0%, rgba(233, 30, 99, 0.95) 100%)",
-                      color: "#fff",
-                      padding: "6px 8px",
-                      borderRadius: "8px",
-                      fontSize: "0.7rem",
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
-                      zIndex: 2,
-                      border: "1px solid rgba(255,255,255,0.15)",
-                      letterSpacing: "-0.1px"
-                    }}
-                  >
+                  <div className="glass-badge-countdown">
                     {formatCountdown(m.releaseDate)}
                   </div>
                   <div className="movie-title">{m.titleRu || m.title}</div>

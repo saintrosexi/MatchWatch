@@ -1,13 +1,12 @@
-// Actor Resolver & Dynamic Fetching System
-// Automatically fetches real official actor photos, English names, and facts from Kinopoisk & TMDB APIs
+// MatchWatch v2 — Actor Resolver & Dynamic Fetching
+// Fetches real actor photos and profiles from Kinopoisk API
 
 const KP_API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 const actorCache = new Map();
 
 /**
- * Searches for a real official actor photo and profile details by actor name using Kinopoisk API.
- * @param {string} actorName 
- * @returns {Promise<{ name: string, nameEn: string, photo: string|null, kinopoiskId: number|null }>}
+ * Searches for a real actor photo and profile by name using Kinopoisk API.
+ * Results are cached in-memory per session.
  */
 export const fetchRealActorProfile = async (actorName) => {
   if (!actorName || typeof actorName !== "string") return null;
@@ -23,14 +22,14 @@ export const fetchRealActorProfile = async (actorName) => {
       {
         headers: {
           "X-API-KEY": KP_API_KEY,
-          accept: "application/json",
-        },
+          accept: "application/json"
+        }
       }
     );
 
     if (res.ok) {
       const data = await res.json();
-      if (data && data.items && data.items.length > 0) {
+      if (data?.items?.length > 0) {
         const match = data.items[0];
         const profile = {
           name: match.nameRu || match.nameEn || actorName,

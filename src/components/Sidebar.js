@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useTransparentImage, CHAMA_IMAGES } from "../chamaAssets";
 
 export default function Sidebar({
   currentScreen,
@@ -8,24 +9,9 @@ export default function Sidebar({
   invitesCount = 0,
   user,
   currentUserAvatar = "😎",
-  sidebarCollapsed,
-  setSidebarCollapsed
 }) {
-  const getScreenName = (screen) => {
-    switch(screen) {
-      case "swipe": return "Выбрать фильм";
-      case "mood": return "По настроению";
-      case "search": return "Поиск";
-      case "top": return "Топ фильмов";
-      case "popularActors": return "Лучшие актеры";
-      case "liked": return `Любимые`;
-      case "friends": return "Друзья";
-      case "profile": return "Аккаунт";
-      case "matchwatch": return "MatchWatch";
-      case "settings": return "Параметры";
-      default: return "";
-    }
-  };
+  const [showChamaTip, setShowChamaTip] = useState(false);
+  const chamaTransparent = useTransparentImage(CHAMA_IMAGES.WAVING);
 
   const handleTabClick = (tab) => {
     if (onTabClick) {
@@ -37,137 +23,134 @@ export default function Sidebar({
   const tagPart = user && user.displayName && user.displayName.includes('#') ? '#' + user.displayName.split('#')[1] : "";
 
   return (
-    <nav className={`sidebar-layout ${sidebarCollapsed ? "collapsed" : ""}`}>
-      {/* Sidebar Header: Logo & Collapse Button */}
-      <div className="sidebar-header">
-        <div className="sidebar-logo-container" onClick={() => handleTabClick("swipe")}>
-          <img 
-            src={sidebarCollapsed ? "/logo-icon.png" : "/logo.png"} 
-            alt="MatchWatch Logo" 
-            className="sidebar-logo-img" 
-          />
-        </div>
-        <button 
-          className="sidebar-toggle-btn" 
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          title={sidebarCollapsed ? "Развернуть меню" : "Свернуть меню"}
+    <nav className="apple-side-rail">
+      {/* Brand Icon */}
+      <div 
+        className="side-rail-brand" 
+        onClick={() => handleTabClick("swipe")} 
+        title="MatchWatch"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleTabClick("swipe");
+          }
+        }}
+      >
+        <img src="/logo-icon.png" alt="MatchWatch" className="side-rail-logo" />
+      </div>
+
+      {/* Main Navigation Icons */}
+      <div className="side-rail-menu">
+        <button
+          className={`side-rail-item ${currentScreen === "swipe" ? "active" : ""}`}
+          onClick={() => handleTabClick("swipe")}
+          data-tooltip="Выбрать фильм"
         >
-          {sidebarCollapsed ? "»" : "«"}
+          <span className="side-rail-icon">🎬</span>
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "matchwatch" ? "active" : ""}`}
+          onClick={() => handleTabClick("matchwatch")}
+          data-tooltip="MatchWatch (Вдвоём)"
+        >
+          <span className="side-rail-icon">🍿</span>
+          {invitesCount > 0 && <span className="side-rail-badge">{invitesCount}</span>}
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "mood" ? "active" : ""}`}
+          onClick={() => handleTabClick("mood")}
+          data-tooltip="По настроению"
+        >
+          <span className="side-rail-icon">🎲</span>
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "search" ? "active" : ""}`}
+          onClick={() => handleTabClick("search")}
+          data-tooltip="Поиск"
+        >
+          <span className="side-rail-icon">🔍</span>
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "top" ? "active" : ""}`}
+          onClick={() => handleTabClick("top")}
+          data-tooltip="Топ фильмов"
+        >
+          <span className="side-rail-icon">⭐</span>
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "popularActors" ? "active" : ""}`}
+          onClick={() => handleTabClick("popularActors")}
+          data-tooltip="Актёры"
+        >
+          <span className="side-rail-icon">🌟</span>
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "liked" ? "active" : ""}`}
+          onClick={() => handleTabClick("liked")}
+          data-tooltip={`Любимые (${likedCount})`}
+        >
+          <span className="side-rail-icon">❤️</span>
+          {likedCount > 0 && <span className="side-rail-count-tag">{likedCount}</span>}
         </button>
       </div>
 
-      {/* Sidebar Menu - Upper Part */}
-      <ul className="sidebar-menu-list upper-menu">
-        <li 
-          className={currentScreen === "swipe" ? "active" : ""} 
-          onClick={() => handleTabClick("swipe")}
-          title={sidebarCollapsed ? getScreenName("swipe") : ""}
-        >
-          <span className="sidebar-menu-icon">🎬</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Выбрать фильм</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "matchwatch" ? "active" : ""} 
-          onClick={() => handleTabClick("matchwatch")}
-          title={sidebarCollapsed ? getScreenName("matchwatch") : ""}
-          style={{ position: 'relative' }}
-        >
-          <span className="sidebar-menu-icon">🍿</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">MatchWatch</span>}
-          {invitesCount > 0 && <span className="sidebar-badge">{invitesCount}</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "mood" ? "active" : ""} 
-          onClick={() => handleTabClick("mood")}
-          title={sidebarCollapsed ? getScreenName("mood") : ""}
-        >
-          <span className="sidebar-menu-icon">🎲</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">По настроению</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "search" ? "active" : ""} 
-          onClick={() => handleTabClick("search")}
-          title={sidebarCollapsed ? getScreenName("search") : ""}
-        >
-          <span className="sidebar-menu-icon">🔍</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Поиск</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "top" ? "active" : ""} 
-          onClick={() => handleTabClick("top")}
-          title={sidebarCollapsed ? getScreenName("top") : ""}
-        >
-          <span className="sidebar-menu-icon">⭐</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Топ фильмов</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "popularActors" ? "active" : ""} 
-          onClick={() => handleTabClick("popularActors")}
-          title={sidebarCollapsed ? getScreenName("popularActors") : ""}
-        >
-          <span className="sidebar-menu-icon">🌟</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Лучшие актеры</span>}
-        </li>
-
-        <li 
-          className={currentScreen === "liked" ? "active" : ""} 
-          onClick={() => handleTabClick("liked")}
-          title={sidebarCollapsed ? `${getScreenName("liked")} (${likedCount})` : ""}
-          style={{ position: 'relative' }}
-        >
-          <span className="sidebar-menu-icon">❤️</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Любимые ({likedCount})</span>}
-        </li>
-      </ul>
-
-      {/* Sidebar Menu - Lower Part (Friends, Account/Avatar, Settings) */}
-      <ul className="sidebar-menu-list lower-menu">
-        <li 
-          className={currentScreen === "friends" ? "active" : ""} 
-          onClick={() => handleTabClick("friends")}
-          title={sidebarCollapsed ? getScreenName("friends") : ""}
-          style={{ position: 'relative' }}
-        >
-          <span className="sidebar-menu-icon">👥</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Друзья</span>}
-          {friendRequestsCount > 0 && <span className="sidebar-badge">{friendRequestsCount}</span>}
-        </li>
-
-        {/* User Account / Profile Section */}
-        <li 
-          className={`sidebar-user-section ${currentScreen === "profile" ? "active" : ""}`}
-          onClick={() => handleTabClick("profile")}
-          title={sidebarCollapsed ? `${namePart}${tagPart}` : ""}
-        >
-          <div className="sidebar-user-avatar-wrapper">
-            {currentUserAvatar && (currentUserAvatar.startsWith("data:image/") || currentUserAvatar.startsWith("http")) ? (
-              <img src={currentUserAvatar} alt="User Avatar" className="sidebar-user-avatar-img" />
-            ) : (
-              <div className="sidebar-user-avatar-emoji">{currentUserAvatar || "😎"}</div>
-            )}
-          </div>
-          {!sidebarCollapsed && (
-            <div className="sidebar-user-info">
-              <span className="sidebar-user-name">{namePart}</span>
-              <span className="sidebar-user-tag">{tagPart}</span>
+      {/* Bottom Profile & Settings */}
+      <div className="side-rail-footer">
+        <div style={{ position: "relative" }}>
+          <button
+            className="side-rail-item chama-mini-helper"
+            onClick={() => setShowChamaTip(!showChamaTip)}
+            data-tooltip="Помощник Чама 🐾"
+          >
+            <img src={chamaTransparent} alt="Чама" style={{ width: 32, height: 32, objectFit: "contain", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))" }} />
+          </button>
+          {showChamaTip && (
+            <div className="glass-panel" style={{ position: "absolute", left: "60px", bottom: "0px", width: "240px", padding: "12px", zIndex: 100, fontSize: "0.82rem" }}>
+              <div style={{ fontWeight: "bold", color: "#fbbf24", marginBottom: "4px" }}>🐾 Совет от Чамы</div>
+              <p style={{ margin: 0, color: "rgba(255,255,255,0.85)" }}>
+                Выбирай фильмы свайпами вправо или организуй совместный MatchWatch сеанс с другом!
+              </p>
             </div>
           )}
-        </li>
+        </div>
 
-        <li 
-          className={currentScreen === "settings" ? "active" : ""} 
-          onClick={() => handleTabClick("settings")}
-          title={sidebarCollapsed ? getScreenName("settings") : ""}
+        <button
+          className={`side-rail-item ${currentScreen === "friends" ? "active" : ""}`}
+          onClick={() => handleTabClick("friends")}
+          data-tooltip="Друзья"
         >
-          <span className="sidebar-menu-icon">⚙️</span>
-          {!sidebarCollapsed && <span className="sidebar-menu-label">Параметры</span>}
-        </li>
-      </ul>
+          <span className="side-rail-icon">👥</span>
+          {friendRequestsCount > 0 && <span className="side-rail-badge">{friendRequestsCount}</span>}
+        </button>
+
+        <button
+          className={`side-rail-user-avatar ${currentScreen === "profile" ? "active" : ""}`}
+          onClick={() => handleTabClick("profile")}
+          data-tooltip={`${namePart}${tagPart}`}
+        >
+          {currentUserAvatar && (currentUserAvatar.startsWith("data:image/") || currentUserAvatar.startsWith("http")) ? (
+            <img src={currentUserAvatar} alt="User Avatar" className="avatar-img" />
+          ) : (
+            <span className="avatar-emoji">{currentUserAvatar || "😎"}</span>
+          )}
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "settings" ? "active" : ""}`}
+          onClick={() => handleTabClick("settings")}
+          data-tooltip="Настройки"
+        >
+          <span className="side-rail-icon">⚙️</span>
+        </button>
+      </div>
     </nav>
   );
 }

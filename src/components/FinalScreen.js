@@ -51,23 +51,14 @@ export default function FinalScreen({ activeCategory, onChangeCategory, onOpenLi
 
         {/* Secondary Actions */}
         <div className="final-actions" style={{ marginTop: "20px" }}>
-          <button className="btn-primary btn-large" onClick={onOpenLiked} style={{ width: "100%", borderRadius: "14px", padding: "14px" }}>
+          <button className="btn btn-primary btn-large" onClick={onOpenLiked} style={{ width: "100%" }}>
             ❤️ Посмотреть любимые
           </button>
           
           <button 
-            className="btn-secondary" 
+            className="btn btn-secondary" 
             onClick={onWatchNew} 
-            style={{ 
-              width: "100%", 
-              background: "transparent", 
-              border: "none", 
-              color: "rgba(255, 255, 255, 0.4)", 
-              fontSize: "0.85rem",
-              marginTop: "10px",
-              cursor: "pointer",
-              textDecoration: "underline"
-            }}
+            style={{ width: "100%", marginTop: "10px" }}
           >
             🔄 Начать сначала (Сбросить дизлайки в этой категории)
           </button>

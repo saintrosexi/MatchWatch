@@ -192,11 +192,11 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
       </div>
 
       {selectedMood && (
-        <div className="mood-results">
+        <div className="mood-results glass-panel" style={{ marginTop: "24px" }}>
           <h3 className="mood-results-title">
             {selectedMoodData?.emoji} {selectedMoodData?.getLabel(activeCategory)}
           </h3>
-          <p className="mood-description-sub" style={{ color: "#aaa", fontSize: "0.95rem", marginTop: "-5px", marginBottom: "20px", fontStyle: "italic" }}>
+          <p className="mood-description-sub" style={{ color: "var(--text-sub)", fontSize: "0.95rem", marginTop: "-5px", marginBottom: "20px", fontStyle: "italic" }}>
             {selectedMoodData?.getDescription(activeCategory)}
           </p>
           <p className="mood-results-count">

@@ -140,7 +140,7 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
       >
         {/* Navigation / Header Row */}
         <div className="actor-page-nav-row">
-          <button className="btn-actor-back" onClick={onBack}>
+          <button className="btn btn-secondary btn-actor-back" onClick={onBack}>
             <span>← Назад</span>
           </button>
           <span className="actor-page-subtitle">Профиль актера</span>
@@ -224,25 +224,25 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
                 <div className="actor-filmography-filters">
                   <button 
                     onClick={() => setFilterType("all")} 
-                    className={`filter-pill ${filterType === "all" ? "active" : ""}`}
+                    className={`category-btn filter-pill ${filterType === "all" ? "active" : ""}`}
                   >
                     Всё
                   </button>
                   <button 
                     onClick={() => setFilterType("movie")} 
-                    className={`filter-pill ${filterType === "movie" ? "active" : ""}`}
+                    className={`category-btn filter-pill ${filterType === "movie" ? "active" : ""}`}
                   >
                     Фильмы
                   </button>
                   <button 
                     onClick={() => setFilterType("series")} 
-                    className={`filter-pill ${filterType === "series" ? "active" : ""}`}
+                    className={`category-btn filter-pill ${filterType === "series" ? "active" : ""}`}
                   >
                     Сериалы
                   </button>
                   <button 
                     onClick={() => setFilterType("anime")} 
-                    className={`filter-pill ${filterType === "anime" ? "active" : ""}`}
+                    className={`category-btn filter-pill ${filterType === "anime" ? "active" : ""}`}
                   >
                     Аниме
                   </button>
@@ -256,10 +256,10 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
                   placeholder="Поиск по названию фильма..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="actor-search-input"
+                  className="search-input actor-search-input"
                 />
                 {searchQuery && (
-                  <button className="actor-search-clear" onClick={() => setSearchQuery("")}>
+                  <button className="btn btn-secondary actor-search-clear" onClick={() => setSearchQuery("")}>
                     ✕
                   </button>
                 )}

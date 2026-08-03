@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { movies } from "./data";
 import { auth, database, signInWithTelegram } from "./firebase";
 import { initTelegramWebApp, getTelegramUser } from "./tma";
@@ -21,7 +21,8 @@ import PublicProfile from "./components/PublicProfile";
 import DetailedMovieModal from "./components/DetailedMovieModal";
 import ActorProfilePage from "./components/ActorProfilePage";
 import PopularActorsPage from "./components/PopularActorsPage";
-import "./styles.css";
+import { rankMoviesForUser } from "./recommendations";
+import "./styles/index.css";
 
 const shuffle = (arr) => {
   const a = [...arr];
@@ -58,6 +59,8 @@ export default function App() {
   const [cursor, setCursor] = useState(0);
   const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
   const [history, setHistory] = useState(() => []); // swiped movie ids in order
+  const [lastSwipeDir, setLastSwipeDir] = useState("like");
+  const swipeDirRef = useRef("like");
   const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
   const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
   const [screen, setScreen] = useState(() => {
@@ -91,9 +94,17 @@ export default function App() {
     initTelegramWebApp();
 
     const tryTgAuth = async () => {
-      const tgUser = getTelegramUser();
-      if (tgUser) {
+      try {
+        const tgUser = getTelegramUser();
+        if (!tgUser) return;
+        const tgId = tgUser.id || tgUser.tgId;
+        const expectedEmail = `tg_${tgId}@matchwatch.internal`;
+        if (auth?.currentUser && auth.currentUser.email === expectedEmail) {
+          return;
+        }
         await signInWithTelegram(tgUser);
+      } catch (err) {
+        console.error("TMA Auto-auth error:", err);
       }
     };
 
@@ -227,12 +238,16 @@ export default function App() {
       return type === activeCategory;
     });
 
-    if (stopGenres.length === 0) return filtered;
-    return filtered.filter(m => {
-      if (!m.genres) return true;
-      return !stopGenres.some(g => m.genres.includes(g));
-    });
-  }, [deck, stopGenres, activeCategory]);
+    if (stopGenres.length > 0) {
+      filtered = filtered.filter(m => {
+        if (!m.genres) return true;
+        return !stopGenres.some(g => m.genres.includes(g));
+      });
+    }
+
+    // Smart Recommendation Ranking based on Liked Taste Profile
+    return rankMoviesForUser(filtered, liked);
+  }, [deck, stopGenres, activeCategory, liked]);
 
   const currentMoviePoster = useMemo(() => {
     if (screen === "swipe" && filteredDeck && cursor < filteredDeck.length) {
@@ -285,13 +300,15 @@ export default function App() {
   }, [cursor, filteredDeck, decisions, screen]);
 
   const handleSwipe = (dir, movie) => {
-    const decision = dir === "right" ? "like" : "dislike";
+    const decision = (dir === "like" || dir === "right") ? "like" : "dislike";
+    swipeDirRef.current = decision;
+    setLastSwipeDir(decision);
     setDecisions(prev => ({ ...prev, [movie.id]: decision }));
     setHistory(prev => [...prev, movie.id]);
 
     const next = nextUndecidedFrom(cursor + 1);
     if (next >= filteredDeck.length) {
-      setTimeout(() => setScreen("final"), 400);
+      setTimeout(() => setScreen("final"), 450);
     }
     setCursor(next);
   };
@@ -485,7 +502,12 @@ export default function App() {
       />;
     }
     if (screen === "profile") {
-      return <Profile />;
+      return <Profile 
+        user={user}
+        currentUserDecisions={decisions}
+        favorites={favorites}
+        ratings={ratings}
+      />;
     }
     if (screen === "settings") {
       return <Settings theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} />;
@@ -497,11 +519,24 @@ export default function App() {
           setScreen("publicProfile");
         }}
         onTabClick={handleTabClick}
+        onGoToMatchWatch={(code) => {
+          setHostRoomCode(code);
+          setScreen("matchwatch");
+        }}
+        user={user}
+        decisions={decisions}
+        favorites={favorites}
+        stopGenres={stopGenres}
+        friendRequests={friendRequests}
       />;
     }
     if (screen === "publicProfile") {
       return <PublicProfile 
         tag={publicProfileTag} 
+        user={user}
+        currentUserDecisions={decisions}
+        favorites={favorites}
+        ratings={ratings}
         onBackToApp={() => setScreen("swipe")} 
         onGoToMatchWatch={(roomCode) => {
           setHostRoomCode(roomCode);
@@ -535,7 +570,7 @@ export default function App() {
         <CategoryPicker />
         <div className="swipe-wrapper">
           <div className="deck-container">
-            <AnimatePresence initial={false}>
+            <AnimatePresence custom={lastSwipeDir} initial={false}>
               {showTutorial ? (
                 <motion.div 
                   key="tutorial"
@@ -564,33 +599,24 @@ export default function App() {
                         width: "100%",
                         height: "100%"
                       }}
-                      initial={{ scale: 0.9, opacity: 0, y: 30 }}
-                      animate={{ 
-                        scale: position === 2 ? 1 : (position === 1 ? 0.96 : 0.92), 
-                        opacity: 1, 
-                        y: position === 2 ? 0 : (position === 1 ? 12 : 24) 
-                      }}
-                      exit={{ 
-                        y: 1200, 
-                        rotate: 0, 
-                        opacity: 0,
-                        transition: { duration: 0.5, ease: "easeIn" }
-                      }}
+                      custom={lastSwipeDir}
+                      initial={{ scale: 0.94 + position * 0.03, y: position === 2 ? 0 : (2 - position) * 8, opacity: position === 2 ? 1 : 0.6 }}
+                      animate={{ scale: position === 2 ? 1 : 0.94 + position * 0.03, y: position === 2 ? 0 : (2 - position) * 8, opacity: position === 2 ? 1 : 0.6 }}
+                      exit={() => ({
+                        x: swipeDirRef.current === "like" ? 750 : -750,
+                        rotate: swipeDirRef.current === "like" ? 28 : -28,
+                        opacity: 0
+                      })}
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
                     >
-                      {cardIndex === cursor ? (
-                        <SwipeCard
-                          movie={filteredDeck[cardIndex]}
-                          onShowDetails={(m) => setSelectedMovieForDetails(m)}
-                          onSwipe={(dir, movie) => {
-                            handleSwipe(dir, movie);
-                          }}
-                        />
-                      ) : (
-                        <div className="card-placeholder">
-                          <img src={filteredDeck[cardIndex].poster} alt={filteredDeck[cardIndex].title} />
-                          <div className="placeholder-overlay" />
-                        </div>
-                      )}
+                      <SwipeCard 
+                        movie={filteredDeck[cardIndex]} 
+                        onSwipe={handleSwipe}
+                        onShowDetails={(m) => setSelectedMovieForDetails(m)}
+                        onUndo={handleUndo}
+                        onToggleFavorite={toggleFavorite}
+                        isFavorite={!!favorites[filteredDeck[cardIndex].id]}
+                      />
                     </motion.div>
                   )
                 ))
@@ -606,15 +632,58 @@ export default function App() {
             )}
           </div>
 
-          {!showTutorial && (
-            <button 
-              className="btn-floating-undo desktop-only" 
-              onClick={handleUndo} 
-              disabled={history.length === 0}
-              title="Отменить последний выбор"
-            >
-              ↩️
-            </button>
+          {/* 5-Button Control Dock placed cleanly below 500px card */}
+          {cursor < filteredDeck.length && (
+            <div className="swipe-controls-dock">
+              <button
+                className="swipe-control-btn btn-dislike"
+                onClick={() => {
+                  const currentMovie = filteredDeck[cursor];
+                  if (currentMovie) handleSwipe("dislike", currentMovie);
+                }}
+                title="Пропустить (Мимо)"
+              >
+                👎
+              </button>
+              <button
+                className="swipe-control-btn btn-undo"
+                onClick={handleUndo}
+                disabled={history.length === 0}
+                title="Вернуть последний фильм"
+              >
+                ↩️
+              </button>
+              <button
+                className="swipe-control-btn btn-info"
+                onClick={() => {
+                  const currentMovie = filteredDeck[cursor];
+                  if (currentMovie) setSelectedMovieForDetails(currentMovie);
+                }}
+                title="Подробная информация"
+              >
+                ℹ️
+              </button>
+              <button
+                className={`swipe-control-btn btn-fav ${filteredDeck[cursor] && favorites[filteredDeck[cursor].id] ? "active" : ""}`}
+                onClick={() => {
+                  const currentMovie = filteredDeck[cursor];
+                  if (currentMovie) toggleFavorite(currentMovie.id);
+                }}
+                title="В избранное"
+              >
+                ⭐
+              </button>
+              <button
+                className="swipe-control-btn btn-like"
+                onClick={() => {
+                  const currentMovie = filteredDeck[cursor];
+                  if (currentMovie) handleSwipe("like", currentMovie);
+                }}
+                title="Сохранить (Лайк)"
+              >
+                ❤️
+              </button>
+            </div>
           )}
         </div>
       </div>
@@ -658,7 +727,7 @@ export default function App() {
             history={history}
             matchWatchScreen={matchWatchScreen}
           />
-          <div className={`app-container ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
+          <div className={`app-container ${(screen === "swipe" || (screen === "matchwatch" && matchWatchScreen === "swiping")) ? "no-scroll" : ""} ${screen === "swipe" ? "swipe-layout" : ""}`}>
             {currentScreen}
           </div>
         </>
@@ -675,12 +744,7 @@ export default function App() {
             sidebarCollapsed={sidebarCollapsed}
             setSidebarCollapsed={setSidebarCollapsed}
           />
-          <div className={`app-container-desktop ${(screen === "swipe" || screen === "matchwatch") ? "no-scroll" : ""}`}>
-            {screen === "swipe" && undoHeaderButton && (
-              <div className="desktop-floating-header-actions">
-                {undoHeaderButton}
-              </div>
-            )}
+          <div className={`app-container-desktop ${(screen === "swipe" || (screen === "matchwatch" && matchWatchScreen === "swiping")) ? "no-scroll" : ""}`}>
             {currentScreen}
           </div>
         </div>

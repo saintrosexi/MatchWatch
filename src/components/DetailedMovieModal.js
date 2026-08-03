@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import "./DetailedMovieModal.css";
+import "../styles/DetailedMovieModal.css";
 import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
 
 const formatReleaseDate = (dateStr) => {
@@ -210,6 +210,45 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               </div>
             </div>
 
+            {/* 5D Sensation Vector & Social Likes Section */}
+            {movie.vector && (
+              <div className="detailed-modal-section">
+                <h3 className="section-title">📊 5D-Вектор Ощущений Фильма</h3>
+                <div className="vector-breakdown-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "8px", margin: "10px 0" }}>
+                  <div style={{ background: "rgba(255,255,255,0.05)", padding: "8px 12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}>⚡ Энергия</div>
+                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${Math.round((movie.vector.energy || 0.5) * 100)}%`, height: "100%", background: "linear-gradient(90deg, #ff9966, #ff5e62)" }} />
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,0.05)", padding: "8px 12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}>🌙 Мрачность</div>
+                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${Math.round((movie.vector.darkness || 0.5) * 100)}%`, height: "100%", background: "linear-gradient(90deg, #a18cd1, #fbc2eb)" }} />
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,0.05)", padding: "8px 12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}>🧠 Интеллект</div>
+                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${Math.round((movie.vector.intellect || 0.5) * 100)}%`, height: "100%", background: "linear-gradient(90deg, #4facfe, #00f2fe)" }} />
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,0.05)", padding: "8px 12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}>💖 Эмоции</div>
+                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${Math.round((movie.vector.emotion || 0.5) * 100)}%`, height: "100%", background: "linear-gradient(90deg, #ff0844, #ffb199)" }} />
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,0.05)", padding: "8px 12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}>🔥 Динамика</div>
+                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${Math.round((movie.vector.dynamism || 0.5) * 100)}%`, height: "100%", background: "linear-gradient(90deg, #f12711, #f5af19)" }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Personal Rating Section */}
             {onSetRating && (
               <div className="detailed-modal-section">
@@ -247,7 +286,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   target="_blank"
                   rel="noopener noreferrer"
                   className="streaming-badge streaming-kp"
-                  style={{ background: "#ff5500", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                  style={{ background: "#ff5500", color: "#fff", padding: "6px 14px", borderRadius: "16px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", boxShadow: "0 2px 10px rgba(255,85,0,0.3)" }}
                 >
                   ▶ Кинопоиск HD
                 </a>
@@ -256,7 +295,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   target="_blank"
                   rel="noopener noreferrer"
                   className="streaming-badge streaming-ivi"
-                  style={{ background: "#ea0042", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                  style={{ background: "#ea0042", color: "#fff", padding: "6px 14px", borderRadius: "16px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", boxShadow: "0 2px 10px rgba(234,0,66,0.3)" }}
                 >
                   ▶ Иви
                 </a>
@@ -265,7 +304,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   target="_blank"
                   rel="noopener noreferrer"
                   className="streaming-badge streaming-okko"
-                  style={{ background: "#5d15a5", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                  style={{ background: "#5d15a5", color: "#fff", padding: "6px 14px", borderRadius: "16px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", boxShadow: "0 2px 10px rgba(93,21,165,0.3)" }}
                 >
                   ▶ Okko
                 </a>
@@ -274,7 +313,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   target="_blank"
                   rel="noopener noreferrer"
                   className="streaming-badge streaming-wink"
-                  style={{ background: "#ff3366", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                  style={{ background: "#ff3366", color: "#fff", padding: "6px 14px", borderRadius: "16px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", boxShadow: "0 2px 10px rgba(255,51,102,0.3)" }}
                 >
                   ▶ Wink
                 </a>
@@ -283,7 +322,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   target="_blank"
                   rel="noopener noreferrer"
                   className="streaming-badge streaming-yt"
-                  style={{ background: "#cc0000", color: "#fff", padding: "6px 12px", borderRadius: "8px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold" }}
+                  style={{ background: "#cc0000", color: "#fff", padding: "6px 14px", borderRadius: "16px", textDecoration: "none", fontSize: "0.82rem", fontWeight: "bold", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", boxShadow: "0 2px 10px rgba(204,0,0,0.3)" }}
                 >
                   🎬 Трейлер
                 </a>
@@ -295,7 +334,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                 href={movie.imdb || `https://www.imdb.com/find/?q=${encodeURIComponent(movie.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-imdb-link"
+                className="btn btn-secondary btn-imdb-link"
               >
                 Подробнее на IMDb
               </a>
@@ -304,7 +343,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   href={kinopoiskUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-kp-link"
+                  className="btn btn-primary btn-kp-link"
                 >
                   Подробнее на Кинопоиске
                 </a>

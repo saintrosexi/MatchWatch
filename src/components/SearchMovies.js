@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
+import { ChamaBanner, ChamaBackgroundArt } from "../chamaAssets";
 
 export default function SearchMovies({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +42,8 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
   };
 
   return (
-    <div className="search-movies-container">
+    <div className="search-movies-container relative overflow-hidden">
+      <ChamaBackgroundArt type="SEARCH_GLASS" opacity={0.22} />
       <h2 className="page-title">{getTitle()}</h2>
       
       <div className="category-picker">
@@ -123,8 +125,13 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
             </div>
           ))
         ) : (
-          <div className="no-results">
-            Фильмы не найдены
+          <div className="no-results w-full col-span-full py-6">
+            <ChamaBanner
+              type="EMPTY_POPCORN"
+              title="Ничего не найдено"
+              text="Чама обыскал всю библиотеку, но ничего не нашёл по вашему запросу. Попробуйте изменить запрос!"
+              size="large"
+            />
           </div>
         )}
       </div>
