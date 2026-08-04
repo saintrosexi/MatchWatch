@@ -281,9 +281,9 @@ export function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
   );
 }
 
-export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+export default function Profile({ user: propUser = null, currentUserDecisions = {}, favorites: propFavorites = {}, ratings: propRatings = {} }) {
+  const [user, setUser] = useState(propUser);
+  const [loading, setLoading] = useState(false);
   
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [name, setName] = useState("");
@@ -489,17 +489,28 @@ export default function Profile() {
 
   // Comprehensive Stats Calculation & Total Watch Time
   const stats = useMemo(() => {
-    if (!appData) return { 
-      swiped: 0, likes: 0, matches: matchHistory.length, 
-      topGenres: [], favoriteDecade: "—", recentLikes: [], 
-      favMovies: [], favSeries: [], favAnime: [], ratings: {},
-      likedMoviesCount: 0, likedSeriesCount: 0, likedAnimeCount: 0,
-      favoriteDirector: "—", favoriteActor: "—", favoriteStudio: "—",
-      likedMoviesList: [], waitingList: [], totalMinutes: 0, formattedWatchTime: "0 ч."
-    };
-    const decs = appData.decisions || {};
+    const decs = { ...currentUserDecisions, ...((appData || {}).decisions || {}) };
+    const favs = { ...propFavorites, ...((appData || {}).favorites || {}) };
+    const ratings = { ...propRatings, ...((appData || {}).ratings || {}) };
+
     const swiped = Object.keys(decs).length;
-    
+
+    const moviesMap = new Map();
+    movies.forEach(m => moviesMap.set(m.id, m));
+
+    // Combine ALL swiped likes AND ALL favorited movies into single unified set
+    const likedAndFavMovieIds = new Set();
+    Object.entries(decs).forEach(([id, val]) => {
+      if (val === "like" || val === "liked" || val === true) {
+        likedAndFavMovieIds.add(Number(id));
+      }
+    });
+    Object.entries(favs).forEach(([id, val]) => {
+      if (val === true || val === "like") {
+        likedAndFavMovieIds.add(Number(id));
+      }
+    });
+
     const likedMoviesList = [];
     const waitingMoviesList = [];
     let likedMoviesCount = 0;
@@ -508,75 +519,69 @@ export default function Profile() {
     let totalMinutes = 0;
 
     const decadeCounts = {};
-    const favIds = Object.keys(appData.favorites || {}).filter(id => appData.favorites[id]);
-    const ratings = appData.ratings || {};
+    const favIds = Array.from(likedAndFavMovieIds).filter(id => favs[id]);
 
     const genreScores = {};
     const directorScores = {};
     const actorScores = {};
     const studioScores = {};
 
-    const moviesMap = new Map();
-    movies.forEach(m => moviesMap.set(m.id, m));
+    likedAndFavMovieIds.forEach(id => {
+      const m = moviesMap.get(id);
+      if (m) {
+        const released = !m.releaseDate || new Date(m.releaseDate) <= new Date("2026-05-19");
+        if (released) {
+          likedMoviesList.push(m);
+          const t = m.type || "movie";
+          if (t === "movie") likedMoviesCount++;
+          if (t === "series") likedSeriesCount++;
+          if (t === "anime") likedAnimeCount++;
 
-    Object.keys(decs).forEach(id => {
-      if (decs[id] === "like") {
-        const m = moviesMap.get(parseInt(id));
-        if (m) {
-          const released = !m.releaseDate || new Date(m.releaseDate) <= new Date("2026-05-19");
-          if (released) {
-            likedMoviesList.push(m);
-            const t = m.type || "movie";
-            if (t === "movie") likedMoviesCount++;
-            if (t === "series") likedSeriesCount++;
-            if (t === "anime") likedAnimeCount++;
-
-            // Total Watch Time Parsing
-            if (m.duration) {
-              const match = String(m.duration).match(/(\d+)/);
-              if (match) {
-                totalMinutes += parseInt(match[1], 10);
-              } else {
-                totalMinutes += (t === "series" || t === "anime") ? 450 : 110;
-              }
+          // Total Watch Time Parsing
+          if (m.duration) {
+            const match = String(m.duration).match(/(\d+)/);
+            if (match) {
+              totalMinutes += parseInt(match[1], 10);
             } else {
               totalMinutes += (t === "series" || t === "anime") ? 450 : 110;
             }
-
-            const isFav = favIds.includes(id);
-            const weight = isFav ? 3 : 1;
-
-            if (m.genres) {
-              m.genres.split(", ").forEach(g => {
-                genreScores[g] = (genreScores[g] || 0) + weight;
-              });
-            }
-            if (m.year) {
-              const decade = Math.floor(m.year / 10) * 10;
-              decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
-            }
-
-            if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
-              m.director.split(", ").forEach(d => {
-                directorScores[d] = (directorScores[d] || 0) + weight;
-              });
-            }
-
-            if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
-              m.actors.split(", ").forEach(a => {
-                actorScores[a] = (actorScores[a] || 0) + weight;
-              });
-            }
-
-            if (t === "anime") {
-              const studio = getAnimeStudio(m);
-              if (studio && studio !== "Другая студия") {
-                studioScores[studio] = (studioScores[studio] || 0) + weight;
-              }
-            }
           } else {
-            waitingMoviesList.push(m);
+            totalMinutes += (t === "series" || t === "anime") ? 450 : 110;
           }
+
+          const isFav = !!favs[id];
+          const weight = isFav ? 3 : 1;
+
+          if (m.genres) {
+            m.genres.split(", ").forEach(g => {
+              genreScores[g] = (genreScores[g] || 0) + weight;
+            });
+          }
+          if (m.year) {
+            const decade = Math.floor(m.year / 10) * 10;
+            decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
+          }
+
+          if (t === "movie" && m.director && m.director !== "N/A" && m.director !== "—") {
+            m.director.split(", ").forEach(d => {
+              directorScores[d] = (directorScores[d] || 0) + weight;
+            });
+          }
+
+          if (m.actors && m.actors !== "N/A" && m.actors !== "—") {
+            m.actors.split(", ").forEach(a => {
+              actorScores[a] = (actorScores[a] || 0) + weight;
+            });
+          }
+
+          if (t === "anime") {
+            const studio = getAnimeStudio(m);
+            if (studio && studio !== "Другая студия") {
+              studioScores[studio] = (studioScores[studio] || 0) + weight;
+            }
+          }
+        } else {
+          waitingMoviesList.push(m);
         }
       }
     });
@@ -612,7 +617,7 @@ export default function Profile() {
     const shuffledLikes = [...likedMoviesList].sort(() => 0.5 - Math.random());
     const recentLikes = shuffledLikes.slice(0, 6);
     
-    const favoriteMoviesList = favIds.map(id => moviesMap.get(parseInt(id))).filter(Boolean);
+    const favoriteMoviesList = Array.from(favIds).map(id => moviesMap.get(Number(id))).filter(Boolean);
     const favMovies = favoriteMoviesList.filter(m => (m.type || "movie") === "movie");
     const favSeries = favoriteMoviesList.filter(m => m.type === "series");
     const favAnime = favoriteMoviesList.filter(m => m.type === "anime");
@@ -639,7 +644,7 @@ export default function Profile() {
       favoriteDirector, favoriteActor, favoriteStudio, likedMoviesList,
       waitingList: waitingMoviesList, totalMinutes, formattedWatchTime
     };
-  }, [appData, matchHistory]);
+  }, [appData, currentUserDecisions, propFavorites, propRatings, matchHistory]);
 
   const ratingsCount = Object.keys(stats.ratings || {}).length;
   const totalFavs = stats.favMovies.length + stats.favSeries.length + stats.favAnime.length;
@@ -762,36 +767,38 @@ export default function Profile() {
     );
   }
 
-  if (user) {
-    if (!user.displayName) {
-      return (
-        <div className="profile-container">
-          <motion.div className="auth-form-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h3>Обновление профиля</h3>
-            <p style={{color: "rgba(255,255,255,0.7)", marginBottom: "20px", fontSize: "0.9rem", textAlign: "center"}}>
-              Мы добавили систему друзей! Чтобы всё работало, придумайте себе Имя и уникальный Тег (4 цифры).
-            </p>
-            {migrateError && <div className="auth-error">{migrateError}</div>}
-            <form onSubmit={handleMigrate} className="auth-form">
-              <div className="form-group">
-                <label>Ваше Имя</label>
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Например: Иван" required className="form-input" />
-              </div>
-              <div className="form-group">
-                <label>Тег (4 цифры, необязательно)</label>
-                <input type="text" value={migrateTagInput} onChange={e => setMigrateTagInput(e.target.value)} placeholder="1111" className="form-input" maxLength={4} />
-              </div>
-              <button type="submit" className="btn-primary" style={{width: "100%", marginTop: "10px"}}>Сохранить</button>
-            </form>
-            <button className="btn-secondary" onClick={handleLogout} style={{width: "100%", marginTop: "10px"}}>Выйти</button>
-          </motion.div>
-        </div>
-      );
-    }
+  const displayUser = user || propUser;
 
-    const hasHashTag = user.displayName.includes('#');
-    const namePart = hasHashTag ? user.displayName.split('#')[0] : user.displayName;
-    const tagPart = hasHashTag ? ('#' + user.displayName.split('#')[1]) : '';
+  if (displayUser && !displayUser.displayName) {
+    return (
+      <div className="profile-container">
+        <motion.div className="auth-form-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h3>Обновление профиля</h3>
+          <p style={{color: "rgba(255,255,255,0.7)", marginBottom: "20px", fontSize: "0.9rem", textAlign: "center"}}>
+            Мы добавили систему друзей! Чтобы всё работало, придумайте себе Имя и уникальный Тег (4 цифры).
+          </p>
+          {migrateError && <div className="auth-error">{migrateError}</div>}
+          <form onSubmit={handleMigrate} className="auth-form">
+            <div className="form-group">
+              <label>Ваше Имя</label>
+              <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Например: Иван" required className="form-input" />
+            </div>
+            <div className="form-group">
+              <label>Тег (4 цифры, необязательно)</label>
+              <input type="text" value={migrateTagInput} onChange={e => setMigrateTagInput(e.target.value)} placeholder="1111" className="form-input" maxLength={4} />
+            </div>
+            <button type="submit" className="btn-primary" style={{width: "100%", marginTop: "10px"}}>Сохранить</button>
+          </form>
+          <button className="btn-secondary" onClick={handleLogout} style={{width: "100%", marginTop: "10px"}}>Выйти</button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  const rawName = displayUser?.displayName || "Киноман#0000";
+  const hasHashTag = rawName.includes('#');
+  const namePart = hasHashTag ? rawName.split('#')[0] : rawName;
+  const tagPart = hasHashTag ? ('#' + rawName.split('#')[1]) : '#0000';
 
     return (
       <div className="profile-dashboard relative overflow-hidden">
@@ -1282,200 +1289,4 @@ export default function Profile() {
         )}
       </div>
     );
-  }
-
-  // Auth Form Rendering
-  return (
-    <div className="profile-container">
-      <h2 className="page-title">👤 Аккаунт</h2>
-      
-      <motion.div className="auth-form-container" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h3>{isLoginMode ? "Вход" : "Регистрация"}</h3>
-        
-        {authError && <div className="auth-error">{authError}</div>}
-
-        {/* Telegram Auth Button */}
-        <button
-          type="button"
-          className="btn-telegram-auth-primary"
-          onClick={async () => {
-            setAuthLoading(true);
-            setAuthError("");
-            try {
-              const tgUser = getTelegramUser();
-              if (tgUser) {
-                await signInWithTelegram(tgUser);
-                setAuthLoading(false);
-                return;
-              }
-
-              const code = await createTelegramAuthToken();
-              setPendingTgCode(code);
-              const botUsername = getBotUsername();
-
-              listenToTelegramAuthToken(code, (user) => {
-                setUser(user);
-                setAuthLoading(false);
-                setPendingTgCode(null);
-              });
-
-              const tgUrl = `https://t.me/${botUsername}?start=${code}`;
-              try {
-                const newWin = window.open(tgUrl, "_blank");
-                if (!newWin || newWin.closed || typeof newWin.closed === "undefined") {
-                  window.location.href = tgUrl;
-                }
-              } catch (e) {
-                window.location.href = tgUrl;
-              }
-            } catch (err) {
-              console.error("Telegram auth button error:", err);
-              setAuthError((err && err.message) ? err.message : "Ошибка входа через Telegram. Попробуйте еще раз.");
-              setAuthLoading(false);
-            }
-          }}
-          style={{
-            width: "100%",
-            marginBottom: "20px",
-            padding: "14px 18px",
-            borderRadius: "14px",
-            background: "linear-gradient(135deg, #0088cc 0%, #00a8e8 100%)",
-            color: "#ffffff",
-            border: "none",
-            fontWeight: "700",
-            fontSize: "1rem",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            boxShadow: "0 6px 20px rgba(0, 136, 204, 0.4)",
-            transition: "transform 0.2s, box-shadow 0.2s"
-          }}
-        >
-          <span style={{ fontSize: "1.3rem" }}>✈️</span> Войти через Telegram
-        </button>
-
-        {pendingTgCode && (
-          <div style={{
-            background: "rgba(0, 136, 204, 0.15)",
-            border: "1px solid rgba(0, 136, 204, 0.4)",
-            padding: "16px",
-            borderRadius: "16px",
-            marginBottom: "20px",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center"
-          }}>
-            <div style={{ fontSize: "1.1rem", fontWeight: "bold", marginBottom: "6px", color: "#00a8e8" }}>⏳ Ожидание входа через Telegram...</div>
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", margin: "0 0 12px 0" }}>
-              Отсканируйте QR-код смартфоном или перейдите по ссылке и нажмите <b>Запустить</b>:
-            </p>
-            <div style={{
-              background: "#ffffff",
-              padding: "10px",
-              borderRadius: "12px",
-              marginBottom: "12px",
-              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)"
-            }}>
-              <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(`https://t.me/${getBotUsername()}?start=${pendingTgCode}`)}`}
-                alt="Telegram Auth QR Code"
-                style={{ width: "160px", height: "160px", display: "block" }}
-              />
-            </div>
-            <button
-              type="button"
-              className="btn-text"
-              style={{ fontSize: "0.85rem", color: "#00a8e8", fontWeight: "600", wordBreak: "break-all" }}
-              onClick={() => {
-                const botUsername = getBotUsername();
-                window.open(`https://t.me/${botUsername}?start=${pendingTgCode}`, "_blank");
-              }}
-            >
-              🔗 https://t.me/{getBotUsername()}?start={pendingTgCode}
-            </button>
-          </div>
-        )}
-
-        <div style={{ display: "flex", alignItems: "center", margin: "0 0 20px 0", color: "rgba(255,255,255,0.3)" }}>
-          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.1)" }} />
-          <span style={{ padding: "0 12px", fontSize: "0.8rem", textTransform: "uppercase" }}>или по почте</span>
-          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.1)" }} />
-        </div>
-        
-        <form onSubmit={handleAuth} className="auth-form">
-          {!isLoginMode && (
-            <div className="form-group">
-              <label>Имя</label>
-              <input 
-                type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} 
-                placeholder="Например: Иван" 
-                required 
-                className="form-input"
-              />
-              <small style={{color: 'rgba(255,255,255,0.5)', marginTop: '4px'}}>К имени будет добавлен уникальный тег</small>
-            </div>
-          )}
-          {!isLoginMode && (
-            <div className="form-group">
-              <label>Желаемый тег (4 цифры, необязательно)</label>
-              <input 
-                type="text" 
-                value={customTag} 
-                onChange={(e) => setCustomTag(e.target.value)} 
-                placeholder="1111" 
-                className="form-input"
-                maxLength={4}
-              />
-            </div>
-          )}
-          <div className="form-group">
-            <label>Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="example@mail.com" 
-              required 
-              className="form-input"
-            />
-          </div>
-          
-          <div className="form-group">
-            <label>Пароль</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="Минимум 6 символов" 
-              required 
-              className="form-input"
-            />
-          </div>
-          
-          <button type="submit" className="btn-primary" disabled={authLoading} style={{ width: "100%", marginTop: "10px" }}>
-            {authLoading ? "Загрузка..." : (isLoginMode ? "Войти" : "Зарегистрироваться")}
-          </button>
-        </form>
-        
-        <div className="auth-toggle">
-          {isLoginMode ? "Нет аккаунта?" : "Уже есть аккаунт?"}
-          <button 
-            type="button" 
-            className="btn-text" 
-            onClick={() => {
-              setIsLoginMode(!isLoginMode);
-              setAuthError("");
-            }}
-          >
-            {isLoginMode ? "Создать" : "Войти"}
-          </button>
-        </div>
-      </motion.div>
-    </div>
-  );
 }
