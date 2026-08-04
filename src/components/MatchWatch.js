@@ -282,9 +282,16 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     }
   }, [friends]);
 
+  const [requireAuthModal, setRequireAuthModal] = useState(false);
+
   const handleCreateRoom = async () => {
+    if (!auth?.currentUser) {
+      setRequireAuthModal(true);
+      return;
+    }
+
     const tgUser = getTelegramUser();
-    const finalUserName = userName.trim() || (auth?.currentUser?.displayName) || (tgUser && tgUser.name) || "Пользователь";
+    const finalUserName = userName.trim() || auth?.currentUser?.displayName || (auth?.currentUser?.email ? auth.currentUser.email.split('@')[0] : null) || (tgUser && tgUser.name) || "Пользователь";
     if (!userName.trim()) {
       setUserName(finalUserName);
     }
@@ -347,6 +354,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   };
 
   const handleJoinRoom = async () => {
+    if (!auth?.currentUser) {
+      setRequireAuthModal(true);
+      return;
+    }
+
     if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
     try {
       const success = await joinMatchRoom(roomCode, userName, decisions, favorites, stopGenres);
@@ -920,6 +932,34 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         initialFilters={sessionFilters}
         onApply={(filters) => setSessionFilters(filters)}
       />
+
+      <AnimatePresence>
+        {requireAuthModal && (
+          <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="modal-content" initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} style={{ maxWidth: "440px", textAlign: "center" }}>
+              <h3 style={{ margin: "0 0 12px 0", color: "#ff8a50" }}>🔐 Вход в аккаунт обязателен</h3>
+              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.95rem", lineHeight: "1.4", marginBottom: "20px" }}>
+                Создание и подключение к совместным комнатам доступно только авторизованным пользователям. Пожалуйста, войдите в свой аккаунт в разделе <b>Профиль</b>!
+              </p>
+              <div style={{ display: "flex", gap: "12px" }}>
+                <button className="btn-glass-secondary" style={{ flex: 1 }} onClick={() => setRequireAuthModal(false)}>
+                  Отмена
+                </button>
+                <button 
+                  className="btn-glass-primary" 
+                  style={{ flex: 1 }} 
+                  onClick={() => {
+                    setRequireAuthModal(false);
+                    window.dispatchEvent(new CustomEvent("switch-tab", { detail: "profile" }));
+                  }}
+                >
+                  🔑 В Профиль
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

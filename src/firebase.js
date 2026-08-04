@@ -340,6 +340,7 @@ export const createMatchRoom = async (hostName, customDeck = null, hostDecisions
     : movies.map(m => m.id);
 
   const roomPayload = {
+    hostUid: auth?.currentUser?.uid || null,
     hostName,
     status: "waiting",
     deck: deckToUse,
@@ -417,7 +418,11 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
   if (!snapshot.exists()) return false;
 
   const roomData = snapshot.val();
-  const guestPayload = { guestName, status: 'active' };
+  const guestPayload = { 
+    guestUid: auth?.currentUser?.uid || null,
+    guestName, 
+    status: 'active' 
+  };
 
   if (guestDecisions && Object.keys(guestDecisions).length > 0) guestPayload.guestDecisions = guestDecisions;
   if (guestFavorites && Object.keys(guestFavorites).length > 0) guestPayload.guestFavorites = guestFavorites;

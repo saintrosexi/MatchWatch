@@ -209,8 +209,15 @@ export default function App() {
       setSelectedActorName(e.detail);
       setScreen("actorProfile");
     };
+    const handleSwitchTab = (e) => {
+      if (e.detail) setScreen(e.detail);
+    };
     window.addEventListener("show-actor-details", handleShowActor);
-    return () => window.removeEventListener("show-actor-details", handleShowActor);
+    window.addEventListener("switch-tab", handleSwitchTab);
+    return () => {
+      window.removeEventListener("show-actor-details", handleShowActor);
+      window.removeEventListener("switch-tab", handleSwitchTab);
+    };
   }, [screen]);
 
   useEffect(() => {
