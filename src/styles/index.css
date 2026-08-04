@@ -3489,4 +3489,30 @@ img {
   max-height: 550px !important;
 }
 
+/* ─── GPU Performance Optimization & Smooth Mobile Rendering ─── */
+.swipe-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.mobile-ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) brightness(0.3);
+  opacity: 0.5;
+  transform: scale(1.15) translateZ(0);
+  pointer-events: none;
+  transition: background-image 0.4s ease;
+  will-change: background-image;
+}
+
+.bloom-effect {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
 

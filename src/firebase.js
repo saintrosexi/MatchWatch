@@ -316,9 +316,23 @@ const normalizeStopGenres = (sg) => {
   return arr.filter(item => typeof item === 'string' && item.trim() !== "");
 };
 
+// ─── Anonymous Auth Helper for Database Writes ───────────────────
+export const ensureAuthenticated = async () => {
+  if (!auth) return null;
+  if (!auth.currentUser) {
+    try {
+      await signInAnonymously(auth);
+    } catch (err) {
+      console.warn("Anonymous auth fallback:", err);
+    }
+  }
+  return auth.currentUser;
+};
+
 // ─── Match Rooms ──────────────────────────────────────────────────
 export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}, hostStopGenres = []) => {
   if (!database) return null;
+  await ensureAuthenticated();
   const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
 
   const deckToUse = (customDeck && Array.isArray(customDeck) && customDeck.length > 0)
@@ -397,6 +411,7 @@ const extractLikedMovies = (...inputs) => {
 
 export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}, guestStopGenres = []) => {
   if (!database) return false;
+  await ensureAuthenticated();
   const roomRef = ref(database, `matchRooms/${roomCode}`);
   const snapshot = await get(roomRef);
   if (!snapshot.exists()) return false;
