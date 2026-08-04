@@ -57,12 +57,32 @@ export default function App() {
 
   const [deck, setDeck] = useState(() => shuffle(movies));
   const [cursor, setCursor] = useState(0);
-  const [decisions, setDecisions] = useState(() => ({})); // { [movieId]: 'like' | 'dislike' }
-  const [history, setHistory] = useState(() => []); // swiped movie ids in order
+  const [decisions, setDecisions] = useState(() => {
+    try {
+      const saved = localStorage.getItem("mw_decisions");
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) { return {}; }
+  }); // { [movieId]: 'like' | 'dislike' }
+  const [history, setHistory] = useState(() => {
+    try {
+      const saved = localStorage.getItem("mw_history");
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) { return []; }
+  }); // swiped movie ids in order
   const [lastSwipeDir, setLastSwipeDir] = useState("like");
   const swipeDirRef = useRef("like");
-  const [favorites, setFavorites] = useState(() => ({})); // { [movieId]: true }
-  const [ratings, setRatings] = useState(() => ({})); // { [movieId]: number (1-10) }
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const saved = localStorage.getItem("mw_favorites");
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) { return {}; }
+  }); // { [movieId]: true }
+  const [ratings, setRatings] = useState(() => {
+    try {
+      const saved = localStorage.getItem("mw_ratings");
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) { return {}; }
+  }); // { [movieId]: number (1-10) }
   const [screen, setScreen] = useState(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -119,6 +139,15 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    try {
+      localStorage.setItem("mw_decisions", JSON.stringify(decisions));
+      localStorage.setItem("mw_favorites", JSON.stringify(favorites));
+      localStorage.setItem("mw_ratings", JSON.stringify(ratings));
+      localStorage.setItem("mw_history", JSON.stringify(history));
+    } catch (e) {}
+  }, [decisions, favorites, ratings, history]);
+
+  useEffect(() => {
     if (!auth || !database) {
       setDataLoaded(true);
       return;
@@ -129,21 +158,18 @@ export default function App() {
         const userRef = ref(database, `users/${currentUser.uid}/appData`);
         onValue(userRef, (snapshot) => {
           const data = snapshot.val();
-          if (data && !dataLoaded) {
+          if (data) {
             if (data.decisions) {
-              setDecisions(prev => ({ ...prev, ...data.decisions }));
+              setDecisions(prev => ({ ...data.decisions, ...prev }));
             }
             if (data.history) {
-              setHistory(prev => {
-                const combined = [...prev, ...data.history];
-                return Array.from(new Set(combined));
-              });
+              setHistory(prev => Array.from(new Set([...(data.history || []), ...prev])));
             }
             if (data.favorites) {
-              setFavorites(prev => ({ ...prev, ...data.favorites }));
+              setFavorites(prev => ({ ...data.favorites, ...prev }));
             }
             if (data.ratings) {
-              setRatings(prev => ({ ...prev, ...data.ratings }));
+              setRatings(prev => ({ ...data.ratings, ...prev }));
             }
           }
           setDataLoaded(true);
@@ -183,7 +209,7 @@ export default function App() {
       }
     });
     return () => unsubscribe();
-  }, [dataLoaded]);
+  }, []);
 
   const [publicProfileTag, setPublicProfileTag] = useState(null);
   const [initialRoomCode, setInitialRoomCode] = useState(null);
@@ -222,12 +248,12 @@ export default function App() {
 
   useEffect(() => {
     if (user && dataLoaded && database) {
-      set(ref(database, `users/${user.uid}/appData`), {
+      update(ref(database, `users/${user.uid}/appData`), {
         decisions,
         history,
         favorites,
         ratings
-      });
+      }).catch(err => console.warn("AppData sync update failed:", err));
     }
   }, [decisions, history, favorites, ratings, user, dataLoaded]);
 
