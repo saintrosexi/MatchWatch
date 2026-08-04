@@ -6,6 +6,7 @@ import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
 import { calculateUserCompatibility, computeUserTasteVector } from "../recommendations";
 import DetailedMovieModal from "./DetailedMovieModal";
+import { SensationRadarComponent } from "./Profile";
 import { ChamaBanner } from "../chamaAssets";
 import "../styles/MovieModal.css";
 
@@ -325,7 +326,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
       swiped, likes, matches, topGenres, favoriteDecade, recentLikes, 
       favMovies, favSeries, favAnime, ratings,
       likedMoviesCount, likedSeriesCount, likedAnimeCount,
-      favoriteDirector, favoriteActor, favoriteStudio,
+      favoriteDirector, favoriteActor, favoriteStudio, likedMoviesList,
       waitingList: waitingMoviesList, totalMinutes, formattedWatchTime
     };
   }, [targetData]);
@@ -501,6 +502,9 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
                 {copiedLink ? "✅ Скопировано!" : "🔗 Поделиться"}
               </button>
             </div>
+
+            {/* 5D Sensation Radar Vector Component */}
+            <SensationRadarComponent likedMovies={stats.likedMoviesList} favorites={targetData?.appData?.favorites || {}} />
           </div>
 
           <div className="profile-card-stats profile-card-settings">

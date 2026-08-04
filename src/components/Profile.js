@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { auth, database, registerWithTag, signInWithEmailAndPassword, signInWithTelegram, createTelegramAuthToken, listenToTelegramAuthToken, signOut, updateUserTag } from "../firebase";
 import { getTelegramUser, getBotUsername } from "../tma";
 import { onAuthStateChanged } from "firebase/auth";
@@ -375,7 +375,9 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
       }
       setLoading(false);
     });
-    return () => unsubscribe();
+    return () => {
+      if (typeof unsubscribe === "function") unsubscribe();
+    };
   }, []);
 
   const handleAuth = async (e) => {
