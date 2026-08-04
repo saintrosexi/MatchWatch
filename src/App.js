@@ -337,18 +337,25 @@ export default function App() {
   };
 
   const handleUndo = () => {
-    setHistory(prev => {
-      if (prev.length === 0) return prev;
-      const lastId = prev[prev.length - 1];
-      setDecisions(d => {
-        const next = { ...d };
-        delete next[lastId];
-        return next;
-      });
-      const idx = filteredDeck.findIndex(m => m.id === lastId);
-      setCursor(idx >= 0 ? idx : 0);
-      return prev.slice(0, -1);
+    if (history.length === 0) return;
+    const lastId = history[history.length - 1];
+
+    setHistory(prev => prev.slice(0, -1));
+    setDecisions(d => {
+      const next = { ...d };
+      delete next[lastId];
+      return next;
     });
+    setSwipeDirections(prev => {
+      const next = { ...prev };
+      delete next[lastId];
+      return next;
+    });
+
+    const idx = filteredDeck.findIndex(m => m.id === lastId);
+    if (idx >= 0) {
+      setCursor(idx);
+    }
   };
 
   const toggleLike = (movie) => {

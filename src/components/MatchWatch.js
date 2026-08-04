@@ -283,7 +283,11 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   }, [friends]);
 
   const handleCreateRoom = async () => {
-    if (!userName.trim()) return alert("Введите имя");
+    const tgUser = getTelegramUser();
+    const finalUserName = userName.trim() || (auth?.currentUser?.displayName) || (tgUser && tgUser.name) || "Пользователь";
+    if (!userName.trim()) {
+      setUserName(finalUserName);
+    }
     
     // Фильтруем фильмы по активной категории и сессионным пре-фильтрам
     const categoryIds = movies.reduce((acc, m) => {
@@ -325,12 +329,21 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       return alert("По выбранным фильтрам не найдено фильмов! Попробуйте сбросить некоторые фильтры.");
     }
       
-    const code = await createMatchRoom(userName, categoryIds, decisions, favorites, stopGenres);
-    setRoomCode(code);
-    setRole("host");
-    setSessionCap(25);
-    setScreen("waiting");
-    setSessionTutorialSeen(false);
+    try {
+      const code = await createMatchRoom(finalUserName, categoryIds, decisions, favorites, stopGenres);
+      if (!code) {
+        alert("Не удалось подключиться к базе данных. Попробуйте ещё раз.");
+        return;
+      }
+      setRoomCode(code);
+      setRole("host");
+      setSessionCap(25);
+      setScreen("waiting");
+      setSessionTutorialSeen(false);
+    } catch (err) {
+      console.error("Error creating match room:", err);
+      alert("Ошибка при создании комнаты: " + err.message);
+    }
   };
 
   const handleJoinRoom = async () => {

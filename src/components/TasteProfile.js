@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { motion } from "framer-motion";
 import { ChamaBackgroundArt } from "../chamaAssets";
+import { SensationRadarComponent } from "./Profile";
 
 export default function TasteProfile({ likedMovies = [], favorites = {}, ratings = {} }) {
   const [user, setUser] = useState(null);
@@ -195,6 +196,9 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
     <div className="taste-profile-container relative overflow-hidden">
       <ChamaBackgroundArt type="WIZARD" opacity={0.06} />
       <h2 className="profile-title">👤 Ваш профиль вкуса</h2>
+
+      {/* 5D Sensation Radar Vector Component */}
+      <SensationRadarComponent likedMovies={likedMovies} favorites={favorites} />
 
       {/* Overview Stats */}
       <div className="profile-stats">

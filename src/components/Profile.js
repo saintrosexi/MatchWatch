@@ -51,7 +51,9 @@ function getAnimeStudio(movie) {
 }
 
 // 5D Sensation Vibe Radar Pure SVG Component
-function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
+export function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
+  const [activeTooltip, setActiveTooltip] = useState(null);
+
   const radarData = useMemo(() => {
     if (!likedMovies || likedMovies.length === 0) {
       return {
@@ -118,11 +120,11 @@ function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
   const r = 85;
 
   const axesConfig = [
-    { key: "energy", label: "🔥 Энергия", color: "#ff8a50" },
-    { key: "darkness", label: "🌙 Мрачность", color: "#a855f7" },
-    { key: "intellect", label: "🧠 Интеллект", color: "#3b82f6" },
-    { key: "emotion", label: "💔 Эмоции", color: "#ec4899" },
-    { key: "dynamism", label: "🏎️ Динамика", color: "#eab308" }
+    { key: "energy", label: "🔥 Энергия", color: "#ff8a50", desc: "Уровень экшна, динамики и напряжения в сюжете." },
+    { key: "darkness", label: "🌙 Мрачность", color: "#a855f7", desc: "Глубина триллера, саспенс, нуарная атмосфера." },
+    { key: "intellect", label: "🧠 Интеллект", color: "#3b82f6", desc: "Сложность сюжета, детективная составляющая, философская основа." },
+    { key: "emotion", label: "💔 Эмоции", color: "#ec4899", desc: "Сила переживаний, романтика, трогательность истории." },
+    { key: "dynamism", label: "🏎️ Динамика", color: "#eab308", desc: "Скорость смены событий, интенсивность монтажа." }
   ];
 
   const points = axesConfig.map((axis, i) => {
@@ -139,7 +141,7 @@ function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
   const gridLevels = [0.2, 0.4, 0.6, 0.8, 1.0];
 
   return (
-    <div className="radar-card-container">
+    <div className="radar-card-container relative">
       <div className="radar-header">
         <h3 className="radar-title">🌀 5D Сенсорный Профиль</h3>
         <div className="radar-archetype-badge">{archetype}</div>
@@ -206,16 +208,16 @@ function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
             filter="url(#radarGlow)"
           />
 
-          {/* Vertices & Values */}
+          {/* Vertices & Values (Interactive) */}
           {points.map((pt, i) => (
-            <g key={i}>
-              <circle cx={pt.px} cy={pt.py} r="4" fill={pt.color} stroke="#ffffff" strokeWidth="1.5" />
+            <g key={i} style={{ cursor: "pointer" }} onClick={() => setActiveTooltip(pt)}>
+              <circle cx={pt.px} cy={pt.py} r="6" fill={pt.color} stroke="#ffffff" strokeWidth="2" />
               <text
                 x={pt.labelX}
                 y={pt.labelY}
-                fill="rgba(255, 255, 255, 0.9)"
+                fill="rgba(255, 255, 255, 0.95)"
                 fontSize="11"
-                fontWeight="600"
+                fontWeight="700"
                 textAnchor="middle"
                 dominantBaseline="central"
               >
@@ -226,10 +228,42 @@ function SensationRadarComponent({ likedMovies = [], favorites = {} }) {
         </svg>
       </div>
 
+      {/* Interactive Tooltip Card */}
+      <AnimatePresence>
+        {activeTooltip && (
+          <motion.div 
+            className="radar-axis-tooltip-card"
+            initial={{ opacity: 0, scale: 0.9, y: 5 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 5 }}
+            onClick={() => setActiveTooltip(null)}
+            style={{
+              marginTop: "10px",
+              padding: "12px 16px",
+              borderRadius: "14px",
+              background: "rgba(18, 24, 38, 0.95)",
+              border: `1px solid ${activeTooltip.color}`,
+              boxShadow: `0 8px 24px rgba(0,0,0,0.5), 0 0 15px ${activeTooltip.color}33`,
+              cursor: "pointer"
+            }}
+          >
+            <div style={{ fontWeight: "bold", fontSize: "0.9rem", color: activeTooltip.color, marginBottom: "4px" }}>
+              {activeTooltip.label} ({activeTooltip.val} / 10)
+            </div>
+            <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.35" }}>
+              {activeTooltip.desc}
+            </div>
+            <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", marginTop: "6px" }}>
+              Нажмите, чтобы закрыть ✕
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Vector Progress Bars */}
-      <div className="radar-bars-grid">
+      <div className="radar-bars-grid" style={{ marginTop: "16px" }}>
         {points.map(pt => (
-          <div key={pt.key} className="radar-bar-row">
+          <div key={pt.key} className="radar-bar-row" style={{ cursor: "pointer" }} onClick={() => setActiveTooltip(pt)}>
             <div className="radar-bar-header">
               <span className="radar-bar-label">{pt.label}</span>
               <span className="radar-bar-val" style={{ color: pt.color }}>{pt.val} / 10</span>

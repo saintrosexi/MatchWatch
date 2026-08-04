@@ -1761,6 +1761,24 @@ button, .btn, .btn-primary, .btn-secondary, .btn-matchwatch, .btn-matchwatch-sec
   padding-bottom: 120px;
 }
 
+/* ─── Responsive Profile Dashboard 2-Column Grid Layout ─── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 28px;
+  align-items: start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1050px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 .profile-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
