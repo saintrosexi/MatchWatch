@@ -357,7 +357,18 @@ export const createMatchRoom = async (hostName, customDeck = null, hostDecisions
   const normalized = normalizeStopGenres(hostStopGenres);
   if (normalized.length > 0) roomPayload.hostStopGenres = normalized;
 
-  await set(ref(database, `matchRooms/${roomCode}`), roomPayload);
+  try {
+    await set(ref(database, `matchRooms/${roomCode}`), roomPayload);
+  } catch (err) {
+    console.warn("RTDB write to matchRooms failed (PERMISSION_DENIED):", err);
+    try {
+      await signInAnonymously(auth);
+      roomPayload.hostUid = auth?.currentUser?.uid || null;
+      await set(ref(database, `matchRooms/${roomCode}`), roomPayload);
+    } catch (retryErr) {
+      console.error("Retry room creation failed:", retryErr);
+    }
+  }
   return roomCode;
 };
 
@@ -458,7 +469,18 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
   const compromiseDeckIds = generateMatchWatchPairDeck(candidatePool, hostLikedMovies, guestLikedMovies);
   guestPayload.deck = compromiseDeckIds;
 
-  await update(roomRef, guestPayload);
+  try {
+    await update(roomRef, guestPayload);
+  } catch (err) {
+    console.warn("RTDB update in joinMatchRoom failed:", err);
+    try {
+      await signInAnonymously(auth);
+      guestPayload.guestUid = auth?.currentUser?.uid || null;
+      await update(roomRef, guestPayload);
+    } catch (retryErr) {
+      console.error("Retry joinMatchRoom update failed:", retryErr);
+    }
+  }
   return true;
 };
 
@@ -470,7 +492,11 @@ export const swipeMovie = async (roomCode, role, movieId, decision) => {
   } else {
     updates[`${role}Dislikes/${movieId}`] = true;
   }
-  await update(ref(database, `matchRooms/${roomCode}`), updates);
+  try {
+    await update(ref(database, `matchRooms/${roomCode}`), updates);
+  } catch (err) {
+    console.warn("swipeMovie update failed:", err);
+  }
 };
 
 export const subscribeToRoom = (roomCode, callback) => {
