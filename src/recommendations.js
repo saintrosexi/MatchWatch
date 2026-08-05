@@ -220,12 +220,68 @@ export const getCompromiseDeck = (user1Likes = [], user2Likes = [], moviesData =
 };
 
 /**
- * Generates Compromise Movies for MatchWatch Multiplayer!
- * Calculates Midpoint Vector = (User1_Vector + User2_Vector) / 2
- * Selects top movies closest to this compromise vector.
+ * Generates MatchWatch Pair Deck for Multiplayer Swiping!
+ * - First 25 movies: calculated by Midpoint Taste Vector (Vector Intersection of User 1 & User 2).
+ * - Remaining / subsequent movies: top rated / popular movies.
+ * - Excludes past matches between these users if provided.
  */
-export const generateMatchWatchPairDeck = (allMovies, user1LikedMovies = [], user2LikedMovies = [], count = 25) => {
-  return getCompromiseDeck(user1LikedMovies, user2LikedMovies, allMovies, count).map(m => m.id);
+export const generateMatchWatchPairDeck = (
+  allMovies = [],
+  user1LikedMovies = [],
+  user2LikedMovies = [],
+  pastMatchesIds = [],
+  filters = {},
+  offset = 0,
+  batchSize = 25
+) => {
+  let pool = (allMovies && allMovies.length > 0) ? allMovies : movies;
+  
+  // Apply room filters if present
+  if (filters && Object.keys(filters).length > 0) {
+    pool = pool.filter(m => {
+      if (!m) return false;
+      if (filters.genre && filters.genre !== 'all') {
+        const movieGenres = (m.genres || '').toLowerCase();
+        if (!movieGenres.includes(filters.genre.toLowerCase())) return false;
+      }
+      if (filters.minRating && (m.rating || 0) < Number(filters.minRating)) {
+        return false;
+      }
+      if (filters.type && filters.type !== 'all') {
+        const mType = (m.type || '').toLowerCase();
+        if (filters.type === 'movie' && mType.includes('сериал')) return false;
+        if (filters.type === 'series' && !mType.includes('сериал')) return false;
+      }
+      return true;
+    });
+  }
+
+  // Filter out past matches between this pair
+  const pastSet = new Set((pastMatchesIds || []).map(id => String(id)));
+  pool = pool.filter(m => m && !pastSet.has(String(m.id)));
+
+  if (pool.length === 0) pool = movies;
+
+  // Calculate top 25 personalized compromise movies
+  const midpointVector = calculateMidpointVector(user1LikedMovies, user2LikedMovies);
+  
+  const ranked = [...pool].map(m => {
+    const vibeScore = calculateMatchScore(m, midpointVector);
+    const ratingBonus = (m.rating || 7) * 2;
+    return {
+      movie: m,
+      score: vibeScore + ratingBonus
+    };
+  }).sort((a, b) => b.score - a.score);
+
+  // Split into Top 25 (Personalized) and Rest (Popular/Highest Rated)
+  const topPersonalized = ranked.slice(0, 25).map(item => item.movie);
+  const remainingPool = ranked.slice(25).map(item => item.movie).sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+  const fullDeck = [...topPersonalized, ...remainingPool];
+
+  // Return slice for pagination / dynamic batch fetching
+  return fullDeck.slice(offset, offset + batchSize);
 };
 
 /**

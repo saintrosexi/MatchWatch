@@ -8,6 +8,7 @@ import { movies, moviesById } from "../data";
 import SwipeCard from "./SwipeCard";
 import DetailedMovieModal from "./DetailedMovieModal";
 import SessionFiltersModal from "./SessionFiltersModal";
+import MatchLobby from "./MatchLobby";
 import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoom, initTelegramWebApp } from "../tma";
 import { getPosterCandidates, getBestPosterUrl } from "../posterResolver";
 import { ChamaBanner } from "../chamaAssets";
@@ -638,114 +639,31 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       {screen === "join" && (
         <motion.div className="matchwatch-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <h2>Присоединиться</h2>
+          <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", marginBottom: "15px" }}>Введите 6-значный цифровой код комнаты:</p>
           <div className="form-group">
-            <input type="text" value={roomCode} onChange={(e) => setRoomCode(e.target.value.toUpperCase())} placeholder="Код комнаты" className="form-input code-input" maxLength="6" />
+            <input type="text" value={roomCode} onChange={(e) => setRoomCode(e.target.value.replace(/[^0-9]/g, ''))} placeholder="Например: 482910" className="form-input code-input" maxLength="6" style={{ letterSpacing: "4px", fontSize: "1.4rem", textAlign: "center", fontWeight: "bold" }} />
           </div>
           <div className="form-group">
             <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Ваше имя" className="form-input" />
           </div>
           <div className="form-buttons">
-            <button className="btn-primary" onClick={handleJoinRoom}>Войти</button>
+            <button className="btn-primary" onClick={handleJoinRoom}>Войти в лобби</button>
             <button className="btn-secondary" onClick={() => setScreen("start")}>Назад</button>
           </div>
         </motion.div>
       )}
 
-      {screen === "waiting" && (
-        <motion.div className="matchwatch-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <h2>Ожидание партнера...</h2>
-          <ChamaBanner
-            type="FILM_REEL"
-            title="Ожидаем второго зрителя..."
-            text="Чама уже уселся на бобину с плёнкой и готов к совместному просмотру!"
-            size="large"
-            className="mb-4"
-          />
-          <div className="room-info" style={{ textAlign: "center", margin: "20px 0" }}>
-            <p>Отправьте этот код другу:</p>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px", margin: "10px 0" }}>
-              <h1 className="room-code-header" style={{ color: "#ff8a50", letterSpacing: "5px", margin: 0 }}>{roomCode}</h1>
-              <button 
-                className="btn-matchwatch-secondary"
-                onClick={() => {
-                  navigator.clipboard.writeText(roomCode);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
-                }}
-                style={{ 
-                  background: "rgba(255,255,255,0.1)", border: "none", color: "white", 
-                  padding: "12px", borderRadius: "50%", cursor: "pointer", display: "flex",
-                  alignItems: "center", justifyContent: "center", width: "48px", height: "48px"
-                }}
-                title="Скопировать"
-              >
-                {copied ? "✅" : "📋"}
-              </button>
-            </div>
-            {copied && <p style={{ color: "#4caf50", fontSize: "0.9rem", margin: "5px 0" }}>Код скопирован!</p>}
-            
-            <button 
-              className="btn-primary" 
-              style={{ marginTop: "20px", width: "100%" }}
-              onClick={() => setShowInviteModal(true)}
-            >
-              ➕ Пригласить друга
-            </button>
-
-            <button 
-              className="btn-telegram-glass" 
-              style={{ marginTop: "10px", width: "100%" }}
-              onClick={() => shareTelegramRoom(roomCode)}
-            >
-              ✈️ Отправить ссылку в Telegram
-            </button>
-          </div>
-          <button className="btn-secondary" style={{ width: "100%" }} onClick={() => setScreen("start")}>Отмена</button>
-
-          {showInviteModal && (
-            <div className="invite-modal-overlay" onClick={() => setShowInviteModal(false)}>
-              <div className="invite-modal-content" onClick={e => e.stopPropagation()}>
-                <div className="invite-modal-header">
-                  <h3>Ваши друзья</h3>
-                  <button className="close-btn modal-close-btn" onClick={() => setShowInviteModal(false)}>✕</button>
-                </div>
-                <div className="friends-invite-list-scroll">
-                  {Object.keys(friends).length === 0 ? (
-                    <p style={{textAlign: "center", padding: "20px", color: "#aaa"}}>Список друзей пуст</p>
-                  ) : (
-                    Object.entries(friends).map(([uid, tag]) => (
-                      <div key={uid} className="invite-friend-row">
-                        <div className="friend-info-mini">
-                          <div className="friend-avatar-mini">
-                            {(friendAvatars[uid] && (friendAvatars[uid].startsWith("data:image/") || friendAvatars[uid].startsWith("http"))) ? (
-                              <img src={friendAvatars[uid]} alt="Avatar" />
-                            ) : (
-                              friendAvatars[uid] || "😎"
-                            )}
-                          </div>
-                          <span>{tag}</span>
-                        </div>
-                        <button 
-                          className="btn btn-primary btn-small"
-                          onClick={async () => {
-                            try {
-                              await inviteToMatchWatch(uid, roomCode, auth.currentUser.displayName || auth.currentUser.email);
-                              alert(`Приглашение отправлено ${tag}!`);
-                            } catch (e) {
-                              alert(e.message);
-                            }
-                          }}
-                        >
-                          Позвать
-                        </button>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-        </motion.div>
+      {(screen === "waiting" || screen === "lobby") && (
+        <MatchLobby
+          roomCode={roomCode}
+          roomData={roomData}
+          role={role}
+          userName={userName}
+          currentUser={currentUser}
+          friends={friends}
+          friendAvatars={friendAvatars}
+          onCancel={() => setScreen("start")}
+        />
       )}
 
       {screen === "swiping" && renderSwipingScreen()}

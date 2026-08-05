@@ -330,32 +330,30 @@ export const ensureAuthenticated = async () => {
 };
 
 // ─── Match Rooms ──────────────────────────────────────────────────
-export const createMatchRoom = async (hostName, customDeck = null, hostDecisions = {}, hostFavorites = {}, hostStopGenres = []) => {
+export const createMatchRoom = async (hostName, filters = {}, hostDecisions = {}, hostFavorites = {}) => {
   if (!database) return null;
   await ensureAuthenticated();
-  const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-
-  const deckToUse = (customDeck && Array.isArray(customDeck) && customDeck.length > 0)
-    ? customDeck
-    : movies.map(m => m.id);
+  
+  // 6-digit numeric room code (e.g., 482910)
+  const roomCode = Math.floor(100000 + Math.random() * 900000).toString();
 
   const roomPayload = {
     hostUid: auth?.currentUser?.uid || null,
     hostName,
-    status: "waiting",
-    deck: deckToUse,
-    createdAt: Date.now()
+    hostReady: false,
+    guestReady: false,
+    status: "lobby", // lobby -> active -> finished
+    filters: filters || {},
+    createdAt: Date.now(),
+    hostLikes: {},
+    guestLikes: {},
+    hostDislikes: {},
+    guestDislikes: {},
+    matches: {}
   };
-
-  if (customDeck && Array.isArray(customDeck) && customDeck.length > 0) {
-    roomPayload.candidateIds = customDeck;
-  }
 
   if (hostDecisions && Object.keys(hostDecisions).length > 0) roomPayload.hostDecisions = hostDecisions;
   if (hostFavorites && Object.keys(hostFavorites).length > 0) roomPayload.hostFavorites = hostFavorites;
-
-  const normalized = normalizeStopGenres(hostStopGenres);
-  if (normalized.length > 0) roomPayload.hostStopGenres = normalized;
 
   try {
     await set(ref(database, `matchRooms/${roomCode}`), roomPayload);
@@ -372,56 +370,47 @@ export const createMatchRoom = async (hostName, customDeck = null, hostDecisions
   return roomCode;
 };
 
-// ─── Liked Movies Helper for Compromise Recommendations ──────────
-const extractLikedMovies = (...inputs) => {
-  const movieIds = new Set();
-
-  inputs.forEach(input => {
-    if (!input) return;
-    if (Array.isArray(input)) {
-      input.forEach(item => {
-        if (typeof item === 'number' || typeof item === 'string') {
-          const num = Number(item);
-          if (!isNaN(num) && num > 0) movieIds.add(num);
-        } else if (item && typeof item === 'object') {
-          if (item.id != null) {
-            const num = Number(item.id);
-            if (!isNaN(num) && num > 0) movieIds.add(num);
-          } else {
-            Object.entries(item).forEach(([k, v]) => {
-              if (v === 'like' || v === 'liked' || v === true) {
-                const num = Number(k);
-                if (!isNaN(num) && num > 0) movieIds.add(num);
-              }
-            });
-          }
-        }
-      });
-    } else if (typeof input === 'object') {
-      Object.entries(input).forEach(([key, val]) => {
-        if (val === 'like' || val === 'liked' || val === true) {
-          const num = Number(key);
-          if (!isNaN(num) && num > 0) movieIds.add(num);
-        } else if (val && typeof val === 'object' && val.id != null) {
-          const num = Number(val.id);
-          if (!isNaN(num) && num > 0) movieIds.add(num);
-        }
-      });
-    }
-  });
-
-  const likedMovies = [];
-  movieIds.forEach(id => {
-    const movie = moviesById[id] || movies.find(m => m.id === id);
-    if (movie) {
-      likedMovies.push(movie);
-    }
-  });
-
-  return likedMovies;
+// ─── Ready Status and Lobby Controls ─────────────────────────────────────
+export const setParticipantReady = async (roomCode, role, isReady) => {
+  if (!database || !roomCode) return;
+  const updates = {};
+  updates[`${role}Ready`] = isReady;
+  await update(ref(database, `matchRooms/${roomCode}`), updates);
 };
 
-export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}, guestStopGenres = []) => {
+export const startMatchRoomSession = async (roomCode) => {
+  if (!database || !roomCode) return false;
+  const roomRef = ref(database, `matchRooms/${roomCode}`);
+  const snapshot = await get(roomRef);
+  if (!snapshot.exists()) return false;
+
+  const roomData = snapshot.val();
+  const hostLikedMovies = extractLikedMovies(roomData.hostDecisions, roomData.hostFavorites, roomData.hostLikes);
+  const guestLikedMovies = extractLikedMovies(roomData.guestDecisions, roomData.guestFavorites, roomData.guestLikes);
+
+  // Generate initial pair deck of movies
+  const deckMovies = generateMatchWatchPairDeck(
+    movies,
+    hostLikedMovies,
+    guestLikedMovies,
+    [],
+    roomData.filters || {},
+    0,
+    25
+  );
+
+  const deckIds = deckMovies.map(m => m.id);
+
+  await update(roomRef, {
+    status: "active",
+    deck: deckIds,
+    startedAt: Date.now()
+  });
+
+  return true;
+};
+
+export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, guestFavorites = {}) => {
   if (!database) return false;
   await ensureAuthenticated();
   const roomRef = ref(database, `matchRooms/${roomCode}`);
@@ -432,42 +421,11 @@ export const joinMatchRoom = async (roomCode, guestName, guestDecisions = {}, gu
   const guestPayload = { 
     guestUid: auth?.currentUser?.uid || null,
     guestName, 
-    status: 'active' 
+    guestReady: false
   };
 
   if (guestDecisions && Object.keys(guestDecisions).length > 0) guestPayload.guestDecisions = guestDecisions;
   if (guestFavorites && Object.keys(guestFavorites).length > 0) guestPayload.guestFavorites = guestFavorites;
-
-  const normalized = normalizeStopGenres(guestStopGenres);
-  if (normalized.length > 0) guestPayload.guestStopGenres = normalized;
-
-  // Extract Host and Guest liked movies to compute compromise taste vector
-  const hostLikedMovies = extractLikedMovies(roomData.hostDecisions, roomData.hostFavorites, roomData.hostLikes);
-  const guestLikedMovies = extractLikedMovies(guestDecisions, guestFavorites, roomData.guestLikes);
-
-  let candidatePool = movies;
-  if (roomData.candidateIds) {
-    let rawDeck = Array.isArray(roomData.candidateIds) ? roomData.candidateIds : Object.values(roomData.candidateIds);
-    const candidateObjs = rawDeck.map(id => moviesById[id] || movies.find(m => m.id === Number(id))).filter(Boolean);
-    if (candidateObjs.length > 0) {
-      candidatePool = candidateObjs;
-    }
-  } else if (roomData.deck) {
-    let rawDeck = [];
-    if (Array.isArray(roomData.deck)) {
-      rawDeck = roomData.deck;
-    } else if (typeof roomData.deck === 'object') {
-      rawDeck = Object.values(roomData.deck);
-    }
-    const candidateObjs = rawDeck.map(id => moviesById[id] || movies.find(m => m.id === Number(id))).filter(Boolean);
-    if (candidateObjs.length > 0) {
-      candidatePool = candidateObjs;
-    }
-  }
-
-  // Generate 25-movie compromise deck using midpoint taste vector
-  const compromiseDeckIds = generateMatchWatchPairDeck(candidatePool, hostLikedMovies, guestLikedMovies);
-  guestPayload.deck = compromiseDeckIds;
 
   try {
     await update(roomRef, guestPayload);

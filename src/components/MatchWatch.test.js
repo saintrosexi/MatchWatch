@@ -100,11 +100,11 @@ describe('MatchWatch testing', () => {
 
     // Wait for waiting screen to appear
     await waitFor(() => {
-      expect(screen.getByText(/Ожидание партнера.../)).toBeInTheDocument();
+      expect(screen.getByText(/Лобби ожидания/)).toBeInTheDocument();
     });
 
-    // 6. Click on "Пригласить друга"
-    const inviteFriendBtn = screen.getByText('➕ Пригласить друга');
+    // 6. Click on "Позвать друга"
+    const inviteFriendBtn = screen.getByText('➕ Позвать друга');
     fireEvent.click(inviteFriendBtn);
 
     // 7. Click on "Позвать" for friend1
@@ -159,11 +159,11 @@ describe('MatchWatch testing', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText(/Ожидание партнера.../)).toBeInTheDocument();
+      expect(screen.getByText(/Лобби ожидания/)).toBeInTheDocument();
     });
 
     // 6. Click invite
-    fireEvent.click(screen.getByText('➕ Пригласить друга'));
+    fireEvent.click(screen.getByText('➕ Позвать друга'));
 
     // 7. Click call
     const callBtn = await screen.findByText('Позвать');
