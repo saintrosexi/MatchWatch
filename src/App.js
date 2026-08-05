@@ -792,21 +792,8 @@ export default function App() {
             sidebarCollapsed={sidebarCollapsed}
             setSidebarCollapsed={setSidebarCollapsed}
           />
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
-            <Header
-              currentScreen={screen}
-              onTabClick={handleTabClick}
-              likedCount={liked.length}
-              friendRequestsCount={Object.keys(friendRequests).length}
-              invitesCount={Object.keys(invites).length}
-              rightContent={null}
-              onUndo={handleUndo}
-              history={history}
-              matchWatchScreen={matchWatchScreen}
-            />
-            <div className={`app-container-desktop ${(screen === "swipe" || (screen === "matchwatch" && matchWatchScreen === "swiping")) ? "no-scroll" : ""}`}>
-              {currentScreen}
-            </div>
+          <div className={`app-container-desktop ${(screen === "swipe" || (screen === "matchwatch" && matchWatchScreen === "swiping")) ? "no-scroll" : ""}`}>
+            {currentScreen}
           </div>
         </div>
       )}
