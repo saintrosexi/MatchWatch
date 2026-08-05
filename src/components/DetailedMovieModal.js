@@ -461,11 +461,11 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* macOS Window Title bar / Header */}
+            {/* Still Preview Header */}
             <div
               style={{
                 width: "100%",
-                padding: "12px 18px",
+                padding: "14px 20px",
                 background: "rgba(255,255,255,0.03)",
                 borderBottom: "1px solid rgba(255,255,255,0.08)",
                 display: "flex",
@@ -473,25 +473,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                 justifyContent: "space-between"
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <button
-                  onClick={() => setActiveStillIndex(null)}
-                  style={{
-                    width: "14px",
-                    height: "14px",
-                    borderRadius: "50%",
-                    background: "#ff5f56",
-                    border: "none",
-                    cursor: "pointer",
-                    boxShadow: "0 0 4px rgba(255,95,86,0.5)"
-                  }}
-                  title="Закрыть (Esc)"
-                />
-                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#ffbd2e", opacity: 0.8 }} />
-                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#27c93f", opacity: 0.8 }} />
-              </div>
-
-              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>
+              <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>
                 Кадр {activeStillIndex + 1} из {liveStills.length}
               </span>
 
@@ -501,10 +483,10 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                   background: "rgba(255,255,255,0.1)",
                   border: "none",
                   color: "#fff",
-                  width: "28px",
-                  height: "28px",
+                  width: "30px",
+                  height: "30px",
                   borderRadius: "50%",
-                  fontSize: "1rem",
+                  fontSize: "1.1rem",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
