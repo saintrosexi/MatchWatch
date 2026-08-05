@@ -811,8 +811,9 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
   };
 
   const handleShareProfile = () => {
-    const link = `${window.location.origin}/?add=${encodeURIComponent(user.displayName)}`;
-    const text = `Я ищу с кем посмотреть кино! 🍿 Добавляй меня в друзья в MatchWatch по тегу ${user.displayName}: ${link}`;
+    const activeUserTag = displayUser?.displayName || (profileData?.name && profileData?.tag ? `${profileData.name}#${profileData.tag}` : "Киноман#0000");
+    const link = `${window.location.origin}/user/${encodeURIComponent(activeUserTag)}`;
+    const text = `Я ищу с кем посмотреть кино! 🍿 Добавляй меня в друзья в MatchWatch по тегу ${activeUserTag}: ${link}`;
     navigator.clipboard.writeText(text);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);

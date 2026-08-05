@@ -247,10 +247,15 @@ export default function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const addTag = urlParams.get('add');
-    if (addTag) {
-      setPublicProfileTag(addTag);
+    const path = window.location.pathname;
+    
+    // Support clean routes like /user/Саша#2222 or /profile/Саша#2222
+    const userMatch = path.match(/^\/(?:user|profile)\/(.+)$/i);
+    const targetTag = addTag || (userMatch ? decodeURIComponent(userMatch[1]) : null);
+
+    if (targetTag && targetTag.includes("#")) {
+      setPublicProfileTag(targetTag);
       setScreen("publicProfile");
-      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
 
