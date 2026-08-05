@@ -928,9 +928,9 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
                 <form onSubmit={handleEditProfile} className="profile-edit-inline-form" style={{ width: "100%", margin: "12px 0" }}>
                   {editError && <div className="auth-error" style={{ fontSize: "0.85rem", marginBottom: "8px" }}>{editError}</div>}
                   {editSuccess && <div className="auth-success" style={{ color: "#32d74b", fontSize: "0.85rem", marginBottom: "8px", textAlign: "center" }}>{editSuccess}</div>}
-                  <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "10px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "14px", textAlign: "left" }}>
                     <div>
-                      <label style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "3px", display: "block" }}>Отображаемое имя (любые символы):</label>
+                      <label style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", marginBottom: "6px", display: "block" }}>Отображаемое имя (любые символы):</label>
                       <input
                         type="text"
                         className="form-input-glass"
@@ -938,27 +938,26 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
                         value={editName}
                         onChange={e => setEditName(e.target.value)}
                         required
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", padding: "10px 14px" }}
                       />
                     </div>
                     <div>
-                      <label style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "3px", display: "block" }}>Username на английском (a-z, 0-9, _):</label>
-                      <div style={{ position: "relative" }}>
-                        <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#ff8a50", fontWeight: "bold" }}>@</span>
+                      <label style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", marginBottom: "6px", display: "block" }}>Username на английском (a-z, 0-9, _):</label>
+                      <div style={{ display: "flex", alignItems: "center", background: "rgba(255, 255, 255, 0.05)", border: "1px solid var(--border-glass)", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
+                        <span style={{ padding: "0 12px", color: "var(--accent-coral)", fontWeight: "bold", fontSize: "1rem" }}>@</span>
                         <input
                           type="text"
-                          className="form-input-glass"
                           placeholder="saintrose"
                           value={editTag}
                           onChange={e => setEditTag(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
                           maxLength={20}
                           required
-                          style={{ width: "100%", paddingLeft: "28px" }}
+                          style={{ flex: 1, background: "transparent", border: "none", color: "#fff", padding: "10px 14px 10px 0", outline: "none", fontSize: "0.95rem" }}
                         />
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
+                  <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
                     <button type="button" className="btn-glass-secondary btn-sm" onClick={() => setIsEditingProfile(false)}>Отмена</button>
                     <button type="submit" className="btn-glass-primary btn-sm">Сохранить</button>
                   </div>
