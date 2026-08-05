@@ -269,6 +269,30 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               </div>
             )}
 
+            {/* Stills / Movie Shots Section */}
+            {Array.isArray(movie.stills) && movie.stills.length > 0 && (
+              <div className="detailed-modal-section">
+                <h3 className="section-title">📸 Кадры из фильма</h3>
+                <div style={{ display: "flex", gap: "10px", overflowX: "auto", paddingBottom: "10px", margin: "10px 0" }}>
+                  {movie.stills.map((stillUrl, i) => (
+                    <img
+                      key={i}
+                      src={stillUrl}
+                      alt={`Кадр ${i + 1}`}
+                      style={{
+                        height: "110px",
+                        borderRadius: "10px",
+                        objectFit: "cover",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        flexShrink: 0
+                      }}
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Description Section */}
             <div className="detailed-modal-section detailed-modal-section--grow">
               <h3 className="section-title">📖 Описание</h3>
