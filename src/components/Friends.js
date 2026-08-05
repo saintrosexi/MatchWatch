@@ -108,18 +108,13 @@ export default function Friends({
 
   const handleAddFriend = async (e) => {
     e.preventDefault();
-    const inputTag = friendTagInput.trim();
-
-    if (!inputTag) {
-      showToast("error", "Введите тег пользователя (например: Саня#1234)");
+    let rawInput = friendTagInput.trim();
+    if (!rawInput) {
+      showToast("error", "Укажите имя пользователя (например: @owner)");
       return;
     }
 
-    const tagRegex = /^.+#\d{4}$/;
-    if (!tagRegex.test(inputTag)) {
-      showToast("error", "Неверный формат тега. Введите тег в формате Имя#1234");
-      return;
-    }
+    const inputTag = rawInput.startsWith('@') || rawInput.includes('#') ? rawInput : `@${rawInput}`;
 
     const currentTag = user ? (user.displayName || user.email) : null;
     if (currentTag && inputTag.toLowerCase() === currentTag.toLowerCase()) {
@@ -253,18 +248,22 @@ export default function Friends({
           >
             <h2 className="section-title">✨ Добавить друга</h2>
             <p className="add-friend-desc">
-              Введите тег друга (например: <strong>Саня#1234</strong>), чтобы добавить его в контакты.
+              Укажите имя пользователя друга (например: <strong>@owner</strong>), чтобы добавить его в контакты.
             </p>
 
             <form onSubmit={handleAddFriend} className="add-friend-form">
-              <input
-                type="text"
-                placeholder="например: Саня#1234"
-                className="add-friend-input"
-                value={friendTagInput}
-                onChange={(e) => setFriendTagInput(e.target.value)}
-              />
-              <button type="submit" className="btn btn-coral">
+              <div style={{ display: "flex", alignItems: "center", background: "rgba(255, 255, 255, 0.05)", border: "1px solid var(--border-glass)", borderRadius: "var(--radius-md)", overflow: "hidden", flex: 1 }}>
+                <span style={{ padding: "0 12px", color: "var(--accent-coral)", fontWeight: "bold", fontSize: "1rem" }}>@</span>
+                <input
+                  type="text"
+                  placeholder="owner"
+                  className="add-friend-input"
+                  value={friendTagInput.replace('@', '')}
+                  onChange={(e) => setFriendTagInput(e.target.value.toLowerCase().replace(/[^a-z0-9_#]/g, ''))}
+                  style={{ background: "transparent", border: "none", outline: "none", flex: 1, padding: "10px 14px 10px 0" }}
+                />
+              </div>
+              <button type="submit" className="btn btn-coral" style={{ height: "42px" }}>
                 Отправить 🚀
               </button>
             </form>

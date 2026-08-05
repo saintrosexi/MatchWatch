@@ -917,11 +917,13 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
                 <div className="avatar-edit-badge">✏️</div>
               </div>
 
-              <h2 className="profile-display-name">
-                <span className="profile-name-bold">{displayNameVal}</span>
-                <span className="profile-tag-dim" style={{ marginLeft: "6px" }}>{tagDisplay}</span>
-                <button className="btn-icon-edit" onClick={startEditingProfile} title="Редактировать имя и username">✏️</button>
-              </h2>
+              <div className="profile-display-name-container" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2px", margin: "10px 0 6px" }}>
+                <h2 className="profile-display-name" style={{ margin: 0, padding: 0, display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span className="profile-name-bold">{displayNameVal}</span>
+                  <button className="btn-icon-edit" onClick={startEditingProfile} title="Редактировать имя и username">✏️</button>
+                </h2>
+                <span className="profile-tag-dim" style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", fontWeight: "500" }}>{tagDisplay}</span>
+              </div>
 
               {/* Editable Name & Username Inline Form */}
               {isEditingProfile && (
