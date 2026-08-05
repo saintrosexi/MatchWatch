@@ -59,10 +59,11 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
   const [selectedMood, setSelectedMood] = useState("chill");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("movie");
+  const [visibleCount, setVisibleCount] = useState(36);
 
   const selectedMoodData = SENSATIONAL_MOODS.find(m => m.id === selectedMood) || SENSATIONAL_MOODS[0];
 
-  const filteredMovies = useMemo(() => {
+  const allFilteredMovies = useMemo(() => {
     const categoryMovies = movies.filter(m => (m.type || "movie") === activeCategory);
     const target = selectedMoodData.targetVector;
 
@@ -80,9 +81,12 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
       const vibeMatch = Math.max(60, Math.min(99, Math.round(100 - dist * 2.5)));
       return { movie, vibeMatch };
     })
-    .sort((a, b) => b.vibeMatch - a.vibeMatch)
-    .slice(0, 36);
+    .sort((a, b) => b.vibeMatch - a.vibeMatch);
   }, [selectedMoodData, activeCategory]);
+
+  const displayedMovies = useMemo(() => {
+    return allFilteredMovies.slice(0, visibleCount);
+  }, [allFilteredMovies, visibleCount]);
 
   const getCategoryLabel = () => {
     if (activeCategory === 'movie') return 'фильмов';
@@ -189,8 +193,8 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
           </p>
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
-          <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.6)", display: "block" }}>Коллекция</span>
-          <strong style={{ fontSize: "1.2rem", color: "#fff" }}>{filteredMovies.length} {getCategoryLabel()}</strong>
+          <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.6)", display: "block" }}>Всего</span>
+          <strong style={{ fontSize: "1.2rem", color: "#fff" }}>{allFilteredMovies.length} {getCategoryLabel()}</strong>
         </div>
       </div>
 
@@ -203,7 +207,7 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
           gap: "18px" 
         }}
       >
-        {filteredMovies.map(({ movie, vibeMatch }) => {
+        {displayedMovies.map(({ movie, vibeMatch }) => {
           const badge = getMovieVibeBadge(movie);
           const posterUrl = getBestPosterUrl(movie);
 
@@ -271,6 +275,18 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
           );
         })}
       </div>
+
+      {visibleCount < allFilteredMovies.length && (
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
+          <button
+            className="btn-primary"
+            onClick={() => setVisibleCount(prev => prev + 36)}
+            style={{ padding: "14px 28px", borderRadius: "30px", fontSize: "1rem" }}
+          >
+            Показать ещё фильмы ({allFilteredMovies.length - visibleCount})
+          </button>
+        </div>
+      )}
 
       {selectedMovie && (
         <DetailedMovieModal

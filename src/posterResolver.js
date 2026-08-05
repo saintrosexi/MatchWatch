@@ -9,11 +9,11 @@ const KP_API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
  */
 export const getBestPosterUrl = (movie) => {
   if (!movie) return "";
+  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A") && !movie.poster.includes("w500null")) {
+    return movie.poster.trim();
+  }
   if (movie.kinopoiskId) {
     return `https://kinopoiskapiunofficial.tech/images/posters/kp/${movie.kinopoiskId}.jpg`;
-  }
-  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A")) {
-    return movie.poster.trim();
   }
   if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
     return movie.posterPreview.trim();
