@@ -265,7 +265,10 @@ export default function App() {
   const filteredDeck = useMemo(() => {
     let filtered = deck;
     
-    // Filter by category
+    // Strictly filter out all movies that have an existing decision (like or dislike)
+    filtered = filtered.filter(m => !decisions[m.id]);
+
+    // Filter by active category (movie, series, anime)
     filtered = filtered.filter(m => {
       const type = m.type || "movie";
       return type === activeCategory;
@@ -280,7 +283,7 @@ export default function App() {
 
     // Smart Recommendation Ranking based on Liked Taste Profile
     return rankMoviesForUser(filtered, liked);
-  }, [deck, stopGenres, activeCategory, liked]);
+  }, [deck, decisions, stopGenres, activeCategory, liked]);
 
   const currentMoviePoster = useMemo(() => {
     if (screen === "swipe" && filteredDeck && cursor < filteredDeck.length) {
@@ -327,12 +330,11 @@ export default function App() {
     setLastSwipeDir(decision);
     setDecisions(prev => ({ ...prev, [movie.id]: decision }));
     setHistory(prev => [...prev, movie.id]);
+    setCursor(0);
 
-    const nextIndex = cursor + 1;
-    if (nextIndex >= filteredDeck.length) {
+    if (filteredDeck.length <= 1) {
       setTimeout(() => setScreen("final"), 450);
     }
-    setCursor(nextIndex);
   };
 
   const handleReset = () => {
@@ -367,22 +369,16 @@ export default function App() {
     // 1. Pop from history
     setHistory(prev => prev.slice(0, -1));
 
-    // 2. Remove decision
+    // 2. Remove decision (restores movie to filteredDeck at top)
     setDecisions(d => {
       const next = { ...d };
       delete next[lastId];
       return next;
     });
 
-    // 3. Update cursor: move cursor to the index of lastId or decrement cursor
-    const idx = filteredDeck.findIndex(m => m.id === lastId);
-    if (idx >= 0) {
-      setCursor(idx);
-    } else if (cursor > 0) {
-      setCursor(prev => prev - 1);
-    }
+    setCursor(0);
 
-    // 4. Return from final screen if needed
+    // 3. Return from final screen if needed
     if (screen === "final") {
       setScreen("swipe");
     }
