@@ -17,6 +17,10 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
   const [hoverRating, setHoverRating] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
 
+  const [posterCandidates, setPosterCandidates] = useState([]);
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [currentPosterSrc, setCurrentPosterSrc] = useState("");
+  const [liveStills, setLiveStills] = useState([]);
   const [activeStillIndex, setActiveStillIndex] = useState(null);
 
   const handlePrevStill = (e) => {
