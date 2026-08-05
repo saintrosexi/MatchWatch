@@ -124,36 +124,12 @@ export function useTransparentImage(src) {
  * ChamaMascot Banner / Avatar Component
  */
 export function ChamaBanner({ type = "WAVING", text, title, actionText, onAction, size = "medium", className = "" }) {
-  const rawSrc = CHAMA_IMAGES[type] || CHAMA_IMAGES.WAVING;
-  const transparentSrc = useTransparentImage(rawSrc);
-
-  const dimensions = {
-    small: { container: 36, img: 28 },
-    medium: { container: 48, img: 38 },
-    large: { container: 64, img: 52 },
-    xlarge: { container: 80, img: 64 }
-  };
-
-  const currentDim = dimensions[size] || dimensions.medium;
+  if (!title && !text) return null;
 
   return (
-    <div className={`chama-banner flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm transition-all hover:bg-white/[0.06] opacity-90 hover:opacity-100 ${className}`}>
-      <div 
-        className="chama-mascot-avatar-container flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 p-1 shadow-sm border border-white/10"
-        style={{ width: `${currentDim.container}px`, height: `${currentDim.container}px`, minWidth: `${currentDim.container}px`, minHeight: `${currentDim.container}px`, maxWidth: `${currentDim.container}px`, maxHeight: `${currentDim.container}px` }}
-      >
-        <img
-          src={transparentSrc}
-          alt="Чама"
-          className="object-contain rounded-lg filter contrast-105 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-          style={{ width: `${currentDim.img}px`, height: `${currentDim.img}px`, maxWidth: '100%', maxHeight: '100%' }}
-          onError={(e) => {
-            e.target.parentElement.style.display = 'none';
-          }}
-        />
-      </div>
+    <div className={`chama-banner flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm transition-all opacity-90 ${className}`}>
       <div className="flex-1 min-w-0">
-        {title && <h5 className="text-white/90 font-semibold text-xs mb-0.5 flex items-center gap-1.5 opacity-90">🐾 {title}</h5>}
+        {title && <h5 className="text-white/90 font-semibold text-xs mb-0.5 flex items-center gap-1.5 opacity-90">{title}</h5>}
         {text && <p className="text-gray-400 text-xs leading-relaxed opacity-80">{text}</p>}
         {actionText && onAction && (
           <button
@@ -173,22 +149,7 @@ export function ChamaBanner({ type = "WAVING", text, title, actionText, onAction
  * positioned gracefully behind content without taking attention away from movies.
  */
 export function ChamaBackgroundArt({ type = "SEARCH_GLASS", opacity = 0.08, className = "" }) {
-  const rawSrc = CHAMA_IMAGES[type] || CHAMA_IMAGES.SEARCH_GLASS;
-  const transparentSrc = useTransparentImage(rawSrc);
-
-  return (
-    <div 
-      className={`chama-background-watermark absolute top-[-30px] right-[5%] pointer-events-none z-0 overflow-hidden flex items-start justify-end transition-opacity duration-500 ${className}`}
-      style={{ opacity, width: "260px", height: "260px", maxWidth: "30vw", maxHeight: "30vh" }}
-    >
-      <img
-        src={transparentSrc}
-        alt=""
-        aria-hidden="true"
-        className="w-full h-full object-contain object-top-right filter contrast-105 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-      />
-    </div>
-  );
+  return null;
 }
 
 export default CHAMA_IMAGES;

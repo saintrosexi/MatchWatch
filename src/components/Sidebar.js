@@ -104,23 +104,7 @@ export default function Sidebar({
 
       {/* Bottom Profile & Settings */}
       <div className="side-rail-footer">
-        <div style={{ position: "relative" }}>
-          <button
-            className="side-rail-item chama-mini-helper"
-            onClick={() => setShowChamaTip(!showChamaTip)}
-            data-tooltip="Помощник Чама 🐾"
-          >
-            <img src={chamaTransparent} alt="Чама" style={{ width: 32, height: 32, objectFit: "contain", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))" }} />
-          </button>
-          {showChamaTip && (
-            <div className="glass-panel" style={{ position: "absolute", left: "60px", bottom: "0px", width: "240px", padding: "12px", zIndex: 100, fontSize: "0.82rem" }}>
-              <div style={{ fontWeight: "bold", color: "#fbbf24", marginBottom: "4px" }}>🐾 Совет от Чамы</div>
-              <p style={{ margin: 0, color: "rgba(255,255,255,0.85)" }}>
-                Выбирай фильмы свайпами вправо или организуй совместный MatchWatch сеанс с другом!
-              </p>
-            </div>
-          )}
-        </div>
+
 
         <button
           className={`side-rail-item ${currentScreen === "friends" ? "active" : ""}`}

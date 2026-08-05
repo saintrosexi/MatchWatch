@@ -596,33 +596,14 @@ export default function App() {
       />;
     }
 
-    const showTutorial = !disableOnboarding && !sessionTutorialSeen;
-
     return (
       <div className="screen screen--center swipe-screen">
         <CategoryPicker />
         <div className="swipe-wrapper">
           <div className="deck-container">
             <AnimatePresence custom={lastSwipeDir} initial={false}>
-              {showTutorial ? (
-                <motion.div 
-                  key="tutorial"
-                  className="deck-card" 
-                  style={{ zIndex: 500, position: "absolute", width: "100%", height: "100%" }}
-                  exit={{ y: 1200, rotate: -20, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <SwipeCard 
-                    isTutorial={true} 
-                    onShowDetails={() => {}}
-                    onSwipe={() => {
-                      setSessionTutorialSeen(true);
-                    }} 
-                  />
-                </motion.div>
-              ) : (
-                [cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
-                  cardIndex < filteredDeck.length && (
+              {[cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
+                cardIndex < filteredDeck.length && (
                     <motion.div
                       key={filteredDeck[cardIndex].id}
                       className="deck-card"
@@ -653,7 +634,7 @@ export default function App() {
                     </motion.div>
                   )
                 ))
-              )}
+              }
             </AnimatePresence>
             
             {cursor >= filteredDeck.length && (

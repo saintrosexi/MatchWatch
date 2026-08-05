@@ -159,21 +159,6 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                   )}
                 </div>
                 <div className="mobile-header-right">
-                  <div style={{ position: "relative" }}>
-                    <button
-                      className="btn-matchwatch-secondary"
-                      onClick={() => setShowChamaTip(!showChamaTip)}
-                      style={{ background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center" }}
-                      title="Помощник Чама 🐾"
-                    >
-                      <img src="/chama/Mascot_waving_paw_smiling_202607301353.jpeg" alt="Чама" style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.3)" }} />
-                    </button>
-                    {showChamaTip && (
-                      <div className="glass-panel" style={{ position: "absolute", right: 0, top: "34px", width: "220px", padding: "10px", zIndex: 1000, fontSize: "0.8rem" }}>
-                        🐾 <strong>Чама:</strong> Свайпай карточки вправо для лайка!
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
             )}

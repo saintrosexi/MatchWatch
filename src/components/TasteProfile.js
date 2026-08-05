@@ -4,8 +4,8 @@ import { auth, database } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { motion } from "framer-motion";
-import { ChamaBackgroundArt } from "../chamaAssets";
 import { SensationRadarComponent } from "./Profile";
+import { generateSimpleTasteInference } from "../tasteInference";
 
 export default function TasteProfile({ likedMovies = [], favorites = {}, ratings = {} }) {
   const [user, setUser] = useState(null);
@@ -273,89 +273,13 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
         </div>
       )}
 
-      {/* Insights (AI summary or basic fallback) */}
-      {loading ? (
-        <div className="profile-insights ai-loading-box">
-          <div className="ai-pulse-loader" />
-          <div className="ai-loading-text">🔮 Нейросеть сканирует ваши свайпы...</div>
-        </div>
-      ) : aiSummary ? (
-        <motion.div
-          className="profile-insights ai-summary-box"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="ai-summary-header">
-            <div className="ai-summary-title">
-              <span>✨ ИИ-Анализ киновкусов</span>
-            </div>
-            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <button
-                className="btn-ai-share"
-                onClick={handleShare}
-                style={{
-                  background: copied ? "rgba(46, 204, 113, 0.15)" : "rgba(138, 43, 226, 0.15)",
-                  border: copied ? "1px solid rgba(46, 204, 113, 0.4)" : "1px solid rgba(138, 43, 226, 0.4)",
-                  color: copied ? "#2ecc71" : "#cda4ff",
-                  padding: "6px 12px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontSize: "0.75rem",
-                  fontWeight: "600",
-                  transition: "all 0.2s ease",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px"
-                }}
-              >
-                {copied ? "✓ Скопировано!" : "🔗 Поделиться"}
-              </button>
-              {user && (
-                <button
-                  className="btn-ai-regenerate"
-                  onClick={generateAiSummary}
-                  title="Обновить ИИ-анализ"
-                >
-                  🔄
-                </button>
-              )}
-            </div>
-          </div>
-          <div className="ai-summary-text" style={{ whiteSpace: "pre-line" }}>
-            {aiSummary}
-          </div>
-          <div className="ai-summary-footer" style={{ marginTop: "20px", fontSize: "0.8rem", color: "rgba(255, 255, 255, 0.35)", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "12px", flexWrap: "wrap", gap: "10px" }}>
-            <span>🔮 Персональный кинопортрет составлен киноэкспертом - Жориком</span>
-            <span style={{ background: "rgba(138, 43, 226, 0.15)", color: "#cda4ff", padding: "2px 8px", borderRadius: "10px", fontSize: "0.75rem", border: "1px solid rgba(138, 43, 226, 0.3)", fontWeight: "600" }}>✓ Индивидуальный расчет</span>
-          </div>
-          {error && <div className="ai-error-text">⚠️ {error}</div>}
-        </motion.div>
-      ) : (
-        <div className="profile-insights">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
-            <div style={{ flex: "1 1 300px" }}>
-              <p>💡 <strong>Базовый вывод:</strong></p>
-              <p style={{ margin: 0 }}>
-                Вы предпочитаете контент 
-                {profile.topDecades.length > 0 && ` из ${profile.topDecades[0].decade.toLowerCase()}`}
-                {profile.avgRating >= 8.5 && " с высоким рейтингом"}
-                {profile.avgRating < 7.5 && " разнообразных рейтингов"}
-                . Ваш вкус 
-                {profile.compatibility > 80 && " очень определён!"}
-                {profile.compatibility > 50 && " хорошо сформирован."}
-                {profile.compatibility <= 50 && " только развивается!"}
-              </p>
-            </div>
-            {user && (
-              <button className="btn-ai-generate" onClick={generateAiSummary}>
-                ✨ Сгенерировать ИИ-вывод
-              </button>
-            )}
-          </div>
-          {error && <div className="ai-error-text">⚠️ {error}</div>}
-        </div>
-      )}
+      {/* Simple Taste Inference Output */}
+      <div className="profile-insights" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <p style={{ margin: "0 0 6px 0", fontWeight: "600", fontSize: "0.95rem" }}>💡 <strong>Простой вывод:</strong></p>
+        <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
+          {generateSimpleTasteInference({ likedMovies, favorites })}
+        </p>
+      </div>
     </div>
   );
 }

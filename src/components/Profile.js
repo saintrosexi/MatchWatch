@@ -7,6 +7,7 @@ import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
 import { ChamaBanner, ChamaBackgroundArt } from "../chamaAssets";
+import { generateSimpleTasteInference } from "../tasteInference";
 import "../styles/MovieModal.css";
 
 // Preset Avatar Emojis
@@ -915,40 +916,14 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
             {/* 5D Sensation Vibe Radar Chart */}
             <SensationRadarComponent likedMovies={stats.likedMoviesList} favorites={appData?.favorites || {}} />
 
-            {/* AI Taste Summary Generator */}
-            <div className="profile-card-stats ai-summary-glass-container">
-              <div className="ai-summary-header">
-                <h3 className="ai-summary-title">✨ ИИ-Киноэксперт Жорик</h3>
-                {aiSummary && (
-                  <button className="btn-ai-regenerate" onClick={handleGenerateAiSummary} disabled={aiLoading} title="Перерассчитать портрет">
-                    🔄
-                  </button>
-                )}
-              </div>
-
-              {aiLoading ? (
-                <div className="ai-loading-box">
-                  <div className="ai-pulse-loader" />
-                  <div className="ai-loading-text">🔮 Нейросеть сканирует ваши свайпы и выстраивает 5D вектор...</div>
-                </div>
-              ) : aiSummary ? (
-                <div className="ai-summary-body">
-                  <ChamaBanner
-                    type="WIZARD"
-                    title="Кино-Экспертиза Чамы & Жорика"
-                    text={aiSummary}
-                    size="medium"
-                  />
-                </div>
-              ) : (
-                <div className="ai-summary-placeholder">
-                  <p>Нажмите кнопку ниже, чтобы нейросеть Жорик создала ваш индивидуальный кинематографический портрет на основе 5D вектора и оценок!</p>
-                  <button className="btn-primary btn-generate-ai" onClick={handleGenerateAiSummary}>
-                    ✨ Сгенерировать ИИ-вывод
-                  </button>
-                </div>
-              )}
-              {aiError && <div className="ai-error-text">⚠️ {aiError}</div>}
+            {/* Simple Taste Inference Output */}
+            <div className="profile-card-stats simple-summary-glass-container" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <h3 style={{ fontSize: "0.95rem", margin: "0 0 8px 0", color: "#fff", display: "flex", alignItems: "center", gap: "6px" }}>
+                💡 Простой вывод:
+              </h3>
+              <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
+                {generateSimpleTasteInference({ likedMovies: stats.likedMoviesList, favorites: appData?.favorites || {} })}
+              </p>
             </div>
 
           </div>
