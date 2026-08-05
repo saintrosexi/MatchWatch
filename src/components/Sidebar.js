@@ -126,14 +126,6 @@ export default function Sidebar({
             <span className="avatar-emoji">{currentUserAvatar || "😎"}</span>
           )}
         </button>
-
-        <button
-          className={`side-rail-item ${currentScreen === "settings" ? "active" : ""}`}
-          onClick={() => handleTabClick("settings")}
-          data-tooltip="Настройки"
-        >
-          <span className="side-rail-icon">⚙️</span>
-        </button>
       </div>
     </nav>
   );

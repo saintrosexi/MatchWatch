@@ -1186,7 +1186,37 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
                 </div>
 
                 <div className="picker-divider" style={{ textAlign: "center", margin: "16px 0", color: "rgba(255,255,255,0.4)", fontSize: "0.8rem" }}>
-                  или вставьте ссылку на изображение
+                  или загрузите фото с устройства
+                </div>
+
+                <div className="form-group" style={{ marginBottom: "12px" }}>
+                  <label className="btn-glass-primary" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", cursor: "pointer", width: "100%", padding: "10px", borderRadius: "10px" }}>
+                    📁 Выбрать фото с устройства
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={(e) => {
+                        const file = e.target.files && e.target.files[0];
+                        if (file) {
+                          if (file.size > 5 * 1024 * 1024) {
+                            alert("Файл слишком большой. Пожалуйста, выберите фото до 5 МБ.");
+                            return;
+                          }
+                          const reader = new FileReader();
+                          reader.onload = (uploadEvent) => {
+                            const base64Data = uploadEvent.target.result;
+                            handleSelectAvatar(base64Data);
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                  </label>
+                </div>
+
+                <div className="picker-divider" style={{ textAlign: "center", margin: "12px 0", color: "rgba(255,255,255,0.4)", fontSize: "0.8rem" }}>
+                  или укажите прямую URL ссылку
                 </div>
 
                 <div className="form-group" style={{ display: "flex", gap: "8px" }}>

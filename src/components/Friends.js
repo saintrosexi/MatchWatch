@@ -219,23 +219,7 @@ export default function Friends({
     }
   };
 
-  const demoFriends = [
-    { uid: "demo-1", tag: "Саша#2222", avatar: "😎", compat: "94%" },
-    { uid: "demo-2", tag: "Иван#1111", avatar: "😻", compat: "88%" },
-    { uid: "demo-3", tag: "Соня#3333", avatar: "👻", compat: "91%" },
-    { uid: "demo-4", tag: "Рыцарь#4444", avatar: "🛡️", compat: "82%" },
-  ];
-
-  const getFriendCompat = (uid, tag) => {
-    const demo = demoFriends.find((f) => f.uid === uid);
-    if (demo) return demo.compat;
-    if (friendCompat[uid]) return `${friendCompat[uid]}%`;
-    const currentTag = user ? (user.displayName || user.email || "Пользователь") : "";
-    const score = calculateUserCompatibility(decisions || [], [], currentTag, tag);
-    return `${score}%`;
-  };
-
-  const activeRequests = user ? friendRequests : demoRequests;
+  const activeRequests = friendRequests || {};
   const requestsCount = Object.keys(activeRequests).length;
 
   return (
@@ -248,7 +232,7 @@ export default function Friends({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          👥 Социальный хаб
+          👥 Друзья
         </motion.h1>
         <motion.p
           className="mood-subtitle"
@@ -258,14 +242,6 @@ export default function Friends({
         >
           Делись вкусом и выбирайте фильмы вместе
         </motion.p>
-
-        <ChamaBanner
-          type="POINTER_STICK"
-          title="Социальный хаб Чамы"
-          text="Добавляй друзей по тегу и зови их в парные сессии свайпов MatchWatch! Чама поможет выявить общие предпочтения."
-          size="medium"
-          className="mb-6"
-        />
 
         <div className="activity-hub-grid">
           {/* Add Friend Form */}
@@ -357,71 +333,57 @@ export default function Friends({
             <div className="friend-header-row">
               <h2 className="section-title">Мои друзья</h2>
               <span className="glass-count-badge">
-                {!user ? demoFriends.length : Object.keys(friends).length || demoFriends.length}
+                {Object.keys(friends).length}
               </span>
             </div>
 
             <div className="friends-list">
-              {!user || Object.keys(friends).length === 0
-                ? demoFriends.map((f) => (
+              {Object.keys(friends).length === 0 ? (
+                <div style={{ textAlign: "center", padding: "30px 10px", color: "rgba(255,255,255,0.5)" }}>
+                  <p style={{ fontSize: "2rem", margin: "0 0 10px 0" }}>👥</p>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>У вас пока нет друзей в списке</p>
+                  <p style={{ margin: "5px 0 0 0", fontSize: "0.8rem", color: "rgba(255,255,255,0.3)" }}>
+                    Добавляйте их по нику#тегу выше или переходите по ссылкам профилей!
+                  </p>
+                </div>
+              ) : (
+                Object.entries(friends).map(([uid, tag]) => {
+                  const namePart = tag.includes("#") ? tag.split("#")[0] : tag;
+                  const tagPart = tag.includes("#") ? "#" + tag.split("#")[1] : "";
+                  const avatar = friendAvatars[uid];
+                  const compat = friendCompat[uid] ? `${friendCompat[uid]}%` : "85%";
+
+                  return (
                     <motion.div
-                      key={f.uid}
+                      key={uid}
                       className="friend-card-detailed"
                       whileHover={{ scale: 1.01 }}
                       transition={{ duration: 0.15 }}
                     >
-                      <div className="friend-avatar-wrapper">{f.avatar}</div>
-                      <div className="friend-info">
+                      <div className="friend-avatar-wrapper" onClick={() => onViewProfile?.(tag)} style={{ cursor: "pointer" }}>
+                        {avatar && (avatar.startsWith("data:image/") || avatar.startsWith("http")) ? (
+                          <img src={avatar} alt="Avatar" className="friend-avatar-img" />
+                        ) : (
+                          avatar || "😎"
+                        )}
+                      </div>
+                      <div className="friend-info" onClick={() => onViewProfile?.(tag)} style={{ cursor: "pointer" }}>
                         <div className="friend-name-container">
-                          <span className="friend-name">{f.tag.split("#")[0]}</span>
-                          <span className="compat-badge">Совместимость {f.compat}</span>
+                          <span className="friend-name">{namePart}</span>
+                          <span className="compat-badge">Совместимость {compat}</span>
                         </div>
-                        <span className="friend-tag">#{f.tag.split("#")[1]}</span>
+                        <span className="friend-tag">{tagPart}</span>
                       </div>
                       <button
                         className="btn-matchwatch-invite"
-                        onClick={() => handleInviteFriendToRoom(f.uid, f.tag)}
+                        onClick={() => handleInviteFriendToRoom(uid, tag)}
                       >
                         Позвать в MatchWatch 🍿
                       </button>
                     </motion.div>
-                  ))
-                : Object.entries(friends).map(([uid, tag]) => {
-                    const namePart = tag.includes("#") ? tag.split("#")[0] : tag;
-                    const tagPart = tag.includes("#") ? "#" + tag.split("#")[1] : "";
-                    const avatar = friendAvatars[uid];
-                    const compat = getFriendCompat(uid, tag);
-
-                    return (
-                      <motion.div
-                        key={uid}
-                        className="friend-card-detailed"
-                        whileHover={{ scale: 1.01 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <div className="friend-avatar-wrapper">
-                          {avatar && (avatar.startsWith("data:image/") || avatar.startsWith("http")) ? (
-                            <img src={avatar} alt="Avatar" className="friend-avatar-img" />
-                          ) : (
-                            avatar || "😎"
-                          )}
-                        </div>
-                        <div className="friend-info" onClick={() => onViewProfile?.(tag)}>
-                          <div className="friend-name-container">
-                            <span className="friend-name">{namePart}</span>
-                            <span className="compat-badge">Совместимость {compat}</span>
-                          </div>
-                          <span className="friend-tag">{tagPart}</span>
-                        </div>
-                        <button
-                          className="btn-matchwatch-invite"
-                          onClick={() => handleInviteFriendToRoom(uid, tag)}
-                        >
-                          Позвать в MatchWatch 🍿
-                        </button>
-                      </motion.div>
-                    );
-                  })}
+                  );
+                })
+              )}
             </div>
           </motion.div>
         </div>

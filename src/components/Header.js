@@ -158,7 +158,20 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                     getScreenName(currentScreen)
                   )}
                 </div>
-                <div className="mobile-header-right">
+                <div className="mobile-header-right" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <button 
+                    className="nav-tab" 
+                    onClick={() => handleTabClick("friends")}
+                    style={{ position: "relative", padding: "6px 10px", fontSize: "1.1rem" }}
+                    title="Уведомления"
+                  >
+                    🔔
+                    {(friendRequestsCount + invitesCount) > 0 && (
+                      <span className="nav-badge" style={{ top: "-2px", right: "-2px" }}>
+                        {friendRequestsCount + invitesCount}
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
             )}
@@ -187,14 +200,25 @@ export default function Header({ currentScreen, onTabClick, likedCount, friendRe
                 <li>
                   <button className={`nav-tab ${currentScreen === "friends" ? "active" : ""}`} onClick={() => handleTabClick("friends")} style={{ position: 'relative' }}>
                     👥 Друзья
-                    {friendRequestsCount > 0 && <span className="nav-badge">{friendRequestsCount}</span>}
                   </button>
                 </li>
                 <li>
                   <button className={`nav-tab ${currentScreen === "profile" ? "active" : ""}`} onClick={() => handleTabClick("profile")}>👤 Аккаунт</button>
                 </li>
                 <li>
-                  <button className={`nav-tab ${currentScreen === "settings" ? "active" : ""}`} onClick={() => handleTabClick("settings")}>⚙️ Параметры</button>
+                  <button 
+                    className="nav-tab" 
+                    onClick={() => handleTabClick("friends")} 
+                    style={{ position: "relative", fontSize: "1.1rem", padding: "6px 10px" }}
+                    title="Центр уведомлений"
+                  >
+                    🔔
+                    {(friendRequestsCount + invitesCount) > 0 && (
+                      <span className="nav-badge" style={{ top: "-2px", right: "-2px" }}>
+                        {friendRequestsCount + invitesCount}
+                      </span>
+                    )}
+                  </button>
                 </li>
               </ul>
             )}
