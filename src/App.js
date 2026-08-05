@@ -315,22 +315,11 @@ export default function App() {
 
   useEffect(() => {
     if (screen === "swipe") {
-      if (filteredDeck.length === 0 || cursor >= filteredDeck.length) {
+      if (filteredDeck.length === 0) {
         setScreen("final");
-        return;
-      }
-      if (Boolean(decisions[filteredDeck[cursor].id])) {
-        let next = cursor;
-        while (next < filteredDeck.length && Boolean(decisions[filteredDeck[next].id])) {
-          next++;
-        }
-        setCursor(next);
-        if (next >= filteredDeck.length) {
-          setScreen("final");
-        }
       }
     }
-  }, [cursor, filteredDeck, decisions, screen]);
+  }, [filteredDeck, screen]);
 
   const handleSwipe = (dir, movie) => {
     const decision = (dir === "like" || dir === "right") ? "like" : "dislike";
@@ -388,6 +377,10 @@ export default function App() {
     const idx = filteredDeck.findIndex(m => m.id === lastId);
     if (idx >= 0) {
       setCursor(idx);
+    }
+
+    if (screen === "final") {
+      setScreen("swipe");
     }
   };
 
