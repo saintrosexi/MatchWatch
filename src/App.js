@@ -83,16 +83,45 @@ export default function App() {
       return saved ? JSON.parse(saved) : {};
     } catch (e) { return {}; }
   }); // { [movieId]: number (1-10) }
-  const [screen, setScreen] = useState(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const targetScreen = params.get("screen") || params.get("startapp");
-      if (targetScreen === "profile") return "profile";
-      if (targetScreen === "liked") return "liked";
-      if (targetScreen === "popularActors") return "popularActors";
+  const getScreenFromUrl = () => {
+    if (typeof window === "undefined") return "swipe";
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const targetParam = params.get("screen") || params.get("startapp");
+
+    const validScreens = ["friends", "liked", "profile", "search", "top", "settings", "matchwatch", "popularactors", "mood", "swipe"];
+    
+    if (validScreens.includes(path)) {
+      return path === "popularactors" ? "popularActors" : path;
     }
-    return "matchwatch";
-  });
+    if (targetParam && validScreens.includes(targetParam.toLowerCase())) {
+      return targetParam.toLowerCase() === "popularactors" ? "popularActors" : targetParam.toLowerCase();
+    }
+    return "swipe";
+  };
+
+  const [screen, setScreenState] = useState(getScreenFromUrl);
+
+  const setScreen = (newScreen, replaceHistory = false) => {
+    setScreenState(newScreen);
+    if (typeof window !== "undefined") {
+      const targetPath = newScreen === "swipe" ? "/" : `/${newScreen}`;
+      if (replaceHistory) {
+        window.history.replaceState({ screen: newScreen }, "", targetPath);
+      } else if (window.location.pathname !== targetPath) {
+        window.history.pushState({ screen: newScreen }, "", targetPath);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = (e) => {
+      const urlScreen = getScreenFromUrl();
+      setScreenState(urlScreen);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
   const [matchWatchScreen, setMatchWatchScreen] = useState("start");
   const [user, setUser] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
