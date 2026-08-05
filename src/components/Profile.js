@@ -428,11 +428,16 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     try {
       const cachedAvatar = localStorage.getItem("mw_local_avatar");
       const cachedBio = localStorage.getItem("mw_local_bio");
-      if (cachedAvatar || cachedBio) {
+      const cachedName = localStorage.getItem("mw_local_name");
+      const cachedUsername = localStorage.getItem("mw_local_username");
+
+      if (cachedAvatar || cachedBio || cachedName || cachedUsername) {
         setProfileData(prev => ({
           ...(prev || {}),
           ...(cachedAvatar ? { avatar: cachedAvatar } : {}),
-          ...(cachedBio ? { bio: cachedBio } : {})
+          ...(cachedBio ? { bio: cachedBio } : {}),
+          ...(cachedName ? { name: cachedName } : {}),
+          ...(cachedUsername ? { username: cachedUsername, tag: `@${cachedUsername}` } : {})
         }));
       }
     } catch (e) {}
@@ -871,8 +876,15 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     );
   }
 
-  const displayNameVal = profileData?.name || (displayUser?.displayName && displayUser.displayName.includes('#') ? displayUser.displayName.split('#')[0] : (displayUser?.displayName ? displayUser.displayName.split(' ')[0] : "Киноман"));
-  const usernameVal = profileData?.username || (profileData?.tag && profileData.tag.startsWith('@') ? profileData.tag.substring(1) : null);
+  const cachedLocalName = typeof window !== "undefined" ? localStorage.getItem("mw_local_name") : null;
+  const cachedLocalUsername = typeof window !== "undefined" ? localStorage.getItem("mw_local_username") : null;
+
+  const displayNameVal = profileData?.name || cachedLocalName || (displayUser?.displayName && displayUser.displayName.includes(' (@') ? displayUser.displayName.split(' (@')[0] : (displayUser?.displayName && displayUser.displayName.includes('#') ? displayUser.displayName.split('#')[0] : (displayUser?.displayName ? displayUser.displayName : "Киноман")));
+  
+  const extractedUsernameFromAuth = displayUser?.displayName && displayUser.displayName.includes(' (@') ? displayUser.displayName.split(' (@')[1].replace(')', '').replace('@', '') : null;
+  
+  const usernameVal = profileData?.username || cachedLocalUsername || extractedUsernameFromAuth || (profileData?.tag && profileData.tag.startsWith('@') ? profileData.tag.substring(1) : null);
+  
   const isLegacyFormat = !usernameVal;
   const tagDisplay = usernameVal ? `@${usernameVal}` : (displayUser?.displayName && displayUser.displayName.includes('#') ? '#' + displayUser.displayName.split('#')[1] : "#0000");
 
