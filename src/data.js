@@ -25225,14 +25225,7 @@ export const movies = [
     "year": 2026,
     "rating": 5.4,
     "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5582128.jpg",
-    "stills": [
-      "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?w=600&auto=format&fit=crop&q=80"
-    ],
+    "stills": [],
     "description": "Уморительная комедия о группе друзей, решивших круто изменить свою жизнь с помощью безумной затеи.",
     "fullDescription": "Уморительная комедия о группе друзей, решивших круто изменить свою жизнь с помощью безумной затеи. Невероятные приключения, нелепые ситуации и искрометный юмор гарантированы.",
     "country": "Канада",

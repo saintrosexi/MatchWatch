@@ -91,3 +91,41 @@ export const fetchLivePosterFromApi = async (title, year) => {
   }
   return null;
 };
+
+/**
+ * Async live fetch: fetches 6-10 real movie stills from Kinopoisk API.
+ */
+export const fetchLiveStillsFromApi = async (kinopoiskId, title, year) => {
+  try {
+    let targetId = kinopoiskId;
+    if (!targetId) {
+      const query = `${title} ${year || ""}`.trim();
+      const searchRes = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeURIComponent(query)}`,
+        { headers: { "X-API-KEY": KP_API_KEY, accept: "application/json" } }
+      );
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        if (searchData?.films?.length > 0) {
+          targetId = searchData.films[0].filmId;
+        }
+      }
+    }
+
+    if (!targetId) return [];
+
+    const res = await fetch(
+      `https://kinopoiskapiunofficial.tech/api/v2.2/films/${targetId}/images?type=STILL&page=1`,
+      { headers: { "X-API-KEY": KP_API_KEY, accept: "application/json" } }
+    );
+
+    if (!res.ok) return [];
+    const data = await res.json();
+    if (data?.items?.length > 0) {
+      return data.items.slice(0, 10).map(item => item.imageUrl || item.previewUrl);
+    }
+  } catch (e) {
+    console.warn("Live stills fetch error:", e);
+  }
+  return [];
+};

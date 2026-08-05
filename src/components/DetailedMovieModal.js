@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "../styles/DetailedMovieModal.css";
-import { getPosterCandidates, fetchLivePosterFromApi } from "../posterResolver";
+import { getPosterCandidates, fetchLivePosterFromApi, fetchLiveStillsFromApi } from "../posterResolver";
 
 const formatReleaseDate = (dateStr) => {
   if (!dateStr) return "";
@@ -20,6 +20,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
   const [posterCandidates, setPosterCandidates] = useState([]);
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [currentPosterSrc, setCurrentPosterSrc] = useState("");
+  const [liveStills, setLiveStills] = useState([]);
 
   useEffect(() => {
     if (movie) {
@@ -27,6 +28,20 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
       setPosterCandidates(candidates);
       setCandidateIndex(0);
       setCurrentPosterSrc(candidates[0] || movie.poster || "");
+
+      // If movie has static stills array with Unsplash / AI placeholders or empty, fetch REAL stills from API
+      const hasRealStills = Array.isArray(movie.stills) && movie.stills.length > 0 && !movie.stills[0].includes("unsplash");
+      if (hasRealStills) {
+        setLiveStills(movie.stills);
+      } else {
+        fetchLiveStillsFromApi(movie.kinopoiskId, movie.titleRu || movie.title, movie.year).then(stills => {
+          if (stills && stills.length > 0) {
+            setLiveStills(stills);
+          } else {
+            setLiveStills([]);
+          }
+        });
+      }
     }
   }, [movie]);
 
@@ -154,7 +169,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
             </div>
 
             {/* Stills / Movie Shots Section Right Below Title */}
-            {Array.isArray(movie.stills) && movie.stills.length > 0 && (
+            {Array.isArray(liveStills) && liveStills.length > 0 && (
               <div className="detailed-modal-section" style={{ margin: "14px 0" }}>
                 <h3 className="section-title">📸 Кадры из фильма</h3>
                 <div 
@@ -167,7 +182,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                     scrollbarWidth: "thin"
                   }}
                 >
-                  {movie.stills.map((stillUrl, i) => (
+                  {liveStills.map((stillUrl, i) => (
                     <img
                       key={i}
                       src={stillUrl}
