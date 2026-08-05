@@ -119,8 +119,17 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
         </button>
       </div>
 
-      {/* Horizontal Scrollable/Wrapped Mood Chips Row */}
-      <div className="mood-chips-row" style={{ display: "flex", gap: "10px", overflowX: "auto", paddingBottom: "10px", marginBottom: "20px", scrollbarWidth: "none" }}>
+      {/* Responsive Full-Width Mood Chips Grid */}
+      <div 
+        className="mood-chips-row" 
+        style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(135px, 1fr))", 
+          gap: "8px", 
+          marginBottom: "20px",
+          width: "100%"
+        }}
+      >
         {SENSATIONAL_MOODS.map(mood => {
           const isActive = selectedMood === mood.id;
           return (
@@ -130,22 +139,23 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
-                padding: "10px 18px",
-                borderRadius: "30px",
-                whiteSpace: "nowrap",
+                justifyContent: "center",
+                gap: "6px",
+                padding: "10px 8px",
+                borderRadius: "24px",
                 cursor: "pointer",
                 background: isActive ? `linear-gradient(135deg, ${mood.badgeColor}40, rgba(255,255,255,0.12))` : "rgba(255,255,255,0.05)",
                 border: isActive ? `2px solid ${mood.badgeColor}` : "1px solid rgba(255,255,255,0.1)",
-                color: isActive ? "#fff" : "rgba(255,255,255,0.7)",
-                fontWeight: isActive ? "bold" : "normal",
+                color: isActive ? "#fff" : "rgba(255,255,255,0.8)",
+                fontSize: "0.85rem",
+                fontWeight: isActive ? "bold" : "500",
                 boxShadow: isActive ? `0 4px 18px ${mood.badgeColor}40` : "none",
                 transition: "all 0.2s ease",
-                flexShrink: 0
+                textAlign: "center"
               }}
             >
-              <span style={{ fontSize: "1.2rem" }}>{mood.emoji}</span>
-              <span>{mood.label}</span>
+              <span style={{ fontSize: "1.1rem" }}>{mood.emoji}</span>
+              <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{mood.label}</span>
             </button>
           );
         })}
