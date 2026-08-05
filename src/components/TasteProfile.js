@@ -162,8 +162,10 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
     // Top directors
     const directors = {};
     likedMovies.forEach(movie => {
-      if (movie.director && movie.director.trim() !== "") {
-        directors[movie.director] = (directors[movie.director] || 0) + 1;
+      if (movie.director && movie.director.trim() !== "" && movie.director !== "N/A" && movie.director !== "—") {
+        movie.director.split(", ").forEach(d => {
+          directors[d] = (directors[d] || 0) + 1;
+        });
       }
     });
 
@@ -172,12 +174,28 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
       .slice(0, 3)
       .map(([director, count]) => ({ director, count }));
 
+    // Top actors
+    const actorsMap = {};
+    likedMovies.forEach(movie => {
+      if (movie.actors && movie.actors.trim() !== "" && movie.actors !== "N/A" && movie.actors !== "—") {
+        movie.actors.split(", ").forEach(a => {
+          actorsMap[a] = (actorsMap[a] || 0) + 1;
+        });
+      }
+    });
+
+    const topActors = Object.entries(actorsMap)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([actor, count]) => ({ actor, count }));
+
     return {
       totalMovies,
       avgRating: avgRating.toFixed(1),
       topDecades,
       topYears,
       topDirectors,
+      topActors,
       compatibility: Math.round(Math.min(100, 30 + totalMovies * 3))
     };
   }, [likedMovies]);
@@ -217,67 +235,64 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
         </div>
       </div>
 
-      {/* Top Decades */}
-      {profile.topDecades.length > 0 && (
-        <div className="profile-section">
-          <h3 className="section-title">📅 Любимые десятилетия</h3>
-          <div className="timeline">
-            {profile.topDecades.map((decade, index) => (
-              <div key={index} className="timeline-item">
-                <div className="timeline-label">{decade.decade}</div>
-                <div className="timeline-bar-container">
-                  <div
-                    className="timeline-bar"
-                    style={{
-                      width: `${decade.percentage}%`,
-                      background: `linear-gradient(90deg, #ff6b6b, #ff8a50)`
-                    }}
-                  />
+      {/* Top Directors & Top Actors Compact Block */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", margin: "16px 0" }}>
+        {/* Top Directors */}
+        <div style={{ background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <h4 style={{ margin: "0 0 8px 0", fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", display: "flex", alignItems: "center", gap: "5px" }}>
+            👨‍🎬 Режиссёры
+          </h4>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {profile.topDirectors.length > 0 ? (
+              profile.topDirectors.map((d, i) => (
+                <div key={i} style={{ fontSize: "0.8rem", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "80%" }}>
+                    #{i + 1} {d.director}
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "#ff8a50", background: "rgba(255,138,80,0.15)", padding: "1px 6px", borderRadius: "6px" }}>
+                    {d.count}
+                  </span>
                 </div>
-                <div className="timeline-count">
-                  {decade.count} ({decade.percentage}%)
+              ))
+            ) : (
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>—</span>
+            )}
+          </div>
+        </div>
+
+        {/* Top Actors */}
+        <div style={{ background: "rgba(255,255,255,0.02)", padding: "12px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <h4 style={{ margin: "0 0 8px 0", fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", display: "flex", alignItems: "center", gap: "5px" }}>
+            🎭 Актёры
+          </h4>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {profile.topActors && profile.topActors.length > 0 ? (
+              profile.topActors.map((a, i) => (
+                <div 
+                  key={i} 
+                  style={{ fontSize: "0.8rem", color: "#ff8a50", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                  onClick={() => window.dispatchEvent(new CustomEvent("show-actor-details", { detail: a.actor }))}
+                  title="Нажмите, чтобы открыть профиль актера"
+                >
+                  <span style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "80%", textDecoration: "underline dashed rgba(255,138,80,0.4)" }}>
+                    #{i + 1} {a.actor}
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "#ff8a50", background: "rgba(255,138,80,0.15)", padding: "1px 6px", borderRadius: "6px" }}>
+                    {a.count}
+                  </span>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>—</span>
+            )}
           </div>
         </div>
-      )}
-
-      {/* Top Years */}
-      {profile.topYears.length > 0 && (
-        <div className="profile-section">
-          <h3 className="section-title">🎬 Топ годов</h3>
-          <div className="years-list">
-            {profile.topYears.map((year, index) => (
-              <div key={index} className="year-item">
-                <span className="year-number">{year.year}</span>
-                <span className="year-count">({year.count} фильм)</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Top Directors */}
-      {profile.topDirectors.length > 0 && (
-        <div className="profile-section">
-          <h3 className="section-title">👨‍🎬 Любимые режиссёры</h3>
-          <div className="directors-list">
-            {profile.topDirectors.map((dir, index) => (
-              <div key={index} className="director-item">
-                <span className="director-rank">#{index + 1}</span>
-                <span className="director-name">{dir.director}</span>
-                <span className="director-count">{dir.count}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
 
       {/* Simple Taste Inference Output */}
-      <div className="profile-insights" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
-        <p style={{ margin: "0 0 6px 0", fontWeight: "600", fontSize: "0.95rem" }}>💡 <strong>Простой вывод:</strong></p>
-        <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
+      <div className="profile-insights" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", marginTop: "12px" }}>
+        <p style={{ margin: "0 0 8px 0", fontWeight: "600", fontSize: "0.95rem", color: "#fff" }}>💡 <strong>Простой вывод:</strong></p>
+        <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.85)", lineHeight: "1.6" }}>
           {generateSimpleTasteInference({ likedMovies, favorites })}
         </p>
       </div>
