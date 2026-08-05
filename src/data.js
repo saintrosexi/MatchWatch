@@ -13699,10 +13699,8 @@ export const movies = [
     "titleRu": "Письма",
     "year": 2008,
     "rating": 7,
-    "poster": "https://m.media-amazon.com/images/M/MV5BMjA0NzEwNTk5MV5BMl5BanBnXkFtZTcwMjM3MTUzMw@@._V1_SX500.jpg",
-    "stills": [
-      "https://kinopoiskapiunofficial.tech/images/posters/kp/461533.jpg"
-    ],
+    "poster": "",
+    "stills": [],
     "description": "Короткометражная комедия о забавных перипетиях переписки двух влюбленных.",
     "fullDescription": "Короткометражная комедия о забавных перипетиях переписки двух влюбленных.",
     "country": "США",
@@ -25226,11 +25224,8 @@ export const movies = [
     "titleRu": "Шары вверх",
     "year": 1997,
     "rating": 5.4,
-    "poster": "https://images.kinopoisk.ru/images/film_big/330197.jpg",
-    "stills": [
-      "https://kinopoiskapiunofficial.tech/images/posters/kp/330197.jpg",
-      "https://m.media-amazon.com/images/M/MV5BMDQ1ZDA1ZGYtMmE4Zi00YTJkLWFiYzYtODMyMTkyMzQ2OWJjXkEyXkFqcGdeQXVyMjAxMjEzNzU@._V1_SX500.jpg"
-    ],
+    "poster": "",
+    "stills": [],
     "description": "Уморительная комедия о группе друзей, решивших круто изменить свою жизнь с помощью безумной затеи.",
     "fullDescription": "Уморительная комедия о группе друзей, решивших круто изменить свою жизнь с помощью безумной затеи. Невероятные приключения, нелепые ситуации и искрометный юмор гарантированы.",
     "country": "Канада",

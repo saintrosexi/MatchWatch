@@ -10,28 +10,29 @@ const KP_API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 export const getBestPosterUrl = (movie) => {
   if (!movie) return "";
 
-  // 1. Check direct poster URL
-  if (movie.poster && typeof movie.poster === "string" && movie.poster.trim() !== "" && !movie.poster.includes("N/A") && !movie.poster.includes("w500null")) {
+  // 1. Check direct poster URL if valid and not a missing placeholder
+  if (
+    movie.poster && 
+    typeof movie.poster === "string" && 
+    movie.poster.trim() !== "" && 
+    !movie.poster.includes("N/A") && 
+    !movie.poster.includes("w500null") &&
+    !movie.poster.includes("no-poster")
+  ) {
     return movie.poster.trim();
   }
 
   // 2. Check stills array
-  if (Array.isArray(movie.stills) && movie.stills.length > 0 && movie.stills[0]) {
+  if (Array.isArray(movie.stills) && movie.stills.length > 0 && movie.stills[0] && !movie.stills[0].includes("no-poster")) {
     return movie.stills[0];
   }
 
-  // 3. Kinopoisk ID poster source
-  if (movie.kinopoiskId) {
-    return `https://kinopoiskapiunofficial.tech/images/posters/kp/${movie.kinopoiskId}.jpg`;
-  }
+  // 3. Generate visual poster SVG with Title AT THE TOP
+  const title = movie.titleRu || movie.title || "MatchWatch";
+  const year = movie.year ? `(${movie.year})` : "";
+  const escapeXml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
-  if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
-    return movie.posterPreview.trim();
-  }
-
-  // 4. Generate visual backdrop with title at the top
-  const title = encodeURIComponent(movie.titleRu || movie.title || "MatchWatch");
-  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%231f1c2c"/><stop offset="100%" stop-color="%23928dab"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23bg)"/><rect x="12" y="12" width="276" height="426" rx="14" fill="none" stroke="%23ff8a50" stroke-width="2" opacity="0.4"/><text x="50%" y="80" fill="%23ffffff" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">${title}</text><text x="50%" y="220" fill="%23ffffff" font-family="sans-serif" font-size="48" opacity="0.3" text-anchor="middle">🎬</text><text x="50%" y="380" fill="%23ff8a50" font-family="sans-serif" font-size="14" font-weight="600" letter-spacing="2" text-anchor="middle">MATCHWATCH</text></svg>`;
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%231a1a26"/><stop offset="100%" stop-color="%232d2b42"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23bg)"/><rect x="12" y="12" width="276" height="426" rx="16" fill="none" stroke="%23ff8a50" stroke-width="2" opacity="0.35"/><text x="50%" y="65" fill="%23ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">${escapeXml(title)}</text><text x="50%" y="95" fill="%23ff8a50" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle">${escapeXml(year)}</text><text x="50%" y="240" fill="%23ffffff" font-family="sans-serif" font-size="54" opacity="0.2" text-anchor="middle">🎬</text><rect x="40" y="370" width="220" height="36" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/><text x="50%" y="393" fill="%23ff8a50" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="2" text-anchor="middle">MATCHWATCH</text></svg>`;
 };
 
 /**
