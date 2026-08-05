@@ -418,45 +418,101 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     }
   };
 
+  useEffect(() => {
+    // Initial sync from localStorage for guest / instant load
+    try {
+      const cachedAvatar = localStorage.getItem("mw_local_avatar");
+      const cachedBio = localStorage.getItem("mw_local_bio");
+      if (cachedAvatar || cachedBio) {
+        setProfileData(prev => ({
+          ...(prev || {}),
+          ...(cachedAvatar ? { avatar: cachedAvatar } : {}),
+          ...(cachedBio ? { bio: cachedBio } : {})
+        }));
+      }
+    } catch (e) {}
+  }, []);
+
+  // Helper for Client-Side Canvas Image Compression (256x256 WebP/JPEG)
+  const compressImageFile = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const size = 256;
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext("2d");
+          
+          let sx = 0, sy = 0, sWidth = img.width, sHeight = img.height;
+          if (img.width > img.height) {
+            sWidth = img.height;
+            sx = (img.width - img.height) / 2;
+          } else {
+            sHeight = img.width;
+            sy = (img.height - img.width) / 2;
+          }
+          
+          ctx.drawImage(img, sx, sy, sWidth, sHeight, 0, 0, size, size);
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.85);
+          resolve(compressedDataUrl);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Instant Firebase / Local Persistence for Avatar
   const handleSelectAvatar = async (avatarVal) => {
-    const activeUser = user || propUser;
-    if (!activeUser) return;
     try {
-      if (database && activeUser.uid) {
+      localStorage.setItem("mw_local_avatar", avatarVal);
+    } catch (e) {}
+
+    setProfileData(prev => ({ ...(prev || {}), avatar: avatarVal }));
+    setIsAvatarModalOpen(false);
+    setAvatarUrlInput("");
+
+    const activeUser = user || propUser;
+    if (activeUser && database && activeUser.uid) {
+      try {
         await set(ref(database, `users/${activeUser.uid}/profile/avatar`), avatarVal);
+      } catch (err) {
+        console.error("Error persisting avatar to Firebase:", err);
       }
-      setProfileData(prev => ({ ...(prev || {}), avatar: avatarVal }));
-      setIsAvatarModalOpen(false);
-      setAvatarUrlInput("");
-    } catch (err) {
-      console.error("Error saving avatar:", err);
-      setProfileData(prev => ({ ...(prev || {}), avatar: avatarVal }));
-      setIsAvatarModalOpen(false);
     }
   };
 
   // Instant Firebase / Local Persistence for Bio
   const handleSaveBio = async () => {
-    const activeUser = user || propUser;
-    if (!activeUser) return;
     setBioSaving(true);
+    const cleanBio = bioInput.trim();
+
     try {
-      const cleanBio = bioInput.trim();
-      if (database && activeUser.uid) {
+      localStorage.setItem("mw_local_bio", cleanBio);
+    } catch (e) {}
+
+    setProfileData(prev => ({ ...(prev || {}), bio: cleanBio }));
+    setBioSuccess(true);
+
+    const activeUser = user || propUser;
+    if (activeUser && database && activeUser.uid) {
+      try {
         await set(ref(database, `users/${activeUser.uid}/profile/bio`), cleanBio);
+      } catch (err) {
+        console.error("Error persisting bio to Firebase:", err);
       }
-      setProfileData(prev => ({ ...(prev || {}), bio: cleanBio }));
-      setBioSuccess(true);
-      setTimeout(() => {
-        setBioSuccess(false);
-        setIsEditingBio(false);
-      }, 800);
-    } catch (err) {
-      console.error("Error saving bio:", err);
-    } finally {
-      setBioSaving(false);
     }
+
+    setTimeout(() => {
+      setBioSuccess(false);
+      setIsEditingBio(false);
+      setBioSaving(false);
+    }, 600);
   };
 
   const toggleLike = (movie) => {
@@ -1207,19 +1263,20 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
                       type="file"
                       accept="image/*"
                       style={{ display: "none" }}
-                      onChange={(e) => {
+                      onChange={async (e) => {
                         const file = e.target.files && e.target.files[0];
                         if (file) {
-                          if (file.size > 5 * 1024 * 1024) {
-                            alert("Файл слишком большой. Пожалуйста, выберите фото до 5 МБ.");
-                            return;
+                          try {
+                            const compressedData = await compressImageFile(file);
+                            handleSelectAvatar(compressedData);
+                          } catch (err) {
+                            console.error("Compression error:", err);
+                            const reader = new FileReader();
+                            reader.onload = (uploadEvent) => {
+                              handleSelectAvatar(uploadEvent.target.result);
+                            };
+                            reader.readAsDataURL(file);
                           }
-                          const reader = new FileReader();
-                          reader.onload = (uploadEvent) => {
-                            const base64Data = uploadEvent.target.result;
-                            handleSelectAvatar(base64Data);
-                          };
-                          reader.readAsDataURL(file);
                         }
                       }}
                     />
