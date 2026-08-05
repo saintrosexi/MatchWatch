@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { getPublicProfile, sendFriendRequest, removeFriend, inviteToMatchWatch, createMatchRoom, auth, database } from "../firebase";
+import { getPublicProfileByUsername, sendFriendRequest, removeFriend, inviteToMatchWatch, createMatchRoom, auth, database } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { movies } from "../data";
@@ -85,7 +85,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const data = await getPublicProfile(tag);
+        const data = await getPublicProfileByUsername(tag);
         if (!data) {
           setError("Профиль не найден");
         } else {

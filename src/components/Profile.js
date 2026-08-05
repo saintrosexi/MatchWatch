@@ -332,11 +332,8 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
   const [showAllFavorites, setShowAllFavorites] = useState(false);
 
   const startEditingProfile = () => {
-    if (user && user.displayName) {
-      const parts = user.displayName.split('#');
-      setEditName(parts[0]);
-      setEditTag(parts[1] || "");
-    }
+    setEditName(profileData?.name || (user?.displayName ? user.displayName.split(' ')[0] : "Киноман"));
+    setEditTag(profileData?.username || (user?.displayName && user.displayName.includes('@') ? user.displayName.split('@')[1].replace(')', '') : ""));
     setIsEditingProfile(true);
     setEditError("");
     setEditSuccess("");
@@ -347,9 +344,17 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     setEditError("");
     setEditSuccess("");
     try {
-      await updateUserTag(user, editName, editTag || null);
-      setEditSuccess("Профиль успешно обновлен!");
-      setTimeout(() => setIsEditingProfile(false), 2000);
+      const { updateUsernameAndName } = await import("../firebase");
+      const activeUser = user || propUser;
+      const res = await updateUsernameAndName(activeUser, editName, editTag);
+      setProfileData(prev => ({
+        ...(prev || {}),
+        name: res.name,
+        username: res.username,
+        tag: `@${res.username}`
+      }));
+      setEditSuccess("Профиль и username обновлены!");
+      setTimeout(() => setIsEditingProfile(false), 1200);
     } catch (err) {
       setEditError(err.message);
     }
@@ -811,9 +816,9 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
   };
 
   const handleShareProfile = () => {
-    const activeUserTag = displayUser?.displayName || (profileData?.name && profileData?.tag ? `${profileData.name}#${profileData.tag}` : "Киноман#0000");
-    const link = `${window.location.origin}/user/${encodeURIComponent(activeUserTag)}`;
-    const text = `Я ищу с кем посмотреть кино! 🍿 Добавляй меня в друзья в MatchWatch по тегу ${activeUserTag}: ${link}`;
+    const activeUsername = profileData?.username || (profileData?.tag && profileData.tag.startsWith('@') ? profileData.tag.substring(1) : (displayUser?.displayName ? displayUser.displayName.replace(/[^a-zA-Z0-9_]/g, '') : "guest"));
+    const link = `${window.location.origin}/user/${encodeURIComponent(activeUsername)}`;
+    const text = `Я ищу с кем посмотреть кино! 🍿 Мой профиль в MatchWatch: ${link}`;
     navigator.clipboard.writeText(text);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
@@ -866,14 +871,27 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     );
   }
 
-  const rawName = displayUser?.displayName || "Киноман#0000";
-  const hasHashTag = rawName.includes('#');
-  const namePart = hasHashTag ? rawName.split('#')[0] : rawName;
-  const tagPart = hasHashTag ? ('#' + rawName.split('#')[1]) : '#0000';
+  const displayNameVal = profileData?.name || (displayUser?.displayName && displayUser.displayName.includes('#') ? displayUser.displayName.split('#')[0] : (displayUser?.displayName ? displayUser.displayName.split(' ')[0] : "Киноман"));
+  const usernameVal = profileData?.username || (profileData?.tag && profileData.tag.startsWith('@') ? profileData.tag.substring(1) : null);
+  const isLegacyFormat = !usernameVal;
+  const tagDisplay = usernameVal ? `@${usernameVal}` : (displayUser?.displayName && displayUser.displayName.includes('#') ? '#' + displayUser.displayName.split('#')[1] : "#0000");
 
     return (
       <div className="profile-dashboard relative overflow-hidden">
         <ChamaBackgroundArt type="SUNGLASSES" opacity={0.06} />
+        
+        {/* Legacy Format Migration Alert Banner */}
+        {isLegacyFormat && (
+          <div className="legacy-migration-alert" style={{ background: "rgba(255, 138, 80, 0.15)", border: "1px solid #ff8a50", borderRadius: "14px", padding: "14px 18px", margin: "0 0 20px 0", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+            <div style={{ fontSize: "0.88rem", color: "#fff", lineHeight: "1.4" }}>
+              ⚠️ <strong>Обновление профиля:</strong> У вас уставший формат тега ({tagDisplay}). Создайте уникальное имя пользователя на английском (@username) для вашей персональной ссылки!
+            </div>
+            <button className="btn-glass-primary btn-sm" onClick={startEditingProfile} style={{ whiteSpace: "nowrap" }}>
+              Создать @username
+            </button>
+          </div>
+        )}
+
         <motion.div className="profile-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           
           {/* LEFT COLUMN: Hero Card, 5D Radar & AI Taste Generator */}
@@ -900,35 +918,45 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
               </div>
 
               <h2 className="profile-display-name">
-                <span className="profile-name-bold">{namePart}</span>
-                <span className="profile-tag-dim">{tagPart}</span>
-                <button className="btn-icon-edit" onClick={startEditingProfile} title="Редактировать имя и тег">✏️</button>
+                <span className="profile-name-bold">{displayNameVal}</span>
+                <span className="profile-tag-dim" style={{ marginLeft: "6px" }}>{tagDisplay}</span>
+                <button className="btn-icon-edit" onClick={startEditingProfile} title="Редактировать имя и username">✏️</button>
               </h2>
 
-              {/* Editable Name & Tag Inline Modal / Section */}
+              {/* Editable Name & Username Inline Form */}
               {isEditingProfile && (
                 <form onSubmit={handleEditProfile} className="profile-edit-inline-form" style={{ width: "100%", margin: "12px 0" }}>
                   {editError && <div className="auth-error" style={{ fontSize: "0.85rem", marginBottom: "8px" }}>{editError}</div>}
                   {editSuccess && <div className="auth-success" style={{ color: "#32d74b", fontSize: "0.85rem", marginBottom: "8px", textAlign: "center" }}>{editSuccess}</div>}
-                  <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
-                    <input
-                      type="text"
-                      className="form-input-glass"
-                      placeholder="Имя"
-                      value={editName}
-                      onChange={e => setEditName(e.target.value)}
-                      required
-                      style={{ flex: 1 }}
-                    />
-                    <input
-                      type="text"
-                      className="form-input-glass"
-                      placeholder="Тег (4 цифры)"
-                      value={editTag}
-                      onChange={e => setEditTag(e.target.value)}
-                      maxLength={4}
-                      style={{ width: "110px" }}
-                    />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "10px" }}>
+                    <div>
+                      <label style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "3px", display: "block" }}>Отображаемое имя (любые символы):</label>
+                      <input
+                        type="text"
+                        className="form-input-glass"
+                        placeholder="Например: Саша"
+                        value={editName}
+                        onChange={e => setEditName(e.target.value)}
+                        required
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", marginBottom: "3px", display: "block" }}>Username на английском (a-z, 0-9, _):</label>
+                      <div style={{ position: "relative" }}>
+                        <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#ff8a50", fontWeight: "bold" }}>@</span>
+                        <input
+                          type="text"
+                          className="form-input-glass"
+                          placeholder="saintrose"
+                          value={editTag}
+                          onChange={e => setEditTag(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
+                          maxLength={20}
+                          required
+                          style={{ width: "100%", paddingLeft: "28px" }}
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
                     <button type="button" className="btn-glass-secondary btn-sm" onClick={() => setIsEditingProfile(false)}>Отмена</button>

@@ -164,68 +164,76 @@ export const listenToTelegramAuthToken = (code, onSuccess) => {
   };
 };
 
-// ─── User Tags ────────────────────────────────────────────────────
-export const generateUniqueTag = async (baseName, customCode = null) => {
-  if (!database) throw new Error("Database not initialized");
-  const cleanName = baseName.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').substring(0, 15);
-  if (!cleanName) throw new Error("Имя должно содержать буквы или цифры");
-
-  if (customCode) {
-    const cleanCode = customCode.replace(/[^0-9]/g, '').substring(0, 4);
-    if (cleanCode.length !== 4) throw new Error("Код должен состоять из 4 цифр");
-    const tag = `${cleanName}#${cleanCode}`;
-    const snap = await get(ref(database, `userTags/${getTagKey(tag)}`));
-    if (snap.exists()) throw new Error("Этот тег уже занят. Попробуйте другой код.");
-    return tag;
-  }
-
-  let tag = "";
-  let isUnique = false;
-  let attempts = 0;
-
-  while (!isUnique && attempts < 10) {
-    const code = Math.floor(1000 + Math.random() * 9000);
-    tag = `${cleanName}#${code}`;
-    const snap = await get(ref(database, `userTags/${getTagKey(tag)}`));
-    if (!snap.exists()) isUnique = true;
-    attempts++;
-  }
-
-  if (!isUnique) throw new Error("Не удалось сгенерировать уникальный тег.");
-  return tag;
+// ─── Username & User Tags ──────────────────────────────────────────
+export const sanitizeUsername = (raw) => {
+  return (raw || '').toLowerCase().replace(/[^a-z0-9_]/g, '').substring(0, 20);
 };
 
-export const registerWithTag = async (email, password, baseName, customCode = null) => {
-  const tag = await generateUniqueTag(baseName, customCode);
-  const userCred = await createUserWithEmailAndPassword(auth, email, password);
-  const user = userCred.user;
+export const checkUsernameAvailability = async (username) => {
+  if (!database) return false;
+  const clean = sanitizeUsername(username);
+  if (clean.length < 3) throw new Error("Username должен содержать от 3 символов (a-z, 0-9, _)");
+  const snap = await get(ref(database, `usernames/${clean}`));
+  return !snap.exists();
+};
 
-  await updateProfile(user, { displayName: tag });
-  await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
-  await set(ref(database, `users/${user.uid}/profile`), {
-    tag,
-    email,
-    avatar: '😎',
-    createdAt: Date.now()
+export const updateUsernameAndName = async (user, displayName, rawUsername) => {
+  if (!database || !user) throw new Error("Пользователь не авторизован");
+  const cleanUsername = sanitizeUsername(rawUsername);
+  if (cleanUsername.length < 3) throw new Error("Имя пользователя (username) должно содержать минимум 3 символа на английском (a-z0-9_)");
+  
+  const cleanDisplayName = (displayName || "").trim();
+  if (!cleanDisplayName) throw new Error("Укажите ваше имя");
+
+  const oldUsernameSnap = await get(ref(database, `users/${user.uid}/profile/username`));
+  const oldUsername = oldUsernameSnap.exists() ? oldUsernameSnap.val() : null;
+
+  if (oldUsername !== cleanUsername) {
+    const isAvailable = await checkUsernameAvailability(cleanUsername);
+    if (!isAvailable) throw new Error(`Имя пользователя @${cleanUsername} уже занято. Выберите другое.`);
+
+    // Reserve new username
+    await set(ref(database, `usernames/${cleanUsername}`), user.uid);
+    // Also index for userTags compatibility
+    await set(ref(database, `userTags/${cleanUsername}`), user.uid);
+
+    // Free old username if existed
+    if (oldUsername) {
+      await remove(ref(database, `usernames/${oldUsername}`));
+      await remove(ref(database, `userTags/${oldUsername}`));
+    }
+  }
+
+  // Update Firebase Auth & Realtime Database Profile
+  await updateProfile(user, { displayName: `${cleanDisplayName} (@${cleanUsername})` });
+  await update(ref(database, `users/${user.uid}/profile`), {
+    name: cleanDisplayName,
+    username: cleanUsername,
+    tag: `@${cleanUsername}`
   });
 
-  return userCred;
+  return { name: cleanDisplayName, username: cleanUsername };
 };
 
-export const migrateLegacyUser = async (user, baseName, customCode = null) => {
-  const tag = await generateUniqueTag(baseName, customCode);
-  await updateProfile(user, { displayName: tag });
-  await set(ref(database, `userTags/${getTagKey(tag)}`), user.uid);
-  await update(ref(database, `users/${user.uid}/profile`), { tag });
-  return tag;
-};
+export const getPublicProfileByUsername = async (identifier) => {
+  if (!database || !identifier) return null;
+  const cleanId = sanitizeUsername(identifier.replace('@', ''));
+  
+  let targetUid = null;
+  
+  // 1. Try usernames lookup
+  const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+  if (usernameSnap.exists()) {
+    targetUid = usernameSnap.val();
+  } else {
+    // 2. Fallback to legacy tag lookup
+    const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
+    if (tagSnap.exists()) {
+      targetUid = tagSnap.val();
+    }
+  }
 
-// ─── Public Profile ───────────────────────────────────────────────
-export const getPublicProfile = async (tag) => {
-  const targetRef = ref(database, `userTags/${getTagKey(tag)}`);
-  const snap = await get(targetRef);
-  if (!snap.exists()) return null;
-  const targetUid = snap.val();
+  if (!targetUid) return null;
 
   const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
   const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
@@ -236,28 +244,25 @@ export const getPublicProfile = async (tag) => {
     appData: appDataSnap.val() || {}
   };
 };
+export const registerWithTag = async (email, password, baseName, customUsername = null) => {
+  const cleanUsername = sanitizeUsername(customUsername || baseName);
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+  const user = userCred.user;
 
-export const updateUserTag = async (user, newName, newCustomCode = null) => {
-  const oldTag = user.displayName;
-  const newTag = await generateUniqueTag(newName, newCustomCode);
+  await updateUsernameAndName(user, baseName, cleanUsername);
+  return userCred;
+};
 
-  await set(ref(database, `userTags/${getTagKey(newTag)}`), user.uid);
-  await updateProfile(user, { displayName: newTag });
-  await update(ref(database, `users/${user.uid}/profile`), { tag: newTag });
+export const generateUniqueTag = async (baseName) => {
+  return `@${sanitizeUsername(baseName)}`;
+};
 
-  // Update friend lists
-  const friendsSnap = await get(ref(database, `users/${user.uid}/friends`));
-  if (friendsSnap.exists()) {
-    const updates = {};
-    Object.keys(friendsSnap.val()).forEach(friendUid => {
-      updates[`users/${friendUid}/friends/${user.uid}`] = newTag;
-    });
-    await update(ref(database), updates);
-  }
+export const migrateLegacyUser = async (user, baseName, username) => {
+  return await updateUsernameAndName(user, baseName, username);
+};
 
-  // Remove old tag
-  await remove(ref(database, `userTags/${getTagKey(oldTag)}`));
-  return newTag;
+export const updateUserTag = async (user, baseName, username) => {
+  return await updateUsernameAndName(user, baseName, username);
 };
 
 // ─── Friends ──────────────────────────────────────────────────────

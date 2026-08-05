@@ -249,11 +249,11 @@ export default function App() {
     const addTag = urlParams.get('add');
     const path = window.location.pathname;
     
-    // Support clean routes like /user/Саша#2222 or /profile/Саша#2222
-    const userMatch = path.match(/^\/(?:user|profile)\/(.+)$/i);
+    // Support clean routes like /user/saintrose or /profile/saintrose or /user/Саша#2222
+    const userMatch = path.match(/^\/(?:user|profile)\/([^/]+)$/i);
     const targetTag = addTag || (userMatch ? decodeURIComponent(userMatch[1]) : null);
 
-    if (targetTag && targetTag.includes("#")) {
+    if (targetTag && targetTag.toLowerCase() !== "profile" && targetTag.toLowerCase() !== "edit") {
       setPublicProfileTag(targetTag);
       setScreen("publicProfile");
     }
