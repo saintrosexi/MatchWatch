@@ -4,12 +4,14 @@ import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function TopMovies({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [activeCategory, setActiveCategory] = useState("movie");
+  const [visibleCount, setVisibleCount] = useState(25);
 
   // Sort movies by rating and filter by category
   const topMovies = [...movies]
     .filter(m => (m.type || "movie") === activeCategory)
     .sort((a, b) => b.rating - a.rating);
+
+  const displayedMovies = topMovies.slice(0, visibleCount);
 
   const getTitle = () => {
     switch(activeCategory) {
@@ -26,26 +28,26 @@ export default function TopMovies({ decisions, onToggleLike, favorites, onToggle
       <div className="category-picker">
         <button 
           className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
-          onClick={() => setActiveCategory('movie')}
+          onClick={() => { setActiveCategory('movie'); setVisibleCount(25); }}
         >
           Фильмы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
-          onClick={() => setActiveCategory('series')}
+          onClick={() => { setActiveCategory('series'); setVisibleCount(25); }}
         >
           Сериалы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
-          onClick={() => setActiveCategory('anime')}
+          onClick={() => { setActiveCategory('anime'); setVisibleCount(25); }}
         >
           Аниме
         </button>
       </div>
 
       <div className="top-movies-grid">
-        {topMovies.map((movie, index) => (
+        {displayedMovies.map((movie, index) => (
           <div
             key={movie.id}
             className="top-movie-card"
@@ -73,6 +75,27 @@ export default function TopMovies({ decisions, onToggleLike, favorites, onToggle
           </div>
         ))}
       </div>
+
+      {visibleCount < topMovies.length && (
+        <div style={{ textAlign: "center", margin: "25px 0 10px 0" }}>
+          <button 
+            className="btn btn-primary"
+            onClick={() => setVisibleCount(prev => prev + 25)}
+            style={{
+              padding: "12px 28px",
+              borderRadius: "24px",
+              fontWeight: "bold",
+              fontSize: "0.95rem",
+              background: "linear-gradient(135deg, #ff8a50 0%, #ff5e62 100%)",
+              boxShadow: "0 4px 15px rgba(255, 138, 80, 0.3)",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            Показать ещё ({topMovies.length - visibleCount} осталось)
+          </button>
+        </div>
+      )}
 
       {selectedMovie && (
         <DetailedMovieModal

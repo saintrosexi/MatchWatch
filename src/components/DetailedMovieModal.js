@@ -17,10 +17,21 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
   const [hoverRating, setHoverRating] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
 
-  const [posterCandidates, setPosterCandidates] = useState([]);
-  const [candidateIndex, setCandidateIndex] = useState(0);
-  const [currentPosterSrc, setCurrentPosterSrc] = useState("");
-  const [liveStills, setLiveStills] = useState([]);
+  const [activeStillIndex, setActiveStillIndex] = useState(null);
+
+  const handlePrevStill = (e) => {
+    e.stopPropagation();
+    if (activeStillIndex !== null && liveStills.length > 0) {
+      setActiveStillIndex((activeStillIndex - 1 + liveStills.length) % liveStills.length);
+    }
+  };
+
+  const handleNextStill = (e) => {
+    e.stopPropagation();
+    if (activeStillIndex !== null && liveStills.length > 0) {
+      setActiveStillIndex((activeStillIndex + 1) % liveStills.length);
+    }
+  };
 
   useEffect(() => {
     if (movie) {
@@ -175,7 +186,7 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                 <div 
                   style={{ 
                     display: "flex", 
-                    gap: "10px", 
+                    gap: "8px", 
                     overflowX: "auto", 
                     paddingBottom: "8px", 
                     marginTop: "8px",
@@ -187,16 +198,17 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                       key={i}
                       src={stillUrl}
                       alt={`Кадр ${i + 1}`}
+                      onClick={() => setActiveStillIndex(i)}
                       style={{
-                        height: "120px",
-                        width: "180px",
-                        borderRadius: "12px",
+                        height: "70px",
+                        width: "110px",
+                        borderRadius: "8px",
                         objectFit: "cover",
                         border: "1px solid rgba(255,255,255,0.12)",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+                        boxShadow: "0 3px 8px rgba(0,0,0,0.35)",
                         flexShrink: 0,
                         cursor: "pointer",
-                        transition: "transform 0.2s ease"
+                        transition: "all 0.2s ease"
                       }}
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
@@ -404,6 +416,182 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
           </div>
         </div>
       </motion.div>
+
+      {/* macOS-style QuickLook Still Preview Window Modal */}
+      {activeStillIndex !== null && liveStills[activeStillIndex] && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 10000,
+            background: "rgba(0, 0, 0, 0.75)",
+            backdropFilter: "blur(16px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px"
+          }}
+          onClick={() => setActiveStillIndex(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            style={{
+              position: "relative",
+              maxWidth: "85vw",
+              maxHeight: "82vh",
+              background: "#16151f",
+              borderRadius: "18px",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* macOS Window Title bar / Header */}
+            <div
+              style={{
+                width: "100%",
+                padding: "12px 18px",
+                background: "rgba(255,255,255,0.03)",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between"
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <button
+                  onClick={() => setActiveStillIndex(null)}
+                  style={{
+                    width: "14px",
+                    height: "14px",
+                    borderRadius: "50%",
+                    background: "#ff5f56",
+                    border: "none",
+                    cursor: "pointer",
+                    boxShadow: "0 0 4px rgba(255,95,86,0.5)"
+                  }}
+                  title="Закрыть (Esc)"
+                />
+                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#ffbd2e", opacity: 0.8 }} />
+                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#27c93f", opacity: 0.8 }} />
+              </div>
+
+              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>
+                Кадр {activeStillIndex + 1} из {liveStills.length}
+              </span>
+
+              <button
+                onClick={() => setActiveStillIndex(null)}
+                style={{
+                  background: "rgba(255,255,255,0.1)",
+                  border: "none",
+                  color: "#fff",
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "50%",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight: 1
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Still Image & Navigation Arrows Container */}
+            <div
+              style={{
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "16px",
+                maxWidth: "100%",
+                maxHeight: "calc(82vh - 50px)",
+                overflow: "hidden"
+              }}
+            >
+              {liveStills.length > 1 && (
+                <button
+                  onClick={handlePrevStill}
+                  style={{
+                    position: "absolute",
+                    left: "24px",
+                    zIndex: 2,
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    background: "rgba(0,0,0,0.6)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    fontSize: "1.4rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backdropFilter: "blur(8px)",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+                  }}
+                >
+                  ‹
+                </button>
+              )}
+
+              <img
+                src={liveStills[activeStillIndex]}
+                alt={`Кадр ${activeStillIndex + 1}`}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "calc(82vh - 90px)",
+                  objectFit: "contain",
+                  borderRadius: "10px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
+                }}
+              />
+
+              {liveStills.length > 1 && (
+                <button
+                  onClick={handleNextStill}
+                  style={{
+                    position: "absolute",
+                    right: "24px",
+                    zIndex: 2,
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    background: "rgba(0,0,0,0.6)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    fontSize: "1.4rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backdropFilter: "blur(8px)",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+                  }}
+                >
+                  ›
+                </button>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

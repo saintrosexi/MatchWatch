@@ -8,6 +8,7 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("movie");
+  const [visibleCount, setVisibleCount] = useState(25);
 
   // Get available years for current category
   const availableYears = useMemo(() => {
@@ -33,6 +34,10 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
     });
   }, [searchTerm, selectedYear, activeCategory]);
 
+  const displayedMovies = useMemo(() => {
+    return filteredMovies.slice(0, visibleCount);
+  }, [filteredMovies, visibleCount]);
+
   const getTitle = () => {
     switch(activeCategory) {
       case 'series': return '🔍 Поиск сериалов';
@@ -49,19 +54,19 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
       <div className="category-picker">
         <button 
           className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
-          onClick={() => { setActiveCategory('movie'); setSelectedYear(""); }}
+          onClick={() => { setActiveCategory('movie'); setSelectedYear(""); setVisibleCount(25); }}
         >
           Фильмы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
-          onClick={() => { setActiveCategory('series'); setSelectedYear(""); }}
+          onClick={() => { setActiveCategory('series'); setSelectedYear(""); setVisibleCount(25); }}
         >
           Сериалы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
-          onClick={() => { setActiveCategory('anime'); setSelectedYear(""); }}
+          onClick={() => { setActiveCategory('anime'); setSelectedYear(""); setVisibleCount(25); }}
         >
           Аниме
         </button>
@@ -73,7 +78,7 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
             type="text"
             placeholder="Поиск по названию или режиссёру..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => { setSearchTerm(e.target.value); setVisibleCount(25); }}
             className="search-input"
           />
         </div>
@@ -83,7 +88,7 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
           <select
             id="year-select"
             value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
+            onChange={(e) => { setSelectedYear(e.target.value); setVisibleCount(25); }}
             className="filter-select"
           >
             <option value="">Все годы</option>
@@ -101,8 +106,8 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
       </div>
 
       <div className="search-results-grid">
-        {filteredMovies.length > 0 ? (
-          filteredMovies.map(movie => (
+        {displayedMovies.length > 0 ? (
+          displayedMovies.map(movie => (
             <div
               key={movie.id}
               className="search-result-card"
@@ -135,6 +140,27 @@ export default function SearchMovies({ decisions, onToggleLike, favorites, onTog
           </div>
         )}
       </div>
+
+      {visibleCount < filteredMovies.length && (
+        <div style={{ textAlign: "center", margin: "25px 0 10px 0" }}>
+          <button 
+            className="btn btn-primary"
+            onClick={() => setVisibleCount(prev => prev + 25)}
+            style={{
+              padding: "12px 28px",
+              borderRadius: "24px",
+              fontWeight: "bold",
+              fontSize: "0.95rem",
+              background: "linear-gradient(135deg, #ff8a50 0%, #ff5e62 100%)",
+              boxShadow: "0 4px 15px rgba(255, 138, 80, 0.3)",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            Показать ещё ({filteredMovies.length - visibleCount} осталось)
+          </button>
+        </div>
+      )}
 
       {selectedMovie && (
         <DetailedMovieModal
