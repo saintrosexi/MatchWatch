@@ -258,8 +258,8 @@ export default function App() {
   }, [decisions, history, favorites, ratings, user, dataLoaded]);
 
   const liked = useMemo(
-    () => deck.filter(m => decisions[m.id] === "like"),
-    [deck, decisions]
+    () => movies.filter(m => decisions[m.id] === "like" || favorites[m.id]),
+    [decisions, favorites]
   );
 
   const filteredDeck = useMemo(() => {
