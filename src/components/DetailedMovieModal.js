@@ -153,6 +153,43 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
               </div>
             </div>
 
+            {/* Stills / Movie Shots Section Right Below Title */}
+            {Array.isArray(movie.stills) && movie.stills.length > 0 && (
+              <div className="detailed-modal-section" style={{ margin: "14px 0" }}>
+                <h3 className="section-title">📸 Кадры из фильма</h3>
+                <div 
+                  style={{ 
+                    display: "flex", 
+                    gap: "10px", 
+                    overflowX: "auto", 
+                    paddingBottom: "8px", 
+                    marginTop: "8px",
+                    scrollbarWidth: "thin"
+                  }}
+                >
+                  {movie.stills.map((stillUrl, i) => (
+                    <img
+                      key={i}
+                      src={stillUrl}
+                      alt={`Кадр ${i + 1}`}
+                      style={{
+                        height: "120px",
+                        width: "180px",
+                        borderRadius: "12px",
+                        objectFit: "cover",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+                        flexShrink: 0,
+                        cursor: "pointer",
+                        transition: "transform 0.2s ease"
+                      }}
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* About Movie Section */}
             <div className="detailed-modal-section">
               <h3 className="section-title">📽️ О фильме</h3>
@@ -265,30 +302,6 @@ export default function DetailedMovieModal({ movie, onClose, isLiked, onToggleLi
                     </span>
                   ))}
                   <span className="rating-value">{rating ? `${rating}/10` : '—/10'}</span>
-                </div>
-              </div>
-            )}
-
-            {/* Stills / Movie Shots Section */}
-            {Array.isArray(movie.stills) && movie.stills.length > 0 && (
-              <div className="detailed-modal-section">
-                <h3 className="section-title">📸 Кадры из фильма</h3>
-                <div style={{ display: "flex", gap: "10px", overflowX: "auto", paddingBottom: "10px", margin: "10px 0" }}>
-                  {movie.stills.map((stillUrl, i) => (
-                    <img
-                      key={i}
-                      src={stillUrl}
-                      alt={`Кадр ${i + 1}`}
-                      style={{
-                        height: "110px",
-                        borderRadius: "10px",
-                        objectFit: "cover",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        flexShrink: 0
-                      }}
-                      onError={(e) => { e.target.style.display = 'none'; }}
-                    />
-                  ))}
                 </div>
               </div>
             )}
