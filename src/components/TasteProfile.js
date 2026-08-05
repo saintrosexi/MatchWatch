@@ -4,6 +4,7 @@ import { auth, database } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, set } from "firebase/database";
 import { motion } from "framer-motion";
+import { ChamaBackgroundArt } from "../chamaAssets";
 import { SensationRadarComponent } from "./Profile";
 import { generateSimpleTasteInference } from "../tasteInference";
 
