@@ -109,10 +109,20 @@ export default function Sidebar({
         <button
           className={`side-rail-item ${currentScreen === "friends" ? "active" : ""}`}
           onClick={() => handleTabClick("friends")}
+          data-tooltip="Уведомления"
+        >
+          <span className="side-rail-icon">🔔</span>
+          {(friendRequestsCount + invitesCount) > 0 && (
+            <span className="side-rail-badge">{friendRequestsCount + invitesCount}</span>
+          )}
+        </button>
+
+        <button
+          className={`side-rail-item ${currentScreen === "friends" ? "active" : ""}`}
+          onClick={() => handleTabClick("friends")}
           data-tooltip="Друзья"
         >
           <span className="side-rail-icon">👥</span>
-          {friendRequestsCount > 0 && <span className="side-rail-badge">{friendRequestsCount}</span>}
         </button>
 
         <button
