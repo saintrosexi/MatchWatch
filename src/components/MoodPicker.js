@@ -1,150 +1,89 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { movies } from "../data";
 import DetailedMovieModal from "./DetailedMovieModal";
+import { getMovieVibeVector, getMovieVibeBadge } from "../recommendations";
 
-const MOODS = [
+const SENSATIONAL_MOODS = [
   {
     id: "chill",
-    emoji: "😌",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Посмеяться / Расслабиться";
-      if (cat === "series") return "Залипнуть / Отдохнуть";
-      return "Повседневность / Комедия";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Лёгкие комедии и весёлые приключения для отличного вечера.";
-      if (cat === "series") return "Расслабляющие сериалы, под которые приятно отдохнуть после работы.";
-      return "Уютное аниме про обычную жизнь, дружбу и с хорошим юмором.";
-    }
+    emoji: "🍿",
+    label: "Уютный & Легкий",
+    badgeColor: "#32d74b",
+    description: "Фильмы с высоким уровнем позитивной энергии и низкой мрачностью. Идеально для отдыха.",
+    targetVector: { energy: 7, darkness: 2, intellect: 4, emotion: 6, dynamism: 5 }
   },
   {
     id: "smart",
     emoji: "🧠",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Умное кино";
-      if (cat === "series") return "Умный сюжет";
-      return "Умный сюжет / Психология";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Глубокие драмы, детективы и биографии, заставляющие задуматься.";
-      if (cat === "series") return "Сложные детективные интриги, заговоры и психологические игры.";
-      return "Аниме с глубоким смыслом, запутанными загадками и психологией.";
-    }
+    label: "На подумать",
+    badgeColor: "#af52de",
+    description: "Картины с высоким коэффициентом интеллекта, закрученным сюжетом и загадками.",
+    targetVector: { energy: 4, darkness: 5, intellect: 9, emotion: 6, dynamism: 4 }
   },
   {
-    id: "epic",
-    emoji: "💥",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Мощный экшен";
-      if (cat === "series") return "Эпичный экшен";
-      return "Мощный экшен / Сёнен";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Фантастика, фэнтези и масштабные боевики с крутыми битвами.";
-      if (cat === "series") return "Зрелищные фантастические миры, битвы и приключения.";
-      return "Эпичные сражения, превозмогания героев и захватывающие приключения.";
-    }
+    id: "dynamism",
+    emoji: "🔥",
+    label: "Экшен & Драйв",
+    badgeColor: "#ff5e62",
+    description: "Максимальный уровень динамизма и взрывной энергии. Захватывает с первых секунд.",
+    targetVector: { energy: 9, darkness: 4, intellect: 4, emotion: 4, dynamism: 9 }
   },
   {
-    id: "romance",
-    emoji: "💕",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Романтика";
-      if (cat === "series") return "Романтика";
-      return "Романтика / Сёдзё";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Красивые истории любви, теплые чувства и душевные мелодрамы.";
-      if (cat === "series") return "Сериалы про любовь, сложные взаимоотношения и искреннюю дружбу.";
-      return "Трогательное романтическое аниме о первой любви и нежных чувствах.";
-    }
+    id: "darkness",
+    emoji: "🌙",
+    label: "Мрачная атмосфера",
+    badgeColor: "#8e8e93",
+    description: "Густая, таинственная атмосфера, хорроры, мистика и психологический напряг.",
+    targetVector: { energy: 5, darkness: 9, intellect: 6, emotion: 5, dynamism: 6 }
   },
   {
-    id: "horror",
-    emoji: "👻",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Жутко интересно";
-      if (cat === "series") return "Мистика / Хоррор";
-      return "Мрачное аниме / Триллер";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Триллер, мистика и ужасы для любителей пощекотать нервы.";
-      if (cat === "series") return "Остросюжетные триллеры, паранормальные явления и хорроры.";
-      return "Мрачные тайны, выживание, темное фэнтези и леденящие кровь триллеры.";
-    }
+    id: "emotion",
+    emoji: "💔",
+    label: "Эмоциональный шторм",
+    badgeColor: "#ff2d55",
+    description: "Глубокие чувства, романтика и драмы, заставляющие сопереживать героям до слез.",
+    targetVector: { energy: 5, darkness: 3, intellect: 5, emotion: 9, dynamism: 3 }
   },
   {
-    id: "drama",
-    emoji: "😭",
-    getLabel: (cat) => {
-      if (cat === "movie") return "Слезовыжималка";
-      if (cat === "series") return "Драматичные судьбы";
-      return "Драма / До слез";
-    },
-    getDescription: (cat) => {
-      if (cat === "movie") return "Сильные эмоциональные картины, трогающие до самой глубины души.";
-      if (cat === "series") return "Семейные трагедии, преодоление трудностей и искренние слезы.";
-      return "Шедевры, которые заставят вас сопереживать героям и пустить слезу.";
-    }
+    id: "energy",
+    emoji: "⚡",
+    label: "Заряд энергии",
+    badgeColor: "#ff9966",
+    description: "Мотивирующие, вдохновляющие истории для поднятия духа и бодрости.",
+    targetVector: { energy: 9, darkness: 2, intellect: 5, emotion: 7, dynamism: 7 }
   }
 ];
-
-const getMoodCategory = (movie) => {
-  const genres = (movie.genres || "").toLowerCase();
-  const desc = (movie.description || "").toLowerCase();
-  const type = movie.type || "movie";
-
-  // 1. РОМАНТИКА (Romance)
-  if (genres.includes("мелодрама") || genres.includes("романтика") || genres.includes("любовь")) {
-    return "romance";
-  }
-
-  // 2. ЖУТКО ИНТЕРЕСНО (Thriller/Mystery/Horror)
-  if (genres.includes("ужасы") || genres.includes("хоррор") || genres.includes("мистика") || (genres.includes("триллер") && (genres.includes("детектив") || genres.includes("криминал") || desc.includes("таинственн") || desc.includes("убийц")))) {
-    return "horror";
-  }
-
-  // 3. УМНЫЙ СЮЖЕТ (Smart)
-  if (genres.includes("детектив") || genres.includes("криминал") || genres.includes("биография") || genres.includes("история") || (genres.includes("драма") && !genres.includes("комедия") && !genres.includes("боевик"))) {
-    if (type === "anime" && (genres.includes("драма") || desc.includes("тяжел") || desc.includes("судьб"))) {
-      return "drama"; // "До слез"
-    }
-    return "smart";
-  }
-
-  // 4. ДО СЛЕЗ / ДРАМА (Tear-jerker)
-  if (genres.includes("драма") && (genres.includes("семейный") || desc.includes("потер") || desc.includes("трагед") || desc.includes("слез") || desc.includes("судьб"))) {
-    return "drama";
-  }
-
-  // 5. МОЩНЫЙ ЭКШЕН (Action/Epic)
-  if (genres.includes("боевик") || genres.includes("военный") || genres.includes("фантастика") || genres.includes("фэнтези") || (type === "anime" && (genres.includes("приключения") || genres.includes("боевые искусства")))) {
-    return "epic";
-  }
-
-  // 6. РАССЛАБИТЬСЯ (Chill/Comedy)
-  if (genres.includes("комедия") || genres.includes("семейный") || genres.includes("детский") || genres.includes("мюзикл") || genres.includes("приключения")) {
-    return "chill";
-  }
-
-  // Фолбэк по умолчанию на основе ID фильма
-  const defaultMoods = ["chill", "smart", "epic", "romance", "horror", "drama"];
-  return defaultMoods[movie.id % defaultMoods.length];
-};
 
 export default function MoodPicker({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMood, setSelectedMood] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [activeCategory, setActiveCategory] = useState("movie");
 
-  const filteredMovies = selectedMood
-    ? movies.filter(movie => {
-        const type = movie.type || "movie";
-        return type === activeCategory && getMoodCategory(movie) === selectedMood;
-      })
-    : [];
+  const selectedMoodData = SENSATIONAL_MOODS.find(m => m.id === selectedMood);
 
-  const selectedMoodData = MOODS.find(m => m.id === selectedMood);
+  const filteredMovies = useMemo(() => {
+    if (!selectedMoodData) return [];
+
+    const categoryMovies = movies.filter(m => (m.type || "movie") === activeCategory);
+    const target = selectedMoodData.targetVector;
+
+    // Rank movies by Euclidean proximity to the mood target vector
+    return categoryMovies.map(movie => {
+      const v = getMovieVibeVector(movie);
+      const dist = Math.sqrt(
+        Math.pow(v.energy - target.energy, 2) +
+        Math.pow(v.darkness - target.darkness, 2) +
+        Math.pow(v.intellect - target.intellect, 2) +
+        Math.pow(v.emotion - target.emotion, 2) +
+        Math.pow(v.dynamism - target.dynamism, 2)
+      );
+
+      const vibeMatch = Math.max(60, Math.min(99, Math.round(100 - dist * 2.5)));
+      return { movie, vibeMatch };
+    })
+    .sort((a, b) => b.vibeMatch - a.vibeMatch)
+    .slice(0, 30);
+  }, [selectedMoodData, activeCategory]);
 
   const getCategoryLabel = () => {
     if (activeCategory === 'movie') return 'фильмов';
@@ -153,79 +92,120 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
   };
 
   return (
-    <div className="mood-picker-container">
-      <h2 className="page-title">🎬 Выбери настроение</h2>
-      <p className="mood-subtitle">Что будем смотреть?</p>
+    <div className="mood-picker-container" style={{ maxWidth: "800px", margin: "0 auto", padding: "10px 15px 100px 15px" }}>
+      <h2 className="page-title" style={{ textAlign: "center", fontSize: "1.8rem", marginBottom: "6px" }}>🎨 Сенсорный Поиск по Настроению</h2>
+      <p className="mood-subtitle" style={{ textAlign: "center", color: "rgba(255,255,255,0.6)", fontSize: "0.95rem", marginBottom: "20px" }}>
+        Подбор под твое состояние по 5D-вектору атмосферы (Энергия, Тьма, Интеллект, Эмоции, Драйв)
+      </p>
 
-      <div className="category-picker">
+      <div className="category-picker" style={{ display: "flex", justifyContent: "center", gap: "8px", marginBottom: "24px" }}>
         <button 
           className={`category-btn ${activeCategory === 'movie' ? 'active' : ''}`}
-          onClick={() => setSelectedMood(null) || setActiveCategory('movie')}
+          onClick={() => setActiveCategory('movie')}
         >
           Фильмы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'series' ? 'active' : ''}`}
-          onClick={() => setSelectedMood(null) || setActiveCategory('series')}
+          onClick={() => setActiveCategory('series')}
         >
           Сериалы
         </button>
         <button 
           className={`category-btn ${activeCategory === 'anime' ? 'active' : ''}`}
-          onClick={() => setSelectedMood(null) || setActiveCategory('anime')}
+          onClick={() => setActiveCategory('anime')}
         >
           Аниме
         </button>
       </div>
 
-      <div className="moods-grid">
-        {MOODS.map(mood => (
-          <button
-            key={mood.id}
-            className={`mood-card ${selectedMood === mood.id ? "active" : ""}`}
-            onClick={() => setSelectedMood(mood.id)}
-          >
-            <div className="mood-emoji">{mood.emoji}</div>
-            <div className="mood-label">{mood.getLabel(activeCategory)}</div>
-          </button>
-        ))}
+      <div className="moods-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "14px" }}>
+        {SENSATIONAL_MOODS.map(mood => {
+          const isActive = selectedMood === mood.id;
+          return (
+            <button
+              key={mood.id}
+              className={`mood-card ${isActive ? "active" : ""}`}
+              onClick={() => setSelectedMood(mood.id)}
+              style={{
+                background: isActive ? `linear-gradient(135deg, ${mood.badgeColor}33, rgba(255,255,255,0.08))` : "rgba(255,255,255,0.04)",
+                border: isActive ? `2px solid ${mood.badgeColor}` : "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "18px",
+                padding: "16px",
+                textAlign: "left",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+                boxShadow: isActive ? `0 8px 25px ${mood.badgeColor}40` : "none"
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                <span style={{ fontSize: "1.8rem" }}>{mood.emoji}</span>
+                <span style={{ fontSize: "1.05rem", fontWeight: "bold", color: isActive ? mood.badgeColor : "#fff" }}>
+                  {mood.label}
+                </span>
+              </div>
+              <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: "1.35" }}>
+                {mood.description}
+              </p>
+            </button>
+          );
+        })}
       </div>
 
-      {selectedMood && (
-        <div className="mood-results glass-panel" style={{ marginTop: "24px" }}>
-          <h3 className="mood-results-title">
-            {selectedMoodData?.emoji} {selectedMoodData?.getLabel(activeCategory)}
-          </h3>
-          <p className="mood-description-sub" style={{ color: "var(--text-sub)", fontSize: "0.95rem", marginTop: "-5px", marginBottom: "20px", fontStyle: "italic" }}>
-            {selectedMoodData?.getDescription(activeCategory)}
-          </p>
-          <p className="mood-results-count">
-            Найдено <strong>{filteredMovies.length}</strong> {getCategoryLabel()}
-          </p>
+      {selectedMoodData && (
+        <div className="mood-results glass-panel" style={{ marginTop: "30px", background: "rgba(0,0,0,0.4)", borderRadius: "24px", padding: "20px", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
+            <h3 className="mood-results-title" style={{ margin: 0, fontSize: "1.3rem", color: selectedMoodData.badgeColor }}>
+              {selectedMoodData.emoji} {selectedMoodData.label}
+            </h3>
+            <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.6)" }}>
+              Найдено <strong>{filteredMovies.length}</strong> {getCategoryLabel()}
+            </span>
+          </div>
 
-          <div className="mood-movies-grid">
-            {filteredMovies.map(movie => (
-              <div
-                key={movie.id}
-                className="mood-movie-card"
-                onClick={() => setSelectedMovie(movie)}
-              >
-                <div className="mood-movie-poster-container">
-                  <img
-                    src={movie.poster}
-                    alt={movie.titleRu || movie.title}
-                    className="mood-movie-poster"
-                  />
-                  <div className="mood-movie-rating">⭐ {movie.rating}</div>
+          <div className="mood-movies-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: "14px" }}>
+            {filteredMovies.map(({ movie, vibeMatch }) => {
+              const badge = getMovieVibeBadge(movie);
+              return (
+                <div
+                  key={movie.id}
+                  className="mood-movie-card"
+                  onClick={() => setSelectedMovie(movie)}
+                  style={{
+                    background: "rgba(255,255,255,0.05)",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    transition: "transform 0.2s, boxShadow 0.2s"
+                  }}
+                >
+                  <div className="mood-movie-poster-container" style={{ position: "relative", height: "180px" }}>
+                    <img
+                      src={movie.poster}
+                      alt={movie.titleRu || movie.title}
+                      className="mood-movie-poster"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                    <div style={{ position: "absolute", top: "6px", right: "6px", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)", padding: "3px 7px", borderRadius: "10px", fontSize: "0.75rem", fontWeight: "bold", color: "#32d74b" }}>
+                      {vibeMatch}%
+                    </div>
+                  </div>
+                  <div className="mood-movie-info" style={{ padding: "10px" }}>
+                    <div style={{ fontSize: "0.7rem", color: badge.color, fontWeight: "bold", marginBottom: "4px" }}>
+                      {badge.label}
+                    </div>
+                    <h4 className="mood-movie-title" style={{ margin: "0 0 4px 0", fontSize: "0.85rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {movie.titleRu || movie.title}
+                    </h4>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "rgba(255,255,255,0.5)" }}>
+                      <span>⭐ {movie.rating}</span>
+                      <span>{movie.year}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="mood-movie-info">
-                  <h4 className="mood-movie-title">
-                    {movie.titleRu || movie.title}
-                  </h4>
-                  <p className="mood-movie-year">{movie.year}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
@@ -245,3 +225,4 @@ export default function MoodPicker({ decisions, onToggleLike, favorites, onToggl
     </div>
   );
 }
+
