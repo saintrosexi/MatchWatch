@@ -291,7 +291,7 @@ export default function TasteProfile({ likedMovies = [], favorites = {}, ratings
 
       {/* Simple Taste Inference Output */}
       <div className="profile-insights" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", marginTop: "12px" }}>
-        <p style={{ margin: "0 0 8px 0", fontWeight: "600", fontSize: "0.95rem", color: "#fff" }}>💡 <strong>Простой вывод:</strong></p>
+        <p style={{ margin: "0 0 8px 0", fontWeight: "600", fontSize: "0.95rem", color: "#fff" }}>💡 <strong>Вывод по вашему вкусу:</strong></p>
         <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.85)", lineHeight: "1.6" }}>
           {generateSimpleTasteInference({ likedMovies, favorites })}
         </p>

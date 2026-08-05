@@ -426,9 +426,9 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
           
           {/* Glass User Hero Card */}
           <div className="profile-card-main profile-hero-glass">
-            <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+            <div className="profile-avatar-large">
               {(targetData.profile?.avatar && (targetData.profile.avatar.startsWith("data:image/") || targetData.profile.avatar.startsWith("http"))) ? (
-                <img src={targetData.profile.avatar} alt="Avatar" />
+                <img src={targetData.profile.avatar} alt="Avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               ) : (
                 targetData.profile?.avatar || "😎"
               )}

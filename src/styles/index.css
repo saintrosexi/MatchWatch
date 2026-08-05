@@ -2111,11 +2111,26 @@ button, .btn, .btn-primary, .btn-secondary, .btn-matchwatch, .btn-matchwatch-sec
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
+.profile-avatar-large {
+  width: 96px;
+  height: 96px;
+  min-width: 96px;
+  min-height: 96px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
 .profile-avatar-interactive {
   position: relative;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border-radius: 50%;
 }
 
 .profile-avatar-interactive:hover {

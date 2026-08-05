@@ -919,7 +919,7 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
             {/* Simple Taste Inference Output */}
             <div className="profile-card-stats simple-summary-glass-container" style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <h3 style={{ fontSize: "0.95rem", margin: "0 0 8px 0", color: "#fff", display: "flex", alignItems: "center", gap: "6px" }}>
-                💡 Простой вывод:
+                💡 Вывод по вашему вкусу:
               </h3>
               <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
                 {generateSimpleTasteInference({ likedMovies: stats.likedMoviesList, favorites: appData?.favorites || {} })}
