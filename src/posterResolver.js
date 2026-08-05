@@ -114,15 +114,20 @@ export const fetchLiveStillsFromApi = async (kinopoiskId, title, year) => {
 
     if (!targetId) return [];
 
-    const res = await fetch(
-      `https://kinopoiskapiunofficial.tech/api/v2.2/films/${targetId}/images?type=STILL&page=1`,
-      { headers: { "X-API-KEY": KP_API_KEY, accept: "application/json" } }
-    );
+    const imageTypes = ["STILL", "SHOOTING", "PROMO", "WALLPAPER", "FAN_ART", "POSTER"];
+    
+    for (const type of imageTypes) {
+      const res = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/${targetId}/images?type=${type}&page=1`,
+        { headers: { "X-API-KEY": KP_API_KEY, accept: "application/json" } }
+      );
 
-    if (!res.ok) return [];
-    const data = await res.json();
-    if (data?.items?.length > 0) {
-      return data.items.slice(0, 10).map(item => item.imageUrl || item.previewUrl);
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.items?.length > 0) {
+          return data.items.slice(0, 10).map(item => item.imageUrl || item.previewUrl);
+        }
+      }
     }
   } catch (e) {
     console.warn("Live stills fetch error:", e);
