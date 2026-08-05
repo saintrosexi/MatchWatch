@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { movies } from "../data";
 import { actorsData } from "../actorsData";
-import { fetchRealActorProfile } from "../actorResolver";
+import { fetchRealActorProfile, fetchActorMovieStills } from "../actorResolver";
 
 // Robust string normalization for matching actor names
 const normalizeName = (name) => {
@@ -16,12 +16,16 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
 
   const [imageError, setImageError] = useState(false);
   const [livePhoto, setLivePhoto] = useState(null);
+  const [actorStills, setActorStills] = useState([]);
+  const [activeStillIndex, setActiveStillIndex] = useState(null);
 
-  // Scroll to top of the page on mount or actor change & fetch live real actor photo if missing/failed
+  // Scroll to top of the page on mount or actor change & fetch live real actor photo & stills
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setImageError(false);
     setLivePhoto(null);
+    setActorStills([]);
+    setActiveStillIndex(null);
 
     if (actorName) {
       fetchRealActorProfile(actorName).then((profile) => {
@@ -66,9 +70,16 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
       const list = m.actors.split(",").map((s) => normalizeName(s.trim()));
       return list.includes(normalizedTarget);
     });
-  }, [actorName]);
-
-  // Calculate user relationship statistics with this actor
+  // Fetch actor movie stills
+  useEffect(() => {
+    if (actorName && actorMovies.length > 0) {
+      fetchActorMovieStills(actorName, actorMovies).then(stills => {
+        if (stills && stills.length > 0) {
+          setActorStills(stills);
+        }
+      });
+    }
+  }, [actorName, actorMovies]);
   const userStats = useMemo(() => {
     const decs = userAppData.decisions || {};
     const favs = userAppData.favorites || {};
@@ -197,8 +208,43 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
 
         {/* Two-column Layout for Biography / Facts and Filmography */}
         <div className="actor-profile-columns">
-          {/* Left / Facts Column */}
+          {/* Left / Facts & Stills Column */}
           <div className="actor-profile-left-column">
+            {/* Actor Stills Section */}
+            {Array.isArray(actorStills) && actorStills.length > 0 && (
+              <div className="actor-card-section" style={{ marginBottom: "20px" }}>
+                <h3 className="section-title">📸 Кадры со съёмок</h3>
+                <div 
+                  style={{ 
+                    display: "grid", 
+                    gridTemplateColumns: "repeat(auto-fill, minmax(105px, 1fr))", 
+                    gap: "8px", 
+                    marginTop: "10px"
+                  }}
+                >
+                  {actorStills.map((stillUrl, i) => (
+                    <img
+                      key={i}
+                      src={stillUrl}
+                      alt={`Кадр ${i + 1}`}
+                      onClick={() => setActiveStillIndex(i)}
+                      style={{
+                        height: "70px",
+                        width: "100%",
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        boxShadow: "0 3px 8px rgba(0,0,0,0.35)",
+                        cursor: "pointer",
+                        transition: "transform 0.2s ease"
+                      }}
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="actor-card-section">
               <h3 className="section-title">💡 Удивительные факты</h3>
               <ul className="actor-detailed-facts">
@@ -312,6 +358,188 @@ export default function ActorProfilePage({ actorName, onBack, onMovieSelect, use
           </div>
         </div>
       </motion.div>
+
+      {/* macOS QuickLook Modal for Actor Movie Stills */}
+      {activeStillIndex !== null && actorStills[activeStillIndex] && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 10000,
+            background: "rgba(0, 0, 0, 0.75)",
+            backdropFilter: "blur(16px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px"
+          }}
+          onClick={() => setActiveStillIndex(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            style={{
+              position: "relative",
+              maxWidth: "85vw",
+              maxHeight: "82vh",
+              background: "#16151f",
+              borderRadius: "18px",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* macOS Window Header */}
+            <div
+              style={{
+                width: "100%",
+                padding: "12px 18px",
+                background: "rgba(255,255,255,0.03)",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between"
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <button
+                  onClick={() => setActiveStillIndex(null)}
+                  style={{
+                    width: "14px",
+                    height: "14px",
+                    borderRadius: "50%",
+                    background: "#ff5f56",
+                    border: "none",
+                    cursor: "pointer",
+                    boxShadow: "0 0 4px rgba(255,95,86,0.5)"
+                  }}
+                  title="Закрыть"
+                />
+                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#ffbd2e", opacity: 0.8 }} />
+                <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#27c93f", opacity: 0.8 }} />
+              </div>
+
+              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>
+                {actor.name} — Кадр {activeStillIndex + 1} из {actorStills.length}
+              </span>
+
+              <button
+                onClick={() => setActiveStillIndex(null)}
+                style={{
+                  background: "rgba(255,255,255,0.1)",
+                  border: "none",
+                  color: "#fff",
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "50%",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight: 1
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Still Image & Arrows */}
+            <div
+              style={{
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "16px",
+                maxWidth: "100%",
+                maxHeight: "calc(82vh - 50px)",
+                overflow: "hidden"
+              }}
+            >
+              {actorStills.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveStillIndex((activeStillIndex - 1 + actorStills.length) % actorStills.length);
+                  }}
+                  style={{
+                    position: "absolute",
+                    left: "24px",
+                    zIndex: 2,
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    background: "rgba(0,0,0,0.6)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    fontSize: "1.4rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backdropFilter: "blur(8px)",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+                  }}
+                >
+                  ‹
+                </button>
+              )}
+
+              <img
+                src={actorStills[activeStillIndex]}
+                alt={`Кадр ${activeStillIndex + 1}`}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "calc(82vh - 90px)",
+                  objectFit: "contain",
+                  borderRadius: "10px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
+                }}
+              />
+
+              {actorStills.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveStillIndex((activeStillIndex + 1) % actorStills.length);
+                  }}
+                  style={{
+                    position: "absolute",
+                    right: "24px",
+                    zIndex: 2,
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    background: "rgba(0,0,0,0.6)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    fontSize: "1.4rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backdropFilter: "blur(8px)",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+                  }}
+                >
+                  ›
+                </button>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }

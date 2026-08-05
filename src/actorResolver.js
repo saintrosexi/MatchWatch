@@ -47,3 +47,41 @@ export const fetchRealActorProfile = async (actorName) => {
 
   return null;
 };
+
+/**
+ * Fetches real movie stills featuring the specific actor across their movies in MatchWatch.
+ */
+export const fetchActorMovieStills = async (actorName, actorMovies = []) => {
+  if (!actorName || !actorMovies.length) return [];
+
+  const collectedStills = [];
+  const imageTypes = ["STILL", "SHOOTING", "PROMO"];
+
+  try {
+    for (const movie of actorMovies.slice(0, 5)) {
+      if (collectedStills.length >= 10) break;
+      const targetId = movie.kinopoiskId;
+      if (!targetId) continue;
+
+      for (const type of imageTypes) {
+        const res = await fetch(
+          `https://kinopoiskapiunofficial.tech/api/v2.2/films/${targetId}/images?type=${type}&page=1`,
+          { headers: { "X-API-KEY": KP_API_KEY, accept: "application/json" } }
+        );
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.items?.length > 0) {
+            const urls = data.items.slice(0, 3).map(x => x.imageUrl || x.previewUrl);
+            collectedStills.push(...urls);
+            break; // Move to next movie
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Actor stills fetch error:", e);
+  }
+
+  return collectedStills.slice(0, 10);
+};

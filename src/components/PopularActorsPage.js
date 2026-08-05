@@ -96,6 +96,7 @@ function PopularActorCard({ actor, index, onActorSelect }) {
 
 export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(25);
 
   // Calculate actors list with real-time filmography frequency and user stats
   const popularActorsList = useMemo(() => {
@@ -147,6 +148,10 @@ export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
     });
   }, [popularActorsList, searchQuery]);
 
+  const displayedActors = useMemo(() => {
+    return filteredActors.slice(0, visibleCount);
+  }, [filteredActors, visibleCount]);
+
   return (
     <div className="popular-actors-page-container">
       {/* Page Header */}
@@ -167,30 +172,53 @@ export default function PopularActorsPage({ onActorSelect, userAppData = {} }) {
           type="text"
           placeholder="Поиск любимого актера по имени..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(25); }}
           className="search-input actor-search-input"
           style={{ paddingLeft: "45px" }}
         />
         <span className="search-icon-inside" style={{ position: "absolute", left: "18px", top: "50%", transform: "translateY(-50%)", opacity: 0.5 }}>🔍</span>
         {searchQuery && (
-          <button className="btn btn-secondary actor-search-clear" onClick={() => setSearchQuery("")}>
+          <button className="btn btn-secondary actor-search-clear" onClick={() => { setSearchQuery(""); setVisibleCount(25); }}>
             ✕
           </button>
         )}
       </div>
 
       {/* Grid of Actors */}
-      {filteredActors.length > 0 ? (
-        <div className="popular-actors-grid">
-          {filteredActors.map((actor, index) => (
-            <PopularActorCard
-              key={actor.name}
-              actor={actor}
-              index={index}
-              onActorSelect={onActorSelect}
-            />
-          ))}
-        </div>
+      {displayedActors.length > 0 ? (
+        <>
+          <div className="popular-actors-grid">
+            {displayedActors.map((actor, index) => (
+              <PopularActorCard
+                key={actor.name}
+                actor={actor}
+                index={index}
+                onActorSelect={onActorSelect}
+              />
+            ))}
+          </div>
+
+          {visibleCount < filteredActors.length && (
+            <div style={{ textAlign: "center", margin: "30px 0 10px 0" }}>
+              <button 
+                className="btn btn-primary"
+                onClick={() => setVisibleCount(prev => prev + 25)}
+                style={{
+                  padding: "12px 32px",
+                  borderRadius: "24px",
+                  fontWeight: "bold",
+                  fontSize: "0.95rem",
+                  background: "linear-gradient(135deg, #ff8a50 0%, #ff5e62 100%)",
+                  boxShadow: "0 4px 15px rgba(255, 138, 80, 0.3)",
+                  border: "none",
+                  cursor: "pointer"
+                }}
+              >
+                Показать ещё ({filteredActors.length - visibleCount} осталось)
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="actor-no-results">
           <p className="no-results-text">
