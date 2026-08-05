@@ -18,7 +18,9 @@ export const getBestPosterUrl = (movie) => {
   if (movie.posterPreview && typeof movie.posterPreview === "string" && movie.posterPreview.trim() !== "") {
     return movie.posterPreview.trim();
   }
-  return "";
+  // Generate a clean inline SVG poster as robust fallback
+  const title = encodeURIComponent(movie.titleRu || movie.title || "MatchWatch");
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="100%" height="100%" fill="%231a1a24"/><rect x="10" y="10" width="280" height="430" rx="16" fill="none" stroke="%23ff8a50" stroke-width="2" opacity="0.3"/><text x="50%" y="45%" fill="%23ffffff" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">${title}</text><text x="50%" y="55%" fill="%23ff8a50" font-family="sans-serif" font-size="14" text-anchor="middle">🎬 MatchWatch</text></svg>`;
 };
 
 /**
