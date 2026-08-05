@@ -418,29 +418,40 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
     }
   };
 
-  // Instant Firebase Persistence for Avatar
+  // Instant Firebase / Local Persistence for Avatar
   const handleSelectAvatar = async (avatarVal) => {
-    if (!user) return;
+    const activeUser = user || propUser;
+    if (!activeUser) return;
     try {
-      await set(ref(database, `users/${user.uid}/profile/avatar`), avatarVal);
+      if (database && activeUser.uid) {
+        await set(ref(database, `users/${activeUser.uid}/profile/avatar`), avatarVal);
+      }
+      setProfileData(prev => ({ ...(prev || {}), avatar: avatarVal }));
       setIsAvatarModalOpen(false);
       setAvatarUrlInput("");
     } catch (err) {
       console.error("Error saving avatar:", err);
+      setProfileData(prev => ({ ...(prev || {}), avatar: avatarVal }));
+      setIsAvatarModalOpen(false);
     }
   };
 
-  // Instant Firebase Persistence for Bio
+  // Instant Firebase / Local Persistence for Bio
   const handleSaveBio = async () => {
-    if (!user) return;
+    const activeUser = user || propUser;
+    if (!activeUser) return;
     setBioSaving(true);
     try {
-      await set(ref(database, `users/${user.uid}/profile/bio`), bioInput.trim());
+      const cleanBio = bioInput.trim();
+      if (database && activeUser.uid) {
+        await set(ref(database, `users/${activeUser.uid}/profile/bio`), cleanBio);
+      }
+      setProfileData(prev => ({ ...(prev || {}), bio: cleanBio }));
       setBioSuccess(true);
       setTimeout(() => {
         setBioSuccess(false);
         setIsEditingBio(false);
-      }, 1000);
+      }, 800);
     } catch (err) {
       console.error("Error saving bio:", err);
     } finally {
