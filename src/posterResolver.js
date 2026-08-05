@@ -80,9 +80,11 @@ export const fetchLivePosterFromApi = async (title, year) => {
     if (!res.ok) return null;
     const data = await res.json();
     if (data?.films?.length > 0) {
-      const match = data.films[0];
-      return match.posterUrl || match.posterUrlPreview ||
-        (match.filmId ? `https://kinopoiskapiunofficial.tech/images/posters/kp/${match.filmId}.jpg` : null);
+      const match = data.films.find(f => f.posterUrl && !f.posterUrl.includes("no-poster"));
+      if (match) {
+        return match.posterUrl || match.posterUrlPreview ||
+          (match.filmId ? `https://kinopoiskapiunofficial.tech/images/posters/kp/${match.filmId}.jpg` : null);
+      }
     }
   } catch (e) {
     console.warn("Live poster fetch error:", e);
