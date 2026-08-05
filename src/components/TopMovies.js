@@ -4,6 +4,7 @@ import DetailedMovieModal from "./DetailedMovieModal";
 
 export default function TopMovies({ decisions, onToggleLike, favorites, onToggleFavorite, ratings, onSetRating }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("movie");
   const [visibleCount, setVisibleCount] = useState(25);
 
   // Sort movies by rating and filter by category
