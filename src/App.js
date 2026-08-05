@@ -328,11 +328,11 @@ export default function App() {
     setDecisions(prev => ({ ...prev, [movie.id]: decision }));
     setHistory(prev => [...prev, movie.id]);
 
-    const next = nextUndecidedFrom(cursor + 1);
-    if (next >= filteredDeck.length) {
+    const nextIndex = cursor + 1;
+    if (nextIndex >= filteredDeck.length) {
       setTimeout(() => setScreen("final"), 450);
     }
-    setCursor(next);
+    setCursor(nextIndex);
   };
 
   const handleReset = () => {
@@ -360,25 +360,29 @@ export default function App() {
 
   const handleUndo = () => {
     if (history.length === 0) return;
+    
+    // Pick the last swiped movie ID from history
     const lastId = history[history.length - 1];
 
+    // 1. Pop from history
     setHistory(prev => prev.slice(0, -1));
+
+    // 2. Remove decision
     setDecisions(d => {
       const next = { ...d };
       delete next[lastId];
       return next;
     });
-    setSwipeDirections(prev => {
-      const next = { ...prev };
-      delete next[lastId];
-      return next;
-    });
 
+    // 3. Update cursor: move cursor to the index of lastId or decrement cursor
     const idx = filteredDeck.findIndex(m => m.id === lastId);
     if (idx >= 0) {
       setCursor(idx);
+    } else if (cursor > 0) {
+      setCursor(prev => prev - 1);
     }
 
+    // 4. Return from final screen if needed
     if (screen === "final") {
       setScreen("swipe");
     }
@@ -622,7 +626,7 @@ export default function App() {
                 </motion.div>
               ) : (
                 [cursor + 2, cursor + 1, cursor].map((cardIndex, position) => (
-                  cardIndex < filteredDeck.length && !isDecided(filteredDeck[cardIndex]) && (
+                  cardIndex < filteredDeck.length && (
                     <motion.div
                       key={filteredDeck[cardIndex].id}
                       className="deck-card"
