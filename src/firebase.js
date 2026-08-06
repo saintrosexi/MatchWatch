@@ -308,6 +308,67 @@ export const updateUserTag = async (user, baseName, username) => {
   return await updateUsernameAndName(user, baseName, username);
 };
 
+export const searchUserByUsername = async (identifier) => {
+  if (!database || !identifier) return null;
+  const cleanId = sanitizeUsername(identifier.replace('@', ''));
+  
+  let targetUid = null;
+
+  try {
+    const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+    if (usernameSnap.exists()) {
+      targetUid = usernameSnap.val();
+    }
+  } catch (_e) { /* index bypass */ }
+
+  if (!targetUid) {
+    try {
+      const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
+      if (tagSnap.exists()) {
+        targetUid = tagSnap.val();
+      }
+    } catch (_e) { /* index bypass */ }
+  }
+
+  if (!targetUid) {
+    try {
+      const usersSnap = await get(ref(database, 'users'));
+      if (usersSnap.exists()) {
+        const usersData = usersSnap.val();
+        for (const [uid, uData] of Object.entries(usersData)) {
+          const uProf = uData?.profile || {};
+          const uUsername = (uProf.username || '').toLowerCase();
+          const uTag = (uProf.tag || '').toLowerCase();
+          const uName = (uProf.name || '').toLowerCase();
+
+          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase() || uName.toLowerCase() === cleanId) {
+            targetUid = uid;
+            break;
+          }
+        }
+      }
+    } catch (usersErr) {
+      console.warn("Direct users scan warning:", usersErr);
+    }
+  }
+
+  if (!targetUid) return null;
+
+  try {
+    const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
+    const prof = profileSnap.val();
+    if (!prof) return null;
+
+    return {
+      uid: targetUid,
+      profile: prof
+    };
+  } catch (err) {
+    console.error("Error searching user:", err);
+    return null;
+  }
+};
+
 export const sendFriendRequest = async (currentUid, currentTag, targetIdentifier) => {
   if (!database || !currentUid) throw new Error("Пользователь не авторизован");
   const cleanId = sanitizeUsername(targetIdentifier.replace('@', ''));

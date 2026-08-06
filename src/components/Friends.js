@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   auth,
   database,
+  searchUserByUsername,
   sendFriendRequest,
   acceptFriendRequest,
   rejectFriendRequest,
@@ -106,7 +107,10 @@ export default function Friends({
     }
   }, [toast]);
 
-  const handleAddFriend = async (e) => {
+  const [searchResult, setSearchResult] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleSearchFriend = async (e) => {
     e.preventDefault();
     let rawInput = friendTagInput.trim();
     if (!rawInput) {
@@ -115,16 +119,34 @@ export default function Friends({
     }
 
     const inputTag = rawInput.startsWith('@') || rawInput.includes('#') ? rawInput : `@${rawInput}`;
+    setIsSearching(true);
+    setSearchResult(null);
 
+    try {
+      const found = await searchUserByUsername(inputTag);
+      if (!found) {
+        showToast("error", "Активный профиль с таким именем не найден");
+      } else {
+        setSearchResult(found);
+      }
+    } catch (err) {
+      showToast("error", err.message || "Ошибка при поиске профиля");
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleSendRequestToFound = async () => {
+    if (!searchResult) return;
     const currentTag = user ? (user.displayName || user.email) : null;
-    if (currentTag && inputTag.toLowerCase() === currentTag.toLowerCase()) {
+    const targetTag = searchResult.profile?.tag || searchResult.profile?.username || "Друг";
+
+    if (user && searchResult.uid === user.uid) {
       showToast("error", "Нельзя добавить самого себя");
       return;
     }
 
-    const isAlreadyFriend = Object.values(friends).some(
-      (t) => typeof t === "string" && t.toLowerCase() === inputTag.toLowerCase()
-    );
+    const isAlreadyFriend = Object.keys(friends).includes(searchResult.uid);
     if (isAlreadyFriend) {
       showToast("error", "Этот пользователь уже в вашем списке друзей");
       return;
@@ -132,14 +154,16 @@ export default function Friends({
 
     if (user) {
       try {
-        await sendFriendRequest(user.uid, currentTag, inputTag);
-        showToast("success", "Заявка успешно отправлена! 🚀");
+        await sendFriendRequest(user.uid, currentTag, targetTag);
+        showToast("success", `Заявка пользователю ${searchResult.profile.name || targetTag} успешно отправлена! 🚀`);
+        setSearchResult(null);
         setFriendTagInput("");
       } catch (err) {
         showToast("error", err.message || "Ошибка при отправке заявки");
       }
     } else {
-      showToast("success", "Заявка успешно отправлена! 🚀");
+      showToast("success", `Заявка пользователю ${searchResult.profile.name || targetTag} успешно отправлена! 🚀`);
+      setSearchResult(null);
       setFriendTagInput("");
     }
   };
@@ -251,7 +275,7 @@ export default function Friends({
               Укажите имя пользователя друга (например: <strong>@owner</strong>), чтобы добавить его в контакты.
             </p>
 
-            <form onSubmit={handleAddFriend} className="add-friend-form">
+            <form onSubmit={handleSearchFriend} className="add-friend-form">
               <div style={{ display: "flex", alignItems: "center", background: "rgba(255, 255, 255, 0.05)", border: "1px solid var(--border-glass)", borderRadius: "var(--radius-md)", overflow: "hidden", flex: 1 }}>
                 <span style={{ padding: "0 12px", color: "var(--accent-coral)", fontWeight: "bold", fontSize: "1rem" }}>@</span>
                 <input
@@ -259,14 +283,62 @@ export default function Friends({
                   placeholder="owner"
                   className="add-friend-input"
                   value={friendTagInput.replace('@', '')}
-                  onChange={(e) => setFriendTagInput(e.target.value.toLowerCase().replace(/[^a-z0-9_#]/g, ''))}
+                  onChange={(e) => {
+                    setFriendTagInput(e.target.value.toLowerCase().replace(/[^a-z0-9_#]/g, ''));
+                    if (searchResult) setSearchResult(null);
+                  }}
                   style={{ background: "transparent", border: "none", outline: "none", flex: 1, padding: "10px 14px 10px 0" }}
                 />
               </div>
-              <button type="submit" className="btn btn-coral" style={{ height: "42px" }}>
-                Отправить 🚀
+              <button type="submit" className="btn btn-coral" style={{ height: "42px" }} disabled={isSearching}>
+                {isSearching ? "Поиск..." : "Найти 🔍"}
               </button>
             </form>
+
+            {/* Found Active Profile Preview Card */}
+            {searchResult && (
+              <motion.div 
+                className="found-user-card"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{
+                  marginTop: "16px",
+                  padding: "16px",
+                  borderRadius: "16px",
+                  background: "rgba(255, 255, 255, 0.04)",
+                  border: "1px solid var(--accent-coral)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "14px"
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <div style={{ width: "46px", height: "46px", borderRadius: "12px", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem" }}>
+                    {searchResult.profile.avatar || "😎"}
+                  </div>
+                  <div style={{ textAlign: "left" }}>
+                    <div style={{ fontWeight: "700", color: "#fff", fontSize: "1rem" }}>{searchResult.profile.name || searchResult.profile.username}</div>
+                    <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>@{searchResult.profile.username || searchResult.profile.tag}</div>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button 
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => onViewProfile && onViewProfile(searchResult.profile.username || searchResult.profile.tag)}
+                  >
+                    Профиль 👤
+                  </button>
+                  <button 
+                    className="btn btn-coral btn-sm"
+                    onClick={handleSendRequestToFound}
+                  >
+                    Добавить 🚀
+                  </button>
+                </div>
+              </motion.div>
+            )}
 
             <AnimatePresence>
               {toast && (
