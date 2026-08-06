@@ -388,7 +388,7 @@ export const searchUserByUsername = async (identifier) => {
 
   // 2. Substring & agnostic scan across all users in /users node (covers online & offline)
   try {
-    const usersSnap = await get({ path: 'users', isMockRef: true });
+    const usersSnap = await get(ref(database, 'users'));
     if (usersSnap && (typeof usersSnap.exists !== 'function' || usersSnap.exists()) && usersSnap.val()) {
       const usersData = usersSnap.val();
       for (const [uid, uData] of Object.entries(usersData)) {

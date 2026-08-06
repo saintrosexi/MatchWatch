@@ -27,6 +27,8 @@ jest.mock('firebase/auth', () => ({
 describe('searchUserByUsername', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Restore ref mock after clearAllMocks resets it
+    ref.mockImplementation((db, path) => ({ isMockRef: true, path }));
   });
 
   it('normalizes search terms by trimming, lowercasing, and removing @ and #', () => {
