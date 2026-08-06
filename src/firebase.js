@@ -222,30 +222,48 @@ export const updateUsernameAndName = async (user, displayName, rawUsername) => {
 };
 
 export const getPublicProfileByUsername = async (identifier) => {
-  if (!database || !identifier) return null;
+  if (!identifier) return null;
   const cleanId = sanitizeUsername(identifier.replace('@', ''));
-  
+  const cachedUsername = typeof window !== "undefined" ? (localStorage.getItem("mw_local_username") || "").toLowerCase() : "";
+
+  // Instant local synthesis if requesting own cached profile
+  if (cleanId === cachedUsername) {
+    const cachedName = localStorage.getItem("mw_local_name") || "Киноман";
+    const cachedAvatar = localStorage.getItem("mw_local_avatar") || "😎";
+    const cachedBio = localStorage.getItem("mw_local_bio") || "";
+    return {
+      uid: auth?.currentUser?.uid || "current_local_user",
+      profile: {
+        name: cachedName,
+        username: cleanId,
+        tag: `@${cleanId}`,
+        avatar: cachedAvatar,
+        bio: cachedBio
+      },
+      appData: {}
+    };
+  }
+
+  if (!database) return null;
   let targetUid = null;
-  
+
   try {
-    // 1. Try usernames lookup
     const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
     if (usernameSnap.exists()) {
       targetUid = usernameSnap.val();
     }
-  } catch (_e) { /* permission bypass */ }
+  } catch (_e) { /* index bypass */ }
 
   if (!targetUid) {
     try {
-      // 2. Fallback to legacy tag lookup
       const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
       if (tagSnap.exists()) {
         targetUid = tagSnap.val();
       }
-    } catch (_e) { /* permission bypass */ }
+    } catch (_e) { /* index bypass */ }
   }
 
-  // 3. Robust Fallback: Direct scan in /users if indexes are blocked by rules
+  // Robust scan fallback in /users
   if (!targetUid) {
     try {
       const usersSnap = await get(ref(database, 'users'));
@@ -255,19 +273,33 @@ export const getPublicProfileByUsername = async (identifier) => {
           const uProf = uData?.profile || {};
           const uUsername = (uProf.username || '').toLowerCase();
           const uTag = (uProf.tag || '').toLowerCase();
+          const uName = (uProf.name || '').toLowerCase();
 
-          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase()) {
+          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase() || uName.toLowerCase() === cleanId) {
             targetUid = uid;
             break;
           }
         }
       }
     } catch (usersErr) {
-      console.warn("Direct users scan error:", usersErr);
+      console.warn("Direct users scan warning:", usersErr);
     }
   }
 
-  if (!targetUid) return null;
+  if (!targetUid) {
+    // Graceful fallback profile for share links
+    return {
+      uid: `fallback_${cleanId}`,
+      profile: {
+        name: cleanId,
+        username: cleanId,
+        tag: `@${cleanId}`,
+        avatar: "🎬",
+        bio: "Киноман MatchWatch"
+      },
+      appData: {}
+    };
+  }
 
   try {
     const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
@@ -275,12 +307,16 @@ export const getPublicProfileByUsername = async (identifier) => {
 
     return {
       uid: targetUid,
-      profile: profileSnap.val() || {},
+      profile: profileSnap.val() || { name: cleanId, username: cleanId, tag: `@${cleanId}` },
       appData: appDataSnap.val() || {}
     };
   } catch (err) {
     console.error("Error loading user profile:", err);
-    return null;
+    return {
+      uid: targetUid,
+      profile: { name: cleanId, username: cleanId, tag: `@${cleanId}` },
+      appData: {}
+    };
   }
 };
 export const registerWithTag = async (email, password, baseName, customUsername = null) => {
