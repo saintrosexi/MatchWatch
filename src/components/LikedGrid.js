@@ -116,7 +116,7 @@ export default function LikedGrid({ liked, decisions, onToggleLike, favorites, o
                   onClick={() => setSelectedMovie(m)}
                   style={{ cursor: "pointer", position: "relative" }}
                 >
-                  <img src={m.poster} alt={m.title} />
+                  <img src={m.poster} alt={m.title} loading="lazy" />
                   {ratings?.[m.id] && (
                     <div className="glass-badge-rating">
                       ★ {ratings[m.id]}

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, lazy, Suspense } from "react";
 import { movies } from "./data";
 import { auth, database, signInWithTelegram } from "./firebase";
 import { initTelegramWebApp, getTelegramUser } from "./tma";
@@ -10,7 +10,6 @@ import LikedGrid from "./components/LikedGrid";
 import TopMovies from "./components/TopMovies";
 import SearchMovies from "./components/SearchMovies";
 import MoodPicker from "./components/MoodPicker";
-import MatchWatch from "./components/MatchWatch";
 import FinalScreen from "./components/FinalScreen";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -18,11 +17,13 @@ import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import Friends from "./components/Friends";
 import PublicProfile from "./components/PublicProfile";
-import DetailedMovieModal from "./components/DetailedMovieModal";
-import ActorProfilePage from "./components/ActorProfilePage";
 import PopularActorsPage from "./components/PopularActorsPage";
 import { rankMoviesForUser } from "./recommendations";
 import "./styles/index.css";
+
+const MatchWatch = lazy(() => import("./components/MatchWatch"));
+const DetailedMovieModal = lazy(() => import("./components/DetailedMovieModal"));
+const ActorProfilePage = lazy(() => import("./components/ActorProfilePage"));
 
 const shuffle = (arr) => {
   const a = [...arr];
@@ -95,10 +96,7 @@ export default function App() {
     // Clean public route pattern: /user/username or /profile/username
     const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
     if (userMatch) {
-      const targetUser = decodeURIComponent(userMatch[1]);
-      if (!validScreens.includes(targetUser.toLowerCase())) {
-        return "publicProfile";
-      }
+      return "publicProfile";
     }
 
     if (targetParam && !validScreens.includes(targetParam.toLowerCase())) {
@@ -111,15 +109,17 @@ export default function App() {
     return "swipe";
   };
 
-  const [screen, setScreenState] = useState(getScreenFromUrl);
-  const [publicProfileTag, setPublicProfileTag] = useState(() => {
+  const getNicknameFromUrl = () => {
     if (typeof window === "undefined") return null;
     const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
     const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
     if (userMatch) return decodeURIComponent(userMatch[1]);
     const params = new URLSearchParams(window.location.search);
     return params.get("add");
-  });
+  };
+
+  const [screen, setScreenState] = useState(getScreenFromUrl);
+  const [publicProfileTag, setPublicProfileTag] = useState(getNicknameFromUrl);
 
   const setScreen = (newScreen, replaceHistory = false) => {
     setScreenState(newScreen);
@@ -145,8 +145,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    const handlePopState = (e) => {
+    const handlePopState = () => {
       const urlScreen = getScreenFromUrl();
+      const nick = getNicknameFromUrl();
+      if (nick) setPublicProfileTag(nick);
       setScreenState(urlScreen);
     };
     window.addEventListener("popstate", handlePopState);
@@ -587,6 +589,7 @@ export default function App() {
         disableOnboarding={disableOnboarding}
         stopGenres={stopGenres}
         onScreenChange={setMatchWatchScreen}
+        isAuthReady={dataLoaded}
       />;
     }
     if (screen === "profile") {
@@ -814,22 +817,26 @@ export default function App() {
             setSidebarCollapsed={setSidebarCollapsed}
           />
           <div className={`app-container-desktop ${(screen === "swipe" || (screen === "matchwatch" && matchWatchScreen === "swiping")) ? "no-scroll" : ""}`}>
-            {currentScreen}
+            <Suspense fallback={<div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "300px", color: "var(--text-sub)" }}>Загрузка...</div>}>
+              {currentScreen}
+            </Suspense>
           </div>
         </div>
       )}
 
       {selectedMovieForDetails && (
-        <DetailedMovieModal 
-          movie={selectedMovieForDetails} 
-          onClose={() => setSelectedMovieForDetails(null)}
-          isLiked={decisions[selectedMovieForDetails.id] === "like"}
-          onToggleLike={toggleLike}
-          isFavorite={!!favorites[selectedMovieForDetails.id]}
-          onToggleFavorite={toggleFavorite}
-          rating={ratings[selectedMovieForDetails.id]}
-          onSetRating={handleSetRating}
-        />
+        <Suspense fallback={null}>
+          <DetailedMovieModal 
+            movie={selectedMovieForDetails} 
+            onClose={() => setSelectedMovieForDetails(null)}
+            isLiked={decisions[selectedMovieForDetails.id] === "like"}
+            onToggleLike={toggleLike}
+            isFavorite={!!favorites[selectedMovieForDetails.id]}
+            onToggleFavorite={toggleFavorite}
+            rating={ratings[selectedMovieForDetails.id]}
+            onSetRating={handleSetRating}
+          />
+        </Suspense>
       )}
       
       {Object.keys(invites).length > 0 && (

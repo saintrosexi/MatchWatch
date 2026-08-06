@@ -135,6 +135,7 @@ export default function SwipeCard({
           onError={handleImageError}
           referrerPolicy="no-referrer"
           draggable={false}
+          loading="lazy"
           style={{
             objectFit: "cover",
             objectPosition: isTutorial ? "center 75%" : "center center"

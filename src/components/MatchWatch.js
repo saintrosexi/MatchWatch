@@ -13,7 +13,7 @@ import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoo
 import { getPosterCandidates, getBestPosterUrl } from "../posterResolver";
 import { ChamaBanner } from "../chamaAssets";
 
-export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange }) {
+export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange, isAuthReady = true }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
   const [userName, setUserName] = useState("");
@@ -28,6 +28,8 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   // Initialize Telegram WebApp & auto-join on startapp parameter
   useEffect(() => {
+    if (!isAuthReady) return;
+
     initTelegramWebApp();
     const tgUser = getTelegramUser();
     const startParam = getTelegramStartParam();
@@ -63,7 +65,7 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         setScreen("join");
       }
     }
-  }, []);
+  }, [isAuthReady]);
 
   useEffect(() => {
     onScreenChange?.(screen);

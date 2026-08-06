@@ -390,7 +390,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
       <div className="profile-dashboard" style={{ textAlign: "center", paddingTop: "50px" }}>
         <ChamaBanner
           type="DISCONNECTED_PLUG"
-          title="Ошибка подключения к профилю"
+          title="Пользователь не найден"
           text={error}
           size="large"
           className="max-w-md mx-auto mb-4"
@@ -468,7 +468,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
             
             {/* Friend & MatchWatch Action Dock */}
             <div style={{ marginTop: "20px", width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-              {currentUser && currentUser.displayName === tag ? (
+              {currentUser && (currentUser.uid === targetData.uid || currentUser.displayName === tag || (currentUser.displayName && currentUser.displayName.includes(`@${targetData.profile?.username}`))) ? (
                 <p style={{ color: "rgba(255,255,255,0.5)", margin: 0, textAlign: "center" }}>Это ваш профиль</p>
               ) : (
                 <>

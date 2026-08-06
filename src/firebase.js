@@ -277,9 +277,12 @@ export const getPublicProfileByUsername = async (identifier) => {
     const prof = profileSnap.val();
     if (!prof) return null;
 
+    // Strip sensitive private credentials
+    const { email, password, token, hash, ...publicProfile } = prof;
+
     return {
       uid: targetUid,
-      profile: prof,
+      profile: publicProfile,
       appData: appDataSnap.val() || {}
     };
   } catch (err) {
@@ -312,9 +315,12 @@ export const searchUserByUsername = async (identifier) => {
   if (!database || !identifier) return null;
   const rawId = (identifier || '').trim().replace(/^@/, '').toLowerCase();
   const cleanId = sanitizeUsername(rawId);
+
+  if (!rawId) return null;
   
   let targetUid = null;
 
+  // 1. Try exact username match first
   try {
     if (cleanId) {
       const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
@@ -333,7 +339,7 @@ export const searchUserByUsername = async (identifier) => {
     } catch (_e) { /* index bypass */ }
   }
 
-  // Robust scan fallback in /users
+  // 2. Substring / flexible scan fallback in /users node
   if (!targetUid) {
     try {
       const usersSnap = await get(ref(database, 'users'));
@@ -346,12 +352,10 @@ export const searchUserByUsername = async (identifier) => {
           const uName = (uProf.name || '').toLowerCase();
 
           if (
-            (cleanId && uUsername === cleanId) ||
-            (cleanId && uTag === `@${cleanId}`) ||
-            uTag === `@${rawId}` ||
-            uTag === rawId ||
-            uName === rawId ||
-            (uProf.tag && uProf.tag.toLowerCase().includes(rawId))
+            (cleanId && uUsername.includes(cleanId)) ||
+            uUsername.includes(rawId) ||
+            uTag.includes(rawId) ||
+            uName.includes(rawId)
           ) {
             targetUid = uid;
             break;
@@ -370,9 +374,12 @@ export const searchUserByUsername = async (identifier) => {
     const prof = profileSnap.val();
     if (!prof) return null;
 
+    // Strip sensitive fields
+    const { email, password, token, ...publicProfile } = prof;
+
     return {
       uid: targetUid,
-      profile: prof
+      profile: publicProfile
     };
   } catch (err) {
     console.error("Error searching user:", err);

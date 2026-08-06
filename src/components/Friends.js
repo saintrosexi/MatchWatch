@@ -109,31 +109,36 @@ export default function Friends({
 
   const [searchResult, setSearchResult] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchAttempted, setSearchAttempted] = useState(false);
 
-  const handleSearchFriend = async (e) => {
-    e.preventDefault();
-    let rawInput = friendTagInput.trim();
+  useEffect(() => {
+    const rawInput = friendTagInput.trim();
     if (!rawInput) {
-      showToast("error", "Укажите имя пользователя (например: @owner)");
+      setSearchResult(null);
+      setIsSearching(false);
+      setSearchAttempted(false);
       return;
     }
 
-    const inputTag = rawInput.startsWith('@') || rawInput.includes('#') ? rawInput : `@${rawInput}`;
     setIsSearching(true);
-    setSearchResult(null);
-
-    try {
-      const found = await searchUserByUsername(inputTag);
-      if (!found) {
-        showToast("error", "Активный профиль с таким именем не найден");
-      } else {
+    const timer = setTimeout(async () => {
+      const inputTag = rawInput.startsWith('@') || rawInput.includes('#') ? rawInput : `@${rawInput}`;
+      try {
+        const found = await searchUserByUsername(inputTag);
         setSearchResult(found);
+        setSearchAttempted(true);
+      } catch (err) {
+        showToast("error", err.message || "Ошибка при поиске профиля");
+      } finally {
+        setIsSearching(false);
       }
-    } catch (err) {
-      showToast("error", err.message || "Ошибка при поиске профиля");
-    } finally {
-      setIsSearching(false);
-    }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [friendTagInput]);
+
+  const handleSearchFriend = (e) => {
+    e.preventDefault();
   };
 
   const handleSendRequestToFound = async () => {
@@ -295,8 +300,16 @@ export default function Friends({
               </button>
             </form>
 
+            {/* Searching Spinner */}
+            {isSearching && (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginTop: "16px", padding: "12px", color: "var(--text-sub)", fontSize: "0.9rem" }}>
+                <span className="spinner-sm" style={{ border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "var(--accent-coral)", borderRadius: "50%", width: "16px", height: "16px", animation: "spin 0.8s linear infinite" }}></span>
+                <span>Ищем пользователей...</span>
+              </div>
+            )}
+
             {/* Found Active Profile Preview Card */}
-            {searchResult && (
+            {!isSearching && searchResult && (
               <motion.div 
                 className="found-user-card"
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -337,6 +350,17 @@ export default function Friends({
                     Добавить 🚀
                   </button>
                 </div>
+              </motion.div>
+            )}
+
+            {/* Not Found state */}
+            {!isSearching && !searchResult && searchAttempted && friendTagInput.trim() !== "" && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{ marginTop: "16px", padding: "12px", borderRadius: "12px", background: "rgba(255, 255, 255, 0.03)", textAlign: "center", color: "rgba(255, 255, 255, 0.6)", fontSize: "0.9rem" }}
+              >
+                🔍 Пользователь не найден
               </motion.div>
             )}
 
