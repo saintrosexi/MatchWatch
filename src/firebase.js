@@ -223,29 +223,33 @@ export const updateUsernameAndName = async (user, displayName, rawUsername) => {
 
 export const getPublicProfileByUsername = async (identifier) => {
   if (!identifier || !database) return null;
-  const cleanId = sanitizeUsername(identifier.replace('@', ''));
+  const rawId = (identifier || '').trim().replace(/^@/, '').toLowerCase();
+  const cleanId = sanitizeUsername(rawId);
+  const tagKey = getTagKey(identifier);
   
   let targetUid = null;
 
   // 1. Check usernames index node
   try {
-    const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
-    if (usernameSnap.exists()) {
-      targetUid = usernameSnap.val();
+    if (cleanId) {
+      const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+      if (usernameSnap.exists()) {
+        targetUid = usernameSnap.val();
+      }
     }
   } catch (_e) { /* permission bypass */ }
 
-  // 2. Check legacy userTags index node
+  // 2. Check userTags index node
   if (!targetUid) {
     try {
-      const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
+      const tagSnap = await get(ref(database, `userTags/${tagKey}`));
       if (tagSnap.exists()) {
         targetUid = tagSnap.val();
       }
     } catch (_e) { /* permission bypass */ }
   }
 
-  // 3. Scan Realtime Database /users node to find actual target user ID
+  // 3. Robust Scan Realtime Database /users node to find target user ID
   if (!targetUid) {
     try {
       const usersSnap = await get(ref(database, 'users'));
@@ -257,7 +261,15 @@ export const getPublicProfileByUsername = async (identifier) => {
           const uTag = (uProf.tag || '').toLowerCase();
           const uName = (uProf.name || '').toLowerCase();
 
-          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase() || uName.toLowerCase() === cleanId) {
+          if (
+            (cleanId && uUsername === cleanId) ||
+            (cleanId && uTag === `@${cleanId}`) ||
+            uTag === rawId ||
+            uTag === `@${rawId}` ||
+            uName === rawId ||
+            (cleanId && uName.replace(/\s+/g, '') === cleanId) ||
+            uTag.includes(rawId)
+          ) {
             targetUid = uid;
             break;
           }

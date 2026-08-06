@@ -821,8 +821,17 @@ export default function Profile({ user: propUser = null, currentUserDecisions = 
   };
 
   const handleShareProfile = () => {
-    const activeUsername = profileData?.username || (profileData?.tag && profileData.tag.startsWith('@') ? profileData.tag.substring(1) : (displayUser?.displayName ? displayUser.displayName.replace(/[^a-zA-Z0-9_]/g, '') : "guest"));
-    const link = `${window.location.origin}/user/${encodeURIComponent(activeUsername)}`;
+    let activeUsername = profileData?.username;
+    if (!activeUsername) {
+      if (profileData?.tag) {
+        activeUsername = profileData.tag.replace(/^@/, '');
+      } else {
+        const cached = localStorage.getItem("mw_local_username");
+        activeUsername = cached || (displayUser?.displayName ? displayUser.displayName.replace(/^.*\(|\)/g, '').replace(/^@/, '') : "guest");
+      }
+    }
+    const cleanNick = activeUsername.replace(/^@/, '');
+    const link = `${window.location.origin}/user/${encodeURIComponent(cleanNick)}`;
     const text = `Я ищу с кем посмотреть кино! 🍿 Мой профиль в MatchWatch: ${link}`;
     navigator.clipboard.writeText(text);
     setCopiedLink(true);

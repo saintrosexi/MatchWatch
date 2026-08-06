@@ -362,9 +362,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       return;
     }
 
-    if (!roomCode.trim() || !userName.trim()) return alert("Введите данные");
+    const tgUser = getTelegramUser();
+    const finalUserName = userName.trim() || auth?.currentUser?.displayName || (auth?.currentUser?.email ? auth.currentUser.email.split('@')[0] : null) || (tgUser && tgUser.name) || "Пользователь";
+    if (!userName.trim()) {
+      setUserName(finalUserName);
+    }
+
+    if (!roomCode.trim()) return alert("Введите 6-значный код комнаты");
     try {
-      const success = await joinMatchRoom(roomCode, userName, decisions, favorites, stopGenres);
+      const success = await joinMatchRoom(roomCode, finalUserName, decisions, favorites, stopGenres);
       if (success) {
         setRole("guest");
         setScreen("swiping");
