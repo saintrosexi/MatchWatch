@@ -105,7 +105,17 @@ export default function App() {
   const setScreen = (newScreen, replaceHistory = false) => {
     setScreenState(newScreen);
     if (typeof window !== "undefined") {
-      const targetPath = newScreen === "swipe" ? "/" : `/${newScreen}`;
+      let targetPath = newScreen === "swipe" ? "/" : `/${newScreen}`;
+      
+      // Generate clean user profile link without @ symbol (/user/saintrose)
+      if (newScreen === "profile") {
+        const cachedUsername = localStorage.getItem("mw_local_username");
+        const activeUsername = cachedUsername || (user?.displayName && user.displayName.includes(' (@') ? user.displayName.split(' (@')[1].replace(')', '').replace('@', '') : null);
+        if (activeUsername) {
+          targetPath = `/user/${encodeURIComponent(activeUsername)}`;
+        }
+      }
+
       if (replaceHistory) {
         window.history.replaceState({ screen: newScreen }, "", targetPath);
       } else if (window.location.pathname !== targetPath) {
@@ -249,15 +259,23 @@ export default function App() {
     const addTag = urlParams.get('add');
     const path = window.location.pathname;
     
-    // Support clean routes like /user/saintrose or /profile/saintrose or /user/Саша#2222
+    // Support clean routes without @ symbol like /user/saintrose or /profile/saintrose
     const userMatch = path.match(/^\/(?:user|profile)\/([^/]+)$/i);
     const targetTag = addTag || (userMatch ? decodeURIComponent(userMatch[1]) : null);
 
     if (targetTag && targetTag.toLowerCase() !== "profile" && targetTag.toLowerCase() !== "edit") {
-      setPublicProfileTag(targetTag);
-      setScreen("publicProfile");
+      const cleanTarget = targetTag.replace('@', '').toLowerCase();
+      const myCachedUsername = (localStorage.getItem("mw_local_username") || "").toLowerCase();
+      const myAuthUsername = user?.displayName && user.displayName.includes(' (@') ? user.displayName.split(' (@')[1].replace(')', '').replace('@', '').toLowerCase() : "";
+
+      if (user && (cleanTarget === myCachedUsername || (myAuthUsername && cleanTarget === myAuthUsername))) {
+        setScreen("profile");
+      } else {
+        setPublicProfileTag(targetTag);
+        setScreen("publicProfile");
+      }
     }
-  }, []);
+  }, [user]);
 
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
   const [selectedActorName, setSelectedActorName] = useState(null);

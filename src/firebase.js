@@ -271,19 +271,58 @@ export const updateUserTag = async (user, baseName, username) => {
   return await updateUsernameAndName(user, baseName, username);
 };
 
-// ─── Friends ──────────────────────────────────────────────────────
-export const sendFriendRequest = async (currentUid, currentTag, targetTag) => {
-  const targetRef = ref(database, `userTags/${getTagKey(targetTag)}`);
-  const snap = await get(targetRef);
-  if (!snap.exists()) throw new Error("Пользователь не найден");
+export const sendFriendRequest = async (currentUid, currentTag, targetIdentifier) => {
+  if (!database || !currentUid) throw new Error("Пользователь не авторизован");
+  const cleanId = sanitizeUsername(targetIdentifier.replace('@', ''));
 
-  const targetUid = snap.val();
+  let targetUid = null;
+
+  try {
+    // 1. Try username lookup first
+    const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+    if (usernameSnap.exists()) {
+      targetUid = usernameSnap.val();
+    }
+  } catch (_e) { /* index bypass */ }
+
+  if (!targetUid) {
+    try {
+      // 2. Try legacy userTags lookup
+      const tagSnap = await get(ref(database, `userTags/${getTagKey(targetIdentifier)}`));
+      if (tagSnap.exists()) {
+        targetUid = tagSnap.val();
+      }
+    } catch (_e) { /* index bypass */ }
+  }
+
+  // 3. Fallback: Search inside /users node directly if indexes missing
+  if (!targetUid) {
+    try {
+      const usersSnap = await get(ref(database, 'users'));
+      if (usersSnap.exists()) {
+        const usersData = usersSnap.val();
+        for (const [uid, uData] of Object.entries(usersData)) {
+          const uProf = uData?.profile || {};
+          const uUsername = (uProf.username || '').toLowerCase();
+          const uTag = (uProf.tag || '').toLowerCase();
+          const uName = (uProf.name || '').toLowerCase();
+
+          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === targetIdentifier.toLowerCase()) {
+            targetUid = uid;
+            break;
+          }
+        }
+      }
+    } catch (_e) { /* direct query fallback */ }
+  }
+
+  if (!targetUid) throw new Error("Пользователь с таким именем не найден");
   if (targetUid === currentUid) throw new Error("Нельзя добавить самого себя");
 
   const friendSnap = await get(ref(database, `users/${currentUid}/friends/${targetUid}`));
   if (friendSnap.exists()) throw new Error("Вы уже друзья");
 
-  await set(ref(database, `users/${targetUid}/friendRequests/${currentUid}`), currentTag);
+  await set(ref(database, `users/${targetUid}/friendRequests/${currentUid}`), currentTag || "Друг");
 };
 
 export const acceptFriendRequest = async (currentUid, currentTag, requesterUid, requesterTag) => {
