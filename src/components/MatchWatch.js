@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe, extendMatchRoomDeck } from "../firebase";
+import { auth, database, createMatchRoom, joinMatchRoom, swipeMovie, subscribeToRoom, inviteToMatchWatch, removeInvite, removeSwipe, extendMatchRoomDeck, ensureAuthenticated } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue, get } from "firebase/database";
 import { movies, moviesById } from "../data";
@@ -357,12 +357,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleCreateRoom = async () => {
     if (!isAuthReady) return;
-    if (!auth?.currentUser) {
-      setRequireAuthModal(true);
+    const user = auth?.currentUser || await ensureAuthenticated();
+    if (!user) {
+      alert("Не удалось подключиться к базе данных. Попробуйте еще раз.");
       return;
     }
 
-    const finalUserName = userName.trim() || resolveUserDisplayName(auth?.currentUser);
+    const finalUserName = userName.trim() || resolveUserDisplayName(user) || "Пользователь";
     if (!userName.trim()) {
       setUserName(finalUserName);
     }
@@ -426,12 +427,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
 
   const handleJoinRoom = async () => {
     if (!isAuthReady) return;
-    if (!auth?.currentUser) {
-      setRequireAuthModal(true);
+    const user = auth?.currentUser || await ensureAuthenticated();
+    if (!user) {
+      alert("Не удалось подключиться к базе данных. Попробуйте еще раз.");
       return;
     }
 
-    const finalUserName = userName.trim() || resolveUserDisplayName(auth?.currentUser);
+    const finalUserName = userName.trim() || resolveUserDisplayName(user) || "Пользователь";
     if (!userName.trim()) {
       setUserName(finalUserName);
     }
@@ -936,33 +938,6 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
         onApply={(filters) => setSessionFilters(filters)}
       />
 
-      <AnimatePresence>
-        {requireAuthModal && (
-          <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="modal-content" initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} style={{ maxWidth: "440px", textAlign: "center" }}>
-              <h3 style={{ margin: "0 0 12px 0", color: "#ff8a50" }}>🔐 Вход в аккаунт обязателен</h3>
-              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.95rem", lineHeight: "1.4", marginBottom: "20px" }}>
-                Создание и подключение к совместным комнатам доступно только авторизованным пользователям. Пожалуйста, войдите в свой аккаунт в разделе <b>Профиль</b>!
-              </p>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <button className="btn-glass-secondary" style={{ flex: 1 }} onClick={() => setRequireAuthModal(false)}>
-                  Отмена
-                </button>
-                <button 
-                  className="btn-glass-primary" 
-                  style={{ flex: 1 }} 
-                  onClick={() => {
-                    setRequireAuthModal(false);
-                    window.dispatchEvent(new CustomEvent("switch-tab", { detail: "profile" }));
-                  }}
-                >
-                  🔑 В Профиль
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

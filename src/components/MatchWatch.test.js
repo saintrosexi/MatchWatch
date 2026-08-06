@@ -15,7 +15,8 @@ jest.mock('../firebase', () => ({
   subscribeToRoom: jest.fn(),
   inviteToMatchWatch: jest.fn(),
   removeInvite: jest.fn(),
-  removeSwipe: jest.fn()
+  removeSwipe: jest.fn(),
+  ensureAuthenticated: jest.fn().mockResolvedValue({ uid: 'user1', displayName: 'User One', email: 'user@test.com' })
 }));
 
 jest.mock('firebase/auth', () => ({
@@ -42,6 +43,8 @@ jest.mock('framer-motion', () => ({
 describe('MatchWatch testing', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    onAuthStateChanged.mockReturnValue(() => {});
+    onValue.mockReturnValue(() => {});
   });
 
   it('should display an alert when inviteToMatchWatch throws an error', async () => {
@@ -98,7 +101,6 @@ describe('MatchWatch testing', () => {
       fireEvent.click(startBtn);
     });
 
-    // Wait for waiting screen to appear
     await waitFor(() => {
       expect(screen.getByText(/Лобби ожидания/)).toBeInTheDocument();
     });
@@ -180,3 +182,55 @@ describe('MatchWatch testing', () => {
     alertMock.mockRestore();
   });
 });
+
+describe('M3: Seamless MatchWatch Room Join & Auth Sync', () => {
+  const { resolveUserDisplayName } = jest.requireActual('./MatchWatch');
+
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('should resolve display name using 6-tier fallback priority chain', () => {
+    // 1. Local name stored in mw_local_name takes highest priority
+    localStorage.setItem("mw_local_name", "CustomLocalName");
+    expect(resolveUserDisplayName({ displayName: "UserOne (@tag)", email: "alex@test.com" })).toBe("CustomLocalName");
+
+    // 2. Fall back to user.displayName (cleaned of tag and @)
+    localStorage.removeItem("mw_local_name");
+    expect(resolveUserDisplayName({ displayName: "UserOne (@tag)" })).toBe("UserOne");
+    expect(resolveUserDisplayName({ displayName: "@cleanName" })).toBe("cleanName");
+
+    // 3. Fall back to localStorage mw_local_username
+    localStorage.setItem("mw_local_username", "@localUsername");
+    expect(resolveUserDisplayName(null)).toBe("localUsername");
+
+    // 4. Fall back to user.email prefix (excluding internal emails)
+    localStorage.removeItem("mw_local_username");
+    expect(resolveUserDisplayName({ email: "john.doe@example.com" })).toBe("john.doe");
+    expect(resolveUserDisplayName({ email: "tg_12345@matchwatch.internal" })).toBe("Пользователь");
+
+    // 5. Fall back to "Пользователь" when no details available
+    expect(resolveUserDisplayName(null)).toBe("Пользователь");
+  });
+
+  it('should render loading screen when isAuthReady is false', () => {
+    render(<MatchWatch isAuthReady={false} />);
+    expect(screen.getByText('Проверка авторизации...')).toBeInTheDocument();
+    expect(screen.queryByText('🎬 Создать комнату')).not.toBeInTheDocument();
+  });
+
+  it('should pre-fill user display name on room join screen', async () => {
+    localStorage.setItem("mw_local_name", "PreFilledUser");
+
+    await act(async () => {
+      render(<MatchWatch isAuthReady={true} />);
+    });
+
+    const joinBtn = screen.getByText('🔗 Присоединиться');
+    fireEvent.click(joinBtn);
+
+    const nameInput = screen.getByPlaceholderText('Ваше имя');
+    expect(nameInput.value).toBe('PreFilledUser');
+  });
+});
+

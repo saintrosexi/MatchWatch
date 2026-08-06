@@ -531,7 +531,36 @@ export const ensureAuthenticated = async () => {
     try {
       await signInAnonymously(auth);
     } catch (err) {
-      console.warn("Anonymous auth fallback:", err);
+      console.warn("Anonymous auth fallback error:", err);
+    }
+  }
+
+  if (auth.currentUser && database) {
+    try {
+      const uid = auth.currentUser.uid;
+      const userRef = ref(database, `users/${uid}/profile`);
+      const userSnap = await get(userRef);
+      if (!userSnap.exists()) {
+        const localName = localStorage.getItem("mw_local_name") || auth.currentUser.displayName || `Пользователь #${uid.slice(0, 4)}`;
+        const localUsername = localStorage.getItem("mw_local_username") || `user_${uid.slice(0, 6)}`;
+        await set(userRef, {
+          name: localName,
+          username: localUsername,
+          tag: `@${localUsername}`,
+          avatar: "😎",
+          isOnline: true,
+          createdAt: Date.now(),
+          lastSeen: Date.now()
+        });
+        await set(ref(database, `usernames/${localUsername}`), uid);
+      } else {
+        await update(userRef, {
+          isOnline: true,
+          lastSeen: Date.now()
+        });
+      }
+    } catch (regErr) {
+      console.warn("User registry sync warning:", regErr);
     }
   }
   return auth.currentUser;
