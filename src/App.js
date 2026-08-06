@@ -85,35 +85,55 @@ export default function App() {
   }); // { [movieId]: number (1-10) }
   const getScreenFromUrl = () => {
     if (typeof window === "undefined") return "swipe";
-    const path = window.location.pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
     const params = new URLSearchParams(window.location.search);
-    const targetParam = params.get("screen") || params.get("startapp");
+    const targetParam = params.get("screen") || params.get("startapp") || params.get("add");
 
     const validScreens = ["friends", "liked", "profile", "search", "top", "settings", "matchwatch", "popularactors", "mood", "swipe"];
-    
-    if (validScreens.includes(path)) {
-      return path === "popularactors" ? "popularActors" : path;
+    const lowerPath = path.toLowerCase();
+
+    // Clean public route pattern: /user/username or /profile/username
+    const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
+    if (userMatch) {
+      const targetUser = decodeURIComponent(userMatch[1]);
+      if (!validScreens.includes(targetUser.toLowerCase())) {
+        return "publicProfile";
+      }
     }
-    if (targetParam && validScreens.includes(targetParam.toLowerCase())) {
-      return targetParam.toLowerCase() === "popularactors" ? "popularActors" : targetParam.toLowerCase();
+
+    if (targetParam && !validScreens.includes(targetParam.toLowerCase())) {
+      return "publicProfile";
+    }
+
+    if (validScreens.includes(lowerPath)) {
+      return lowerPath === "popularactors" ? "popularActors" : lowerPath;
     }
     return "swipe";
   };
 
   const [screen, setScreenState] = useState(getScreenFromUrl);
+  const [publicProfileTag, setPublicProfileTag] = useState(() => {
+    if (typeof window === "undefined") return null;
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+    const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
+    if (userMatch) return decodeURIComponent(userMatch[1]);
+    const params = new URLSearchParams(window.location.search);
+    return params.get("add");
+  });
 
   const setScreen = (newScreen, replaceHistory = false) => {
     setScreenState(newScreen);
     if (typeof window !== "undefined") {
       let targetPath = newScreen === "swipe" ? "/" : `/${newScreen}`;
       
-      // Generate clean user profile link without @ symbol (/user/saintrose)
       if (newScreen === "profile") {
         const cachedUsername = localStorage.getItem("mw_local_username");
         const activeUsername = cachedUsername || (user?.displayName && user.displayName.includes(' (@') ? user.displayName.split(' (@')[1].replace(')', '').replace('@', '') : null);
         if (activeUsername) {
           targetPath = `/user/${encodeURIComponent(activeUsername)}`;
         }
+      } else if (newScreen === "publicProfile" && publicProfileTag) {
+        targetPath = `/user/${encodeURIComponent(publicProfileTag.replace('@', ''))}`;
       }
 
       if (replaceHistory) {
@@ -257,35 +277,8 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  const [publicProfileTag, setPublicProfileTag] = useState(null);
   const [initialRoomCode, setInitialRoomCode] = useState(null);
   const [hostRoomCode, setHostRoomCode] = useState(null);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const addTag = urlParams.get('add');
-    const path = window.location.pathname;
-    
-    // Check if the current URL explicitly contains /user/someuser or /profile/someuser
-    const userMatch = path.match(/^\/(?:user|profile)\/([^/]+)$/i);
-    const targetTag = addTag || (userMatch ? decodeURIComponent(userMatch[1]) : null);
-
-    // Reserved screens that shouldn't trigger publicProfile lookup
-    const systemScreens = ["friends", "liked", "profile", "search", "top", "settings", "matchwatch", "popularactors", "mood", "swipe", "edit"];
-
-    if (targetTag && !systemScreens.includes(targetTag.toLowerCase())) {
-      const cleanTarget = targetTag.replace('@', '').toLowerCase();
-      const myCachedUsername = (localStorage.getItem("mw_local_username") || "").toLowerCase();
-      const myAuthUsername = user?.displayName && user.displayName.includes(' (@') ? user.displayName.split(' (@')[1].replace(')', '').replace('@', '').toLowerCase() : "";
-
-      if (user && (cleanTarget === myCachedUsername || (myAuthUsername && cleanTarget === myAuthUsername))) {
-        setScreenState("profile");
-      } else {
-        setPublicProfileTag(targetTag);
-        setScreenState("publicProfile");
-      }
-    }
-  }, [user]);
 
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
   const [selectedActorName, setSelectedActorName] = useState(null);
