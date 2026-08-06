@@ -227,28 +227,61 @@ export const getPublicProfileByUsername = async (identifier) => {
   
   let targetUid = null;
   
-  // 1. Try usernames lookup
-  const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
-  if (usernameSnap.exists()) {
-    targetUid = usernameSnap.val();
-  } else {
-    // 2. Fallback to legacy tag lookup
-    const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
-    if (tagSnap.exists()) {
-      targetUid = tagSnap.val();
+  try {
+    // 1. Try usernames lookup
+    const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+    if (usernameSnap.exists()) {
+      targetUid = usernameSnap.val();
+    }
+  } catch (_e) { /* permission bypass */ }
+
+  if (!targetUid) {
+    try {
+      // 2. Fallback to legacy tag lookup
+      const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
+      if (tagSnap.exists()) {
+        targetUid = tagSnap.val();
+      }
+    } catch (_e) { /* permission bypass */ }
+  }
+
+  // 3. Robust Fallback: Direct scan in /users if indexes are blocked by rules
+  if (!targetUid) {
+    try {
+      const usersSnap = await get(ref(database, 'users'));
+      if (usersSnap.exists()) {
+        const usersData = usersSnap.val();
+        for (const [uid, uData] of Object.entries(usersData)) {
+          const uProf = uData?.profile || {};
+          const uUsername = (uProf.username || '').toLowerCase();
+          const uTag = (uProf.tag || '').toLowerCase();
+
+          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase()) {
+            targetUid = uid;
+            break;
+          }
+        }
+      }
+    } catch (usersErr) {
+      console.warn("Direct users scan error:", usersErr);
     }
   }
 
   if (!targetUid) return null;
 
-  const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
-  const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
+  try {
+    const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
+    const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
 
-  return {
-    uid: targetUid,
-    profile: profileSnap.val() || {},
-    appData: appDataSnap.val() || {}
-  };
+    return {
+      uid: targetUid,
+      profile: profileSnap.val() || {},
+      appData: appDataSnap.val() || {}
+    };
+  } catch (err) {
+    console.error("Error loading user profile:", err);
+    return null;
+  }
 };
 export const registerWithTag = async (email, password, baseName, customUsername = null) => {
   const cleanUsername = sanitizeUsername(customUsername || baseName);
