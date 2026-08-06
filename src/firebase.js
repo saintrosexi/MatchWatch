@@ -222,48 +222,30 @@ export const updateUsernameAndName = async (user, displayName, rawUsername) => {
 };
 
 export const getPublicProfileByUsername = async (identifier) => {
-  if (!identifier) return null;
+  if (!identifier || !database) return null;
   const cleanId = sanitizeUsername(identifier.replace('@', ''));
-  const cachedUsername = typeof window !== "undefined" ? (localStorage.getItem("mw_local_username") || "").toLowerCase() : "";
-
-  // Instant local synthesis if requesting own cached profile
-  if (cleanId === cachedUsername) {
-    const cachedName = localStorage.getItem("mw_local_name") || "Киноман";
-    const cachedAvatar = localStorage.getItem("mw_local_avatar") || "😎";
-    const cachedBio = localStorage.getItem("mw_local_bio") || "";
-    return {
-      uid: auth?.currentUser?.uid || "current_local_user",
-      profile: {
-        name: cachedName,
-        username: cleanId,
-        tag: `@${cleanId}`,
-        avatar: cachedAvatar,
-        bio: cachedBio
-      },
-      appData: {}
-    };
-  }
-
-  if (!database) return null;
+  
   let targetUid = null;
 
+  // 1. Check usernames index node
   try {
     const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
     if (usernameSnap.exists()) {
       targetUid = usernameSnap.val();
     }
-  } catch (_e) { /* index bypass */ }
+  } catch (_e) { /* permission bypass */ }
 
+  // 2. Check legacy userTags index node
   if (!targetUid) {
     try {
       const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
       if (tagSnap.exists()) {
         targetUid = tagSnap.val();
       }
-    } catch (_e) { /* index bypass */ }
+    } catch (_e) { /* permission bypass */ }
   }
 
-  // Robust scan fallback in /users
+  // 3. Scan Realtime Database /users node to find actual target user ID
   if (!targetUid) {
     try {
       const usersSnap = await get(ref(database, 'users'));
@@ -286,37 +268,23 @@ export const getPublicProfileByUsername = async (identifier) => {
     }
   }
 
-  if (!targetUid) {
-    // Graceful fallback profile for share links
-    return {
-      uid: `fallback_${cleanId}`,
-      profile: {
-        name: cleanId,
-        username: cleanId,
-        tag: `@${cleanId}`,
-        avatar: "🎬",
-        bio: "Киноман MatchWatch"
-      },
-      appData: {}
-    };
-  }
+  if (!targetUid) return null;
 
   try {
     const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
     const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
 
+    const prof = profileSnap.val();
+    if (!prof) return null;
+
     return {
       uid: targetUid,
-      profile: profileSnap.val() || { name: cleanId, username: cleanId, tag: `@${cleanId}` },
+      profile: prof,
       appData: appDataSnap.val() || {}
     };
   } catch (err) {
     console.error("Error loading user profile:", err);
-    return {
-      uid: targetUid,
-      profile: { name: cleanId, username: cleanId, tag: `@${cleanId}` },
-      appData: {}
-    };
+    return null;
   }
 };
 export const registerWithTag = async (email, password, baseName, customUsername = null) => {

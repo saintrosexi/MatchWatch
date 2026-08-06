@@ -240,8 +240,15 @@ export default function App() {
           setFriendRequests(snap.val() || {});
         });
 
-        onValue(ref(database, `users/${currentUser.uid}/profile/avatar`), (snap) => {
-          setCurrentUserAvatar(snap.val() || "😎");
+        onValue(ref(database, `users/${currentUser.uid}/profile`), (snap) => {
+          const prof = snap.val() || {};
+          if (prof.avatar) setCurrentUserAvatar(prof.avatar);
+          if (prof.username) {
+            try { localStorage.setItem("mw_local_username", prof.username); } catch (_e) {}
+          }
+          if (prof.name) {
+            try { localStorage.setItem("mw_local_name", prof.name); } catch (_e) {}
+          }
         });
       } else {
         setDataLoaded(true);
