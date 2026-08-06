@@ -13,10 +13,64 @@ import { triggerHaptic, getTelegramStartParam, getTelegramUser, shareTelegramRoo
 import { getPosterCandidates, getBestPosterUrl } from "../posterResolver";
 import { ChamaBanner } from "../chamaAssets";
 
+export const resolveUserDisplayName = (user) => {
+  // 1. localStorage "mw_local_name"
+  try {
+    const localName = localStorage.getItem("mw_local_name");
+    if (localName && localName.trim()) {
+      return localName.trim();
+    }
+  } catch (_e) {}
+
+  // 2. user.displayName (cleaned of (@tag) and leading @)
+  if (user && user.displayName && user.displayName.trim()) {
+    let cleanName = user.displayName.trim();
+    if (cleanName.includes(" (@")) {
+      cleanName = cleanName.split(" (@")[0].trim();
+    }
+    cleanName = cleanName.replace(/^@/, "").trim();
+    if (cleanName) {
+      return cleanName;
+    }
+  }
+
+  // 3. localStorage "mw_local_username"
+  try {
+    const localUsername = localStorage.getItem("mw_local_username");
+    if (localUsername && localUsername.trim()) {
+      const cleanUser = localUsername.trim().replace(/^@/, "");
+      if (cleanUser) {
+        return cleanUser;
+      }
+    }
+  } catch (_e) {}
+
+  // 4. user.email (before @, excluding internal tg_ emails)
+  if (user && user.email && user.email.trim()) {
+    const emailPrefix = user.email.split("@")[0].trim();
+    if (emailPrefix && !user.email.endsWith("@matchwatch.internal")) {
+      return emailPrefix;
+    }
+  }
+
+  // 5. Telegram user name
+  try {
+    const tgUser = getTelegramUser();
+    if (tgUser) {
+      const tgName = tgUser.name || tgUser.username || (tgUser.first_name ? `${tgUser.first_name} ${tgUser.last_name || ''}`.trim() : null);
+      if (tgName && tgName.trim()) {
+        return tgName.replace(/^@/, "").trim();
+      }
+    }
+  } catch (_e) {}
+
+  return "Пользователь";
+};
+
 export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoomCode, hostRoomCode, onClearHostRoomCode, invites = {}, decisions = {}, onToggleLike, disableOnboarding = false, favorites, onToggleFavorite, ratings, onSetRating, stopGenres = [], onScreenChange, isAuthReady = true }) {
   const [screen, setScreen] = useState("start");
   const [roomCode, setRoomCode] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(() => resolveUserDisplayName(auth?.currentUser));
   const [role, setRole] = useState(null); // 'host' or 'guest'
   const [roomData, setRoomData] = useState(null);
 
@@ -31,12 +85,14 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     if (!isAuthReady) return;
 
     initTelegramWebApp();
-    const tgUser = getTelegramUser();
     const startParam = getTelegramStartParam();
-    const nameToUse = (tgUser && tgUser.name) || userName || auth?.currentUser?.displayName;
+    const nameToUse = userName || resolveUserDisplayName(auth?.currentUser);
 
-    if (tgUser && tgUser.name && !userName) {
-      setUserName(tgUser.name);
+    if (!userName || userName === "Пользователь") {
+      const resolved = resolveUserDisplayName(auth?.currentUser);
+      if (resolved && resolved !== "Пользователь") {
+        setUserName(resolved);
+      }
     }
 
     if (startParam) {
@@ -111,14 +167,26 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
     if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      if (user) {
-        if (user.displayName && !userName) {
-          setUserName(user.displayName);
-        }
+      const resolved = resolveUserDisplayName(user);
+      if (resolved && resolved !== "Пользователь") {
+        setUserName(prev => (!prev || prev === "Пользователь" ? resolved : prev));
       }
     });
-    return () => unsubscribe();
-  }, [userName]);
+    return () => {
+      if (typeof unsubscribe === "function") {
+        unsubscribe();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isAuthReady) {
+      const resolved = resolveUserDisplayName(currentUser || auth?.currentUser);
+      if (resolved && resolved !== "Пользователь") {
+        setUserName(prev => (!prev || prev === "Пользователь" ? resolved : prev));
+      }
+    }
+  }, [isAuthReady, currentUser]);
 
   useEffect(() => {
     if (initialRoomCode) {
@@ -288,13 +356,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   const [requireAuthModal, setRequireAuthModal] = useState(false);
 
   const handleCreateRoom = async () => {
+    if (!isAuthReady) return;
     if (!auth?.currentUser) {
       setRequireAuthModal(true);
       return;
     }
 
-    const tgUser = getTelegramUser();
-    const finalUserName = userName.trim() || auth?.currentUser?.displayName || (auth?.currentUser?.email ? auth.currentUser.email.split('@')[0] : null) || (tgUser && tgUser.name) || "Пользователь";
+    const finalUserName = userName.trim() || resolveUserDisplayName(auth?.currentUser);
     if (!userName.trim()) {
       setUserName(finalUserName);
     }
@@ -357,13 +425,13 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
   };
 
   const handleJoinRoom = async () => {
+    if (!isAuthReady) return;
     if (!auth?.currentUser) {
       setRequireAuthModal(true);
       return;
     }
 
-    const tgUser = getTelegramUser();
-    const finalUserName = userName.trim() || auth?.currentUser?.displayName || (auth?.currentUser?.email ? auth.currentUser.email.split('@')[0] : null) || (tgUser && tgUser.name) || "Пользователь";
+    const finalUserName = userName.trim() || resolveUserDisplayName(auth?.currentUser);
     if (!userName.trim()) {
       setUserName(finalUserName);
     }
@@ -545,6 +613,15 @@ export default function MatchWatch({ onLike, initialRoomCode, onClearInitialRoom
       );
     }
   };
+
+  if (!isAuthReady) {
+    return (
+      <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+        <div className="premium-loader" style={{ marginBottom: "16px" }} />
+        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem" }}>Проверка авторизации...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="matchwatch-container" style={{ minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>

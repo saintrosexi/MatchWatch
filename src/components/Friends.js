@@ -62,7 +62,11 @@ export default function Friends({
         });
       }
     });
-    return () => unsubscribe();
+    return () => {
+      if (typeof unsubscribe === "function") {
+        unsubscribe();
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -120,11 +124,10 @@ export default function Friends({
       return;
     }
 
-    setIsSearching(true);
     const timer = setTimeout(async () => {
-      const inputTag = rawInput.startsWith('@') || rawInput.includes('#') ? rawInput : `@${rawInput}`;
+      setIsSearching(true);
       try {
-        const found = await searchUserByUsername(inputTag);
+        const found = await searchUserByUsername(rawInput);
         setSearchResult(found);
         setSearchAttempted(true);
       } catch (err) {
@@ -137,21 +140,35 @@ export default function Friends({
     return () => clearTimeout(timer);
   }, [friendTagInput]);
 
-  const handleSearchFriend = (e) => {
-    e.preventDefault();
+  const handleSearchFriend = async (e) => {
+    if (e) e.preventDefault();
+    const rawInput = friendTagInput.trim();
+    if (!rawInput) return;
+
+    setIsSearching(true);
+    try {
+      const found = await searchUserByUsername(rawInput);
+      setSearchResult(found);
+      setSearchAttempted(true);
+    } catch (err) {
+      showToast("error", err.message || "Ошибка при поиске профиля");
+    } finally {
+      setIsSearching(false);
+    }
   };
 
-  const handleSendRequestToFound = async () => {
-    if (!searchResult) return;
+  const handleSendRequestToFound = async (targetUser) => {
+    const foundUser = targetUser || (Array.isArray(searchResult) ? searchResult[0] : searchResult);
+    if (!foundUser) return;
     const currentTag = user ? (user.displayName || user.email) : null;
-    const targetTag = searchResult.profile?.tag || searchResult.profile?.username || "Друг";
+    const targetTag = foundUser.profile?.tag || foundUser.profile?.username || "Друг";
 
-    if (user && searchResult.uid === user.uid) {
+    if (user && foundUser.uid === user.uid) {
       showToast("error", "Нельзя добавить самого себя");
       return;
     }
 
-    const isAlreadyFriend = Object.keys(friends).includes(searchResult.uid);
+    const isAlreadyFriend = Object.keys(friends).includes(foundUser.uid);
     if (isAlreadyFriend) {
       showToast("error", "Этот пользователь уже в вашем списке друзей");
       return;
@@ -160,14 +177,14 @@ export default function Friends({
     if (user) {
       try {
         await sendFriendRequest(user.uid, currentTag, targetTag);
-        showToast("success", `Заявка пользователю ${searchResult.profile.name || targetTag} успешно отправлена! 🚀`);
+        showToast("success", `Заявка пользователю ${foundUser.profile?.name || targetTag} успешно отправлена! 🚀`);
         setSearchResult(null);
         setFriendTagInput("");
       } catch (err) {
         showToast("error", err.message || "Ошибка при отправке заявки");
       }
     } else {
-      showToast("success", `Заявка пользователю ${searchResult.profile.name || targetTag} успешно отправлена! 🚀`);
+      showToast("success", `Заявка пользователю ${foundUser.profile?.name || targetTag} успешно отправлена! 🚀`);
       setSearchResult(null);
       setFriendTagInput("");
     }
@@ -245,6 +262,8 @@ export default function Friends({
 
   const activeRequests = friendRequests || {};
   const requestsCount = Object.keys(activeRequests).length;
+  const resultsList = Array.isArray(searchResult) ? searchResult : (searchResult ? [searchResult] : []);
+  const hasResults = resultsList.length > 0;
 
   return (
     <div className="friends-activity-container relative overflow-hidden">
@@ -287,9 +306,9 @@ export default function Friends({
                   type="text"
                   placeholder="owner"
                   className="add-friend-input"
-                  value={friendTagInput.replace('@', '')}
+                  value={friendTagInput}
                   onChange={(e) => {
-                    setFriendTagInput(e.target.value.toLowerCase().replace(/[^a-z0-9_#]/g, ''));
+                    setFriendTagInput(e.target.value);
                     if (searchResult) setSearchResult(null);
                   }}
                   style={{ background: "transparent", border: "none", outline: "none", flex: 1, padding: "10px 14px 10px 0" }}
@@ -308,53 +327,57 @@ export default function Friends({
               </div>
             )}
 
-            {/* Found Active Profile Preview Card */}
-            {!isSearching && searchResult && (
-              <motion.div 
-                className="found-user-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{
-                  marginTop: "16px",
-                  padding: "16px",
-                  borderRadius: "16px",
-                  background: "rgba(255, 255, 255, 0.04)",
-                  border: "1px solid var(--accent-coral)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "14px"
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <div style={{ width: "46px", height: "46px", borderRadius: "12px", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem" }}>
-                    {searchResult.profile.avatar || "😎"}
-                  </div>
-                  <div style={{ textAlign: "left" }}>
-                    <div style={{ fontWeight: "700", color: "#fff", fontSize: "1rem" }}>{searchResult.profile.name || searchResult.profile.username}</div>
-                    <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>@{searchResult.profile.username || searchResult.profile.tag}</div>
-                  </div>
-                </div>
+            {/* Found Active Profile Preview Cards */}
+            {!isSearching && hasResults && (
+              <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                {resultsList.map((foundUser) => (
+                  <motion.div 
+                    key={foundUser.uid}
+                    className="found-user-card"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{
+                      padding: "16px",
+                      borderRadius: "16px",
+                      background: "rgba(255, 255, 255, 0.04)",
+                      border: "1px solid var(--accent-coral)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "14px"
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                      <div style={{ width: "46px", height: "46px", borderRadius: "12px", background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem" }}>
+                        {foundUser.profile?.avatar || "😎"}
+                      </div>
+                      <div style={{ textAlign: "left" }}>
+                        <div style={{ fontWeight: "700", color: "#fff", fontSize: "1rem" }}>{foundUser.profile?.name || foundUser.profile?.username}</div>
+                        <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>@{foundUser.profile?.username || foundUser.profile?.tag}</div>
+                      </div>
+                    </div>
 
-                <div style={{ display: "flex", gap: "8px" }}>
-                  <button 
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => onViewProfile && onViewProfile(searchResult.profile.username || searchResult.profile.tag)}
-                  >
-                    Профиль 👤
-                  </button>
-                  <button 
-                    className="btn btn-coral btn-sm"
-                    onClick={handleSendRequestToFound}
-                  >
-                    Добавить 🚀
-                  </button>
-                </div>
-              </motion.div>
+                    <div style={{ display: "flex", gap: "8px" }}>
+                      <button 
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => onViewProfile && onViewProfile(foundUser.profile?.username || foundUser.profile?.tag)}
+                      >
+                        Профиль 👤
+                      </button>
+                      <button 
+                        className="btn btn-coral btn-sm"
+                        onClick={() => handleSendRequestToFound(foundUser)}
+                      >
+                        Добавить 🚀
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             )}
 
             {/* Not Found state */}
-            {!isSearching && !searchResult && searchAttempted && friendTagInput.trim() !== "" && (
+            {!isSearching && !hasResults && searchAttempted && friendTagInput.trim() !== "" && (
               <motion.div
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}

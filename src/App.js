@@ -84,17 +84,39 @@ export default function App() {
       return saved ? JSON.parse(saved) : {};
     } catch (e) { return {}; }
   }); // { [movieId]: number (1-10) }
+  const getCombinedUrlPath = () => {
+    if (typeof window === "undefined") return "";
+    let pathname = (window.location.pathname || "").replace(/^\/+|\/+$/g, "");
+    let hash = window.location.hash ? window.location.hash.substring(1) : "";
+
+    if (
+      hash.startsWith("/user/") ||
+      hash.startsWith("/profile/") ||
+      hash.startsWith("user/") ||
+      hash.startsWith("profile/")
+    ) {
+      return hash.replace(/^\/+|\/+$/g, "");
+    }
+
+    if (pathname) {
+      if (hash) {
+        return `${pathname}#${hash.replace(/^#/, '')}`;
+      }
+      return pathname;
+    }
+    
+    return hash.replace(/^\/+|\/+$/g, "");
+  };
+
   const getScreenFromUrl = () => {
     if (typeof window === "undefined") return "swipe";
-    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+    const fullPath = getCombinedUrlPath();
     const params = new URLSearchParams(window.location.search);
     const targetParam = params.get("screen") || params.get("startapp") || params.get("add");
 
     const validScreens = ["friends", "liked", "profile", "search", "top", "settings", "matchwatch", "popularactors", "mood", "swipe"];
-    const lowerPath = path.toLowerCase();
 
-    // Clean public route pattern: /user/username or /profile/username
-    const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
+    const userMatch = fullPath.match(/^(?:user|profile)\/([^/?]+)/i);
     if (userMatch) {
       return "publicProfile";
     }
@@ -103,17 +125,26 @@ export default function App() {
       return "publicProfile";
     }
 
+    const lowerPath = fullPath.toLowerCase().split('/')[0];
     if (validScreens.includes(lowerPath)) {
       return lowerPath === "popularactors" ? "popularActors" : lowerPath;
     }
     return "swipe";
   };
 
+  const safeDecode = (str) => {
+    try {
+      return decodeURIComponent(str);
+    } catch (_e) {
+      return str;
+    }
+  };
+
   const getNicknameFromUrl = () => {
     if (typeof window === "undefined") return null;
-    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
-    const userMatch = path.match(/^(?:user|profile)\/([^/]+)$/i);
-    if (userMatch) return decodeURIComponent(userMatch[1]);
+    const fullPath = getCombinedUrlPath();
+    const userMatch = fullPath.match(/^(?:user|profile)\/([^/?]+)/i);
+    if (userMatch) return safeDecode(userMatch[1]);
     const params = new URLSearchParams(window.location.search);
     return params.get("add");
   };
@@ -121,7 +152,7 @@ export default function App() {
   const [screen, setScreenState] = useState(getScreenFromUrl);
   const [publicProfileTag, setPublicProfileTag] = useState(getNicknameFromUrl);
 
-  const setScreen = (newScreen, replaceHistory = false) => {
+  const setScreen = (newScreen, replaceHistory = false, targetTag = null) => {
     setScreenState(newScreen);
     if (typeof window !== "undefined") {
       let targetPath = newScreen === "swipe" ? "/" : `/${newScreen}`;
@@ -132,13 +163,17 @@ export default function App() {
         if (activeUsername) {
           targetPath = `/user/${encodeURIComponent(activeUsername)}`;
         }
-      } else if (newScreen === "publicProfile" && publicProfileTag) {
-        targetPath = `/user/${encodeURIComponent(publicProfileTag.replace('@', ''))}`;
+      } else if (newScreen === "publicProfile") {
+        const tagToUse = targetTag || publicProfileTag;
+        if (tagToUse) {
+          const cleanTag = tagToUse.trim().replace(/^@/, '');
+          targetPath = `/user/${encodeURIComponent(cleanTag)}`;
+        }
       }
 
       if (replaceHistory) {
         window.history.replaceState({ screen: newScreen }, "", targetPath);
-      } else if (window.location.pathname !== targetPath) {
+      } else if (window.location.pathname + window.location.hash !== targetPath) {
         window.history.pushState({ screen: newScreen }, "", targetPath);
       }
     }
@@ -148,11 +183,15 @@ export default function App() {
     const handlePopState = () => {
       const urlScreen = getScreenFromUrl();
       const nick = getNicknameFromUrl();
-      if (nick) setPublicProfileTag(nick);
+      setPublicProfileTag(nick || null);
       setScreenState(urlScreen);
     };
     window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+    window.addEventListener("hashchange", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("hashchange", handlePopState);
+    };
   }, []);
   const [matchWatchScreen, setMatchWatchScreen] = useState("start");
   const [user, setUser] = useState(null);
@@ -607,7 +646,7 @@ export default function App() {
       return <Friends
         onViewProfile={(tag) => {
           setPublicProfileTag(tag);
-          setScreen("publicProfile");
+          setScreen("publicProfile", false, tag);
         }}
         onTabClick={handleTabClick}
         onGoToMatchWatch={(code) => {

@@ -1,4 +1,4 @@
-import { createMatchRoom, joinMatchRoom } from './firebase';
+import { createMatchRoom, joinMatchRoom, searchUserByUsername, normalizeSearchTerm } from './firebase';
 import { getDatabase, ref, set, get, update } from 'firebase/database';
 
 jest.mock('firebase/app', () => ({
@@ -23,6 +23,112 @@ jest.mock('firebase/auth', () => ({
   signOut: jest.fn(),
   updateProfile: jest.fn(),
 }));
+
+describe('searchUserByUsername', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('normalizes search terms by trimming, lowercasing, and removing @ and #', () => {
+    expect(normalizeSearchTerm('@Sanya#1234')).toBe('sanya1234');
+    expect(normalizeSearchTerm('  @Мария  ')).toBe('мария');
+    expect(normalizeSearchTerm('')).toBe('');
+  });
+
+  it('returns empty array when database or identifier is missing/empty', async () => {
+    const res1 = await searchUserByUsername('');
+    expect(res1).toEqual([]);
+
+    const res2 = await searchUserByUsername(null);
+    expect(res2).toEqual([]);
+  });
+
+  it('performs substring matching across online and offline users in RTDB /users', async () => {
+    const mockUsersData = {
+      user_1: {
+        profile: {
+          username: 'sanya_online',
+          name: 'Александр',
+          tag: '@sanya_online#1111',
+          email: 'sanya.online@gmail.com',
+          avatar: '😎'
+        }
+      },
+      user_2: {
+        profile: {
+          username: 'sanya_offline',
+          name: 'Саня Офлайн',
+          tag: '@sanya_offline#2222',
+          email: 'sanya.offline@gmail.com',
+          avatar: '😴'
+        }
+      },
+      user_3: {
+        profile: {
+          username: 'charlie',
+          name: 'Чарли',
+          tag: '@charlie#3333',
+          email: 'charlie@gmail.com'
+        }
+      }
+    };
+
+    const snapshot = {
+      exists: () => true,
+      val: () => mockUsersData
+    };
+
+    get.mockImplementation(async (refObj) => {
+      if (refObj?.path === 'users') {
+        return snapshot;
+      }
+      return { exists: () => false, val: () => null };
+    });
+
+    const results = await searchUserByUsername('@sanya');
+    expect(results).toHaveLength(2);
+    expect(results[0].uid).toBe('user_1');
+    expect(results[0].profile.username).toBe('sanya_online');
+    expect(results[1].uid).toBe('user_2');
+    expect(results[1].profile.username).toBe('sanya_offline');
+  });
+
+  it('handles Cyrillic display names and case-insensitive queries', async () => {
+    const mockUsersData = {
+      user_cyrillic: {
+        profile: {
+          username: 'mariya99',
+          name: 'Мария Иванова',
+          tag: '@mariya99#5555'
+        }
+      }
+    };
+
+    get.mockImplementation(async (refObj) => {
+      if (refObj?.path === 'users') {
+        return { exists: () => true, val: () => mockUsersData };
+      }
+      return { exists: () => false, val: () => null };
+    });
+
+    const results = await searchUserByUsername('мария');
+    expect(results).toHaveLength(1);
+    expect(results[0].uid).toBe('user_cyrillic');
+    expect(results[0].profile.name).toBe('Мария Иванова');
+  });
+
+  it('returns empty array when search yields no matches', async () => {
+    get.mockImplementation(async (refObj) => {
+      if (refObj?.path === 'users') {
+        return { exists: () => true, val: () => ({}) };
+      }
+      return { exists: () => false, val: () => null };
+    });
+
+    const results = await searchUserByUsername('nonexistent_user_xyz');
+    expect(results).toEqual([]);
+  });
+});
 
 describe('createMatchRoom', () => {
   beforeEach(() => {

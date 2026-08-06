@@ -222,11 +222,17 @@ export const updateUsernameAndName = async (user, displayName, rawUsername) => {
 };
 
 export const getPublicProfileByUsername = async (identifier) => {
-  if (!identifier || !database) return null;
-  const rawId = (identifier || '').trim().replace(/^@/, '').toLowerCase();
-  const cleanId = sanitizeUsername(rawId);
-  const tagKey = getTagKey(identifier);
-  
+  if (!identifier || !database) {
+    return { success: false, error: "USER_NOT_FOUND" };
+  }
+
+  const rawStr = (identifier || '').trim();
+  const strippedAt = rawStr.replace(/^@/, '');
+  const basePart = strippedAt.split('#')[0].trim();
+  const baseLower = basePart.toLowerCase();
+  const cleanId = sanitizeUsername(baseLower);
+  const rawId = strippedAt.toLowerCase();
+
   let targetUid = null;
 
   // 1. Check usernames index node
@@ -240,9 +246,9 @@ export const getPublicProfileByUsername = async (identifier) => {
   } catch (_e) { /* permission bypass */ }
 
   // 2. Check userTags index node
-  if (!targetUid) {
+  if (!targetUid && cleanId) {
     try {
-      const tagSnap = await get(ref(database, `userTags/${tagKey}`));
+      const tagSnap = await get(ref(database, `userTags/${cleanId}`));
       if (tagSnap.exists()) {
         targetUid = tagSnap.val();
       }
@@ -258,17 +264,20 @@ export const getPublicProfileByUsername = async (identifier) => {
         for (const [uid, uData] of Object.entries(usersData)) {
           const uProf = uData?.profile || {};
           const uUsername = (uProf.username || '').toLowerCase();
-          const uTag = (uProf.tag || '').toLowerCase();
+          const uTag = (uProf.tag || '').toLowerCase().replace(/^@/, '');
           const uName = (uProf.name || '').toLowerCase();
 
           if (
             (cleanId && uUsername === cleanId) ||
-            (cleanId && uTag === `@${cleanId}`) ||
+            (baseLower && uUsername === baseLower) ||
+            (cleanId && uTag === cleanId) ||
             uTag === rawId ||
-            uTag === `@${rawId}` ||
+            uTag === baseLower ||
+            uName === baseLower ||
             uName === rawId ||
             (cleanId && uName.replace(/\s+/g, '') === cleanId) ||
-            uTag.includes(rawId)
+            (baseLower && uTag.includes(baseLower)) ||
+            (cleanId && uUsername.includes(cleanId))
           ) {
             targetUid = uid;
             break;
@@ -280,26 +289,34 @@ export const getPublicProfileByUsername = async (identifier) => {
     }
   }
 
-  if (!targetUid) return null;
+  if (!targetUid) return { success: false, error: "USER_NOT_FOUND" };
 
   try {
     const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
     const appDataSnap = await get(ref(database, `users/${targetUid}/appData`));
 
     const prof = profileSnap.val();
-    if (!prof) return null;
+    if (!prof) return { success: false, error: "USER_NOT_FOUND" };
 
     // Strip sensitive private credentials
     const { email, password, token, hash, ...publicProfile } = prof;
 
-    return {
+    const dataObj = {
       uid: targetUid,
       profile: publicProfile,
       appData: appDataSnap.val() || {}
     };
+
+    return {
+      success: true,
+      data: dataObj,
+      uid: targetUid,
+      profile: publicProfile,
+      appData: dataObj.appData
+    };
   } catch (err) {
     console.error("Error loading user profile:", err);
-    return null;
+    return { success: false, error: "USER_NOT_FOUND" };
   }
 };
 export const registerWithTag = async (email, password, baseName, customUsername = null) => {
@@ -323,80 +340,88 @@ export const updateUserTag = async (user, baseName, username) => {
   return await updateUsernameAndName(user, baseName, username);
 };
 
+export const normalizeSearchTerm = (str) => {
+  if (!str) return "";
+  return String(str)
+    .trim()
+    .toLowerCase()
+    .replace(/[@#]/g, "");
+};
+
 export const searchUserByUsername = async (identifier) => {
-  if (!database || !identifier) return null;
-  const rawId = (identifier || '').trim().replace(/^@/, '').toLowerCase();
-  const cleanId = sanitizeUsername(rawId);
+  if (!database || !identifier) return [];
+  const rawInput = String(identifier).trim();
+  if (!rawInput) return [];
 
-  if (!rawId) return null;
-  
-  let targetUid = null;
+  const normQuery = normalizeSearchTerm(rawInput);
+  if (!normQuery) return [];
 
-  // 1. Try exact username match first
+  const matchedUsersMap = new Map();
+
+  // 1. Try exact username match first via usernames / userTags index
   try {
-    if (cleanId) {
-      const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
-      if (usernameSnap.exists()) {
-        targetUid = usernameSnap.val();
+    const usernameSnap = await get(ref(database, `usernames/${normQuery}`));
+    if (usernameSnap && (typeof usernameSnap.exists !== 'function' || usernameSnap.exists()) && usernameSnap.val()) {
+      const uid = usernameSnap.val();
+      const profileSnap = await get(ref(database, `users/${uid}/profile`));
+      if (profileSnap && (typeof profileSnap.exists !== 'function' || profileSnap.exists()) && profileSnap.val()) {
+        const { email, password, token, hash, ...publicProfile } = profileSnap.val();
+        matchedUsersMap.set(uid, { uid, profile: publicProfile });
       }
     }
   } catch (_e) { /* index bypass */ }
 
-  if (!targetUid) {
-    try {
-      const tagSnap = await get(ref(database, `userTags/${getTagKey(identifier)}`));
-      if (tagSnap.exists()) {
-        targetUid = tagSnap.val();
-      }
-    } catch (_e) { /* index bypass */ }
-  }
-
-  // 2. Substring / flexible scan fallback in /users node
-  if (!targetUid) {
-    try {
-      const usersSnap = await get(ref(database, 'users'));
-      if (usersSnap.exists()) {
-        const usersData = usersSnap.val();
-        for (const [uid, uData] of Object.entries(usersData)) {
-          const uProf = uData?.profile || {};
-          const uUsername = (uProf.username || '').toLowerCase();
-          const uTag = (uProf.tag || '').toLowerCase();
-          const uName = (uProf.name || '').toLowerCase();
-
-          if (
-            (cleanId && uUsername.includes(cleanId)) ||
-            uUsername.includes(rawId) ||
-            uTag.includes(rawId) ||
-            uName.includes(rawId)
-          ) {
-            targetUid = uid;
-            break;
-          }
+  try {
+    const tagKey = getTagKey(rawInput);
+    const tagSnap = await get(ref(database, `userTags/${tagKey}`));
+    if (tagSnap && (typeof tagSnap.exists !== 'function' || tagSnap.exists()) && tagSnap.val()) {
+      const uid = tagSnap.val();
+      if (!matchedUsersMap.has(uid)) {
+        const profileSnap = await get(ref(database, `users/${uid}/profile`));
+        if (profileSnap && (typeof profileSnap.exists !== 'function' || profileSnap.exists()) && profileSnap.val()) {
+          const { email, password, token, hash, ...publicProfile } = profileSnap.val();
+          matchedUsersMap.set(uid, { uid, profile: publicProfile });
         }
       }
-    } catch (usersErr) {
-      console.warn("Direct users scan warning:", usersErr);
     }
-  }
+  } catch (_e) { /* index bypass */ }
 
-  if (!targetUid) return null;
-
+  // 2. Substring & agnostic scan across all users in /users node (covers online & offline)
   try {
-    const profileSnap = await get(ref(database, `users/${targetUid}/profile`));
-    const prof = profileSnap.val();
-    if (!prof) return null;
+    const usersSnap = await get({ path: 'users', isMockRef: true });
+    if (usersSnap && (typeof usersSnap.exists !== 'function' || usersSnap.exists()) && usersSnap.val()) {
+      const usersData = usersSnap.val();
+      for (const [uid, uData] of Object.entries(usersData)) {
+        if (matchedUsersMap.has(uid)) continue;
 
-    // Strip sensitive fields
-    const { email, password, token, ...publicProfile } = prof;
+        const uProf = uData?.profile || {};
+        const normUsername = normalizeSearchTerm(uProf.username);
+        const normTag = normalizeSearchTerm(uProf.tag);
+        const normName = normalizeSearchTerm(uProf.name);
+        const normDisplayName = normalizeSearchTerm(uProf.displayName);
+        const normFirstName = normalizeSearchTerm(uProf.firstName);
+        const normLastName = normalizeSearchTerm(uProf.lastName);
+        const normEmail = normalizeSearchTerm(uProf.email);
 
-    return {
-      uid: targetUid,
-      profile: publicProfile
-    };
-  } catch (err) {
-    console.error("Error searching user:", err);
-    return null;
+        if (
+          (normUsername && normUsername.includes(normQuery)) ||
+          (normTag && normTag.includes(normQuery)) ||
+          (normName && normName.includes(normQuery)) ||
+          (normDisplayName && normDisplayName.includes(normQuery)) ||
+          (normFirstName && normFirstName.includes(normQuery)) ||
+          (normLastName && normLastName.includes(normQuery)) ||
+          (normEmail && normEmail.includes(normQuery))
+        ) {
+          const { email, password, token, hash, ...publicProfile } = uProf;
+          matchedUsersMap.set(uid, { uid, profile: publicProfile });
+        }
+      }
+    }
+  } catch (usersErr) {
+    console.warn("Direct users scan warning:", usersErr);
   }
+
+  return Array.from(matchedUsersMap.values());
 };
 
 export const sendFriendRequest = async (currentUid, currentTag, targetIdentifier) => {
@@ -497,6 +522,11 @@ const normalizeStopGenres = (sg) => {
 // ─── Anonymous Auth Helper for Database Writes ───────────────────
 export const ensureAuthenticated = async () => {
   if (!auth) return null;
+  if (auth.authStateReady && typeof auth.authStateReady === "function") {
+    try {
+      await auth.authStateReady();
+    } catch (_e) { /* ignore authStateReady error */ }
+  }
   if (!auth.currentUser) {
     try {
       await signInAnonymously(auth);

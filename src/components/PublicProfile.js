@@ -48,8 +48,8 @@ function getAnimeStudio(movie) {
   return "Другая студия";
 }
 
-export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
-  const [currentUser, setCurrentUser] = useState(null);
+export default function PublicProfile({ tag, user: initialUser, currentUserDecisions, favorites, ratings, onBackToApp, onGoToMatchWatch }) {
+  const [currentUser, setCurrentUser] = useState(initialUser || null);
   const [targetData, setTargetData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -64,40 +64,118 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showAllFavorites, setShowAllFavorites] = useState(false);
 
+  const rawTag = tag || targetData?.profile?.tag || targetData?.profile?.username || "";
+  const hasHash = rawTag.includes('#');
+  const namePart = hasHash ? rawTag.split('#')[0] : rawTag;
+  const tagPart = hasHash ? '#' + rawTag.split('#')[1] : '';
+
+  const isSelfProfile = useMemo(() => {
+    if (!currentUser) return false;
+    if (targetData && currentUser.uid === targetData.uid) return true;
+
+    if (!tag) return false;
+
+    const normTag = tag.trim().replace(/^@/, '').toLowerCase().split('#')[0];
+    if (!normTag) return false;
+
+    const userDisplayName = (currentUser.displayName || '').toLowerCase();
+    if (userDisplayName) {
+      if (userDisplayName === normTag) return true;
+      if (userDisplayName.includes(`@${normTag}`)) return true;
+      if (userDisplayName.includes(normTag)) return true;
+    }
+
+    const emailPrefix = (currentUser.email || '').split('@')[0].toLowerCase();
+    if (emailPrefix && emailPrefix === normTag) return true;
+
+    const localUsername = (localStorage.getItem("mw_local_username") || '').toLowerCase();
+    if (localUsername && localUsername === normTag) return true;
+
+    if (targetData?.profile) {
+      const targetUsername = (targetData.profile.username || '').toLowerCase();
+      const targetTag = (targetData.profile.tag || '').toLowerCase().replace(/^@/, '').split('#')[0];
+      if (targetUsername && (userDisplayName.includes(targetUsername) || emailPrefix === targetUsername || localUsername === targetUsername)) {
+        return true;
+      }
+      if (targetTag && (userDisplayName.includes(targetTag) || emailPrefix === targetTag || localUsername === targetTag)) {
+        return true;
+      }
+    }
+
+    return false;
+  }, [currentUser, targetData, tag]);
+
+  useEffect(() => {
+    if (initialUser) {
+      setCurrentUser(initialUser);
+    }
+  }, [initialUser]);
+
   useEffect(() => {
     if (currentUser && database) {
       const appDataRef = ref(database, `users/${currentUser.uid}/appData`);
       const unsub = onValue(appDataRef, (snap) => {
         setCurrentUserAppData(snap.val() || {});
       });
-      return () => unsub();
+      return () => {
+        if (typeof unsub === "function") unsub();
+      };
     }
   }, [currentUser]);
 
   useEffect(() => {
     if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      if (user) {
+        setCurrentUser(user);
+      }
     });
-    return () => unsubscribe();
+    return () => {
+      if (typeof unsubscribe === "function") unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchProfile() {
+      if (!tag || !tag.trim()) {
+        if (isMounted) {
+          setError("Пользователь не найден");
+          setLoading(false);
+        }
+        return;
+      }
+
+      setLoading(true);
+      setError("");
+
       try {
-        const data = await getPublicProfileByUsername(tag);
-        if (!data) {
-          setError("Профиль не найден");
+        const res = await getPublicProfileByUsername(tag);
+        if (!isMounted) return;
+
+        if (!res || res.success === false || (!res.uid && !res.data)) {
+          setError("Пользователь не найден");
         } else {
-          setTargetData(data);
+          const profileData = res.data || res;
+          setTargetData(profileData);
         }
       } catch (err) {
-        setError("Ошибка при загрузке профиля");
+        if (isMounted) {
+          setError("Пользователь не найден");
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
-    if (tag) fetchProfile();
+
+    fetchProfile();
+
+    return () => {
+      isMounted = false;
+    };
   }, [tag]);
 
   useEffect(() => {
@@ -106,7 +184,9 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
       const unsub = onValue(friendRef, (snap) => {
         setIsFriend(snap.exists());
       });
-      return () => unsub();
+      return () => {
+        if (typeof unsub === "function") unsub();
+      };
     }
   }, [currentUser, targetData]);
 
@@ -400,9 +480,6 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
     );
   }
 
-  const namePart = tag.split('#')[0];
-  const tagPart = '#' + tag.split('#')[1];
-
   const rawStopGenres = targetData.profile?.stopGenres || [];
   const stopGenres = (Array.isArray(rawStopGenres)
     ? rawStopGenres
@@ -436,7 +513,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
             
             <h2 className="profile-display-name">
               <span className="profile-name-bold">{namePart}</span>
-              <span className="profile-tag-dim">{tagPart}</span>
+              {tagPart && <span className="profile-tag-dim">{tagPart}</span>}
             </h2>
 
             {/* Compatibility Badge */}
@@ -468,7 +545,7 @@ export default function PublicProfile({ tag, onBackToApp, onGoToMatchWatch }) {
             
             {/* Friend & MatchWatch Action Dock */}
             <div style={{ marginTop: "20px", width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-              {currentUser && (currentUser.uid === targetData.uid || currentUser.displayName === tag || (currentUser.displayName && currentUser.displayName.includes(`@${targetData.profile?.username}`))) ? (
+              {isSelfProfile ? (
                 <p style={{ color: "rgba(255,255,255,0.5)", margin: 0, textAlign: "center" }}>Это ваш профиль</p>
               ) : (
                 <>
