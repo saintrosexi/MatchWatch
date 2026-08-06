@@ -266,20 +266,23 @@ export default function App() {
     const addTag = urlParams.get('add');
     const path = window.location.pathname;
     
-    // Support clean routes without @ symbol like /user/saintrose or /profile/saintrose
+    // Check if the current URL explicitly contains /user/someuser or /profile/someuser
     const userMatch = path.match(/^\/(?:user|profile)\/([^/]+)$/i);
     const targetTag = addTag || (userMatch ? decodeURIComponent(userMatch[1]) : null);
 
-    if (targetTag && targetTag.toLowerCase() !== "profile" && targetTag.toLowerCase() !== "edit") {
+    // Reserved screens that shouldn't trigger publicProfile lookup
+    const systemScreens = ["friends", "liked", "profile", "search", "top", "settings", "matchwatch", "popularactors", "mood", "swipe", "edit"];
+
+    if (targetTag && !systemScreens.includes(targetTag.toLowerCase())) {
       const cleanTarget = targetTag.replace('@', '').toLowerCase();
       const myCachedUsername = (localStorage.getItem("mw_local_username") || "").toLowerCase();
       const myAuthUsername = user?.displayName && user.displayName.includes(' (@') ? user.displayName.split(' (@')[1].replace(')', '').replace('@', '').toLowerCase() : "";
 
       if (user && (cleanTarget === myCachedUsername || (myAuthUsername && cleanTarget === myAuthUsername))) {
-        setScreen("profile");
+        setScreenState("profile");
       } else {
         setPublicProfileTag(targetTag);
-        setScreen("publicProfile");
+        setScreenState("publicProfile");
       }
     }
   }, [user]);

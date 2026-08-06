@@ -310,14 +310,17 @@ export const updateUserTag = async (user, baseName, username) => {
 
 export const searchUserByUsername = async (identifier) => {
   if (!database || !identifier) return null;
-  const cleanId = sanitizeUsername(identifier.replace('@', ''));
+  const rawId = (identifier || '').trim().replace(/^@/, '').toLowerCase();
+  const cleanId = sanitizeUsername(rawId);
   
   let targetUid = null;
 
   try {
-    const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
-    if (usernameSnap.exists()) {
-      targetUid = usernameSnap.val();
+    if (cleanId) {
+      const usernameSnap = await get(ref(database, `usernames/${cleanId}`));
+      if (usernameSnap.exists()) {
+        targetUid = usernameSnap.val();
+      }
     }
   } catch (_e) { /* index bypass */ }
 
@@ -330,6 +333,7 @@ export const searchUserByUsername = async (identifier) => {
     } catch (_e) { /* index bypass */ }
   }
 
+  // Robust scan fallback in /users
   if (!targetUid) {
     try {
       const usersSnap = await get(ref(database, 'users'));
@@ -341,7 +345,14 @@ export const searchUserByUsername = async (identifier) => {
           const uTag = (uProf.tag || '').toLowerCase();
           const uName = (uProf.name || '').toLowerCase();
 
-          if (uUsername === cleanId || uTag === `@${cleanId}` || uTag === identifier.toLowerCase() || uName.toLowerCase() === cleanId) {
+          if (
+            (cleanId && uUsername === cleanId) ||
+            (cleanId && uTag === `@${cleanId}`) ||
+            uTag === `@${rawId}` ||
+            uTag === rawId ||
+            uName === rawId ||
+            (uProf.tag && uProf.tag.toLowerCase().includes(rawId))
+          ) {
             targetUid = uid;
             break;
           }
