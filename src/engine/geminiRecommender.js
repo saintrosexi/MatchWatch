@@ -103,6 +103,33 @@ const FRANCHISES_AND_CHARACTERS = [
     badgeTemplate: (m) => `🔍 Эталон психологического триллера и филигранный перфекционизм Дэвида Финчера`
   },
   {
+    name: 'soviet_bw',
+    triggers: ['советскии в чб', 'советский в чб', 'советское в чб', 'советские в чб', 'ссср в чб', 'советскии черно белыи', 'советский черно-белый', 'чб советскии', 'чб советский', 'чб ссср', 'черно белое советское', 'советское черно белое'],
+    requiredMovieIds: [291, 289, 277, 278, 292, 293, 273, 276, 274, 272, 275, 279, 280, 281, 294, 295, 4, 32, 33, 36],
+    relatedKeywords: ['ссср', 'советск', 'мосфильм', 'летят журавли', 'девчата', 'старики', 'собачье сердце', 'зори', 'офицеры', 'гайдай', 'рязанов', 'чб', 'черно-белый'],
+    relatedGenres: ['драма', 'комедия', 'военный', 'мелодрама'],
+    vectorBias: { emotion: 10, intellect: 9, darkness: 5, energy: 6, dynamism: 6 },
+    badgeTemplate: (m) => `🎞️ Золотой шедевр советского кино: неподдельная душевность и режиссура (★${Number(m.rating || 8.5).toFixed(1)})`
+  },
+  {
+    name: 'soviet_cinema',
+    triggers: ['советскии', 'советский', 'советское', 'советские', 'ссср', 'ussr', 'мосфильм', 'ленфильм', 'гаидаи', 'гайдай', 'рязанов', 'тарковскии', 'тарковский', 'советская классика'],
+    requiredMovieIds: [272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 289, 290, 291, 292, 293, 294, 295],
+    relatedKeywords: ['ссср', 'советск', 'мосфильм', 'гайдай', 'рязанов', 'шурик', 'иван васильевич', 'бриллиантовая рука', 'джентльмены удачи', 'москва слезам не верит', 'служебный роман'],
+    relatedGenres: ['комедия', 'драма', 'мелодрама', 'приключения'],
+    vectorBias: { emotion: 10, energy: 7, intellect: 8, darkness: 3, dynamism: 6 },
+    badgeTemplate: (m) => `🎬 Бессмертная классика советского кино: народная любовь, искренность и юмор (★${Number(m.rating || 8.5).toFixed(1)})`
+  },
+  {
+    name: 'black_and_white_cinema',
+    triggers: ['чб', 'ч б', 'черно белыи', 'черно-белый', 'черно белый', 'черно белое', 'черно-белое', 'монохром', 'ретро кино', 'старое кино', 'классика кинематографа', 'black and white'],
+    requiredMovieIds: [291, 289, 277, 278, 4, 24, 32, 33, 36, 38, 41, 42, 47, 52, 53, 88, 100, 101, 105, 110, 112, 118, 123, 148, 152, 156, 159, 163, 165, 174, 181],
+    relatedKeywords: ['чб', 'черно-белый', 'классика', 'хичкок', 'чаплин', 'уайлдер', 'куросава', 'бергман', 'феллини', 'орсон уэллс', 'кубрик', '195', '194', '193', '196'],
+    relatedGenres: ['драма', 'триллер', 'детектив', 'комедия'],
+    vectorBias: { intellect: 10, darkness: 6, emotion: 9, dynamism: 5 },
+    badgeTemplate: (m) => `🎞️ Нестареющий шедевр мирового черно-белого кино (★${Number(m.rating || 8.5).toFixed(1)})`
+  },
+  {
     name: 'marvel_avengers',
     triggers: ['марвел', 'мстители', 'мстителеи', 'marvel', 'железныи человек', 'тони старк', 'капитан америка', 'тор', 'дэдпул', 'логан'],
     requiredMovieIds: [],
@@ -211,8 +238,8 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     customBadgeFn = activeTropes[0].badgeTemplate;
   }
 
-  // Tokenize query for direct fuzzy substring matching
-  const tokens = normQ.split(/\s+/).filter((t) => t.length >= 3);
+  // Tokenize query for direct fuzzy substring matching (keep 2-letter tokens like 'чб')
+  const tokens = normQ.split(/\s+/).filter((t) => t.length >= 2);
 
   // 3. Score all 440 movies
   const scored = movies.map((m) => {
@@ -227,7 +254,18 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     const normDirector = normalizeQueryText(m.director || '');
     const normActors = normalizeQueryText(m.actors || '');
     const normGenres = normalizeQueryText(m.genres || '');
+    const normCountry = normalizeQueryText(m.country || '');
     const normDesc = normalizeQueryText(m.description || '' + ' ' + (m.fullDescription || ''));
+
+    // Soviet country bonus
+    if ((normQ.includes('советск') || normQ.includes('ссср')) && normCountry.includes('ссср')) {
+      score += 45.0;
+    }
+
+    // B&W year bonus
+    if ((normQ.includes('чб') || normQ.includes('черно белое') || normQ.includes('черно белыи')) && m.year <= 1965) {
+      score += 35.0;
+    }
 
     // 1. Full normalized query exact phrase match (Massive Boost)
     if (normTitle.includes(normQ)) score += 50.0;
