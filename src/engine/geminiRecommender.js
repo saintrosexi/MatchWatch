@@ -188,11 +188,28 @@ const TROPES_DICTIONARY = [
   }
 ];
 
+const STOP_WORDS = new Set([
+  'я', 'хочу', 'фильм', 'фильмы', 'фильма', 'кино', 'кинематограф', 'посоветуй',
+  'покажи', 'найди', 'подобрать', 'подбери', 'что', 'нибудь', 'что-нибудь',
+  'про', 'просто', 'очень', 'самый', 'самые', 'самое', 'под', 'для', 'с', 'со', 'в', 'во', 'о', 'об'
+]);
+
+function getQueryStem(token = '') {
+  if (token.length <= 3) return token;
+  return token
+    .replace(/(е|и|у|а|о|ы|ом|ем|ам|ами|ах|ях|ой|ей|ую|юю|ого|его|ому|ему|ым|им|ых|их|ся|сь)$/gi, '')
+    .trim();
+}
+
 /**
- * Highly Intelligent Semantic & 5D Vector Matcher (Guaranteed 25 Movies)
+ * Fast Multi-Factor Candidate Retriever & 5D Vector Matcher (Guaranteed 25 Movies)
  */
 export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, limit = 25) {
   const normQ = normalizeQueryText(prompt);
+  const rawTokens = normQ.split(/\s+/).filter((t) => t.length >= 2);
+  const promptTokens = rawTokens.filter((t) => !STOP_WORDS.has(t));
+  const stemmedTokens = promptTokens.map(getQueryStem);
+  const allSearchTokens = Array.from(new Set([...promptTokens, ...stemmedTokens])).filter((t) => t.length >= 2);
   const vector = userTasteVector || { energy: 6, darkness: 5, intellect: 6, emotion: 7, dynamism: 6 };
 
   // 1. Check Franchise & Character matches
@@ -238,73 +255,73 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     customBadgeFn = activeTropes[0].badgeTemplate;
   }
 
-  // Tokenize query for direct fuzzy substring matching (keep 2-letter tokens like 'чб')
-  const tokens = normQ.split(/\s+/).filter((t) => t.length >= 2);
-
-  // 3. Score all 440 movies
+  // 3. Score all 440 movies with enriched metadata
   const scored = movies.map((m) => {
-    let score = (m.rating || 7.5) * 0.4;
+    let score = (m.rating || 7.5) * 0.5;
 
     // Hard Boost for must-include franchise IDs
     if (mustIncludeIds.has(m.id)) {
       score += 100.0;
     }
 
-    const normTitle = normalizeQueryText(m.titleRu + ' ' + m.title);
+    const normTitleRu = normalizeQueryText(m.titleRu);
+    const normTitleOrig = normalizeQueryText(m.title);
     const normDirector = normalizeQueryText(m.director || '');
     const normActors = normalizeQueryText(m.actors || '');
     const normGenres = normalizeQueryText(m.genres || '');
     const normCountry = normalizeQueryText(m.country || '');
+    const normEra = normalizeQueryText(m.era || '');
     const normDesc = normalizeQueryText(m.description || '' + ' ' + (m.fullDescription || ''));
+    const movieKeywords = (m.keywords || []).map(normalizeQueryText);
+    const movieTropes = (m.tropes || []).map(normalizeQueryText);
 
-    // Soviet country bonus
-    if ((normQ.includes('советск') || normQ.includes('ссср')) && normCountry.includes('ссср')) {
+    // 1. Full normalized query exact phrase match in Title (Massive Boost)
+    if (normTitleRu.includes(normQ) || normTitleOrig.includes(normQ)) score += 60.0;
+    if (normDesc.includes(normQ)) score += 25.0;
+    if (normDirector.includes(normQ)) score += 35.0;
+
+    // 2. Thematic Keywords & Tropes
+    for (const tok of allSearchTokens) {
+      if (movieKeywords.some((k) => k.includes(tok) || tok.includes(k))) {
+        score += 30.0;
+      }
+      if (movieTropes.some((tr) => tr.includes(tok) || tok.includes(tr))) {
+        score += 25.0;
+      }
+    }
+
+    // 3. Individual query tokens in Title / Director / Actors
+    for (const tok of allSearchTokens) {
+      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) score += 15.0;
+      if (normDirector.includes(tok)) score += 10.0;
+      if (normActors.includes(tok)) score += 6.0;
+      if (normGenres.includes(tok)) score += 5.0;
+      if (normDesc.includes(tok)) score += 4.0;
+    }
+
+    // 4. Country & Era matches
+    if ((normQ.includes('советск') || normQ.includes('ссср')) && (normCountry.includes('ссср') || normEra.includes('советск'))) {
+      score += 50.0;
+    }
+    if ((normQ.includes('чб') || normQ.includes('черно бел') || normQ.includes('монохром')) && m.isBW) {
       score += 45.0;
     }
+    if (normQ.includes('90') && normEra.includes('90')) score += 30.0;
+    if (normQ.includes('2000') && normEra.includes('2000')) score += 30.0;
 
-    // B&W year bonus
-    if ((normQ.includes('чб') || normQ.includes('черно белое') || normQ.includes('черно белыи')) && m.year <= 1965) {
-      score += 35.0;
-    }
-
-    // 1. Full normalized query exact phrase match (Massive Boost)
-    if (normTitle.includes(normQ)) score += 50.0;
-    if (normDesc.includes(normQ)) score += 20.0;
-    if (normDirector.includes(normQ)) score += 30.0;
-    if (normActors.includes(normQ)) score += 20.0;
-
-    // 2. Individual query tokens (Modest boost)
-    for (const tok of tokens) {
-      if (normTitle.includes(tok)) score += 5.0;
-      if (normDirector.includes(tok)) score += 4.0;
-      if (normActors.includes(tok)) score += 3.0;
-      if (normGenres.includes(tok)) score += 3.0;
-      if (normDesc.includes(tok)) score += 2.0;
-    }
-
-    // Check franchise related keywords
+    // 5. Franchise related keywords
     if (matchedFranchises.length > 0) {
       for (const f of matchedFranchises) {
         for (const kw of f.relatedKeywords) {
           const normKw = normalizeQueryText(kw);
-          if (normTitle.includes(normKw)) score += 12.0;
+          if (normTitleRu.includes(normKw) || normTitleOrig.includes(normKw)) score += 12.0;
           if (normDesc.includes(normKw)) score += 6.0;
           if (normDirector.includes(normKw)) score += 8.0;
-          if (normActors.includes(normKw)) score += 6.0;
         }
       }
     }
 
-    // Genre affinity
-    if (targetGenres.size > 0) {
-      let gHits = 0;
-      targetGenres.forEach((g) => {
-        if (normGenres.includes(normalizeQueryText(g))) gHits++;
-      });
-      score += gHits * 2.0;
-    }
-
-    // 5D Vector alignment
+    // 6. 5D Vector alignment
     const dist = calculateVectorDistance(m.sensationVector, targetVector);
     score -= dist * 0.25;
 
@@ -314,7 +331,7 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
       reason = customBadgeFn(m);
     } else {
       const matchPct = Math.min(99, Math.max(89, Math.round(100 - dist * 3.5)));
-      reason = `✨ Совпадение ${matchPct}% по параметрам сюжета, режиссуры и 5D-вкусу`;
+      reason = `✨ Совпадение ${matchPct}% по сюжету, стилю и 5D-вкусу (★${Number(m.rating || 8.0).toFixed(1)})`;
     }
 
     return {

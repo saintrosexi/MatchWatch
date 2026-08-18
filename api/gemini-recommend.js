@@ -1,24 +1,23 @@
 /**
  * Vercel Serverless Function: /api/gemini-recommend
  * 
- * MatchWatch AI Cinema Concierge
+ * MatchWatch 2-Stage AI Cinema Concierge
  * 
- * Flow:
- * 1. Asks Gemini (with full freedom & world cinema knowledge) to brainstorm
- *    40-60 of the most fitting films for the user prompt.
- * 2. Cross-references & intersects Gemini's candidates with our verified 440-movie catalog.
- * 3. Enriches matches with Gemini's personalized critic rationale badges.
- * 4. Fills any remaining slots up to 25 with the closest 5D sensation vector & thematic matches from our database.
+ * Stage 1: Fast multi-factor search over 440 enriched movies (keywords, tropes, era, director, 5D vector)
+ *          -> Retrieves top 50 candidate movies from our verified catalog.
+ * Stage 2: Google Gemini 2.0 selects the best 25 from these 50 candidates, sorts them in optimal order,
+ *          and writes rich, personalized 1-2 sentence cinema critic blurbs for each film.
+ * Fallback: If Gemini key is missing or network fails, instantly returns the top 25 candidates with local badges.
  */
 
 import { movies } from '../src/data/movies.js';
 
 /**
- * Normalizes text for fuzzy Russian & English title matching
+ * Text normalizer for phonetic & Cyrillic/Latin comparison
  */
-function normalizeTitle(text = '') {
+function normalizeText(text = '') {
   if (!text) return '';
-  return text
+  return String(text)
     .toLowerCase()
     .replace(/ё/g, 'е')
     .replace(/э/g, 'е')
@@ -28,64 +27,122 @@ function normalizeTitle(text = '') {
     .trim();
 }
 
+const STOP_WORDS = new Set([
+  'я', 'хочу', 'фильм', 'фильмы', 'фильма', 'кино', 'кинематограф', 'посоветуй',
+  'покажи', 'найди', 'подобрать', 'подбери', 'что', 'нибудь', 'что-нибудь',
+  'про', 'просто', 'очень', 'самый', 'самые', 'самое', 'под', 'для', 'с', 'со', 'в', 'во', 'о', 'об'
+]);
+
+function getQueryStem(token = '') {
+  if (token.length <= 3) return token;
+  return token
+    .replace(/(е|и|у|а|о|ы|ом|ем|ам|ами|ах|ях|ой|ей|ую|юю|ого|его|ому|ему|ым|им|ых|их|ся|сь)$/gi, '')
+    .trim();
+}
+
 /**
- * Match a single AI candidate with our internal catalog
+ * Stage 1: Multi-Factor Candidate Retrieval (Extracts top 50 movies from 440)
  */
-function findMovieInCatalog(candidate, catalog = movies) {
-  if (!candidate) return null;
+export function retrieveTop50Candidates(prompt = '', userTasteVector = null, catalog = movies) {
+  const normPrompt = normalizeText(prompt);
+  const rawTokens = normPrompt.split(/\s+/).filter((t) => t.length >= 2);
+  const promptTokens = rawTokens.filter((t) => !STOP_WORDS.has(t));
+  const stemmedTokens = promptTokens.map(getQueryStem);
+  const allSearchTokens = Array.from(new Set([...promptTokens, ...stemmedTokens])).filter(t => t.length >= 2);
+  const targetVector = userTasteVector || { energy: 6, darkness: 5, intellect: 6, emotion: 7, dynamism: 6 };
 
-  const candidateTitles = [
-    candidate.titleRu,
-    candidate.title,
-    candidate.titleOriginal,
-    candidate.originalTitle
-  ].filter(Boolean).map(normalizeTitle);
+  const scored = catalog.map((m) => {
+    let score = (m.rating || 7.5) * 0.5;
 
-  if (candidateTitles.length === 0) return null;
+    const normTitleRu = normalizeText(m.titleRu);
+    const normTitleOrig = normalizeText(m.title);
+    const normDirector = normalizeText(m.director);
+    const normActors = normalizeText(m.actors);
+    const normCountry = normalizeText(m.country);
+    const normGenres = normalizeText(m.genres);
+    const normEra = normalizeText(m.era);
+    const normPlot = normalizeText(`${m.description || ''} ${m.fullDescription || ''}`);
+    const movieKeywords = (m.keywords || []).map(normalizeText);
+    const movieTropes = (m.tropes || []).map(normalizeText);
 
-  let bestMatch = null;
-  let bestScore = 0;
+    // 1. Full Query Exact Phrase in Title
+    if (normTitleRu.includes(normPrompt) || normTitleOrig.includes(normPrompt)) {
+      score += 70.0;
+    }
 
-  for (const m of catalog) {
-    const mNormRu = normalizeTitle(m.titleRu);
-    const mNormOrig = normalizeTitle(m.title);
-    let score = 0;
-
-    for (const cTitle of candidateTitles) {
-      if (!cTitle) continue;
-      // 1. Exact match
-      if (cTitle === mNormRu || cTitle === mNormOrig) {
-        score = Math.max(score, 100);
+    // 2. Thematic Keyword & Trope Matches
+    for (const tok of allSearchTokens) {
+      if (movieKeywords.some((k) => k.includes(tok) || tok.includes(k))) {
+        score += 30.0;
       }
-      // 2. Substring match
-      else if (
-        (cTitle.length >= 4 && (mNormRu.includes(cTitle) || mNormOrig.includes(cTitle))) ||
-        (mNormRu.length >= 4 && cTitle.includes(mNormRu)) ||
-        (mNormOrig.length >= 4 && cTitle.includes(mNormOrig))
-      ) {
-        score = Math.max(score, 75);
+      if (movieTropes.some((tr) => tr.includes(tok) || tok.includes(tr))) {
+        score += 25.0;
       }
     }
 
-    // Year alignment bonus
-    if (score > 0 && candidate.year && m.year) {
-      const yearDiff = Math.abs(Number(candidate.year) - Number(m.year));
-      if (yearDiff === 0) score += 20;
-      else if (yearDiff <= 1) score += 10;
-      else if (yearDiff > 5) score -= 15;
+    // 3. Title individual token matches
+    for (const tok of allSearchTokens) {
+      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) {
+        score += 15.0;
+      }
     }
 
-    if (score > bestScore && score >= 60) {
-      bestScore = score;
-      bestMatch = m;
+    // 4. Director & Actor Matches
+    if (normDirector && (normPrompt.includes(normDirector) || promptTokens.some((t) => t.length >= 4 && normDirector.includes(t)))) {
+      score += 40.0;
     }
-  }
+    for (const tok of promptTokens) {
+      if (tok.length >= 4 && normActors.includes(tok)) {
+        score += 15.0;
+      }
+    }
 
-  return bestMatch;
+    // 5. Country, Era, and B&W formatting matches
+    if ((normPrompt.includes('советск') || normPrompt.includes('ссср')) && (normCountry.includes('ссср') || normEra.includes('советск'))) {
+      score += 50.0;
+    }
+    if ((normPrompt.includes('чб') || normPrompt.includes('черно бел') || normPrompt.includes('монохром')) && m.isBW) {
+      score += 45.0;
+    }
+    if (normPrompt.includes('90') && normEra.includes('90')) score += 30.0;
+    if (normPrompt.includes('2000') && normEra.includes('2000')) score += 30.0;
+
+    // 6. Genre matches
+    for (const tok of promptTokens) {
+      if (tok.length >= 3 && normGenres.includes(tok)) {
+        score += 15.0;
+      }
+    }
+
+    // 7. Plot description token occurrences
+    let plotHits = 0;
+    for (const tok of promptTokens) {
+      if (tok.length >= 3 && normPlot.includes(tok)) {
+        plotHits++;
+      }
+    }
+    score += Math.min(plotHits * 5.0, 20.0);
+
+    // 8. 5D Sensation Vector alignment
+    if (m.sensationVector) {
+      const dist =
+        Math.abs((m.sensationVector.energy || 5) - targetVector.energy) +
+        Math.abs((m.sensationVector.darkness || 5) - targetVector.darkness) +
+        Math.abs((m.sensationVector.intellect || 5) - targetVector.intellect) +
+        Math.abs((m.sensationVector.emotion || 5) - targetVector.emotion) +
+        Math.abs((m.sensationVector.dynamism || 5) - targetVector.dynamism);
+      score += Math.max(0, 15 - dist * 0.7);
+    }
+
+    return { movie: m, score };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 50).map((s) => s.movie);
 }
 
 export default async function handler(req, res) {
-  // CORS configuration
+  // CORS setup
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -109,53 +166,64 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing or invalid "prompt" in request body.' });
   }
 
-  // Graceful fallback if API key is not yet configured in Vercel
+  const cleanPrompt = prompt.trim();
+
+  // Step 1: Extract 50 most relevant candidates from our 440-movie catalog
+  const top50Candidates = retrieveTop50Candidates(cleanPrompt, userTasteVector, movies);
+
+  // If no Gemini API key, return top 25 candidates directly with local critic badges
   if (!apiKey || apiKey === 'your_gemini_api_key' || apiKey.includes('TODO')) {
+    const fallbackDeck = top50Candidates.slice(0, 25).map((m) => ({
+      ...m,
+      aiReason: `✨ Отбор MatchWatch по запросу «${cleanPrompt}» (★${Number(m.rating || 8.0).toFixed(1)})`
+    }));
     return res.status(200).json({
-      success: false,
-      fallback: true,
-      reason: 'GEMINI_API_KEY is not configured in environment variables. Falling back to local 5D Sensation Engine.'
+      success: true,
+      deck: fallbackDeck,
+      aiSummary: `Подобрал для вас 25 отличных фильмов по запросу «${cleanPrompt}»`,
+      fallback: true
     });
   }
 
   try {
-    const systemPrompt = `Ты — MatchWatch AI Cinema Genie, самый эрудированный кинокритик и кино-сомелье в мире с глубочайшим пониманием мирового кино, жанров, эпох, стран, режиссерских стилей и кино-тропов.
+    const candidatesText = top50Candidates
+      .map(
+        (m) =>
+          `[ID: ${m.id}] "${m.titleRu}" (${m.year}) | Жанр: ${m.genres} | Реж: ${m.director} | Рейтинг: ${m.rating} | Теги: ${(m.keywords || []).slice(0, 8).join(', ')}`
+      )
+      .join('\n');
+
+    const systemPrompt = `Ты — MatchWatch AI Cinema Genie, ведущий мировой кинокритик и кино-сомелье с глубочайшим вкусом.
 
 ТВОЯ ЗАДАЧА:
-Зритель обращается к тебе с запросом на фильм или кино-настроение.
-Твоя цель — глубоко понять подтекст, настроение, эпоху, жанр и составить ШИРОКИЙ СПИСОК ИЗ 40–60 НАИБОЛЕЕ ТОЧНЫХ И КУЛЬТОВЫХ ФИЛЬМОВ мирового кино под этот запрос.
+Зритель обратился к тебе с запросом на фильм или настроение: «${cleanPrompt}».
+Из 50 предложенных фильмов-кандидатов нашей базы выбери РОВНО 25 САМЫХ ПОДХОДЯЩИХ, выстрой их в идеальном порядке (от абсолютных шедевров к классным открытиям) и напиши к каждому фильму сочную 1–2 предложения персональную синефильскую рецензию ("reason").
 
 ПРАВИЛА:
-1. Предложи от 40 до 60 фильмов, максимально точно отвечающих запросу зрителя (включай признанные шедевры, классику, культовые хиты и ярких представителей темы).
-2. Если зритель просит определенную тему/эпоху (например "советский в чб", "бэтмен", "киберпанк", "комедия для друзей", "нолан"), давай в первую очередь фильмы ИМЕННО этой темы/эпохи/франшизы.
-3. Для каждого фильма укажи:
-   - titleRu: русское название фильма (например "Тёмный рыцарь" или "Летят журавли")
-   - titleOriginal: оригинальное или английское название (например "The Dark Knight" или "Letyat zhuravli")
-   - year: год выпуска (число)
-   - reason: сочное, живое описание в 1–2 предложениях на русском языке, почему этот фильм идеален под данный запрос (упомяни режиссера, фишки, твисты, саундтрек или атмосферу).
-4. aiSummary: 1–2 предложения с кратким авторским введением в подборку.
+1. Выбирай строго из списка 50 кандидатов.
+2. Верни ровно 25 объектов рекомендаций.
+3. В "reason" укажи яркие фишки: режиссуру, атмосферу, актёров, сюжетные твисты или визуал.
+4. "aiSummary": 1–2 предложения с кратким авторским введением в коллекцию.
 
-ФОРМАТ ВЫВОДА (ТОЛЬКО ЧИСТЫЙ JSON):
+ФОРМАТ ВЫВОДА (СТРОГО JSON):
 {
-  "candidates": [
+  "recommendations": [
     {
-      "titleRu": "Название на русском",
-      "titleOriginal": "Original Title",
-      "year": 2000,
-      "reason": "Яркое синефильское описание 1-2 предложения..."
+      "id": 10,
+      "reason": "Монументальный космический сай-фай Кристофера Нолана с органной музыкой Ханса Циммера и грандиозной визуализацией черной дыры."
     }
   ],
-  "aiSummary": "Кураторская подборка..."
+  "aiSummary": "Собрал для вас 25 главных космических шедевров..."
 }`;
 
     const userPayload = `ЗАПРОС ЗРИТЕЛЯ:
-«${prompt.trim()}»
+«${cleanPrompt}»
 
-5D-ВКУС ЗРИТЕЛЯ:
+5D-ПРОФИЛЬ ВКУСА:
 Энергия: ${userTasteVector?.energy ?? 6}/10, Мрачность: ${userTasteVector?.darkness ?? 5}/10, Интеллект: ${userTasteVector?.intellect ?? 6}/10, Эмоции: ${userTasteVector?.emotion ?? 7}/10, Динамика: ${userTasteVector?.dynamism ?? 6}/10
 
-РАНЕЕ ПОНРАВИВШИЕСЯ ФИЛЬМЫ:
-${likedMovieTitles.length > 0 ? likedMovieTitles.slice(0, 10).join(', ') : 'Пока нет оценок'}`;
+СПИСОК 50 КАНДИДАТОВ ДЛЯ ВЫБОРА:
+${candidatesText}`;
 
     const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
@@ -176,19 +244,23 @@ ${likedMovieTitles.length > 0 ? likedMovieTitles.slice(0, 10).join(', ') : 'По
         ],
         generationConfig: {
           responseMimeType: 'application/json',
-          temperature: 0.4,
+          temperature: 0.35,
           maxOutputTokens: 4096
         }
       })
     });
 
     if (!response.ok) {
-      const errText = await response.text();
-      console.error('Gemini API HTTP Error:', response.status, errText);
+      console.warn('Gemini HTTP Error:', response.status);
+      const fallbackDeck = top50Candidates.slice(0, 25).map((m) => ({
+        ...m,
+        aiReason: `✨ Отбор MatchWatch по запросу «${cleanPrompt}» (★${Number(m.rating || 8.0).toFixed(1)})`
+      }));
       return res.status(200).json({
-        success: false,
-        fallback: true,
-        reason: `Gemini API returned status ${response.status}`
+        success: true,
+        deck: fallbackDeck,
+        aiSummary: `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
+        fallback: true
       });
     }
 
@@ -196,57 +268,65 @@ ${likedMovieTitles.length > 0 ? likedMovieTitles.slice(0, 10).join(', ') : 'По
     const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!rawText) {
+      const fallbackDeck = top50Candidates.slice(0, 25).map((m) => ({
+        ...m,
+        aiReason: `✨ Отбор MatchWatch по запросу «${cleanPrompt}»`
+      }));
       return res.status(200).json({
-        success: false,
-        fallback: true,
-        reason: 'Empty response from Gemini model.'
+        success: true,
+        deck: fallbackDeck,
+        fallback: true
       });
     }
 
     const parsed = JSON.parse(rawText);
-    const candidates = parsed.candidates || parsed.recommendations || [];
-
-    // Match candidates with our internal catalog
-    const matchedDeck = [];
+    const candidateMap = new Map(top50Candidates.map((m) => [m.id, m]));
+    const finalDeck = [];
     const seenIds = new Set();
 
-    for (const cand of candidates) {
-      const matchedMovie = findMovieInCatalog(cand, movies);
-      if (matchedMovie && !seenIds.has(matchedMovie.id)) {
-        seenIds.add(matchedMovie.id);
-        matchedDeck.push({
-          ...matchedMovie,
-          aiReason: cand.reason || `Рекомендация MatchWatch AI по запросу «${prompt}»`
+    for (const rec of parsed.recommendations || []) {
+      const numId = Number(rec.id);
+      if (candidateMap.has(numId) && !seenIds.has(numId)) {
+        seenIds.add(numId);
+        finalDeck.push({
+          ...candidateMap.get(numId),
+          aiReason: rec.reason || `Рекомендация MatchWatch AI`
         });
       }
-      if (matchedDeck.length >= 25) break;
+      if (finalDeck.length >= 25) break;
     }
 
-    // If fewer than 25 matched, pad with closest movies from catalog
-    if (matchedDeck.length < 25) {
-      for (const m of movies) {
+    // Pad from candidate pool if needed
+    if (finalDeck.length < 25) {
+      for (const m of top50Candidates) {
         if (!seenIds.has(m.id)) {
           seenIds.add(m.id);
-          matchedDeck.push({
+          finalDeck.push({
             ...m,
-            aiReason: `Кураторский выбор MatchWatch AI под ваше настроение`
+            aiReason: `Кураторский выбор MatchWatch по запросу «${cleanPrompt}»`
           });
         }
-        if (matchedDeck.length >= 25) break;
+        if (finalDeck.length >= 25) break;
       }
     }
 
     return res.status(200).json({
       success: true,
-      deck: matchedDeck.slice(0, 25),
-      aiSummary: parsed.aiSummary || `Коллекция из 25 фильмов по запросу «${prompt}»`
+      deck: finalDeck.slice(0, 25),
+      aiSummary: parsed.aiSummary || `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
+      isAi: true
     });
   } catch (error) {
-    console.error('Gemini serverless function exception:', error);
+    console.error('Gemini Concierge exception:', error);
+    const fallbackDeck = top50Candidates.slice(0, 25).map((m) => ({
+      ...m,
+      aiReason: `✨ Отбор MatchWatch по запросу «${cleanPrompt}»`
+    }));
     return res.status(200).json({
-      success: false,
-      fallback: true,
-      reason: error.message || 'Unknown exception'
+      success: true,
+      deck: fallbackDeck,
+      aiSummary: `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
+      fallback: true
     });
   }
 }

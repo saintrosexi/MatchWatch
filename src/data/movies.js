@@ -1,4 +1,4 @@
-// MatchWatch — Master Film Catalog (440 Verified Movies & TMDB High-Res Posters)
+// MatchWatch — Master Film Catalog (440 Verified Movies & TMDB High-Res Posters & Rich Thematic Keywords)
 export const movies = [
   {
     "id": 1,
@@ -33,7 +33,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/326.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "побег из шоушенка",
+      "фрэнк дарабонт",
+      "сша",
+      "драма",
+      "криминал",
+      "тим роббинс",
+      "морган фриман",
+      "боб гантон",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 2,
@@ -68,7 +89,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/hoowzozsn0XQGtgH8nyivAMZfPN.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/hoowzozsn0XQGtgH8nyivAMZfPN.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "крёстный отец",
+      "фрэнсис форд коппола",
+      "сша",
+      "драма",
+      "криминал",
+      "марлон брандо",
+      "аль пачино",
+      "джеймс кан",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "70-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 3,
@@ -103,7 +145,52 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/111543.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/aPtN76OjnNKLqCJ2FJBnQOIL031.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/aPtN76OjnNKLqCJ2FJBnQOIL031.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "тёмный рыцарь",
+      "кристофер нолан",
+      "сша, великобритания",
+      "боевик",
+      "криминал",
+      "драма",
+      "кристиан бэйл",
+      "хит леджер",
+      "аарон экхарт",
+      "бэтмен",
+      "бетмен",
+      "готэм",
+      "джокер",
+      "брюс уэйн",
+      "супергерои",
+      "dc",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "циммер",
+      "комиксы",
+      "вигилант",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "супергеройский эпик"
+    ]
   },
   {
     "id": 4,
@@ -138,7 +225,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/346.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/uDFEvhvKrH61KuGWWozRtbw2Rjv.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/uDFEvhvKrH61KuGWWozRtbw2Rjv.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "12 разгневанных мужчин",
+      "сидни люмет",
+      "сша",
+      "драма",
+      "криминал",
+      "мартин балсам",
+      "джон фиделия",
+      "ли дж. кобб",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 5,
@@ -173,7 +283,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/329.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dB7edCQIuExWErWXFVqR7ORnZRS.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dB7edCQIuExWErWXFVqR7ORnZRS.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "список шиндлера",
+      "стивен спилберг",
+      "сша",
+      "драма",
+      "история",
+      "лиам нисон",
+      "ральф файнс",
+      "бен кингсли",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 6,
@@ -208,7 +347,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dzkW0SKRUaQ46PruMA9lQscgQl4.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dzkW0SKRUaQ46PruMA9lQscgQl4.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "криминальное чтиво",
+      "квентин тарантино",
+      "сша",
+      "криминал",
+      "драма",
+      "джон траволта",
+      "сэмюэль л. джексон",
+      "ума турман",
+      "тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "спорт",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "90-е",
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 7,
@@ -243,7 +421,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447301.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/piQXcdOGgv1O9HQ07pI0tnjkGJw.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/piQXcdOGgv1O9HQ07pI0tnjkGJw.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "начало",
+      "кристофер нолан",
+      "сша, великобритания",
+      "боевик",
+      "научная фантастика",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "леонардо дикаприо",
+      "мэрион котийар",
+      "эллен пейдж",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "циммер",
+      "майндфак",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2010-е",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 8,
@@ -278,7 +492,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/448.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nrl5w0ZsMAvBD7zDWMUA2K0gUCc.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nrl5w0ZsMAvBD7zDWMUA2K0gUCc.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия"
+    ],
+    "keywords": [
+      "форрест гамп",
+      "роберт земекис",
+      "сша",
+      "драма",
+      "романтика",
+      "том хэнкс",
+      "гэри синиз",
+      "салли филд",
+      "комедия",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "90-е",
+      "пронзительная драма",
+      "убойная комедия"
+    ]
   },
   {
     "id": 9,
@@ -313,7 +557,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/kEDbym5htJgDQNenjUtSJxAHysB.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/kEDbym5htJgDQNenjUtSJxAHysB.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "матрица",
+      "лана вачовски, лили вачовски",
+      "сша",
+      "боевик",
+      "научная фантастика",
+      "киану ривз",
+      "лоуренс фишберн",
+      "керри-энн мосс",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "90-е"
+    ]
   },
   {
     "id": 10,
@@ -348,7 +611,40 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258687.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vReLRjDV9XPhiOSEW7QWow4DXwf.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vReLRjDV9XPhiOSEW7QWow4DXwf.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "космическая одиссея",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "интерстеллар",
+      "кристофер нолан",
+      "сша, великобритания, канада",
+      "боевик",
+      "научная фантастика",
+      "драма",
+      "мэттью макконахи",
+      "энн хэтэуэй",
+      "майкл кейн",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "твист",
+      "циммер",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "2010-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 11,
@@ -383,7 +679,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/327.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/tOLQ3iRDfbwhVaw3QjDzIOS7zcu.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/tOLQ3iRDfbwhVaw3QjDzIOS7zcu.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "крестный отец 2",
+      "фрэнсис форд коппола",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "аль пачино",
+      "роберт де ниро",
+      "роберт дюваль",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "70-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 12,
@@ -418,7 +737,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3498.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pacXZMOlhoExDSXllmNwvPqTzc9.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pacXZMOlhoExDSXllmNwvPqTzc9.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "властелин колец: возвращение короля",
+      "питер джексон",
+      "новая зеландия, сша",
+      "приключения",
+      "драма",
+      "фэнтези",
+      "элайджа вуд",
+      "вигго мортенсен",
+      "иэн маккеллен",
+      "властелин колец",
+      "средиземье",
+      "эпос",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 13,
@@ -453,7 +793,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/328.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/5CrZYYasUUxo71m0JXxTTDTsSpV.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/5CrZYYasUUxo71m0JXxTTDTsSpV.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "властелин колец: братство кольца",
+      "питер джексон",
+      "новая зеландия, сша",
+      "приключения",
+      "драма",
+      "фэнтези",
+      "элайджа вуд",
+      "иэн маккеллен",
+      "орландо блум",
+      "властелин колец",
+      "средиземье",
+      "эпос",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 14,
@@ -488,7 +849,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/349.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/fGDK72duT0YbdORyNo1QVuzDYzE.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/fGDK72duT0YbdORyNo1QVuzDYzE.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "хороший, плохой, злой",
+      "серджио леоне",
+      "италия, испания, западная германия, сша",
+      "приключения",
+      "драма",
+      "вестерн",
+      "клинт иствуд",
+      "эли уоллак",
+      "ли ван клиф",
+      "60-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 15,
@@ -523,7 +904,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/361.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/66RvLrRJTm4J8l3uHXWF09AICol.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/66RvLrRJTm4J8l3uHXWF09AICol.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "бойцовский клуб",
+      "дэвид финчер",
+      "сша, германия",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "брэд питт",
+      "эдвард нортон",
+      "мит лоуф",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 16,
@@ -558,7 +965,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/338.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/338.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/338.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "космическая одиссея",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "звёздные войны: эпизод 5 – империя наносит ответный удар",
+      "ирвин кершнер",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "марк хэмилл",
+      "харрисон форд",
+      "кэрри фишер",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "80-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 17,
@@ -593,7 +1031,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/312.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/312.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/312.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "властелин колец: две крепости",
+      "питер джексон",
+      "новая зеландия, сша",
+      "приключения",
+      "драма",
+      "фэнтези",
+      "элайджа вуд",
+      "иэн маккеллен",
+      "вигго мортенсен",
+      "властелин колец",
+      "средиземье",
+      "эпос",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 18,
@@ -628,7 +1087,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/336.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/336.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/336.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "пролетая над гнездом кукушки",
+      "милош форман",
+      "соединенные штаты",
+      "драма",
+      "джек николсон",
+      "луиза флетчер",
+      "майкл берриман",
+      "70-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 19,
@@ -663,7 +1138,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/350.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/350.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/350.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "славные парни",
+      "мартин скорсезе",
+      "соединенные штаты",
+      "биография",
+      "криминал",
+      "драма",
+      "роберт де ниро",
+      "рэй лиотта",
+      "джо пеши",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "мафия",
+      "семья",
+      "босс",
+      "90-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 20,
@@ -698,7 +1201,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/333.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/333.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/333.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "космическая одиссея",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "звёздные войны: эпизод 4 – новая надежда",
+      "джордж лукас",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "марк хэмилл",
+      "харрисон форд",
+      "кэрри фишер",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "70-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 21,
@@ -733,7 +1267,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/377.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/377.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/377.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "семь",
+      "дэвид финчер",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "морган фриман",
+      "брэд питт",
+      "кевин спейси",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "мрачный",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 22,
@@ -768,7 +1333,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/439.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/439.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/439.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "город бога",
+      "катя лунд, фернандо мейреллес",
+      "бразилия",
+      "криминал",
+      "драма",
+      "александр родригеш",
+      "леандро фирмино",
+      "матеус нахтергаэле",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "2000-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 23,
@@ -803,7 +1391,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/345.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/345.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/345.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "молчание ягнят",
+      "джонатан демме",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "ужасы",
+      "джоди фостер",
+      "энтони хопкинс",
+      "скотт гленн",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 24,
@@ -838,7 +1457,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/347.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/347.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/347.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "эта прекрасная жизнь",
+      "фрэнк капра",
+      "соединенные штаты",
+      "драма",
+      "семейный",
+      "фэнтези",
+      "джеймс стюарт",
+      "донна рид",
+      "лайонел бэрримор",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 25,
@@ -873,7 +1522,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/381.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/381.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/381.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "жизнь прекрасна",
+      "роберто бениньи",
+      "италия",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "николетта браски",
+      "джорджо кантарини",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 27,
@@ -908,7 +1586,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/371.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/371.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/371.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма"
+    ],
+    "keywords": [
+      "спасти рядового райана",
+      "стивен спилберг",
+      "соединенные штаты",
+      "драма",
+      "военный",
+      "том хэнкс",
+      "мэтт дэймон",
+      "том сайзмор",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "90-е",
+      "пронзительная драма",
+      "военная драма"
+    ]
   },
   {
     "id": 28,
@@ -943,7 +1650,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/389.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/389.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/389.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "леон",
+      "люк бессон",
+      "франция, сша",
+      "боевик",
+      "криминал",
+      "драма",
+      "жан рено",
+      "гэри олдман",
+      "натали портман",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 29,
@@ -978,7 +1711,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/435.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/435.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/435.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "зеленая миля",
+      "фрэнк дарабонт",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "фэнтези",
+      "том хэнкс",
+      "майкл кларк дункан",
+      "дэвид морс",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 30,
@@ -1013,7 +1770,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/340.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/340.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/340.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "подозрительные лица",
+      "брайан сингер",
+      "сша, германия",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "кевин спейси",
+      "гэбриел бирн",
+      "чазз пальминтери",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 31,
@@ -1047,7 +1831,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/376.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/376.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/376.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "однажды на диком западе",
+      "серджио леоне",
+      "италия, сша",
+      "драма",
+      "вестерн",
+      "генри фонда",
+      "чарльз бронсон",
+      "клаудия кардинале",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 32,
@@ -1082,7 +1883,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "касабланка",
+      "майкл кертис",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "военный",
+      "хамфри богарт",
+      "ингрид бергман",
+      "пол хенрейд",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 33,
@@ -1117,7 +1944,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/332.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/332.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/332.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "семь самураев",
+      "акира куросава",
+      "япония",
+      "боевик",
+      "драма",
+      "тоширо мифунэ",
+      "такаси симура",
+      "кейко цусима",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 34,
@@ -1152,7 +2002,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/339.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/339.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/339.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "индиана джонс: в поисках утраченного ковчега",
+      "стивен спилберг",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "харрисон форд",
+      "карен аллен",
+      "пол фриман",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "80-е"
+    ]
   },
   {
     "id": 35,
@@ -1187,7 +2054,40 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/348.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/348.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/348.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "апокалипсис сегодня",
+      "фрэнсис форд коппола",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "военный",
+      "мартин шин",
+      "марлон брандо",
+      "роберт дювалл",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "70-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 36,
@@ -1222,7 +2122,50 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/344.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/344.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/344.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "психо",
+      "альфред хичкок",
+      "соединенные штаты",
+      "драма",
+      "ужасы",
+      "детектив",
+      "расследование",
+      "тайны",
+      "энтони перкинс",
+      "джанет ли",
+      "вера майлз",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 37,
@@ -1257,7 +2200,45 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/335.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/335.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/335.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "мементо",
+      "кристофер нолан",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "гай пирс",
+      "кэрри-энн мосс",
+      "джо пантолиано",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "твист",
+      "циммер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "2000-е",
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 38,
@@ -1292,7 +2273,40 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/414.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/414.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/414.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "огни большого города",
+      "чарльз чаплин",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "вирджиния черрилл",
+      "флоренс ли",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 39,
@@ -1327,7 +2341,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/386.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/386.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/386.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "космическая одиссея",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "чужой",
+      "ридли скотт",
+      "великобритания, сша",
+      "ужасы",
+      "фантастика",
+      "сигурни уивер",
+      "том скерритт",
+      "джон хёрт",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "70-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 40,
@@ -1362,7 +2407,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/126196.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/126196.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/126196.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "жизнь других",
+      "флориан хенкель фон доннерсмарк",
+      "германия, франция",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "ульрих ботер",
+      "мартина гедек",
+      "себастьян кох",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 41,
@@ -1397,7 +2469,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/353.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/353.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/353.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "сансет бульвар",
+      "билли уайлдер",
+      "соединенные штаты",
+      "драма",
+      "нуар",
+      "уильям холден",
+      "глория суонсон",
+      "эрих фон штрохайм",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 42,
@@ -1431,7 +2534,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/360.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/360.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/360.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "тропы славы",
+      "стэнли кубрик",
+      "соединенные штаты",
+      "драма",
+      "военный",
+      "кирк дуглас",
+      "ральф микер",
+      "адольф менжу",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "военная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 43,
@@ -1466,7 +2600,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/379.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/379.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/379.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "волшебник страны оз",
+      "виктор флеминг, джордж кьюкор, норман таурог",
+      "соединенные штаты",
+      "приключения",
+      "семейный",
+      "фэнтези",
+      "джуди гарлэнд",
+      "фрэнк морган",
+      "рэй болджер",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 44,
@@ -1501,7 +2657,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/343.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/343.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/343.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "на север через северо-запад",
+      "альфред хичкок",
+      "соединенные штаты",
+      "приключения",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "кэри грант",
+      "ева мари сэйнт",
+      "джеймс мейсон",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "твист",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "мрачный",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 45,
@@ -1536,7 +2727,54 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/406.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/406.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/406.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "чужие",
+      "джеймс кэмерон",
+      "великобритания, сша",
+      "боевик",
+      "приключения",
+      "ужасы",
+      "сигурни уивер",
+      "майкл бин",
+      "кэрри хенн",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е"
+    ]
   },
   {
     "id": 46,
@@ -1571,7 +2809,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/351.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/351.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/351.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "красота по-американски",
+      "сэм мендес",
+      "соединенные штаты",
+      "драма",
+      "кевин спейси",
+      "аннетт бенинг",
+      "тора бёрч",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 47,
@@ -1605,7 +2864,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/359.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/359.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/359.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "доктор стрейнджлав",
+      "стэнли кубрик",
+      "великобритания",
+      "комедия",
+      "военный",
+      "питер селлерс",
+      "джордж к. скотт",
+      "стерлинг хейден",
+      "советское кино",
+      "ссср",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 48,
@@ -1640,7 +2931,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/341.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/341.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/341.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "амели",
+      "жан-пьер жене",
+      "франция, германия",
+      "комедия",
+      "мелодрама",
+      "одри тоту",
+      "матье кассовиц",
+      "руфус",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 49,
@@ -1675,7 +2989,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/362.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/362.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/362.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "подводная лодка",
+      "вольфганг петерсен",
+      "западная германия",
+      "драма",
+      "военный",
+      "юрген прохнов",
+      "герберт грёнемайер",
+      "клаус веннеманн",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 50,
@@ -1710,7 +3041,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9691.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9691.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9691.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма"
+    ],
+    "keywords": [
+      "бесславные ублюдки",
+      "квентин тарантино",
+      "сша, германия",
+      "приключения",
+      "драма",
+      "военный",
+      "брэд питт",
+      "дайан крюгер",
+      "элай рот",
+      "тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "пронзительная драма",
+      "военная драма"
+    ]
   },
   {
     "id": 51,
@@ -1745,7 +3112,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/447.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/447.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "звёздные войны: эпизод 6 – возвращение джедая",
+      "ричард маркванд",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "марк хэмилл",
+      "харрисон форд",
+      "кэрри фишер",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "80-е"
+    ]
   },
   {
     "id": 52,
@@ -1779,7 +3171,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/432.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/432.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/432.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "похитители велосипедов",
+      "витторио де сика",
+      "италия",
+      "драма",
+      "ламберто маджорани",
+      "энцо стайола",
+      "лианелла карелл",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 53,
@@ -1814,7 +3228,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/489.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/489.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/489.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "свидетель обвинения",
+      "билли уайлдер",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "тайрон пауэр",
+      "марлен дитрих",
+      "чарльз лотон",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 55,
@@ -1849,7 +3299,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/75871.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/75871.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/75871.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "олдбой",
+      "пак чан ук",
+      "южная корея",
+      "боевик",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "чхве мин сик",
+      "ю джи тэ",
+      "кан хе чжон",
+      "марвел",
+      "мстители",
+      "супергерои",
+      "комиксы",
+      "блокбастер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 56,
@@ -1884,7 +3366,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "амадей",
+      "милош форман",
+      "сша, франция",
+      "биография",
+      "драма",
+      "музыка",
+      "ф. мюррэй абрахам",
+      "том халс",
+      "элизабет берридж",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 57,
@@ -1919,7 +3419,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/394.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/394.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/394.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "бешеные псы",
+      "квентин тарантино",
+      "соединенные штаты",
+      "криминал",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "харви кейтель",
+      "тим рот",
+      "майкл мэдсен",
+      "тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "ограбление",
+      "афера",
+      "деньги",
+      "90-е",
+      "нео-нуар",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 58,
@@ -1954,7 +3488,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/469.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/469.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/469.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "однажды в америке",
+      "серджио леоне",
+      "италия, сша",
+      "криминал",
+      "драма",
+      "роберт де ниро",
+      "джеймс вудс",
+      "элизабет макговерн",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "80-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 59,
@@ -1989,7 +3546,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/367.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/367.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/367.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "реквием по мечте",
+      "даррен аронофски",
+      "соединенные штаты",
+      "драма",
+      "эллен берстин",
+      "джаред лето",
+      "дженнифер коннелли",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 60,
@@ -2023,7 +3596,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/399.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/399.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/399.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "храброе сердце",
+      "мел гибсон",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "военный",
+      "мэл гибсон",
+      "софи марсо",
+      "патрик макгуэн",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 61,
@@ -2058,7 +3649,45 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81314.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81314.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81314.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "отступники",
+      "мартин скорсезе",
+      "сша, гонконг",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "леонардо ди каприо",
+      "мэтт дэймон",
+      "джек николсон",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "мафия",
+      "семья",
+      "босс",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "2000-е",
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 62,
@@ -2093,7 +3722,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/363.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/363.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/363.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "секреты лос-анджелеса",
+      "кертис хэнсон",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "кевин спейси",
+      "рассел кроу",
+      "гай пирс",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 63,
@@ -2128,7 +3784,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8412.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8412.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8412.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "рай и ад",
+      "акира куросава",
+      "япония",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "тоширо мифунэ",
+      "ютака сада",
+      "тацуя накадай",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 64,
@@ -2163,7 +3849,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/474.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/474.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/474.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гладиатор",
+      "ридли скотт",
+      "сша, великобритания, мальта, марокко",
+      "боевик",
+      "приключения",
+      "драма",
+      "рассел кроу",
+      "хоакин феникс",
+      "конни нильсен",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 65,
@@ -2198,7 +3908,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195334.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195334.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195334.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "престиж",
+      "кристофер нолан",
+      "великобритания, сша",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "кристиан бэйл",
+      "хью джекман",
+      "скарлетт йоханссон",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "циммер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "майндфак",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 66,
@@ -2233,7 +3978,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5492.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5492.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5492.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "вечное сияние чистого разума",
+      "мишель гондри",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "фантастика",
+      "джим керри",
+      "кейт уинслет",
+      "том уилкинсон",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 67,
@@ -2268,7 +4037,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/482.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/482.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/482.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "история игрушек",
+      "джон лассетер",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "том хэнкс",
+      "тим аллен",
+      "дон риклз",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 68,
@@ -2303,7 +4102,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2360.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2360.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2360.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "король лев",
+      "роджер аллерс, роб минкофф",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "драма",
+      "мэттью бродерик",
+      "джереми айронс",
+      "джеймс эрл джонс",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 69,
@@ -2338,7 +4155,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77859.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77859.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77859.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "отель «руанда»",
+      "терри джордж",
+      "сша, великобритания, южная африка, италия",
+      "биография",
+      "драма",
+      "история",
+      "дон чидл",
+      "софи оконедо",
+      "хоакин феникс",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 70,
@@ -2373,7 +4208,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "лоуренс аравийский",
+      "дэвид лин",
+      "великобритания, сша",
+      "приключения",
+      "биография",
+      "драма",
+      "питер о’тул",
+      "алек гиннесс",
+      "энтони куинн",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 71,
@@ -2408,7 +4261,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "квартира",
+      "билли уайлдер",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "джек леммон",
+      "ширли маклейн",
+      "фред макмюррэй",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 72,
@@ -2443,7 +4332,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535341.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535341.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535341.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "1+1",
+      "неприкасаемые",
+      "оливье накаш, эрик толедано",
+      "франция",
+      "комедия",
+      "драма",
+      "франсуа клюзе",
+      "омар си",
+      "энн ле ню",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 73,
@@ -2478,7 +4395,44 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "новые времена",
+      "чарльз чаплин",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "полетт годдар",
+      "генри бергман",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 74,
@@ -2513,7 +4467,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/444.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/444.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/444.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "терминатор 2: судный день",
+      "джеймс кэмерон",
+      "сша, франция",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "арнольд шварценеггер",
+      "линда хэмилтон",
+      "эдвард ферлонг",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 75,
@@ -2548,7 +4534,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/409.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/409.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/409.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "сияние",
+      "стэнли кубрик",
+      "великобритания, сша",
+      "драма",
+      "ужасы",
+      "джек николсон",
+      "шелли дювалл",
+      "дэнни ллойд",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 76,
@@ -2583,7 +4593,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/472.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/472.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/472.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "индиана джонс и последний крестовый поход",
+      "стивен спилберг",
+      "сша, великобритания, испания, италия, иордания",
+      "боевик",
+      "приключения",
+      "харрисон форд",
+      "шон коннери",
+      "элисон дуди",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "80-е"
+    ]
   },
   {
     "id": 77,
@@ -2618,7 +4645,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/382.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/382.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/382.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "американская история x",
+      "tony kaye",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "эдвард нортон",
+      "эдвард ферлонг",
+      "беверли д’анджело",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 78,
@@ -2653,7 +4709,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/355.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/355.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/355.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "пианист",
+      "роман полански",
+      "франция, польша, германия, великобритания, сша",
+      "биография",
+      "драма",
+      "музыка",
+      "эдриан броуди",
+      "томас кречманн",
+      "фрэнк финлэй",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 79,
@@ -2688,7 +4770,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/725190.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/725190.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/725190.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "одержимость",
+      "дэмиен шазель",
+      "соединенные штаты",
+      "драма",
+      "музыка",
+      "майлз теллер",
+      "дж.к. симмонс",
+      "мелисса бенойст",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 80,
@@ -2723,7 +4822,47 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/337.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/337.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/337.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "окно во двор",
+      "альфред хичкок",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "джеймс стюарт",
+      "грейс келли",
+      "венделл кори",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 81,
@@ -2758,7 +4897,56 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/11380.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/11380.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/11380.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "шерлок младший",
+      "бастер китон",
+      "соединенные штаты",
+      "боевик",
+      "комедия",
+      "мелодрама",
+      "кэтрин макгуайр",
+      "джо китон",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 82,
@@ -2793,7 +4981,52 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/352.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/352.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/352.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "головокружение",
+      "альфред хичкок",
+      "соединенные штаты",
+      "детектив",
+      "расследование",
+      "тайны",
+      "мелодрама",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "джеймс стюарт",
+      "ким новак",
+      "барбара бел геддес",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 83,
@@ -2828,7 +5061,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/280562.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/280562.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/280562.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "звёздочки на земле",
+      "аамир хан",
+      "индия",
+      "драма",
+      "семейный",
+      "даршил сафари",
+      "аамир кхан",
+      "тиска чопра",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 84,
@@ -2863,7 +5113,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/477.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/477.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/477.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "новый кинотеатр «парадизо»",
+      "джузеппе торнаторе",
+      "италия, франция",
+      "драма",
+      "мелодрама",
+      "филипп нуаре",
+      "энцо каннавале",
+      "антонелла аттили",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 85,
@@ -2898,7 +5165,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42571.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42571.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42571.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "военная драма"
+    ],
+    "keywords": [
+      "иди и смотри",
+      "elem klimov",
+      "советский союз",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "военный",
+      "алексей кравченко",
+      "ольга миронова",
+      "любомир лауцявичюс",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "80-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "военная драма"
+    ]
   },
   {
     "id": 86,
@@ -2933,7 +5230,50 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/47237.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/47237.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/47237.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "бэтмен: начало",
+      "кристофер нолан",
+      "сша, великобритания",
+      "боевик",
+      "криминал",
+      "драма",
+      "кристиан бэйл",
+      "майкл кейн",
+      "кен ватанабэ",
+      "бэтмен",
+      "бетмен",
+      "готэм",
+      "джокер",
+      "тёмный рыцарь",
+      "брюс уэйн",
+      "супергерои",
+      "dc",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "твист",
+      "циммер",
+      "комиксы",
+      "вигилант",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "пронзительная драма",
+      "супергеройский эпик"
+    ]
   },
   {
     "id": 87,
@@ -2968,7 +5308,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [],
+    "keywords": [
+      "заводной апельсин",
+      "стэнли кубрик",
+      "великобритания, сша",
+      "криминал",
+      "фантастика",
+      "малкольм макдауэлл",
+      "патрик мэги",
+      "майкл бейтс",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "70-е"
+    ]
   },
   {
     "id": 88,
@@ -3003,7 +5369,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/417.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/417.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/417.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "метрополис",
+      "фриц ланг",
+      "германия",
+      "драма",
+      "фантастика",
+      "бриджит хельм",
+      "альфред абель",
+      "густав фрелих",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "футуристический сай-фай",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 90,
@@ -3038,7 +5435,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "двойная страховка",
+      "билли уайлдер",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "нуар",
+      "фред макмюррей",
+      "барбара стэнвик",
+      "эдвард дж. робинсон",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 91,
@@ -3073,7 +5502,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/385.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/385.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/385.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "поющие под дождём",
+      "стэнли донен, джин келли",
+      "соединенные штаты",
+      "комедия",
+      "мюзикл",
+      "мелодрама",
+      "джин келли",
+      "дональд о'коннор",
+      "дебби рейнольдс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 92,
@@ -3108,7 +5569,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8190.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8190.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8190.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "на несколько долларов больше",
+      "серджио леоне",
+      "италия, испания, западная германия",
+      "драма",
+      "вестерн",
+      "клинт иствуд",
+      "ли ван клиф",
+      "джан мария волонте",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 93,
@@ -3143,7 +5621,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258328.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258328.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258328.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "история игрушек: большой побег",
+      "ли ункрич",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "том хэнкс",
+      "тим аллен",
+      "джоан кьюсак",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 94,
@@ -3178,7 +5682,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/354.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/354.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/354.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "сокровища сьерра-мадре",
+      "джон хьюстон",
+      "соединенные штаты",
+      "приключения",
+      "драма",
+      "вестерн",
+      "хамфри богарт",
+      "уолтер хьюстон",
+      "тим холт",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 95,
@@ -3213,7 +5741,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/375.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/375.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/375.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [],
+    "keywords": [
+      "монти пайтон и священный грааль",
+      "терри гиллиам, терри джонс",
+      "великобритания",
+      "приключения",
+      "комедия",
+      "фэнтези",
+      "грэм чепмен",
+      "джон клиз",
+      "эрик айдл",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "70-е"
+    ]
   },
   {
     "id": 96,
@@ -3246,7 +5799,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/526.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/526.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/526.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "криминальная сага"
+    ],
+    "keywords": [
+      "большой куш",
+      "гай ричи",
+      "великобритания, сша",
+      "комедия",
+      "криминал",
+      "джейсон стэйтем",
+      "брэд питт",
+      "стивен грэм",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "ограбление",
+      "афера",
+      "деньги",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "спорт",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2000-е",
+      "криминальная сага"
+    ]
   },
   {
     "id": 97,
@@ -3281,7 +5868,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4695.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4695.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4695.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "лицо со шрамом",
+      "брайан де пальма",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "аль пачино",
+      "мишель пфайффер",
+      "стивен бауэр",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "80-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 98,
@@ -3316,7 +5927,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/380.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/380.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/380.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "2001 год: космическая одиссея",
+      "стэнли кубрик",
+      "великобритания, сша",
+      "приключения",
+      "фантастика",
+      "кейр даллеа",
+      "гэри локвуд",
+      "уильям сильвестр",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "60-е"
+    ]
   },
   {
     "id": 99,
@@ -3351,7 +5986,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/451.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/451.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/451.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "непрощенный",
+      "клинт иствуд",
+      "соединенные штаты",
+      "драма",
+      "вестерн",
+      "джин хэкман",
+      "морган фриман",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 100,
@@ -3386,7 +6037,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/331.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/331.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/331.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "гражданин кейн",
+      "орсон уэллс",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "джозеф коттен",
+      "дороти комингор",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 101,
@@ -3421,7 +6101,47 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/373.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/373.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/373.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "м убийца",
+      "фриц ланг",
+      "германия",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "петер лорре",
+      "эллен видманн",
+      "инге ландгут",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 102,
@@ -3456,7 +6176,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/358.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/358.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/358.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "таксист",
+      "мартин скорсезе",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "роберт де ниро",
+      "джоди фостер",
+      "сибилл шепард",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "70-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 103,
@@ -3490,7 +6234,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/586397.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/586397.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/586397.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "джанго освобожденный",
+      "квентин тарантино",
+      "соединенные штаты",
+      "драма",
+      "вестерн",
+      "джейми фокс",
+      "кристоф вальц",
+      "леонардо ди каприо",
+      "тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 104,
@@ -3525,7 +6290,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/418.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/418.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/418.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "цельнометаллическая оболочка",
+      "стэнли кубрик",
+      "великобритания, сша",
+      "драма",
+      "военный",
+      "мэттью модайн",
+      "р. ли эрми",
+      "винсент д'онофрио",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 105,
@@ -3560,7 +6342,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/357.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/357.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/357.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "убить пересмешника",
+      "роберт маллиган",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "грегори пек",
+      "джон мегна",
+      "фрэнк овертон",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "пронзительная драма",
+      "убойная комедия",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 106,
@@ -3595,7 +6402,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/471.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/471.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/471.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "крепкий орешек",
+      "джон мактирнан",
+      "соединенные штаты",
+      "боевик",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "брюс уиллис",
+      "алан рикман",
+      "бонни беделия",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "80-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 107,
@@ -3630,7 +6462,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/369.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/369.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/369.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "мост через реку квай",
+      "дэвид лин",
+      "великобритания, сша",
+      "приключения",
+      "драма",
+      "военный",
+      "уильям холден",
+      "алек гиннесс",
+      "джек хокинс",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 108,
@@ -3665,7 +6527,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/64131.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/64131.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/64131.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "жить",
+      "акира куросава",
+      "япония",
+      "драма",
+      "такаси симура",
+      "нобуо канеко",
+      "синъити химори",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 109,
@@ -3700,7 +6584,22 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/551.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/551.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/551.jpg",
+    "isBW": false,
+    "era": "золотой век кино",
+    "tropes": [],
+    "keywords": [
+      "белоснежка и семь гномов",
+      "уильям коттрелл, дэвид хэнд, уилфред джексон",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "семейный",
+      "адриана казелотти",
+      "гарри стоквелл",
+      "люсиль ла верн",
+      "золотой век кино"
+    ]
   },
   {
     "id": 110,
@@ -3735,7 +6634,44 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/356.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/356.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/356.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "в джазе только девушки",
+      "билли уайлдер",
+      "соединенные штаты",
+      "комедия",
+      "музыка",
+      "мелодрама",
+      "мэрилин монро",
+      "тони кертис",
+      "джек леммон",
+      "мафия",
+      "гангстеры",
+      "криминал",
+      "семья",
+      "босс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "криминальная сага",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 111,
@@ -3769,7 +6705,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4401.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4401.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4401.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "париж, техас",
+      "вим вендерс",
+      "западная германия, франция, великобритания, сша",
+      "драма",
+      "гарри дин стэнтон",
+      "настасья кински",
+      "дин стоквелл",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 112,
@@ -3804,7 +6756,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/388.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/388.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/388.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "расёмон",
+      "акира куросава",
+      "япония",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "тосиро мифунэ",
+      "мачико кё",
+      "масаюки мори",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 113,
@@ -3839,7 +6826,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/372.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/372.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/372.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "всё о еве",
+      "джозеф л. манкевич",
+      "соединенные штаты",
+      "драма",
+      "бетт дэвис",
+      "энн бакстер",
+      "джордж сандерс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 114,
@@ -3874,7 +6883,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/392.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/392.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/392.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "большой побег",
+      "джон стерджес",
+      "соединенные штаты",
+      "приключения",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "стив маккуин",
+      "джеймс гарнер",
+      "ричард аттенборо",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "60-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 115,
@@ -3908,7 +6945,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/539.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/539.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/539.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "умница уилл хантинг",
+      "гас ван сент",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "робин уильямс",
+      "мэтт дэймон",
+      "бен аффлек",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 116,
@@ -3943,7 +6997,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/383.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/383.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/383.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "афера",
+      "джордж рой хилл",
+      "соединенные штаты",
+      "комедия",
+      "криминал",
+      "драма",
+      "пол ньюман",
+      "роберт редфорд",
+      "роберт шоу",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "ограбление",
+      "деньги",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "70-е",
+      "криминальная сага",
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 117,
@@ -3978,7 +7066,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/450.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/450.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/450.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "борьба за выживание",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "унесённые ветром",
+      "виктор флеминг",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "военный",
+      "кларк гейбл",
+      "вивьен ли",
+      "томас митчелл",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "борьба за выживание",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 118,
@@ -4013,7 +7133,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "8 с половиной",
+      "федерико феллини",
+      "италия, франция",
+      "драма",
+      "марчелло мастроянни",
+      "анук эме",
+      "клаудия кардинале",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 119,
@@ -4048,7 +7190,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/446.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/446.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/446.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "гроздья гнева",
+      "джон форд",
+      "соединенные штаты",
+      "драма",
+      "генри фонда",
+      "джейн дарвелл",
+      "джон кэрредин",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 120,
@@ -4083,7 +7255,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9028.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9028.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9028.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "в случае убийства набирайте «м»",
+      "альфред хичкок",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "рэй милланд",
+      "грейс келли",
+      "роберт каммингс",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 121,
@@ -4118,7 +7329,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "принцесса-невеста",
+      "роб райнер",
+      "соединенные штаты",
+      "приключения",
+      "комедия",
+      "семейный",
+      "кэри элвис",
+      "мэнди пэтинкин",
+      "робин райт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е"
+    ]
   },
   {
     "id": 122,
@@ -4153,7 +7385,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437410.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437410.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437410.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма",
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "темный рыцарь: возрождение легенды",
+      "кристофер нолан",
+      "великобритания, сша",
+      "боевик",
+      "криминал",
+      "драма",
+      "кристиан бэйл",
+      "том харди",
+      "энн хэтэуэй",
+      "бэтмен",
+      "бетмен",
+      "готэм",
+      "джокер",
+      "тёмный рыцарь",
+      "брюс уэйн",
+      "супергерои",
+      "dc",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "твист",
+      "циммер",
+      "комиксы",
+      "вигилант",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "2010-е",
+      "пронзительная драма",
+      "супергеройский эпик"
+    ]
   },
   {
     "id": 123,
@@ -4188,7 +7459,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/384.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/384.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/384.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "печать зла",
+      "орсон уэллс",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "нуар",
+      "чарлтон хестон",
+      "джанет ли",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 124,
@@ -4222,7 +7524,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6462.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6462.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6462.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "рокки",
+      "джон г. эвилдсен",
+      "соединенные штаты",
+      "драма",
+      "спорт",
+      "сильвестр сталлоне",
+      "талия шайр",
+      "берт янг",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "70-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 125,
@@ -4257,7 +7579,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/429.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/429.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/429.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "лучшие годы нашей жизни",
+      "уильям уайлер",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "военный",
+      "мирна лой",
+      "дэна эндрюс",
+      "фредрик марч",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 126,
@@ -4292,7 +7644,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2494.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2494.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2494.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "казино",
+      "мартин скорсезе",
+      "сша, франция",
+      "криминал",
+      "драма",
+      "роберт де ниро",
+      "шэрон стоун",
+      "джо пеши",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "мафия",
+      "семья",
+      "босс",
+      "90-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 127,
@@ -4327,7 +7706,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/571.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/571.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/571.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "схватка",
+      "майкл манн",
+      "соединенные штаты",
+      "боевик",
+      "криминал",
+      "драма",
+      "аль пачино",
+      "роберт де ниро",
+      "вэл килмер",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 128,
@@ -4362,7 +7767,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/400.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/400.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/400.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "ран",
+      "акира куросава",
+      "япония, франция",
+      "боевик",
+      "драма",
+      "военный",
+      "тацуя накадай",
+      "акира терао",
+      "джинпачи нэдзу",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 129,
@@ -4397,7 +7820,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/436.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/436.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/436.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "бен-гур",
+      "уильям уайлер",
+      "соединенные штаты",
+      "приключения",
+      "драма",
+      "чарлтон хестон",
+      "джек хокинс",
+      "стивен бойд",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 130,
@@ -4432,7 +7882,49 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "незнакомцы в поезде",
+      "альфред хичкок",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "нуар",
+      "фарли грейнджер",
+      "роберт уокер",
+      "рут роман",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 131,
@@ -4467,7 +7959,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/423210.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/423210.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/423210.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "три идиота",
+      "радж кумар хирани",
+      "индия",
+      "комедия",
+      "драма",
+      "аамир кхан",
+      "мадхаван",
+      "мона сингх",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 132,
@@ -4502,7 +8017,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5032.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5032.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5032.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "барри линдон",
+      "стэнли кубрик",
+      "великобритания, сша",
+      "приключения",
+      "драма",
+      "военный",
+      "райан о’нил",
+      "мариса беренсон",
+      "патрик мэги",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "70-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 133,
@@ -4537,7 +8082,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/231096.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/231096.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/231096.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "мой отец и мой сын",
+      "чаган ирмак",
+      "турция",
+      "драма",
+      "семейный",
+      "четин текиндор",
+      "фикрет кускан",
+      "хюмейра",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 134,
@@ -4572,7 +8136,44 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "плата за страх",
+      "анри-жорж клузо",
+      "франция, италия",
+      "приключения",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "ив монтан",
+      "шарль ванель",
+      "питер ван эйк",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 136,
@@ -4607,7 +8208,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/365.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/365.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/365.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "китайский квартал",
+      "роман полански",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "джек николсон",
+      "фэй данауэй",
+      "джон хьюстон",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "70-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 137,
@@ -4642,7 +8270,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8366.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8366.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8366.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "нечто",
+      "джон карпентер",
+      "соединенные штаты",
+      "ужасы",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "курт рассел",
+      "уилфорд бримли",
+      "кит дэвид",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е"
+    ]
   },
   {
     "id": 138,
@@ -4677,7 +8339,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2717.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2717.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2717.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "убить билла",
+      "квентин тарантино",
+      "соединенные штаты",
+      "боевик",
+      "криминал",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "ума турман",
+      "дэвид кэрредин",
+      "дэрил ханна",
+      "тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "2000-е",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 140,
@@ -4712,7 +8400,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/647671.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/647671.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/647671.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "охота",
+      "томас винтерберг",
+      "дания, швеция, бельгия, франция",
+      "драма",
+      "мадс миккельсен",
+      "томас бо ларсен",
+      "анника веддеркопп",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 141,
@@ -4746,7 +8450,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8384.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8384.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8384.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "битва за алжир",
+      "джилло понтекорво",
+      "италия, алжир",
+      "драма",
+      "военный",
+      "брахим хаджадж",
+      "жан мартен",
+      "ясеф саади",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 142,
@@ -4781,7 +8502,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18368.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18368.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18368.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "перед рассветом",
+      "ричард линклейтер",
+      "сша, австрия",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "итан хоук",
+      "жюли дельпи",
+      "андреа эккерт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 143,
@@ -4816,7 +8561,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/13738.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/13738.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/13738.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "нюрнбергский процесс",
+      "стэнли крамер",
+      "соединенные штаты",
+      "драма",
+      "история",
+      "военный",
+      "спенсер трэйси",
+      "берт ланкастер",
+      "ричард видмарк",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 144,
@@ -4851,7 +8614,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7908.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7908.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7908.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "в поисках немо",
+      "эндрю стэнтон, ли анкрич",
+      "сша, япония, австралия, казахстан, армения",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "альберт брукс",
+      "эллен дедженерес",
+      "александр гулд",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 145,
@@ -4886,7 +8670,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7665.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7665.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7665.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "звуки музыки",
+      "роберт уайз",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "семейный",
+      "джули эндрюс",
+      "кристофер пламмер",
+      "элеонора паркер",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "60-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 146,
@@ -4920,7 +8728,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "военная драма"
+    ],
+    "keywords": [
+      "житие брайана по монти пайтон",
+      "терри джонс",
+      "великобритания",
+      "комедия",
+      "грэм чепмен",
+      "джон клиз",
+      "майкл пэйлин",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "70-е",
+      "военная драма"
+    ]
   },
   {
     "id": 147,
@@ -4955,7 +8791,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428003.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428003.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428003.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "тайна в его глазах",
+      "хуан хосе кампанелла",
+      "аргентина, испания",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "мелодрама",
+      "рикардо дарин",
+      "соледад вильямиль",
+      "пабло раго",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 148,
@@ -4990,7 +8851,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/366.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/366.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/366.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "мальтийский сокол",
+      "джон хьюстон",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "нуар",
+      "хамфри богарт",
+      "мэри астор",
+      "глэдис джордж",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 149,
@@ -5025,7 +8925,48 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/403.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/403.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/403.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "бегущий по лезвию",
+      "ридли скотт",
+      "сша, великобритания, гонконг",
+      "боевик",
+      "драма",
+      "фантастика",
+      "харрисон форд",
+      "рутгер хауэр",
+      "шон янг",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 150,
@@ -5060,7 +9001,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/555.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/555.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/555.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "криминальная сага"
+    ],
+    "keywords": [
+      "большой лебовски",
+      "джоэл коэн, итан коэн",
+      "великобритания, сша",
+      "комедия",
+      "криминал",
+      "джефф бриджес",
+      "джон гудман",
+      "джулианна мур",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "криминальная сага"
+    ]
   },
   {
     "id": 151,
@@ -5095,7 +9063,52 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "дурная слава",
+      "альфред хичкок",
+      "соединенные штаты",
+      "драма",
+      "нуар",
+      "детектив",
+      "расследование",
+      "тайны",
+      "кэри грант",
+      "ингрид бергман",
+      "клод рейнс",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 152,
@@ -5130,7 +9143,51 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "ребекка",
+      "альфред хичкок",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "мелодрама",
+      "лоуренс оливье",
+      "джоан фонтейн",
+      "джордж сандерс",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "хичкок",
+      "мастер саспенса",
+      "классический детектив",
+      "триллер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 153,
@@ -5165,7 +9222,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79506.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79506.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79506.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "персона",
+      "ингмар бергман",
+      "швеция",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "биби андерссон",
+      "лив ульманн",
+      "маргарета крук",
+      "60-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 154,
@@ -5200,7 +9278,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79836.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79836.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79836.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "токийская история",
+      "ясудзиро одзу",
+      "япония",
+      "драма",
+      "чисю рю",
+      "тиэко хигасияма",
+      "со ямамура",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 155,
@@ -5235,7 +9335,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/510.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/510.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/510.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "четыреста ударов",
+      "франсуа трюффо",
+      "франция",
+      "криминал",
+      "драма",
+      "жан-пьер лео",
+      "альбер реми",
+      "клэр морье",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 156,
@@ -5270,7 +9393,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "седьмая печать",
+      "ингмар бергман",
+      "швеция",
+      "драма",
+      "фэнтези",
+      "макс фон сюдов",
+      "гуннар бьёрнстранд",
+      "бенгт экерот",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 157,
@@ -5305,7 +9455,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4996.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4996.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4996.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "общество мертвых поэтов",
+      "питер вейр",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "робин уильямс",
+      "роберт шон леонард",
+      "итан хоук",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 158,
@@ -5340,7 +9513,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86208.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86208.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86208.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "v — значит вендетта",
+      "джеймс мактиг",
+      "соединенные штаты",
+      "боевик",
+      "драма",
+      "фантастика",
+      "хьюго уивинг",
+      "натали портман",
+      "руперт грейвс",
+      "марвел",
+      "мстители",
+      "супергерои",
+      "комиксы",
+      "блокбастер",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 159,
@@ -5375,7 +9573,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/508.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/508.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/508.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "земляничная поляна",
+      "ингмар бергман",
+      "швеция",
+      "драма",
+      "мелодрама",
+      "виктор шёстрем",
+      "биби андерссон",
+      "ингрид тулин",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 160,
@@ -5410,7 +9631,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/488.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/488.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/488.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "сука-любовь",
+      "алехандро дж. иньярриту",
+      "мексика",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "эмилио эчеваррия",
+      "гаэль гарсиа берналь",
+      "гойя толедо",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 161,
@@ -5445,7 +9692,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/71179.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/71179.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/71179.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "бандит",
+      "явуз тургул",
+      "турция, франция, болгария",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "сенер сен",
+      "угур ючел",
+      "сермин хюрмерич",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 162,
@@ -5480,7 +9761,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39775.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39775.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39775.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "ананд",
+      "хришикеш мукерджи",
+      "индия",
+      "драма",
+      "мюзикл",
+      "раджеш кханна",
+      "амитабх баччан",
+      "сумита саньял",
+      "70-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 163,
@@ -5515,7 +9813,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/478.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/478.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/478.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "золотая лихорадка",
+      "чарльз чаплин",
+      "соединенные штаты",
+      "приключения",
+      "комедия",
+      "драма",
+      "мак суэйн",
+      "том мюррэй",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 164,
@@ -5550,7 +9877,45 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/398.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/398.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/398.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "в порту",
+      "элиа казан",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "марлон брандо",
+      "карл молден",
+      "ли дж. кобб",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "спорт",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 165,
@@ -5585,7 +9950,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/445.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/445.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/445.jpg",
+    "isBW": true,
+    "era": "60-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "телохранитель",
+      "акира куросава",
+      "япония",
+      "боевик",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "тоширо мифунэ",
+      "эйджиро тоно",
+      "тацуя накадай",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "60-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 166,
@@ -5619,7 +10012,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79856.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79856.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79856.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "мой дядюшка",
+      "жак тати",
+      "франция, италия",
+      "комедия",
+      "жан-пьер золя",
+      "адриенн сервинти",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 167,
@@ -5654,7 +10072,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/76749.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/76749.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/76749.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "дети небес",
+      "маджид маджиди",
+      "иран",
+      "драма",
+      "семейный",
+      "спорт",
+      "реза наджи",
+      "амир фаррох хашемян",
+      "бахаре седдики",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 168,
@@ -5689,7 +10125,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/390.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/390.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/390.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия"
+    ],
+    "keywords": [
+      "энни холл",
+      "вуди аллен",
+      "соединенные штаты",
+      "комедия",
+      "мелодрама",
+      "дайан китон",
+      "тони робертс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "70-е",
+      "пронзительная драма",
+      "убойная комедия"
+    ]
   },
   {
     "id": 169,
@@ -5724,7 +10184,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "охотник на оленей",
+      "майкл чимино",
+      "сша, великобритания",
+      "драма",
+      "военный",
+      "роберт де ниро",
+      "кристофер уокен",
+      "джон казале",
+      "70-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 170,
@@ -5759,7 +10238,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4885.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4885.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4885.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "во имя отца",
+      "джим шеридан",
+      "ирландия, великобритания, сша",
+      "биография",
+      "криминал",
+      "драма",
+      "дэниэл дэй-льюис",
+      "пит постлетуэйт",
+      "энтони брофи",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 171,
@@ -5794,7 +10295,45 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "ровно в полдень",
+      "фред циннеманн",
+      "соединенные штаты",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "вестерн",
+      "гэри купер",
+      "грейс келли",
+      "томас митчелл",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "нео-нуар",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 172,
@@ -5829,7 +10368,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/396.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/396.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/396.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "нео-нуар",
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "челюсти",
+      "стивен спилберг",
+      "соединенные штаты",
+      "приключения",
+      "ужасы",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "рой шайдер",
+      "роберт шоу",
+      "ричард дрейфусс",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "70-е",
+      "нео-нуар",
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 173,
@@ -5864,7 +10434,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/405.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/405.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/405.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "фарго",
+      "джоэл коэн, итан коэн",
+      "великобритания, сша",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "уильям х. мэйси",
+      "фрэнсис макдорманд",
+      "стив бушеми",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 174,
@@ -5899,7 +10497,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "это случилось однажды ночью",
+      "фрэнк капра",
+      "соединенные штаты",
+      "комедия",
+      "мелодрама",
+      "кларк гейбл",
+      "клодетт кольбер",
+      "уолтер коннолли",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 175,
@@ -5934,7 +10567,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/464.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/464.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "человек-слон",
+      "дэвид линч",
+      "сша, великобритания",
+      "биография",
+      "драма",
+      "энтони хопкинс",
+      "джон хёрт",
+      "энн бэнкрофт",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 176,
@@ -5969,7 +10625,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/65770.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/65770.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/65770.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "воспоминания об убийстве",
+      "пон джун хо",
+      "южная корея",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "сон кан хо",
+      "ким сан гён",
+      "ким роэ ха",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 177,
@@ -6004,7 +10687,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/468.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/468.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/468.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "взвод",
+      "оливер стоун",
+      "сша, великобритания",
+      "драма",
+      "военный",
+      "чарли шин",
+      "том беренджер",
+      "уиллем дефо",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 178,
@@ -6039,7 +10745,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/835086.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/835086.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/835086.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "ford против ferrari",
+      "джеймс мэнголд",
+      "соединенные штаты",
+      "боевик",
+      "биография",
+      "драма",
+      "мэтт дэймон",
+      "кристиан бэйл",
+      "джон бернтал",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 179,
@@ -6074,7 +10798,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/520.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/520.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/520.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "телесеть",
+      "сидни люмет",
+      "соединенные штаты",
+      "драма",
+      "фэй данауэй",
+      "уильям холден",
+      "питер финч",
+      "70-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 180,
@@ -6109,7 +10851,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/387779.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/387779.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/387779.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "хатико: самый верный друг",
+      "лассе халльстрём",
+      "великобритания, сша",
+      "биография",
+      "драма",
+      "семейный",
+      "ричард гир",
+      "джоан аллен",
+      "кэри-хироюки тагава",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 181,
@@ -6144,7 +10904,48 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/393.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/393.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/393.jpg",
+    "isBW": true,
+    "era": "золотой век кино",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ],
+    "keywords": [
+      "дьяволицы",
+      "анри-жорж клузо",
+      "франция",
+      "криминал",
+      "драма",
+      "ужасы",
+      "симона синьоре",
+      "вера клузо",
+      "поль мерисс",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "золотой век кино",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 182,
@@ -6179,7 +10980,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195434.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195434.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195434.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "старикам тут не место",
+      "итан коэн, джоэл коэн",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "томми ли джонс",
+      "хавьер бардем",
+      "джош бролин",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 183,
@@ -6214,7 +11037,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/252626.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/252626.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/252626.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "в диких условиях",
+      "шон пенн",
+      "соединенные штаты",
+      "приключения",
+      "биография",
+      "драма",
+      "эмиль хирш",
+      "винс вон",
+      "кэтрин кинер",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 184,
@@ -6249,7 +11092,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/692861.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/692861.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/692861.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "исчезнувшая",
+      "дэвид финчер",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "бен аффлек",
+      "розамунд пайк",
+      "нил патрик харрис",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 185,
@@ -6284,7 +11158,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89514.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89514.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89514.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "рататуй",
+      "брэд берд, ян пинкава",
+      "сша, франция",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "брэд гаррет",
+      "лу романо",
+      "пэттон освальт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 186,
@@ -6319,7 +11214,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81297.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81297.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81297.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "малышка на миллион",
+      "клинт иствуд",
+      "соединенные штаты",
+      "драма",
+      "спорт",
+      "хилари суонк",
+      "морган фриман",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 187,
@@ -6354,7 +11273,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103733.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103733.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103733.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "лабиринт фавна",
+      "гильермо дель торо",
+      "мексика, испания",
+      "драма",
+      "фэнтези",
+      "военный",
+      "ивана бакеро",
+      "ариадна хиль",
+      "серхи лопес",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 188,
@@ -6389,7 +11332,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7121.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7121.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7121.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "борьба за выживание"
+    ],
+    "keywords": [
+      "парк юрского периода",
+      "стивен спилберг",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "сэм нил",
+      "лора дерн",
+      "джефф голдблюм",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "90-е",
+      "борьба за выживание"
+    ]
   },
   {
     "id": 189,
@@ -6424,7 +11388,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/374.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/374.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/374.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "бешеный бык",
+      "мартин скорсезе",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "спорт",
+      "роберт де ниро",
+      "кэти мориарти",
+      "джо пеши",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 190,
@@ -6459,7 +11449,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/491.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/491.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/491.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [],
+    "keywords": [
+      "изгоняющий дьявола",
+      "уильям фридкин",
+      "соединенные штаты",
+      "ужасы",
+      "эллен берстин",
+      "макс фон сюдов",
+      "линда блэр",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "70-е"
+    ]
   },
   {
     "id": 191,
@@ -6494,7 +11502,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/579739.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/579739.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/579739.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "развод надера и симин",
+      "асгар фархади",
+      "иран, франция, австралия",
+      "драма",
+      "пэйман маади",
+      "лейла хатами",
+      "саре баят",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 192,
@@ -6529,7 +11553,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/515.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/515.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/515.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "на игле",
+      "дэнни бойл",
+      "великобритания",
+      "криминал",
+      "драма",
+      "юэн макгрегор",
+      "юэн бремнер",
+      "джонни ли миллер",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 193,
@@ -6564,7 +11605,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378246.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/378246.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/378246.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "мэри и макс.",
+      "адам эллиот",
+      "австралия",
+      "мультфильм",
+      "комедия",
+      "драма",
+      "тони коллетт",
+      "филип сеймур хоффман",
+      "эрик бана",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 194,
@@ -6599,7 +11664,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8400.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8400.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8400.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "фанни и александр",
+      "ингмар бергман",
+      "швеция, франция, западная германия",
+      "драма",
+      "бертиль гюв",
+      "пернилла олвин",
+      "кристина адольфсон",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 195,
@@ -6632,7 +11719,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2389.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2389.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2389.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "битлджюс",
+      "тим бертон",
+      "соединенные штаты",
+      "комедия",
+      "фэнтези",
+      "алек болдуин",
+      "джина дэвис",
+      "майкл китон",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е"
+    ]
   },
   {
     "id": 196,
@@ -6667,7 +11781,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4328.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4328.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4328.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия"
+    ],
+    "keywords": [
+      "делай как надо",
+      "спайк ли",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "дэнни айелло",
+      "осси дэвис",
+      "руби ди",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е",
+      "пронзительная драма",
+      "убойная комедия"
+    ]
   },
   {
     "id": 197,
@@ -6702,7 +11841,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/245805.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/245805.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/245805.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "крупный план",
+      "аббас киаростами",
+      "иран",
+      "биография",
+      "криминал",
+      "драма",
+      "хоссейн сабзиан",
+      "мохсен махмальбаф",
+      "абольфазл аханха",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 198,
@@ -6737,7 +11894,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2361.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2361.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2361.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "аладдин",
+      "рон клементс, джон маскер",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "скотт вайнгер",
+      "робин уильямс",
+      "линда ларкин",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 199,
@@ -6772,7 +11950,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1588.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1588.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1588.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "несколько хороших парней",
+      "роб райнер",
+      "соединенные штаты",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "том круз",
+      "джек николсон",
+      "деми мур",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 200,
@@ -6807,7 +12012,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4275.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4275.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4275.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "путь карлито",
+      "брайан де пальма",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "аль пачино",
+      "шон пенн",
+      "пенелопа энн миллер",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 201,
@@ -6842,7 +12079,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/527.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/527.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/527.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "день сурка",
+      "гарольд рамис",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "фэнтези",
+      "билл мюррэй",
+      "энди макдауэлл",
+      "крис эллиотт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 202,
@@ -6877,7 +12140,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1573.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1573.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1573.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "неспящие в сиэттле",
+      "нора эфрон",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "том хэнкс",
+      "мег райан",
+      "росс мэлинджер",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 203,
@@ -6912,7 +12199,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8151.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8151.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8151.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "интервью с вампиром",
+      "нил джордан",
+      "соединенные штаты",
+      "драма",
+      "фэнтези",
+      "ужасы",
+      "брэд питт",
+      "том круз",
+      "антонио бандерас",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 204,
@@ -6947,7 +12257,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2217.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2217.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2217.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "космическая одиссея",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "аполлон 13",
+      "рон ховард",
+      "соединенные штаты",
+      "приключения",
+      "драма",
+      "история",
+      "том хэнкс",
+      "билл пэкстон",
+      "кевин бэйкон",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 205,
@@ -6982,7 +12319,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2022.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2022.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2022.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "день независимости",
+      "роланд эммерих",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "уилл смит",
+      "билл пуллман",
+      "джефф голдблюм",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "90-е"
+    ]
   },
   {
     "id": 206,
@@ -7017,7 +12376,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3961.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3961.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3961.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "миссия: невыполнима",
+      "брайан де пальма",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "том круз",
+      "джон войт",
+      "эммануэль беар",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "90-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 207,
@@ -7052,7 +12437,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8163.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8163.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8163.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "мистер бин",
+      "мел смит",
+      "великобритания, сша",
+      "приключения",
+      "комедия",
+      "семейный",
+      "роуэн аткинсон",
+      "питер макникол",
+      "джон миллс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 208,
@@ -7087,7 +12493,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/12198.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/12198.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/12198.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "игра",
+      "дэвид финчер",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "майкл дуглас",
+      "дебора кара ангер",
+      "шон пенн",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 209,
@@ -7122,7 +12559,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/454.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/454.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/454.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "шоу трумана",
+      "питер вейр",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "джим керри",
+      "эд харрис",
+      "лора линни",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 210,
@@ -7156,7 +12616,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "карты, деньги, два ствола",
+      "гай ричи",
+      "великобритания, сша",
+      "комедия",
+      "криминал",
+      "джейсон флеминг",
+      "декстер флетчер",
+      "ник моран",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 211,
@@ -7191,7 +12671,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5619.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5619.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5619.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "космическая одиссея",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "звёздные войны: эпизод 3 – месть ситхов",
+      "джордж лукас",
+      "сша, италия, швейцария, таиланд, великобритания",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "хейден кристенсен",
+      "натали портман",
+      "юэн макгрегор",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "бэтмен",
+      "джокер",
+      "готэм",
+      "тёмный рыцарь",
+      "комиксы",
+      "супергерои",
+      "dc",
+      "вигилант",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "2000-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 212,
@@ -7226,7 +12745,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/844.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/844.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/844.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "звёздные войны: эпизод 2 – атака клонов",
+      "джордж лукас",
+      "сша, великобритания",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "хейден кристенсен",
+      "натали портман",
+      "юэн макгрегор",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "2000-е"
+    ]
   },
   {
     "id": 213,
@@ -7261,7 +12809,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6146.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6146.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6146.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "ноттинг хилл",
+      "роджер мичелл",
+      "великобритания, сша",
+      "комедия",
+      "драма",
+      "мелодрама",
+      "хью грант",
+      "джулия робертс",
+      "ричард маккейб",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 214,
@@ -7296,7 +12868,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/430.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/430.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/430.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "шрэк",
+      "эндрю адамсон, вики дженсон",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "майк майерс",
+      "эдди мерфи",
+      "кэмерон диас",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 215,
@@ -7331,7 +12924,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5558.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5558.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5558.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "талантливый мистер рипли",
+      "энтони мингелла",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "мэтт дэймон",
+      "гвинет пэлтроу",
+      "джуд лоу",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 216,
@@ -7366,7 +12981,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6871.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/8J1Xn5v6fjntzxi0lUUy8fo84Ah.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/8J1Xn5v6fjntzxi0lUUy8fo84Ah.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "борьба за выживание",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "пляж",
+      "дэнни бойл",
+      "великобритания, сша",
+      "приключения",
+      "драма",
+      "мелодрама",
+      "леонардо ди каприо",
+      "тильда суинтон",
+      "дэниэл йорк ло",
+      "2000-е",
+      "нео-нуар",
+      "борьба за выживание",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 217,
@@ -7401,7 +13038,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/395.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/prITVK0LHHrA1fUK2bP8HZyIcnW.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/prITVK0LHHrA1fUK2bP8HZyIcnW.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "шестое чувство",
+      "м. найт шьямалан",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "брюс уиллис",
+      "хейли джоэл осмент",
+      "тони коллетт",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 218,
@@ -7436,7 +13105,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/3dI3OfBx0z6UeyZCC77GeprNeTw.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/3dI3OfBx0z6UeyZCC77GeprNeTw.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "крадущийся тигр, затаившийся дракон",
+      "ли",
+      "тайвань, китай, гонконг, сша",
+      "боевик",
+      "приключения",
+      "драма",
+      "чоу юн-фат",
+      "мишель йео",
+      "цзыи чжан",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 219,
@@ -7471,7 +13158,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/458.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pPKeBydksLVIyJSNYnVDLV23kSJ.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pPKeBydksLVIyJSNYnVDLV23kSJ.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "убойная комедия"
+    ],
+    "keywords": [
+      "корпорация монстров",
+      "пит доктер, дэвид сильверман, ли ункрич",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "билли кристал",
+      "джон гудман",
+      "мэри гиббс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "убойная комедия"
+    ]
   },
   {
     "id": 220,
@@ -7506,7 +13223,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/410.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/ggoyl7bYk3JIZdKt9zzcVBsF5jk.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/ggoyl7bYk3JIZdKt9zzcVBsF5jk.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "донни дарко",
+      "ричард келли",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "джейк джилленхол",
+      "джена мэлоун",
+      "мэри макдоннелл",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 221,
@@ -7541,7 +13285,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/324.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/a0NyV2Q6tQCZmQY9KcEfl5GZTYZ.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/a0NyV2Q6tQCZmQY9KcEfl5GZTYZ.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "поймай меня, если сможешь",
+      "стивен спилберг",
+      "сша, канада",
+      "биография",
+      "криминал",
+      "драма",
+      "леонардо ди каприо",
+      "том хэнкс",
+      "кристофер уокен",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "ограбление",
+      "афера",
+      "деньги",
+      "2000-е",
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 222,
@@ -7576,7 +13347,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/530.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/7EX8TTBKCJR3x7xziOSp6M0bQdF.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/7EX8TTBKCJR3x7xziOSp6M0bQdF.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "игры разума",
+      "рон ховард",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "рассел кроу",
+      "эд харрис",
+      "дженнифер коннелли",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 223,
@@ -7611,7 +13409,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/sKM5KAv4yAN8Zs7HLG6us33OE9x.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/sKM5KAv4yAN8Zs7HLG6us33OE9x.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "госфорд-парк",
+      "роберт альтман",
+      "великобритания, италия, сша",
+      "комедия",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "мэгги смит",
+      "майкл гэмбон",
+      "кристин скотт томас",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 224,
@@ -7646,7 +13475,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/688.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/33Wj3LSyoAqtqkeh7YXcVMvTQzc.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/33Wj3LSyoAqtqkeh7YXcVMvTQzc.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "гарри поттер и тайная комната",
+      "крис коламбус",
+      "великобритания, сша",
+      "приключения",
+      "семейный",
+      "фэнтези",
+      "дэниэл рэдклифф",
+      "руперт гринт",
+      "эмма уотсон",
+      "магия",
+      "волшебство",
+      "гарри поттер",
+      "2000-е"
+    ]
   },
   {
     "id": 225,
@@ -7681,7 +13528,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/322.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/mncDize7FLO9RBovXKZ7LefUkbu.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/mncDize7FLO9RBovXKZ7LefUkbu.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "гарри поттер и узник азкабана",
+      "альфонсо куарон",
+      "великобритания, сша",
+      "приключения",
+      "семейный",
+      "фэнтези",
+      "дэниэл рэдклифф",
+      "эмма уотсон",
+      "руперт гринт",
+      "время",
+      "путешествия во времени",
+      "временная петля",
+      "будущее",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "магия",
+      "волшебство",
+      "гарри поттер",
+      "2000-е"
+    ]
   },
   {
     "id": 226,
@@ -7716,7 +13589,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/38903.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nVJGGWCs8CQ41G4fzJoTttfCgpQ.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nVJGGWCs8CQ41G4fzJoTttfCgpQ.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "суперсемейка",
+      "брэд бёрд",
+      "соединенные штаты",
+      "мультфильм",
+      "боевик",
+      "приключения",
+      "крэйг т. нельсон",
+      "сэмюэл л. джексон",
+      "холли хантер",
+      "2000-е",
+      "супергеройский эпик"
+    ]
   },
   {
     "id": 227,
@@ -7751,7 +13642,22 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4374.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/70xRYK8orGWA7NfxvzhtkjpZAD6.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/70xRYK8orGWA7NfxvzhtkjpZAD6.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "пираты карибского моря: проклятие черной жемчужины",
+      "вербинские горы",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "джонни депп",
+      "джеффри раш",
+      "орландо блум",
+      "2000-е"
+    ]
   },
   {
     "id": 228,
@@ -7786,7 +13692,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3561.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vQWkMYdy0D4MiDngHG7Y0NQY7xe.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vQWkMYdy0D4MiDngHG7Y0NQY7xe.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма"
+    ],
+    "keywords": [
+      "дневник памяти",
+      "ник кассаветис",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "джина роулендс",
+      "джеймс гарнер",
+      "рэйчел макадамс",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "2000-е",
+      "пронзительная драма",
+      "военная драма"
+    ]
   },
   {
     "id": 229,
@@ -7821,7 +13758,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5930.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/iLYW5ozphDftZsM0If9LFVRIkQY.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/iLYW5ozphDftZsM0If9LFVRIkQY.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "трудности перевода",
+      "софия коппола",
+      "сша, япония",
+      "комедия",
+      "драма",
+      "билл мюррэй",
+      "скарлетт йоханссон",
+      "джованни рибизи",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 230,
@@ -7856,7 +13816,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4886.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/stffMPJj4cke1MrAkek1CFhjKuR.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/stffMPJj4cke1MrAkek1CFhjKuR.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "я, робот",
+      "алекс пройас",
+      "сша, германия",
+      "боевик",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "уилл смит",
+      "бриджит мойнахан",
+      "брюс гринвуд",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2000-е"
+    ]
   },
   {
     "id": 231,
@@ -7891,7 +13878,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18294.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18294.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18294.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "двенадцать друзей оушена",
+      "стивен содерберг",
+      "соединенные штаты",
+      "криминал",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "джордж клуни",
+      "брэд питт",
+      "джулия робертс",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "ограбление",
+      "афера",
+      "деньги",
+      "2000-е",
+      "нео-нуар",
+      "криминальная сага",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 232,
@@ -7924,7 +13941,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/23956.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/23956.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/23956.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "телеведущий: легенда о роне бургунди",
+      "адам маккей",
+      "соединенные штаты",
+      "комедия",
+      "уилл феррелл",
+      "кристина эпплгейт",
+      "стив карелл",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 233,
@@ -7959,7 +13995,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/61297.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/61297.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/61297.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "столкновение",
+      "пол хаггис",
+      "сша, германия",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "дон чидл",
+      "сандра баллок",
+      "тандиве ньютон",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 234,
@@ -7994,7 +14058,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/50598.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/50598.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/50598.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "перед закатом",
+      "ричард линклейтер",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "итан хоук",
+      "жюли дельпи",
+      "вернон добчефф",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 235,
@@ -8029,7 +14110,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77439.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77439.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77439.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "оружейный барон",
+      "эндрю никкол",
+      "сша, франция",
+      "криминал",
+      "драма",
+      "николас кейдж",
+      "итан хоук",
+      "джаред лето",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 236,
@@ -8064,7 +14162,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81289.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81289.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81289.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "война миров",
+      "стивен спилберг",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "том круз",
+      "дакота фаннинг",
+      "тим роббинс",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "2000-е"
+    ]
   },
   {
     "id": 237,
@@ -8099,7 +14222,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81287.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81287.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81287.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "мюнхен",
+      "стивен спилберг",
+      "франция, канада, сша",
+      "драма",
+      "история",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "эрик бана",
+      "дэниэл крэйг",
+      "мари-жозе кроз",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 238,
@@ -8134,7 +14283,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102124.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102124.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102124.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "300 спартанцев",
+      "зак снайдер",
+      "сша, канада, болгария",
+      "боевик",
+      "драма",
+      "джерард батлер",
+      "лена хиди",
+      "дэвид уэнэм",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 239,
@@ -8169,7 +14335,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86458.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86458.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86458.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "счастливое число слевина",
+      "пол макгиган",
+      "великобритания, германия, канада, сша",
+      "криминал",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "джош хартнетт",
+      "бен кингсли",
+      "морган фриман",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 240,
@@ -8204,7 +14392,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86621.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86621.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86621.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "бесподобный мистер фокс",
+      "уэс андерсон",
+      "сша, великобритания",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "джордж клуни",
+      "мерил стрип",
+      "билл мюррей",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 241,
@@ -8239,7 +14448,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102838.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102838.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102838.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "зодиак",
+      "дэвид финчер",
+      "соединенные штаты",
+      "криминал",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "джейк джилленхол",
+      "роберт дауни мл.",
+      "марк руффало",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "мрачный",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 242,
@@ -8274,7 +14513,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/158786.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/158786.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/158786.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "жизнь пи",
+      "ли",
+      "сша, тайвань, великобритания, канада, индия, франция",
+      "приключения",
+      "драма",
+      "фэнтези",
+      "сурадж шарма",
+      "ирфан кхан",
+      "аюш тандон",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 243,
@@ -8309,7 +14566,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/160946.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/160946.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/160946.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "первый мститель",
+      "джо джонстон",
+      "соединенные штаты",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "крис эванс",
+      "хьюго уивинг",
+      "сэмюэл л. джексон",
+      "марвел",
+      "мстители",
+      "супергерои",
+      "комиксы",
+      "блокбастер",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "2010-е"
+    ]
   },
   {
     "id": 244,
@@ -8344,7 +14627,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103572.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103572.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103572.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "грайндхаус",
+      "роберт родригес, илай рот, квентин тарантино",
+      "сша, канада",
+      "ужасы",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "курт рассел",
+      "роуз макгоуэн",
+      "дэнни трехо",
+      "тарантино",
+      "квентин тарантино",
+      "культовые диалоги",
+      "черный юмор",
+      "нелинейный сюжет",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2000-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 245,
@@ -8379,7 +14696,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195523.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195523.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195523.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "майндфак и твисты",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "мир дикого запада",
+      "н/д",
+      "соединенные штаты",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "эван рэйчел вуд",
+      "джеффри райт",
+      "эд харрис",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "2010-е",
+      "майндфак и твисты",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 246,
@@ -8414,7 +14770,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/251733.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/251733.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/251733.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "аватар",
+      "джеймс кэмерон",
+      "сша, великобритания",
+      "боевик",
+      "приключения",
+      "фэнтези",
+      "сэм уортингтон",
+      "зои салданья",
+      "сигурни уивер",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "2000-е"
+    ]
   },
   {
     "id": 247,
@@ -8449,7 +14823,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/278522.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/278522.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/278522.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "хоббит: нежданное путешествие",
+      "питер джексон",
+      "новая зеландия, сша",
+      "приключения",
+      "фэнтези",
+      "мартин фриман",
+      "иэн маккеллен",
+      "ричард армитидж",
+      "властелин колец",
+      "средиземье",
+      "эпос",
+      "2010-е"
+    ]
   },
   {
     "id": 248,
@@ -8484,7 +14875,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/279102.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/279102.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/279102.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "валл·и",
+      "эндрю стэнтон",
+      "сша, япония",
+      "мультфильм",
+      "приключения",
+      "семейный",
+      "бен бертт",
+      "элисса найт",
+      "джефф гарлин",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "2000-е"
+    ]
   },
   {
     "id": 249,
@@ -8519,7 +14939,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462682.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462682.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462682.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "волк с уолл-стрит",
+      "мартин скорсезе",
+      "соединенные штаты",
+      "биография",
+      "комедия",
+      "криминал",
+      "леонардо ди каприо",
+      "джона хилл",
+      "марго робби",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 250,
@@ -8554,7 +15003,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/413362.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/413362.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/413362.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "миллионер из трущоб",
+      "дэнни бойл, лавлин банчес",
+      "великобритания, франция, сша, индия",
+      "криминал",
+      "драма",
+      "мелодрама",
+      "дев патель",
+      "фрида пинто",
+      "саураб шукла",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 251,
@@ -8589,7 +15056,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325381.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/325381.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/325381.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "вверх",
+      "пит доктер, боб петерсон",
+      "соединенные штаты",
+      "мультфильм",
+      "приключения",
+      "комедия",
+      "эдвард аснер",
+      "джордан нагай",
+      "джон ратценбергер",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 252,
@@ -8624,7 +15112,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397667.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397667.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397667.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "борьба за выживание",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "остров проклятых",
+      "мартин скорсезе",
+      "канада, сша",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "леонардо дикаприо",
+      "эмили мортимер",
+      "марк руффало",
+      "скорсезе",
+      "криминальная драма",
+      "гангстеры",
+      "ди каприо",
+      "де ниро",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "2010-е",
+      "нео-нуар",
+      "борьба за выживание",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 253,
@@ -8659,7 +15181,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407636.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407636.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407636.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "гарри поттер и дары смерти: часть ii",
+      "дэвид йейтс",
+      "великобритания, сша",
+      "приключения",
+      "семейный",
+      "фэнтези",
+      "дэниэл рэдклифф",
+      "эмма уотсон",
+      "руперт гринт",
+      "магия",
+      "волшебство",
+      "гарри поттер",
+      "2010-е"
+    ]
   },
   {
     "id": 254,
@@ -8694,7 +15234,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408410.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408410.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408410.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гран торино",
+      "клинт иствуд",
+      "германия, сша",
+      "драма",
+      "би ванг",
+      "кристофер карли",
+      "2000-е",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 255,
@@ -8729,7 +15286,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425400.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425400.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425400.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "пожары",
+      "дени вильнев",
+      "канада, франция",
+      "драма",
+      "детектив",
+      "расследование",
+      "тайны",
+      "военный",
+      "любна азабаль",
+      "мелисса дезормо-пулен",
+      "максим годетт",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 256,
@@ -8764,7 +15346,30 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/427198.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/427198.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/427198.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "социальная сеть",
+      "дэвид финчер",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "джесси айзенберг",
+      "эндрю гарфилд",
+      "джастин тимберлейк",
+      "финчер",
+      "психологический триллер",
+      "нео-нуар",
+      "перфекционизм",
+      "твист",
+      "мрачный",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 257,
@@ -8799,7 +15404,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453406.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453406.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453406.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "безумный макс: дорога ярости",
+      "джордж миллер",
+      "австралия, сша",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "том харди",
+      "шарлиз терон",
+      "николас холт",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2010-е"
+    ]
   },
   {
     "id": 258,
@@ -8834,7 +15460,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453397.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453397.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453397.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "оно",
+      "энди мускетти",
+      "соединенные штаты",
+      "ужасы",
+      "билл скарсгард",
+      "джейден мартелл",
+      "финн вулфард",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2010-е"
+    ]
   },
   {
     "id": 259,
@@ -8869,7 +15513,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470553.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470553.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470553.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "прислуга",
+      "тейт тейлор",
+      "сша, индия",
+      "драма",
+      "виола дэвис",
+      "эмма стоун",
+      "октавия спенсер",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "комедия",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 260,
@@ -8904,7 +15577,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485311.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485311.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485311.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "король говорит!",
+      "том хупер",
+      "сша, великобритания",
+      "биография",
+      "драма",
+      "история",
+      "колин ферт",
+      "джеффри раш",
+      "хелена бонэм картер",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 261,
@@ -8939,7 +15630,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/501333.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/501333.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/501333.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "игра на понижение",
+      "адам маккей",
+      "соединенные штаты",
+      "биография",
+      "комедия",
+      "драма",
+      "кристиан бэйл",
+      "стив карелл",
+      "райан гослинг",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 262,
@@ -8974,7 +15695,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522941.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522941.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522941.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "выживший",
+      "алехандро дж. иньярриту",
+      "сша, гонконг, тайвань, аргентина",
+      "боевик",
+      "драма",
+      "вестерн",
+      "леонардо ди каприо",
+      "том харди",
+      "уилл поултер",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 263,
@@ -9009,7 +15748,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/577488.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/577488.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/577488.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "она",
+      "спайк джонз",
+      "соединенные штаты",
+      "драма",
+      "мелодрама",
+      "фантастика",
+      "хоакин феникс",
+      "эми адамс",
+      "скарлетт йоханссон",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 264,
@@ -9044,7 +15801,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/834394.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/834394.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/834394.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "в центре внимания",
+      "том маккарти",
+      "соединенные штаты",
+      "биография",
+      "криминал",
+      "драма",
+      "марк руффало",
+      "майкл китон",
+      "рэйчел макадамс",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 265,
@@ -9079,7 +15862,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/592203.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/592203.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/592203.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "экипаж",
+      "роберт земекис",
+      "сша, объединенные арабские эмираты",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "дензел вашингтон",
+      "келли райли",
+      "дон чидл",
+      "2010-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 266,
@@ -9114,7 +15918,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/596125.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/596125.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/596125.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гонка",
+      "рон ховард",
+      "великобритания, сша",
+      "биография",
+      "драма",
+      "спорт",
+      "даниэль брюль",
+      "крис хемсворт",
+      "оливия уайлд",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 267,
@@ -9149,7 +15971,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/606646.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/606646.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/606646.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "12 лет рабства",
+      "стив маккуин",
+      "великобритания, сша",
+      "биография",
+      "драма",
+      "история",
+      "чиветел эджиофор",
+      "майкл кеннет уильямс",
+      "майкл фассбендер",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 268,
@@ -9184,7 +16024,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/635772.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/635772.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/635772.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "игра в имитацию",
+      "мортен тилдум",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "бенедикт камбербэтч",
+      "кира найтли",
+      "мэттью гуд",
+      "2010-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 269,
@@ -9219,7 +16083,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/649917.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/649917.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/649917.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "по соображениям совести",
+      "мел гибсон",
+      "соединенные штаты",
+      "биография",
+      "драма",
+      "история",
+      "эндрю гарфилд",
+      "сэм уортингтон",
+      "тереза палмер",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "2010-е",
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 270,
@@ -9254,7 +16145,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683999.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/683999.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/683999.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "отель «гранд будапешт»",
+      "уэс андерсон",
+      "сша, германия",
+      "комедия",
+      "драма",
+      "рэйф файнс",
+      "ф. мюррэй абрахам",
+      "матье амальрик",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 271,
@@ -9289,7 +16211,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/679486.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/679486.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/679486.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "тайна коко",
+      "адриан молина, ли ункрич",
+      "сша, мексика",
+      "мультфильм",
+      "приключения",
+      "драма",
+      "энтони гонсалес",
+      "гаэль гарсиа берналь",
+      "бенджамин брэтт",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 272,
@@ -9324,7 +16264,41 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42664.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42664.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42664.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "советская классика"
+    ],
+    "keywords": [
+      "иван васильевич меняет профессию",
+      "леонид гайдай",
+      "ссср",
+      "фантастика",
+      "приключения",
+      "комедия",
+      "yuriy yakovlev",
+      "leonid kuravlyov",
+      "aleksandr demyanenko",
+      "гайдай",
+      "советская комедия",
+      "шурик",
+      "эксцентрика",
+      "юмор",
+      "время",
+      "путешествия во времени",
+      "временная петля",
+      "будущее",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий"
+    ]
   },
   {
     "id": 273,
@@ -9359,7 +16333,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42782.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42782.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42782.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия",
+      "виртуозное ограбление",
+      "советская классика"
+    ],
+    "keywords": [
+      "операция «ы» и другие приключения шурика",
+      "леонид гайдай",
+      "ссср",
+      "криминал",
+      "мелодрама",
+      "комедия",
+      "aleksandr demyanenko",
+      "mikhail pugovkin",
+      "aleksei smirnov",
+      "гайдай",
+      "советская комедия",
+      "шурик",
+      "эксцентрика",
+      "юмор",
+      "ограбление",
+      "афера",
+      "деньги",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "пронзительная драма",
+      "убойная комедия",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 274,
@@ -9394,7 +16407,28 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46225.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46225.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46225.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "советская классика"
+    ],
+    "keywords": [
+      "бриллиантовая рука",
+      "ссср",
+      "криминал",
+      "комедия",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий"
+    ]
   },
   {
     "id": 275,
@@ -9429,7 +16463,53 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44386.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44386.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44386.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "майндфак и твисты",
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "джентльмены удачи",
+      "aleksandr seryy",
+      "ссср",
+      "драма",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "комедия",
+      "evgeniy leonov",
+      "georgiy vitsin",
+      "saveliy kramarov",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "советская классика",
+      "майндфак и твисты",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 276,
@@ -9464,7 +16544,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44745.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44745.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44745.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "убойная комедия",
+      "советская классика"
+    ],
+    "keywords": [
+      "кавказская пленница, или новые приключения шурика",
+      "ссср",
+      "мелодрама",
+      "приключения",
+      "комедия",
+      "мюзикл",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "пронзительная драма",
+      "убойная комедия"
+    ]
   },
   {
     "id": 277,
@@ -9499,7 +16606,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/25108.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/25108.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/25108.jpg",
+    "isBW": true,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика",
+      "советская классика"
+    ],
+    "keywords": [
+      "в бой идут одни «старики»",
+      "ссср",
+      "драма",
+      "комедия",
+      "военный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "советская классика",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 278,
@@ -9534,7 +16668,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77335.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77335.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77335.jpg",
+    "isBW": true,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика",
+      "советская классика"
+    ],
+    "keywords": [
+      "собачье сердце",
+      "владимир бортко",
+      "ссср",
+      "драма",
+      "фантастика",
+      "комедия",
+      "evgeniy evstigneev",
+      "vladimir tolokonnikov",
+      "boris plotnikov",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "советская классика",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 279,
@@ -9569,7 +16734,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46708.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46708.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46708.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "москва слезам не верит",
+      "ссср",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 280,
@@ -9604,7 +16793,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43869.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43869.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43869.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "служебный роман",
+      "eldar ryazanov",
+      "ссср",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "alisa freyndlikh",
+      "andrey myagkov",
+      "svetlana nemolyaeva",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 281,
@@ -9639,7 +16856,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77263.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77263.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77263.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "советская классика"
+    ],
+    "keywords": [
+      "приключения шерлока холмса и доктора ватсона: собака баскервилей",
+      "igor maslennikov",
+      "ссср",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "vasiliy livanov",
+      "vitali solomin",
+      "rina zelyonaya",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс"
+    ]
   },
   {
     "id": 282,
@@ -9674,7 +16923,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/476.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/476.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/476.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "назад в будущее",
+      "роберт земекис",
+      "сша",
+      "фантастика",
+      "приключения",
+      "комедия",
+      "майкл джей фокс",
+      "кристофер ллойд",
+      "леа томпсон",
+      "время",
+      "путешествия во времени",
+      "временная петля",
+      "будущее",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 283,
@@ -9709,7 +16986,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5502.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5502.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5502.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "назад в будущее 2",
+      "роберт земекис",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "комедия",
+      "семейный",
+      "майкл джей фокс",
+      "кристофер ллойд",
+      "леа томпсон",
+      "время",
+      "путешествия во времени",
+      "временная петля",
+      "будущее",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "80-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 284,
@@ -9744,7 +17051,45 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7103.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7103.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7103.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "назад в будущее 3",
+      "роберт земекис",
+      "сша",
+      "фантастика",
+      "приключения",
+      "вестерн",
+      "комедия",
+      "семейный",
+      "майкл дж. фокс",
+      "кристофер ллойд",
+      "мэри стинберген",
+      "время",
+      "путешествия во времени",
+      "временная петля",
+      "будущее",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 285,
@@ -9779,7 +17124,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/32898.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/32898.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/32898.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "достучаться до небес",
+      "томас ян",
+      "германия",
+      "драма",
+      "криминал",
+      "комедия",
+      "тиль швайгер",
+      "ян йозеф лиферс",
+      "тьерри ван вервеке",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 286,
@@ -9814,7 +17183,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/507.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/507.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/507.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "терминатор",
+      "джеймс кэмерон",
+      "сша, великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "фантастика",
+      "боевик",
+      "арнольд шварценеггер",
+      "линда хэмилтон",
+      "майкл бин",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "80-е",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 287,
@@ -9849,7 +17254,40 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2656.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2656.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2656.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "пятый элемент",
+      "люк бессон",
+      "франция, великобритания",
+      "мелодрама",
+      "фантастика",
+      "боевик",
+      "комедия",
+      "брюс уиллис",
+      "милла йовович",
+      "гэри олдман",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 288,
@@ -9884,7 +17322,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5273.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5273.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5273.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "шрэк 2",
+      "эндрю адамсон, келли эсбери, конрад вернон",
+      "сша",
+      "мелодрама",
+      "приключения",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "майк майерс",
+      "эдди мерфи",
+      "кэмерон диас",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "криминальная сага",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 289,
@@ -9919,7 +17388,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44168.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44168.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44168.jpg",
+    "isBW": true,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика",
+      "советская классика"
+    ],
+    "keywords": [
+      "девчата",
+      "yuriy chulyukin",
+      "ссср",
+      "мелодрама",
+      "комедия",
+      "nadezhda rumyantseva",
+      "nikolay rybnikov",
+      "lyusena ovchinnikova",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "советская классика",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 290,
@@ -9954,7 +17453,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/45146.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/45146.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/45146.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "любовь и голуби",
+      "ссср",
+      "мелодрама",
+      "комедия",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "советская классика",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 291,
@@ -9989,7 +17508,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7724.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7724.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7724.jpg",
+    "isBW": true,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "черно-белая эстетика",
+      "советская классика"
+    ],
+    "keywords": [
+      "летят журавли",
+      "михаил калатозов",
+      "ссср",
+      "драма",
+      "мелодрама",
+      "военный",
+      "история",
+      "tatyana samoylova",
+      "aleksey batalov",
+      "vasiliy merkurev",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "чб",
+      "черно-белый",
+      "черно-белое",
+      "монохром",
+      "советская классика",
+      "пронзительная драма",
+      "черно-белая эстетика"
+    ]
   },
   {
     "id": 292,
@@ -10024,7 +17573,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43395.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43395.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43395.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай",
+      "советская классика"
+    ],
+    "keywords": [
+      "...а зори здесь тихие",
+      "ссср",
+      "драма",
+      "военный",
+      "история",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 293,
@@ -10059,7 +17630,39 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42736.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42736.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42736.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай",
+      "советская классика"
+    ],
+    "keywords": [
+      "офицеры",
+      "vladimir rogovoy",
+      "ссср",
+      "драма",
+      "мелодрама",
+      "военный",
+      "georgiy yumatov",
+      "alina pokrovskaya",
+      "vasiliy lanovoy",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "пронзительная драма",
+      "военная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 294,
@@ -10094,7 +17697,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77203.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77203.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77203.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "покровские ворота",
+      "ссср",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "мюзикл",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "советская классика",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 295,
@@ -10129,7 +17754,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46068.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46068.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46068.jpg",
+    "isBW": false,
+    "era": "советская классика",
+    "tropes": [
+      "пронзительная драма",
+      "советская классика"
+    ],
+    "keywords": [
+      "белый бим черное ухо",
+      "ссср",
+      "драма",
+      "советское кино",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 296,
@@ -10164,7 +17805,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41519.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41519.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41519.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "брат",
+      "aleksey balabanov",
+      "россия",
+      "драма",
+      "криминал",
+      "боевик",
+      "sergey bodrov",
+      "viktor sukhorukov",
+      "svetlana pismichenko",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 297,
@@ -10199,7 +17858,21 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41520.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41520.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41520.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "брат 2",
+      "aleksey balabanov",
+      "сша, россия",
+      "криминал",
+      "боевик",
+      "sergey bodrov",
+      "viktor sukhorukov",
+      "sergey makovetskiy",
+      "2000-е"
+    ]
   },
   {
     "id": 298,
@@ -10234,7 +17907,36 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84830.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84830.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84830.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "криминальная сага",
+      "убойная комедия"
+    ],
+    "keywords": [
+      "жмурки",
+      "aleksey balabanov",
+      "россия",
+      "криминал",
+      "комедия",
+      "aleksey panin",
+      "dmitriy dyuzhev",
+      "nikita mikhalkov",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "криминальная сага",
+      "убойная комедия"
+    ]
   },
   {
     "id": 299,
@@ -10269,7 +17971,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/57166.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/57166.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/57166.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "бумер",
+      "pyotr buslov",
+      "россия",
+      "драма",
+      "криминал",
+      "vladimir vdovichenkov",
+      "andrey merzlikin",
+      "maksim konovalov",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 300,
@@ -10302,7 +18021,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7653.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7653.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7653.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "особенности национальной охоты",
+      "aleksandr rogozhkin",
+      "россия",
+      "комедия",
+      "вилле хаапасало",
+      "виктор бычков",
+      "сергей рёскин",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 301,
@@ -10336,7 +18074,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/808639.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/808639.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/808639.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "дурак",
+      "yuriy bykov",
+      "россия",
+      "драма",
+      "artyom bystrov",
+      "natalya surkova",
+      "yuriy tsurilo",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 302,
@@ -10371,7 +18125,21 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/601564.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/601564.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/601564.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "легенда №17",
+      "россия",
+      "драма",
+      "биография",
+      "спорт",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 303,
@@ -10405,7 +18173,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/840817.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/840817.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/840817.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "движение вверх",
+      "антон мегердичев",
+      "россия",
+      "драма",
+      "спорт",
+      "vladimir mashkov",
+      "andrey smolyakov",
+      "sergey garmash",
+      "советское кино",
+      "ссср",
+      "мосфильм",
+      "золотой фонд",
+      "советская классика",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 304,
@@ -10440,7 +18233,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2213.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2213.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2213.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "титаник",
+      "джеймс кэмерон",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "мелодрама",
+      "леонардо ди каприо",
+      "кейт уинслет",
+      "билли зейн",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 305,
@@ -10475,7 +18293,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104938.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104938.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104938.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "в погоне за счастьем",
+      "габриэле муччино",
+      "сша",
+      "драма",
+      "биография",
+      "уилл смит",
+      "тэндиве ньютон",
+      "джейден смит",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 306,
@@ -10510,7 +18345,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6877.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6877.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6877.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "терминал",
+      "стивен спилберг",
+      "сша",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "том хэнкс",
+      "кэтрин зета-джонс",
+      "чи макбрайд",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 307,
@@ -10545,7 +18408,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/627.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/627.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/627.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "борьба за выживание",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "изгой",
+      "роберт земекис",
+      "сша",
+      "драма",
+      "приключения",
+      "том хэнкс",
+      "хелен хант",
+      "пол санчес",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "борьба за выживание",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 308,
@@ -10580,7 +18470,23 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4871.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4871.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4871.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "запах женщины",
+      "мартин брест",
+      "сша",
+      "драма",
+      "аль пачино",
+      "крис о’доннелл",
+      "джеймс ребхорн",
+      "90-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 309,
@@ -10615,7 +18521,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/519.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/519.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/519.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "человек дождя",
+      "барри левинсон",
+      "сша",
+      "драма",
+      "дастин хоффман",
+      "том круз",
+      "валерия голино",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "80-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 310,
@@ -10650,7 +18580,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281251.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281251.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281251.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "мальчик в полосатой пижаме",
+      "марк герман",
+      "сша, великобритания",
+      "драма",
+      "военный",
+      "эйса баттерфилд",
+      "дэвид тьюлис",
+      "руперт френд",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 311,
@@ -10685,7 +18634,29 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1996.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1996.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1996.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "грязные танцы",
+      "эмиль ардолино",
+      "сша",
+      "драма",
+      "мелодрама",
+      "музыка",
+      "патрик суэйзи",
+      "дженнифер грей",
+      "джерри орбах",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 312,
@@ -10720,7 +18691,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1991.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1991.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1991.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "привидение",
+      "джерри цукер",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "мелодрама",
+      "фэнтези",
+      "патрик суэйзи",
+      "деми мур",
+      "тони голдуин",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "90-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 313,
@@ -10754,7 +18753,24 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81733.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81733.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81733.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гордость и предубеждение",
+      "джо райт",
+      "сша, франция, великобритания",
+      "драма",
+      "мелодрама",
+      "кира найтли",
+      "мэттью макфейден",
+      "бренда блетин",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 314,
@@ -10789,7 +18805,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/594.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/594.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/594.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "искусственный разум",
+      "стивен спилберг",
+      "сша, великобритания",
+      "драма",
+      "фантастика",
+      "приключения",
+      "хейли джоэл осмент",
+      "джуд лоу",
+      "фрэнсис о’коннор",
+      "спилберг",
+      "культовое кино",
+      "эмоции",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 315,
@@ -10824,7 +18868,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/689.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/689.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/689.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "гарри поттер и философский камень",
+      "крис коламбус",
+      "сша, великобритания",
+      "приключения",
+      "фэнтези",
+      "семейный",
+      "дэниэл рэдклифф",
+      "руперт гринт",
+      "эмма уотсон",
+      "магия",
+      "волшебство",
+      "гарри поттер",
+      "2000-е"
+    ]
   },
   {
     "id": 316,
@@ -10859,7 +18921,47 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841700.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841700.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841700.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "марсианин",
+      "ридли скотт",
+      "сша, великобритания, венгрия, иордания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "фантастика",
+      "приключения",
+      "комедия",
+      "мэтт дэймон",
+      "джессика честейн",
+      "кристен уиг",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 317,
@@ -10894,7 +18996,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/505851.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/505851.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/505851.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "грань будущего",
+      "дуг лиман",
+      "сша, канада",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "том круз",
+      "эмили блант",
+      "билл пэкстон",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "2010-е",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 318,
@@ -10929,7 +19057,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/784396.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/784396.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/784396.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "эффект бабочки",
+      "эрик бресс, дж. макки грубер",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "фантастика",
+      "эштон кутчер",
+      "эми смарт",
+      "2000-е",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 319,
@@ -10964,7 +19112,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6303.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6303.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6303.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [],
+    "keywords": [
+      "хищник",
+      "джон мактирнан",
+      "сша, мексика",
+      "фантастика",
+      "боевик",
+      "ужасы",
+      "арнольд шварценеггер",
+      "карл уэзерс",
+      "кевин питер холл",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "80-е"
+    ]
   },
   {
     "id": 320,
@@ -10999,7 +19173,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8124.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8124.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8124.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "один дома",
+      "крис коламбус",
+      "сша",
+      "комедия",
+      "семейный",
+      "маколей калкин",
+      "джо пеши",
+      "дэниэл стерн",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е"
+    ]
   },
   {
     "id": 321,
@@ -11034,7 +19234,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5928.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5928.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5928.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "один дома 2: затерянный в нью-йорке",
+      "крис коламбус",
+      "сша",
+      "приключения",
+      "комедия",
+      "семейный",
+      "маколей калкин",
+      "джо пеши",
+      "дэниэл стерн",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 322,
@@ -11069,7 +19294,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6039.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6039.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6039.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "маска",
+      "чак рассел",
+      "сша",
+      "криминал",
+      "фэнтези",
+      "комедия",
+      "джим керри",
+      "кэмерон диас",
+      "питер ригерт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е"
+    ]
   },
   {
     "id": 323,
@@ -11104,7 +19356,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39577.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39577.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39577.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "брюс всемогущий",
+      "том шадьяк",
+      "сша",
+      "драма",
+      "фэнтези",
+      "комедия",
+      "джим керри",
+      "дженнифер энистон",
+      "морган фриман",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 324,
@@ -11137,7 +19413,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5185.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5185.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5185.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "тупой и еще тупее",
+      "питер фаррелли, бобби фаррелли",
+      "сша",
+      "комедия",
+      "джим керри",
+      "джефф дэниелс",
+      "лорен холли",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 325,
@@ -11172,7 +19473,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/14349.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/14349.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/14349.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "такси",
+      "жерар пирес",
+      "франция",
+      "криминал",
+      "боевик",
+      "комедия",
+      "сами насери",
+      "фредерик дифенталь",
+      "марион котийяр",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "90-е"
+    ]
   },
   {
     "id": 326,
@@ -11206,7 +19542,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426004.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426004.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426004.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "мальчишник в вегасе",
+      "тодд филлипс",
+      "сша",
+      "комедия",
+      "зак галифианакис",
+      "брэдли купер",
+      "джастин барта",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 327,
@@ -11239,7 +19594,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5090.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5090.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5090.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "евротур",
+      "джефф шаффер, алек берг, дэвид мэндел",
+      "сша",
+      "комедия",
+      "скотт мехлович",
+      "джейкоб питтс",
+      "мишель трахтенберг",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 328,
@@ -11274,7 +19648,34 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/63912.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/63912.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/63912.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "укрощение строптивого",
+      "франко кастеллано, джузеппе мочча",
+      "италия",
+      "мелодрама",
+      "комедия",
+      "адриано челентано",
+      "орнелла мути",
+      "эдит питерс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 329,
@@ -11309,7 +19710,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/10179.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/10179.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/10179.jpg",
+    "isBW": false,
+    "era": "70-е",
+    "tropes": [
+      "криминальная сага",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "блеф",
+      "серджио корбуччи",
+      "италия",
+      "криминал",
+      "комедия",
+      "энтони куинн",
+      "капуцин",
+      "адриано челентано",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "ограбление",
+      "афера",
+      "деньги",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "70-е",
+      "криминальная сага",
+      "виртуозное ограбление"
+    ]
   },
   {
     "id": 330,
@@ -11344,7 +19781,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/15061.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/15061.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/15061.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "смертельное оружие",
+      "ричард доннер",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "боевик",
+      "мэл гибсон",
+      "дэнни гловер",
+      "гэри бьюзи",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "80-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 331,
@@ -11379,7 +19842,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2333.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2333.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2333.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "скала",
+      "майкл бэй",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "приключения",
+      "боевик",
+      "шон коннери",
+      "николас кейдж",
+      "эд харрис",
+      "тюрьма",
+      "побег",
+      "свобода",
+      "заключенные",
+      "90-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 332,
@@ -11414,7 +19901,33 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4606.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4606.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4606.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "без лица",
+      "джон ву",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "фантастика",
+      "боевик",
+      "джон траволта",
+      "николас кейдж",
+      "джоан аллен",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "90-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 333,
@@ -11449,7 +19962,27 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/762738.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/762738.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/762738.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "джон уик",
+      "чад стахельски",
+      "сша, китай",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "боевик",
+      "киану ривз",
+      "майкл нюквист",
+      "алфи аллен",
+      "2010-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 334,
@@ -11484,7 +20017,42 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/455194.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/455194.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/455194.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "пленницы",
+      "дени вильнев",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "хью джекман",
+      "джейк джилленхол",
+      "виола дэвис",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2010-е",
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 335,
@@ -11519,7 +20087,44 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522892.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522892.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522892.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "виртуозное ограбление",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "иллюзия обмана",
+      "луи летерье",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "джесси айзенберг",
+      "коммон",
+      "марк руффало",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "твист",
+      "майндфак",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "ограбление",
+      "афера",
+      "деньги",
+      "2010-е",
+      "нео-нуар",
+      "виртуозное ограбление",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 336,
@@ -11554,7 +20159,32 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/707.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/707.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/707.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "убойная комедия"
+    ],
+    "keywords": [
+      "ледниковый период",
+      "крис ведж, карлос салданья",
+      "сша",
+      "приключения",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "денис лири",
+      "джон легуизамо",
+      "рэй романо",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "убойная комедия"
+    ]
   },
   {
     "id": 337,
@@ -11589,7 +20219,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6006.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6006.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6006.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "борьба за выживание"
+    ],
+    "keywords": [
+      "мадагаскар",
+      "эрик дарнелл, том макграт",
+      "сша, великобритания, канада",
+      "приключения",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "крис рок",
+      "бен стиллер",
+      "дэвид швиммер",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "борьба за выживание"
+    ]
   },
   {
     "id": 338,
@@ -11624,7 +20285,43 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/775276.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/775276.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/775276.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "зверополис",
+      "байрон ховард, рич мур, джаред буш",
+      "сша",
+      "детектив",
+      "расследование",
+      "тайны",
+      "приключения",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "джиннифер гудвин",
+      "джейсон бейтман",
+      "идрис эльба",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е"
+    ]
   },
   {
     "id": 339,
@@ -11659,7 +20356,38 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/645118.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/645118.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/645118.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "майндфак и твисты"
+    ],
+    "keywords": [
+      "головоломка",
+      "пит доктер, ронни дель кармен",
+      "сша",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "эми полер",
+      "билл хейдер",
+      "льюис блэк",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2010-е",
+      "майндфак и твисты"
+    ]
   },
   {
     "id": 340,
@@ -11694,7 +20422,35 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84049.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84049.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84049.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "рапунцель: запутанная история",
+      "нэйтан грено, байрон ховард",
+      "сша, япония",
+      "мелодрама",
+      "приключения",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "мюзикл",
+      "мэнди мур",
+      "закари леви",
+      "донна мерфи",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 341,
@@ -11729,7 +20485,40 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/920265.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/920265.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/920265.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "человек-паук: через вселенные",
+      "боб персичетти, питер рэмси, родни ротман",
+      "сша, канада",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "шамейк мур",
+      "джейк джонсон",
+      "хейли стейнфелд",
+      "человек-паук",
+      "марвел",
+      "супергерои",
+      "комиксы",
+      "паук",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "супергеройский эпик"
+    ]
   },
   {
     "id": 343,
@@ -11762,7 +20551,26 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391772.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391772.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391772.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "всегда говори «да»",
+      "пейтон рид",
+      "сша, великобритания",
+      "комедия",
+      "джим керри",
+      "зои дешанель",
+      "брэдли купер",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е"
+    ]
   },
   {
     "id": 345,
@@ -11797,7 +20605,46 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BMGQ3Y2Q4NjktN2E4Ny00Y2Q2LTliZDUtZTNiNjRhY2I0NGIyXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "мементо",
+      "кристофер нолан",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "гай пирс",
+      "кэрри-энн мосс",
+      "джо пантолиано",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "циммер",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "майндфак",
+      "2000-е",
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 346,
@@ -11832,7 +20679,31 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3563.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3563.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3563.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "трасса 60",
+      "сша, канада",
+      "драма",
+      "фантастика",
+      "приключения",
+      "фэнтези",
+      "комедия",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 347,
@@ -11867,7 +20738,37 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1091.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1091.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1091.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "люди в чёрном",
+      "барри зонненфельд",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "комедия",
+      "томми ли джонс",
+      "уилл смит",
+      "линда фиорентино",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е"
+    ]
   },
   {
     "id": 348,
@@ -11902,7 +20803,25 @@ export const movies = [
     "category": "movie",
     "type": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/276376.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/276376.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/276376.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "заложница",
+      "сша, франция, великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "боевик",
+      "2000-е",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 441,
@@ -11935,7 +20854,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/461533.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/461533.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/461533.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "письма",
+      "эндрю шварц",
+      "сша",
+      "комедия",
+      "короткометражка",
+      "мэтт чорнобил",
+      "майк дирксен",
+      "бекки гайли",
+      "линдси рэведж",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "2000-е"
+    ]
   },
   {
     "id": 442,
@@ -11970,7 +20915,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79244.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79244.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79244.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "искусственный рай",
+      "карпо ачимович-година",
+      "югославия",
+      "драма",
+      "биография",
+      "юрген морке",
+      "владо новак",
+      "желько иванек",
+      "90-е",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "id": 443,
@@ -12005,7 +20969,27 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8173.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8173.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8173.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "осьминожка",
+      "джон глен",
+      "великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "приключения",
+      "боевик",
+      "роджер мур",
+      "мод адамс",
+      "луи журдан",
+      "80-е",
+      "нео-нуар"
+    ]
   },
   {
     "id": 444,
@@ -12040,7 +21024,23 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/896351.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/896351.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/896351.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "в дверь звонят",
+      "tatiana a nikolaeva",
+      "сша, россия",
+      "драма",
+      "короткометражка",
+      "svetlana kireeva",
+      "rodion antonkin",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 445,
@@ -12073,7 +21073,16 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1386280.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1386280.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1386280.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [],
+    "keywords": [
+      "история моей мамы",
+      "сингапур",
+      "документальный",
+      "2010-е"
+    ]
   },
   {
     "id": 446,
@@ -12108,7 +21117,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/175140.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/175140.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/175140.jpg",
+    "isBW": false,
+    "era": "80-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "карта потерянного рая",
+      "хисаясу сато",
+      "япония",
+      "детектив",
+      "расследование",
+      "тайны",
+      "рио янагава",
+      "кадзухиро сано",
+      "киеми ито",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "80-е",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 447,
@@ -12143,7 +21175,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1391515.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1391515.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1391515.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "подготовка, чтобы быть вместе неопределенное количество времени",
+      "лили хорват",
+      "венгрия",
+      "драма",
+      "мелодрама",
+      "натаса сторк",
+      "виктор бодо",
+      "бенетт вильмани",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "id": 449,
@@ -12178,7 +21227,34 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364563.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364563.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364563.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "убойная комедия"
+    ],
+    "keywords": [
+      "дилан моран: монстр",
+      "майкл мэтисон",
+      "великобритания",
+      "комедия",
+      "дилан моран",
+      "марк хип",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е",
+      "убойная комедия"
+    ]
   },
   {
     "title": "Майкл",
@@ -12214,7 +21290,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437614.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437614.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437614.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "майкл",
+      "антуан фукуа",
+      "сша, великобритания",
+      "драма",
+      "биография",
+      "музыка",
+      "джафар джексон",
+      "ниа лонг",
+      "колман доминго",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Мортал Комбат 2",
@@ -12250,7 +21344,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4876869.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4876869.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4876869.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "мортал комбат 2",
+      "саймон маккуойд",
+      "сша",
+      "фантастика",
+      "боевик",
+      "фэнтези",
+      "карл урбан",
+      "люди лин",
+      "джессика макнэми",
+      "спорт",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Необычайно умные создания",
@@ -12286,7 +21399,32 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzM3OTRlZDktYTk0OS00OTlmLWFhMjctMTZiODU4N2RiYzhhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "необычайно умные создания",
+      "оливия ньюман",
+      "соединенные штаты",
+      "комедия",
+      "драма",
+      "салли филд",
+      "льюис пуллман",
+      "колм мини",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Дьявол носит Prada 2",
@@ -12322,7 +21460,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6373982.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6373982.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6373982.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "борьба за выживание",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "дьявол носит prada 2",
+      "дэвид франкель",
+      "сша",
+      "драма",
+      "мэрил стрип",
+      "энн хэтэуэй",
+      "эмили блант",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "борьба за выживание",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Одиссея",
@@ -12358,7 +21520,27 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6385370.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6385370.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6385370.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "одиссея",
+      "кристофер нолан",
+      "сша, великобритания",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "мэтт дэймон",
+      "том холланд",
+      "энн хэтэуэй",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "твист",
+      "циммер",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Вершина",
@@ -12394,7 +21576,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9403071.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9403071.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9403071.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "вершина",
+      "бальтасар кормакур",
+      "россия",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "шарлиз терон",
+      "тэрон эджертон",
+      "эрик бана",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Проект «Конец света»",
@@ -12430,7 +21638,40 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1382256.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1382256.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1382256.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "космическая одиссея",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "проект «конец света»",
+      "фил лорд, кристофер миллер",
+      "сша",
+      "драма",
+      "фантастика",
+      "приключения",
+      "комедия",
+      "райан гослинг",
+      "сандра хюллер",
+      "джеймс ортис",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Следствие ведут овечки",
@@ -12466,7 +21707,36 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BNTFmZWI4YmMtNmQ0ZC00ZGQwLTk1OWEtZjAyZmIzOGY0MGFiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "следствие ведут овечки",
+      "кайл балда",
+      "ирландия, великобритания, германия, сша",
+      "боевик",
+      "комедия",
+      "семейный",
+      "брайан крэнстон",
+      "николас голицын",
+      "хью джекман",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "На помощь!",
@@ -12502,7 +21772,29 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4997249.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4997249.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4997249.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "борьба за выживание"
+    ],
+    "keywords": [
+      "на помощь!",
+      "сэм рэйми",
+      "сша",
+      "комедия",
+      "рэйчел макадамс",
+      "дилан о’брайэн",
+      "эдилл исмаил",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "борьба за выживание"
+    ]
   },
   {
     "title": "В чужой шкуре",
@@ -12537,7 +21829,22 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89937.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89937.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89937.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "в чужой шкуре",
+      "натан грейн",
+      "франция, италия",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "60-е",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Дьявол носит Prada",
@@ -12572,7 +21879,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104992.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104992.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104992.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "дьявол носит prada",
+      "дэвид франкель",
+      "сша, франция",
+      "драма",
+      "комедия",
+      "энн хэтэуэй",
+      "мерил стрип",
+      "адриан гренье",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2000-е",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Вот это драма!",
@@ -12608,7 +21938,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6530127.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6530127.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6530127.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "вот это драма!",
+      "кристоффер боргли",
+      "сша",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "зендая",
+      "роберт паттинсон",
+      "алана хэйм",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Хокум",
@@ -12643,7 +22001,32 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1293481.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1293481.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1293481.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "хокум",
+      "дэмиан маккарти",
+      "великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "фэнтези",
+      "ужасы",
+      "короткометражка",
+      "адам скотт",
+      "питер кунан",
+      "дэвид уилмот",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Грозовой перевал",
@@ -12679,7 +22062,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398650.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398650.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398650.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "грозовой перевал",
+      "изумрудный феннелл",
+      "сша, великобритания",
+      "драма",
+      "мелодрама",
+      "марго робби",
+      "джейкоб элорди",
+      "хонг чау",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Мортал Комбат",
@@ -12714,7 +22114,22 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8062.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8062.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8062.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "мортал комбат",
+      "саймон маккуойд",
+      "сша",
+      "фантастика",
+      "боевик",
+      "фэнтези",
+      "льюис тан",
+      "джессика макнэми",
+      "джош лоусон",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Обсессия",
@@ -12750,7 +22165,40 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454656.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454656.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454656.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "обсессия",
+      "карри баркер",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "мелодрама",
+      "детектив",
+      "расследование",
+      "тайны",
+      "майкл джонстон",
+      "инде наварретт",
+      "купер томлинсон",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Супер Марио: Галактическое кино",
@@ -12786,7 +22234,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5934685.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5934685.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5934685.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "супер марио: галактическое кино",
+      "аарон хорват, михаэль еленич, пьер ледюк",
+      "сша, япония",
+      "приключения",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "бри ларсон",
+      "вирджиния дэйр еленич",
+      "бенни сафди",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Мумия",
@@ -12822,7 +22293,27 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6384122.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6384122.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6384122.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "мумия",
+      "ли кронин",
+      "сша",
+      "приключения",
+      "фэнтези",
+      "джек рейнор",
+      "лайя коста",
+      "мэй каламави",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Я иду искать 2",
@@ -12858,7 +22349,37 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BZTM3N2EyMTEtNDhkMi00ZjNiLWI0MWUtOGViMjExODY3YTJhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "я иду искать 2",
+      "мэтт беттинелли-олпин, тайлер джиллетт",
+      "сша, канада",
+      "комедия",
+      "ужасы",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "самара уивинг",
+      "кэтрин ньютон",
+      "элайджа вуд",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Горничная",
@@ -12893,7 +22414,28 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6750360.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6750360.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6750360.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "горничная",
+      "пол фиг",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "сидни суини",
+      "аманда сейфрид",
+      "брэндон скленар",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Марти Великолепный",
@@ -12928,7 +22470,27 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6290547.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6290547.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6290547.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "марти великолепный",
+      "джош сафди",
+      "сша",
+      "драма",
+      "спорт",
+      "тимоти шаламе",
+      "гвинет пэлтроу",
+      "одесский аацион",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Гренландия 2. Миграция",
@@ -12964,7 +22526,22 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BOWEzM2IzZTMtYzA2Yi00NjY0LWE1ODktNTllZmI3ZTI1MzBmXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "гренландия 2. миграция",
+      "рик роман во",
+      "великобритания, сша",
+      "боевик",
+      "приключения",
+      "фантастика",
+      "джерард батлер",
+      "морена баккарин",
+      "роман гриффин дэвис",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Прыгуны",
@@ -13000,7 +22577,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6111021.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6111021.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6111021.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "прыгуны",
+      "дэниел чонг",
+      "сша",
+      "фантастика",
+      "приключения",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "пайпер курда",
+      "бобби мойнихан",
+      "джон хэмм",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Они придут за тобой",
@@ -13036,7 +22641,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463777.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463777.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463777.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "они придут за тобой",
+      "kirill sokolov",
+      "сша, канада, юар",
+      "боевик",
+      "комедия",
+      "ужасы",
+      "зази битц",
+      "патриция аркетт",
+      "михаля",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Ограбление в Лос-Анджелесе",
@@ -13072,7 +22703,42 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6450546.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6450546.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6450546.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "ограбление в лос-анджелесе",
+      "барт лейтон",
+      "сша, великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "крис хемсворт",
+      "марк руффало",
+      "бэрри кеоган",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "ограбление",
+      "афера",
+      "деньги",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар",
+      "виртуозное ограбление"
+    ]
   },
   {
     "title": "Закулисье реальности",
@@ -13108,7 +22774,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5452840.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5452840.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5452840.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "закулисье реальности",
+      "кейн парсонс",
+      "сша",
+      "фантастика",
+      "ужасы",
+      "чиветель эджиофор",
+      "ренате рейнсве",
+      "марк дюпласс",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Обитель зла",
@@ -13144,7 +22829,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7378605.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7378605.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7378605.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "обитель зла",
+      "зак креггер",
+      "сша",
+      "ужасы",
+      "остин абрамс",
+      "пол уолтер хаузер",
+      "кали рейс",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Раджа Шиваджи",
@@ -13180,7 +22883,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BZmEwNTU4MzEtY2Y4Ni00ZWRmLThhMGMtMDE5MTZmMDIzMGVjXkEyXkFqcGc@._V1_QL75_UY562_CR35,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "raja shivaji",
+      "раджа шиваджи",
+      "ритеш дешмукх",
+      "индия",
+      "боевик",
+      "биография",
+      "драма",
+      "салман кхан",
+      "санджай датт",
+      "абхишек баччан",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Бой со зверем",
@@ -13216,7 +22938,29 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342313.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/342313.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/342313.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "бой со зверем",
+      "тайлер аткинс",
+      "сша",
+      "ужасы",
+      "рассел кроу",
+      "моджан ария",
+      "дэниэл макферсон",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "спорт",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Мандалорец и Грогу",
@@ -13252,7 +22996,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437088.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437088.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437088.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "мандалорец и грогу",
+      "джон фавро",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "семейный",
+      "мартин скорсезе",
+      "педро паскаль",
+      "сигурни уивер",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Грязные деньги",
@@ -13287,7 +23057,38 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4966408.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4966408.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4966408.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "борьба за выживание",
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ],
+    "keywords": [
+      "грязные деньги",
+      "гай ричи",
+      "сша",
+      "драма",
+      "короткометражка",
+      "джейк джилленхол",
+      "генри кавилл",
+      "эйса гонсалес",
+      "ограбление",
+      "афера",
+      "деньги",
+      "криминал",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "борьба за выживание",
+      "пронзительная драма",
+      "виртуозное ограбление"
+    ]
   },
   {
     "title": "Властелины вселенной",
@@ -13323,7 +23124,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/88124.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/88124.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/88124.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "властелины вселенной",
+      "трэвис найт",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "морена баккарин",
+      "николас голицын",
+      "идрис эльба",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Аватар: Пламя и пепел",
@@ -13358,7 +23182,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/570402.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/570402.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/570402.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "аватар: пламя и пепел",
+      "джеймс кэмерон",
+      "сша, канада",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "сэм уортингтон",
+      "зои салданья",
+      "сигурни уивер",
+      "кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Скотный двор",
@@ -13393,7 +23236,32 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/714085.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/714085.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/714085.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "скотный двор",
+      "энди серкис",
+      "сша, великобритания, канада",
+      "драма",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "джим парсонс",
+      "иман веллани",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Битва за битвой",
@@ -13428,7 +23296,38 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437094.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437094.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437094.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "битва за битвой",
+      "пол томас андерсон",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "боевик",
+      "леонардо ди каприо",
+      "шон пенн",
+      "бенисио дель торо",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Дхурандхар Месть",
@@ -13464,7 +23363,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzdkNjAxNWMtNWY3My00NTI1LTg2YWQtOGI3MDA0NzdhMjEyXkEyXkFqcGc@._V1_QL75_UY562_CR24,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "борьба за выживание"
+    ],
+    "keywords": [
+      "dhurandhar: the revenge",
+      "дхурандхар месть",
+      "адитья дхар",
+      "индия",
+      "боевик",
+      "криминал",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "ранвир сингх",
+      "акшай кханна",
+      "санджай датт",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар",
+      "борьба за выживание"
+    ]
   },
   {
     "title": "Бегущий человек",
@@ -13499,7 +23426,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4387862.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4387862.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4387862.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "бегущий человек",
+      "эдгар райт",
+      "сша, великобритания",
+      "фантастика",
+      "боевик",
+      "глен пауэлл",
+      "алисса бенн",
+      "сиенна бенн",
+      "2020-е (современное)",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Тони",
@@ -13534,7 +23478,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419356.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419356.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419356.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "тони",
+      "джерард джонсон",
+      "великобритания",
+      "драма",
+      "ужасы",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "питер фердинандо",
+      "грег кэм",
+      "рикки гровер",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Гренландия",
@@ -13569,7 +23539,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1164520.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1164520.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1164520.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "гренландия",
+      "рик роман во",
+      "сша, великобритания",
+      "боевик",
+      "джерард батлер",
+      "морена баккарин",
+      "роджер дэйл флойд",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Орудия",
@@ -13604,7 +23593,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6782779.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6782779.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6782779.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "орудия",
+      "зак креггер",
+      "сша",
+      "детектив",
+      "расследование",
+      "тайны",
+      "ужасы",
+      "джулия гарнер",
+      "джош бролин",
+      "олден эренрайк",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Глубокие воды",
@@ -13640,7 +23655,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6080706.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6080706.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6080706.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "глубокие воды",
+      "ренни харлин",
+      "сша, испания, китай, новая зеландия",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "боевик",
+      "ужасы",
+      "аарон экхарт",
+      "бен кингсли",
+      "ангус сэмпсон",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Бугония",
@@ -13675,7 +23714,39 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1378893.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1378893.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1378893.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "космическая одиссея",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "бугония",
+      "йоргос лантимос",
+      "сша, канада, ирландия, корея южная",
+      "драма",
+      "фантастика",
+      "комедия",
+      "эмма стоун",
+      "джесси племонс",
+      "эйдан делбис",
+      "космос",
+      "научная фантастика",
+      "астронавты",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "космическая одиссея",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Я иду искать",
@@ -13710,7 +23781,39 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1198736.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1198736.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1198736.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "нео-нуар",
+      "борьба за выживание"
+    ],
+    "keywords": [
+      "я иду искать",
+      "мэтт беттинелли-олпин, тайлер джиллетт",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "комедия",
+      "ужасы",
+      "самара уивинг",
+      "адам броди",
+      "марк о’брайен",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2010-е",
+      "нео-нуар",
+      "борьба за выживание"
+    ]
   },
   {
     "title": "Шары вверх",
@@ -13743,7 +23846,28 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330197.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330197.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330197.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "убойная комедия"
+    ],
+    "keywords": [
+      "шары вверх",
+      "дуглас джексон",
+      "канада",
+      "комедия",
+      "майкл айронсайд",
+      "майкл рапапорт",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "90-е",
+      "убойная комедия"
+    ]
   },
   {
     "title": "Грешники",
@@ -13778,7 +23902,34 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5499518.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5499518.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5499518.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "криминальная сага"
+    ],
+    "keywords": [
+      "грешники",
+      "райан куглер",
+      "сша, австралия, канада",
+      "музыка",
+      "ужасы",
+      "майкл б. джордан",
+      "джек о'коннелл",
+      "хейли стейнфелд",
+      "мафия",
+      "гангстеры",
+      "криминал",
+      "семья",
+      "босс",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "криминальная сага"
+    ]
   },
   {
     "title": "Нюрнберг",
@@ -13813,7 +23964,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5427688.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5427688.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5427688.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "нюрнберг",
+      "джеймс вандербильт",
+      "сша, венгрия",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "биография",
+      "военный",
+      "история",
+      "рами малек",
+      "рассел кроу",
+      "майкл шеннон",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "28 лет спустя: Храм костей",
@@ -13849,7 +24024,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6745035.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6745035.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6745035.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "28 лет спустя: храм костей",
+      "ниа дакоста",
+      "сша, великобритания",
+      "ужасы",
+      "джек о’коннелл",
+      "алфи уильямс",
+      "коннор ньюолл",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Кровавая любовь убийцы",
@@ -13885,7 +24078,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BOTQ0NzYzM2QtOWYzMC00MGU5LWJmMTQtYTU1ODU0ZjUwYjk0XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "кровавая любовь убийцы",
+      "тавиват вантха",
+      "таиланд",
+      "боевик",
+      "драма",
+      "мелодрама",
+      "пимчанок луэвисадпайбул",
+      "тор танапоб лиратанакачорн",
+      "сивакорн адулсуттикул",
+      "любовь",
+      "романтика",
+      "отношения",
+      "чувства",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Удачи, веселья, не сдохни",
@@ -13920,7 +24137,39 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/463492.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/463492.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/463492.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "удачи, веселья, не сдохни",
+      "вербинские горы",
+      "сша, германия",
+      "драма",
+      "фантастика",
+      "боевик",
+      "комедия",
+      "сэм рокуэлл",
+      "джуно темпл",
+      "хейли лу ричардсон",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Человек-паук: Новый день",
@@ -13956,7 +24205,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5494049.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5494049.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5494049.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "человек-паук: новый день",
+      "дестин дэниэл креттон",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "том холланд",
+      "зендая",
+      "сэди синк",
+      "человек-паук",
+      "марвел",
+      "супергерои",
+      "комиксы",
+      "паук",
+      "2020-е (современное)",
+      "супергеройский эпик"
+    ]
   },
   {
     "title": "Первые люди на Луне",
@@ -13991,7 +24264,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18923.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18923.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18923.jpg",
+    "isBW": false,
+    "era": "60-е",
+    "tropes": [
+      "космическая одиссея"
+    ],
+    "keywords": [
+      "первые люди на луне",
+      "натан джуран",
+      "сша, великобритания",
+      "фантастика",
+      "приключения",
+      "эдвард джадд",
+      "марта хайер",
+      "лайонел джеффрис",
+      "космос",
+      "космический",
+      "астронавты",
+      "космическая одиссея",
+      "научная фантастика",
+      "будущее",
+      "вселенная",
+      "космический корабль",
+      "60-е"
+    ]
   },
   {
     "title": "Несносные леди",
@@ -14026,7 +24323,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/923901.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/923901.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/923901.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "несносные леди",
+      "гарри маршалл",
+      "сша",
+      "драма",
+      "мелодрама",
+      "комедия",
+      "дженнифер энистон",
+      "кейт хадсон",
+      "джулия робертс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2010-е",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "День разоблачения",
@@ -14062,7 +24383,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTgwNDI1ZjctYWNmMS00MTJhLTg1ZWItMzI1Yjk5NjZkYWFkXkEyXkFqcGc@._V1_QL75_UX380_CR0,20,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "день разоблачения",
+      "стивен спилберг",
+      "соединенные штаты",
+      "драма",
+      "фантастика",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "эмили блант",
+      "джош о’коннор",
+      "ив хьюсон",
+      "спилберг",
+      "приключения",
+      "культовое кино",
+      "эмоции",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Хамнет: История, вдохновившая «Гамлета»",
@@ -14097,7 +24444,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454868.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454868.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454868.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "хамнет: история, вдохновившая «гамлета»",
+      "хлоя чжао",
+      "сша, великобритания",
+      "драма",
+      "биография",
+      "джесси бакли",
+      "пол мескаль",
+      "зак уишарт",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Военная машина",
@@ -14133,7 +24497,29 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6943933.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6943933.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6943933.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "военная машина",
+      "патрик хьюз",
+      "сша, великобритания, австралия, новая зеландия",
+      "фантастика",
+      "боевик",
+      "алан ричсон",
+      "стефан джеймс",
+      "блейк ричардсон",
+      "искусственный интеллект",
+      "роботы",
+      "киберпанк",
+      "технологии",
+      "будущее",
+      "2020-е (современное)",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "F1: Фильм",
@@ -14168,7 +24554,28 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5003510.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5003510.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5003510.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "f1",
+      "f1: фильм",
+      "джозеф косински",
+      "сша",
+      "драма",
+      "спорт",
+      "брэд питт",
+      "дэмсон идрис",
+      "хавьер бардем",
+      "победа",
+      "тренировки",
+      "мотивация",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "GOAT: Мечтай по-крупному",
@@ -14204,7 +24611,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8613385.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8613385.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8613385.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "goat: мечтай по-крупному",
+      "тайри диллихэй, адам розетт",
+      "сша, япония, бразилия, сингапур",
+      "приключения",
+      "боевик",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "спорт",
+      "калеб маклафлин",
+      "габриэль юнион",
+      "стефен карри",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Легенда об Аанге: Последний маг воздуха",
@@ -14240,7 +24671,28 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5029203.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5029203.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5029203.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "легенда об аанге: последний маг воздуха",
+      "стив ан, уильям мата, лорен монтгомери",
+      "сша",
+      "приключения",
+      "боевик",
+      "фэнтези",
+      "мультфильм",
+      "семейный",
+      "эрик нам",
+      "дэйв батиста",
+      "джессика мэттен",
+      "история",
+      "средневековье",
+      "рыцари",
+      "эпоха",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Зверополис 2",
@@ -14275,7 +24727,37 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5265603.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5265603.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5265603.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "зверополис 2",
+      "джаред буш, байрон ховард",
+      "сша",
+      "детектив",
+      "расследование",
+      "тайны",
+      "приключения",
+      "комедия",
+      "мультфильм",
+      "семейный",
+      "джиннифер гудвин",
+      "джейсон бэйтман",
+      "ке хай цюань",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Последствия",
@@ -14311,7 +24793,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1233487.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1233487.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1233487.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "последствия",
+      "джона хилл",
+      "сша",
+      "драма",
+      "короткометражка",
+      "киану ривз",
+      "кэмерон диаз",
+      "мэтт бомер",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Смертельная битва",
@@ -14346,7 +24845,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/22355.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/22355.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/22355.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [],
+    "keywords": [
+      "смертельная битва",
+      "пол в.с. андерсон",
+      "сша",
+      "фантастика",
+      "боевик",
+      "фэнтези",
+      "кристофер ламберт",
+      "робин шу",
+      "линден эшби",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "90-е"
+    ]
   },
   {
     "title": "Долгая прогулка",
@@ -14381,7 +24903,28 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1290942.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1290942.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1290942.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "долгая прогулка",
+      "фрэнсис лоуренс",
+      "сша, канада",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "купер хоффман",
+      "дэвид джонсон",
+      "гаррет уэринг",
+      "2020-е (современное)",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Супермен",
@@ -14416,7 +24959,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/997647.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/997647.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/997647.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "супермен",
+      "джеймс ганн",
+      "сша, австралия, канада, новая зеландия",
+      "драма",
+      "фантастика",
+      "боевик",
+      "дэвид коренсвет",
+      "рэйчел броснахэн",
+      "николас холт",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Я ругаюсь",
@@ -14451,7 +25012,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8472578.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8472578.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8472578.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "я ругаюсь",
+      "кирк джонс",
+      "великобритания",
+      "драма",
+      "биография",
+      "роберт арамайо",
+      "максин пик",
+      "сомерлед кэмпбелл",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Билли Айлиш: Ударь меня сильно и мягко - тур в прямом эфире в 3D",
@@ -14485,7 +25063,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTFkNzYwYWUtMjkzMS00NTYxLTk5OWMtZmVhZWNmNDc0NzMzXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "billie eilish: hit me hard and soft - the tour live in 3d",
+      "билли айлиш: ударь меня сильно и мягко - тур в прямом эфире в 3d",
+      "джеймс кэмерон, билли айлиш",
+      "соединенные штаты",
+      "документальный",
+      "музыка",
+      "билли айлиш",
+      "финн о’коннелл",
+      "эндрю маршалл",
+      "кэмерон",
+      "джеймс кэмерон",
+      "масштабный блокбастер",
+      "революционный визуал",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Гнев",
@@ -14520,7 +25117,36 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6889.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6889.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6889.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гнев",
+      "тони скотт",
+      "сша, великобритания",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "боевик",
+      "дензел вашингтон",
+      "кристофер уокен",
+      "дакота фаннинг",
+      "война",
+      "великая отечественная",
+      "вторая мировая",
+      "подвиг",
+      "солдаты",
+      "история",
+      "2000-е",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Казнить нельзя помиловать",
@@ -14556,7 +25182,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5453060.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5453060.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5453060.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "казнить нельзя помиловать",
+      "тимур бекмамбетов",
+      "сша, россия",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "детектив",
+      "расследование",
+      "тайны",
+      "фантастика",
+      "боевик",
+      "крис пратт",
+      "ребекка фергюсон",
+      "кали рейс",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "2020-е (современное)",
+      "нео-нуар",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Выход 8",
@@ -14591,7 +25245,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7519616.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7519616.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7519616.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "выход 8",
+      "генки кавамура",
+      "япония",
+      "драма",
+      "ужасы",
+      "казунари ниномия",
+      "ямато коти",
+      "нару асанума",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "майндфак и твисты",
+      "нео-нуар",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Лакомый кусок",
@@ -14626,7 +25306,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398494.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398494.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398494.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "лакомый кусок",
+      "джо карнахан",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "криминал",
+      "боевик",
+      "мэтт дэймон",
+      "бен аффлек",
+      "стивен юн",
+      "детектив",
+      "расследование",
+      "маньяк",
+      "полиция",
+      "тайны",
+      "убийство",
+      "2020-е (современное)",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Сожалею о тебе",
@@ -14661,7 +25367,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8075521.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8075521.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8075521.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "сожалею о тебе",
+      "джош бун",
+      "сша, германия",
+      "драма",
+      "мелодрама",
+      "эллисон уильямс",
+      "маккенна грейс",
+      "дэйв франко",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Тело Дженнифер",
@@ -14696,7 +25419,32 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404510.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404510.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404510.jpg",
+    "isBW": false,
+    "era": "2000-е",
+    "tropes": [],
+    "keywords": [
+      "тело дженнифер",
+      "карин кусама",
+      "сша, канада",
+      "комедия",
+      "ужасы",
+      "меган фокс",
+      "аманда сейфрид",
+      "адам броуди",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2000-е"
+    ]
   },
   {
     "title": "Дракула",
@@ -14731,7 +25479,31 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5456450.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5456450.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5456450.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "дракула",
+      "люк бессон",
+      "франция",
+      "мелодрама",
+      "ужасы",
+      "калеб лэндри джонс",
+      "кристоф вальц",
+      "зои блю",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "КД: Дьявол",
@@ -14767,7 +25539,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://m.media-amazon.com/images/M/MV5BYjY4ZWQxMzYtYTVjYi00ZWJkLWI2MjktYzQ0MGQ4YTZlNmEzXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "kd: the devil",
+      "кд: дьявол",
+      "манджунатх б.с., прем, рави саранга",
+      "индия",
+      "боевик",
+      "криминал",
+      "драма",
+      "дхрува сарджа",
+      "санджай датт",
+      "шилпа шетти кундра",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Убежище",
@@ -14803,7 +25594,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6548103.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6548103.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6548103.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "убежище",
+      "рик роман во",
+      "сша, великобритания",
+      "боевик",
+      "джейсон стэйтем",
+      "бодхи рэй бретнак",
+      "майкл шеффер",
+      "2020-е (современное)",
+      "борьба за выживание",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Зараза",
@@ -14839,7 +25648,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5184669.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5184669.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5184669.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "зараза",
+      "джонни кэмпбелл",
+      "сша",
+      "драма",
+      "короткометражка",
+      "роб коллинз",
+      "сози бэкон",
+      "лиам нисон",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Мстители: Доктор Дум",
@@ -14875,7 +25701,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5060245.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5060245.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5060245.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "мстители: доктор дум",
+      "энтони руссо, джо руссо",
+      "сша",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "роберт дауни мл.",
+      "педро паскаль",
+      "крис хемсворт",
+      "марвел",
+      "мстители",
+      "супергерои",
+      "комиксы",
+      "блокбастер",
+      "2020-е (современное)",
+      "супергеройский эпик"
+    ]
   },
   {
     "title": "Топ Ган: Мэверик",
@@ -14910,7 +25759,24 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/572032.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/572032.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/572032.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "топ ган: мэверик",
+      "джозеф косински",
+      "сша",
+      "драма",
+      "боевик",
+      "том круз",
+      "дженнифер коннелли",
+      "майлз теллер",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Острые козырьки: Бессмертный",
@@ -14946,7 +25812,27 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5271813.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5271813.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5271813.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ],
+    "keywords": [
+      "острые козырьки: бессмертный",
+      "том харпер",
+      "великобритания, франция, сша",
+      "криминал",
+      "драма",
+      "история",
+      "киллиан мерфи",
+      "ребекка фергюсон",
+      "тим рот",
+      "2020-е (современное)",
+      "пронзительная драма",
+      "футуристический сай-фай"
+    ]
   },
   {
     "title": "Братья Супер Марио в кино",
@@ -14981,7 +25867,29 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1111005.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1111005.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1111005.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "братья супер марио в кино",
+      "аарон хорват, михаэль еленич, пьер ледюк",
+      "сша, япония",
+      "приключения",
+      "фэнтези",
+      "комедия",
+      "мультфильм",
+      "крис пратт",
+      "аня тейлор-джой",
+      "чарли дэй",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Мстители: Финал",
@@ -15016,7 +25924,33 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843650.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843650.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843650.jpg",
+    "isBW": false,
+    "era": "2010-е",
+    "tropes": [
+      "пронзительная драма",
+      "супергеройский эпик"
+    ],
+    "keywords": [
+      "мстители: финал",
+      "энтони руссо, джо руссо",
+      "сша",
+      "драма",
+      "фантастика",
+      "приключения",
+      "боевик",
+      "роберт дауни мл.",
+      "крис эванс",
+      "марк руффало",
+      "марвел",
+      "мстители",
+      "супергерои",
+      "комиксы",
+      "блокбастер",
+      "2010-е",
+      "пронзительная драма",
+      "супергеройский эпик"
+    ]
   },
   {
     "title": "Спящие",
@@ -15051,7 +25985,40 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4515.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4515.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4515.jpg",
+    "isBW": false,
+    "era": "90-е",
+    "tropes": [
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "спящие",
+      "барри левинсон",
+      "сша",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "драма",
+      "криминал",
+      "роберт де ниро",
+      "кевин бэйкон",
+      "брэд питт",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "90-е",
+      "нео-нуар",
+      "криминальная сага",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Оппенгеймер",
@@ -15086,7 +26053,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4664634.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4664634.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4664634.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "оппенгеймер",
+      "кристофер нолан",
+      "сша, великобритания",
+      "драма",
+      "биография",
+      "история",
+      "киллиан мерфи",
+      "эмили блант",
+      "мэтт дэймон",
+      "твист",
+      "неожиданный финал",
+      "головоломка",
+      "психологический триллер",
+      "саспенс",
+      "мрачный",
+      "нолан",
+      "нелинейный сюжет",
+      "интеллектуальный триллер",
+      "циммер",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Майк и Ник и Ник и Элис",
@@ -15122,7 +26117,35 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6976204.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6976204.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6976204.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "криминальная сага"
+    ],
+    "keywords": [
+      "майк и ник и ник и элис",
+      "бендэвид грабински",
+      "сша",
+      "криминал",
+      "боевик",
+      "комедия",
+      "винс вон",
+      "джеймс марсден",
+      "эйса гонсалес",
+      "мафия",
+      "гангстеры",
+      "семья",
+      "босс",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "2020-е (современное)",
+      "криминальная сага"
+    ]
   },
   {
     "title": "Гладиатор II",
@@ -15157,7 +26180,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1207839.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1207839.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1207839.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "гладиатор ii",
+      "ридли скотт",
+      "сша, великобритания",
+      "драма",
+      "боевик",
+      "история",
+      "пол мескаль",
+      "дензел вашингтон",
+      "педро паскаль",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Хищный рывок",
@@ -15193,7 +26234,23 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1426671.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1426671.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1426671.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "хищный рывок",
+      "томми виркола",
+      "сша",
+      "драма",
+      "фиби дайневор",
+      "уитни пик",
+      "джимон хонсу",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Зловещие мертвецы: Пекло",
@@ -15229,7 +26286,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463793.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463793.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463793.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "зловещие мертвецы: пекло",
+      "себастьен ваничек",
+      "сша, канада, новая зеландия",
+      "ужасы",
+      "люсиана бьюкенен",
+      "хантер духан",
+      "сухейла якуб",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Уличный боец",
@@ -15265,7 +26340,26 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1115327.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1115327.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1115327.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "street fighter",
+      "уличный боец",
+      "китао сакураи",
+      "сша",
+      "драма",
+      "приключения",
+      "боевик",
+      "джейсон момоа",
+      "давид дастмалчян",
+      "ной сентинео",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Крик 7",
@@ -15301,7 +26395,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5364826.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oA1XlT4haoeug2YLzUccM8myBlR.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oA1XlT4haoeug2YLzUccM8myBlR.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "нео-нуар"
+    ],
+    "keywords": [
+      "крик 7",
+      "кевин уильямсон",
+      "сша, канада",
+      "триллер",
+      "саспенс",
+      "мрачный",
+      "ужасы",
+      "нив кэмпбелл",
+      "кортни кокс",
+      "изабель мэй",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "2020-е (современное)",
+      "нео-нуар"
+    ]
   },
   {
     "title": "Франкенштейн",
@@ -15336,7 +26453,30 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464475.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oCxLbnBBEmUCeRcmsBrmF9jEcHd.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oCxLbnBBEmUCeRcmsBrmF9jEcHd.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [
+      "пронзительная драма"
+    ],
+    "keywords": [
+      "франкенштейн",
+      "гильермо дель торо",
+      "сша, мексика",
+      "драма",
+      "фантастика",
+      "оскар айзек",
+      "джейкоб элорди",
+      "кристоф вальц",
+      "ужасы",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)",
+      "пронзительная драма"
+    ]
   },
   {
     "title": "Достать ножи: Воскрешение покойника",
@@ -15371,7 +26511,40 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4421816.jpg",
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/rffS3bS0shNAhsgCoXtJJOIEl70.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/rffS3bS0shNAhsgCoXtJJOIEl70.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "достать ножи: воскрешение покойника",
+      "райан джонсон",
+      "сша",
+      "криминал",
+      "детектив",
+      "расследование",
+      "тайны",
+      "комедия",
+      "дэниэл крэйг",
+      "джош о’коннор",
+      "гленн клоуз",
+      "маньяк",
+      "полиция",
+      "убийство",
+      "триллер",
+      "мрачный",
+      "друзья",
+      "юмор",
+      "под пиццу",
+      "для компании",
+      "отдых",
+      "легкий",
+      "любовь",
+      "романтика",
+      "отношения",
+      "мелодрама",
+      "чувства",
+      "2020-е (современное)"
+    ]
   },
   {
     "title": "Пассажир",
@@ -15407,6 +26580,25 @@ export const movies = [
     ],
     "category": "movie",
     "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1256081.jpg",
-    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1256081.jpg"
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1256081.jpg",
+    "isBW": false,
+    "era": "2020-е (современное)",
+    "tropes": [],
+    "keywords": [
+      "пассажир",
+      "андре овредаль",
+      "франция",
+      "ужасы",
+      "короткометражка",
+      "мелисса лео",
+      "лу ллобель",
+      "джейкоб сципио",
+      "хоррор",
+      "выживание",
+      "монстры",
+      "страх",
+      "саспенс",
+      "2020-е (современное)"
+    ]
   }
 ];
