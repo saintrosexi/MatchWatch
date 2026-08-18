@@ -1,0 +1,138 @@
+/* ==========================================================================
+   MatchWatch — Cinematic Spring Physics & Fly-Off Micro-animations
+   ========================================================================== */
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--accent-glow), 0 0 30px rgba(255, 94, 98, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--accent-glow), 0 0 50px rgba(255, 153, 102, 0.3);
+  }
+}
+
+@keyframes matchSpotlight {
+  0% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Kinetic Swipe Fly-Off Animations */
+@keyframes flyOffRight {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(140vw, 30px, 0) rotateZ(28deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes flyOffLeft {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-140vw, 30px, 0) rotateZ(-28deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes flyOffUp {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -140vh, 0) scale(0.85);
+    opacity: 0;
+  }
+}
+
+.card-fly-right {
+  animation: flyOffRight 0.32s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  pointer-events: none;
+}
+
+.card-fly-left {
+  animation: flyOffLeft 0.32s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  pointer-events: none;
+}
+
+.card-fly-up {
+  animation: flyOffUp 0.32s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  pointer-events: none;
+}
+
+.anim-pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.anim-float {
+  animation: floatGentle 3s infinite ease-in-out;
+}
+
+/* Card 3D Perspective Container */
+.card-stack-container {
+  perspective: 1000px;
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 540px;
+  margin: 0 auto;
+  user-select: none;
+  touch-action: none;
+}
+
+@media (max-height: 740px) {
+  .card-stack-container {
+    height: 480px;
+  }
+}
+
+@media (max-height: 660px) {
+  .card-stack-container {
+    height: 430px;
+  }
+}
+
+.card-3d-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.card-3d-wrapper:active {
+  cursor: grabbing;
+}

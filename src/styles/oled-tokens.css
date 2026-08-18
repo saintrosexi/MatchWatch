@@ -1,0 +1,87 @@
+/* ==========================================================================
+   MatchWatch — Master Design System Tokens
+   PLATFORM ARCHITECTURE: [MOBILE VERSION — FIXED CORE]
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Color Palette — OLED Noir & Deep Cinematic Space
+     ------------------------------------------------------------------------ */
+  --bg-noir: #07070a;
+  --bg-surface-0: #0a0a0f;
+  --bg-surface-1: #101018;
+  --bg-surface-2: #161624;
+  --bg-surface-3: #1f1f30;
+  --bg-surface-hover: #27273d;
+
+  /* ------------------------------------------------------------------------
+     2. Glass & Spotlight Overlays
+     ------------------------------------------------------------------------ */
+  --glass-noir: rgba(14, 14, 22, 0.82);
+  --glass-noir-thick: rgba(10, 10, 16, 0.94);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-light: rgba(255, 255, 255, 0.15);
+
+  /* ------------------------------------------------------------------------
+     3. MatchWatch Signature Sunset Coral & Orange Neon Accents
+     ------------------------------------------------------------------------ */
+  --accent-coral: #ff5e62;
+  --accent-orange: #ff9966;
+  --accent-gradient: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%);
+  --accent-glow: rgba(255, 94, 98, 0.4);
+  --accent-glow-orange: rgba(255, 153, 102, 0.35);
+
+  /* ------------------------------------------------------------------------
+     4. Secondary Accents
+     ------------------------------------------------------------------------ */
+  --accent-gold: #ffd60a;
+  --accent-gold-light: #ffe066;
+  --accent-gold-glow: rgba(255, 214, 10, 0.3);
+
+  --accent-emerald: #32d74b;
+  --accent-emerald-glow: rgba(50, 215, 75, 0.35);
+
+  --accent-sapphire: #0a84ff;
+  --accent-sapphire-glow: rgba(10, 132, 255, 0.35);
+
+  --accent-violet: #bf5af2;
+  --accent-cyan: #64d2ff;
+
+  /* ------------------------------------------------------------------------
+     5. Text & Contrast Hierarchy
+     ------------------------------------------------------------------------ */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --text-dim: rgba(255, 255, 255, 0.25);
+  --text-sunset: #ff9966;
+
+  /* ------------------------------------------------------------------------
+     6. Shadows & Depth Effects
+     ------------------------------------------------------------------------ */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.85);
+  --shadow-sunset: 0 8px 32px rgba(255, 94, 98, 0.35);
+  --shadow-card: 0 20px 50px -10px rgba(0, 0, 0, 0.9), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+
+  /* ------------------------------------------------------------------------
+     7. Radii
+     ------------------------------------------------------------------------ */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     8. [MOBILE VERSION SPECIFICATIONS]
+     Strict viewport & touch layout constraints
+     ------------------------------------------------------------------------ */
+  --mobile-max-width: 440px;
+  --mobile-dock-height: 64px;
+  --mobile-header-height: 56px;
+  --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --mobile-safe-top: env(safe-area-inset-top, 0px);
+}
