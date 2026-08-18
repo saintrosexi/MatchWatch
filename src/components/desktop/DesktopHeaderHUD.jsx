@@ -35,10 +35,6 @@ export function DesktopHeaderHUD({
         return { title: 'Лента свайпов', sub: 'Персональный 5D-подбор кино' };
       case 'movies':
         return { title: 'Каталог фильмов', sub: 'Шедевры мирового кинематографа' };
-      case 'series':
-        return { title: 'Сериалы', sub: 'Захватывающие многосерийные истории' };
-      case 'anime':
-        return { title: 'Японская анимация', sub: 'Культовое аниме, сёнэны и студия Ghibli' };
       case 'actors':
         return { title: 'Звёзды кино', sub: 'Культовые актёры и их лучшие роли' };
       case 'vault':

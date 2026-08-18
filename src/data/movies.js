@@ -1,4 +1,4 @@
-// MatchWatch 3 — Master Film Catalog (849 Verified & Categorized Titles)
+// MatchWatch — Master Film Catalog (440 Verified Movies & TMDB High-Res Posters)
 export const movies = [
   {
     "id": 1,
@@ -32,7 +32,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/326.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/326.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg"
   },
   {
     "id": 2,
@@ -66,7 +67,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/hoowzozsn0XQGtgH8nyivAMZfPN.jpg"
   },
   {
     "id": 3,
@@ -100,7 +102,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/111543.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/111543.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/aPtN76OjnNKLqCJ2FJBnQOIL031.jpg"
   },
   {
     "id": 4,
@@ -134,7 +137,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/346.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/346.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/uDFEvhvKrH61KuGWWozRtbw2Rjv.jpg"
   },
   {
     "id": 5,
@@ -168,7 +172,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/329.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/329.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dB7edCQIuExWErWXFVqR7ORnZRS.jpg"
   },
   {
     "id": 6,
@@ -202,7 +207,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dzkW0SKRUaQ46PruMA9lQscgQl4.jpg"
   },
   {
     "id": 7,
@@ -236,7 +242,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447301.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447301.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/piQXcdOGgv1O9HQ07pI0tnjkGJw.jpg"
   },
   {
     "id": 8,
@@ -270,7 +277,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/448.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/448.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nrl5w0ZsMAvBD7zDWMUA2K0gUCc.jpg"
   },
   {
     "id": 9,
@@ -304,7 +312,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/kEDbym5htJgDQNenjUtSJxAHysB.jpg"
   },
   {
     "id": 10,
@@ -338,7 +347,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258687.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258687.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vReLRjDV9XPhiOSEW7QWow4DXwf.jpg"
   },
   {
     "id": 11,
@@ -372,7 +382,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/327.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/327.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/tOLQ3iRDfbwhVaw3QjDzIOS7zcu.jpg"
   },
   {
     "id": 12,
@@ -406,7 +417,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3498.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3498.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pacXZMOlhoExDSXllmNwvPqTzc9.jpg"
   },
   {
     "id": 13,
@@ -440,7 +452,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/328.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/328.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/5CrZYYasUUxo71m0JXxTTDTsSpV.jpg"
   },
   {
     "id": 14,
@@ -474,7 +487,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/349.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/349.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/fGDK72duT0YbdORyNo1QVuzDYzE.jpg"
   },
   {
     "id": 15,
@@ -508,7 +522,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/361.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/361.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/66RvLrRJTm4J8l3uHXWF09AICol.jpg"
   },
   {
     "id": 16,
@@ -542,7 +557,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/338.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/338.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/338.jpg"
   },
   {
     "id": 17,
@@ -576,7 +592,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/312.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/312.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/312.jpg"
   },
   {
     "id": 18,
@@ -610,7 +627,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/336.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/336.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/336.jpg"
   },
   {
     "id": 19,
@@ -644,7 +662,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/350.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/350.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/350.jpg"
   },
   {
     "id": 20,
@@ -678,7 +697,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/333.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/333.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/333.jpg"
   },
   {
     "id": 21,
@@ -712,7 +732,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/377.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/377.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/377.jpg"
   },
   {
     "id": 22,
@@ -746,7 +767,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/439.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/439.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/439.jpg"
   },
   {
     "id": 23,
@@ -780,7 +802,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/345.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/345.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/345.jpg"
   },
   {
     "id": 24,
@@ -814,7 +837,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/347.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/347.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/347.jpg"
   },
   {
     "id": 25,
@@ -848,41 +872,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/381.jpg"
-  },
-  {
-    "id": 26,
-    "title": "Унесённые призраками",
-    "titleRu": "Унесённые призраками",
-    "year": 2003,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/370.jpg",
-    "description": "Девочка должна спасти своих родителей в мире духов. Шедевр Хаяо Миядзаки, фаворит анимационных рейтингов мира",
-    "fullDescription": "Тихиро с мамой и папой переезжает в новый дом. Заблудившись по дороге, они оказываются в странном пустынном городе, где их ждет великолепный пир. Родители с жадностью набрасываются на еду и к ужасу девочки превращаются в свиней, став пленниками злой колдуньи Юбабы. Теперь, оказавшись одна среди волшебных существ и загадочных видений, Тихиро должна придумать, как избавить своих родителей от чар коварной старухи.",
-    "country": "Япония, США",
-    "genres": "Мультфильм, Приключения, Семейный",
-    "director": "Хаяо Миядзаки",
-    "actors": "Мию Ирино, Руми Хиираги, Мари Нацуки",
-    "duration": "124 min",
-    "trailer": "",
-    "kinopoiskId": 370,
-    "imdb": "https://www.imdb.com/title/tt0245429",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "type": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/370.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/381.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/381.jpg"
   },
   {
     "id": 27,
@@ -916,7 +907,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/371.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/371.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/371.jpg"
   },
   {
     "id": 28,
@@ -950,7 +942,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/389.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/389.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/389.jpg"
   },
   {
     "id": 29,
@@ -984,7 +977,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/435.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/435.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/435.jpg"
   },
   {
     "id": 30,
@@ -1018,7 +1012,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/340.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/340.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/340.jpg"
   },
   {
     "id": 31,
@@ -1051,7 +1046,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/376.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/376.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/376.jpg"
   },
   {
     "id": 32,
@@ -1085,7 +1081,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330.jpg"
   },
   {
     "id": 33,
@@ -1119,7 +1116,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/332.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/332.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/332.jpg"
   },
   {
     "id": 34,
@@ -1153,7 +1151,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/339.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/339.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/339.jpg"
   },
   {
     "id": 35,
@@ -1187,7 +1186,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/348.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/348.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/348.jpg"
   },
   {
     "id": 36,
@@ -1221,7 +1221,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/344.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/344.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/344.jpg"
   },
   {
     "id": 37,
@@ -1255,7 +1256,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/335.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/335.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/335.jpg"
   },
   {
     "id": 38,
@@ -1289,7 +1291,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/414.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/414.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/414.jpg"
   },
   {
     "id": 39,
@@ -1323,7 +1326,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/386.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/386.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/386.jpg"
   },
   {
     "id": 40,
@@ -1357,7 +1361,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/126196.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/126196.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/126196.jpg"
   },
   {
     "id": 41,
@@ -1391,7 +1396,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/353.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/353.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/353.jpg"
   },
   {
     "id": 42,
@@ -1424,7 +1430,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/360.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/360.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/360.jpg"
   },
   {
     "id": 43,
@@ -1458,7 +1465,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/379.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/379.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/379.jpg"
   },
   {
     "id": 44,
@@ -1492,7 +1500,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/343.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/343.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/343.jpg"
   },
   {
     "id": 45,
@@ -1526,7 +1535,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/406.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/406.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/406.jpg"
   },
   {
     "id": 46,
@@ -1560,7 +1570,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/351.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/351.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/351.jpg"
   },
   {
     "id": 47,
@@ -1593,7 +1604,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/359.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/359.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/359.jpg"
   },
   {
     "id": 48,
@@ -1627,7 +1639,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/341.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/341.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/341.jpg"
   },
   {
     "id": 49,
@@ -1661,7 +1674,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/362.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/362.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/362.jpg"
   },
   {
     "id": 50,
@@ -1695,7 +1709,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9691.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9691.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9691.jpg"
   },
   {
     "id": 51,
@@ -1729,7 +1744,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/447.jpg"
   },
   {
     "id": 52,
@@ -1762,7 +1778,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/432.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/432.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/432.jpg"
   },
   {
     "id": 53,
@@ -1796,41 +1813,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/489.jpg"
-  },
-  {
-    "id": 54,
-    "title": "Принцесса Мононоке",
-    "titleRu": "Принцесса Мононоке",
-    "year": 1997,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/441.jpg",
-    "description": "Заколдованный принц и лесная принцесса борются с древним демоном и его рабами. Аниме-блокбастер Хаяо Миядзаки",
-    "fullDescription": "Убив вепря, юный принц Аситака навлек на себя смертельное проклятие. Старая знахарка предсказала, что только он сам способен изменить свою судьбу, и отважный воин отправился в опасное путешествие. Так он оказался в загадочной стране, где люди под предводительством злой госпожи Эбоси воевали с обитателями леса: духами, демонами и гигантскими существами, каких Аситака раньше никогда не видел. \nИ была с ними принцесса Мононоке - повелительница зверей и дочь волчицы. Теперь судьба всех зависит только от одного воина - принца Аситаки.",
-    "country": "Япония",
-    "genres": "Мультфильм, Приключения, Фэнтези",
-    "director": "Хаяо Миядзаки",
-    "actors": "Ёдзи Мацуда, Юрико Исида, Юко Танака",
-    "duration": "133 min",
-    "trailer": "",
-    "kinopoiskId": 441,
-    "imdb": "https://www.imdb.com/title/tt0119698",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "type": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/441.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/489.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/489.jpg"
   },
   {
     "id": 55,
@@ -1864,7 +1848,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/75871.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/75871.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/75871.jpg"
   },
   {
     "id": 56,
@@ -1898,7 +1883,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397.jpg"
   },
   {
     "id": 57,
@@ -1932,7 +1918,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/394.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/394.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/394.jpg"
   },
   {
     "id": 58,
@@ -1966,7 +1953,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/469.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/469.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/469.jpg"
   },
   {
     "id": 59,
@@ -2000,7 +1988,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/367.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/367.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/367.jpg"
   },
   {
     "id": 60,
@@ -2033,7 +2022,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/399.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/399.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/399.jpg"
   },
   {
     "id": 61,
@@ -2067,7 +2057,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81314.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81314.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81314.jpg"
   },
   {
     "id": 62,
@@ -2101,7 +2092,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/363.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/363.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/363.jpg"
   },
   {
     "id": 63,
@@ -2135,7 +2127,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8412.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8412.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8412.jpg"
   },
   {
     "id": 64,
@@ -2169,7 +2162,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/474.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/474.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/474.jpg"
   },
   {
     "id": 65,
@@ -2203,7 +2197,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195334.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195334.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195334.jpg"
   },
   {
     "id": 66,
@@ -2237,7 +2232,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5492.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5492.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5492.jpg"
   },
   {
     "id": 67,
@@ -2271,7 +2267,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/482.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/482.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/482.jpg"
   },
   {
     "id": 68,
@@ -2305,7 +2302,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2360.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2360.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2360.jpg"
   },
   {
     "id": 69,
@@ -2339,7 +2337,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77859.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77859.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77859.jpg"
   },
   {
     "id": 70,
@@ -2373,7 +2372,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462.jpg"
   },
   {
     "id": 71,
@@ -2407,7 +2407,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404.jpg"
   },
   {
     "id": 72,
@@ -2441,7 +2442,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535341.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535341.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535341.jpg"
   },
   {
     "id": 73,
@@ -2475,7 +2477,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408.jpg"
   },
   {
     "id": 74,
@@ -2509,7 +2512,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/444.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/444.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/444.jpg"
   },
   {
     "id": 75,
@@ -2543,7 +2547,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/409.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/409.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/409.jpg"
   },
   {
     "id": 76,
@@ -2577,7 +2582,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/472.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/472.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/472.jpg"
   },
   {
     "id": 77,
@@ -2611,7 +2617,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/382.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/382.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/382.jpg"
   },
   {
     "id": 78,
@@ -2645,7 +2652,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/355.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/355.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/355.jpg"
   },
   {
     "id": 79,
@@ -2679,7 +2687,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/725190.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/725190.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/725190.jpg"
   },
   {
     "id": 80,
@@ -2713,7 +2722,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/337.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/337.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/337.jpg"
   },
   {
     "id": 81,
@@ -2747,7 +2757,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/11380.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/11380.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/11380.jpg"
   },
   {
     "id": 82,
@@ -2781,7 +2792,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/352.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/352.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/352.jpg"
   },
   {
     "id": 83,
@@ -2815,7 +2827,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/280562.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/280562.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/280562.jpg"
   },
   {
     "id": 84,
@@ -2849,7 +2862,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/477.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/477.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/477.jpg"
   },
   {
     "id": 85,
@@ -2883,7 +2897,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42571.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42571.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42571.jpg"
   },
   {
     "id": 86,
@@ -2917,7 +2932,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/47237.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/47237.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/47237.jpg"
   },
   {
     "id": 87,
@@ -2951,7 +2967,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391.jpg"
   },
   {
     "id": 88,
@@ -2985,41 +3002,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/417.jpg"
-  },
-  {
-    "id": 89,
-    "title": "Могила светлячков",
-    "titleRu": "Могила светлячков",
-    "year": 1989,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8219.jpg",
-    "description": "Последние дни Второй мировой войны, американская авиация бомбит беззащитные японские города. В водоворот каждодневного кошмара попадают 14-летний Сэйта и его сестренка Сэцуко - потеряв близких, они остались совсем одни. Мальчик в одночасье становится взрослым и осознаёт, что от него зависит жизнь...",
-    "fullDescription": "Последние дни Второй мировой войны, американская авиация бомбит беззащитные японские города. В водоворот каждодневного кошмара попадают 14-летний Сэйта и его сестренка Сэцуко - потеряв близких, они остались совсем одни. Мальчик в одночасье становится взрослым и осознаёт, что от него зависит жизнь маленькой сестры.\n\nУкрывшись в заброшенном убежище, Сэйта и Сэцуко пытаются выжить собственными силами. И пусть в их глазах смертоносный огонь в небе - всего лишь огоньки светлячков, жестокая война не щадит даже невинные детские души, вынося им беспощадный приговор.",
-    "country": "Япония",
-    "genres": "Мультфильм, Драма, Военный",
-    "director": "Исао Такахата",
-    "actors": "Цутому Тацуми, Аяно Сираиси, Акеми Ямагути",
-    "duration": "88 min",
-    "trailer": "",
-    "kinopoiskId": 8219,
-    "imdb": "https://www.imdb.com/title/tt0095327",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 3
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "type": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8219.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/417.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/417.jpg"
   },
   {
     "id": 90,
@@ -3053,7 +3037,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364.jpg"
   },
   {
     "id": 91,
@@ -3087,7 +3072,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/385.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/385.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/385.jpg"
   },
   {
     "id": 92,
@@ -3121,7 +3107,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8190.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8190.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8190.jpg"
   },
   {
     "id": 93,
@@ -3155,7 +3142,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258328.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258328.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258328.jpg"
   },
   {
     "id": 94,
@@ -3189,7 +3177,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/354.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/354.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/354.jpg"
   },
   {
     "id": 95,
@@ -3223,7 +3212,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/375.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/375.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/375.jpg"
   },
   {
     "id": 96,
@@ -3255,7 +3245,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/526.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/526.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/526.jpg"
   },
   {
     "id": 97,
@@ -3289,7 +3280,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4695.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4695.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4695.jpg"
   },
   {
     "id": 98,
@@ -3323,7 +3315,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/380.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/380.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/380.jpg"
   },
   {
     "id": 99,
@@ -3357,7 +3350,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/451.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/451.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/451.jpg"
   },
   {
     "id": 100,
@@ -3391,7 +3385,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/331.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/331.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/331.jpg"
   },
   {
     "id": 101,
@@ -3425,7 +3420,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/373.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/373.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/373.jpg"
   },
   {
     "id": 102,
@@ -3459,7 +3455,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/358.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/358.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/358.jpg"
   },
   {
     "id": 103,
@@ -3492,7 +3489,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/586397.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/586397.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/586397.jpg"
   },
   {
     "id": 104,
@@ -3526,7 +3524,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/418.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/418.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/418.jpg"
   },
   {
     "id": 105,
@@ -3560,7 +3559,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/357.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/357.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/357.jpg"
   },
   {
     "id": 106,
@@ -3594,7 +3594,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/471.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/471.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/471.jpg"
   },
   {
     "id": 107,
@@ -3628,7 +3629,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/369.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/369.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/369.jpg"
   },
   {
     "id": 108,
@@ -3662,7 +3664,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/64131.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/64131.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/64131.jpg"
   },
   {
     "id": 109,
@@ -3696,7 +3699,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/551.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/551.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/551.jpg"
   },
   {
     "id": 110,
@@ -3730,7 +3734,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/356.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/356.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/356.jpg"
   },
   {
     "id": 111,
@@ -3763,7 +3768,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4401.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4401.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4401.jpg"
   },
   {
     "id": 112,
@@ -3797,7 +3803,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/388.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/388.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/388.jpg"
   },
   {
     "id": 113,
@@ -3831,7 +3838,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/372.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/372.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/372.jpg"
   },
   {
     "id": 114,
@@ -3865,7 +3873,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/392.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/392.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/392.jpg"
   },
   {
     "id": 115,
@@ -3898,7 +3907,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/539.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/539.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/539.jpg"
   },
   {
     "id": 116,
@@ -3932,7 +3942,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/383.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/383.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/383.jpg"
   },
   {
     "id": 117,
@@ -3966,7 +3977,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/450.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/450.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/450.jpg"
   },
   {
     "id": 118,
@@ -4000,7 +4012,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/535.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/535.jpg"
   },
   {
     "id": 119,
@@ -4034,7 +4047,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/446.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/446.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/446.jpg"
   },
   {
     "id": 120,
@@ -4068,7 +4082,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9028.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9028.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9028.jpg"
   },
   {
     "id": 121,
@@ -4102,7 +4117,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412.jpg"
   },
   {
     "id": 122,
@@ -4136,7 +4152,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437410.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437410.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437410.jpg"
   },
   {
     "id": 123,
@@ -4170,7 +4187,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/384.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/384.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/384.jpg"
   },
   {
     "id": 124,
@@ -4203,7 +4221,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6462.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6462.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6462.jpg"
   },
   {
     "id": 125,
@@ -4237,7 +4256,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/429.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/429.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/429.jpg"
   },
   {
     "id": 126,
@@ -4271,7 +4291,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2494.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2494.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2494.jpg"
   },
   {
     "id": 127,
@@ -4305,7 +4326,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/571.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/571.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/571.jpg"
   },
   {
     "id": 128,
@@ -4339,7 +4361,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/400.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/400.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/400.jpg"
   },
   {
     "id": 129,
@@ -4373,7 +4396,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/436.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/436.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/436.jpg"
   },
   {
     "id": 130,
@@ -4407,7 +4431,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407.jpg"
   },
   {
     "id": 131,
@@ -4441,7 +4466,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/423210.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/423210.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/423210.jpg"
   },
   {
     "id": 132,
@@ -4475,7 +4501,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5032.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5032.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5032.jpg"
   },
   {
     "id": 133,
@@ -4509,7 +4536,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/231096.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/231096.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/231096.jpg"
   },
   {
     "id": 134,
@@ -4543,41 +4571,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470.jpg"
-  },
-  {
-    "id": 135,
-    "title": "Ходячий замок",
-    "titleRu": "Ходячий замок",
-    "year": 2004,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/49684.jpg",
-    "description": "Злая колдунья превращает юную Софи в старушку. Волшебная сказка о силе любви по мотивам книги Дианы Уинн Джонс",
-    "fullDescription": "Злая ведьма заточила 18-летнюю Софи в тело старухи. Девушка-бабушка бежит из города куда глаза глядят и встречает удивительный дом на ножках, где знакомится с могущественным волшебником Хаулом и демоном Кальцифером. Кальцифер должен служить Хаулу по договору, условия которого он не может разглашать. Девушка и демон решают помочь друг другу избавиться от злых чар.",
-    "country": "Япония, США",
-    "genres": "Мультфильм, Приключения, Семейный",
-    "director": "Хаяо Миядзаки",
-    "actors": "Тиэко Байсё, Такуя Кимура, Тацуя Гасюин",
-    "duration": "119 min",
-    "trailer": "",
-    "kinopoiskId": 49684,
-    "imdb": "https://www.imdb.com/title/tt0347149",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "type": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/49684.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470.jpg"
   },
   {
     "id": 136,
@@ -4611,7 +4606,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/365.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/365.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/365.jpg"
   },
   {
     "id": 137,
@@ -4645,7 +4641,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8366.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8366.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8366.jpg"
   },
   {
     "id": 138,
@@ -4679,41 +4676,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2717.jpg"
-  },
-  {
-    "id": 139,
-    "title": "Мой сосед Тоторо",
-    "titleRu": "Мой сосед Тоторо",
-    "year": 1988,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8221.jpg",
-    "description": "Сестренки знакомятся с обаятельным духом леса. История о вере в чудо, ставшая визитной карточкой студии Ghibli",
-    "fullDescription": "Сестры Сацуки и Мэй переезжают вместе с папой в деревенский дом. Однажды девочки обнаруживают, что по соседству с ними живут лесные духи — хранители леса во главе со своим могущественным и добрым повелителем Тоторо. Постепенно Тоторо становится другом девочек, помогая им в их повседневных приключениях.",
-    "country": "Япония",
-    "genres": "Мультфильм, Приключения, Комедия",
-    "director": "Хаяо Миядзаки",
-    "actors": "Хитоши Такаги, Норико Хидака, Тика Сакамото",
-    "duration": "86 min",
-    "trailer": "",
-    "kinopoiskId": 8221,
-    "imdb": "https://www.imdb.com/title/tt0096283",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "type": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8221.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2717.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2717.jpg"
   },
   {
     "id": 140,
@@ -4747,7 +4711,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/647671.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/647671.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/647671.jpg"
   },
   {
     "id": 141,
@@ -4780,7 +4745,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8384.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8384.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8384.jpg"
   },
   {
     "id": 142,
@@ -4814,7 +4780,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18368.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18368.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18368.jpg"
   },
   {
     "id": 143,
@@ -4848,7 +4815,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/13738.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/13738.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/13738.jpg"
   },
   {
     "id": 144,
@@ -4882,7 +4850,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7908.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7908.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7908.jpg"
   },
   {
     "id": 145,
@@ -4916,7 +4885,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7665.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7665.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7665.jpg"
   },
   {
     "id": 146,
@@ -4949,7 +4919,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485.jpg"
   },
   {
     "id": 147,
@@ -4983,7 +4954,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428003.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428003.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428003.jpg"
   },
   {
     "id": 148,
@@ -5017,7 +4989,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/366.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/366.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/366.jpg"
   },
   {
     "id": 149,
@@ -5051,7 +5024,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/403.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/403.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/403.jpg"
   },
   {
     "id": 150,
@@ -5085,7 +5059,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/555.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/555.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/555.jpg"
   },
   {
     "id": 151,
@@ -5119,7 +5094,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419.jpg"
   },
   {
     "id": 152,
@@ -5153,7 +5129,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426.jpg"
   },
   {
     "id": 153,
@@ -5187,7 +5164,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79506.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79506.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79506.jpg"
   },
   {
     "id": 154,
@@ -5221,7 +5199,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79836.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79836.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79836.jpg"
   },
   {
     "id": 155,
@@ -5255,7 +5234,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/510.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/510.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/510.jpg"
   },
   {
     "id": 156,
@@ -5289,7 +5269,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425.jpg"
   },
   {
     "id": 157,
@@ -5323,7 +5304,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4996.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4996.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4996.jpg"
   },
   {
     "id": 158,
@@ -5357,7 +5339,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86208.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86208.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86208.jpg"
   },
   {
     "id": 159,
@@ -5391,7 +5374,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/508.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/508.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/508.jpg"
   },
   {
     "id": 160,
@@ -5425,7 +5409,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/488.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/488.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/488.jpg"
   },
   {
     "id": 161,
@@ -5459,7 +5444,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/71179.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/71179.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/71179.jpg"
   },
   {
     "id": 162,
@@ -5493,7 +5479,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39775.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39775.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39775.jpg"
   },
   {
     "id": 163,
@@ -5527,7 +5514,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/478.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/478.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/478.jpg"
   },
   {
     "id": 164,
@@ -5561,7 +5549,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/398.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/398.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/398.jpg"
   },
   {
     "id": 165,
@@ -5595,7 +5584,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/445.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/445.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/445.jpg"
   },
   {
     "id": 166,
@@ -5628,7 +5618,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79856.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79856.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79856.jpg"
   },
   {
     "id": 167,
@@ -5662,7 +5653,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/76749.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/76749.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/76749.jpg"
   },
   {
     "id": 168,
@@ -5696,7 +5688,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/390.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/390.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/390.jpg"
   },
   {
     "id": 169,
@@ -5730,7 +5723,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428.jpg"
   },
   {
     "id": 170,
@@ -5764,7 +5758,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4885.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4885.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4885.jpg"
   },
   {
     "id": 171,
@@ -5798,7 +5793,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401.jpg"
   },
   {
     "id": 172,
@@ -5832,7 +5828,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/396.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/396.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/396.jpg"
   },
   {
     "id": 173,
@@ -5866,7 +5863,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/405.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/405.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/405.jpg"
   },
   {
     "id": 174,
@@ -5900,7 +5898,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/437.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/437.jpg"
   },
   {
     "id": 175,
@@ -5934,7 +5933,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/464.jpg"
   },
   {
     "id": 176,
@@ -5968,7 +5968,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/65770.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/65770.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/65770.jpg"
   },
   {
     "id": 177,
@@ -6002,7 +6003,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/468.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/468.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/468.jpg"
   },
   {
     "id": 178,
@@ -6036,7 +6038,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/835086.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/835086.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/835086.jpg"
   },
   {
     "id": 179,
@@ -6070,7 +6073,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/520.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/520.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/520.jpg"
   },
   {
     "id": 180,
@@ -6104,7 +6108,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/387779.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/387779.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/387779.jpg"
   },
   {
     "id": 181,
@@ -6138,7 +6143,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/393.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/393.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/393.jpg"
   },
   {
     "id": 182,
@@ -6172,7 +6178,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195434.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195434.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195434.jpg"
   },
   {
     "id": 183,
@@ -6206,7 +6213,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/252626.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/252626.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/252626.jpg"
   },
   {
     "id": 184,
@@ -6240,7 +6248,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/692861.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/692861.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/692861.jpg"
   },
   {
     "id": 185,
@@ -6274,7 +6283,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89514.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89514.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89514.jpg"
   },
   {
     "id": 186,
@@ -6308,7 +6318,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81297.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81297.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81297.jpg"
   },
   {
     "id": 187,
@@ -6342,7 +6353,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103733.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103733.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103733.jpg"
   },
   {
     "id": 188,
@@ -6376,7 +6388,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7121.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7121.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7121.jpg"
   },
   {
     "id": 189,
@@ -6410,7 +6423,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/374.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/374.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/374.jpg"
   },
   {
     "id": 190,
@@ -6444,7 +6458,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/491.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/491.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/491.jpg"
   },
   {
     "id": 191,
@@ -6478,7 +6493,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/579739.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/579739.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/579739.jpg"
   },
   {
     "id": 192,
@@ -6512,7 +6528,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/515.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/515.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/515.jpg"
   },
   {
     "id": 193,
@@ -6546,7 +6563,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378246.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378246.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/378246.jpg"
   },
   {
     "id": 194,
@@ -6580,7 +6598,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8400.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8400.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8400.jpg"
   },
   {
     "id": 195,
@@ -6612,7 +6631,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2389.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2389.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2389.jpg"
   },
   {
     "id": 196,
@@ -6646,7 +6666,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4328.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4328.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4328.jpg"
   },
   {
     "id": 197,
@@ -6680,7 +6701,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/245805.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/245805.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/245805.jpg"
   },
   {
     "id": 198,
@@ -6714,7 +6736,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2361.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2361.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2361.jpg"
   },
   {
     "id": 199,
@@ -6748,7 +6771,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1588.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1588.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1588.jpg"
   },
   {
     "id": 200,
@@ -6782,7 +6806,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4275.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4275.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4275.jpg"
   },
   {
     "id": 201,
@@ -6816,7 +6841,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/527.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/527.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/527.jpg"
   },
   {
     "id": 202,
@@ -6850,7 +6876,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1573.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1573.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1573.jpg"
   },
   {
     "id": 203,
@@ -6884,7 +6911,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8151.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8151.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8151.jpg"
   },
   {
     "id": 204,
@@ -6918,7 +6946,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2217.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2217.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2217.jpg"
   },
   {
     "id": 205,
@@ -6952,7 +6981,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2022.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2022.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2022.jpg"
   },
   {
     "id": 206,
@@ -6986,7 +7016,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3961.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3961.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3961.jpg"
   },
   {
     "id": 207,
@@ -7020,7 +7051,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8163.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8163.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8163.jpg"
   },
   {
     "id": 208,
@@ -7054,7 +7086,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/12198.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/12198.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/12198.jpg"
   },
   {
     "id": 209,
@@ -7088,7 +7121,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/454.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/454.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/454.jpg"
   },
   {
     "id": 210,
@@ -7121,7 +7155,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522.jpg"
   },
   {
     "id": 211,
@@ -7155,7 +7190,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5619.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5619.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5619.jpg"
   },
   {
     "id": 212,
@@ -7189,7 +7225,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/844.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/844.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/844.jpg"
   },
   {
     "id": 213,
@@ -7223,7 +7260,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6146.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6146.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6146.jpg"
   },
   {
     "id": 214,
@@ -7257,7 +7295,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/430.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/430.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/430.jpg"
   },
   {
     "id": 215,
@@ -7291,7 +7330,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5558.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5558.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5558.jpg"
   },
   {
     "id": 216,
@@ -7325,7 +7365,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6871.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6871.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/8J1Xn5v6fjntzxi0lUUy8fo84Ah.jpg"
   },
   {
     "id": 217,
@@ -7359,7 +7400,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/395.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/395.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/prITVK0LHHrA1fUK2bP8HZyIcnW.jpg"
   },
   {
     "id": 218,
@@ -7393,7 +7435,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/378.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/3dI3OfBx0z6UeyZCC77GeprNeTw.jpg"
   },
   {
     "id": 219,
@@ -7427,7 +7470,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/458.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/458.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/pPKeBydksLVIyJSNYnVDLV23kSJ.jpg"
   },
   {
     "id": 220,
@@ -7461,7 +7505,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/410.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/410.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/ggoyl7bYk3JIZdKt9zzcVBsF5jk.jpg"
   },
   {
     "id": 221,
@@ -7495,7 +7540,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/324.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/324.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/a0NyV2Q6tQCZmQY9KcEfl5GZTYZ.jpg"
   },
   {
     "id": 222,
@@ -7529,7 +7575,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/530.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/530.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/7EX8TTBKCJR3x7xziOSp6M0bQdF.jpg"
   },
   {
     "id": 223,
@@ -7563,7 +7610,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/sKM5KAv4yAN8Zs7HLG6us33OE9x.jpg"
   },
   {
     "id": 224,
@@ -7597,7 +7645,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/688.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/688.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/33Wj3LSyoAqtqkeh7YXcVMvTQzc.jpg"
   },
   {
     "id": 225,
@@ -7631,7 +7680,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/322.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/322.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/mncDize7FLO9RBovXKZ7LefUkbu.jpg"
   },
   {
     "id": 226,
@@ -7665,7 +7715,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/38903.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/38903.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/nVJGGWCs8CQ41G4fzJoTttfCgpQ.jpg"
   },
   {
     "id": 227,
@@ -7699,7 +7750,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4374.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4374.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/70xRYK8orGWA7NfxvzhtkjpZAD6.jpg"
   },
   {
     "id": 228,
@@ -7733,7 +7785,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3561.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3561.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/vQWkMYdy0D4MiDngHG7Y0NQY7xe.jpg"
   },
   {
     "id": 229,
@@ -7767,7 +7820,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5930.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5930.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/iLYW5ozphDftZsM0If9LFVRIkQY.jpg"
   },
   {
     "id": 230,
@@ -7801,7 +7855,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4886.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4886.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/stffMPJj4cke1MrAkek1CFhjKuR.jpg"
   },
   {
     "id": 231,
@@ -7835,7 +7890,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18294.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18294.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18294.jpg"
   },
   {
     "id": 232,
@@ -7867,7 +7923,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/23956.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/23956.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/23956.jpg"
   },
   {
     "id": 233,
@@ -7901,7 +7958,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/61297.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/61297.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/61297.jpg"
   },
   {
     "id": 234,
@@ -7935,7 +7993,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/50598.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/50598.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/50598.jpg"
   },
   {
     "id": 235,
@@ -7969,7 +8028,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77439.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77439.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77439.jpg"
   },
   {
     "id": 236,
@@ -8003,7 +8063,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81289.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81289.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81289.jpg"
   },
   {
     "id": 237,
@@ -8037,7 +8098,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81287.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81287.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81287.jpg"
   },
   {
     "id": 238,
@@ -8071,7 +8133,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102124.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102124.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102124.jpg"
   },
   {
     "id": 239,
@@ -8105,7 +8168,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86458.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86458.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86458.jpg"
   },
   {
     "id": 240,
@@ -8139,7 +8203,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86621.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/86621.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/86621.jpg"
   },
   {
     "id": 241,
@@ -8173,7 +8238,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102838.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/102838.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/102838.jpg"
   },
   {
     "id": 242,
@@ -8207,7 +8273,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/158786.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/158786.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/158786.jpg"
   },
   {
     "id": 243,
@@ -8241,7 +8308,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/160946.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/160946.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/160946.jpg"
   },
   {
     "id": 244,
@@ -8275,7 +8343,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103572.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/103572.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/103572.jpg"
   },
   {
     "id": 245,
@@ -8309,7 +8378,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195523.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/195523.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/195523.jpg"
   },
   {
     "id": 246,
@@ -8343,7 +8413,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/251733.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/251733.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/251733.jpg"
   },
   {
     "id": 247,
@@ -8377,7 +8448,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/278522.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/278522.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/278522.jpg"
   },
   {
     "id": 248,
@@ -8411,7 +8483,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/279102.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/279102.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/279102.jpg"
   },
   {
     "id": 249,
@@ -8445,7 +8518,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462682.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/462682.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/462682.jpg"
   },
   {
     "id": 250,
@@ -8479,7 +8553,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/413362.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/413362.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/413362.jpg"
   },
   {
     "id": 251,
@@ -8513,7 +8588,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325381.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/325381.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/325381.jpg"
   },
   {
     "id": 252,
@@ -8547,7 +8623,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397667.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/397667.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/397667.jpg"
   },
   {
     "id": 253,
@@ -8581,7 +8658,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407636.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/407636.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/407636.jpg"
   },
   {
     "id": 254,
@@ -8615,7 +8693,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408410.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408410.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408410.jpg"
   },
   {
     "id": 255,
@@ -8649,7 +8728,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425400.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425400.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425400.jpg"
   },
   {
     "id": 256,
@@ -8683,7 +8763,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/427198.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/427198.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/427198.jpg"
   },
   {
     "id": 257,
@@ -8717,7 +8798,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453406.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453406.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453406.jpg"
   },
   {
     "id": 258,
@@ -8751,7 +8833,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453397.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453397.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453397.jpg"
   },
   {
     "id": 259,
@@ -8785,7 +8868,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470553.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/470553.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/470553.jpg"
   },
   {
     "id": 260,
@@ -8819,7 +8903,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485311.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/485311.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/485311.jpg"
   },
   {
     "id": 261,
@@ -8853,7 +8938,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/501333.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/501333.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/501333.jpg"
   },
   {
     "id": 262,
@@ -8887,7 +8973,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522941.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522941.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522941.jpg"
   },
   {
     "id": 263,
@@ -8921,7 +9008,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/577488.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/577488.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/577488.jpg"
   },
   {
     "id": 264,
@@ -8955,7 +9043,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/834394.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/834394.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/834394.jpg"
   },
   {
     "id": 265,
@@ -8989,7 +9078,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/592203.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/592203.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/592203.jpg"
   },
   {
     "id": 266,
@@ -9023,7 +9113,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/596125.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/596125.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/596125.jpg"
   },
   {
     "id": 267,
@@ -9057,7 +9148,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/606646.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/606646.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/606646.jpg"
   },
   {
     "id": 268,
@@ -9091,7 +9183,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/635772.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/635772.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/635772.jpg"
   },
   {
     "id": 269,
@@ -9125,7 +9218,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/649917.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/649917.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/649917.jpg"
   },
   {
     "id": 270,
@@ -9159,7 +9253,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683999.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/683999.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/683999.jpg"
   },
   {
     "id": 271,
@@ -9193,7 +9288,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/679486.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/679486.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/679486.jpg"
   },
   {
     "id": 272,
@@ -9227,7 +9323,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42664.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42664.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42664.jpg"
   },
   {
     "id": 273,
@@ -9261,7 +9358,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42782.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42782.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42782.jpg"
   },
   {
     "id": 274,
@@ -9295,7 +9393,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46225.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46225.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46225.jpg"
   },
   {
     "id": 275,
@@ -9329,7 +9428,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44386.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44386.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44386.jpg"
   },
   {
     "id": 276,
@@ -9363,7 +9463,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44745.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44745.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44745.jpg"
   },
   {
     "id": 277,
@@ -9397,7 +9498,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/25108.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/25108.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/25108.jpg"
   },
   {
     "id": 278,
@@ -9431,7 +9533,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77335.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77335.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77335.jpg"
   },
   {
     "id": 279,
@@ -9465,7 +9568,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46708.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46708.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46708.jpg"
   },
   {
     "id": 280,
@@ -9499,7 +9603,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43869.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43869.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43869.jpg"
   },
   {
     "id": 281,
@@ -9533,7 +9638,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77263.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77263.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77263.jpg"
   },
   {
     "id": 282,
@@ -9567,7 +9673,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/476.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/476.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/476.jpg"
   },
   {
     "id": 283,
@@ -9601,7 +9708,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5502.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5502.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5502.jpg"
   },
   {
     "id": 284,
@@ -9635,7 +9743,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7103.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7103.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7103.jpg"
   },
   {
     "id": 285,
@@ -9669,7 +9778,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/32898.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/32898.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/32898.jpg"
   },
   {
     "id": 286,
@@ -9703,7 +9813,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/507.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/507.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/507.jpg"
   },
   {
     "id": 287,
@@ -9737,7 +9848,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2656.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2656.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2656.jpg"
   },
   {
     "id": 288,
@@ -9771,7 +9883,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5273.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5273.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5273.jpg"
   },
   {
     "id": 289,
@@ -9805,7 +9918,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44168.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/44168.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/44168.jpg"
   },
   {
     "id": 290,
@@ -9839,7 +9953,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/45146.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/45146.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/45146.jpg"
   },
   {
     "id": 291,
@@ -9873,7 +9988,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7724.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7724.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7724.jpg"
   },
   {
     "id": 292,
@@ -9907,7 +10023,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43395.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/43395.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/43395.jpg"
   },
   {
     "id": 293,
@@ -9941,7 +10058,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42736.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/42736.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/42736.jpg"
   },
   {
     "id": 294,
@@ -9975,7 +10093,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77203.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77203.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77203.jpg"
   },
   {
     "id": 295,
@@ -10009,7 +10128,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46068.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/46068.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/46068.jpg"
   },
   {
     "id": 296,
@@ -10043,7 +10163,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41519.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41519.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41519.jpg"
   },
   {
     "id": 297,
@@ -10077,7 +10198,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41520.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/41520.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/41520.jpg"
   },
   {
     "id": 298,
@@ -10111,7 +10233,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84830.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84830.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84830.jpg"
   },
   {
     "id": 299,
@@ -10145,7 +10268,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/57166.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/57166.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/57166.jpg"
   },
   {
     "id": 300,
@@ -10177,7 +10301,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7653.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7653.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7653.jpg"
   },
   {
     "id": 301,
@@ -10210,7 +10335,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/808639.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/808639.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/808639.jpg"
   },
   {
     "id": 302,
@@ -10244,7 +10370,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/601564.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/601564.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/601564.jpg"
   },
   {
     "id": 303,
@@ -10277,7 +10404,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/840817.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/840817.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/840817.jpg"
   },
   {
     "id": 304,
@@ -10311,7 +10439,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2213.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2213.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2213.jpg"
   },
   {
     "id": 305,
@@ -10345,7 +10474,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104938.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104938.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104938.jpg"
   },
   {
     "id": 306,
@@ -10379,7 +10509,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6877.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6877.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6877.jpg"
   },
   {
     "id": 307,
@@ -10413,7 +10544,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/627.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/627.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/627.jpg"
   },
   {
     "id": 308,
@@ -10447,7 +10579,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4871.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4871.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4871.jpg"
   },
   {
     "id": 309,
@@ -10481,7 +10614,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/519.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/519.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/519.jpg"
   },
   {
     "id": 310,
@@ -10515,7 +10649,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281251.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281251.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281251.jpg"
   },
   {
     "id": 311,
@@ -10549,7 +10684,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1996.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1996.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1996.jpg"
   },
   {
     "id": 312,
@@ -10583,7 +10719,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1991.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1991.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1991.jpg"
   },
   {
     "id": 313,
@@ -10616,7 +10753,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81733.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/81733.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/81733.jpg"
   },
   {
     "id": 314,
@@ -10650,7 +10788,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/594.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/594.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/594.jpg"
   },
   {
     "id": 315,
@@ -10684,7 +10823,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/689.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/689.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/689.jpg"
   },
   {
     "id": 316,
@@ -10718,7 +10858,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841700.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841700.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841700.jpg"
   },
   {
     "id": 317,
@@ -10752,7 +10893,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/505851.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/505851.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/505851.jpg"
   },
   {
     "id": 318,
@@ -10786,7 +10928,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/784396.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/784396.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/784396.jpg"
   },
   {
     "id": 319,
@@ -10820,7 +10963,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6303.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6303.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6303.jpg"
   },
   {
     "id": 320,
@@ -10854,7 +10998,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8124.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8124.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8124.jpg"
   },
   {
     "id": 321,
@@ -10888,7 +11033,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5928.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5928.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5928.jpg"
   },
   {
     "id": 322,
@@ -10922,7 +11068,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6039.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6039.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6039.jpg"
   },
   {
     "id": 323,
@@ -10956,7 +11103,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39577.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/39577.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/39577.jpg"
   },
   {
     "id": 324,
@@ -10988,7 +11136,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5185.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5185.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5185.jpg"
   },
   {
     "id": 325,
@@ -11022,7 +11171,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/14349.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/14349.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/14349.jpg"
   },
   {
     "id": 326,
@@ -11055,7 +11205,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426004.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/426004.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/426004.jpg"
   },
   {
     "id": 327,
@@ -11087,7 +11238,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5090.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5090.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5090.jpg"
   },
   {
     "id": 328,
@@ -11121,7 +11273,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/63912.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/63912.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/63912.jpg"
   },
   {
     "id": 329,
@@ -11155,7 +11308,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/10179.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/10179.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/10179.jpg"
   },
   {
     "id": 330,
@@ -11189,7 +11343,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/15061.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/15061.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/15061.jpg"
   },
   {
     "id": 331,
@@ -11223,7 +11378,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2333.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2333.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2333.jpg"
   },
   {
     "id": 332,
@@ -11257,7 +11413,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4606.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4606.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4606.jpg"
   },
   {
     "id": 333,
@@ -11291,7 +11448,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/762738.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/762738.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/762738.jpg"
   },
   {
     "id": 334,
@@ -11325,7 +11483,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/455194.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/455194.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/455194.jpg"
   },
   {
     "id": 335,
@@ -11359,7 +11518,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522892.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/522892.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/522892.jpg"
   },
   {
     "id": 336,
@@ -11393,7 +11553,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/707.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/707.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/707.jpg"
   },
   {
     "id": 337,
@@ -11427,7 +11588,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6006.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6006.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6006.jpg"
   },
   {
     "id": 338,
@@ -11461,7 +11623,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/775276.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/775276.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/775276.jpg"
   },
   {
     "id": 339,
@@ -11495,7 +11658,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/645118.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/645118.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/645118.jpg"
   },
   {
     "id": 340,
@@ -11529,7 +11693,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84049.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84049.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84049.jpg"
   },
   {
     "id": 341,
@@ -11563,41 +11728,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/920265.jpg"
-  },
-  {
-    "id": 342,
-    "title": "Форма голоса",
-    "titleRu": "Форма голоса",
-    "year": 2016,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/963343.jpg",
-    "description": "Девочка с проблемами со слухом подвергается травле в школе. Аниме о запоздалом раскаянии и шансе на прощение",
-    "fullDescription": "Молодой человек Сёя Исида внезапно осознаёт, что в школе умудрился превратить жизнь одноклассницы Сёко в ад только потому, что та была глухая. И теперь, хоть и запоздало, парень понимает — чтобы сказать нечто важное тому, кто не может тебя услышать, вовсе не обязательно использовать голос.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Мультфильм, Аниме",
-    "director": "Наоко Ямада",
-    "actors": "Мию Ирино, Саори Хаями, Аой Юки",
-    "duration": "130 min",
-    "trailer": "",
-    "kinopoiskId": 963343,
-    "imdb": "https://www.imdb.com/title/tt5323662",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/963343.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/920265.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/920265.jpg"
   },
   {
     "id": 343,
@@ -11629,41 +11761,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391772.jpg"
-  },
-  {
-    "id": 344,
-    "title": "Твоё имя",
-    "titleRu": "Твоё имя",
-    "year": 2016,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/958722.jpg",
-    "description": "Нежная сказка о первой любви, которая преодолевает пространство и время. Аниме — рекордсмен бокс-офиса",
-    "fullDescription": "Токийский парень Таки и провинциальная девушка Мицуха обнаруживают, что между ними существует странная связь. Во сне они меняются телами и проживают жизни друг друга. Но однажды эта способность исчезает так же внезапно, как появилась. Таки решает во что бы то ни стало отыскать Мицуху.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Фэнтези, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Рюносукэ Камики, Моне Камисирайши, Рё Нарита",
-    "duration": "106 min",
-    "trailer": "",
-    "kinopoiskId": 958722,
-    "imdb": "https://www.imdb.com/title/tt5311514",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/958722.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391772.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391772.jpg"
   },
   {
     "id": 345,
@@ -11697,7 +11796,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMGQ3Y2Q4NjktN2E4Ny00Y2Q2LTliZDUtZTNiNjRhY2I0NGIyXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMGQ3Y2Q4NjktN2E4Ny00Y2Q2LTliZDUtZTNiNjRhY2I0NGIyXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "id": 346,
@@ -11731,7 +11831,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3563.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3563.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3563.jpg"
   },
   {
     "id": 347,
@@ -11765,7 +11866,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1091.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1091.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1091.jpg"
   },
   {
     "id": 348,
@@ -11799,3126 +11901,8 @@ export const movies = [
     ],
     "category": "movie",
     "type": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/276376.jpg"
-  },
-  {
-    "id": 349,
-    "title": "Во все тяжкие",
-    "titleRu": "Во все тяжкие",
-    "year": 2008,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404900.jpg",
-    "description": "Умирающий учитель химии начинает варить мет ради благополучия семьи. Выдающийся драматический сериал 2010-х",
-    "fullDescription": "Школьный учитель химии Уолтер Уайт узнаёт, что болен раком лёгких. Учитывая сложное финансовое состояние дел семьи, а также перспективы, Уолтер решает заняться изготовлением метамфетамина. Для этого он привлекает своего бывшего ученика Джесси Пинкмана, когда-то исключённого из школы при активном содействии Уайта. Пинкман сам занимался варкой мета, но накануне, в ходе рейда УБН, он лишился подельника и лаборатории.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 404900,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404900.jpg"
-  },
-  {
-    "id": 350,
-    "title": "Игра престолов",
-    "titleRu": "Игра престолов",
-    "year": 2011,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/464963.jpg",
-    "description": "Рыцари, мертвецы и драконы в эпической битве за судьбы мира. Легендарному фэнтези HBO — 15 лет!",
-    "fullDescription": "К концу подходит время благоденствия, и лето, длившееся почти десятилетие, угасает. Вокруг средоточия власти Семи королевств, Железного трона, зреет заговор, и в это непростое время король решает искать поддержки у друга юности Эддарда Старка. В мире, где все — от короля до наемника — рвутся к власти, плетут интриги и готовы вонзить нож в спину, есть место и благородству, состраданию и любви. Между тем никто не замечает пробуждение тьмы из легенд далеко на Севере — и лишь Стена защищает живых к югу от нее.",
-    "country": "США, Великобритания",
-    "genres": "Драма, Мелодрама, Приключения, Боевик, Фэнтези",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 464963,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464963.jpg"
-  },
-  {
-    "id": 351,
-    "title": "День ангела",
-    "titleRu": "День ангела",
-    "year": 1968,
-    "rating": 7.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77271.jpg",
-    "description": "Команда корабля спасает пассажиров, не подозревающих о пожаре. Драма Станислава Говорухина о мужестве и долге",
-    "fullDescription": "Пароход «Цесаревич» едва уцелел во время жестокого шторма. И вот, когда казалось, что опасность позади, ночью вдруг вспыхивает пожар в трюме.\n\nКапитан, надеявшийся поначалу, что всё обойдётся, вынужден срочно спасать пассажиров. Вот-вот начнётся паника. Чтобы пресечь её, капитан вынужден стрелять в агента охранки, обезумевшего от страха. До взрыва парохода остаются считанные минуты...",
-    "country": "СССР",
-    "genres": "Драма, Боевик",
-    "director": "Stanislav Govorukhin",
-    "actors": "Ivan Pereverzev, Nikolay Kryuchkov, Evgeniy Zharikov",
-    "duration": "74 min",
-    "trailer": "",
-    "kinopoiskId": 77271,
-    "imdb": "https://www.imdb.com/title/tt0391920",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77271.jpg"
-  },
-  {
-    "id": 352,
-    "title": "Близнецы Крамп",
-    "titleRu": "Близнецы Крамп",
-    "year": 2001,
-    "rating": 5.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/93356.jpg",
-    "description": "Люсьен и Уэйн никак не могут вместе ужиться, так как они — полные противоположности. Люсьен — отличник и тихоня, вегетарианец, увлекается наукой, любит природу и животных. Ему приходится терпеть шутки и унижения от своего брата Уэйна — задиры и хулигана, который всё время пытается улизнуть из шко...",
-    "fullDescription": "Люсьен и Уэйн никак не могут вместе ужиться, так как они — полные противоположности. Люсьен — отличник и тихоня, вегетарианец, увлекается наукой, любит природу и животных. Ему приходится терпеть шутки и унижения от своего брата Уэйна — задиры и хулигана, который всё время пытается улизнуть из школы, чтобы провести время на свалке.",
-    "country": "США, Великобритания, Германия, Канада",
-    "genres": "Комедия, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Том Кенни, Кэт Суси, Николь Оливер",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 93356,
-    "imdb": "https://www.imdb.com/title/tt0299278",
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/93356.jpg"
-  },
-  {
-    "id": 353,
-    "title": "Идеальное убийство",
-    "titleRu": "Идеальное убийство",
-    "year": 1998,
-    "rating": 6.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/3682.jpg",
-    "description": "Успешный бизнесмен узнает, что его жена изменяет ему с молодым художником, и предлагает любовнику сделку — убить неверную супругу.",
-    "fullDescription": "Стивен Тейлор — преуспевающий бизнесмен, чья жизнь кажется идеальной. Однако его молодая и богатая жена Эмили заводит роман на стороне с бедным художником Давидом. Узнав об измене, Стивен не спешит подавать на развод. Вместо этого он предлагает Давиду крупную сумму денег за убийство Эмили...",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "Эндрю Дэвис",
-    "actors": "Майкл Дуглас, Гвинет Пэлтроу, Вигго Мортенсен",
-    "duration": "108 мин",
-    "trailer": "",
-    "kinopoiskId": 3682,
-    "imdb": "https://www.imdb.com/title/tt0120787",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/3682.jpg"
-  },
-  {
-    "id": 354,
-    "title": "Настоящий детектив",
-    "titleRu": "Настоящий детектив",
-    "year": 2014,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/681831.jpg",
-    "description": "Напарницы ищут пропавших на Аляске мужчин. Новый сезон культовой антологии, который принес Джоди Фостер «Эмми»",
-    "fullDescription": "Первый сезон. В Луизиане в 1995 году происходит странное убийство девушки. В 2012 году дело об убийстве 1995 года повторно открывают, так как произошло похожее убийство. Чтобы продвинуться в расследовании, полиция решает допросить бывших детективов, которые работали над тем делом.\nВторой сезон. В калифорнийском городе Винчи в преддверии презентации новой линии железной дороги, которая улучшит финансовое положение города, пропадает глава администрации города. Позже его труп находят на шоссе. К расследованию подключают детектива из полиции Винчи и детектива из департамента шерифа округа Вентура.\nТретий сезон. Известняковое плато Озарк, расположенное одновременно в нескольких штатах. Детектив Уэйн Хейз совместно со следователем из Арканзаса Роландом Уэстом пытаются разобраться в загадочном преступлении, растянувшемся на три десятилетия.\nЧетвёртый сезон. Полярная ночь на Аляске. Две женщины-полицейские расследуют загадочное исчезновение шести сотрудников научно-исследовательской станции.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Винс Вон, Колин Фаррелл, Рэйчел МакАдамс",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 681831,
-    "imdb": "https://www.imdb.com/title/tt2356777",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/681831.jpg"
-  },
-  {
-    "id": 355,
-    "title": "Друзья",
-    "titleRu": "Друзья",
-    "year": 1994,
-    "rating": 9.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77044.jpg",
-    "description": "Шестеро друзей, две квартиры и много юмора. Ситком, который вошел в культурный код не одного поколения",
-    "fullDescription": "Шестеро друзей – Рейчел, Моника, Фиби, Джоуи, Чендлер и Росс – живут по соседству, вместе убивают время, делятся секретами и иногда очень сильно влюбляются.",
-    "country": "США",
-    "genres": "Мелодрама, Комедия",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 77044,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77044.jpg"
-  },
-  {
-    "id": 356,
-    "title": "Офис",
-    "titleRu": "Офис",
-    "year": 2005,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/253245.jpg",
-    "description": "Скучающие от безделья клерки пытаются ужиться с безумным боссом. Виртуозный ситком про рабочие будни",
-    "fullDescription": "Сериал о трудовых буднях небольшого регионального офиса крупной компании, обитатели которого целыми днями должны терпеть закидоны своего непутевого босса.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Стив Карелл, Дженна Фишер, Джон Красински",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 253245,
-    "imdb": "https://www.imdb.com/title/tt0386676",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/253245.jpg"
-  },
-  {
-    "id": 357,
-    "title": "Шерлок",
-    "titleRu": "Шерлок",
-    "year": 2010,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/502838.jpg",
-    "description": "Гений-социопат знакомит соседа с миром частного сыска. Бенедикт Камбербэтч в одном из лучших шоу XXI века",
-    "fullDescription": "События разворачиваются в наши дни. Он прошел Афганистан, остался инвалидом. По возвращении в родные края встречается с загадочным, но своеобразным гениальным человеком. Тот в поиске соседа по квартире. Лондон, 2010 год. Происходят необъяснимые убийства. Скотланд-Ярд без понятия, за что хвататься. Существует лишь один человек, который в силах разрешить проблемы и найти ответы на сложные вопросы.",
-    "country": "США, Великобритания",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Бенедикт Камбербэтч, Мартин Фриман, Уна Стаббс",
-    "duration": "88 min",
-    "trailer": "",
-    "kinopoiskId": 502838,
-    "imdb": "https://www.imdb.com/title/tt1475582",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/502838.jpg"
-  },
-  {
-    "id": 358,
-    "title": "Вайс",
-    "titleRu": "Вайс",
-    "year": 1998,
-    "rating": 7.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230159.jpg",
-    "description": "История четырех молодых парней, которые днем работают в цветочном магазине, а ночью превращаются в таинственных карателей, защищающих город от зла.",
-    "fullDescription": "История четырех молодых парней, которые днем работают в цветочном магазине, а ночью превращаются в таинственных карателей, защищающих город от зла.",
-    "country": "Япония",
-    "genres": "Аниме, Мультфильм, Боевик, Драма, Приключения",
-    "director": "Кёхэй Араки",
-    "actors": "Такэхито Коясу, Сэки Томокадзу, Синъитиро Мики, Юки Хиро",
-    "duration": "25 мин",
-    "trailer": "",
-    "kinopoiskId": 230159,
-    "imdb": "https://www.imdb.com/title/tt13945256",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230159.jpg"
-  },
-  {
-    "id": 359,
-    "title": "Очень странные дела",
-    "titleRu": "Очень странные дела",
-    "year": 2016,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/915196.jpg",
-    "description": "Тинейджеры против монстров из параллельного мира. Ностальгический сай-фай-хоррор, ставший флагманом Netflix",
-    "fullDescription": "1980-е годы, тихий провинциальный американский городок. Благоприятное течение местной жизни нарушает загадочное исчезновение подростка по имени Уилл. Выяснить обстоятельства дела полны решимости родные мальчика и местный шериф, также события затрагивают лучшего друга Уилла – Майка. Он начинает собственное расследование. Майк уверен, что близок к разгадке, и теперь ему предстоит оказаться в эпицентре ожесточенной битвы потусторонних сил.",
-    "country": "США",
-    "genres": "Триллер, Драма, Детектив, Фантастика, Фэнтези, Ужасы",
-    "director": "",
-    "actors": "Милли Бобби Браун, Финн Вулфард, Вайнона Райдер",
-    "duration": "51 min",
-    "trailer": "",
-    "kinopoiskId": 915196,
-    "imdb": "https://www.imdb.com/title/tt4574334",
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 9,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/915196.jpg"
-  },
-  {
-    "id": 360,
-    "title": "Доктор Хаус",
-    "titleRu": "Доктор Хаус",
-    "year": 2004,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/178710.jpg",
-    "description": "Все люди врут, но этого не проведешь. Выдающийся медицинский детектив о докторе-гении",
-    "fullDescription": "Сериал рассказывает о команде врачей, которые должны правильно поставить диагноз пациенту и спасти его. Возглавляет команду доктор Грегори Хаус, который ходит с тростью после того, как его мышечный инфаркт в правой ноге слишком поздно правильно диагностировали. Как врач Хаус просто гений, но сам не отличается проникновенностью в общении с больными и с удовольствием избегает их, если только есть возможность. Он сам всё время проводит в борьбе с собственной болью, а трость в его руке только подчеркивает его жесткую, ядовитую манеру общения. Порой его поведение можно назвать почти бесчеловечным, и при этом он прекрасный врач, обладающий нетипичным умом и безупречным инстинктом, что снискало ему глубокое уважение. Будучи инфекционистом, он ещё и замечательный диагност, который любит разгадывать медицинские загадки, чтобы спасти кому-то жизнь. Если бы все было по его воле, то Хаус лечил бы больных не выходя из своего кабинета.",
-    "country": "США",
-    "genres": "Драма, Детектив",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 178710,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 10,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/178710.jpg"
-  },
-  {
-    "id": 361,
-    "title": "Фарго",
-    "titleRu": "Фарго",
-    "year": 2014,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/767379.jpg",
-    "description": "Отчаявшийся продавец автомобилей организует похищение собственной жены.",
-    "fullDescription": "Продавец автомобилей из Миннесоты нанимает двух преступников, чтобы похитить свою жену ради выкупа от богатого тестя. Но дело катастрофически выходит из-под контроля, а за расследование берётся беременная женщина-шериф.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Билли Боб Торнтон, Мартин Фриман, Эллисон Толман",
-    "duration": "53 min",
-    "trailer": "",
-    "kinopoiskId": 767379,
-    "imdb": "https://www.imdb.com/title/tt2802850",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/767379.jpg"
-  },
-  {
-    "id": 362,
-    "title": "Танкер «Танго»",
-    "titleRu": "Танкер «Танго»",
-    "year": 2006,
-    "rating": 5.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84227.jpg",
-    "description": "Молодому предпринимателю Андрею Грекову предстоит выплатить долг конкурирующей компании. Денег нет, имущество опечатано, но есть старый танкер и заказ на перевозку нефти. И хотя сделка кажется Андрею сомнительной, это хорошая возможность быстро решить все проблемы.\n\nЧто может быть проще, чем пере...",
-    "fullDescription": "Молодому предпринимателю Андрею Грекову предстоит выплатить долг конкурирующей компании. Денег нет, имущество опечатано, но есть старый танкер и заказ на перевозку нефти. И хотя сделка кажется Андрею сомнительной, это хорошая возможность быстро решить все проблемы.\n\nЧто может быть проще, чем перегнать груз из Польши в Германию? Только попасть в историю, ставкой в которой станет жизнь близких людей. Андрей всего лишь хотел спасти свое дело, а оказался в центре террористического заговора, где ничто от него не зависит...",
-    "country": "Россия",
-    "genres": "Криминал",
-    "director": "",
-    "actors": "",
-    "duration": "110 min",
-    "trailer": "",
-    "kinopoiskId": 84227,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💀 Violent Survival",
-      "🔥 Pure Action",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84227.jpg"
-  },
-  {
-    "id": 363,
-    "title": "Декстер",
-    "titleRu": "Декстер",
-    "year": 2006,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/277537.jpg",
-    "description": "Судмедэксперт в свободное время убивает преступников. Детектив, который заставляет сопереживать маньяку",
-    "fullDescription": "Я — Декстер. Декстер Морган. Я работаю судмедэкспертом в полиции Майами. Я не понимаю любви, мне безразличен секс, и у меня нет чувств. А еще я серийный убийца.\n\nМой отец был полицейским и прекрасно обучил меня прятать улики. Обычным гражданам не стоит меня бояться, я убиваю только преступников, подонков, до которых почему-либо не смогла или не захотела добраться полиция. Я убиваю их, аккуратно распиливаю на части и избавляюсь от трупов. Убийство для меня — творческий акт, искусство.\n\nНо однажды… В Майами появляется некто, равный мне. Даже превзошедший меня. Сумевший меня заинтересовать. Предложивший мне своего рода товарищеское состязание. Кто этот загадочный и неуловимый «икс»?..",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "Майкл Куэста",
-    "actors": "Майкл С. Холл, Джули Бенц, Дженнифер Карпентер",
-    "duration": "53 min",
-    "trailer": "",
-    "kinopoiskId": 277537,
-    "imdb": "https://www.imdb.com/title/tt0785280",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 10,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/277537.jpg"
-  },
-  {
-    "id": 364,
-    "title": "Тед Лассо",
-    "titleRu": "Тед Лассо",
-    "year": 2020,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1309707.jpg",
-    "description": "Тренер сборной колледжа Канзаса по американскому футболу Тед Лассо — неисправимый оптимист, всеобщий любимец и звезда YouTube. Новая владелица одного заштатного английского футбольного клуба решает использовать его в своих хитрых планах и предлагает Теду должность главного тренера, рассчитывая, ч...",
-    "fullDescription": "Тренер сборной колледжа Канзаса по американскому футболу Тед Лассо — неисправимый оптимист, всеобщий любимец и звезда YouTube. Новая владелица одного заштатного английского футбольного клуба решает использовать его в своих хитрых планах и предлагает Теду должность главного тренера, рассчитывая, что тот развалит клуб. Ничего не смысля в этом виде спорта, Тед приступает к своим новым обязанностям со всем присущим ему энтузиазмом.",
-    "country": "США, Великобритания",
-    "genres": "Комедия, Спорт",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1309707,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1309707.jpg"
-  },
-  {
-    "id": 365,
-    "title": "Наследники",
-    "titleRu": "Наследники",
-    "year": 2018,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/986788.jpg",
-    "description": "Кто возглавит самую крупную медиакорпорацию в мире? Главная драма современности",
-    "fullDescription": "Логан Рой — влиятельный пожилой глава международного медийного конгломерата Waystar Royco. В будущем правление компанией должен принять старший сын, но прежде всей семье придется пережить интриги, предательство и неприкрытую борьбу за власть.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 986788,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/986788.jpg"
-  },
-  {
-    "id": 366,
-    "title": "Нарко",
-    "titleRu": "Нарко",
-    "year": 2015,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/821565.jpg",
-    "description": "Хроника криминальной жизни колумбийского наркобарона Пабло Эскобара.",
-    "fullDescription": "Хроника криминальной жизни колумбийского наркобарона Пабло Эскобара.",
-    "country": "США, Колумбия",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Педро Паскаль, Вагнер Моура, Бойд Холбрук",
-    "duration": "49 min",
-    "trailer": "",
-    "kinopoiskId": 821565,
-    "imdb": "https://www.imdb.com/title/tt2707408",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 7,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/821565.jpg"
-  },
-  {
-    "id": 367,
-    "title": "Светлячок",
-    "titleRu": "Светлячок",
-    "year": 2002,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/178720.jpg",
-    "description": "Невероятные приключения экипажа корабля «Серенити». Алан Тьюдик и Нэйтан Филлион в космовестерне Джосса Уидона",
-    "fullDescription": "XXVI век. Далёкая звёздная система с десятком планет и сотнями лун. В центре системы сформировался Альянс, межпланетное правительство, планеты которого стали символом цивилизации. Однако не все планеты захотели жить под властью Альянса, и на внешних планетах образовалось сопротивление. Противостояние сторон привело к войне, которая закончилась победой Альянса.\nКапитан Малколм Рейнольдс, сражавшийся за повстанцев ветеран войны, зарабатывает на жизнь мелкими преступлениями и перевозкой грузов на своём корабле «Серенити». Он возглавляет небольшую разношёрстную и верную команду, члены которой считают друг друга семьёй. На одной из планет они подбирают троих попутчиков, однако новые пассажиры оказываются не теми, кем казались на первый взгляд.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Боевик",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 178720,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/178720.jpg"
-  },
-  {
-    "id": 368,
-    "title": "Рим",
-    "titleRu": "Рим",
-    "year": 2005,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/257386.jpg",
-    "description": "Придворные интриги, реки крови и гладиаторы. Монументальный сериал о правлении Цезаря — и о том, что было после",
-    "fullDescription": "Действие сериала начинается в 52 году до н.э., когда Гай Юлий Цезарь завоевывает Галлию после восьмилетней войны и готовится возвращаться в Рим. Племянница Цезаря Атия с тревогой ждет его возвращения, патриции в отчаянии - они боятся, что возвращение Цезаря нарушит сложившийся статус-кво, что благополучие, которое они построили за счет плебса, будет подорвано.\n\nВ сенате лидеры партии патрициев убеждают старого друга Цезаря, Помпея Великого, что Цезарь стал угрозой для процветания Рима. В это время два незадачливых легионера, Люций Варен и Тит Пуло, затевают авантюру, которая, в случае успеха, значительно повысит их благосостояние. Чем ближе легионы Цезаря продвигаются к Риму, тем больше растет напряжение между солдатами и мирными жителями, тем ближе к развязке конфликт, который навсегда изменит историю…",
-    "country": "США, Великобритания",
-    "genres": "Драма, Мелодрама, Боевик, Военный, История",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 257386,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 10,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/257386.jpg"
-  },
-  {
-    "id": 369,
-    "title": "Охотник за разумом",
-    "titleRu": "Охотник за разумом",
-    "year": 2017,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/958500.jpg",
-    "description": "Конец 1970-х. Два агента ФБР опрашивают находящихся в заключении серийных убийц с целью понимания их образа мыслей, а также раскрытия текущих преступлений.",
-    "fullDescription": "Конец 1970-х. Два агента ФБР опрашивают находящихся в заключении серийных убийц с целью понимания их образа мыслей, а также раскрытия текущих преступлений.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Джонатан Грофф, Холт МакКэллани, Анна Торв",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 958500,
-    "imdb": "https://www.imdb.com/title/tt5290382",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/958500.jpg"
-  },
-  {
-    "id": 370,
-    "title": "Тьма",
-    "titleRu": "Тьма",
-    "year": 2017,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1032606.jpg",
-    "description": "История четырёх семей, живущих спокойной и размеренной жизнью в маленьком немецком городке. Видимая идиллия рушится, когда бесследно исчезают двое детей и воскресают тёмные тайны прошлого.",
-    "fullDescription": "История четырёх семей, живущих спокойной и размеренной жизнью в маленьком немецком городке. Видимая идиллия рушится, когда бесследно исчезают двое детей и воскресают тёмные тайны прошлого.",
-    "country": "США, Германия",
-    "genres": "Триллер, Драма, Криминал, Детектив, Фантастика",
-    "trailer": "",
-    "kinopoiskId": 1032606,
-    "imdb": "https://www.imdb.com/title/tt15043468",
-    "type": "series",
-    "director": "Баран бо Одар",
-    "actors": "Луис Хофман, Каролина Эйхгорн, Йордис Трибель",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1032606.jpg"
-  },
-  {
-    "id": 371,
-    "title": "Дрянь",
-    "titleRu": "Дрянь",
-    "year": 2016,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/991739.jpg",
-    "description": "Душевные травмы, родня с причудами, беспорядочный секс и шутки на грани. Сериал-бенефис Фиби Уоллер-Бридж",
-    "fullDescription": "История остроумной сексуально озабоченной и упивающейся своими горестями женщины, которая бросается на баррикады повседневности современного Лондона.",
-    "country": "Великобритания",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 991739,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/991739.jpg"
-  },
-  {
-    "id": 372,
-    "title": "Безумцы",
-    "titleRu": "Безумцы",
-    "year": 2007,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391889.jpg",
-    "description": "Гениальный рекламщик — не тот, за кого себя выдает. Телесага об Америке 1960-х с Джоном Хэммом и Элизабет Мосс",
-    "fullDescription": "США, 60-е годы ХХ века. В центре повествования - работа рекламного Агентства «Стерлинг-Купер», расположенного на престижной Медисон-авеню в центре Нью-Йорка, и жизнь его креативного директора - мастера манипуляций и интриг - Дона Дрейпера. Находясь на вершине карьеры, он противостоит конкурентам, стараясь сберечь свое положение в компании. Служебные и семейные перипетии Дона и его коллег происходят на фоне глобальных событий в жизни американского общества тех лет…",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 391889,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "🧠 Mind Bender"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391889.jpg"
-  },
-  {
-    "id": 373,
-    "title": "Остаться в живых",
-    "titleRu": "Остаться в живых",
-    "year": 2004,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94138.jpg",
-    "description": "Выжившие в авиакатастрофе попадают на загадочный остров в Тихом океане. Главная приключенческая драма 2000-х",
-    "fullDescription": "Красавец-лайнер, совершающий полет из Сиднея в Лос-Анджелес, неожиданно терпит крушение. 48 пассажиров оказываются на пустынном острове посреди океана. Люди в панике.\n\nНадежда быть найденными довольно призрачна. Поэтому остается только одно: собраться с силами и постараться выжить на острове, начиненном множеством опасностей...",
-    "country": "США",
-    "genres": "Триллер, Драма, Детектив, Фантастика, Приключения, Фэнтези",
-    "director": "Джей Джей Абрамс, Джек Бендер",
-    "actors": "Мэттью Фокс, Эванджелин Лилли, Джош Холлоуэй, Терри О’Куинн",
-    "duration": "43 мин.",
-    "trailer": "",
-    "kinopoiskId": 94138,
-    "imdb": "https://www.imdb.com/title/tt0411008",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 8,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94138.jpg"
-  },
-  {
-    "id": 374,
-    "title": "Дом Дракона",
-    "titleRu": "Дом Дракона",
-    "year": 2022,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1316601.jpg",
-    "description": "Таргариены воюют друг с другом за Железный трон. Грандиозная предыстория «Игры престолов»",
-    "fullDescription": "После смерти короля Визериса династия Таргариенов начинает бескомпромиссную борьбу за Железный трон. Предводительницей «черной» ветви становится принцесса Рейнира, а на стороне «зеленой» оказывается ее лучшая подруга и дочь десницы короля Алисента. В битве за престол соперницы заручаются поддержкой неожиданных союзников, плетут интриги — и используют разрушительную мощь драконов.",
-    "country": "США",
-    "genres": "Драма, Мелодрама, Боевик, Фэнтези",
-    "director": "",
-    "actors": "Мэтт Смит, Эмма Д’Арси, Оливия Кук",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1316601,
-    "imdb": "https://www.imdb.com/title/tt11198330",
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1316601.jpg"
-  },
-  {
-    "id": 375,
-    "title": "Одни из нас",
-    "titleRu": "Одни из нас",
-    "year": 2023,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/839458.jpg",
-    "description": "Контрабандист берёт под опеку сироту, способную спасти человечество. Педро Паскаль в киноверсии культовой игры",
-    "fullDescription": "В конце сентября 2003 года по всей планете произошло массовое заражение людей кордицепсом. Прежде паразитировавший только на насекомых гриб приспособился выживать в человеческом теле, полностью подчиняя себе волю носителя и меняя его облик. В первый же день оказавшийся в эпицентре пандемии строитель Джоэл понёс невосполнимую утрату.\n20 лет спустя Джоэл живёт в Бостонской карантинной зоне, которая находится под жёстким контролем Федерального агентства по урегулированию стихийных бедствий, и вместе со своей девушкой Тэсс пытается раздобыть автомобильный аккумулятор, чтобы отправиться на поиски брата в другой штат. Судьба сводит его с раненой лидершей повстанцев, которая обещает автомобиль и аккумулятор, если Джоэл и Тэсс доставят своенравную 14-летнюю сироту Элли к ожидающему её за пределами карантинной зоны отряду боевых товарищей.",
-    "country": "США, Канада",
-    "genres": "Драма, Фантастика, Боевик, Ужасы",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 839458,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 8,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/839458.jpg"
-  },
-  {
-    "id": 376,
-    "title": "Разделение",
-    "titleRu": "Разделение",
-    "year": 2022,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1343318.jpg",
-    "description": "Руководство компании Lumon Industries придумало новый способ контролировать повседневную деятельность своих сотрудников — «процедуру разделения», отделяющую рабочие воспоминания от обычных. Марк соглашается на процедуру, но вскоре начинает сомневаться в правильности своего выбора.",
-    "fullDescription": "Руководство компании Lumon Industries придумало новый способ контролировать повседневную деятельность своих сотрудников — «процедуру разделения», отделяющую рабочие воспоминания от обычных. Марк соглашается на процедуру, но вскоре начинает сомневаться в правильности своего выбора.",
-    "country": "США",
-    "genres": "Триллер, Драма, Детектив, Фантастика",
-    "director": "",
-    "actors": "Адам Скотт, Бритт Лоуэр, Зак Черри",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1343318,
-    "imdb": "https://www.imdb.com/title/tt11280740",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 9,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1343318.jpg"
-  },
-  {
-    "id": 377,
-    "title": "Гравити Фолз",
-    "titleRu": "Гравити Фолз",
-    "year": 2012,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/591929.jpg",
-    "description": "Близнецы проводят каникулы у странного прадядюшки. Тайны и аномалии в захватывающем мультсериале Алекса Хирша",
-    "fullDescription": "Приключения двойняшек Диппера и Мэйбл, которые проводят летние каникулы у двоюродного дедушки в городке под названием Гравити Фолз.",
-    "country": "США, Корея Южная",
-    "genres": "Детектив, Фантастика, Приключения, Комедия, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Джейсон Риттер, Алекс Хирш, Кристен Шаал",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 591929,
-    "imdb": "https://www.imdb.com/title/tt1865718",
-    "type": "series",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 4,
-      "intellect": 8,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/591929.jpg"
-  },
-  {
-    "id": 378,
-    "title": "Сверхъестественное",
-    "titleRu": "Сверхъестественное",
-    "year": 2005,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/178707.jpg",
-    "description": "Братья Винчестеры стараются не выпустить демонов. Фантастический сериал, вдохновленный «Сумеречной зоной»",
-    "fullDescription": "Сериал рассказывает о приключениях братьев Сэма и Дина Винчестеров, которые путешествуют по Соединённым Штатам на чёрном автомобиле Chevrolet Impala 1967 года, расследуют паранормальные явления, многие из которых основаны на американских городских легендах и фольклоре, и сражаются с порождениями зла, такими как демоны и призраки.",
-    "country": "США",
-    "genres": "Триллер, Драма, Детектив, Фэнтези, Ужасы",
-    "director": "",
-    "actors": "Джаред Падалеки, Дженсен Эклз, Джим Бивер",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 178707,
-    "imdb": "https://www.imdb.com/title/tt0460681",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 9,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/178707.jpg"
-  },
-  {
-    "id": 379,
-    "title": "Теория большого взрыва",
-    "titleRu": "Теория большого взрыва",
-    "year": 2007,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/306084.jpg",
-    "description": "Физики превращаются в лириков. Ситком про гениальных ученых-гиков, которые ищут любовь",
-    "fullDescription": "Два блестящих физика Леонард и Шелдон — великие умы, которые понимают, как устроена вселенная. Но их гениальность ничуть не помогает им общаться с людьми, особенно с женщинами. Всё начинает меняться, когда напротив них поселяется красавица Пенни. \nСтоит также отметить пару странных друзей этих физиков: Воловиц который любит употреблять фразы на разных языках, включая русский, а Раджеш Кутраппали теряет дар речи при виде женщин.",
-    "country": "США",
-    "genres": "Мелодрама, Комедия",
-    "director": "Маркус Кейн",
-    "actors": "Даррен Ле Галло, Маркус Кейн, Джеймс Пераджин",
-    "duration": "17 min",
-    "trailer": "",
-    "kinopoiskId": 306084,
-    "imdb": "https://www.imdb.com/title/tt1147717",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/306084.jpg"
-  },
-  {
-    "id": 380,
-    "title": "Как я встретил вашу маму",
-    "titleRu": "Как я встретил вашу маму",
-    "year": 2005,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401522.jpg",
-    "description": "Романтик Тед с помощью друзей ищет девушку своей мечты. Один из лучших и самых трогательных ситкомов XXI века",
-    "fullDescription": "«Как я встретил вашу маму» — комедия про Теда и про то, как он влюбился. Все неприятности начинаются с того, что лучший друг Теда, Маршалл, вдруг неожиданно сообщает, что он хочет сделать предложение своей давней подруге Лили, воспитательнице детского сада. К тому времени Тед понимает, что ему нужно прилагать больше усилий, если он действительно надеется найти свою настоящую любовь. Помогает ему в этих поисках его друг Барни - убеждённый холостяк, вечно со своим, иногда чересчур, мнением на всё происходящее, со склонностью к костюмам и верным способом знакомиться с девушками. Когда Тед встречает Робин, он решает, что это любовь с первого взгляда, но у судьбы в запасе есть кое-что ещё.",
-    "country": "США",
-    "genres": "Драма, Мелодрама, Комедия",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 401522,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401522.jpg"
-  },
-  {
-    "id": 381,
-    "title": "Бруклин 9-9",
-    "titleRu": "Бруклин 9-9",
-    "year": 2013,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/714102.jpg",
-    "description": "Коп-приколист пытается сработаться с новым капитаном. Ситком о буднях полицейского участка от авторов «Офиса»",
-    "fullDescription": "История о том, что происходит, когда у детектива, не воспринимающего ничего серьезно, появляется новый руководитель, который хочет, чтобы он рос и с уважением относился к своей должности.",
-    "country": "США",
-    "genres": "Криминал, Комедия",
-    "director": "",
-    "actors": "Энди Сэмберг, Стефани Беатрис, Терри Крюс",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 714102,
-    "imdb": "https://www.imdb.com/title/tt2467372",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🔥 Pure Action",
-      "⚡ High Energy",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/714102.jpg"
-  },
-  {
-    "id": 382,
-    "title": "Ганнибал",
-    "titleRu": "Ганнибал",
-    "year": 2013,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/682468.jpg",
-    "description": "Каннибал-интеллектуал водит ФБР за нос. Самая эстетская экранизация романов про доктора Лектера",
-    "fullDescription": "Уилл Грэм — одаренный профайлер, который вместе с ФБР разыскивает серийного убийцу. Уникальный способ мышления Грэма дает ему удивительную способность глубоко проникаться чувствами другого человека, даже психопата. Он может понять, что ими движет. Но когда ум преследуемого убийцы оказывается слишком сложным, он прибегает к помощи доктора Лектера, одного из ведущих психиатрических умов в стране.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив, Ужасы",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 682468,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/682468.jpg"
-  },
-  {
-    "id": 383,
-    "title": "Викинги",
-    "titleRu": "Викинги",
-    "year": 2013,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/682255.jpg",
-    "description": "Амбициозный воин возглавляет поход на чужие земли и борется за власть. Эпический боевик по скандинавским сагам",
-    "fullDescription": "Рассказ об отряде викингов Рагнара. Он восстал, чтобы стать королём племён викингов. Норвежская легенда гласит, что он был прямым потомком Одина, бога войны и воинов.",
-    "country": "Канада, Ирландия",
-    "genres": "Драма, Мелодрама, Приключения, Боевик, Военный, История",
-    "director": "",
-    "actors": "Кэтрин Уинник, Густав Скарсгард, Александр Людвиг",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 682255,
-    "imdb": "https://www.imdb.com/title/tt2306299",
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/682255.jpg"
-  },
-  {
-    "id": 384,
-    "title": "Сыны анархии",
-    "titleRu": "Сыны анархии",
-    "year": 2008,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/417846.jpg",
-    "description": "Байкеры защищают свой криминальный бизнес. Почти шекспировская драма, вдохновленная историей «Ангелов ада»",
-    "fullDescription": "Сериал рассказывает о клубе байкеров, которые пытаются защитить свой городок от наркотиков и влияния извне, хотя сами грешат торговлей оружием. Молодой лидер клуба не слишком уверен в том, что выбрал правильный путь, и пытается что-то изменить, к неудовольствию своих мамы и отчима.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Чарли Ханнэм, Кэти Сагал, Марк Бун Джуниор",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 417846,
-    "imdb": "https://www.imdb.com/title/tt1124373",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/417846.jpg"
-  },
-  {
-    "id": 385,
-    "title": "Подпольная империя",
-    "titleRu": "Подпольная империя",
-    "year": 2010,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/474779.jpg",
-    "description": "Войны гангстеров времен сухого закона в США. Криминальный портрет эпохи от продюсера Мартина Скорсезе",
-    "fullDescription": "1920 год. Через несколько часов Атлантик-Сити - столица развлечений и порока, как и вся Америка, вступит в эпоху «Сухого закона». Енох «Наки» Томпсон, днем – городской казначей, а ночью – хитроумный гангстер со связями на самом «верху», решает воспользоваться ситуацией и получить баснословные прибыли на подпольной торговле алкоголем. Однако не он один жаждет обогатиться на новом промысле…",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Стив Бушеми, Келли Макдональд, Майкл Шеннон",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 474779,
-    "imdb": "https://www.imdb.com/title/tt0979432",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 8,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/474779.jpg"
-  },
-  {
-    "id": 386,
-    "title": "Гордость и предубеждение",
-    "titleRu": "Гордость и предубеждение",
-    "year": 1995,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89518.jpg",
-    "description": "Экранизация романа Джейн Остин о нравах английских дворян XIX века. Канонический мистер Дарси в исполнении Колина Ферта",
-    "fullDescription": "Элизабет - одна из пяти дочерей небогатого провинциального помещика, мистера Беннета. К сожалению, в семействе нет ни одного сына, поэтому, в случае смерти мистера Беннета, все их имущество перейдет их дальнему родственнику по мужской линии. Когда по соседству появляется богатый мистер Бингли и его друг,  загадочный и еще более богатый мистер Дарси, миссис Беннет начинает питать большие надежды на скорое замужество одной из своих дочерей. Мистер Бингли обращает внимание на старшую сестру Беннет, красавицу Джейн. Но гордый мистер Дарси не одобряет увлечения друга и стремится положить ему конец, однако сам неожиданно увлекается Элизабет...",
-    "country": "Великобритания",
-    "genres": "Драма, Мелодрама",
-    "director": "Саймон Лэнгтон",
-    "actors": "Колин Фёрт, Дженнифер Эль, Криспин Бонэм-Картер",
-    "duration": "55 мин",
-    "trailer": "",
-    "kinopoiskId": 89518,
-    "imdb": "https://www.imdb.com/title/tt0111945",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89518.jpg"
-  },
-  {
-    "id": 387,
-    "title": "Секретные материалы",
-    "titleRu": "Секретные материалы",
-    "year": 1993,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77046.jpg",
-    "description": "Агенты ФБР сталкиваются со сверхъестественным. Эпохальный конспирологический сай-фай, пять «Золотых глобусов»",
-    "fullDescription": "Агентам ФБР Дане Скалли и Фоксу Малдеру поручают работу над проектом «Секретные материалы». Это архив нераскрытых дел, связанных с паранормальными явлениями. Малдер верит в пришельцев и пытается убедить скептика Скалли, что не всё поддаётся разумному объяснению. Постепенно взаимное недоверие перерастает в дружбу и даже в более глубокое чувство.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив, Фантастика, Ужасы",
-    "director": "",
-    "actors": "Дэвид Духовны, Джиллиан Андерсон, Митч Пиледжи",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 77046,
-    "imdb": "https://www.imdb.com/title/tt0106179",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 10,
-      "intellect": 10,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77046.jpg"
-  },
-  {
-    "id": 388,
-    "title": "Блудливая Калифорния",
-    "titleRu": "Блудливая Калифорния",
-    "year": 2007,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/394375.jpg",
-    "description": "Писатель-мизантроп пытается выбраться из творческого кризиса. Дэвид Духовны в комедии про секс и литературу",
-    "fullDescription": "Известный писатель Хэнк Муди переживает творческий и личностный кризис. За пять лет он не написал ни строчки, лишился любимой женщины и окончательно погряз в пороках: марихуане, алкоголе и однодневных связях. Но он не теряет надежды вновь обрести потерянную семью и вернуться к творчеству.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Дэвид Духовны, Наташа МакЭлхоун, Эван Хэндлер",
-    "duration": "28 min",
-    "trailer": "",
-    "kinopoiskId": 394375,
-    "imdb": "https://www.imdb.com/title/tt0904208",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/394375.jpg"
-  },
-  {
-    "id": 389,
-    "title": "Бесстыжие",
-    "titleRu": "Бесстыжие",
-    "year": 2011,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/571335.jpg",
-    "description": "Невероятные приключения непутевого папаши и его детей. Легендарная драмеди, которую хочется пересматривать",
-    "fullDescription": "О взбалмошной многодетной семье Галлагеров и их соседях, которые веселятся, попадают в самые невероятные ситуации и пытаются выжить в этом мире всеми возможными средствами, но при этом как можно меньше работая.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Эмми Россам, Уильям Х. Мэйси, Джереми Аллен Уайт",
-    "duration": "46 min",
-    "trailer": "",
-    "kinopoiskId": 571335,
-    "imdb": "https://www.imdb.com/title/tt1586680",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/571335.jpg"
-  },
-  {
-    "id": 390,
-    "title": "Гоморра",
-    "titleRu": "Гоморра",
-    "year": 2014,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/820540.jpg",
-    "description": "Кровавые будни и семейные выходные неаполитанской мафии. Гангстерская драма по сценарию Роберто Савиано",
-    "fullDescription": "История о людях и судьбах, связанных с жестокой и могущественной неаполитанской преступной организацией. Рассказ о жизни мафиозного клана изнутри, увиденной глазами 30-летнего Чиро, верного помощника крестного отца Пьетро Савастано.",
-    "country": "Германия, Италия",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Сальваторе Эспозито, Марко Д’Аморе, Кристиана Делл’Анна",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 820540,
-    "imdb": "https://www.imdb.com/title/tt2049116",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 7,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/820540.jpg"
-  },
-  {
-    "id": 391,
-    "title": "Мандалорец",
-    "titleRu": "Мандалорец",
-    "year": 2019,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1118138.jpg",
-    "description": "Одинокий мандалорец-наёмник живёт на краю обитаемой галактики, куда не дотягивается закон Новой Республики. Представитель некогда могучей расы благородных воинов теперь вынужден влачить жалкое существование среди отбросов общества.",
-    "fullDescription": "Одинокий мандалорец-наёмник живёт на краю обитаемой галактики, куда не дотягивается закон Новой Республики. Представитель некогда могучей расы благородных воинов теперь вынужден влачить жалкое существование среди отбросов общества.",
-    "country": "США",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези",
-    "director": "",
-    "actors": "Педро Паскаль, Крис Бартлетт, Кэти Сакхофф",
-    "duration": "40 min",
-    "trailer": "",
-    "kinopoiskId": 1118138,
-    "imdb": "https://www.imdb.com/title/tt8111088",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🔥 Pure Action"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1118138.jpg"
-  },
-  {
-    "id": 392,
-    "title": "Конь БоДжек",
-    "titleRu": "Конь БоДжек",
-    "year": 2014,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/818185.jpg",
-    "description": "Сюжет разворачивается вокруг коня по имени БоДжек, который хлещет виски, его бывшей возлюбленной и его друга-человека.",
-    "fullDescription": "Сюжет разворачивается вокруг коня по имени БоДжек, который хлещет виски, его бывшей возлюбленной и его друга-человека.",
-    "country": "США",
-    "genres": "Драма, Комедия, Мультфильм",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 818185,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/818185.jpg"
-  },
-  {
-    "id": 393,
-    "title": "Рик и Морти",
-    "titleRu": "Рик и Морти",
-    "year": 2013,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/685246.jpg",
-    "description": "Гениальный ученый втягивает внука в безумные авантюры. Выдающийся анимационный сериал Дэна Хармона",
-    "fullDescription": "В центре сюжета - школьник по имени Морти и его дедушка Рик. Морти - самый обычный мальчик, который ничем не отличается от своих сверстников. А вот его дедуля занимается необычными научными исследованиями и зачастую полностью неадекватен. Он может в любое время дня и ночи схватить внука и отправиться вместе с ним в безумные приключения с помощью построенной из разного хлама летающей тарелки, которая способна перемещаться сквозь межпространственный тоннель. Каждый раз эта парочка оказывается в самых неожиданных местах и самых нелепых ситуациях.",
-    "country": "США",
-    "genres": "Фантастика, Приключения, Комедия, Мультфильм",
-    "director": "",
-    "actors": "Крис Парнелл, Спенсер Грэммер, Сара Чок",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 685246,
-    "imdb": "https://www.imdb.com/title/tt2861424",
-    "type": "series",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/685246.jpg"
-  },
-  {
-    "id": 394,
-    "title": "Щит",
-    "titleRu": "Щит",
-    "year": 2002,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229080.jpg",
-    "description": "Криминальная драма о полицейских. Нарушены все клише жанра, ведь героям приходится искать свой путь в жестоком мире, очень похожем на реальный, где принципы морали размыты и неопределённы, а граница между добром и злом пересекается каждый день.\n\nПолицейские Лос-Анджелеса готовы на всё, чтобы сохр...",
-    "fullDescription": "Криминальная драма о полицейских. Нарушены все клише жанра, ведь героям приходится искать свой путь в жестоком мире, очень похожем на реальный, где принципы морали размыты и неопределённы, а граница между добром и злом пересекается каждый день.\n\nПолицейские Лос-Анджелеса готовы на всё, чтобы сохранить порядок на улицах и защитить мирных граждан от криминала. Ради этой благородной цели крутым копам нередко приходится действовать вопреки законам. Дорога к справедливости бывает извилистой! Но всегда ли цель оправдывает средства, и можно ли бороться с преступностью преступными методами?",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Майкл Чиклис, Майкл Джейс, Джей Карнс",
-    "duration": "47 min",
-    "trailer": "",
-    "kinopoiskId": 229080,
-    "imdb": "https://www.imdb.com/title/tt0286486",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229080.jpg"
-  },
-  {
-    "id": 395,
-    "title": "Правосудие",
-    "titleRu": "Правосудие",
-    "year": 2010,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/500600.jpg",
-    "description": "Старомодный коп с жесткой моралью наводит порядок в родном городке. Неовестерн с ироничным Тимоти Олифантом",
-    "fullDescription": "История федерального маршала Рейлана Гивенса — современного законника, который придерживается старомодных взглядов на правосудие. Из-за его строгого морального кодекса Гивенс постоянно становится мишенью для преступников.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив, Боевик",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 500600,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/500600.jpg"
-  },
-  {
-    "id": 396,
-    "title": "Клиника",
-    "titleRu": "Клиника",
-    "year": 2001,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/251568.jpg",
-    "description": "Хаотичная жизнь больницы глазами интерна-фантазера. Главный медицинский ситком нулевых",
-    "fullDescription": "Отучившись четыре года в медицинской школе, Джон Дориан приходит работать интерном в клинику. Вместе с ним здесь же будет применять полученные знания и его лучший друг со времен колледжа Крис Терк. Не имеющие опыта практической работы молодые специалисты сразу же погружаются в хаотический мир жизни больницы.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Зак Брафф, Дональд Фэйсон, Сара Чок",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 251568,
-    "imdb": "https://www.imdb.com/title/tt0285403",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/251568.jpg"
-  },
-  {
-    "id": 397,
-    "title": "Дэдвуд",
-    "titleRu": "Дэдвуд",
-    "year": 2004,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/255671.jpg",
-    "description": "Несколько недель из жизни городка в разгар золотой лихорадки. Вестерн, номинированный на «Золотой глобус»",
-    "fullDescription": "1876 год, Южная Дакота. Золотая лихорадка на территориях, прилегающих к горному массиву Блэк-Хиллс, привела к возникновению лагеря старателей, который вскоре превратился в поселение под названием Дэдвуд. Негласным хозяином населённого пункта является криминальный делец Эл Сверенджен, который владеет местным салуном и борделем. Здесь полно преступников и жуликов всех мастей, а убийства являются нормой. Вскоре в Дэдвуд из Территории Монтана приезжают бывший законник Сет Буллок и его компаньон Сол Старр, которые собираются открыть здесь скобяную лавку.",
-    "country": "США",
-    "genres": "Драма, Криминал, Вестерн",
-    "director": "",
-    "actors": "Тимоти Олифант, Иэн МакШейн, Молли Паркер",
-    "duration": "31S min",
-    "trailer": "",
-    "kinopoiskId": 255671,
-    "imdb": "https://www.imdb.com/title/tt0348914",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/255671.jpg"
-  },
-  {
-    "id": 398,
-    "title": "Аббатство Даунтон",
-    "titleRu": "Аббатство Даунтон",
-    "year": 2010,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/518192.jpg",
-    "description": "Семья английских аристократов пытается сохранить поместье. Знаменитая британская драма с остроумными диалогами",
-    "fullDescription": "1912 год. Англия. Наследник титула графа Грэнтэма, живущего с семьей в своем родовом имении Даунтон, погибает на «Титанике». Семья ожидает, что теперь, когда наследников мужского пола не осталось, владения и капитал семьи после смерти графа перейдут к его старшей дочери. Но граф, отдавший всю свою жизнь своему поместью, отказывается отстаивать права юной Мэри, считая, что все, включая немалый капитал его жены, должно отойти к наследнику его графского титула, безвестному дальнему родственнику...",
-    "country": "Великобритания",
-    "genres": "Драма, Мелодрама, История",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 518192,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 8,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/518192.jpg"
-  },
-  {
-    "id": 399,
-    "title": "Клиент всегда мертв",
-    "titleRu": "Клиент всегда мертв",
-    "year": 2001,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/181807.jpg",
-    "description": "Будни сотрудников семейного похоронного бюро. Умная трагикомедия с блестящими актерами и морем черного юмора",
-    "fullDescription": "Лос-Анджелес. Приехав домой, Нейт — сын Натаниэля Фишера, главы семейства — неожиданно узнаёт о гибели отца. Младший брат Нейта, Дэвид — замкнутый управляющий похоронного бюро. Сестра Нейта — бунтующий подросток Клэр — узнаёт печальную весть, находясь под действием веществ, которые она попробовала вместе со своим новым бойфрендом Гейбом. Радость в жизнь Нейта приносит лишь Бренда, страстная женщина, с которой Нейт познакомился в самолёте. Однако члены семьи Бренды оказываются ещё более странными, чем семейство Нейта…",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Питер Краузе, Майкл С. Холл, Фрэнсис Конрой",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 181807,
-    "imdb": "https://www.imdb.com/title/tt0248654",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good",
-      "🧠 Thought-Provoking"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/181807.jpg"
-  },
-  {
-    "id": 400,
-    "title": "Корона",
-    "titleRu": "Корона",
-    "year": 2016,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/924910.jpg",
-    "description": "На что готова Елизавета II, чтобы сохранить брак и монархию? Безупречная драма о жизни королевской семьи",
-    "fullDescription": "История королевы Елизаветы II с момента её свадьбы в 1947 году до настоящего времени.",
-    "country": "Великобритания",
-    "genres": "Драма, Биография, История",
-    "director": "",
-    "actors": "Клэр Фой, Оливия Колман, Имельда Стонтон",
-    "duration": "58 min",
-    "trailer": "",
-    "kinopoiskId": 924910,
-    "imdb": "https://www.imdb.com/title/tt4786824",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "❤️ Heartfelt Story"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/924910.jpg"
-  },
-  {
-    "id": 401,
-    "title": "Удивительная миссис Мейзел",
-    "titleRu": "Удивительная миссис Мейзел",
-    "year": 2017,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/994468.jpg",
-    "description": "Нью-Йорк, 1958 год. Домохозяйка Мириам Мейзел внезапно обнаруживает у себя скрытый талант к стендапу.",
-    "fullDescription": "Нью-Йорк, 1958 год. Домохозяйка Мириам Мейзел внезапно обнаруживает у себя скрытый талант к стендапу.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "Эми Шерман-Палладино",
-    "actors": "Рэйчел Броснахэн, Алекс Борштейн, Майкл Зеген",
-    "duration": "57 min",
-    "trailer": "",
-    "kinopoiskId": 994468,
-    "imdb": "https://www.imdb.com/title/tt5788792",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/994468.jpg"
-  },
-  {
-    "id": 402,
-    "title": "Утопия",
-    "titleRu": "Утопия",
-    "year": 2013,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/731962.jpg",
-    "description": "К гикам попадает комикс, за которым охотится тайная организация. Выдающийся конспирологический триллер",
-    "fullDescription": "«Эксперименты Утопии» — легендарный графический роман, окутанный тайной. Жизни пяти малознакомых людей, в руки которых он попал, оказываются под угрозой. Когда по твоему следу идет безжалостная секретная организация «Сеть», есть только один способ выжить — бегство.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Детектив, Фантастика",
-    "director": "",
-    "actors": "Адиль Ахтар, Пол Хиггинс, Нил Маскелл",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 731962,
-    "imdb": "https://www.imdb.com/title/tt2384811",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 9,
-      "intellect": 7,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/731962.jpg"
-  },
-  {
-    "id": 403,
-    "title": "Побег",
-    "titleRu": "Побег",
-    "year": 2005,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258048.jpg",
-    "description": "Майкл садится в тюрьму, чтобы устроить побег брату. Адреналиновый триллер, положивший моду на сериалы в России",
-    "fullDescription": "Майкл убежден в невиновности брата, осужденного на казнь, и решает сам восстановить справедливость. Он намеренно совершает преступление, за которое попадает в ту самую тюрьму, где сидит брат. Ту самую, которую Майкл хорошо знает, потому что сам же ее и создавал, как инженер-строитель... План спасения гениально прост...",
-    "country": "США, Великобритания",
-    "genres": "Триллер, Драма, Криминал, Детектив, Боевик",
-    "director": "",
-    "actors": "Доминик Перселл, Вентворт Миллер, Амори Ноласко",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 258048,
-    "imdb": "https://www.imdb.com/title/tt0455275",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 10,
-      "intellect": 7,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258048.jpg"
-  },
-  {
-    "id": 404,
-    "title": "Маша и Медведь. Новогодние серии",
-    "titleRu": "Маша и Медведь. Новогодние серии",
-    "year": 2022,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5231086.jpg",
-    "description": "Эта девочка никому не даст грустить под елкой, хотят они того или нет. Рецепты незабываемого праздника от Маши",
-    "fullDescription": "Большеглазая непоседа зарядит новогодним настроением всех обитателей леса. Маша обязательно проверит, чья елка красивее украшена. Устроит праздничный переполох, раздаст всем подарки, организует танцы с оркестром снеговиков, запустит фейерверк и даже Деда Мороза вылечит. Ну и Медведю, разумеется, от нее достанется по полной программе.",
-    "country": "Россия",
-    "genres": "Мультфильм, Детский",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5231086,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 8,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5231086.jpg"
-  },
-  {
-    "id": 405,
-    "title": "Оставленные",
-    "titleRu": "Оставленные",
-    "year": 2014,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/737589.jpg",
-    "description": "В результате загадочного события пропадает 2% жителей Земли. Магический реализм по роману Тома Перротты",
-    "fullDescription": "Действие разворачивается вокруг группы оставшихся людей в пригородной общине городка Мейплтон. Они должны начать заново строить свои жизни после внезапного и загадочного исчезновения более ста миллионов человек.",
-    "country": "США",
-    "genres": "Драма, Детектив, Фэнтези",
-    "director": "",
-    "actors": "Джастин Теру, Эми Бреннеман, Кристофер Экклстон",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 737589,
-    "imdb": "https://www.imdb.com/title/tt2699128",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/737589.jpg"
-  },
-  {
-    "id": 406,
-    "title": "Карточный домик",
-    "titleRu": "Карточный домик",
-    "year": 2013,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/581937.jpg",
-    "description": "Конгрессмен США и его жена готовы на все ради заветной цели. Политический триллер о необузданной жажде власти",
-    "fullDescription": "Амбициозный конгрессмен от Демократической партии Фрэнк Андервуд в обмен на обещание сделать его госсекретарём помогает Гаррету Уокеру стать президентом США. Однако после выборов глава администрации президента Линда Васкес сообщает Андервуду, что он не получит должность. Взбешенные предательством Фрэнк и его жена готовы пойти на всё, чтобы отомстить новоиспечённому президенту.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 581937,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "🌙 Dark Mood"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/581937.jpg"
-  },
-  {
-    "id": 407,
-    "title": "Гранд тур",
-    "titleRu": "Гранд тур",
-    "year": 2016,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/982730.jpg",
-    "description": "Автомобильные обзоры, приключения по всему миру, встречи со знаменитостями и юмор, который является непременным атрибутом каждого выпуска.",
-    "fullDescription": "Автомобильные обзоры, приключения по всему миру, встречи со знаменитостями и юмор, который является непременным атрибутом каждого выпуска.",
-    "country": "США, Великобритания",
-    "genres": "Комедия, Спорт, Ток-шоу",
-    "director": "",
-    "actors": "Джереми Кларксон, Джеймс Мэй, Ричард Хаммонд",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 982730,
-    "imdb": "https://www.imdb.com/title/tt5712554",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/982730.jpg"
-  },
-  {
-    "id": 408,
-    "title": "Убийство",
-    "titleRu": "Убийство",
-    "year": 2011,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/518075.jpg",
-    "description": "История о расследовании убийства с разных точек зрения. Атмосферный триллер, основанный на датском сериале",
-    "fullDescription": "Одно убийство с трех точек зрения — детективов, семьи погибшей и подозреваемых. Следствие затрагивает местных политиков и их связь с этим делом. Постепенно становится ясно, что здесь нет случайностей, у каждого свой секрет.",
-    "country": "США, Канада",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Мирей Инос, Джоэл Киннаман, Билли Кэмпбелл",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 518075,
-    "imdb": "https://www.imdb.com/title/tt1637727",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/518075.jpg"
-  },
-  {
-    "id": 409,
-    "title": "Барри",
-    "titleRu": "Барри",
-    "year": 2018,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/972587.jpg",
-    "description": "Киллер влюбляется в театр и решает начать новую жизнь. Изобретательный экшен, черный юмор и невероятные актеры",
-    "fullDescription": "Барри – бывший морпех со Среднего Запада, а ныне никудышный киллер. Одинокий и неприкаянный однажды он отправляется на заказ в Лос-Анджелес, где по воле случая оказывается на курсах актерского мастерства. Вдохновившись творческой атмосферой, Барри немедленно решает стать актёром и начать новую жизнь.",
-    "country": "США",
-    "genres": "Драма, Криминал, Боевик, Комедия",
-    "director": "",
-    "actors": "Билл Хейдер, Стивен Рут, Сара Голдберг",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 972587,
-    "imdb": "https://www.imdb.com/title/tt5348176",
-    "type": "series",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/972587.jpg"
-  },
-  {
-    "id": 410,
-    "title": "Большая маленькая ложь",
-    "titleRu": "Большая маленькая ложь",
-    "year": 2017,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/947758.jpg",
-    "description": "Богатый калифорнийский город потрясает убийство. Детективная драма с Николь Кидман и Риз Уизерспун",
-    "fullDescription": "На благотворительном балу в школе происходит убийство, однако имя жертвы неизвестно. История о нескольких месяцах, предшествовавших происшествию - рассказ о пяти семьях, чьи дети ходят в один класс. Все эти семьи загадочным образом связаны с убийством.",
-    "country": "США",
-    "genres": "Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 947758,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/947758.jpg"
-  },
-  {
-    "id": 411,
-    "title": "Ходячие мертвецы",
-    "titleRu": "Ходячие мертвецы",
-    "year": 2010,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/508161.jpg",
-    "description": "Как сохранить человеческое лицо в условиях апокалипсиса? Грандиозная зомби-сага, совместившая хоррор и драму",
-    "fullDescription": "Зомби-эпидемия захлестнула планету. Шериф Рик Граймс путешествует с семьей и небольшой группой выживших в поисках безопасного места. Но постоянный страх смерти каждый день приносит тяжелые потери, заставляя товарищей по несчастью чувствовать глубины человеческой жестокости. Рик пытается спасти близких и понимает, что всепоглощающий страх людей может быть опаснее ходячих мертвецов.",
-    "country": "США",
-    "genres": "Триллер, Драма, Ужасы",
-    "director": "",
-    "actors": "Эндрю Линкольн, Норман Ридус, Мелисса МакБрайд",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 508161,
-    "imdb": "https://www.imdb.com/title/tt1520211",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 9,
-      "intellect": 7,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/508161.jpg"
-  },
-  {
-    "id": 412,
-    "title": "Миллиарды",
-    "titleRu": "Миллиарды",
-    "year": 2016,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/863009.jpg",
-    "description": "В чем сила — в законе, власти или деньгах? Эталонная драма, которая держит в напряжении до самого финала",
-    "fullDescription": "В мире власти и больших денег, в самом сердце Нью-Йорка, вовсю идет противостояние амбициозного финансиста с Уолл-стрит Бобби Аксельрода и принципиального федерального прокурора Чака Родса.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Пол Джаматти, Дэмиан Льюис, Мэгги Сифф",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 863009,
-    "imdb": "https://www.imdb.com/title/tt4270492",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "❤️ Heartfelt Story"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/863009.jpg"
-  },
-  {
-    "id": 413,
-    "title": "Рэй Донован",
-    "titleRu": "Рэй Донован",
-    "year": 2013,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/667871.jpg",
-    "description": "Он решает проблемы богатых людей, но тонет в своих. Лив Шрайбер в криминальной саге о темной стороне Голливуда",
-    "fullDescription": "Рэй Донован решает любые проблемы богатых и знаменитых людей Лос-Анджелеса, но при этом не может разобраться со своей собственной семьей...",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Лив Шрайбер, Эдди Марсан, Дэш Майок",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 667871,
-    "imdb": "https://www.imdb.com/title/tt2249007",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/667871.jpg"
-  },
-  {
-    "id": 414,
-    "title": "Сёгун",
-    "titleRu": "Сёгун",
-    "year": 2024,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/749562.jpg",
-    "description": "Англичанин попадает в феодальную Японию — в мир интриг и борьбы за власть. Эпичная драма, ставшая суперхитом",
-    "fullDescription": "Япония, начало XVII века. Английский штурман Джон Блэкторн терпит крушение и попадает в закрытую для европейцев Страну восходящего солнца, где проходит путь от пленника на грани жизни и смерти до правой руки борющегося за власть самурая Торанаги.",
-    "country": "США",
-    "genres": "Драма, Приключения, Боевик, Военный, История",
-    "director": "",
-    "actors": "Космо Джарвис, Хироюки Санада, Анна Савай",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 749562,
-    "imdb": "https://www.imdb.com/title/tt2788316",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/749562.jpg"
-  },
-  {
-    "id": 415,
-    "title": "Озарк",
-    "titleRu": "Озарк",
-    "year": 2017,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1045553.jpg",
-    "description": "Финансовый консультант Марти Бёрд вместе с женой Вэнди и остальными членами семьи вынужден тайно переехать из престижного предместья Чикаго в курортный городок Озарк штата Миссури. К неожиданному переезду главного героя вынудили крупные долги, и на новом месте он надеется поправить своё финансово...",
-    "fullDescription": "Финансовый консультант Марти Бёрд вместе с женой Вэнди и остальными членами семьи вынужден тайно переехать из престижного предместья Чикаго в курортный городок Озарк штата Миссури. К неожиданному переезду главного героя вынудили крупные долги, и на новом месте он надеется поправить своё финансовое положение.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Джейсон Бейтман, Лора Линни, София Хьюблиц",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 1045553,
-    "imdb": "https://www.imdb.com/title/tt5071412",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1045553.jpg"
-  },
-  {
-    "id": 416,
-    "title": "Менталист",
-    "titleRu": "Менталист",
-    "year": 2008,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412344.jpg",
-    "description": "Одинокий гений дедукции и психологии охотится на серийного убийцу. Детектив с харизматичным Саймоном Бейкером",
-    "fullDescription": "Патрик Джейн - детектив и независимый консультант из Калифорнийского Бюро Расследований (КБР), он использует свои отточенные, как лезвие, навыки наблюдения для раскрытия тяжких преступлений. В самом Бюро Джейн известен за частые нарушения протокола, а также за его звездное прошлое: он работал медиумом, однако теперь сам признает, что симулировал паранормальные способности...",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Саймон Бэйкер, Робин Танни, Тим Канг",
-    "duration": "43 min",
-    "trailer": "",
-    "kinopoiskId": 412344,
-    "imdb": "https://www.imdb.com/title/tt1196946",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412344.jpg"
-  },
-  {
-    "id": 417,
-    "title": "Борджиа",
-    "titleRu": "Борджиа",
-    "year": 2011,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/521722.jpg",
-    "description": "Безбожник решает стать папой римским. Джереми Айронс в драме о легендарном итальянском клане",
-    "fullDescription": "В конце XV века в руках Папы Римского сосредоточилась неограниченная власть: он мог короновать и свергать королей, изменять судьбу империй. Некогда доброе имя церкви стало теперь ассоциироваться только с коррупцией и безнравственностью. В 1492 году, после смерти папы Иннокентия VIII, престол Святого Петра занял Александр VI (в миру Родриго Борджиа), который вписал в историю имя клана Борджиа отнюдь не благими деяниями…",
-    "country": "США, Канада, Ирландия, Венгрия",
-    "genres": "Драма, Криминал, Мелодрама, История",
-    "director": "",
-    "actors": "Джереми Айронс, Франсуа Арно, Холлидей Грейнджер",
-    "duration": "3 min",
-    "trailer": "",
-    "kinopoiskId": 521722,
-    "imdb": "https://www.imdb.com/title/tt1582457",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 7,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/521722.jpg"
-  },
-  {
-    "id": 418,
-    "title": "Каратель",
-    "titleRu": "Каратель",
-    "year": 2017,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/978853.jpg",
-    "description": "После того, как семья Фрэнка Касла была убита во время перестрелки между бандами Нью-Йорка, он решает отомстить и начинает охоту на преступников города. В криминальном мире он становится известен как Каратель.",
-    "fullDescription": "После того, как семья Фрэнка Касла была убита во время перестрелки между бандами Нью-Йорка, он решает отомстить и начинает охоту на преступников города. В криминальном мире он становится известен как Каратель.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Боевик",
-    "director": "",
-    "actors": "Джон Бернтал, Эмбер Роуз Рева, Бен Барнс",
-    "duration": "53 min",
-    "trailer": "",
-    "kinopoiskId": 978853,
-    "imdb": "https://www.imdb.com/title/tt5675620",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 10,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/978853.jpg"
-  },
-  {
-    "id": 419,
-    "title": "Сорвиголова",
-    "titleRu": "Сорвиголова",
-    "year": 2015,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/817509.jpg",
-    "description": "В результате несчастного случая юный Мэтт Мердок теряет зрение, но зато все остальные его чувства усиливаются в десятки раз. Повзрослев, Мердок понимает, что хочет посвятить свою жизнь защите людей и борьбе с преступностью. Днем он — успешный адвокат, а ночью — мститель в маске по прозвищу Сорвиг...",
-    "fullDescription": "В результате несчастного случая юный Мэтт Мердок теряет зрение, но зато все остальные его чувства усиливаются в десятки раз. Повзрослев, Мердок понимает, что хочет посвятить свою жизнь защите людей и борьбе с преступностью. Днем он — успешный адвокат, а ночью — мститель в маске по прозвищу Сорвиголова.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Фантастика, Боевик, Фэнтези",
-    "director": "",
-    "actors": "Чарли Кокс, Винсент Д’Онофрио, Дебора Энн Уолл",
-    "duration": "54 min",
-    "trailer": "",
-    "kinopoiskId": 817509,
-    "imdb": "https://www.imdb.com/title/tt3322312",
-    "type": "series",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/817509.jpg"
-  },
-  {
-    "id": 420,
-    "title": "Спартак: Кровь и песок",
-    "titleRu": "Спартак: Кровь и песок",
-    "year": 2010,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/469619.jpg",
-    "description": "Проданный в рабство воин должен выжить на арене, чтобы отомстить. Зрелищный и жесткий пеплум-сериал",
-    "fullDescription": "«Спартак: Кровь и песок» – это жесткий и выразительный рассказ о самом знаменитом из римских гладиаторов. Спартака разлучили с любовью всей его жизни и заставили выходить на арену, где смерть – лучшее развлечение для толпы. Спартак должен бороться за выживание, подружиться с врагами, и усвоить политику нового мира жестокости, секса и славы. Его будут соблазнять властью и изводить местью. Но его страсть даст ему силы преодолеть все испытания в этой истории о смерти, чести и стойкости.",
-    "country": "США",
-    "genres": "Драма, Мелодрама, Приключения, Биография, Боевик",
-    "director": "",
-    "actors": "Энди Уитфилд, Люси Лоулесс, Ману Беннетт",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 469619,
-    "imdb": "https://www.imdb.com/title/tt1442449",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 7,
-      "intellect": 5,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/469619.jpg"
-  },
-  {
-    "id": 421,
-    "title": "Мост",
-    "titleRu": "Мост",
-    "year": 2011,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/574497.jpg",
-    "description": "Преступник оставляет труп ровно на границе между Данией и Швецией. Образцовый скандинавский детектив",
-    "fullDescription": "На самой середине Эресуннского моста, связывающего Швецию с Данией, происходит краткое отключение электроэнергии. Появление освещения сопровождается обнаружением незнакомого объекта: тела женщины, обращенного головой к Швеции, ногами — к Дании. Чья полиция должна руководить расследованием убийства подброшенной за несколько минут мертвой женщины?",
-    "country": "Швеция, Германия, Дания, Норвегия",
-    "genres": "Триллер, Криминал, Детектив",
-    "director": "",
-    "actors": "София Хелин, Рафаэль Петтерссон, Кэндис ван Литсенборг",
-    "duration": "52S min",
-    "trailer": "",
-    "kinopoiskId": 574497,
-    "imdb": "https://www.imdb.com/title/tt1733785",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 6,
-      "emotion": 4,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💀 Violent Survival",
-      "🔥 Pure Action",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/574497.jpg"
-  },
-  {
-    "id": 422,
-    "title": "Убийство на пляже",
-    "titleRu": "Убийство на пляже",
-    "year": 2013,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/736182.jpg",
-    "description": "Смерть ребенка вскрывает тайны прибрежного городка. Образцовый детектив с Дэвидом Теннантом и Оливией Колман",
-    "fullDescription": "Жарким июльским утром в разгар туристического сезона в городке Бродчёрч пропадает 11-летний школьник Дэнни Латимер. Его мать Бет начинает поиски, тогда как её лучшая подруга Элли Миллер, местная полицейская, выходит из отпуска и обнаруживает, что повышение, на которое она рассчитывала, достаётся детективу Алеку Харди, приезжему с репутацией неудачника. Когда тело Дэнни находят, противоположности сталкиваются. И Миллер, и Харди твёрдо намерены решить загадку убийства Дэнни. Когда новость о преступлении разлетается по городу, запускается цепная реакция, которая привлечёт к Бродчёрчу внимание всей страны.",
-    "country": "Великобритания",
-    "genres": "Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Дэвид Теннант, Оливия Колман, Джоди Уиттакер",
-    "duration": "48 min",
-    "trailer": "",
-    "kinopoiskId": 736182,
-    "imdb": "https://www.imdb.com/title/tt2249364",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/736182.jpg"
-  },
-  {
-    "id": 423,
-    "title": "Двойник",
-    "titleRu": "Двойник",
-    "year": 2017,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/958543.jpg",
-    "description": "Мелкий служащий открывает дверь в параллельную реальность. Шпионский сай-фай с двойной ролью Дж. К. Симмонса",
-    "fullDescription": "Говард Силк - незначительный винтик в бюрократической системе. Однажды герой обнаруживает, что агентство, в котором он работает, на самом деле занимается охраной переходов в параллельное измерение.",
-    "country": "США",
-    "genres": "Триллер, Драма, Фантастика",
-    "director": "",
-    "actors": "Дж.К. Симмонс, Оливия Уильямс, Гарри Ллойд",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 958543,
-    "imdb": "https://www.imdb.com/title/tt4643084",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/958543.jpg"
-  },
-  {
-    "id": 424,
-    "title": "Мистер Робот",
-    "titleRu": "Мистер Робот",
-    "year": 2015,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/859908.jpg",
-    "description": "Угрюмый хакер борется с капитализмом и самим собой. Революционный технотриллер с Рами Малеком",
-    "fullDescription": "История молодого программиста Эллиота, страдающего социофобией и решившего, что единственный приемлемый для него способ взаимодействия с людьми — это профессия хакера. Таким образом, он быстро оказывается в том самом месте, где пересекаются интересы его работодателя — фирмы, занимающейся кибербезопасностью, — и подпольных организаций, которые пытаются его завербовать с целью обрушения самых могучих американских корпораций.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Рами Малек, Кристиан Слейтер, Карли Чайкин",
-    "duration": "49 min",
-    "trailer": "",
-    "kinopoiskId": 859908,
-    "imdb": "https://www.imdb.com/title/tt4158110",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/859908.jpg"
-  },
-  {
-    "id": 425,
-    "title": "Родина",
-    "titleRu": "Родина",
-    "year": 2011,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/574688.jpg",
-    "description": "Сотрудница ЦРУ с биполярным расстройством борется с мировым терроризмом. Самый важный шпионский сериал 2010-х",
-    "fullDescription": "Сержант морской пехоты ВМФ США Николас Броуди возвращается домой после восьми лет отсутствия без вести в Ираке. Кэрри Мэтисон, офицер ЦРУ, подозревает, что он причастен к подготовке террористической атаки на Америку.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Клэр Дэйнс, Мэнди Пэтинкин, Дэмиан Льюис",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 574688,
-    "imdb": "https://www.imdb.com/title/tt1796960",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/574688.jpg"
-  },
-  {
-    "id": 426,
-    "title": "Табу",
-    "titleRu": "Табу",
-    "year": 2017,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/932068.jpg",
-    "description": "Дерзкий авантюрист против Англии, США и Ост-Индской компании. Драма с Томом Харди от автора «Острых козырьков»",
-    "fullDescription": "Искатель приключений Джеймс Кезайя Делейни строит свою собственную корабельную империю в начале XIX века.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Детектив",
-    "director": "",
-    "actors": "Том Харди, Уна Чаплин, Ричард Диксон",
-    "duration": "59 min",
-    "trailer": "",
-    "kinopoiskId": 932068,
-    "imdb": "https://www.imdb.com/title/tt3647998",
-    "type": "series",
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 8,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/932068.jpg"
-  },
-  {
-    "id": 427,
-    "title": "Крах",
-    "titleRu": "Крах",
-    "year": 2013,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/674019.jpg",
-    "description": "Неуловимый убийца держит в страхе весь Белфаст. Джиллиан Андерсон в триллере о маньяке с идеальной репутацией",
-    "fullDescription": "Белфаст, Северная Ирландия. Местное население терроризирует серийный убийца, которого никак не может поймать городская полиция. Детектив Стелла Гибсон берется разобраться в этом загадочном мрачном деле.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Джиллиан Андерсон, Джейми Дорнан, Джон Линч",
-    "duration": "21S min",
-    "trailer": "",
-    "kinopoiskId": 674019,
-    "imdb": "https://www.imdb.com/title/tt2294189",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/674019.jpg"
-  },
-  {
-    "id": 428,
-    "title": "Джентльмены",
-    "titleRu": "Джентльмены",
-    "year": 2024,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1435343.jpg",
-    "description": "Наследник узнаёт, что поместье его отца — прикрытие для нелегального бизнеса. Лихой спин-офф фильма Гая Ричи",
-    "fullDescription": "Молодой человек по имени Эдди Холстед узнаёт, что полученное им большое наследство связано с наркоимперией Бобби Гласса.",
-    "country": "США, Великобритания",
-    "genres": "Криминал, Боевик, Комедия",
-    "director": "",
-    "actors": "Тео Джеймс, Кая Скоделарио, Дэниэл Ингс",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1435343,
-    "imdb": "https://www.imdb.com/title/tt13210838",
-    "type": "series",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "💀 Violent Survival"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1435343.jpg"
-  },
-  {
-    "id": 429,
-    "title": "11.22.63",
-    "titleRu": "11.22.63",
-    "year": 2016,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/891337.jpg",
-    "description": "Школьный учитель проникает в прошлое, чтобы предотвратить убийство президента Кеннеди. По роману Стивена Кинга",
-    "fullDescription": "Учитель английского языка отправляется в прошлое, чтобы предотвратить убийство Кеннеди, но в результате сильно привязывается к той жизни, которая у него появилась в ушедшей эпохе.",
-    "country": "США",
-    "genres": "Триллер, Драма, Мелодрама, Детектив, Фантастика",
-    "director": "",
-    "actors": "Джеймс Франко, Сара Гадон, Джордж МакКэй",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 891337,
-    "imdb": "https://www.imdb.com/title/tt2879552",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/891337.jpg"
-  },
-  {
-    "id": 430,
-    "title": "Американская история преступлений",
-    "titleRu": "Американская история преступлений",
-    "year": 2016,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4553901.jpg",
-    "description": "Процесс над звездой НФЛ, смерть Джанни Версаче. Антология самых громких дел в истории США",
-    "fullDescription": "Каждый сезон проекта снят в жанре криминальной драмы и расскажет о том или ином громком преступлении, оставившем свой след в истории Соединенных Штатов. Первый сезон поведает зрителям обо всех перипетиях так называемого «Дела Симпсона», прогремевшего на весь мир в 90-х годах прошлого века. Окровавленные перчатки, странные показания соседей, попытка суицида, чехарда с присяжными и знаменитая погоня за подозреваемым, которая транслировалась по телевизору в прямом эфире… Эта история о том, как звезда экранов, возможно, жестоко убил двух человек, настолько запутана, что зрителю придется самому выбрать верную сторону.",
-    "country": "США",
-    "genres": "Драма, Криминал, Биография",
-    "director": "",
-    "actors": "Сара Полсон, Аннали Эшфорд, Стерлинг К. Браун",
-    "duration": "42 min",
-    "trailer": "",
-    "kinopoiskId": 4553901,
-    "imdb": "https://www.imdb.com/title/tt2788432",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4553901.jpg"
-  },
-  {
-    "id": 431,
-    "title": "Молодой Папа",
-    "titleRu": "Молодой Папа",
-    "year": 2016,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/893361.jpg",
-    "description": "Глава Ватикана ломает шаблоны и потрясает устои. Неотразимый Джуд Лоу в провокационном шоу Паоло Соррентино",
-    "fullDescription": "История италоамериканца Ленни Белардо, избранного Папой Римским Пием XIII. Ленни - сложный человек, который ведет себя эксцентрично, а иногда и пугающе, и действия его на посту Папы предугадать не так-то просто, отчего кардиналы плетут против него интриги .",
-    "country": "США, Франция, Великобритания, Испания, Италия",
-    "genres": "Драма",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 893361,
-    "imdb": null,
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/893361.jpg"
-  },
-  {
-    "id": 432,
-    "title": "Парки и зоны отдыха",
-    "titleRu": "Парки и зоны отдыха",
-    "year": 2009,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/455368.jpg",
-    "description": "Бойкая чиновница борется с бюрократией, чтобы благоустроить город. Абсурдистский ситком для любителей «Офиса»",
-    "fullDescription": "Простой чиновник Лесли Ноуп однажды поняла, что своей работой не приносит обществу никакой пользы. Тогда же она решает превратить заброшенный карьер практически в парк культуры и отдыха. Препятствием на её пути, конечно же, станут негибкая бюрократическая система, эгоистичные соседи, не желающие перемен даже к лучшему, и фирмы-застройщики, сразу заинтересовавшиеся ненужным им до этого бесхозным участком. Но Лесли им не уступит...",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Эми Полер, Джим О’Хейр, Ник Офферман",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 455368,
-    "imdb": "https://www.imdb.com/title/tt1266020",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/455368.jpg"
-  },
-  {
-    "id": 433,
-    "title": "Два с половиной человека",
-    "titleRu": "Два с половиной человека",
-    "year": 2003,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/232247.jpg",
-    "description": "Неутомимый ловелас пытается ужиться с невезучим братом и его сыном. Ситком от авторов «Теории большого взрыва»",
-    "fullDescription": "Закоренелый холостяк Чарли, постоянно опасающийся за свою свободу, и его брат Алан, недавно разошедшийся с женой, живут под одной крышей. Чарли только и делает, что заводит любовные интрижки, а Алан всеми силами пытается от него не отстать. В свободное от амурных приключений время братья воспитывают десятилетнего сынишку Алана Джейка. Пытаясь сделать из него настоящего мужчину, они порой просвещают его в совсем неподходящих для его возраста областях, учат игре в покер или флирту с девушками.",
-    "country": "США",
-    "genres": "Мелодрама, Комедия",
-    "director": "",
-    "actors": "Джон Крайер, Эштон Катчер, Ангус Т. Джонс",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 232247,
-    "imdb": "https://www.imdb.com/title/tt0369179",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/232247.jpg"
-  },
-  {
-    "id": 434,
-    "title": "Люцифер",
-    "titleRu": "Люцифер",
-    "year": 2016,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/893621.jpg",
-    "description": "Заскучавший и несчастный повелитель преисподней Люцифер Морнингстар оставил свой престол и отправился в современный Лос-Анджелес, где основал ночной клуб «Lux». Очаровательный, харизматичный и дьявольски привлекательный Люцифер наслаждается отдыхом — вином, женщинами и музыкой, пока красивая поп-...",
-    "fullDescription": "Заскучавший и несчастный повелитель преисподней Люцифер Морнингстар оставил свой престол и отправился в современный Лос-Анджелес, где основал ночной клуб «Lux». Очаровательный, харизматичный и дьявольски привлекательный Люцифер наслаждается отдыхом — вином, женщинами и музыкой, пока красивая поп-звезда не оказывается убитой на пороге его клуба.",
-    "country": "США",
-    "genres": "Драма, Криминал, Фэнтези",
-    "director": "",
-    "actors": "Том Эллис, Лорен Джерман, Кевин Алехандро",
-    "duration": "42 min",
-    "trailer": "",
-    "kinopoiskId": 893621,
-    "imdb": "https://www.imdb.com/title/tt4052886",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/893621.jpg"
-  },
-  {
-    "id": 435,
-    "title": "Касл",
-    "titleRu": "Касл",
-    "year": 2009,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/409640.jpg",
-    "description": "Писатель ищет убийцу, который подражает героям его книг. Процедурал с юмором и отсылками к поп-культуре",
-    "fullDescription": "Знакомьтесь, Ричард Касл - успешный писатель детективного жанра, который в последней книге убил своего главного героя. Но кажется, что одному из почитателей его таланта книги понравились слегка чересчур - в городе появляется подражатель, совершающий преступления, с убийственной точностью копируя способы, которыми Касл убивал в своих произведениях. И вот наш изнывающий от скуки писатель был вызван в отдел убийств Нью-йоркской полиции, чтобы помочь найти убийцу.",
-    "country": "США",
-    "genres": "Драма, Криминал, Мелодрама, Детектив, Комедия",
-    "director": "",
-    "actors": "Нэйтан Филлион, Стана Катич, Сьюзэн Салливан",
-    "duration": "43 min",
-    "trailer": "",
-    "kinopoiskId": 409640,
-    "imdb": "https://www.imdb.com/title/tt1219024",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 9,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/409640.jpg"
-  },
-  {
-    "id": 436,
-    "title": "Компьютерщики",
-    "titleRu": "Компьютерщики",
-    "year": 2006,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/386715.jpg",
-    "description": "Айтишники пытаются сработаться с новой начальницей-дилетанткой. Фееричный ситком с Крисом О’Даудом",
-    "fullDescription": "Действие сериала происходит в офисах «Reynholm Industries» — вымышленной британской корпорации, расположенной в центре Лондона. Сюжет строится вокруг проделок команды поддержки информационных технологий, состоящей из трёх человек и находящейся в грязном, запущенном подвале, сильно контрастирующим с блеском современной архитектуры и великолепными видами Лондона, доступных остальным подразделениям организации.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Крис О'Дауд, Ричард Айоаде, Кэтрин Паркинсон",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 386715,
-    "imdb": "https://www.imdb.com/title/tt0487831",
-    "type": "series",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/386715.jpg"
-  },
-  {
-    "id": 437,
-    "title": "Белый воротничок",
-    "titleRu": "Белый воротничок",
-    "year": 2009,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/445186.jpg",
-    "description": "Мошенник-ас помогает агенту ФБР ловить элиту преступного мира. Тонкий детектив о криминальных талантах",
-    "fullDescription": "Нил Кэффри, невероятно обаятельный преступный ум, наконец-то был пойман своим извечным врагом, агентом ФБР Питером Бёрком. Когда Нил бежит из тюрьмы, чтобы найти свою пропавшую любовь, Питер ловит его еще раз. Но Кэффри предлагает ему не торопиться с отправкой в тюрьму, и рассмотреть возможность сотрудничества. Ведь Нил мог бы помочь поймать самых “элитных” преступников, “белых воротничков” преступного мира. Питер, понимая, что интуиция и преступный опыт Нила, которых нет у законопослушного агента, могут стать хорошим подспорьем в борьбе с криминалом, соглашается.",
-    "country": "США",
-    "genres": "Драма, Криминал, Детектив, Комедия",
-    "director": "",
-    "actors": "Мэтт Бомер, Тим ДеКэй, Уилли Гарсон",
-    "duration": "17S min",
-    "trailer": "",
-    "kinopoiskId": 445186,
-    "imdb": "https://www.imdb.com/title/tt1358522",
-    "type": "series",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 9,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/445186.jpg"
-  },
-  {
-    "id": 438,
-    "title": "Форс-мажоры",
-    "titleRu": "Форс-мажоры",
-    "year": 2011,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/557806.jpg",
-    "description": "Юрист-самоучка случайно попадает в амбициозную фирму. Стильное и острое производственное драмеди с Меган Маркл",
-    "fullDescription": "Убегая после неудачной попытки сбыта наркотиков, юрист-самоучка Майк Росс, выдающий себя за выпускника Гарварда, попадает на собеседование к одному из лучших адвокатов по сделкам Нью-Йорка Харви Спектру. \n\nУстав от скучных соискателей, мечтающих «верой и правдой служить букве закона», Харви рискует и нанимает Майка: у парня врожденный талант и фотографическая память. Так рождается один из самых неоднозначных, но, в то же время, и самых блестящих адвокатских тандемов на Манхэттене.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Габриэль Махт, Патрик Дж. Адамс, Меган Маркл",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 557806,
-    "imdb": "https://www.imdb.com/title/tt1632701",
-    "type": "series",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/557806.jpg"
-  },
-  {
-    "id": 439,
-    "title": "Обмани меня",
-    "titleRu": "Обмани меня",
-    "year": 2009,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/428930.jpg",
-    "description": "Эксперт по лжи помогает полиции раскалывать преступников. Тим Рот в детективном сериале в духе «Доктора Хауса»",
-    "fullDescription": "Доктор Лайтман считает, что все врут. И чтобы доказать это, ему достаточно всего лишь пару минут пообщаться с человеком. Любое движение, жест, любое неосторожное слово могут выдать в вас лжеца. Надо лишь уметь это увидеть. Среднестатистический человек врет три раза за десять минут разговора. Задача доктора Лайтмана и его коллег - распознать эту ложь, и, используя свои таланты, они спасают от тюрьмы невиновных и сажают за решетку преступников. К Агентству Лайтмана обращаются за помощью федералы, правительство, Конгресс и даже премьер-министр Узбекистана. Но может ли человек быть счастлив, если видит, что все вокруг постоянно лгут?",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Тим Рот, Келли Уильямс, Брендан Хайнс",
-    "duration": "43 min",
-    "trailer": "",
-    "kinopoiskId": 428930,
-    "imdb": "https://www.imdb.com/title/tt1235099",
-    "type": "series",
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/428930.jpg"
-  },
-  {
-    "id": 440,
-    "title": "Тетрадь смерти",
-    "titleRu": "Тетрадь смерти",
-    "year": 2006,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/406148.jpg",
-    "description": "Старшекласснику Лайту Ягами в руки попадает тетрадь синигами Рюка. Каждый человек, чьё имя записать в эту тетрадку, умрёт, поэтому Лайт решает бороться со злом на земле.",
-    "fullDescription": "Старшекласснику Лайту Ягами в руки попадает тетрадь синигами Рюка. Каждый человек, чьё имя записать в эту тетрадку, умрёт, поэтому Лайт решает бороться со злом на земле.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Криминал, Детектив, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 406148,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/406148.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/276376.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/276376.jpg"
   },
   {
     "id": 441,
@@ -14950,7 +11934,8 @@ export const movies = [
       "✨ Баланс & Атмосфера"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/461533.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/461533.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/461533.jpg"
   },
   {
     "id": 442,
@@ -14984,7 +11969,8 @@ export const movies = [
       "🌙 Dark Mood"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79244.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79244.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79244.jpg"
   },
   {
     "id": 443,
@@ -15018,7 +12004,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8173.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8173.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8173.jpg"
   },
   {
     "id": 444,
@@ -15052,7 +12039,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/896351.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/896351.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/896351.jpg"
   },
   {
     "id": 445,
@@ -15084,7 +12072,8 @@ export const movies = [
       "🎬 Classic Storytelling"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1386280.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1386280.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1386280.jpg"
   },
   {
     "id": 446,
@@ -15118,7 +12107,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/175140.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/175140.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/175140.jpg"
   },
   {
     "id": 447,
@@ -15152,41 +12142,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1391515.jpg"
-  },
-  {
-    "id": 448,
-    "title": "Блич: Тысячелетняя кровавая война",
-    "titleRu": "Блич: Тысячелетняя кровавая война",
-    "year": 2022,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4789626.jpg",
-    "description": "Компания друзей должна защитить загробный мир от уничтожения. Эпический финал аниме по манге Таито Кубо",
-    "fullDescription": "В Каракуре, родном городе Итиго Куросаки, начинают пропадать люди, а Общество душ фиксирует внезапный рост количества «пустых», уничтоженных в мире живых. Вскоре Итиго предстоит вступить в битву с лидером квинси, который собирается уничтожить Общество душ.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джонни Йонг Бош, Масакадзу Морита, Такаюки Суго",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4789626,
-    "imdb": "https://www.imdb.com/title/tt14986406",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4789626.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1391515.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1391515.jpg"
   },
   {
     "id": 449,
@@ -15220,10463 +12177,8 @@ export const movies = [
       "⚡ Adrenaline Rush"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364563.jpg"
-  },
-  {
-    "id": 450,
-    "title": "Первый шаг",
-    "titleRu": "Первый шаг",
-    "year": 2000,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77045.jpg",
-    "description": "История молодого боксера, Магуночи Иппо. Магуночи Иппо обычный японский школьник. Вместо того чтобы в свободное от школы время развлекаться подобно большинству подростков, Иппо помогает матери. В школе он является объектом насмешек, поскольку рыбацкий бизнес придает ему специфический аромат. В жи...",
-    "fullDescription": "История молодого боксера, Магуночи Иппо. Магуночи Иппо обычный японский школьник. Вместо того чтобы в свободное от школы время развлекаться подобно большинству подростков, Иппо помогает матери. В школе он является объектом насмешек, поскольку рыбацкий бизнес придает ему специфический аромат. В жизни Иппо сплошные трудности. Однако все что не происходит к лучшему, и однажды Иппо был спасен от издевательств боксером по имени Такамура. Тогда он решает следовать по стопам Такамуры и стать боксером. У Иппо появляется цель в жизни.",
-    "country": "Япония",
-    "genres": "Комедия, Мультфильм, Спорт, Аниме",
-    "director": "",
-    "actors": "Д.С. Дуглас, Питер Дойл, Стив Стейли",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 77045,
-    "imdb": "https://www.imdb.com/title/tt1484155",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77045.jpg"
-  },
-  {
-    "id": 451,
-    "title": "Самурай Чамплу",
-    "titleRu": "Самурай Чамплу",
-    "year": 2004,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/256147.jpg",
-    "description": "Мугэн - мечник с повадками брейкдансера, вспыльчивый, грубый и вечно голодный мужлан. Дзин - благородный, хорошо воспитанный ронин, чьё прошлое скрывает мрачную тайну.\n\nНет в мире двух других самураев, настолько непохожих друг на друга - а судьба не только сводит их в поединке, но и заставляет пр...",
-    "fullDescription": "Мугэн - мечник с повадками брейкдансера, вспыльчивый, грубый и вечно голодный мужлан. Дзин - благородный, хорошо воспитанный ронин, чьё прошлое скрывает мрачную тайну.\n\nНет в мире двух других самураев, настолько непохожих друг на друга - а судьба не только сводит их в поединке, но и заставляет присоединиться к Фуу, целеустремленной юной особе, озабоченной поисками таинственного самурая, пахнущего подсолнухами. Это история о любви, дружбе и мужестве... или нет?!",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Казуя Накаи, Гинпей Сато, Аяко Кавасуми",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 256147,
-    "imdb": "https://www.imdb.com/title/tt0423731",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/256147.jpg"
-  },
-  {
-    "id": 452,
-    "title": "Моб Психо 100",
-    "titleRu": "Моб Психо 100",
-    "year": 2016,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1002686.jpg",
-    "description": "Сигэо Кагэяма, также известный как Моб, — восьмиклассник с психическими способностями. Он умеет сгибать ложки и поднимать вещи силой мысли с ранних лет, но затем он постепенно начал сдерживаться от использования способностей на публике. И теперь единственное, чего он хочет — это подружиться с одн...",
-    "fullDescription": "Сигэо Кагэяма, также известный как Моб, — восьмиклассник с психическими способностями. Он умеет сгибать ложки и поднимать вещи силой мысли с ранних лет, но затем он постепенно начал сдерживаться от использования способностей на публике. И теперь единственное, чего он хочет — это подружиться с одноклассницей Цубоми. Вместе со своим психическим наставником (у которого нет психических способностей), он продолжает повседневную жизнь, пытаясь понять свое назначение в жизни.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Сэцуо Ито, Такахиро Сакурай, Мию Ирино",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1002686,
-    "imdb": "https://www.imdb.com/title/tt5897304",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1002686.jpg"
-  },
-  {
-    "id": 453,
-    "title": "Вайолет Эвергарден",
-    "titleRu": "Вайолет Эвергарден",
-    "year": 2018,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1097392.jpg",
-    "description": "Некогда один известный профессор в помощь своей слепнущей жене-писательнице создал человекоподобную машину, так называемую автозапоминающую куклу. Подобные куклы получили широкое распространение, и вскоре так стали называть сотрудниц почты, которые помогают людям выражать чувства, находя нужные с...",
-    "fullDescription": "Некогда один известный профессор в помощь своей слепнущей жене-писательнице создал человекоподобную машину, так называемую автозапоминающую куклу. Подобные куклы получили широкое распространение, и вскоре так стали называть сотрудниц почты, которые помогают людям выражать чувства, находя нужные слова и обращая их в письма. Девушка Вайолет, потерявшая на войне обе руки, восхищается работой автозапоминающих кукол. Больше всего на свете она хочет стать одной из них, чтобы научиться понимать эмоции и узнать значение когда-то сказанных ей слов.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юи Исикава, Эрика Харлахер, Санши",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1097392,
-    "imdb": "https://www.imdb.com/title/tt7078180",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1097392.jpg"
-  },
-  {
-    "id": 454,
-    "title": "Человек-бензопила",
-    "titleRu": "Человек-бензопила",
-    "year": 2022,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2040161.jpg",
-    "description": "Сирота в долгах становится отчаянным борцом с демонами. Кровавое аниме по одной из самых популярных манг",
-    "fullDescription": "Подросток Дэндзи всего лишь хотел жить обычной жизнью и есть досыта, но оставшиеся после смерти отца долги вынуждают парня влачить полуголодное существование и жить в халупе. Чтобы расплатиться с якудза, он уже продал некоторые свои органы и даже промышляет нелегальной охотой на демонов, в чём ему помогает необычный питомец Потита, демоническое существо с бензопилой. Однажды коварные бандиты заманивают Дэндзи в ловушку и приносят в жертву, но Потита не даёт парню умереть. Он сращивает его тело и становится сердцем своего хозяина — теперь Дэндзи обладает повышенной регенерацией, а также может превращать конечности в бензопилы. Такого ценного кадра нанимает Бюро общественной безопасности, чтобы тот снова охотился на демонов. На новой работе парень знакомится с коллегами — меланхоличным охотником Аки, вспыльчивой полудемонессой Пауэр — и влюбляется в свою загадочную начальницу Макиму.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кикуносукэ Тоя, Райан Кольт Леви, Томори Кусуноки",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 2040161,
-    "imdb": "https://www.imdb.com/title/tt13616990",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2040161.jpg"
-  },
-  {
-    "id": 455,
-    "title": "Созданный в Бездне",
-    "titleRu": "Созданный в Бездне",
-    "year": 2017,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1047593.jpg",
-    "description": "Девочка ищет маму в недрах Земли, полных тайн, чудес природы и монстров. Анимация студии Kinema Citrus",
-    "fullDescription": "Когда-то на Земле было обнаружено отверстие, уходящее глубоко в недры планеты. Его назвали Бездной. Там живут опасные существа и хранятся ценные реликвии с древних времён. Девочка Рико мечтает стать отважной исследовательницей Бездны, какой была её погибшая мать, но пока Рико лишь одна из множества младших помощников, выполняющих тяжелую работу на самом верхнем уровне. Однажды Рико встречает мальчика, который оказывается роботом и не помнит, как здесь оказался. Вместе они отправляются в полное опасностей путешествие на самое дно Бездны.",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1047593,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1047593.jpg"
-  },
-  {
-    "id": 456,
-    "title": "Волейбол!!",
-    "titleRu": "Волейбол!!",
-    "year": 2014,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/840073.jpg",
-    "description": "Один случайный матч зажёг в Сёё Хинате безумную любовь к волейболу. Хоть в его волейбольном клубе изначально не было даже участников, упорством и стараниями Сёё собравшаяся команда всё-таки прорвалась в свой первый и последний финальный матч в средней школе. Но там она была начисто разгромлена То...",
-    "fullDescription": "Один случайный матч зажёг в Сёё Хинате безумную любовь к волейболу. Хоть в его волейбольном клубе изначально не было даже участников, упорством и стараниями Сёё собравшаяся команда всё-таки прорвалась в свой первый и последний финальный матч в средней школе. Но там она была начисто разгромлена Тобио Кагэямой, известным как Король площадки. Поклявшись отомстить, Хината вступает в клуб волейбола в старшей школе Карасуно и лицом к лицу сталкивается со своим ненавистным противником Кагэямой.",
-    "country": "Япония",
-    "genres": "Комедия, Мультфильм, Спорт, Аниме",
-    "director": "",
-    "actors": "Аюму Мурасе, Кайто Исикава, Ю Хаяси",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 840073,
-    "imdb": "https://www.imdb.com/title/tt3398540",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/840073.jpg"
-  },
-  {
-    "id": 457,
-    "title": "Твоя апрельская ложь",
-    "titleRu": "Твоя апрельская ложь",
-    "year": 2014,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/846825.jpg",
-    "description": "Пианист-вундеркинд Косэй Арима, выиграв множество детских конкурсов, после смерти матери теряет к чему-либо интерес и перестает играть. Все меняется, когда Косэй встречает скрипачку Каори. Она хочет помочь Косэю вернуться в музыкальный мир и вновь обрести смысл жизни.",
-    "fullDescription": "Пианист-вундеркинд Косэй Арима, выиграв множество детских конкурсов, после смерти матери теряет к чему-либо интерес и перестает играть. Все меняется, когда Косэй встречает скрипачку Каори. Она хочет помочь Косэю вернуться в музыкальный мир и вновь обрести смысл жизни.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Музыка, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Нацуки Ханаэ, Риса Танеда, Аяне Сакура",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 846825,
-    "imdb": "https://www.imdb.com/title/tt3895150",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/846825.jpg"
-  },
-  {
-    "id": 458,
-    "title": "Город, в котором меня нет",
-    "titleRu": "Город, в котором меня нет",
-    "year": 2016,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/957840.jpg",
-    "description": "Жизнь мангаки нелегка. Тяжелый и кропотливый труд по достоинству вознаграждается в редких случаях. Авторские работы, в которые были вложены душа и нравоучительный посыл, не всегда достигают сердец читателей. Однажды понять, что ты пустой и скучный человек, не способный на большее — самый большой ...",
-    "fullDescription": "Жизнь мангаки нелегка. Тяжелый и кропотливый труд по достоинству вознаграждается в редких случаях. Авторские работы, в которые были вложены душа и нравоучительный посыл, не всегда достигают сердец читателей. Однажды понять, что ты пустой и скучный человек, не способный на большее — самый большой страх в жизни мангаки.\nСатору Фудзинума - тоже автор. В свои 28 он трудится не покладая рук, однако не все авторы гении, и далеко не у каждого получается выразить себя в своих работах. Множеством вопросов ежедневно задается Сатору, и боится однажды увидеть себя пустым и скучным. Но разве пустые и скучные люди могут так же ловко подмечать в своем окружении разные мелочи? Сатору может. Но признавать это в себе, то, что делает его далеко не посредственным, он не хочет. Впрочем, как и называть свой дар сверхъестественным.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Фантастика, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 957840,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/957840.jpg"
-  },
-  {
-    "id": 459,
-    "title": "Берсерк",
-    "titleRu": "Берсерк",
-    "year": 1997,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/257376.jpg",
-    "description": "Таинственный воин бросает вызов безжалостному королю. Культовый мультсериал в декорациях Средневековья",
-    "fullDescription": "Через предательство и кровь к власти пришел новый король. Его демоны-подручные чинят несправедливости до тех пор, пока в город однажды ночью не приходит тяжело вооруженный воин. Весь покрытый оружием, броней и шрамами он называет себя Чёрным Мечником. Размеры его меча могут сравниться только с его ненавистью к королю и его демонам.",
-    "country": "Польша, Япония",
-    "genres": "Драма, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Марк Дирейсон, Нобутоши Канна, Кэрри Керанен",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 257376,
-    "imdb": "https://www.imdb.com/title/tt0318871",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/257376.jpg"
-  },
-  {
-    "id": 460,
-    "title": "Мастер Муси",
-    "titleRu": "Мастер Муси",
-    "year": 2005,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258622.jpg",
-    "description": "Считалось, что за пределами нашего мира есть существа, полностью отличные от тех растений и животных, что нам знакомы. Люди боялись этих странных созданий с древнейших времен. И с тех давних пор стали называть их муси. Также есть и люди, изучающие этих загадочных существ. Главный герой аниме - Му...",
-    "fullDescription": "Считалось, что за пределами нашего мира есть существа, полностью отличные от тех растений и животных, что нам знакомы. Люди боялись этих странных созданий с древнейших времен. И с тех давних пор стали называть их муси. Также есть и люди, изучающие этих загадочных существ. Главный герой аниме - Мусиси (специалист по муси) Гинко. Он обладает особыми возможностями, которые позволяют ему видеть и чувствовать муси. Путешествуя без какой-либо конкретной цели, Гинко всегда готов помочь нуждающимся в нем людям.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Детектив, Фэнтези, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юто Накано, Трэвис Уиллингэм, Кодзюн Ито",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 258622,
-    "imdb": "https://www.imdb.com/title/tt0807832",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258622.jpg"
-  },
-  {
-    "id": 461,
-    "title": "Крутой учитель Онидзука",
-    "titleRu": "Крутой учитель Онидзука",
-    "year": 1999,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408596.jpg",
-    "description": "Байкер из уличной банды устраивается работать в школу. Смешной и глубокий аниме-сериал по манге Тору Фудзисавы",
-    "fullDescription": "Частная «Академия Священного Леса» впервые сталкивается с таким учителем как Эйкити Онидзука, а он, кажется, не очень-то хорошо знаком со своими непосредственными обязанностями и готов продемонстрировать на практике весьма радикальные педагогические методики.",
-    "country": "Япония",
-    "genres": "Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Стив Блум, Кирк Торнтон, Дзюнъити Сувабе",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 408596,
-    "imdb": "https://www.imdb.com/title/tt0315008",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408596.jpg"
-  },
-  {
-    "id": 462,
-    "title": "Психопаспорт",
-    "titleRu": "Психопаспорт",
-    "year": 2012,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/707090.jpg",
-    "description": "Япония, XXII век. С целью предотвращения преступлений была разработана система Sibyl. Это позволило объективно определять уровень угрозы у каждого гражданина путем проверки его психического состояния на наличие признаков преступного умысла. Данный метод получил название Психопаспорт. Поддерживают...",
-    "fullDescription": "Япония, XXII век. С целью предотвращения преступлений была разработана система Sibyl. Это позволило объективно определять уровень угрозы у каждого гражданина путем проверки его психического состояния на наличие признаков преступного умысла. Данный метод получил название Психопаспорт. Поддерживают закон инспекторы, которые при малейшем признаке недоброжелательности у гражданина имеют право незамедлительно применять против него оружие.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кана Ханадзава, Миюки Савасиро, Норико Хидака",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 707090,
-    "imdb": "https://www.imdb.com/title/tt2379308",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/707090.jpg"
-  },
-  {
-    "id": 463,
-    "title": "Тетрадь дружбы Нацумэ",
-    "titleRu": "Тетрадь дружбы Нацумэ",
-    "year": 2008,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/481534.jpg",
-    "description": "Такаси Нацумэ может видеть духов и прочую нечисть. Парень часто переезжал с места на место в надежде найти покой. Поселившись в доме своей умершей бабушки, Такаси находит её дневник с описанием борьбы с силами тьмы.",
-    "fullDescription": "Такаси Нацумэ может видеть духов и прочую нечисть. Парень часто переезжал с места на место в надежде найти покой. Поселившись в доме своей умершей бабушки, Такаси находит её дневник с описанием борьбы с силами тьмы.",
-    "country": "Япония",
-    "genres": "Драма, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Хироши Камия, Кадзухико Иноуэ, Мэттью Элкинс",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 481534,
-    "imdb": "https://www.imdb.com/title/tt1352421",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/481534.jpg"
-  },
-  {
-    "id": 464,
-    "title": "Семья шпиона",
-    "titleRu": "Семья шпиона",
-    "year": 2022,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4686248.jpg",
-    "description": "Спецагент заводит семью, чтобы спасти миссию. Аниме, в котором жена оказывается киллером, а дочь — телепатом",
-    "fullDescription": "Для выполнения новой миссии секретный агент должен завести поддельную семью. Но он и не подозревает, что его фиктивная жена — наёмная убийца, а удочеренная маленькая девочка — телепат, которая хочет, чтобы приёмные родители, несмотря ни на что, действительно были вместе.",
-    "country": "Япония",
-    "genres": "Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ацуми Танезаки, Такуя Эгути, Саори Хаями",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4686248,
-    "imdb": "https://www.imdb.com/title/tt13706018",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4686248.jpg"
-  },
-  {
-    "id": 465,
-    "title": "Навсикая из долины ветров",
-    "titleRu": "Навсикая из долины ветров",
-    "year": 1984,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8240.jpg",
-    "description": "В далеком будущем храбрая девушка спасает планету. Экологический фэнтези-постапокалипсис раннего Хаяо Миядзаки",
-    "fullDescription": "Будущее. После ядерной войны Землю постигла ужасная экологическая катастрофа. Поверхность планеты почти целиком покрывают леса, испускающие в атмосферу ядовитые споры растений. Оставшиеся в живых люди живут в зонах, ещё не покрытых лесами, и периодически сталкиваются с чудовищными насекомообразными монстрами. Долина ветров — одно из царств, образовавшихся на руинах прежних государств. Им управляет отважная принцесса Навсикая. Но мирное существование Долины ветров нарушается, когда маленькая страна сталкивается с воинственными соседями, которые стремятся воссоздать опасное оружие, способное окончательно уничтожить планету.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Фэнтези, Мультфильм, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Суми Симамото, Махито Цудзимура, Хисако Кёда",
-    "duration": "117 min",
-    "trailer": "",
-    "kinopoiskId": 8240,
-    "imdb": "https://www.imdb.com/title/tt0087544",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8240.jpg"
-  },
-  {
-    "id": 466,
-    "title": "Дороро",
-    "titleRu": "Дороро",
-    "year": 2019,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1226631.jpg",
-    "description": "Безжалостный отец готов пожертвовать жизнью сына ради власти и богатства. Новый взгляд на классическую мангу",
-    "fullDescription": "Чтобы победить голод, болезни и прочие бедствия на своих землях, а также стать правителем страны, лорд Даиго заключает сделку с демонами: в обмен на благополучие они могут забрать у него что угодно. Хитрые демоны выбирают органы и части тела только что рождённого первенца лорда, и от малыша практически ничего не остаётся. Даиго приказывает избавиться от останков, однако мальчик обладает чудесной выживаемостью и попадает в руки к невероятному врачу. \n\n16 лет спустя юноша по имени Хяккимару путешествует по стране. У него нет ни зрения, ни слуха, ни обоняния, ни осязания, зато он способен распознавать демонов, для которых встреча с парнем не сулит ничего хорошего — убивая их, Хяккимару возращает себе когда-то отобранные части тела. Однажды он случайно спасает из лап речного монстра малолетнего прохвоста Дороро, и тот увязывается за необычным путником.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джейсон Дуглас, Рио Сузуки, Мугихито",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1226631,
-    "imdb": "https://www.imdb.com/title/tt9458304",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1226631.jpg"
-  },
-  {
-    "id": 467,
-    "title": "Токийский гуль",
-    "titleRu": "Токийский гуль",
-    "year": 2014,
-    "rating": 7.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841681.jpg",
-    "description": "После нападения монстра школьник сам становится наполовину чудовищем. Людоедское аниме с идеальным саундтреком",
-    "fullDescription": "С обычным студентом Кэном Канэки случается беда, парень попадает в больницу. Но на этом неприятности не заканчиваются: ему пересаживают органы гулей – существ, поедающих плоть людей. После злосчастной операции Канэки становится одним из чудовищ, пытается стать своим, но для людей он теперь изгой, обреченный на уничтожение.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Боевик, Фэнтези, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Нацуки Ханаэ, Остин Тиндл, Брина Паленсия",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 841681,
-    "imdb": "https://www.imdb.com/title/tt3741634",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841681.jpg"
-  },
-  {
-    "id": 468,
-    "title": "Семь смертных грехов",
-    "titleRu": "Семь смертных грехов",
-    "year": 2014,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843954.jpg",
-    "description": "Рыцари-изгои помогают беглой принцессе спасти королевство. Приключения в альтернативной средневековой Британии",
-    "fullDescription": "Семь смертных грехов — давным-давно так называли семерых могущественных рыцарей, обвинённых в заговоре с целью свергнуть короля Британии. Воины были казнены благородным Орденом священных рыцарей, однако ходят слухи, что Семь грехов ещё живы. Десять лет спустя священные рыцари устроили государственный переворот и вероломно убили монарха, установив собственную тиранию в королевстве. Элизабет, третья дочь короля, отправляется на поиски Семи смертных грехов, дабы, заручившись их поддержкой, вернуть в страну закон и справедливость.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Брайс Папенбрук, Эрика Харлахер, Макс Миттельман",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 843954,
-    "imdb": "https://www.imdb.com/title/tt3909224",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843954.jpg"
-  },
-  {
-    "id": 469,
-    "title": "Хвост Феи",
-    "titleRu": "Хвост Феи",
-    "year": 2009,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/480158.jpg",
-    "description": "Легендарная гильдия волшебников берется за самые опасные задания в королевстве. Лихое аниме о магии дружбы",
-    "fullDescription": "«Хвост Феи» — знаменитая на весь мир гильдия волшебников по найму. Молодая волшебница Люси была уверена, что, став одним из её членов, она попала в самую замечательную на свете гильдию. Но до тех пор, пока не познакомилась со своими новыми друзьями — взрывным огнедышащим и сметающим всё на своём пути Нацу, летающим говорящим котом Хэппи, эксгибиционистом Греем, занудой-берсерком Эрзой, гламурным и любвеобильным Локи. Вместе им предстоит одолеть немало врагов и пережить множество незабываемых приключений.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Черами Ли, Тэцуя Какихара, Рие Кугимия",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 480158,
-    "imdb": "https://www.imdb.com/title/tt1528406",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/480158.jpg"
-  },
-  {
-    "id": 470,
-    "title": "Паразит: Учение о жизни",
-    "titleRu": "Паразит: Учение о жизни",
-    "year": 2014,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843221.jpg",
-    "description": "В правой руке старшеклассника поселяется внеземной симбиот. Экранизация фантастической манги Хитоси Ивааки",
-    "fullDescription": "Паразиты — создания, живущие за счёт своего носителя. Обладают совершенно нечеловеческой силой. Посланные небом они должны проникать в мозг человека для полной власти над носителем. Но кому как повезёт. Именно неудача одного паразита спасает жизнь школьника Синъити Идзуми. Но и эта же неудача делает его носителем этого загадочного существа, обрекая Синъити на постоянную борьбу за выживание с другими, более сильными паразитами.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ая Хирано, Нобунага Симадзаки, Ринка Х.Б.Б.",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 843221,
-    "imdb": "https://www.imdb.com/title/tt3358020",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843221.jpg"
-  },
-  {
-    "id": 471,
-    "title": "Добро пожаловать в класс превосходства",
-    "titleRu": "Добро пожаловать в класс превосходства",
-    "year": 2017,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1048155.jpg",
-    "description": "Старшая школа Кодо Икусэи — престижное учебное заведение, практически 100% выпускников которого впоследствии поступают в университеты или устраиваются на солидную высокооплачиваемую работу. Ученики школы не ограничены в выборе стилей причёсок или аксессуаров. На первый взгляд, школа кажется райск...",
-    "fullDescription": "Старшая школа Кодо Икусэи — престижное учебное заведение, практически 100% выпускников которого впоследствии поступают в университеты или устраиваются на солидную высокооплачиваемую работу. Ученики школы не ограничены в выборе стилей причёсок или аксессуаров. На первый взгляд, школа кажется райским местом, но в действительности всеми благами пользуются лишь отличники.\nКиётака Аянокодзи во время вступительных экзаменов он допустил грубейшую ошибку, в результате чего был отправлен в класс D, куда попадают ученики-«отбросы», над которыми издевается вся остальная школа. Но после знакомства с одноклассниками Судзунэ Хорикитой и Кикё Кусидой его жизнь начинает меняться.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джастин Бринер, Фелесия Энджелл, Брэндон МакИннис",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1048155,
-    "imdb": "https://www.imdb.com/title/tt7263328",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1048155.jpg"
-  },
-  {
-    "id": 472,
-    "title": "Бездомный Бог",
-    "titleRu": "Бездомный Бог",
-    "year": 2014,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/818883.jpg",
-    "description": "Приключения незадачливого божества в непредсказуемом мире людей. Экранизация хитовой манги дуэта Адатитока",
-    "fullDescription": "Малоизвестный Бог Ято не имеет собственного храма, но мечтает стать уважаемым божеством с миллионами верующих. Правда, Ято не особо стремится прилагать усилия для достижения данной цели. Однажды обычная школьница Хиёри спасает его от дорожной аварии ценой собственной жизни.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Хироши Камия, Маая Учида, Юки Кадзи",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 818883,
-    "imdb": "https://www.imdb.com/title/tt3225270",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/818883.jpg"
-  },
-  {
-    "id": 473,
-    "title": "Класс убийц",
-    "titleRu": "Класс убийц",
-    "year": 2015,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/880618.jpg",
-    "description": "У учеников класса 3-E есть миссия: убить их учителя до выпускного. Тот уже разрушил Луну и пообещал уничтожить Землю, если в течение этого года его не прикончат. Но как класс неудачников убьет монстра с тентаклями, который способен передвигаться со скоростью в 20 Махов? И кто же такой - лучший уч...",
-    "fullDescription": "У учеников класса 3-E есть миссия: убить их учителя до выпускного. Тот уже разрушил Луну и пообещал уничтожить Землю, если в течение этого года его не прикончат. Но как класс неудачников убьет монстра с тентаклями, который способен передвигаться со скоростью в 20 Махов? И кто же такой - лучший учитель на свете?",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 880618,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/880618.jpg"
-  },
-  {
-    "id": 474,
-    "title": "Баскетбол Куроко",
-    "titleRu": "Баскетбол Куроко",
-    "year": 2012,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/676672.jpg",
-    "description": "Баскетбольный клуб средней школы Тэйко славен великолепной командой, которая выиграла в своей категории все, что только можно. Но пять юных талантов разошлись по пяти старшим школам, и лишь немногие знали, что кроме прославленной пятерки был ещё и шестой, мало чем уступавший им игрок.\nТэцуя Курок...",
-    "fullDescription": "Баскетбольный клуб средней школы Тэйко славен великолепной командой, которая выиграла в своей категории все, что только можно. Но пять юных талантов разошлись по пяти старшим школам, и лишь немногие знали, что кроме прославленной пятерки был ещё и шестой, мало чем уступавший им игрок.\nТэцуя Куроко поступает в старшую школу Сэйрин и записывается в местный баскетбольный клуб, команда которой уже успела побывать в финале национального турнира. В клуб приходят ещё новички, один из которых учился в Америке – святой земле баскетбола. Неказистый с виду Куроко, по его словам, не только числился в звёздной команде Тэйко, но и регулярно выходил на площадку? Правду ли говорит парень, и в чем его талант, который пока не видят ни опытные игроки, ни девушка-тренер Рико Аида?",
-    "country": "Япония",
-    "genres": "Мультфильм, Спорт, Аниме",
-    "director": "",
-    "actors": "Кенсё Оно, Ёсимаса Хосоя, Юки Оно",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 676672,
-    "imdb": "https://www.imdb.com/title/tt2348803",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "⚡ High Energy"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/676672.jpg"
-  },
-  {
-    "id": 475,
-    "title": "Синий экзорцист",
-    "titleRu": "Синий экзорцист",
-    "year": 2011,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/574182.jpg",
-    "description": "Рин Окимура и его брат Юкио — сироты, росшие в храме священника и экзорциста Фудзимото. Рин — парень неплохой, но вспыльчивый, придурковатый и постоянно ввязывающийся в драки. Юкио же наоборот, умный, прилежный и мечтающий стать врачом (и лечение извечных ссадин брата ему в этом лишь помогает).\nН...",
-    "fullDescription": "Рин Окимура и его брат Юкио — сироты, росшие в храме священника и экзорциста Фудзимото. Рин — парень неплохой, но вспыльчивый, придурковатый и постоянно ввязывающийся в драки. Юкио же наоборот, умный, прилежный и мечтающий стать врачом (и лечение извечных ссадин брата ему в этом лишь помогает).\nНо в реальности разница между ними куда сильнее: на самом деле Рин — полудемон, и не просто полудемон, а сын самого Сатаны. И когда, вопреки предосторожностям Фудзимото, силы Рина прорезаются наружу, папенька находит его и пытается забрать домой, чтобы в дальнейшем использовать сына в качестве плацдарма для захвата нашего измерения. Рину удаётся избежать сей плачевной участи, но дорогой ценой — Фудзимото гибнет, защищая своего приёмного сына. И тогда Рин решает стать экзорцистом и отомстить Сатане, для чего устраивается вместе с Юкио в специальную закрытую школу.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Нобухико Окамото, Брайс Папенбрук, Дзюн Фукуяма",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 574182,
-    "imdb": "https://www.imdb.com/title/tt1799631",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/574182.jpg"
-  },
-  {
-    "id": 476,
-    "title": "Мастера меча онлайн",
-    "titleRu": "Мастера меча онлайн",
-    "year": 2012,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/691223.jpg",
-    "description": "Опытному геймеру Кирито повезло поучаствовать в бета-тестировании самой ожидаемой компьютерной игры нового поколения - Sword Art Online. Когда наконец на прилавках появились диски с финальной версией, тысячи геймеров устремились в совершенный виртуальный мир MMORPG. Там их ждал неприятный сюрприз...",
-    "fullDescription": "Опытному геймеру Кирито повезло поучаствовать в бета-тестировании самой ожидаемой компьютерной игры нового поколения - Sword Art Online. Когда наконец на прилавках появились диски с финальной версией, тысячи геймеров устремились в совершенный виртуальный мир MMORPG. Там их ждал неприятный сюрприз - гейм-мастер объявил, что выйти из игры по собственной воле невозможно. Единственный шанс это сделать - пройти все сто уровней до конца. А смерть в игре означает смерть и в реальной жизни.",
-    "country": "США, Польша, Япония",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ёсицугу Мацуока, Харука Томацу, Брайс Папенбрук",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 691223,
-    "imdb": "https://www.imdb.com/title/tt2250192",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/691223.jpg"
-  },
-  {
-    "id": 477,
-    "title": "Госпожа Кагуя: В любви как на войне",
-    "titleRu": "Госпожа Кагуя: В любви как на войне",
-    "year": 2019,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1231054.jpg",
-    "description": "Миюки Сироганэ — признанный молодой гений, имеющий высокие оценки по всем предметам и возглавляющий школьный совет одной из самых престижных школ страны. Парень работает вместе с Кагуей Синомией — вице-президентом и по совместительству первой красавицей школы. Хотя ребята не состоят в отношениях,...",
-    "fullDescription": "Миюки Сироганэ — признанный молодой гений, имеющий высокие оценки по всем предметам и возглавляющий школьный совет одной из самых престижных школ страны. Парень работает вместе с Кагуей Синомией — вице-президентом и по совместительству первой красавицей школы. Хотя ребята не состоят в отношениях, но окружающие считают их отличной парой. Проработав бок о бок длительное время, герои осознают появившиеся друг к другу чувства, однако никто из них не хочет признаваться, считая это слабостью. И теперь они готовы совершать любые, даже самые безумные поступки, чтобы получить признание.",
-    "country": "Япония",
-    "genres": "Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Аарон Дисмукэ, Аой Кога, Макото Фурукава",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1231054,
-    "imdb": "https://www.imdb.com/title/tt9522300",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1231054.jpg"
-  },
-  {
-    "id": 478,
-    "title": "Горизонт посреди пустоты",
-    "titleRu": "Горизонт посреди пустоты",
-    "year": 2011,
-    "rating": 5.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/652741.jpg",
-    "description": "После великой войны люди покинули родную планету и переселились в иной, совершенный «небесный мир». Вскоре он рухнул, а провидцы открыли, что человечество должно вернуться домой и пережить заново 10 тысяч лет истории – только тогда оно заслужит прощение и вернет дорогу к звездам. На Земле «возвра...",
-    "fullDescription": "После великой войны люди покинули родную планету и переселились в иной, совершенный «небесный мир». Вскоре он рухнул, а провидцы открыли, что человечество должно вернуться домой и пережить заново 10 тысяч лет истории – только тогда оно заслужит прощение и вернет дорогу к звездам. На Земле «возвращенцы» нашли лишь один уголок, пригодный для жизни (Японию), населенный немногими оставшимися аборигенами. Не желая тесниться, «продвинутые» создали параллельное измерение и начали грандиозный проект воссоздания мировой истории. Увы, на уровне XVII века Новой эры кто-то совершил ошибку, карманный мир схлопнулся, а его обитатели оказались на старой доброй Земле.",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 652741,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/652741.jpg"
-  },
-  {
-    "id": 479,
-    "title": "Этот замечательный мир! OVA",
-    "titleRu": "Этот замечательный мир! OVA",
-    "year": 2016,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5190537.jpg",
-    "description": "Исследуя волшебный магазин Виз, Кадзума решает примерить волшебное колье, которое исполняет желания. Но позже выясняется, что колье задушит владельца через 4 дня, если его желание не будет исполнено. Главная проблема теперь в том, что Кадзума не помнит, что он загадал.",
-    "fullDescription": "Исследуя волшебный магазин Виз, Кадзума решает примерить волшебное колье, которое исполняет желания. Но позже выясняется, что колье задушит владельца через 4 дня, если его желание не будет исполнено. Главная проблема теперь в том, что Кадзума не помнит, что он загадал.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Комедия, Мультфильм, Короткометражка, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 5190537,
-    "imdb": null,
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5190537.jpg"
-  },
-  {
-    "id": 480,
-    "title": "О моём перерождении в слизь",
-    "titleRu": "О моём перерождении в слизь",
-    "year": 2018,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1224030.jpg",
-    "description": "Как бороться за свои права, когда ты — липкий комок? Озорное аниме с захватывающей интригой",
-    "fullDescription": "Обычный служащий финансовой компании Сатору Миками погибает, защищая коллегу от грабителя с ножом. После смерти Сатору попадает в фэнтезийный мир, в котором он предстаёт в виде комка слизи средних размеров по имени Римуру, наделённой немалым разумом. Отныне Римуру будет жить в мире, полном разных рас, в надежде построить однажды страну, где к каждой расе будут относиться одинаково.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Михо Окасаки, Мегуми Тойогучи, Бриттни Карбовски",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 1224030,
-    "imdb": "https://www.imdb.com/title/tt9054364",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1224030.jpg"
-  },
-  {
-    "id": 481,
-    "title": "Восхождение героя щита",
-    "titleRu": "Восхождение героя щита",
-    "year": 2019,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1235052.jpg",
-    "description": "Надёжный щит помогает воину отомстить предателям. Зрелищное аниме с эффектной боевой хореографией",
-    "fullDescription": "Обычный студент Наофуми Иватани вместе с тремя другими юношами был призван в параллельный мир, чтобы спасти его от гибели и стать героем. Однако вскоре Иватани предают и грабят. У него остаётся только легендарный щит, с помощью которого парень решает отомстить своим обидчикам.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кайто Исикава, Асами Сето, Рина Хидака",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1235052,
-    "imdb": "https://www.imdb.com/title/tt9529546",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1235052.jpg"
-  },
-  {
-    "id": 482,
-    "title": "Повелитель",
-    "titleRu": "Повелитель",
-    "year": 2015,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/923115.jpg",
-    "description": "Легендарная онлайн-игра «Иггдрасиль» неожиданно закрывается. Желая остаться в любимом мире подольше, игрок, управляющий персонажем по имени Момонга, решает оставаться в игре до полного отключения серверов. Момонга — лич, глава одной из топовых гильдий, представляющих в игре тёмную сторону. В моме...",
-    "fullDescription": "Легендарная онлайн-игра «Иггдрасиль» неожиданно закрывается. Желая остаться в любимом мире подольше, игрок, управляющий персонажем по имени Момонга, решает оставаться в игре до полного отключения серверов. Момонга — лич, глава одной из топовых гильдий, представляющих в игре тёмную сторону. В момент отключения сервера он собрал всех своих прислужников в главном зале гильдии, сел на трон и стал ждать неизбежного. Но произошло невероятное: сервер не прервал подключение, игра продолжилась, а Момонга превратился в могущественного волшебника. Неигровые персонажи вдруг начали проявлять человеческие эмоции. Теперь безо всякой помощи, без друзей и без какой-либо информации о происходящем Момонге придётся завоевать этот мир, чтобы найти выход.",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Крис Герреро, Сатоши Хино, Элизабет Максвелл",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 923115,
-    "imdb": "https://www.imdb.com/title/tt4869896",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/923115.jpg"
-  },
-  {
-    "id": 483,
-    "title": "Доктор Стоун",
-    "titleRu": "Доктор Стоун",
-    "year": 2019,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1249511.jpg",
-    "description": "Друзья пытаются оживить окаменевшее человечество, но у них есть противник. Сай-фай-аниме о борьбе идеологий",
-    "fullDescription": "В один роковой день всё человечество превратилось в камень. Много тысячелетий спустя старшеклассник Тайдзю освобождается от окаменения и оказывается в окружении статуй. Однако он не одинок: его другу Сэнку также удалось сбросить каменную оболочку, и теперь, используя научные знания, они начинают восстанавливать былую цивилизацию.",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юсуке Кобаяши, Манами Нумакура, Карин Такахаши",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1249511,
-    "imdb": "https://www.imdb.com/title/tt9679542",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1249511.jpg"
-  },
-  {
-    "id": 484,
-    "title": "Обещанный Неверленд",
-    "titleRu": "Обещанный Неверленд",
-    "year": 2019,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1179789.jpg",
-    "description": "В приюте «Грейс Филд» под чутким надзором Мамы живёт группа детей разных возрастов. Самые умненькие — 11-летние Норман, Эмма и Рэй — лучшие друзья всю свою жизнь. Каждый ребёнок ждёт не дождётся усыновления, и когда он поедет в новую семью, а пока детишки играют целыми днями в догонялки и не знаю...",
-    "fullDescription": "В приюте «Грейс Филд» под чутким надзором Мамы живёт группа детей разных возрастов. Самые умненькие — 11-летние Норман, Эмма и Рэй — лучшие друзья всю свою жизнь. Каждый ребёнок ждёт не дождётся усыновления, и когда он поедет в новую семью, а пока детишки играют целыми днями в догонялки и не знают бед и невзгод. Но однажды Норман и Эмма узнают о приюте жуткую правду, и теперь у них остаётся выбор — сбежать или умереть.",
-    "country": "Япония",
-    "genres": "Детектив, Фантастика, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Сумире Морохоши, Мария Исе, Шиней Уэки",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1179789,
-    "imdb": "https://www.imdb.com/title/tt8788458",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1179789.jpg"
-  },
-  {
-    "id": 485,
-    "title": "Безумный азарт",
-    "titleRu": "Безумный азарт",
-    "year": 2017,
-    "rating": 6.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1047454.jpg",
-    "description": "Частная академия Хяккао является хранителем многолетних традиций и считается одним из престижных учебных заведений Японии. Большинство учащихся — богатенькие наследники японской элиты. Ваши учебные, творческие и спортивные достижения здесь не играют никакой роли. Всё, что нужно для того, чтобы зд...",
-    "fullDescription": "Частная академия Хяккао является хранителем многолетних традиций и считается одним из престижных учебных заведений Японии. Большинство учащихся — богатенькие наследники японской элиты. Ваши учебные, творческие и спортивные достижения здесь не играют никакой роли. Всё, что нужно для того, чтобы здесь выжить — власть, деньги и умение выходить из любой ситуации победителем. И где ещё лучше отточить своё мастерство, как не в азартных играх? От того, насколько вы хорошо играете, в буквальном смысле зависит ваша жизнь. Многие годы в академии все взаимоотношения строились на основе власти-подчинения, но с переводом Юмэко идеальная система начала давать сбой.",
-    "country": "Япония",
-    "genres": "Драма, Детектив, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Саори Хаями, Тацуя Токутаке, Миюки Савасиро",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1047454,
-    "imdb": "https://www.imdb.com/title/tt7131720",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1047454.jpg"
-  },
-  {
-    "id": 486,
-    "title": "Адский рай",
-    "titleRu": "Адский рай",
-    "year": 2023,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4786341.jpg",
-    "description": "Отряд преступников и самураев — против богов и монстров. От создателей «Человека-бензопилы» и «Атаки титанов»",
-    "fullDescription": "Времена правления династии Токугава. Один из самых ловких ниндзя и печально известный наемный убийца попадает в плен, но у него появляется шанс избежать казни. Для этого ему нужно отправиться на окутанный легендами загадочный остров и найти там эликсир бессмертия.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Чиаки Кобаяши, Юмири Ханамори, Мариса Дюран",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4786341,
-    "imdb": "https://www.imdb.com/title/tt13911284",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4786341.jpg"
-  },
-  {
-    "id": 487,
-    "title": "Эхо террора",
-    "titleRu": "Эхо террора",
-    "year": 2014,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/840972.jpg",
-    "description": "Юные террористы держат в страхе альтернативный Токио. Психологическая аниме-драма с прекрасным саундтреком",
-    "fullDescription": "В один из летних дней в Токио произошел крупный террористический акт. Виновниками террора, который разбудил самодовольную нацию ото сна, были всего два мальчика. Теперь преступники, известные как группировка «Сфинкс», начали грандиозную игру, которая охватывает всю Японию.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Криминал, Детектив, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кайто Исикава, Сома Сайто, Ацуми Танезаки",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 840972,
-    "imdb": "https://www.imdb.com/title/tt3613454",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 9,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/840972.jpg"
-  },
-  {
-    "id": 488,
-    "title": "91 день",
-    "titleRu": "91 день",
-    "year": 2016,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1002694.jpg",
-    "description": "Юноша входит в доверие к мафиози, по вине которого погибла его семья. Криминальное аниме о холодной мести",
-    "fullDescription": "Времена «сухого закона». На глазах мальчика Анджело бандиты убивают всю его семью. Уехав из родных мест с мыслью о мести, Анджело берёт себе имя Авилио и начинает оттачивать необходимые навыки, чтобы покарать мафиозную семью Ванетти, виновную в смерти его родных. Спустя 7 лет Авилио начинает осуществление своего плана, но для начала необходимо втереться в доверие к Неро Ванетти — сыну главы клана.",
-    "country": "Япония",
-    "genres": "Драма, Криминал, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Остин Тиндл, Такуя Эгучи, Йен Мид Мур",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1002694,
-    "imdb": "https://www.imdb.com/title/tt5839706",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1002694.jpg"
-  },
-  {
-    "id": 489,
-    "title": "Гуррен-Лаганн",
-    "titleRu": "Гуррен-Лаганн",
-    "year": 2007,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/452973.jpg",
-    "description": "Сотни лет люди живут в глубоких пещерах, в постоянном страхе перед землетрясениями и обвалами. В одной из таких подземных деревень живет мальчик Симон и его духовный наставник — парень Камина. Камина верит, что наверху есть другой мир, без стен и потолков, его мечта — попасть туда.\n\nНо мечты оста...",
-    "fullDescription": "Сотни лет люди живут в глубоких пещерах, в постоянном страхе перед землетрясениями и обвалами. В одной из таких подземных деревень живет мальчик Симон и его духовный наставник — парень Камина. Камина верит, что наверху есть другой мир, без стен и потолков, его мечта — попасть туда.\n\nНо мечты остаются пустыми фантазиями, пока в один прекрасный день Симон случайно не находит сверло, оказавшееся ключом от странного железного лица в толще земли. В этот же день потолок пещеры рушится. Так начинается приключение Симона, Камины и их компаньонов в новом мире под открытым небом огромной вселенной.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Тэцуя Какихара, Шизука Ито, Юрий Ловенталь",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 452973,
-    "imdb": "https://www.imdb.com/title/tt0948103",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/452973.jpg"
-  },
-  {
-    "id": 490,
-    "title": "Корона грешника",
-    "titleRu": "Корона грешника",
-    "year": 2011,
-    "rating": 7.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/652740.jpg",
-    "description": "После эпидемии вируса «Апокалипсис» в 2029 году Страна Восходящего солнца оказалась банкротом и попала под внешнее управление. Частная организация GHQ, неизвестно откуда пришедшая к власти, ввела военное положение и безжалостно подавляет любую оппозицию. Тем не менее, даже десять лет спустя Токио...",
-    "fullDescription": "После эпидемии вируса «Апокалипсис» в 2029 году Страна Восходящего солнца оказалась банкротом и попала под внешнее управление. Частная организация GHQ, неизвестно откуда пришедшая к власти, ввела военное положение и безжалостно подавляет любую оппозицию. Тем не менее, даже десять лет спустя Токио регулярно сотрясают крупные и мелкие теракты, а ряды борцов Сопротивления лишь пополняются. Нежданно-негаданно в них попадает 17-летний Сю Ома, тихий парень, любитель видеомонтажа. Как водится, всему виною женщина – в данном случае Инори Юдзуриха, певица и сетевой идол, по совместительству – борец за свободу и член подпольной группировки «Гробовщики»!",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юки Кадзи, Ай Каяно, Кана Ханадзава",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 652740,
-    "imdb": "https://www.imdb.com/title/tt2122656",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/652740.jpg"
-  },
-  {
-    "id": 491,
-    "title": "Альдноа.Зеро",
-    "titleRu": "Альдноа.Зеро",
-    "year": 2014,
-    "rating": 7.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/842575.jpg",
-    "description": "1972 год. Апполон-17 обнаружил в космосе врата, ведущие на Марс. После высадки космонавты нашли на планете сверхмощный утилит, позже названный Альдноа. Вскоре множество людей переезжает на Марс и называет себя марсианами. Так началась война между жителями обеих планет - марсианские солдаты начали...",
-    "fullDescription": "1972 год. Апполон-17 обнаружил в космосе врата, ведущие на Марс. После высадки космонавты нашли на планете сверхмощный утилит, позже названный Альдноа. Вскоре множество людей переезжает на Марс и называет себя марсианами. Так началась война между жителями обеих планет - марсианские солдаты начали спускаться с небес на стальных гигантах, намереваясь уничтожить человечество.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Мэттью Мерсер, Брайс Папенбрук, Эрика Линдбек",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 842575,
-    "imdb": "https://www.imdb.com/title/tt3544556",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 8,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/842575.jpg"
-  },
-  {
-    "id": 492,
-    "title": "Стальной алхимик",
-    "titleRu": "Стальной алхимик",
-    "year": 2003,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/361699.jpg",
-    "description": "Алхимия - наука о преобразовании материи из одной формы в другую. Ее основное правило - ты можешь получить что-нибудь, лишь отдав взамен нечто равноценное. Эдварду и Альфонсу Элрикам, сыновьям великого алхимика, было всего 11 и 10 лет, когда они решили, что знают об алхимии достаточно, чтобы верн...",
-    "fullDescription": "Алхимия - наука о преобразовании материи из одной формы в другую. Ее основное правило - ты можешь получить что-нибудь, лишь отдав взамен нечто равноценное. Эдварду и Альфонсу Элрикам, сыновьям великого алхимика, было всего 11 и 10 лет, когда они решили, что знают об алхимии достаточно, чтобы вернуть к жизни свою покойную мать.   Но не зря на создание человека наложен запрет - братья потерпели неудачу и заплатили за свою ошибку страшную цену: Эдвард потерял ногу, а Альфонс был поглощен целиком. Лишь пожертвовав правой рукой, Эдвард сумел вернуть душу Альфонса и присоединить ее к старинному доспеху. \n\nЗаменив утраченные руку и ногу металлическими протезами, Эдвард вместе с братом покидает родной городок, где поступает на государственную службу, дабы получить доступ к обширным ресурсам военных. Отныне братья еще отчаянней стремятся раскрыть тайну человеческого преобразования - теперь уже ради того, чтобы вернуть друг другу прежние тела. Цель их поисков - легендарный философский камень, который позволяет обойти принцип равнозначного обмена. Однако вскоре братья выясняют, что не они одни ищут философский камень, и что они ввязались в серьёзную игру...",
-    "country": "Япония",
-    "genres": "Драма, Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Вик Миньогна, Аарон Дисмьюк, Роми Парк",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 361699,
-    "imdb": "https://www.imdb.com/title/tt0421357",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/361699.jpg"
-  },
-  {
-    "id": 493,
-    "title": "Токийские мстители",
-    "titleRu": "Токийские мстители",
-    "year": 2021,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4294422.jpg",
-    "description": "26-летний неудачник Такэмити узнаёт, что его бывшая девушка Хината и её младший брат были убиты токийской преступной группировкой Мандзикай. А следующий день парень падает под поезд в метро и внезапно перемещается на 10 лет назад, когда он был в старшей школе и целыми днями зависал со своими крут...",
-    "fullDescription": "26-летний неудачник Такэмити узнаёт, что его бывшая девушка Хината и её младший брат были убиты токийской преступной группировкой Мандзикай. А следующий день парень падает под поезд в метро и внезапно перемещается на 10 лет назад, когда он был в старшей школе и целыми днями зависал со своими крутыми дружками. Такэмити решает изменить будущее, чтобы спасти Хинату — единственный лучик света в его бессмысленной жизни, а для этого ему нужно уничтожить Мандзикай.",
-    "country": "Япония",
-    "genres": "Драма, Криминал, Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юки Шин, Даррен О’Хара, Ю Хаяши",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 4294422,
-    "imdb": "https://www.imdb.com/title/tt13196080",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4294422.jpg"
-  },
-  {
-    "id": 494,
-    "title": "Проза бродячих псов",
-    "titleRu": "Проза бродячих псов",
-    "year": 2016,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/975895.jpg",
-    "description": "Сирота встречает команду сыщиков, про которых ходят легенды. Японский детектив о борьбе сверхъестественных сил",
-    "fullDescription": "Ацуси Накадзиму размашистым пинком выставили из сиротского приюта. В порыве безудержного гнева вперемешку с горькой обидой он решил, что единственный способ выжить — грабеж средь бела дня. На счастье возле реки, где пару минут назад Ацуси готов был покончить с собой, пролегала дорога. Осталось только затаиться и ждать. Плюх. Что это? Чьи-то ноги торчат из воды. Бульк. Режим «спасатель» активирован! И вот, мгновенно позабыв о грабеже уставших путников и караванов, Ацуси бросается в реку на выручку незадачливому «поплавку». Которым оказывается молодой человек, недовольный тем, что его причудливую попытку самоубийства сорвали. Позже озадаченный Ацуси узнает, что имя несостоявшегося утопленника — Осаму Дадзай, и что он работает в специальном Вооруженном детективном агентстве, штатные сыщики которого обладают сверхъестественными способностями. Когда полиция и военные бессильны — обращаются к ним. В этот раз Осаму и его напарнику предстоит охота на опасного зверя, терроризирующего округу. И как-то так получилось, что именно этот зверь стал причиной изгнания Ацуси.",
-    "country": "Япония",
-    "genres": "Детектив, Фантастика, Приключения, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Мамору Мияно, Юто Уэмура, Кайдзи Тан",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 975895,
-    "imdb": "https://www.imdb.com/title/tt5679720",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/975895.jpg"
-  },
-  {
-    "id": 495,
-    "title": "Сердца Пандоры",
-    "titleRu": "Сердца Пандоры",
-    "year": 2009,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/454868.jpg",
-    "description": "Мир, похожий на наше Высокое Средневековье, тесно связан с Бездной – измерением, где не действуют привычные законы природы. Тот, кто владеет Дверью в Бездну и может заключить договор с «цепью» – тамошним обитателем – получает огромную власть. Именно такие люди составляют аристократическую элиту, ...",
-    "fullDescription": "Мир, похожий на наше Высокое Средневековье, тесно связан с Бездной – измерением, где не действуют привычные законы природы. Тот, кто владеет Дверью в Бездну и может заключить договор с «цепью» – тамошним обитателем – получает огромную власть. Именно такие люди составляют аристократическую элиту, но при этом не афишируют источник силы и могущества. Все контракты с Бездной контролирует таинственная организация «Пандора», действующие в обход ее сильно рискуют душой и телом. Например, можно провалиться в Бездну на миг и выйти оттуда через пару сотен лет… История начинается с праздника совершеннолетия Оза Безариуса, сына герцога и наследника одного из четырех Великих Домов. \n\nОз – парень неглупый и решительный, привыкший прятать истинную сущность за маской избалованного барчука. И вот, в ночь, когда юному лорду исполняется 15 лет, его арестовывают и без суда и объяснения причин бросают в Бездну, просто «за то, кто ты есть». Только просчитались агенты Пандоры – парень оттуда выбрался, ох как выбрался… да еще не один. И неважно, что в реальном мире прошло десять лет – у нашего героя много вопросов, и спешить ему некуда. Ведь аниме снято по мотивам «Алисы в Зазеркалье», где спешил только Белый Кролик – а Озу-то достался Черный!",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джунко Минагава, Юкари Тамура, Акира Исида",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 454868,
-    "imdb": "https://www.imdb.com/title/tt1343645",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/454868.jpg"
-  },
-  {
-    "id": 496,
-    "title": "Ди.Грэй-мен",
-    "titleRu": "Ди.Грэй-мен",
-    "year": 2006,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408655.jpg",
-    "description": "В «век пара и железа» Аллен примыкает к экзорцистам и сражается со злом. Динамичный сёнен с яркими героями",
-    "fullDescription": "Европа, XIX век. Тысячелетний Граф строит планы по уничтожению мира при помощи созданных им Акума — человекоподобных существ, представляющих собой живые орудия зла и соединяющих в себе душу умершего человека и механическое тело. С ним борются экзорцисты из Чёрного Ордена.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Санаэ Кобаяши, Тодд Хаберкорн, Шизука Ито",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 408655,
-    "imdb": "https://www.imdb.com/title/tt0899258",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408655.jpg"
-  },
-  {
-    "id": 497,
-    "title": "Пожиратель душ",
-    "titleRu": "Пожиратель душ",
-    "year": 2008,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425925.jpg",
-    "description": "Почему у супергероев вечные проблемы с освобождением вверенной территории от всяческой нечисти – как в образе человеческом, так и вне него? Все просто – образования не хватает. И потому в мире, где происходит действие, Бог Смерти поставил обучение своих помощников и кандидатов на роль божественно...",
-    "fullDescription": "Почему у супергероев вечные проблемы с освобождением вверенной территории от всяческой нечисти – как в образе человеческом, так и вне него? Все просто – образования не хватает. И потому в мире, где происходит действие, Бог Смерти поставил обучение своих помощников и кандидатов на роль божественного оружия на научную основу, создав Оружейный Институт, расположенный, конечно же, в Пропащем Городе. Учатся в институте две категории студентов – те, кто способен превращаться в одушевленное оружие, и их напарники-мастера (называемые еще техниками). Оружие и мастер работают в паре, а лучший из кандидатов по итогам обучения получает возможность служить Косой Смерти - оружием самого бога.\n\nИстория вращается вокруг трех групп студентов: очень старательной Маки в паре с Соулом (он превращается в косу), нарутообразного Черной Звезды в паре с Цубаки (она превращается в любое оружие ниндзя) и помешанного на симметрии Смерти-младшего, работающего с сестричками Пэт и Лиз (превращаются в пистолеты). Как и в любом вузе, процветает семейственность – Мака, например, дочь нынешней Косы Смерти, а Смерть-младший - вообще сын божий. Но родство не влияет на отношение к учебе,  и друзья-соперники соревнуются в изничтожении нечисти честно и изо всех сил, каждый в своем стиле…",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Лаура Бэйли, Чиаки Омигава, Мика Солусод",
-    "duration": "40S min",
-    "trailer": "",
-    "kinopoiskId": 425925,
-    "imdb": "https://www.imdb.com/title/tt1214085",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425925.jpg"
-  },
-  {
-    "id": 498,
-    "title": "Блич",
-    "titleRu": "Блич",
-    "year": 2004,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258621.jpg",
-    "description": "Получивший сверхсилу школьник должен отправлять умерших в загробный мир. Аниме по японскому бестселлеру",
-    "fullDescription": "Старшеклассник Итиго Куросаки видит другую сторону этого мира, в том числе и духов. Однажды он встречает девушку, которая умеет отправлять души умерших туда, где им положено быть. Случайно он получает её способности и начинает истреблять злых духов.",
-    "country": "Япония",
-    "genres": "Триллер, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джонни Йонг Бош, Мишель Рафф, Стефани Ше",
-    "duration": "32S min",
-    "trailer": "",
-    "kinopoiskId": 258621,
-    "imdb": "https://www.imdb.com/title/tt0434665",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258621.jpg"
-  },
-  {
-    "id": 499,
-    "title": "Юри на льду",
-    "titleRu": "Юри на льду",
-    "year": 2016,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1007561.jpg",
-    "description": "История повествует о Юри Кацуки, на чьи плечи возложены надежды всей Японии, но в финале Гран-при по фигурному катанию он терпит сокрушительное поражение. Парень возвращается домой на Кюсю, где не был уже 5 лет, и им овладевают смешанные чувства. Юри не может решить: бросить фигурное катание или ...",
-    "fullDescription": "История повествует о Юри Кацуки, на чьи плечи возложены надежды всей Японии, но в финале Гран-при по фигурному катанию он терпит сокрушительное поражение. Парень возвращается домой на Кюсю, где не был уже 5 лет, и им овладевают смешанные чувства. Юри не может решить: бросить фигурное катание или всё же продолжить заниматься спортом. Размышляя об этом, он скрывается от всех в Кацуки-онсэне, которым управляет его семья, и помогает там с работой. Но через какое-то время совсем неожиданно на пороге его дома появляется всемирно известный фигурист Виктор Никифоров, а вслед за ним приезжает и Юрий Плисецкий. Эти трое решают принять участие в новом Гран-при.",
-    "country": "Япония",
-    "genres": "Драма, Мультфильм, Спорт, Аниме",
-    "director": "",
-    "actors": "Дзюнъити Сувабе, Тосиюки Тойонага, Коки Утияма",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1007561,
-    "imdb": "https://www.imdb.com/title/tt6112556",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1007561.jpg"
-  },
-  {
-    "id": 500,
-    "title": "Дитя погоды",
-    "titleRu": "Дитя погоды",
-    "year": 2019,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1219417.jpg",
-    "description": "Любовь и древняя магия в мегаполисе. Аниме-шедевр о ценности солнечного света от автора хита «Твое имя»",
-    "fullDescription": "16-летний Ходака Морисима убегает из дома в Токио, где у него сразу кончаются деньги. Мало того, что без документов он не может найти работу, так ещё на улице идёт бесконечный дождь, и небо постоянно затянуто тучами. В отчаянии парень обращается к бывшему попутчику, а тот не только берёт его в свой журнал, пишущий о сверхъестественном, но и предоставляет жильё. Однажды Ходака знакомится с девушкой по имени Хина Амано, которая обладает удивительной способностью разгонять тучи и останавливать дождь.",
-    "country": "Япония",
-    "genres": "Мелодрама, Фэнтези, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Котаро Дайго, Нана Мори, Цубаса Хонда",
-    "duration": "112 min",
-    "trailer": "",
-    "kinopoiskId": 1219417,
-    "imdb": "https://www.imdb.com/title/tt9426210",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1219417.jpg"
-  },
-  {
-    "id": 501,
-    "title": "Сад изящных слов",
-    "titleRu": "Сад изящных слов",
-    "year": 2013,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/730665.jpg",
-    "description": "Юный дизайнер встречает в дождливом саду загадочную незнакомку. Аниме о том, как важно, чтобы тебя понимали",
-    "fullDescription": "15-летний Такао мечтает стать дизайнером обуви. В дождливые дни он предпочитает уединение шумной школе и проводит время в парке, делая наброски своих будущих работ. Однажды там он встречает загадочную девушку старше него. Их пути пересекаются снова и снова — но только в ненастные дни. Постепенно между ними зарождается нечто большее, однако сезон дождей не вечен.",
-    "country": "Япония",
-    "genres": "Мелодрама, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Мию Ирино, Кана Ханадзава, Фуми Хирано",
-    "duration": "46 min",
-    "trailer": "",
-    "kinopoiskId": 730665,
-    "imdb": "https://www.imdb.com/title/tt2591814",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/730665.jpg"
-  },
-  {
-    "id": 502,
-    "title": "5 сантиметров в секунду",
-    "titleRu": "5 сантиметров в секунду",
-    "year": 2007,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/280961.jpg",
-    "description": "Три истории о первой любви, красоте и неумолимой повседневности. Медитативное, щемящее аниме Макото Синкая",
-    "fullDescription": "Три истории из жизни Такаки Тоно, которые начинаются в Японии в середине 1990-х годов.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Кэндзи Мизухаси, Ёсими Кондо, Сатоми Ханамура",
-    "duration": "63 min",
-    "trailer": "",
-    "kinopoiskId": 280961,
-    "imdb": "https://www.imdb.com/title/tt0983213",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/280961.jpg"
-  },
-  {
-    "id": 503,
-    "title": "Ловцы забытых голосов",
-    "titleRu": "Ловцы забытых голосов",
-    "year": 2011,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/581102.jpg",
-    "description": "В поисках своего спасителя Асуна спускается в магический потусторонний мир. Сказочное аниме Макото Синкая",
-    "fullDescription": "Юная Асуна живет с вечно пропадающей на работе матерью и после школы любит забираться на скалу, чтобы послушать радио, доставшееся от умершего отца. Однажды в этом своем секретном месте она знакомится с загадочным юношей Сюном, который говорит, что пришел из далекой страны Агартхи. Эта встреча становится началом полного приключений путешествия в волшебный мир, где Асуне предстоит столкнуться с потерями и обрести надежду.",
-    "country": "Япония",
-    "genres": "Драма, Приключения, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Хисако Канемото, Мию Ирино, Кадзухико Иноуэ",
-    "duration": "116 min",
-    "trailer": "",
-    "kinopoiskId": 581102,
-    "imdb": "https://www.imdb.com/title/tt1839494",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/581102.jpg"
-  },
-  {
-    "id": 504,
-    "title": "За облаками",
-    "titleRu": "За облаками",
-    "year": 2004,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/247926.jpg",
-    "description": "Чтобы спасти любимую девушку, нужно долететь до таинственной башни. Небесно-прекрасный дебют Макото Синкая",
-    "fullDescription": "После поражения во Второй мировой войне Японию разделили между союзниками: северный остров Хоккайдо аннексировал Советский Союз, а Хонсю и другими южными островами овладели американцы. Советы начали сооружать в своей зоне оккупации загадочное сооружение - башню столь исполинских размеров, что трое старшеклассников с американского Хонсю могли отчётливо видеть её контуры, возносящиеся в заоблачную высь. Друзья дали друг другу обещание, что однажды построят аэроплан и раскроют секрет гигантской башни.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Мультфильм, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Хидетака Ёсиока, Масато Хагивара, Юка Нанри",
-    "duration": "90 min",
-    "trailer": "",
-    "kinopoiskId": 247926,
-    "imdb": "https://www.imdb.com/title/tt0381348",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/247926.jpg"
-  },
-  {
-    "id": 505,
-    "title": "Она и её кот",
-    "titleRu": "Она и её кот",
-    "year": 1999,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/311132.jpg",
-    "description": "Кот рассказывает свою историю жизни.",
-    "fullDescription": "Кот рассказывает свою историю жизни.",
-    "country": "Япония",
-    "genres": "Драма, Мультфильм, Короткометражка, Аниме",
-    "director": "Макото Синкай",
-    "actors": "Макото Синкай, Мика Синохара",
-    "duration": "5 min",
-    "trailer": "",
-    "kinopoiskId": 311132,
-    "imdb": "https://www.imdb.com/title/tt0373960",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/311132.jpg"
-  },
-  {
-    "id": 506,
-    "title": "Ведьмина служба доставки",
-    "titleRu": "Ведьмина служба доставки",
-    "year": 1989,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2428.jpg",
-    "description": "Маленькая колдунья-курьер лишается дара в незнакомом городке. Воздушная сказка о взрослении и первой любви",
-    "fullDescription": "Молодая ведьма Кики по достижении 13 лет должна прожить среди людей определённое время. Вместе с котом Дзидзи она отправляется в город, где знакомится с добрым пекарем, который помогает ей начать собственное дело - экстренную службу доставки. Новая работа знакомит Кики со множеством различных людей и предоставляет возможность обрести новых друзей и совершить массу всевозможных проделок.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Комедия, Мультфильм, Семейный, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Минами Такаяма, Рей Сакума, Миэко Нобусава",
-    "duration": "103 min",
-    "trailer": "",
-    "kinopoiskId": 2428,
-    "imdb": "https://www.imdb.com/title/tt0097814",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2428.jpg"
-  },
-  {
-    "id": 507,
-    "title": "Небесный замок Лапута",
-    "titleRu": "Небесный замок Лапута",
-    "year": 1986,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1846.jpg",
-    "description": "Девочка обладает волшебным кристаллом, который указывает путь к летающему острову. Первый фильм студии Ghibli",
-    "fullDescription": "Альтернативная реальность, соответствующая началу XX века. В руках девочки по имени Сита находится Летающий Камень. За ним охотятся агенты правительства и пираты, потому что Камень представляет огромную ценность. Пытаясь скрыться от преследователей, Сита встречает Падзу, своего ровесника, работающего в шахтерском городке. Вместе дети выясняют, что Камень — ключ к таинственному летающему острову Лапута.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Мультфильм, Семейный, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Маюми Танака, Кейко Ёкодзава, Котоэ Хацуи",
-    "duration": "124 min",
-    "trailer": "",
-    "kinopoiskId": 1846,
-    "imdb": "https://www.imdb.com/title/tt0092067",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1846.jpg"
-  },
-  {
-    "id": 508,
-    "title": "Порко Россо",
-    "titleRu": "Порко Россо",
-    "year": 1992,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8229.jpg",
-    "description": "Пилот-свинья охотится за воздушными пиратами. Самое взрослое аниме Хаяо Миядзаки с отсылками к «Касабланке»",
-    "fullDescription": "Марко Пагот, отважный пилот и герой Первой мировой войны, потерял веру в человечество. Это стало проклятием, которое превратило его в человекообразную свинью, и теперь Марко известен как Порко Россо. Порко занялся охотой на воздушных пиратов, грабящих суда и яхты, но однажды ему самому предстоит стать мишенью. Сможет ли он избежать преследования и вернуть человеческий облик?",
-    "country": "Япония",
-    "genres": "Мелодрама, Приключения, Фэнтези, Мультфильм, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Сюитиро Морияма, Токико Като, Бунши Кацура VI",
-    "duration": "94 min",
-    "trailer": "",
-    "kinopoiskId": 8229,
-    "imdb": "https://www.imdb.com/title/tt0104652",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8229.jpg"
-  },
-  {
-    "id": 509,
-    "title": "Ветер крепчает",
-    "titleRu": "Ветер крепчает",
-    "year": 2013,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/693969.jpg",
-    "description": "Юноша становится авиаконструктором накануне Второй мировой. Зрелый шедевр Хаяо Миядзаки о творчестве и свободе",
-    "fullDescription": "Мальчик Дзиро мечтает о полетах и красивых самолетах, способных обогнать ветер. Вот только пилотом ему не стать — он с рождения близорук. Но Дзиро не расстается с мечтой о небе, он начинает придумывать идеальный самолет и со временем становится одним из лучших авиаконструкторов мира. На пути к успеху он не только встретит много интересных людей, переживет Великое землетрясение в Токио и жестокие войны, но и обретет любовь своей жизни – прекрасную Наоко.",
-    "country": "Япония",
-    "genres": "Драма, Биография, История, Мультфильм, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Хидеаки Анно, Миори Такимото, Хидетоши Нисидзима",
-    "duration": "126 min",
-    "trailer": "",
-    "kinopoiskId": 693969,
-    "imdb": "https://www.imdb.com/title/tt2013293",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/693969.jpg"
-  },
-  {
-    "id": 510,
-    "title": "Рыбка Поньо на утесе",
-    "titleRu": "Рыбка Поньо на утесе",
-    "year": 2008,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/261127.jpg",
-    "description": "Дружба мальчика и рыбки становится причиной тайфуна и удивительных превращений. Японский вариант «Русалочки»",
-    "fullDescription": "Маленькая любопытная рыбка Поньо — дочь колдуна и прекрасной морской богини — уплывает из дома, чтобы понаблюдать за жизнью людей. Поньо застревает в банке и оказывается выброшенной на берег, где её подбирает пятилетний Сосукэ. Малыши привязываются друг к другу, и теперь у Поньо только одно желание — стать человеком.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Мультфильм, Семейный, Аниме",
-    "director": "Хаяо Миядзаки",
-    "actors": "Томоко Ямагути, Кадзусигэ Нагасима, Юки Амами",
-    "duration": "101 min",
-    "trailer": "",
-    "kinopoiskId": 261127,
-    "imdb": "https://www.imdb.com/title/tt0876563",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 4,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/261127.jpg"
-  },
-  {
-    "id": 511,
-    "title": "Ариэтти из страны лилипутов",
-    "titleRu": "Ариэтти из страны лилипутов",
-    "year": 2010,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/492366.jpg",
-    "description": "Девочка-дюймовочка заводит дружбу с соседским мальчишкой. Филигранный дебют лучшего ученика Хаяо Миядзаки",
-    "fullDescription": "История маленьких существ, которые живут рядом с людьми, одалживая вещи по чуть-чуть. Их существование хранится в секрете, но юная Ариэтти нарушает запрет. Её обнаруживает 14-летний Сё, и они становятся лучшими друзьями.",
-    "country": "Япония",
-    "genres": "Фэнтези, Мультфильм, Аниме",
-    "director": "Хиромаса Ёнэбаяси",
-    "actors": "Мирай Шида, Рюносукэ Камики, Тацуя Фудзивара",
-    "duration": "94 min",
-    "trailer": "",
-    "kinopoiskId": 492366,
-    "imdb": "https://www.imdb.com/title/tt1568921",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 4,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/492366.jpg"
-  },
-  {
-    "id": 512,
-    "title": "Сказание о принцессе Кагуя",
-    "titleRu": "Сказание о принцессе Кагуя",
-    "year": 2013,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/723841.jpg",
-    "description": "Она рождена для любви и свободы, но заточена в роскошном дворце. Воздушное аниме по древней японской притче",
-    "fullDescription": "Старик, зарабатывающий на жизнь продажей бамбука, как-то раз находит в бамбуковом лесу маленькую девочку размером с палец, которая оказывается принцессой по имени Кагуя.",
-    "country": "Япония",
-    "genres": "Фэнтези, Мультфильм, Аниме",
-    "director": "Исао Такахата",
-    "actors": "Хлоя Грейс Морец, Джеймс Каан, Мэри Стинберген",
-    "duration": "137 min",
-    "trailer": "",
-    "kinopoiskId": 723841,
-    "imdb": "https://www.imdb.com/title/tt2576852",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/723841.jpg"
-  },
-  {
-    "id": 513,
-    "title": "Воспоминания о Марни",
-    "titleRu": "Воспоминания о Марни",
-    "year": 2014,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/817623.jpg",
-    "description": "Болезненная и одинокая девочка находит себе подругу — бойкую и загадочную. Детская дружба и взрослая драма",
-    "fullDescription": "12-летняя Анна — замкнутая и необщительная девочка. У неё нет друзей, и единственная её отдушина — это рисование. Из-за слабого здоровья Анну отправляют на лето в небольшой городок на Хоккайдо. Там она встречает Марни — девочку, живущую в большом богатом доме на отмели. Постепенно они становятся хорошими друзьями.",
-    "country": "Япония",
-    "genres": "Драма, Фэнтези, Мультфильм, Аниме",
-    "director": "Хиромаса Ёнэбаяси",
-    "actors": "Сара Такацуки, Касуми Аримура, Нанако Мацусима",
-    "duration": "103 min",
-    "trailer": "",
-    "kinopoiskId": 817623,
-    "imdb": "https://www.imdb.com/title/tt3398268",
-    "type": "anime",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/817623.jpg"
-  },
-  {
-    "title": "Атака титанов",
-    "titleRu": "Атака титанов",
-    "year": 2013,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/749374.jpg",
-    "description": "Люди сражаются с титанами, которые мечтают их съесть. Финал самого эпичного аниме современности",
-    "fullDescription": "Уже многие годы человечество ведёт борьбу с титанами — огромными существами, которые не обладают особым интеллектом, зато едят людей и получают от этого удовольствие. После продолжительной борьбы остатки человечества построили высокую стену, окружившую страну людей, через которую титаны пройти не могли. С тех пор прошло сто лет, люди мирно живут под защитой стены. Но однажды подростки Эрен и Микаса становятся свидетелями страшного события — участок стены разрушается супертитаном, появившимся прямо из воздуха. Титаны нападают на город, и дети в ужасе видят, как один из монстров заживо съедает мать Эрена. Мальчик клянётся, что убьёт всех титанов и отомстит за человечество.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джесси Джеймс Грелль, Брайс Папенбрук, Трина Нишимура",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 749374,
-    "imdb": "https://www.imdb.com/title/tt2560140",
-    "type": "anime",
-    "id": 514,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/749374.jpg"
-  },
-  {
-    "title": "Ван-Пис",
-    "titleRu": "Ван-Пис",
-    "year": 1999,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/382731.jpg",
-    "description": "Паренёк со сверхспособностью охотится за пиратским кладом. Аниме по самой продаваемой манге в мире",
-    "fullDescription": "Гол Д. Роджер — король пиратов, добившийся богатства, славы и власти — спрятал где-то на просторах этого мира загадочное сокровище, которое все называют Ван-Пис. После смерти Роджера множество смельчаков кинулись на поиски этого большого куша, и наступила великая эпоха пиратов. Вот и паренёк по имени Луффи из маленькой прибрежной деревушки мечтает стать пиратом. Ещё в детстве он ненароком съел дьявольский плод резина-резина и приобрёл невероятные способности. Повзрослев, он покидает родные места в погоне за величайшим сокровищем.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Маюми Танака, Акеми Окамура, Тони Бек",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 382731,
-    "imdb": "https://www.imdb.com/title/tt0388629",
-    "type": "anime",
-    "id": 515,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/382731.jpg"
-  },
-  {
-    "title": "Магическая битва",
-    "titleRu": "Магическая битва",
-    "year": 2020,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1381125.jpg",
-    "description": "Школьник спасает человечество от плотоядных демонов. Интригующая анимация от сценариста «Атаки титанов»",
-    "fullDescription": "Мир, в котором демоны питаются людьми, а те об этом даже не догадываются. Когда-то давно самый могущественный демон был повержен, а части его тела разбросаны по свету. Тот, кто сможет их собрать и поглотить, получит безграничную власть и даже сможет уничтожить человечество. \nФизически развитого старшеклассника Юдзи Итадори волнуют насущные проблемы — почти всё время парень проводит в больнице с дедушкой, поэтому, чтобы отвязаться от настырных предложений вступить в спортивные клубы, записывается в оккультный. И внезапно оказывается в эпицентре борьбы за людские судьбы, когда его приятели снимают заклятье с некоего магического артефакта.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джунья Эноки, Адам МакАртур, Юма Учида",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1381125,
-    "imdb": "https://www.imdb.com/title/tt12343534",
-    "type": "anime",
-    "id": 516,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 10,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1381125.jpg"
-  },
-  {
-    "title": "Re: Ноль - Начало жизни в другом мире",
-    "titleRu": "Re: Zero - Starting Life in Another World",
-    "year": 2016,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/969188.jpg",
-    "description": "После внезапного переноса в другой мир Субару Нацуки и его новая партнерша были жестоко убиты. Однако Субару просыпается и видит знакомую сцену, снова встречая ту же девушку. День начинает загадочно повторять его...",
-    "fullDescription": "После внезапного переноса в другой мир Субару Нацуки и его новая партнерша были жестоко убиты. Однако Субару просыпается и видит знакомую сцену, снова встречая ту же девушку. День начинает загадочно повторять его...",
-    "country": "Япония",
-    "genres": "Мультфильм, Приключения, Драма, Аниме",
-    "director": "",
-    "actors": "Шон Чиплок, Юсуке Кобаяши, Кейли Миллс",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 969188,
-    "imdb": "https://www.imdb.com/title/tt5607616",
-    "type": "anime",
-    "id": 517,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/969188.jpg"
-  },
-  {
-    "title": "Моя геройская академия",
-    "titleRu": "Моя геройская академия",
-    "year": 2016,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/975897.jpg",
-    "description": "Парень без способностей мечтает покорить мир людей, обладающих сверхсилами. Аниме-сёнэн с закрученным сюжетом",
-    "fullDescription": "В некоем мире больший процент населения человечества рождается с необычными способностями, которые называются причудами. Но наш герой в этот процент не попал. Но парень упорно пытается достичь небывалой силы и приблизиться к своей мечте стать супергероем.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Дайки Ямасита, Джастин Бринер, Нобухико Окамото",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 975897,
-    "imdb": "https://www.imdb.com/title/tt5626028",
-    "type": "anime",
-    "id": 518,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/975897.jpg"
-  },
-  {
-    "title": "Ателье колдовских колпаков",
-    "titleRu": "Ателье колдовских колпаков",
-    "year": 2026,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6802576.jpg",
-    "description": "Коко учится магии, чтобы исправить страшную ошибку. Главное аниме весны",
-    "fullDescription": "В мире, где только волшебникам позволено колдовать, обычные люди не должны быть свидетелями магии. Коко с детства мечтала стать волшебницей. Однажды она увидела, как молодой волшебник Кифлий использует магию, и узнала великую тайну. На самом деле магия доступна любому, кто использует специальные инструменты. Так Коко попала в мир волшебников, и теперь ей придётся учиться, чтобы овладеть новым мастерством.",
-    "country": "Япония",
-    "genres": "Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 6802576,
-    "imdb": "https://www.imdb.com/title/tt32550889",
-    "type": "anime",
-    "id": 519,
-    "releaseDate": "2026-07-15",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "⚡ High Energy"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6802576.jpg"
-  },
-  {
-    "title": "Сага о Винланде",
-    "titleRu": "Сага о Винланде",
-    "year": 2019,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1274280.jpg",
-    "description": "Юноша вступает в отряд своего врага, чтобы отомстить за гибель отца. Экшен-аниме о суровой эпохе викингов",
-    "fullDescription": "Времена господства викингов. Людей, известных своими жестокими обычаями. Торфинн — сын одного из величайших викингов. Вот только вырос мальчик без отца, так как тот погиб на поле боя. Желая отомстить, Торфинн поклялся убить виновного, однако юноше ещё только предстоит овладеть искусством боя.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, История, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Синья Такахаси, Юто Уэмура, Майк Хаймото",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1274280,
-    "imdb": "https://www.imdb.com/title/tt10233448",
-    "type": "anime",
-    "id": 520,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 4,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1274280.jpg"
-  },
-  {
-    "title": "Истребитель демонов",
-    "titleRu": "Истребитель демонов",
-    "year": 2019,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1220920.jpg",
-    "description": "Осиротевший мальчик пытается спасти сестру, которая вот-вот превратится в демона. Аниме по хитовой манге",
-    "fullDescription": "Эпоха Тайсё. Ещё с древних времён ходят слухи, что в лесу обитают человекоподобные демоны, которые питаются людьми и выискивают по ночам новых жертв. Тандзиро Камадо — старший сын в семье, потерявший отца и взявший на себя заботу о родных. Однажды он уходит в соседний город, чтобы продать древесный уголь. Вернувшись утром, парень обнаруживает перед собой страшную картину: вся родня зверски убита, а единственная выжившая — младшая сестра Нэдзуко, обращённая в демона, но пока не потерявшая человечность. С этого момента начинается долгое и опасное путешествие Тандзиро и Нэдзуко, в котором мальчик намерен разыскать убийцу и узнать способ исцеления сестры.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Нацуки Ханаэ, Зак Агилар, Эбби Тротт",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 1220920,
-    "imdb": "https://www.imdb.com/title/tt9335498",
-    "type": "anime",
-    "id": 521,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1220920.jpg"
-  },
-  {
-    "title": "Поднятие уровня в одиночку",
-    "titleRu": "Поднятие уровня в одиночку",
-    "year": 2024,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5230828.jpg",
-    "description": "Охотник на демонов низшего ранга находит способ повысить свой статус. Экранизация южнокорейского бестселлера",
-    "fullDescription": "10 лет назад открылись врата в другой мир, где людям дозволено убивать монстров. Так появились охотники, преследующие и уничтожающие тварей. Но не каждому из них суждено повысить свой уровень и стать сильнее. Сон Джин-у был охотником низшего E-ранга, у которого не было ни единого шанса продвинуться по ранговой лестнице, пока однажды он случайно не очутился в подземелье D-ранга. Чуть не погибнув от рук чудовищ, Джин-у открывает секрет повышения уровня.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Тайто Бан, Алекс Ле, Ребекка Ванг",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5230828,
-    "imdb": "https://www.imdb.com/title/tt21209876",
-    "type": "anime",
-    "id": 522,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5230828.jpg"
-  },
-  {
-    "title": "Провожающая в последний путь Фрирен",
-    "titleRu": "Провожающая в последний путь Фрирен",
-    "year": 2023,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5401195.jpg",
-    "description": "Эльфийка отправляется на тот свет — попрощаться с умершим соратником. Аниме с философской нотой",
-    "fullDescription": "После 10-летнего путешествия и победы над королём демонов отряд героев возвращается в родные края, чтобы расстаться навсегда. Эльфийка Фрирен с горечью наблюдает, как её спутники один за другим уходят из жизни, ведь эльфы живут дольше людей. Она решает отправиться в новое путешествие, чтобы найти ответы на мучающие её вопросы о смысле жизни.",
-    "country": "Япония",
-    "genres": "Драма, Приключения, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ацуми Танезаки, Кана Ичиносе, Мэллори Родак",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5401195,
-    "imdb": "https://www.imdb.com/title/tt22248376",
-    "type": "anime",
-    "id": 523,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5401195.jpg"
-  },
-  {
-    "title": "Стальной алхимик: Братство",
-    "titleRu": "Стальной алхимик: Братство",
-    "year": 2009,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/452838.jpg",
-    "description": "Нарушив главный запрет Алхимии и попытавшись воскресить маму, талантливые братья Элрики заплатили высокую цену: младший, Альфонс, потерял тело, и теперь его душа прикреплена к стальным доспехам, а старший, Эдвард, лишился руки и ноги, поэтому ему ...",
-    "fullDescription": "Нарушив главный запрет Алхимии и попытавшись воскресить маму, талантливые братья Элрики заплатили высокую цену: младший, Альфонс, потерял тело, и теперь его душа прикреплена к стальным доспехам, а старший, Эдвард, лишился руки и ноги, поэтому ему приходится пользоваться протезами — автобронёй. Благодаря проявленным способностям Эд получил звание государственного алхимика и, таким образом, стал частью военной машины государства. Теперь у него есть шанс вернуть Альфонсу прежнее тело.",
-    "country": "Япония",
-    "genres": "Драма, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кент Уильямс, Имаса Каюми, Вик Миньогна",
-    "duration": "54S min",
-    "trailer": "",
-    "kinopoiskId": 452838,
-    "imdb": "https://www.imdb.com/title/tt1355642",
-    "type": "anime",
-    "id": 524,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/452838.jpg"
-  },
-  {
-    "title": "Невероятные приключения ДжоДжо",
-    "titleRu": "Невероятные приключения ДжоДжо",
-    "year": 2012,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/707636.jpg",
-    "description": "Благородная семья Джостар против вампиров и зомби. Культовое аниме с феерическими экшен-сценами",
-    "fullDescription": "Англия, конец XIX века. Богатый аристократ Джордж Джостар, верный некогда данному слову, принимает в семью осиротевшего бедного парня Дио и теперь относится к нему как к сыну. Родной же сын Джорджа Джонатан совсем не рад новому «брату», ведь тот превосходит его во всём, но вскоре благородство отца обернётся для него настоящей трагедией. Внимание Дио привлекает Каменная маска — семейная реликвия, украв которую он высвобождает древние силы, способные превратить его в неуязвимого вампира. На протяжении многих десятилетий против зла будут сражаться представители разных поколений семьи Джостар: Джонатан Джостар, Джозеф Джостар, Джотаро Куджо, Джосукэ Хигасиката, Джорно Джованна, Джолин Куджо.",
-    "country": "Япония",
-    "genres": "Криминал, Детектив, Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Дэвид Винсент, Дайсуке Оно, Мэттью Мерсер",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 707636,
-    "imdb": "https://www.imdb.com/title/tt2359704",
-    "type": "anime",
-    "id": 525,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/707636.jpg"
-  },
-  {
-    "title": "Меч и жезл Вистории",
-    "titleRu": "Меч и жезл Вистории",
-    "year": 2024,
-    "rating": 7.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6527083.jpg",
-    "description": "Подросток без магических способностей поступает в академию магии. Он не умеет пользоваться палочкой, но его умение обращаться с мечом подпитывает его стремление сдержать обещание, данное другу.",
-    "fullDescription": "Подросток без магических способностей поступает в академию магии. Он не умеет пользоваться палочкой, но его умение обращаться с мечом подпитывает его стремление сдержать обещание, данное другу.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кей Амасаки, Аарон Майкл, Эрика Мьюз",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 6527083,
-    "imdb": "https://www.imdb.com/title/tt31889371",
-    "type": "anime",
-    "id": 526,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6527083.jpg"
-  },
-  {
-    "title": "Охотник х Охотник",
-    "titleRu": "Охотник х Охотник",
-    "year": 2011,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/647602.jpg",
-    "description": "Лицензия члена организации Охотников дает множество привилегий — возможность бесплатно путешествовать первым классом, доступ к закрытой информации и право брать крупные суммы денег в банках. Ежегодно проводится экзамен, на котором выбираются немно...",
-    "fullDescription": "Лицензия члена организации Охотников дает множество привилегий — возможность бесплатно путешествовать первым классом, доступ к закрытой информации и право брать крупные суммы денег в банках. Ежегодно проводится экзамен, на котором выбираются немногие достойные. Гон Фрикс отправляется на экзамен с целью стать Охотником и найти своего отца.",
-    "country": "Япония",
-    "genres": "Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Иссей Футамата, Мегуми Хан, Кристина Валенсуэла",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 647602,
-    "imdb": "https://www.imdb.com/title/tt2098220",
-    "type": "anime",
-    "id": 527,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/647602.jpg"
-  },
-  {
-    "title": "Цугаи загробного мира",
-    "titleRu": "Цугаи загробного мира",
-    "year": 2026,
-    "rating": 8.3,
-    "poster": "https://m.media-amazon.com/images/M/MV5BNzNlNzU5YmItOWIyMi00MjE3LWEwYTEtZjllNzRhYmRiZDczXkEyXkFqcGc@._V1_SX500.jpg",
-    "description": "Разлученные в детстве и не подозревающие, что они братья и сестры, брат и сестра изо всех сил пытаются воссоединиться, вернуть себе право первородства и спасти мир.",
-    "fullDescription": "Разлученные в детстве и не подозревающие, что они братья и сестры, брат и сестра изо всех сил пытаются воссоединиться, вернуть себе право первородства и спасти мир.",
-    "country": "Япония",
-    "genres": "Мультфильм, Драма, Аниме",
-    "director": "",
-    "actors": "Кенсё Оно, Юмэ Миямото",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt37532356",
-    "type": "anime",
-    "id": 528,
-    "releaseDate": "2026-10-05",
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "anime",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzNlNzU5YmItOWIyMi00MjE3LWEwYTEtZjllNzRhYmRiZDczXkEyXkFqcGc@._V1_SX500.jpg"
-  },
-  {
-    "title": "Наруто: Ураганные хроники",
-    "titleRu": "Наруто: Ураганные хроники",
-    "year": 2007,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281884.jpg",
-    "description": "В мире Наруто незаметно пролетели два года. Бывшие новички пополнили ряды опытных синоби в ранге тюнин и дзёнин. Главные герои не сидели на месте – каждый стал учеником одного из легендарных Саннин – трех великих ниндзя Конохи. Парень в оранжевом ...",
-    "fullDescription": "В мире Наруто незаметно пролетели два года. Бывшие новички пополнили ряды опытных синоби в ранге тюнин и дзёнин. Главные герои не сидели на месте – каждый стал учеником одного из легендарных Саннин – трех великих ниндзя Конохи. Парень в оранжевом продолжил обучение у мудрого, но эксцентричного Дзирайи, постепенно восходя на новую ступень боевого мастерства. Сакура выдвинулась в помощницы и доверенные лица целительницы Цунадэ – нового вождя Деревни Листвы. Ну а Саскэ, чья гордыня привела к изгнанию из Конохи, вступил во временный союз со зловещим Оротимару, причем каждый считает, что лишь использует другого до поры до времени.",
-    "country": "Япония",
-    "genres": "Триллер, Фантастика, Приключения, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Александр Крепе, Джунко Такеучи, Мэйл Флэнаган",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 281884,
-    "imdb": "https://www.imdb.com/title/tt0988824",
-    "type": "anime",
-    "id": 529,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281884.jpg"
-  },
-  {
-    "title": "Наруто",
-    "titleRu": "Наруто",
-    "year": 2002,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/283290.jpg",
-    "description": "Однажды демон напал на деревню, в которой родился мальчик Наруто. Чтобы остановить демона, глава поселения запечатал его внутри Наруто, но сам при этом погиб. Прошли годы. Наруто вырос, став неусидчивым и пока неопытным ниндзя. Он всё ещё живёт в ...",
-    "fullDescription": "Однажды демон напал на деревню, в которой родился мальчик Наруто. Чтобы остановить демона, глава поселения запечатал его внутри Наруто, но сам при этом погиб. Прошли годы. Наруто вырос, став неусидчивым и пока неопытным ниндзя. Он всё ещё живёт в родной деревне, где его не принимают и стараются избегать.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джунко Такеучи, Мэйл Флэнаган, Кейт Хиггинс",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 283290,
-    "imdb": "https://www.imdb.com/title/tt0409591",
-    "type": "anime",
-    "id": 530,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/283290.jpg"
-  },
-  {
-    "title": "Монстр",
-    "titleRu": "Монстр",
-    "year": 2004,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258582.jpg",
-    "description": "Доктор Кэндзо Тэнма — талантливый хирург, который работает в Германии. Однажды он спасает тяжело раненого мальчика. Этот случай послужит началом череды загадочных убийств, а спустя годы Кэндзо вновь столкнётся с тем, кого он когда-то спас от смерти.",
-    "fullDescription": "Доктор Кэндзо Тэнма — талантливый хирург, который работает в Германии. Однажды он спасает тяжело раненого мальчика. Этот случай послужит началом череды загадочных убийств, а спустя годы Кэндзо вновь столкнётся с тем, кого он когда-то спас от смерти.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Детектив, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Хиденобу Киучи, Лиам О’Брайен, Эйдзи Ханава",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 258582,
-    "imdb": "https://www.imdb.com/title/tt0434706",
-    "type": "anime",
-    "id": 531,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258582.jpg"
-  },
-  {
-    "title": "Легенда о Корре",
-    "titleRu": "Легенда о Корре",
-    "year": 2012,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/565035.jpg",
-    "description": "В Республиканском городе появляется новый Аватар — дерзкая Корра. Продолжение технофэнтези «Легенда об Аанге»",
-    "fullDescription": "Действие сериала разворачивается примерно через 70 лет после битвы аватара Аанга и Лорда Огня. Корра, уже овладевшая магией воды, земли и огня, должна обучиться последнему элементу — магии воздуха. В этом ей может помочь только сын Аанга и Катары — Тензин. Корра живёт в «Республиканском городе». Республиканский город — это место, где вместе живут люди всех наций. Героям мультсериала предстоит борьба с преступностью и с готовящимся восстанием против магов.",
-    "country": "США, Япония, Корея Южная",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм, Семейный, Аниме",
-    "director": "",
-    "actors": "Джанет Варни, Джефф Беннетт, Ди Брэдли Бэйкер",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 565035,
-    "imdb": "https://www.imdb.com/title/tt1695360",
-    "type": "anime",
-    "id": 532,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/565035.jpg"
-  },
-  {
-    "title": "Чёрный клевер",
-    "titleRu": "Чёрный клевер",
-    "year": 2017,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1049731.jpg",
-    "description": "Редкий дар приносит юному магу радость и неприятности. Аниме-сериал о борьбе друзей за звание короля-чародея",
-    "fullDescription": "Ещё младенцами в один и тот же день Аста с Юно были подброшены под двери церкви одной отдалённой деревни. Годы шли, мальчики росли, а миром вокруг них правила магия. Юно оказался по-настоящему одарённым чародеем, а Аста не мог освоить и простейшее заклинание. На пятнадцатый день рождения юноши получат свою собственную книгу заклинаний — гримуар. Лучшие друзья в прошлом, а ныне — соперники, они делят одну мечту на двоих. Каждый из них хочет стать Королём-чародеем.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Даллас Рид, Гакуто Кадзивара, Джилл Харрис",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1049731,
-    "imdb": "https://www.imdb.com/title/tt7441658",
-    "type": "anime",
-    "id": 533,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1049731.jpg"
-  },
-  {
-    "title": "Киберпанк: Бегущие по краю",
-    "titleRu": "Киберпанк: Бегущие по краю",
-    "year": 2022,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2000102.jpg",
-    "description": "Будущее, мегаполис Найт-Сити. Люди одержимы высокими технологиями и разного рода имплантами. Мать Дэвида Мартинеса еле сводит концы с концами, но пытается сделать всё возможное, чтобы сын учился в элитной академии и получил хорошее образование. Ко...",
-    "fullDescription": "Будущее, мегаполис Найт-Сити. Люди одержимы высокими технологиями и разного рода имплантами. Мать Дэвида Мартинеса еле сводит концы с концами, но пытается сделать всё возможное, чтобы сын учился в элитной академии и получил хорошее образование. Когда, попав в уличную перестрелку и автоаварию, женщина из-за плохой страховки умирает в больнице, Дэвид ставит себе экспериментальный имплантат, дающий своему обладателю повышенные боевые характеристики, и становится наёмником.",
-    "country": "США, Польша, Япония",
-    "genres": "Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Зак Агилар, Кенн, Эми Ло",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 2000102,
-    "imdb": "https://www.imdb.com/title/tt12590266",
-    "type": "anime",
-    "id": 534,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2000102.jpg"
-  },
-  {
-    "title": "Ванпанчмен",
-    "titleRu": "Ванпанчмен",
-    "year": 2015,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1382669.jpg",
-    "description": "История Сайтамы, героя, который делает это просто ради развлечения и может победить своих врагов одним ударом.",
-    "fullDescription": "История Сайтамы, героя, который делает это просто ради развлечения и может победить своих врагов одним ударом.",
-    "country": "США",
-    "genres": "Фантастика, Боевик, Комедия, Аниме, Мультфильм",
-    "director": "",
-    "actors": "Макото Фурукава, Кайто Исикава, Макс Миттельман",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1382669,
-    "imdb": "https://www.imdb.com/title/tt4508902",
-    "type": "anime",
-    "id": 535,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1382669.jpg"
-  },
-  {
-    "title": "Дьявол может заплакать",
-    "titleRu": "Devil May Cry",
-    "year": 2025,
-    "rating": 7.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4771175.jpg",
-    "description": "Когда таинственный злодей угрожает открыть врата ада, дьявольски красивый охотник на демонов может стать лучшей надеждой мира на спасение.",
-    "fullDescription": "Когда таинственный злодей угрожает открыть врата ада, дьявольски красивый охотник на демонов может стать лучшей надеждой мира на спасение.",
-    "country": "США, Япония, Корея Южная",
-    "genres": "Детектив, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Джонни Йонг Бош, Скаут Тейлор-Комптон, Хун Ли",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4771175,
-    "imdb": "https://www.imdb.com/title/tt15716776",
-    "type": "anime",
-    "id": 536,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4771175.jpg"
-  },
-  {
-    "title": "Код Гиас: Восставший Лелуш",
-    "titleRu": "Код Гиас: Восставший Лелуш",
-    "year": 2006,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408674.jpg",
-    "description": "Альтернативная реальность: Британская империя захватила треть мира, обрушивая на непокорных мощь своей военной машины.\n\nВ Японии, захваченной и переименованной в Зону 11, вместе с младшей сестрой живёт старшеклассник Лелуш – изгнанный сын Императо...",
-    "fullDescription": "Альтернативная реальность: Британская империя захватила треть мира, обрушивая на непокорных мощь своей военной машины.\n\nВ Японии, захваченной и переименованной в Зону 11, вместе с младшей сестрой живёт старшеклассник Лелуш – изгнанный сын Императора, потерявший мать и право на престол. Юноша отличается от сверстников не только происхождением – он весьма одарённая личность, только где применить эти способности? Неожиданно Лелуш оказывается вовлечён в столкновение между японскими террористами и британскими солдатами. Так он знакомится с загадочной девушкой C.C. Она дарует ему сверхъестественную способность Гиас, позволяющую подчинять себе волю других людей.\n\nСкрывая лицо под маской и под именем Зеро, Лелуш присоединяется к подпольному движению, горя желанием отомстить Британии и отцу. Будучи студентом Академии Ашфорд, юноша вынужден вести двойную жизнь.",
-    "country": "Япония",
-    "genres": "Триллер, Драма, Фантастика, Приключения, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Дзюн Фукуяма, Такахиро Сакураи, Джонни Ён Бош",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 408674,
-    "imdb": "https://www.imdb.com/title/tt0994314",
-    "type": "anime",
-    "id": 537,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408674.jpg"
-  },
-  {
-    "title": "Ковбой Бибоп",
-    "titleRu": "Ковбой Бибоп",
-    "year": 1998,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229653.jpg",
-    "description": "Бывший полицейский Джет Блэк и человек с тёмным прошлым Спайк Шпигель совершенно не планировали увеличивать экипаж космического корабля «Бибоп», являющегося для них домом и средством передвижения. Но сети, раскинутые для поимки дорогостоящих отбро...",
-    "fullDescription": "Бывший полицейский Джет Блэк и человек с тёмным прошлым Спайк Шпигель совершенно не планировали увеличивать экипаж космического корабля «Бибоп», являющегося для них домом и средством передвижения. Но сети, раскинутые для поимки дорогостоящих отбросов общества, принесли им Фэй Валентайн — очаровательную картёжницу с колоссальным долгом, Эд — потерявшуюся компьютерную умницу и Эйн — предположительно, самую умную собаку на свете. Именно в таком составе экипаж «Бибопа» и продолжает своё дело — охоту за головами.",
-    "country": "Япония",
-    "genres": "Криминал, Фантастика, Приключения, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Коичи Ямадера, Унсё Исидзука, Мегуми Хаясибара",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 229653,
-    "imdb": "https://www.imdb.com/title/tt0213338",
-    "type": "anime",
-    "id": 538,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229653.jpg"
-  },
-  {
-    "title": "Дорохедоро",
-    "titleRu": "Дорохедоро",
-    "year": 2020,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1311143.jpg",
-    "description": "Кайман ищет мага, который превратил его в ящера. Безумное аниме от студии, выпустившей «Человека-бензопилу»",
-    "fullDescription": "Людям не повезло жить в мире под названием Дыра, куда наведываются маги из параллельного измерения практиковать на бедных человеках свои навыки. Однажды девушка по имени Никайдо находит жертву этих ужасных экспериментов — человека с головой крокодила и амнезией впридачу. Никайдо нарекает нового друга Кайман, и теперь они ловят магов, а Кайман откусывает им головы, пытаясь таким образом вернуть утерянные воспоминания и свой прежний облик. А в это время верховный колдун Эн, помешанный на грибах, решает выследить и убить тех, кто сокращает количество ему подобных.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ватару Такаги, Рейна Кондо, Кенью Хориучи",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1311143,
-    "imdb": "https://www.imdb.com/title/tt11147852",
-    "type": "anime",
-    "id": 539,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1311143.jpg"
-  },
-  {
-    "title": "Реинкарнация безработного: История о приключениях в другом мире",
-    "titleRu": "Реинкарнация безработного: История о приключениях в другом мире",
-    "year": 2021,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1312253.jpg",
-    "description": "Хикикомори в теле подростка пытается выжить в мире магов и демонов. Динамичная анимация по хитовому ранобэ",
-    "fullDescription": "34-летнего неудачника сбил автобус, но его история на этом не закончилась. Перевоплотившись в младенца, он отправится в эпическое приключение.",
-    "country": "Япония",
-    "genres": "Приключения, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юми Утияма, Томокадзу Сугита, Ай Каяно",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1312253,
-    "imdb": "https://www.imdb.com/title/tt13293588",
-    "type": "anime",
-    "id": 540,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1312253.jpg"
-  },
-  {
-    "title": "Евангелион",
-    "titleRu": "Евангелион",
-    "year": 1995,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/95323.jpg",
-    "description": "2015 год, Токио-3. 15 лет назад произошёл Второй удар, в результате чего Антарктида растаяла, Землю накрыла глобальная катастрофа, и большая часть человечества погибла. Теперь планету атакуют Ангелы — загадочные существа, противостоять которым мог...",
-    "fullDescription": "2015 год, Токио-3. 15 лет назад произошёл Второй удар, в результате чего Антарктида растаяла, Землю накрыла глобальная катастрофа, и большая часть человечества погибла. Теперь планету атакуют Ангелы — загадочные существа, противостоять которым могут только созданные с помощью биотехнологий гигантские роботы серии «Евангелион». \n\n14-летний Синдзи Икари направлялся на встречу с отцом, руководителем влиятельной организации NERV, когда Токио-3 подвергся нападению Ангела. С помощью капитана Мисато Кацураги парень добирается до подземной штаб-квартиры NERV и единственное, что он хочет сказать отцу — как сильно его ненавидит. Но на месте выясняется, что Синдзи должен прямо сейчас залезть в робота и сражаться с Ангелом.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Мегуми Огата, Мегуми Хаясибара, Котоно Мицуиси",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 95323,
-    "imdb": "https://www.imdb.com/title/tt0112159",
-    "type": "anime",
-    "id": 541,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/95323.jpg"
-  },
-  {
-    "title": "Драконий жемчуг Зет",
-    "titleRu": "Драконий жемчуг Зет",
-    "year": 1996,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230594.jpg",
-    "description": "Спустя пять лет после победы на Всемирном турнире по боевым искусствам Сон Гоку живёт спокойной жизнью со своей семьёй. Вскоре становится известно о новой космической угрозе, и будущее человечества оказывается под угрозой.",
-    "fullDescription": "Спустя пять лет после победы на Всемирном турнире по боевым искусствам Сон Гоку живёт спокойной жизнью со своей семьёй. Вскоре становится известно о новой космической угрозе, и будущее человечества оказывается под угрозой.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Док Харрис, Кристофер Сабат, Скотт МакНил",
-    "duration": "17S min",
-    "trailer": "",
-    "kinopoiskId": 230594,
-    "imdb": "https://www.imdb.com/title/tt0214341",
-    "type": "anime",
-    "id": 542,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230594.jpg"
-  },
-  {
-    "title": "Врата Штейна",
-    "titleRu": "Врата Штейна",
-    "year": 2011,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/586251.jpg",
-    "description": "Студенты отправляют сообщения в прошлое, чтобы изменить настоящее. Адаптация популярного визуального романа",
-    "fullDescription": "Акихабара – интереснейшее место, где обитают самые разные люди – от слегка сдвинутых по фазе до больных на всю голову. Именно такая компания собралась в Лаборатории проблем времени, что над лавкой старых телевизоров. Возглавляет её 18-летний Ринтаро Окабэ, сумасшедший ученый и борец с мировым заговором. В серьезном деле нельзя без хакера – вот и он, Итару Хасида, конечно же, толстяк и истинный отаку. Добрая фея лаборатории – Маюри Сиина, подруга детства Ринтаро, официантка мейд-кафе и фанатка косплея, а научную мощь бригады резко повысила юный гений Курису Макисэ, истосковавшаяся по интеллектуальным приключениям и простому человеческому теплу.\n\nКомпании удалось построить машину времени из микроволновки и барахла с ближайшей распродажи. Великие открытия делают любители, а профессионалы строят «Титаники». Вот только потом началось такое, что парадокс дедушки нервно удалился курить в сторонку, а главный герой трижды проклял тот день, когда сдуру открыл врата Штейна. Он был готов рисковать своей жизнью, но не чужими. Впрочем, сделанного, как известно, не воротишь. Или… все же можно?",
-    "country": "Япония",
-    "genres": "Триллер, Фантастика, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Мамору Мияно, Асами Имаи, Кана Ханадзава",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 586251,
-    "imdb": "https://www.imdb.com/title/tt1910272",
-    "type": "anime",
-    "id": 543,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/586251.jpg"
-  },
-  {
-    "title": "Гинтама",
-    "titleRu": "Гинтама",
-    "year": 2005,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/490128.jpg",
-    "description": "Захватив Землю, пришельцы Аманто запретили ношение мечей. Единственный, в ком ещё жив подлинно японский дух — самоуверенный сластёна Гинтоки Саката. Неуклюжий очкарик Симпати нанялся к нему в ученики. Третьим в их команде стала прелестная Кагура и...",
-    "fullDescription": "Захватив Землю, пришельцы Аманто запретили ношение мечей. Единственный, в ком ещё жив подлинно японский дух — самоуверенный сластёна Гинтоки Саката. Неуклюжий очкарик Симпати нанялся к нему в ученики. Третьим в их команде стала прелестная Кагура из сильнейшей во вселенной семьи Ятудзоку, а с ней её питомец Садахару — пёсик размером с бегемота, обладающий милой привычкой грызть головы всем, кто подвернётся. Они называют себя мастерами на все руки и выполняют любые заказы — главное, чтобы заплатили.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Томокадзу Сугита, Дайсуке Сакагути, Рие Кугимия",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 490128,
-    "imdb": "https://www.imdb.com/title/tt0988818",
-    "type": "anime",
-    "id": 544,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/490128.jpg"
-  },
-  {
-    "title": "Монолог фармацевта",
-    "titleRu": "Монолог фармацевта",
-    "year": 2023,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5258557.jpg",
-    "description": "Находчивая служанка решает вылечить детей императора. Комедийный детектив из топа Кинопоиска",
-    "fullDescription": "Древний Китай. 17-летнюю девушку Маомао похищают и в качестве служанки продают в императорский дворец. Однажды она узнаёт, что двух младенцев императора поразил серьёзный недуг. Обладая опытом и знаниями в фармацевтике, Маомао решает тайно разузнать детали и попытаться помочь.",
-    "country": "Япония",
-    "genres": "Драма, Детектив, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Аой Юки, Эми Ло, Такео Оцука",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5258557,
-    "imdb": "https://www.imdb.com/title/tt26743760",
-    "type": "anime",
-    "id": 545,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 5,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5258557.jpg"
-  },
-  {
-    "title": "Гетто",
-    "titleRu": "Гетто",
-    "year": 2005,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401157.jpg",
-    "description": "Дедушка-афроамериканец и двое его внуков переезжают в белый район. Крутой взрослый мульт с сатирой и рэпом",
-    "fullDescription": "Маргинальная семейка Фрименов переезжает из черного как смоль Южного Чикаго в благополучный белый пригород. Это станет не только источником многочисленных комедийных ситуаций, но и причиной больших проблем. Судите сами, как можно спокойно жить с такими соседями.\nМладший Фримен рисует граффити на белых стенах белых соседей и обожает гангста-рэп, пока не узнает о нетрадиционной ориентации своих кумиров. Его брат настаивает, что Иисус был черным, Рональд Рейган — дьявол, а правительство скрывает настоящую правду о терактах 11 сентября. А их дедушка вместо того, чтобы вправлять внукам мозги, заводит роман с юной стриптизершей.\nДобро пожаловать в гетто!",
-    "country": "США, Корея Южная",
-    "genres": "Драма, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Реджина Кинг, Джон Уизерспун, Гэри Энтони Уильямс",
-    "duration": "27S min",
-    "trailer": "",
-    "kinopoiskId": 401157,
-    "imdb": "https://www.imdb.com/title/tt0373732",
-    "type": "anime",
-    "id": 546,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401157.jpg"
-  },
-  {
-    "title": "Любовь с иголочки",
-    "titleRu": "Любовь с иголочки",
-    "year": 2022,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4836543.jpg",
-    "description": "Тихий школьник с непопулярным хобби влюбляется в косплеершу. Аниме от сценариста «Пламенной бригады пожарных»",
-    "fullDescription": "Замкнутый старшеклассник Годзё Вакана мечтает мастерить японских кукол. В нём до сих пор живы болезненные воспоминания из детства, когда друг Годзё высмеял его увлечение куклами. Однажды модная жизнерадостная и сексуальная красавица Марин Китагава застала Годзё за шитьем. С этого момента одинокий «кукольник» забыл о тишине и спокойствии, ведь Марин вихрем вовлекла его в мир своего тайного хобби — косплея.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Хина Сугута, Сёя Исигэ, Амали",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4836543,
-    "imdb": "https://www.imdb.com/title/tt15765670",
-    "type": "anime",
-    "id": 547,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4836543.jpg"
-  },
-  {
-    "title": "Синяя тюрьма: Блю Лок",
-    "titleRu": "Синяя тюрьма: Блю Лок",
-    "year": 2022,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4624770.jpg",
-    "description": "Тренер-деспот устраивает жесткий отбор среди футболистов в специальной тюрьме. Захватывающее спортивное аниме",
-    "fullDescription": "Чтобы выиграть Чемпионат мира, японская футбольная ассоциация решает нанять загадочного и эксцентричного тренера Дзимпати Эго. Тот в уверенности, что в Японии нет хороших нападающих, создает Блю Лок — тюрьму, где триста юных талантливых футболистов соревнуются друг с другом. Победитель получит право стать нападающим национальной сборной, а проигравшим навсегда запретят играть за сборную.\n\nОдним из участников становится Ёити Исаги, который мечтает стать величайшим нападающим в мире и привести Японию к футбольной славе.",
-    "country": "Япония",
-    "genres": "Мультфильм, Спорт, Аниме",
-    "director": "",
-    "actors": "Рикко Фахардо, Дрю Бридлав, Нобунага Симадзаки",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 4624770,
-    "imdb": "https://www.imdb.com/title/tt15222080",
-    "type": "anime",
-    "id": 548,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4624770.jpg"
-  },
-  {
-    "title": "Невероятное приключение ДжоДжо: Гонка «Стальной шар»",
-    "titleRu": "Невероятное приключение ДжоДжо: Гонка «Стальной шар»",
-    "year": 2026,
-    "rating": 9.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5472856.jpg",
-    "description": "Бывший жокей, страдающий параличом нижних конечностей, объединяет усилия с преступником, чтобы принять участие в первых межконтинентальных скачках в Северной Америке в 1800-х годах.",
-    "fullDescription": "Бывший жокей, страдающий параличом нижних конечностей, объединяет усилия с преступником, чтобы принять участие в первых межконтинентальных скачках в Северной Америке в 1800-х годах.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "Дэмиен К. Хаас, Кайджи Танг, Даман Миллс",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5472856,
-    "imdb": "https://www.imdb.com/title/tt38268282",
-    "type": "anime",
-    "id": 549,
-    "releaseDate": "2026-12-25",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5472856.jpg"
-  },
-  {
-    "title": "Дандадан",
-    "titleRu": "Дандадан",
-    "year": 2024,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5458831.jpg",
-    "description": "Внучка медиума и юный уфолог внезапно встречают призраков и пришельцев. Хитовое аниме — безумное и смешное",
-    "fullDescription": "Старшеклассница Момо Аясэ верит в привидений. Однажды она знакомится с парнем Кэном Такакурой, который убеждён в существовании инопланетян. Они начинают спорить, пытаясь навязать друг другу свою точку зрения, и решают посетить оккультные места. Выясняется, что оба были правы.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Шион Вакаяма, Нацуки Ханаэ, Эбби Тротт",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5458831,
-    "imdb": "https://www.imdb.com/title/tt30217403",
-    "type": "anime",
-    "id": 550,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5458831.jpg"
-  },
-  {
-    "title": "Гачиакута",
-    "titleRu": "Гачиакута",
-    "year": 2025,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7524629.jpg",
-    "description": "Невинно осужденный подросток пытается выжить среди мусорных монстров. Аниме сценариста «Дандадана»",
-    "fullDescription": "Мальчик Рудо и его приёмный отец живут в трущобах процветающего города вместе с бедняками, которые с трудом сводят концы с концами. Богачи, напротив, купаются в роскоши и сбрасывают весь мусор в так называемую Бездну. Однажды Рудо ложно обвиняют в убийстве отца и приговаривают к изгнанию в Бездну, где мусор породил жестоких монстров. Чтобы выжить, узнать правду и отомстить, парню придётся овладеть новой силой и присоединиться к группе, известной как Мусорщики, которая сражается с огромными мусорными существами.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Аой Итикава, Кацуюки Кониси, Ёсицугу Мацуока",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 7524629,
-    "imdb": "https://www.imdb.com/title/tt32612521",
-    "type": "anime",
-    "id": 551,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7524629.jpg"
-  },
-  {
-    "title": "Пламенная бригада пожарных",
-    "titleRu": "Пламенная бригада пожарных",
-    "year": 2019,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1235054.jpg",
-    "description": "Юноша вступает в отряд, который защищает Токио от инфернальных существ. Огненное аниме с детективной линией",
-    "fullDescription": "В Токио участились случаи самовозгорания. Причины этого феномена неизвестны, и люди не умирают, а превращаются в огнелюдей — безмозглых монстров, которые становятся причиной ещё больших пожаров. Для борьбы с ними созданы пожарные отряды, которые ещё и пытаются выяснить, из-за чего это всё происходит. К такому отряду присоединяется Синра Кусакабэ. Его считают виновным в смерти собственной семьи, и, чтобы доказать обратное, парень стремится стать героем, которого будут уважать и не бояться.",
-    "country": "Япония",
-    "genres": "Детектив, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Гакуто Кадзивара, Дерик Сноу, Эрик Вейл",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1235054,
-    "imdb": "https://www.imdb.com/title/tt9307686",
-    "type": "anime",
-    "id": 552,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1235054.jpg"
-  },
-  {
-    "title": "Покемон",
-    "titleRu": "Покемон",
-    "year": 1997,
-    "rating": 6.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/408476.jpg",
-    "description": "Эш - мальчик из маленького городка, решивший стать тренером покемонов. Благодаря своему другу профессору Оаку он получил столь нужную вещь для тренера, компьютер, который знает про покемонов все. Первого покемона, которого он поймал, звали Пикачу.",
-    "fullDescription": "Эш - мальчик из маленького городка, решивший стать тренером покемонов. Благодаря своему другу профессору Оаку он получил столь нужную вещь для тренера, компьютер, который знает про покемонов все. Первого покемона, которого он поймал, звали Пикачу.",
-    "country": "Япония",
-    "genres": "Триллер, Фантастика, Приключения, Боевик, Комедия, Мультфильм, Семейный, Аниме, Детский",
-    "director": "",
-    "actors": "Вероника Тейлор, Рэйчел Лиллис, Эрик Стюарт",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 408476,
-    "imdb": "https://www.imdb.com/title/tt0168366",
-    "type": "anime",
-    "id": 553,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/408476.jpg"
-  },
-  {
-    "title": "Наказание для храброго героя",
-    "titleRu": "Наказание для храброго героя",
-    "year": 2025,
-    "rating": 8.9,
-    "poster": "https://m.media-amazon.com/images/M/MV5BOGU4MjhjNGYtNjQwMC00MGFmLThhNDQtYmNhZjBkMWU4YWZhXkEyXkFqcGc@._V1_SX500.jpg",
-    "description": "Мрачное фэнтези, в котором Герои-преступники, приговоренные к героической службе в исправительной воинской части, должны вести войну против армии короля демонов.",
-    "fullDescription": "Мрачное фэнтези, в котором Герои-преступники, приговоренные к героической службе в исправительной воинской части, должны вести войну против армии короля демонов.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "Джесси Джеймс Грелль, Эми Ло, Дэвид Матранга",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt32536168",
-    "type": "anime",
-    "id": 554,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BOGU4MjhjNGYtNjQwMC00MGFmLThhNDQtYmNhZjBkMWU4YWZhXkEyXkFqcGc@._V1_SX500.jpg"
-  },
-  {
-    "title": "Старшая школа DxD",
-    "titleRu": "Старшая школа DxD",
-    "year": 2012,
-    "rating": 7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/666587.jpg",
-    "description": "Что нужно от жизни простому 17-летнему японскому школьнику? Иссэи Хёдо отлично знает ответ, ведь ради этого он и записался в бывшую женскую академию Комао! Иссэи наивно полагал, что после начала совместного обучения в условиях дефицита парней стан...",
-    "fullDescription": "Что нужно от жизни простому 17-летнему японскому школьнику? Иссэи Хёдо отлично знает ответ, ведь ради этого он и записался в бывшую женскую академию Комао! Иссэи наивно полагал, что после начала совместного обучения в условиях дефицита парней станет королем и познает весну жизни, однако идет второй год, девушки все так же преследуют немногих красавчиков, а герой с друзьями кусают локти и ищут дыры в женских раздевалках. О таких же, как королева школы Риас Гремори, остается только мечтать. Впрочем, жаркие мольбы Иссэя всем богам юности возымели эффект. Боги решили испытать парня и послали ему подружку, которая на первом же свидании… вонзила герою полметра стали в живот.\nДолго ли, коротко, а Иссэи понял, что был спасен той самой Риас Гремори, недосягаемой красавицей и школьным идолом, а на деле — принцессой демонов. Теперь герой сам стал демоном и ее вассалом, а значит, присоединился к боевому отряду семьи Гремори, действующему под прикрытием школьного клуба оккультизма. Враг известен — падшие ангелы, которые желают сами играть первую скрипку в темном мире. Зачем Хёдо понадобился двум столь могущественным силам? Разумеется, дело в некоей сверхспособности, причем парень уверен, что знает истину — он больше всех в Японии достоин высокого звания Короля Гарема!",
-    "country": "Япония",
-    "genres": "Мелодрама, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юки Кадзи, Ёко Хикаса, Шизука Ито",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 666587,
-    "imdb": "https://www.imdb.com/title/tt2230051",
-    "type": "anime",
-    "id": 555,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/666587.jpg"
-  },
-  {
-    "title": "Дни Сакамото",
-    "titleRu": "Дни Сакамото",
-    "year": 2025,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4870795.jpg",
-    "description": "Таро Сакамото был профессиональным киллером, но, женившись, ушёл в отставку. После этого у него родилась дочь Хана, а сам Таро располнел и стал владельцем магазина. Однако из-за прошлого Таро всей семье Сакамото грозит опасность.",
-    "fullDescription": "Таро Сакамото был профессиональным киллером, но, женившись, ушёл в отставку. После этого у него родилась дочь Хана, а сам Таро располнел и стал владельцем магазина. Однако из-за прошлого Таро всей семье Сакамото грозит опасность.",
-    "country": "Япония",
-    "genres": "Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Томокадзу Сугита, Нобунага Симадзаки, Мэттью Мерсер",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4870795,
-    "imdb": "https://www.imdb.com/title/tt17069148",
-    "type": "anime",
-    "id": 556,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4870795.jpg"
-  },
-  {
-    "title": "Первородный грех Такопи",
-    "titleRu": "Первородный грех Такопи",
-    "year": 2025,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8624606.jpg",
-    "description": "Миссия маленького существа с планеты счастья — распространять счастье по всей Вселенной. Пришелец оказывается на Земле и встречает несчастную четвероклассницу Сидзуку, которую и решает сделать счастливой. Но как бы он ни старался, ему никак не уда...",
-    "fullDescription": "Миссия маленького существа с планеты счастья — распространять счастье по всей Вселенной. Пришелец оказывается на Земле и встречает несчастную четвероклассницу Сидзуку, которую и решает сделать счастливой. Но как бы он ни старался, ему никак не удаётся вызвать улыбку на лице девочки — похоже, наивному инопланетному гостю предстоит ещё многое узнать о людях.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 8624606,
-    "imdb": "https://www.imdb.com/title/tt36988358",
-    "type": "anime",
-    "id": 557,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8624606.jpg"
-  },
-  {
-    "title": "Благоухающий цветок расцветает с достоинством",
-    "titleRu": "Благоухающий цветок расцветает с достоинством",
-    "year": 2025,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8624619.jpg",
-    "description": "Парень из бедной семьи влюбляется в ученицу престижной школы. Анимация сценариста «Семьи шпиона»",
-    "fullDescription": "Элитная школа для девочек расположена рядом со школой для мальчиков для правонарушителей. Однажды два ученика из каждой школы, Каоруко и Ринтаро, встречаются и развивают связь.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Ёсинори Накаяма, Хонока Иноуэ, Коки Утияма",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 8624619,
-    "imdb": "https://www.imdb.com/title/tt36592690",
-    "type": "anime",
-    "id": 558,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8624619.jpg"
-  },
-  {
-    "title": "Восхождение в тени!",
-    "titleRu": "Восхождение в тени!",
-    "year": 2022,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4443187.jpg",
-    "description": "Когда Сида отправляют в другой мир, он создает подпольную организацию, чтобы вести борьбу с вымышленным культом. Мало ли он знает, что культ реален, и они не рады, что его фантазия о власти только помешала их планам.",
-    "fullDescription": "Когда Сида отправляют в другой мир, он создает подпольную организацию, чтобы вести борьбу с вымышленным культом. Мало ли он знает, что культ реален, и они не рады, что его фантазия о власти только помешала их планам.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "Сейитиро Ямасита, Адам Гиббс, Харука Сираиси",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4443187,
-    "imdb": "https://www.imdb.com/title/tt14115938",
-    "type": "anime",
-    "id": 559,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4443187.jpg"
-  },
-  {
-    "title": "Кайдзю No 8",
-    "titleRu": "Кайдзю No 8",
-    "year": 2024,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5117466.jpg",
-    "description": "Мужчина, работающий на работе, далекой от его детских мечтаний, попадает в неожиданную ситуацию: став монстром, он снова стремится осуществить мечту всей своей жизни.",
-    "fullDescription": "Мужчина, работающий на работе, далекой от его детских мечтаний, попадает в неожиданную ситуацию: став монстром, он снова стремится осуществить мечту всей своей жизни.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "Гента Накамура, Масая Фукуниси, Ай Файруз",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5117466,
-    "imdb": "https://www.imdb.com/title/tt21975436",
-    "type": "anime",
-    "id": 560,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5117466.jpg"
-  },
-  {
-    "title": "86",
-    "titleRu": "86",
-    "year": 2021,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4428441.jpg",
-    "description": "Долгое время республику Сан-Магнолию осаждала империя Гиадиан, создавшая серию беспилотных дронов под названием «Легион». После многих лет исследований республика разработала собственное автономное оружие и теперь может вести войну без потерь — по...",
-    "fullDescription": "Долгое время республику Сан-Магнолию осаждала империя Гиадиан, создавшая серию беспилотных дронов под названием «Легион». После многих лет исследований республика разработала собственное автономное оружие и теперь может вести войну без потерь — по крайней мере, так утверждает правительство.\nОднако бескровной войны не бывает. За крепостными стенами, защищающими 85 территорий республики, находится «несуществующий» 86-й сектор. Юноши и девушки этой заброшенной земли управляют «беспилотным» оружием и каждый день гибнут в битвах.",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Сьюзи Юнг, Шоя Чиба, Саори Хаями",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 4428441,
-    "imdb": "https://www.imdb.com/title/tt13718450",
-    "type": "anime",
-    "id": 561,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4428441.jpg"
-  },
-  {
-    "title": "Ангел по соседству",
-    "titleRu": "Ангел по соседству",
-    "year": 2023,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5050688.jpg",
-    "description": "Однажды одинокий, нелюдимый и неряшливый старшеклассник Аманэ замечает подавленную и сидящую на качелях под дождём самую красивую и популярную девушку школы Махиру, которая учится с ним в одном классе. Отдав промокшей бедолаге зонт, Аманэ спешно у...",
-    "fullDescription": "Однажды одинокий, нелюдимый и неряшливый старшеклассник Аманэ замечает подавленную и сидящую на качелях под дождём самую красивую и популярную девушку школы Махиру, которая учится с ним в одном классе. Отдав промокшей бедолаге зонт, Аманэ спешно уходит, но на следующий день заболевает. Чувствуя свою вину, Махиру решает заботиться об однокласснике.",
-    "country": "Япония",
-    "genres": "Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Тайто Бан, Манака Ивами, Харука Сираиси",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5050688,
-    "imdb": "https://www.imdb.com/title/tt19064770",
-    "type": "anime",
-    "id": 562,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5050688.jpg"
-  },
-  {
-    "title": "Легенда о героях галактики",
-    "titleRu": "Легенда о героях галактики",
-    "year": 1988,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/425875.jpg",
-    "description": "История многолетней войны между Галактической империей и Альянсом свободных планет. В масштабном конфликте с обеих сторон участвуют тысячи космических кораблей и миллионы солдат, командуют которыми два талантливых полководца и непримиримых противн...",
-    "fullDescription": "История многолетней войны между Галактической империей и Альянсом свободных планет. В масштабном конфликте с обеих сторон участвуют тысячи космических кораблей и миллионы солдат, командуют которыми два талантливых полководца и непримиримых противника.",
-    "country": "Япония",
-    "genres": "Драма, Фантастика, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юсаку Яра, Рё Хорикава, Кацудзи Мори",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 425875,
-    "imdb": "https://www.imdb.com/title/tt0096633",
-    "type": "anime",
-    "id": 563,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/425875.jpg"
-  },
-  {
-    "title": "Драконий жемчуг: Супер",
-    "titleRu": "Драконий жемчуг: Супер",
-    "year": 2015,
-    "rating": 7.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/921973.jpg",
-    "description": "Спустя шесть месяцев после победы над Маджином Буу с помощью Драгон-Боллов, Зет-Воины стирают людям память о Маджине Буу и связанных с ним событиях и начинают жить мирной жизнью. Чи-Чи заставляет Гоку искать работу, а тот, в свою очередь, хочет сп...",
-    "fullDescription": "Спустя шесть месяцев после победы над Маджином Буу с помощью Драгон-Боллов, Зет-Воины стирают людям память о Маджине Буу и связанных с ним событиях и начинают жить мирной жизнью. Чи-Чи заставляет Гоку искать работу, а тот, в свою очередь, хочет спокойно тренироваться, чтобы быть готовым к угрозам извне. Остальные герои наслаждаются миром и покоем.",
-    "country": "Япония",
-    "genres": "Фантастика, Приключения, Боевик, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Масако Нодзава, Наоки Тацута, Шон Шеммел",
-    "duration": "28S min",
-    "trailer": "",
-    "kinopoiskId": 921973,
-    "imdb": "https://www.imdb.com/title/tt4644488",
-    "type": "anime",
-    "id": 564,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/921973.jpg"
-  },
-  {
-    "title": "Девушка на час",
-    "titleRu": "Девушка на час",
-    "year": 2020,
-    "rating": 6.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1332676.jpg",
-    "description": "Брошенный своей девушкой студент Кадзуя пытается заполнить пустоту в сердце с помощью арендованной подруги из мобильного приложения. Поначалу Тидзуру кажется идеальной — она красивая, милая и заботливая. Однако, увидев неоднозначные отзывы в её пр...",
-    "fullDescription": "Брошенный своей девушкой студент Кадзуя пытается заполнить пустоту в сердце с помощью арендованной подруги из мобильного приложения. Поначалу Тидзуру кажется идеальной — она красивая, милая и заботливая. Однако, увидев неоднозначные отзывы в её профиле, Кадзуя решает, что Тидзуру просто играет с мужчинами, и ставит ей плохую оценку. Рассерженная девушка показывает свою истинную сущность.",
-    "country": "Япония",
-    "genres": "Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Сора Амамия, Шун Хори, Лиззи Фриман",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1332676,
-    "imdb": "https://www.imdb.com/title/tt11448214",
-    "type": "anime",
-    "id": 565,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1332676.jpg"
-  },
-  {
-    "title": "Юные Титаны",
-    "titleRu": "Юные Титаны",
-    "year": 2003,
-    "rating": 7.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/481396.jpg",
-    "description": "Команда юных супергероев во главе с Робином преодолевает различные силы зла, а также проблемы, вносимые в подростковый период их жизней ремеслом геройства…",
-    "fullDescription": "Команда юных супергероев во главе с Робином преодолевает различные силы зла, а также проблемы, вносимые в подростковый период их жизней ремеслом геройства…",
-    "country": "США, Корея Южная",
-    "genres": "Триллер, Фантастика, Приключения, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Хинден Уолч, Грег Сайпс, Скотт Менвилл",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 481396,
-    "imdb": "https://www.imdb.com/title/tt0343314",
-    "type": "series",
-    "id": 566,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/481396.jpg"
-  },
-  {
-    "title": "О движении Земли",
-    "titleRu": "О движении Земли",
-    "year": 2024,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7436588.jpg",
-    "description": "Начало XV века, Польша. Юный и одарённый Рафаль хочет учиться теологии, но однажды он сталкивается с Хубертом и революционной теорией о вращении Земли вокруг Солнца, что противоречит учению церкви. Вместе они изучают астрономию и проводят исследов...",
-    "fullDescription": "Начало XV века, Польша. Юный и одарённый Рафаль хочет учиться теологии, но однажды он сталкивается с Хубертом и революционной теорией о вращении Земли вокруг Солнца, что противоречит учению церкви. Вместе они изучают астрономию и проводят исследования, рискуя жизнью. Их деятельность привлекает внимание инквизитора Новака.",
-    "country": "Япония",
-    "genres": "Драма, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кэндзиро Цуда, Масафуми Кобатаке, Кацуюки Кониси",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 7436588,
-    "imdb": "https://www.imdb.com/title/tt33044444",
-    "type": "anime",
-    "id": 567,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7436588.jpg"
-  },
-  {
-    "title": "Кабанери железной крепости",
-    "titleRu": "Кабанери железной крепости",
-    "year": 2016,
-    "rating": 7.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/964722.jpg",
-    "description": "Большая группа выживших ищет убежища во время путешествия на поезде после того, как их станция подверглась нападению агрессивных нежити по имени Кабане.",
-    "fullDescription": "Большая группа выживших ищет убежища во время путешествия на поезде после того, как их станция подверглась нападению агрессивных нежити по имени Кабане.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "Роджер Крэйг Смит, Коллин О’Шонесси, Робби Дэймонд",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 964722,
-    "imdb": "https://www.imdb.com/title/tt5556656",
-    "type": "anime",
-    "id": 568,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 9,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/964722.jpg"
-  },
-  {
-    "title": "Топор: Нет поражения",
-    "titleRu": "Sekiro: No Defeat",
-    "year": 2026,
-    "rating": 9,
-    "poster": "https://m.media-amazon.com/images/M/MV5BMGM2MWZhMTItNzYxOC00OWVlLWIwMmMtOGJjYzQ5YWVhNGJkXkEyXkFqcGc@._V1_SX500.jpg",
-    "description": "В феодальной Японии воин-шиноби отправляется в путешествие по неспокойной земле, чтобы спасти своего похищенного господина.",
-    "fullDescription": "В феодальной Японии воин-шиноби отправляется в путешествие по неспокойной земле, чтобы спасти своего похищенного господина.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Приключения, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt37968925",
-    "type": "anime",
-    "id": 569,
-    "releaseDate": "2026-06-18",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMGM2MWZhMTItNzYxOC00OWVlLWIwMmMtOGJjYzQ5YWVhNGJkXkEyXkFqcGc@._V1_SX500.jpg"
-  },
-  {
-    "title": "Нана",
-    "titleRu": "Нана",
-    "year": 2006,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/400122.jpg",
-    "description": "В вагоне одного поезда, следовавшего в Токио, Нана Комацу, ехавшая к своему парню Сёдзи, случайно оказалась в кресле рядом с Наной Осаки, направлявшейся в столицу, чтобы исполнить свое желание — стать известной певицей. Будучи солисткой панк-групп...",
-    "fullDescription": "В вагоне одного поезда, следовавшего в Токио, Нана Комацу, ехавшая к своему парню Сёдзи, случайно оказалась в кресле рядом с Наной Осаки, направлявшейся в столицу, чтобы исполнить свое желание — стать известной певицей. Будучи солисткой панк-группы Blast, Нана мечтает о дебюте своей группы в Токио, чтобы доказать себе, всему миру и своему парню Рэну, гитаристу популярной группы Trapnest, что она самостоятельно может добиться успеха.\n\nБудучи тезками, девушки быстро находят общий язык, даже несмотря на противоположность характеров. Однако, увидев Сёдзи уже в Токио, Нана Комацу теряет из виду другую Нану: случайное знакомство в поезде подошло к концу. Но судьба сводит их снова, когда они сталкиваются в квартире, которую обе хотели снять. Слово за слово, они решают жить вместе. Ещё бы: ведь и без того низкая плата за квартиру станет в два раза ниже! Так и начинаются жизненные приключения двух девушек с одним именем, вместе идущих навстречу своим мечтам.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Комедия, Музыка, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Каори, Роми Парк, Брайан Драммонд",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 400122,
-    "imdb": "https://www.imdb.com/title/tt0810705",
-    "type": "anime",
-    "id": 570,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/400122.jpg"
-  },
-  {
-    "title": "Лето, когда умер Хикару",
-    "titleRu": "Лето, когда умер Хикару",
-    "year": 2025,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6612504.jpg",
-    "description": "Старшеклассник Хикару отправился в одиночку на гору и пропал, а через неделю вернулся живой и невредимый. Через полгода его лучший друг и одноклассник Ёсики, давно подозревающий неладное, задаёт прямой вопрос и получает прямой ответ: Хикару умер, ...",
-    "fullDescription": "Старшеклассник Хикару отправился в одиночку на гору и пропал, а через неделю вернулся живой и невредимый. Через полгода его лучший друг и одноклассник Ёсики, давно подозревающий неладное, задаёт прямой вопрос и получает прямой ответ: Хикару умер, а в его тело вселилось нечто, само не знающее, что оно такое, но оно очень хочет жить в качестве человека и совсем не хочет убивать Ёсики. Ребята решают продолжить дружить как ни в чём не бывало, и вскоре в их деревне начинают происходить жуткие события.",
-    "country": "Япония",
-    "genres": "Драма, Ужасы, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Бен Дискин, Дэман Миллс, Кайл МакКарли",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 6612504,
-    "imdb": "https://www.imdb.com/title/tt33028568",
-    "type": "anime",
-    "id": 571,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 5,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6612504.jpg"
-  },
-  {
-    "title": "Плутон",
-    "titleRu": "Плутон",
-    "year": 2023,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5351506.jpg",
-    "description": "Когда семь самых совершенных роботов в мире и их союзники-люди были убиты один за другим, инспектор Гезихт, расследующий эти дела, обнаруживает, что он и сам находится в опасности.",
-    "fullDescription": "Когда семь самых совершенных роботов в мире и их союзники-люди были убиты один за другим, инспектор Гезихт, расследующий эти дела, обнаруживает, что он и сам находится в опасности.",
-    "country": "Япония",
-    "genres": "Триллер, Детектив, Фантастика, Боевик, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Синсю Фудзи, Ёко Хикаса, Рэйчел Слотки",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5351506,
-    "imdb": "https://www.imdb.com/title/tt26737616",
-    "type": "anime",
-    "id": 572,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5351506.jpg"
-  },
-  {
-    "title": "Хоримия",
-    "titleRu": "Хоримия",
-    "year": 2021,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/2000743.jpg",
-    "description": "На первый взгляд, между популярной Кёко Хори и скромным Идзуми Миямурой нет ничего общего. Однако Кёко вовсе не так беспечна, как кажется — она вынуждена следить за порядком в доме и присматривать за младшим братом, да и Идзуми совсем не тот, за к...",
-    "fullDescription": "На первый взгляд, между популярной Кёко Хори и скромным Идзуми Миямурой нет ничего общего. Однако Кёко вовсе не так беспечна, как кажется — она вынуждена следить за порядком в доме и присматривать за младшим братом, да и Идзуми совсем не тот, за кого себя выдает — под школьной формой он скрывает татуировки и пирсинг. Такие разные, но они всё же чем-то похожи, поэтому быстро становятся друзьями.",
-    "country": "Япония",
-    "genres": "Мелодрама, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Алехандро Сааб, Зено Робинсон, Мариса Дюран",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 2000743,
-    "imdb": "https://www.imdb.com/title/tt13103134",
-    "type": "anime",
-    "id": 573,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/2000743.jpg"
-  },
-  {
-    "title": "Детектив Конан",
-    "titleRu": "Детектив Конан",
-    "year": 1996,
-    "rating": 7.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/391104.jpg",
-    "description": "Любому мужчине известно - либо девушкой занимайся, либо мировыми проблемами! Стоило 17-летнему Синъити Кудо на прогулке с подругой детства Ран Мори отвлечься на деяния подозрительных лиц, как злые бандиты схватили его и заставили принять странную ...",
-    "fullDescription": "Любому мужчине известно - либо девушкой занимайся, либо мировыми проблемами! Стоило 17-летнему Синъити Кудо на прогулке с подругой детства Ран Мори отвлечься на деяния подозрительных лиц, как злые бандиты схватили его и заставили принять странную пилюлю, которая обратила парня в 7-летнего мальчика. Чудом выживший Кудо бросился за помощью к другу, но даже гениальный профессор Агаса не смог ничего поделать. А уж когда в дом профессора ворвалась взволнованная Ран и спросила незнакомого ребенка, кто он такой, бедняга смог только скользнуть взглядом по книжным полкам и выдавить: «Эдогава… Конан».\n\nПойти против зловещего Черного Синдиката – не шутка, но герои и не думали отступать. Родители Кудо покинули страну, а малыш Конан поселился в семье Мори вместе с любимой Ран и ее отцом Когоро, бывшим полицейским. Благодаря собственному незаурядному уму, связям Когоро и технической поддержке профессора, мальчик-детектив вместе с друзьями активно включился в расследование преступлений и очищение Японии от криминала. Ну а главный вопрос сериала прост – сможет ли юный Эдогава побороть вражеские замыслы прежде, чем ненаглядная Ран сообразит, с кем живет под одной крышей?",
-    "country": "Япония",
-    "genres": "Криминал, Детектив, Приключения, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Минами Такаяма, Вакана Ямазаки, Хоанг Хуйет",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 391104,
-    "imdb": "https://www.imdb.com/title/tt0131179",
-    "type": "anime",
-    "id": 574,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/391104.jpg"
-  },
-  {
-    "title": "Звездное дитя",
-    "titleRu": "Звездное дитя",
-    "year": 2023,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5308105.jpg",
-    "description": "Фанат перерождается в младенца — сына своей любимой певицы. Громкий хит о жестоком закулисье шоу-бизнеса",
-    "fullDescription": "16-летняя Аи Хосино — айдол с множеством поклонников, олицетворение невинности и непорочности. Однажды беременная Аи приходит к сельскому гинекологу Горо, который является её фанатом, для решения возникшей «проблемы». Решив помочь девушке, Горо внезапно умирает, а позже перерождается в её сына-младенца.",
-    "country": "Япония",
-    "genres": "Драма, Фэнтези, Музыка, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Такео Оцука, Мегуми Хан, Юрие Игома",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5308105,
-    "imdb": "https://www.imdb.com/title/tt21030032",
-    "type": "anime",
-    "id": 575,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5308105.jpg"
-  },
-  {
-    "title": "Магия и мускулы",
-    "titleRu": "Магия и мускулы",
-    "year": 2023,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5332447.jpg",
-    "description": "Мэш Бёрндэд родился без каких-либо магических способностей, а такие люди в фэнтезийном мире долго не живут, поэтому отец оберегал и прятал сына от чужих глаз. Когда парень вырос, он с отцом ушёл жить в леса подальше от людей. Мэш обладает недюжинн...",
-    "fullDescription": "Мэш Бёрндэд родился без каких-либо магических способностей, а такие люди в фэнтезийном мире долго не живут, поэтому отец оберегал и прятал сына от чужих глаз. Когда парень вырос, он с отцом ушёл жить в леса подальше от людей. Мэш обладает недюжинной физической силой и постоянно держит себя в форме, не забывая при этом навернуть вкусной выпечки. Однажды Мэша всё же обнаруживают, и теперь, чтобы избежать смерти, ему необходимо стать учеником престижной академии магии и пройти все необходимые испытания, полагаясь лишь на силу своих мышц.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Чиаки Кобаяши, Алекс Ле, Грег Чун",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5332447,
-    "imdb": "https://www.imdb.com/title/tt21209804",
-    "type": "anime",
-    "id": 576,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5332447.jpg"
-  },
-  {
-    "title": "Драконий жемчуг",
-    "titleRu": "Драконий жемчуг",
-    "year": 1995,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230611.jpg",
-    "description": "Сон Гоку - молодой воин, мастер боевых искусств, который может превращаться в обезьяну. Вместе с друзьями он задумал собрать вместе семь драконьих жемчужин - с их помощью можно вызвать дракона Шенлуна, который выполнит любое желание. Однако после ...",
-    "fullDescription": "Сон Гоку - молодой воин, мастер боевых искусств, который может превращаться в обезьяну. Вместе с друзьями он задумал собрать вместе семь драконьих жемчужин - с их помощью можно вызвать дракона Шенлуна, который выполнит любое желание. Однако после выполнения желания жемчужины рассеиваются по всему миру.",
-    "country": "Япония",
-    "genres": "Триллер, Приключения, Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Брайс Армстронг, Стив Олсон, Стефани Надольни",
-    "duration": "38S min",
-    "trailer": "",
-    "kinopoiskId": 230611,
-    "imdb": "https://www.imdb.com/title/tt0280249",
-    "type": "anime",
-    "id": 577,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230611.jpg"
-  },
-  {
-    "title": "Эксперименты Лэйн",
-    "titleRu": "Эксперименты Лэйн",
-    "year": 1998,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/321835.jpg",
-    "description": "Лэйн Ивакура — обыкновенная школьница, замкнутая и малообщительная. Однажды она получает электронное письмо от умершей подруги и внезапно становится центром драматических событий. Граница между реальным и виртуальным миром истончается, и игроки в ...",
-    "fullDescription": "Лэйн Ивакура — обыкновенная школьница, замкнутая и малообщительная. Однажды она получает электронное письмо от умершей подруги и внезапно становится центром драматических событий. Граница между реальным и виртуальным миром истончается, и игроки в шутеры убивают людей, а нелегальные устройства позволяют подключаться к Сети без компьютера...",
-    "country": "Япония",
-    "genres": "Триллер, Детектив, Фантастика, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Каори Симидзу, Бриджит Хоффман, Рэнди Макферсон",
-    "duration": "316 min",
-    "trailer": "",
-    "kinopoiskId": 321835,
-    "imdb": "https://www.imdb.com/title/tt0500092",
-    "type": "anime",
-    "id": 578,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/321835.jpg"
-  },
-  {
-    "title": "Драконий жемчуг Зет",
-    "titleRu": "Драконий жемчуг Зет",
-    "year": 1989,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230603.jpg",
-    "description": "В жизни простого человека Сон Гоку, никогда не было случая показать свою отвагу и героизм. Так судьба направляет на нашу планету в испытание этому герою – вражески настроенных существ. Они хотят захватить все ресурсы и дары Земли, и их ничем не ос...",
-    "fullDescription": "В жизни простого человека Сон Гоку, никогда не было случая показать свою отвагу и героизм. Так судьба направляет на нашу планету в испытание этому герою – вражески настроенных существ. Они хотят захватить все ресурсы и дары Земли, и их ничем не остановить. Так начинается битва землян и пришельцев. Наш герой Сон также вступает в схватку с таким сильным и несокрушимым врагом, однако в последней битве он слабеет и вот-вот должен пасть от рук злодеев. И тут вступает в игру его сын Гохан...",
-    "country": "Япония",
-    "genres": "Фантастика, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Масако Нодзава, Дзёдзи Янами, Маюми Танака",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 230603,
-    "imdb": "https://www.imdb.com/title/tt0121220",
-    "type": "anime",
-    "id": 579,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230603.jpg"
-  },
-  {
-    "title": "Брачный токсин",
-    "titleRu": "Брачный токсин",
-    "year": 2026,
-    "rating": 7.4,
-    "poster": "https://m.media-amazon.com/images/M/MV5BNzI1MGRjZGYtYjU2NC00OTI1LTg2MTctYWU5MDNlOTdhNTEwXkEyXkFqcGc@._V1_SX500.jpg",
-    "description": "Профессиональный убийца и холостяк должен найти невесту, чтобы продолжить свою семейную линию.",
-    "fullDescription": "Профессиональный убийца и холостяк должен найти невесту, чтобы продолжить свою семейную линию.",
-    "country": "Япония",
-    "genres": "Мультфильм, Боевик, Аниме",
-    "director": "",
-    "actors": "Шион Вакаяма, Харуки Исия, Мария Исэ",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt39122769",
-    "type": "anime",
-    "id": 580,
-    "releaseDate": "2026-09-12",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzI1MGRjZGYtYjU2NC00OTI1LTg2MTctYWU5MDNlOTdhNTEwXkEyXkFqcGc@._V1_SX500.jpg"
-  },
-  {
-    "title": "Этот глупый свин не понимает мечту девочки-зайки",
-    "titleRu": "Этот глупый свин не понимает мечту девочки-зайки",
-    "year": 2018,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1198791.jpg",
-    "description": "Однажды старшеклассник Сакута встречает Маи — известную актрису, на которую никто не обращает внимания, несмотря на то, что девушка одета в вызывающий костюм кролика. Юноша решает помочь Маи выяснить, почему люди перестали её замечать.",
-    "fullDescription": "Однажды старшеклассник Сакута встречает Маи — известную актрису, на которую никто не обращает внимания, несмотря на то, что девушка одета в вызывающий костюм кролика. Юноша решает помочь Маи выяснить, почему люди перестали её замечать.",
-    "country": "Япония",
-    "genres": "Мелодрама, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1198791,
-    "imdb": "https://www.imdb.com/title/tt8993398",
-    "type": "anime",
-    "id": 581,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1198791.jpg"
-  },
-  {
-    "title": "Подземелье вкусностей",
-    "titleRu": "Подземелье вкусностей",
-    "year": 2024,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5351514.jpg",
-    "description": "Искатели приключений отправляются в проклятое подземное королевство, чтобы спасти своего товарища и по дороге устраивают настоящий хаос.",
-    "fullDescription": "Искатели приключений отправляются в проклятое подземное королевство, чтобы спасти своего товарища и по дороге устраивают настоящий хаос.",
-    "country": "Япония",
-    "genres": "Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Кентаро Кумагай, Саяка Сенбонги, Асуна Томари",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5351514,
-    "imdb": "https://www.imdb.com/title/tt21621494",
-    "type": "anime",
-    "id": 582,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5351514.jpg"
-  },
-  {
-    "title": "Боруто: Новое поколение Наруто",
-    "titleRu": "Боруто: Новое поколение Наруто",
-    "year": 2017,
-    "rating": 5.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1042757.jpg",
-    "description": "Прошло уже несколько лет с тех пор, как битва между призраками закончилась. Наруто стал великим воином и доказал всем, что даже со зверем внутри можно жить и быть лидером. Будучи сиротой, он всему научился с нуля, в отличие от своего сына Боруто.\n...",
-    "fullDescription": "Прошло уже несколько лет с тех пор, как битва между призраками закончилась. Наруто стал великим воином и доказал всем, что даже со зверем внутри можно жить и быть лидером. Будучи сиротой, он всему научился с нуля, в отличие от своего сына Боруто.\n\nМальчик окружен любовью, у него много друзей, да и талантом он не обделен. Парень - лидер по натуре и всё время пренебрегает работой в команде, отличается сообразительностью и умением находить выход из любой ситуации. Вот только с отцом у юноши отношения не заладились, с каждым днем Боруто отдаляется всё больше. Чтобы его не упрекали в том, что он всего добился благодаря папе, парень решил пойти своей дорогой. Его главная цель – доказать всем, что он тоже чего-то стоит.",
-    "country": "Польша, Япония",
-    "genres": "Фантастика, Приключения, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Юко Санпей, Беннетт Абара, Кокоро Кикучи",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1042757,
-    "imdb": "https://www.imdb.com/title/tt6342474",
-    "type": "anime",
-    "id": 583,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1042757.jpg"
-  },
-  {
-    "title": "Убийца Акамэ!",
-    "titleRu": "Убийца Акамэ!",
-    "year": 2014,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841026.jpg",
-    "description": "Мечник Тацуми, простой парнишка из сельской местности, отправляется в столицу, чтобы заработать денег для своей голодающей деревни. По прибытии он узнает, что великая и красивая столица — лишь видимость. Город погряз в коррупции, жестокости и безз...",
-    "fullDescription": "Мечник Тацуми, простой парнишка из сельской местности, отправляется в столицу, чтобы заработать денег для своей голодающей деревни. По прибытии он узнает, что великая и красивая столица — лишь видимость. Город погряз в коррупции, жестокости и беззаконии, а виной тому — премьер-министр, который правит страной из-за кулис.",
-    "country": "Япония",
-    "genres": "Боевик, Фэнтези, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Сома Сайто, Кори Харцог, Сора Амамия",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 841026,
-    "imdb": "https://www.imdb.com/title/tt3742982",
-    "type": "anime",
-    "id": 584,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841026.jpg"
-  },
-  {
-    "title": "Фруктовая корзина",
-    "titleRu": "Фруктовая корзина",
-    "year": 2019,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1214123.jpg",
-    "description": "Потеряв мать, старшеклассница Тору Хонда оказывается на улице. Сначала она ютится в палатке, но ее одноклассник Юки Сума, узнав об этом, приглашает девушку пожить у себя. Поначалу все идет хорошо, однако вскоре Тору видит, как Юки дерется со своим...",
-    "fullDescription": "Потеряв мать, старшеклассница Тору Хонда оказывается на улице. Сначала она ютится в палатке, но ее одноклассник Юки Сума, узнав об этом, приглашает девушку пожить у себя. Поначалу все идет хорошо, однако вскоре Тору видит, как Юки дерется со своим кузеном Кё. Пытаясь их остановить, девушка узнает секрет семьи Сума — всякий раз, когда их обнимает представитель противоположного пола, они превращаются в животных китайского зодиака.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1214123,
-    "imdb": "https://www.imdb.com/title/tt9304350",
-    "type": "anime",
-    "id": 585,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1214123.jpg"
-  },
-  {
-    "title": "Планета Земля 2",
-    "titleRu": "Планета Земля 2",
-    "year": 2016,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1007472.jpg",
-    "description": "Дэвид Аттенборо демонстрирует невероятные по красоте пейзажи, заповедные и малоизученные уголки Земли.",
-    "fullDescription": "Дэвид Аттенборо демонстрирует невероятные по красоте пейзажи, заповедные и малоизученные уголки Земли.",
-    "country": "США, Франция, Великобритания, Германия, Китай",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Дэвид Аттенборо, Сандеш Кадур, Тоби Ноулан",
-    "duration": "298 min",
-    "trailer": "",
-    "kinopoiskId": 1007472,
-    "imdb": "https://www.imdb.com/title/tt5491994",
-    "type": "series",
-    "id": 586,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1007472.jpg"
-  },
-  {
-    "title": "BBC: Планета Земля",
-    "titleRu": "BBC: Планета Земля",
-    "year": 2006,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/279548.jpg",
-    "description": "Образовательный проект как произведение искусства. Уникальные съемки живой природы и голос Дэвида Аттенборо",
-    "fullDescription": "Создатели сериала «Голубая планета» сняли новый фильм, показывающий Землю такой, какой ее еще никто не видел прежде. Невероятные по красоте пейзажи и самые заповедные и малоизученные уголки нашей планеты. Четыре года напряженной работы и беспрецедентный для документального фильма бюджет позволили создать уникальный по масштабности фильм. А революционные режимы сверхскоростной съемки и детализации картинки, сделали возможным показать великолепие нашей природы во всех подробностях.",
-    "country": "США, Великобритания, Канада, Япония",
-    "genres": "Семейный, Документальный",
-    "director": "",
-    "actors": "Николай Дроздов, Томас Мистер Джонстон, Санаэ Уэда",
-    "duration": "538 min",
-    "trailer": "",
-    "kinopoiskId": 279548,
-    "imdb": "https://www.imdb.com/title/tt0795176",
-    "type": "series",
-    "id": 587,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/279548.jpg"
-  },
-  {
-    "title": "Братья по оружию",
-    "titleRu": "Братья по оружию",
-    "year": 2001,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94249.jpg",
-    "description": "Рота десантников пытается выжить во Второй мировой. Драма про ужасы войны от Тома Хэнкса и Стивена Спилберга",
-    "fullDescription": "История о боевом пути роты E («Easy») 2-го батальона 506-го парашютно-десантного полка 101-й воздушно-десантной дивизии США от тренировочного лагеря в Таккоа, штат Джорджия, через высадку в Нормандии, Голландскую операцию и осаду Бастони до окончания Второй мировой войны.",
-    "country": "США, Великобритания",
-    "genres": "Драма, Боевик, Военный, История",
-    "director": "",
-    "actors": "Скотт Граймс, Дэмиан Льюис, Рон Ливингстон",
-    "duration": "594 min",
-    "trailer": "",
-    "kinopoiskId": 94249,
-    "imdb": "https://www.imdb.com/title/tt0185906",
-    "type": "series",
-    "id": 588,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 6,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94249.jpg"
-  },
-  {
-    "title": "Чернобыль",
-    "titleRu": "Чернобыль",
-    "year": 2019,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1227803.jpg",
-    "description": "Страшная авария глазами ученых, политиков и спасателей. Блестящий мини-сериал HBO, который поражает реализмом",
-    "fullDescription": "26 апреля 1988 года химик Валерий Легасов, надёжно спрятав шесть аудиокассет со своими воспоминаниями, вешается у себя в квартире.\n\n26 апреля 1986 года в 1:23:45 во время проведения эксперимента по безопасности на Чернобыльской АЭС происходит взрыв реактора и пожар. Поднятые по тревоге пожарные без спецзащиты прибывают на место аварии, не подозревая, что оказались в эпицентре крупнейшей в истории человечества техногенной катастрофы. Руководство ЧАЭС уверяет Кремль, что ситуация под контролем, и радиационный фон в норме, но по настоянию академика Легасова его вместе с зампредседателя Совета Министров Борисом Щербиной отправляют разобраться в происходящем на месте.",
-    "country": "США, Великобритания",
-    "genres": "Драма, История",
-    "director": "",
-    "actors": "Джаред Харрис, Джесси Бакли, Стеллан Скарсгард",
-    "duration": "330 min",
-    "trailer": "",
-    "kinopoiskId": 1227803,
-    "imdb": "https://www.imdb.com/title/tt7366338",
-    "type": "series",
-    "id": 589,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 6,
-      "intellect": 10,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1227803.jpg"
-  },
-  {
-    "title": "Прослушка",
-    "titleRu": "Прослушка",
-    "year": 2002,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/402955.jpg",
-    "description": "Полицейские против преступников на злых улицах Балтимора. Грандиозный криминальный эпос Дэвида Саймона",
-    "fullDescription": "Подразделение полицейских в Балтиморе пытается с помощью специальных средств и мероприятий по прослушиванию и скрытой видеосъемке довести до суда расследование преступлений организованных преступных групп, которые занимаются незаконным распространением наркотиков.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Доминик Уэст, Лэнс Реддик, Соня Сон",
-    "duration": "59 min",
-    "trailer": "",
-    "kinopoiskId": 402955,
-    "imdb": "https://www.imdb.com/title/tt0306414",
-    "type": "series",
-    "id": 590,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/402955.jpg"
-  },
-  {
-    "title": "Аватар: Легенда об Аанге",
-    "titleRu": "Аватар: Легенда об Аанге",
-    "year": 2005,
-    "rating": 9.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1243816.jpg",
-    "description": "В раздираемом войной мире стихийных сил мальчик пробуждается, чтобы предпринять опасный мистический поиск, чтобы исполнить свое предназначение как Аватара и принести мир во всем мире.",
-    "fullDescription": "В раздираемом войной мире стихийных сил мальчик пробуждается, чтобы предпринять опасный мистический поиск, чтобы исполнить свое предназначение как Аватара и принести мир во всем мире.",
-    "country": "США",
-    "genres": "Боевик, Короткометражка",
-    "director": "",
-    "actors": "Ди Брэдли Бэйкер, Зак Тайлер Эйзен, Мэй Уитмен",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 1243816,
-    "imdb": "https://www.imdb.com/title/tt0417299",
-    "type": "series",
-    "id": 591,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🏎️ Non-Stop Thrill",
-      "🔥 Pure Action",
-      "⚡ Adrenaline Rush"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1243816.jpg"
-  },
-  {
-    "title": "Сопрано",
-    "titleRu": "Сопрано",
-    "year": 1999,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/79848.jpg",
-    "description": "Гангстер идет на терапию, чтобы разобраться в себе. Сериал HBO, с которого началась золотая эра телевидения",
-    "fullDescription": "Мафиозный босс Северного Джерси Тони Сопрано эффективно решает проблемы «семьи». Но с собственной роднёй ситуация сложнее: дети от рук отбились, брак под угрозой, в отношениях с пожилой матерью сплошное недопонимание. После серии панических атак он решает тайно посещать психотерапевта.",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Джеймс Гандольфини, Лоррейн Бракко, Иди Фалько",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 79848,
-    "imdb": "https://www.imdb.com/title/tt0141842",
-    "type": "series",
-    "id": 592,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 8,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/79848.jpg"
-  },
-  {
-    "title": "Голубая планета 2",
-    "titleRu": "Голубая планета 2",
-    "year": 2017,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1073233.jpg",
-    "description": "Несмотря на то, что вода занимает две трети планеты, о глубинах океана мы знаем меньше, чем о поверхности Луны. Сериал открывает всю красоту и очарование океана, поражая воображение многообразием его обитателей. Использование новейших технологий и...",
-    "fullDescription": "Несмотря на то, что вода занимает две трети планеты, о глубинах океана мы знаем меньше, чем о поверхности Луны. Сериал открывает всю красоту и очарование океана, поражая воображение многообразием его обитателей. Использование новейших технологий и уникального оборудования для глубоководных съёмок раскроют зрителю самые сокровенные тайны мирового океана и позволят увидеть редчайшие кадры из жизни его обитателей, о существовании которых ранее можно было только догадываться.",
-    "country": "США, Франция, Великобритания, Германия, Китай",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Питер Дрост, Дэвид Аттенборо, Роджер Маннс",
-    "duration": "364 min",
-    "trailer": "",
-    "kinopoiskId": 1073233,
-    "imdb": "https://www.imdb.com/title/tt6769208",
-    "type": "series",
-    "id": 593,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1073233.jpg"
-  },
-  {
-    "title": "Космос: Пространство и время",
-    "titleRu": "Космос: Пространство и время",
-    "year": 2014,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/762381.jpg",
-    "description": "Рассказ о научных открытиях, совершённых за последние столетия.",
-    "fullDescription": "Рассказ о научных открытиях, совершённых за последние столетия.",
-    "country": "США",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Нил Деграсс Тайсон, Карл Саган, Андре Соглиуццо",
-    "duration": "557 min",
-    "trailer": "",
-    "kinopoiskId": 762381,
-    "imdb": "https://www.imdb.com/title/tt2395695",
-    "type": "series",
-    "id": 594,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/762381.jpg"
-  },
-  {
-    "title": "Космос",
-    "titleRu": "Космос",
-    "year": 1980,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/420068.jpg",
-    "description": "Культовый учёный-астроном, астрофизик и выдающийся популяризатор науки Карл Саган ведёт рассказ, который посвящён различным научным темам от происхождения жизни до места человечества во Вселенной.",
-    "fullDescription": "Культовый учёный-астроном, астрофизик и выдающийся популяризатор науки Карл Саган ведёт рассказ, который посвящён различным научным темам от происхождения жизни до места человечества во Вселенной.",
-    "country": "США, Великобритания",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Карл Саган, Яромир Ганзлик, Джонатан Фан",
-    "duration": "780 min",
-    "trailer": "",
-    "kinopoiskId": 420068,
-    "imdb": "https://www.imdb.com/title/tt0081846",
-    "type": "series",
-    "id": 595,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/420068.jpg"
-  },
-  {
-    "title": "Наша планета",
-    "titleRu": "Наша планета",
-    "year": 2019,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1235081.jpg",
-    "description": "Исследует и разгадывает тайну того, как и почему животные мигрируют, показывая некоторые из самых драматичных и захватывающих историй в мире природы посредством захватывающей и инновационной кинематографии.",
-    "fullDescription": "Исследует и разгадывает тайну того, как и почему животные мигрируют, показывая некоторые из самых драматичных и захватывающих историй в мире природы посредством захватывающей и инновационной кинематографии.",
-    "country": "США, Великобритания",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Дэвид Аттенборо",
-    "duration": "403 min",
-    "trailer": "",
-    "kinopoiskId": 1235081,
-    "imdb": "https://www.imdb.com/title/tt9253866",
-    "type": "series",
-    "id": 596,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🌙 Dark Mood",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1235081.jpg"
-  },
-  {
-    "title": "Блуи",
-    "titleRu": "Блуи",
-    "year": 2018,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1338495.jpg",
-    "description": "Озорная, любопытная и полная идей Блуи — щенок австралийской пастушьей собаки. Она живёт вместе с родителями и младшей сестрой Бинго в большом уютном доме. Каждый день Блуи придумывает весёлые игры.",
-    "fullDescription": "Озорная, любопытная и полная идей Блуи — щенок австралийской пастушьей собаки. Она живёт вместе с родителями и младшей сестрой Бинго в большом уютном доме. Каждый день Блуи придумывает весёлые игры.",
-    "country": "США, Великобритания, Австралия",
-    "genres": "Мультфильм, Семейный",
-    "director": "",
-    "actors": "Дэвид МакКормак, Мелани Занетти, Брэд Эллиотт",
-    "duration": "7 min",
-    "trailer": "",
-    "kinopoiskId": 1338495,
-    "imdb": "https://www.imdb.com/title/tt7678620",
-    "type": "series",
-    "id": 597,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1338495.jpg"
-  },
-  {
-    "title": "Мир в войне",
-    "titleRu": "Мир в войне",
-    "year": 1973,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/254886.jpg",
-    "description": "Программа включает выдающуюся коллекцию кинохроники, составленную из архивов 18 наций; кадры домашнего видео, включая цветные съемки Адольфа Гитлера, сделанные Евой Браун; и непредвзятый рассказ о центральных военных событиях Второй мировой войны....",
-    "fullDescription": "Программа включает выдающуюся коллекцию кинохроники, составленную из архивов 18 наций; кадры домашнего видео, включая цветные съемки Адольфа Гитлера, сделанные Евой Браун; и непредвзятый рассказ о центральных военных событиях Второй мировой войны.\n\nФильм содержит интервью участников и очевидцев этой войны - от секретарши Гитлера до простых людей, оказавшихся за линией фронта.",
-    "country": "Великобритания",
-    "genres": "Военный, История, Документальный",
-    "director": "",
-    "actors": "Лоуренс Оливье, Аверелл Гарриман, Энтони Иден",
-    "duration": "52 min",
-    "trailer": "",
-    "kinopoiskId": 254886,
-    "imdb": "https://www.imdb.com/title/tt0071075",
-    "type": "series",
-    "id": 598,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Dark Mood",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/254886.jpg"
-  },
-  {
-    "title": "BBC: Жизнь",
-    "titleRu": "BBC: Жизнь",
-    "year": 2009,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/500289.jpg",
-    "description": "Ошеломляющий и поражающий своей красотой, новыми открытиями и впечатлениями уникальный сериал о живой природе нашей планеты. Более 3000 съемочных дней, проведенных на каждом из земных континентов, беспрецедентная техника съемки, 130 невероятных и ...",
-    "fullDescription": "Ошеломляющий и поражающий своей красотой, новыми открытиями и впечатлениями уникальный сериал о живой природе нашей планеты. Более 3000 съемочных дней, проведенных на каждом из земных континентов, беспрецедентная техника съемки, 130 невероятных и захватывающих дух историй из страниц животного мира, – все это и есть «Жизнь» -  история животного мира, какой Вы её еще не видели прежде!",
-    "country": "США, Великобритания, Германия, Италия, Греция",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Опра Уинфри, Дэвид Аттенборо, Даг Аллан",
-    "duration": "473 min",
-    "trailer": "",
-    "kinopoiskId": 500289,
-    "imdb": "https://www.imdb.com/title/tt1533395",
-    "type": "series",
-    "id": 599,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🌙 Dark Mood",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/500289.jpg"
-  },
-  {
-    "title": "Последний танец",
-    "titleRu": "Последний танец",
-    "year": 2020,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1162628.jpg",
-    "description": "История о легенде баскетбола Майкле Джордане и команде «Чикаго Буллз» времен 1990-х годов.",
-    "fullDescription": "История о легенде баскетбола Майкле Джордане и команде «Чикаго Буллз» времен 1990-х годов.",
-    "country": "США",
-    "genres": "Биография, Спорт, Документальный",
-    "director": "",
-    "actors": "Майкл Джордан, Фил Джексон, Скотти Пиппен",
-    "duration": "491 min",
-    "trailer": "",
-    "kinopoiskId": 1162628,
-    "imdb": "https://www.imdb.com/title/tt8420184",
-    "type": "series",
-    "id": 600,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 5,
-      "intellect": 4,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "✨ Баланс & Атмосфера",
-      "🎬 Classic Storytelling"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1162628.jpg"
-  },
-  {
-    "title": "Сумеречная зона",
-    "titleRu": "Сумеречная зона",
-    "year": 1959,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229159.jpg",
-    "description": "Вы отправляетесь в другое измерение не только видений и звуков, но и разума. Это путешествие в волшебную страну, границы которой устанавливает только воображение.",
-    "fullDescription": "Вы отправляетесь в другое измерение не только видений и звуков, но и разума. Это путешествие в волшебную страну, границы которой устанавливает только воображение.",
-    "country": "США",
-    "genres": "Триллер, Драма, Детектив, Фантастика, Фэнтези, Ужасы",
-    "director": "",
-    "actors": "Род Серлинг, Роберт МакКорд, Джей Оверхолтс",
-    "duration": "51 min",
-    "trailer": "",
-    "kinopoiskId": 229159,
-    "imdb": "https://www.imdb.com/title/tt0052520",
-    "type": "series",
-    "id": 601,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 9,
-      "intellect": 10,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229159.jpg"
-  },
-  {
-    "title": "Вьетнам",
-    "titleRu": "Вьетнам",
-    "year": 2017,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/775289.jpg",
-    "description": "Подробная история участия США в войне во Вьетнаме.",
-    "fullDescription": "Подробная история участия США в войне во Вьетнаме.",
-    "country": "США",
-    "genres": "Военный, История, Документальный",
-    "director": "",
-    "actors": "Питер Койот, Ле Дуан, Йоахим Крол",
-    "duration": "990 min",
-    "trailer": "",
-    "kinopoiskId": 775289,
-    "imdb": "https://www.imdb.com/title/tt1877514",
-    "type": "series",
-    "id": 602,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🌙 Dark Mood"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/775289.jpg"
-  },
-  {
-    "title": "Бэтмен",
-    "titleRu": "Бэтмен",
-    "year": 1992,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94681.jpg",
-    "description": "Бэтмен сражается с кишащими в Готэме силами зла.",
-    "fullDescription": "Бэтмен сражается с кишащими в Готэме силами зла.",
-    "country": "США",
-    "genres": "Криминал, Детектив, Фантастика, Приключения, Боевик, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Кевин Конрой, Лорен Лестер, Ефрем Цимбалист мл.",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 94681,
-    "imdb": "https://www.imdb.com/title/tt0103359",
-    "type": "series",
-    "id": 603,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 10,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94681.jpg"
-  },
-  {
-    "title": "Лучше звоните Солу",
-    "titleRu": "Лучше звоните Солу",
-    "year": 2015,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/796660.jpg",
-    "description": "Честный адвокат превращается в ушлого решалу. Спин-офф «Во все тяжкие», который оказался не хуже оригинала",
-    "fullDescription": "История об испытаниях и невзгодах, которые приходится преодолеть Солу Гудману, адвокату по уголовным делам, в тот период, когда он пытается открыть свою собственную адвокатскую контору в Альбукерке, штат Нью-Мексико.",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Боб Оденкирк, Ри Сихорн, Джонатан Бэнкс",
-    "duration": "46 min",
-    "trailer": "",
-    "kinopoiskId": 796660,
-    "imdb": "https://www.imdb.com/title/tt3032476",
-    "type": "series",
-    "id": 604,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 9,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/796660.jpg"
-  },
-  {
-    "title": "Аркейн",
-    "titleRu": "Аркейн",
-    "year": 2021,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4445150.jpg",
-    "description": "Военный конфликт двух городов разлучает родных сестёр. Анимационный хит по вселенной игры League of Legends",
-    "fullDescription": "История разворачивается в утопическом краю Пилтовер и жестоком подземном мире Заун и рассказывает о становлении двух легендарных чемпионов Лиги и о той силе, что разведёт их по разные стороны баррикад.",
-    "country": "США, Франция",
-    "genres": "Драма, Фантастика, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Кевин Алехандро, Хейли Стайнфелд, Элла Пернелл",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4445150,
-    "imdb": "https://www.imdb.com/title/tt11126994",
-    "type": "series",
-    "id": 605,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4445150.jpg"
-  },
-  {
-    "title": "Голубая планета",
-    "titleRu": "Голубая планета",
-    "year": 2001,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/252059.jpg",
-    "description": "Несмотря на то, что вода занимает две трети нашей планеты, о глубинах океана мы знаем меньше, чем о поверхности Луны. От известного до непознанного - новый документальный сериал «ГОЛУБАЯ ПЛАНЕТА» открывает нам всю красоту и очарование океана, пора...",
-    "fullDescription": "Несмотря на то, что вода занимает две трети нашей планеты, о глубинах океана мы знаем меньше, чем о поверхности Луны. От известного до непознанного - новый документальный сериал «ГОЛУБАЯ ПЛАНЕТА» открывает нам всю красоту и очарование океана, поражая воображение многообразием его обитателей.\n\nСериал «ГОЛУБАЯ ПЛАНЕТА» - это всестороннее и наиболее полное исследование подводного мира. Использование новейших технологий и уникального оборудования для глубоководных съемок раскроют зрителю самые сокровенные тайны мирового океана и позволят увидеть редчайшие кадры из жизни его обитателей, о существовании которых мы могли ранее только догадываться.\n\nСериал состоит из 8 фильмов по 50 минут:\n1. Голубая планета \n2. Бездна\n3. Открытый океан \n4. Замерзшие моря\n5. Сезонные моря \n6. Коралловые моря \n7. Приливные моря \n8. Побережье \n",
-    "country": "США, Великобритания, Германия",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Дэвид Аттенборо, Пирс Броснан, Питер Скунс",
-    "duration": "389 min",
-    "trailer": "",
-    "kinopoiskId": 252059,
-    "imdb": "https://www.imdb.com/title/tt0296310",
-    "type": "series",
-    "id": 606,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "✨ Баланс & Атмосфера",
-      "🎬 Classic Storytelling"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/252059.jpg"
-  },
-  {
-    "title": "Ферма Кларксона",
-    "titleRu": "Ферма Кларксона",
-    "year": 2021,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4475473.jpg",
-    "description": "Джереми Кларксон пробует себя в роли фермера — ему предстоит столкнуться со всеми трудностями сельского хозяйства.",
-    "fullDescription": "Джереми Кларксон пробует себя в роли фермера — ему предстоит столкнуться со всеми трудностями сельского хозяйства.",
-    "country": "Великобритания",
-    "genres": "Комедия, Документальный",
-    "director": "",
-    "actors": "Джереми Кларксон, Калеб Купер, Чарли Айрлэнд",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 4475473,
-    "imdb": "https://www.imdb.com/title/tt10541088",
-    "type": "series",
-    "id": 607,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4475473.jpg"
-  },
-  {
-    "title": "Жульничество 1992: История Харшада Мехты",
-    "titleRu": "Жульничество 1992: История Харшада Мехты",
-    "year": 2020,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1393461.jpg",
-    "description": "Биржевой маклер зарабатывает на финансовых махинациях. Триллер об индийском мошеннике по реальным событиям",
-    "fullDescription": "Предприимчивый Харшад, устав от финансовых неудач и кризиса среднего возраста, начинает жизнь с чистого листа и погружается в торговлю на фондовом рынке. За несколько лет Харшад становится довольно успешным биржевым маклером, однако его не устраивает постоянный риск. В погоне за стабильностью он придумывает себе новую профессию: обучение биржевым спекуляциям. Эта затея быстро приводит к еще более безумным авантюрам.",
-    "country": "Индия",
-    "genres": "Триллер, Драма, Криминал, Биография",
-    "director": "",
-    "actors": "Пратик Ганди, Шрейя Дханвантари, Хемант Кхер",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1393461,
-    "imdb": "https://www.imdb.com/title/tt12392504",
-    "type": "series",
-    "id": 608,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1393461.jpg"
-  },
-  {
-    "title": "BBC: Замерзшая планета",
-    "titleRu": "BBC: Замерзшая планета",
-    "year": 2011,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/652564.jpg",
-    "description": "Документальный сериал о самых отдалённых уголках нашей планеты, о местах, где экстремальные условия отрицают само существование жизни. Однако жизнь здесь не просто существует, она процветает. Приспосабливаясь и изменяясь, приобретая удивительные ф...",
-    "fullDescription": "Документальный сериал о самых отдалённых уголках нашей планеты, о местах, где экстремальные условия отрицают само существование жизни. Однако жизнь здесь не просто существует, она процветает. Приспосабливаясь и изменяясь, приобретая удивительные формы, находя неожиданные способы существования, жизнь еще раз доказывает величие и грандиозность эволюции. Вас ждут потрясающие съемки касаток во льдах, тюленей, пингвинов, полярных птиц и величественных айсбергов. И все это параллельно исследованию о меняющемся климате этих регионов.",
-    "country": "США, Великобритания, Испания, Германия, Канада, Греция",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Дэвид Аттенборо, Алек Болдуин, Чедден Хантер",
-    "duration": "333 min",
-    "trailer": "",
-    "kinopoiskId": 652564,
-    "imdb": "https://www.imdb.com/title/tt2092588",
-    "type": "series",
-    "id": 609,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "✨ Баланс & Атмосфера",
-      "🎬 Classic Storytelling"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/652564.jpg"
-  },
-  {
-    "title": "Дуракам везет",
-    "titleRu": "Дуракам везет",
-    "year": 1981,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/471405.jpg",
-    "description": "Классическая комедия о злоключениях двух братьев, которые зарабатывают на жизнь продажей товаров, полагая, что это сделает их миллионерами.",
-    "fullDescription": "Классическая комедия о злоключениях двух братьев, которые зарабатывают на жизнь продажей товаров, полагая, что это сделает их миллионерами.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Дэвид Джейсон, Николас Линдхерст, Роджер Ллойд Пэк",
-    "duration": "58S min",
-    "trailer": "",
-    "kinopoiskId": 471405,
-    "imdb": "https://www.imdb.com/title/tt0081912",
-    "type": "series",
-    "id": 610,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 4,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/471405.jpg"
-  },
-  {
-    "title": "BBC: Планета людей",
-    "titleRu": "BBC: Планета людей",
-    "year": 2011,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/591822.jpg",
-    "description": "Люди - самые совершенные особи нашей планеты. От холодных льдов Арктики до жарких тропических джунглей они смогли приспособиться к окружающей среде и найти способы для выживания. Для этого им понадобилось проявить недюжинную изобретательность и от...",
-    "fullDescription": "Люди - самые совершенные особи нашей планеты. От холодных льдов Арктики до жарких тропических джунглей они смогли приспособиться к окружающей среде и найти способы для выживания. Для этого им понадобилось проявить недюжинную изобретательность и отвагу. Они научился жить бок о бок с другими живыми существами и использовать их себе во благо.\n\n«Планета людей» - это компиляция из 80 поражающих воображение историй. Каждый эпизод рассказывает об одном из уголков нашей планеты и о тех способах и решениях, благодаря которым человек смог приспособится к зачастую самым экстремальным условиям жизни.",
-    "country": "Великобритания",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Джон Хёрт, Роджер Маннс",
-    "duration": "50 min",
-    "trailer": "",
-    "kinopoiskId": 591822,
-    "imdb": "https://www.imdb.com/title/tt1806234",
-    "type": "series",
-    "id": 611,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🌙 Dark Mood"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/591822.jpg"
-  },
-  {
-    "title": "Антология The Beatles",
-    "titleRu": "Антология The Beatles",
-    "year": 1995,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/383870.jpg",
-    "description": "Рассказ о жизни и творчестве великой ливерпульской четверки — The Beatles.",
-    "fullDescription": "Рассказ о жизни и творчестве великой ливерпульской четверки — The Beatles.",
-    "country": "Великобритания",
-    "genres": "Биография, Музыка, Документальный",
-    "director": "",
-    "actors": "Джон Леннон, Пол Маккартни, Джордж Харрисон",
-    "duration": "600 min",
-    "trailer": "",
-    "kinopoiskId": 383870,
-    "imdb": "https://www.imdb.com/title/tt0111893",
-    "type": "series",
-    "id": 612,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🌙 Dark Mood",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/383870.jpg"
-  },
-  {
-    "title": "Декстер: Воскрешение",
-    "titleRu": "Декстер: Воскрешение",
-    "year": 2025,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6058297.jpg",
-    "description": "Декстер восстает из мертвых — и вступает в схватку с маньяком-психопатом. Возвращение культового антигероя",
-    "fullDescription": "Чудом избежавший смерти Декстер Морган отчаянно хочет сблизиться с сыном Гаррисоном, но боится ему навредить, ведь на мужчину ведет охоту бывший сослуживец. А в городе тем временем появляется опасный враг: миллиардер-психопат, манипулирующий людьми, и его телохранительница. Дорога к семейному счастью для Декстера рискует вновь стать кровавой.",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Майкл С. Холл, Джек Олкотт, «Лев жив»",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 6058297,
-    "imdb": "https://www.imdb.com/title/tt33043892",
-    "type": "series",
-    "id": 613,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 9,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6058297.jpg"
-  },
-  {
-    "title": "Питт",
-    "titleRu": "Питт",
-    "year": 2025,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6589776.jpg",
-    "description": "Ещё одна смена в неотложке — в режиме реального времени. «Золотой глобус»-2026 за лучший драматический сериал",
-    "fullDescription": "Молодые врачи и опытные специалисты отделения неотложной помощи в Питтсбурге каждый день сталкиваются с тяжёлыми случаями, где счёт идет на минуты. За пределами операционных — личные драмы, амбиции и выбор между правилами и состраданием.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Ной Уайл, Патрик Болл, Кэтрин Ланаса",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 6589776,
-    "imdb": "https://www.imdb.com/title/tt31938062",
-    "type": "series",
-    "id": 614,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6589776.jpg"
-  },
-  {
-    "title": "Гражданская война",
-    "titleRu": "Гражданская война",
-    "year": 1990,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/521770.jpg",
-    "description": "Документальный эпик Кена Бернса оживляет на экране самый кровавый, разрушительный и самый важный конфликт Америки. «Гражданская война» - это сага о знаменитых генералах и обычных солдатах, повесть о борьбе за свободу и единство американской нации,...",
-    "fullDescription": "Документальный эпик Кена Бернса оживляет на экране самый кровавый, разрушительный и самый важный конфликт Америки. «Гражданская война» - это сага о знаменитых генералах и обычных солдатах, повесть о борьбе за свободу и единство американской нации, рассказ о великом президенте и стране, которой пришлось разорвать себя на две части, чтобы стать единой.",
-    "country": "США",
-    "genres": "Военный, История, Документальный",
-    "director": "",
-    "actors": "Дэвид МакКаллоу, Сэм Уотерстон, Джули Харрис",
-    "duration": "680 min",
-    "trailer": "",
-    "kinopoiskId": 521770,
-    "imdb": "https://www.imdb.com/title/tt0098769",
-    "type": "series",
-    "id": 615,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🌙 Dark Mood",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/521770.jpg"
-  },
-  {
-    "title": "Гиби",
-    "titleRu": "Гиби",
-    "year": 2021,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4424713.jpg",
-    "description": "Йылмаз и Илккан — два друга, которые постоянно ссорятся друг с другом. Их величайшая особенность – это всегда способность сделать что-то, что перевернет их обычную жизнь с ног на голову.",
-    "fullDescription": "Йылмаз и Илккан — два друга, которые постоянно ссорятся друг с другом. Их величайшая особенность – это всегда способность сделать что-то, что перевернет их обычную жизнь с ног на голову.",
-    "country": "Турция",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Фейаз Йигит, Кыванч Килинч, Ахмет Кюрсат Оджалан",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 4424713,
-    "imdb": "https://www.imdb.com/title/tt13675832",
-    "type": "series",
-    "id": 616,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4424713.jpg"
-  },
-  {
-    "title": "Таскмастер",
-    "titleRu": "Таскмастер",
-    "year": 2015,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/934169.jpg",
-    "description": "В каждом эпизоде шоу Грег Дэвис и его верный помощник Алекс Хорн бросают вызов пяти его участникам-комикам. Все они соревнуются в остроумии, хитрости и смекалке, попутно выполняя дурацкие и смешные задания, чтобы... вернуть собственные вещи.",
-    "fullDescription": "В каждом эпизоде шоу Грег Дэвис и его верный помощник Алекс Хорн бросают вызов пяти его участникам-комикам. Все они соревнуются в остроумии, хитрости и смекалке, попутно выполняя дурацкие и смешные задания, чтобы... вернуть собственные вещи.",
-    "country": "Великобритания",
-    "genres": "Комедия, Игра",
-    "director": "",
-    "actors": "Грег Дэвис, Алекс Хорн, Керри Годлиман",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 934169,
-    "imdb": "https://www.imdb.com/title/tt4934214",
-    "type": "series",
-    "id": 617,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/934169.jpg"
-  },
-  {
-    "title": "Сайнфелд",
-    "titleRu": "Сайнфелд",
-    "year": 1989,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/277627.jpg",
-    "description": "Злоключения городского невротика, стэнд-ап комика Джерри Сайнфелда и его настолько же неврастенических нью-йоркских друзей.",
-    "fullDescription": "Злоключения городского невротика, стэнд-ап комика Джерри Сайнфелда и его настолько же неврастенических нью-йоркских друзей.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Джерри Сайнфелд, Джулия Луис-Дрейфус, Майкл Ричардс",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 277627,
-    "imdb": "https://www.imdb.com/title/tt0098904",
-    "type": "series",
-    "id": 618,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/277627.jpg"
-  },
-  {
-    "title": "Декалог",
-    "titleRu": "Декалог",
-    "year": 1988,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94660.jpg",
-    "description": "«Декалог» — это попытка рассказать десять историй, которые могли случиться с каждым. Это истории о людях, захваченных жизненной суетой, но в результате неожиданного стечения обстоятельств обнаруживающих, что они топчутся на одном месте, забывая пр...",
-    "fullDescription": "«Декалог» — это попытка рассказать десять историй, которые могли случиться с каждым. Это истории о людях, захваченных жизненной суетой, но в результате неожиданного стечения обстоятельств обнаруживающих, что они топчутся на одном месте, забывая про действительно важные цели...",
-    "country": "Польша, Германия (ФРГ)",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Артур Барцис, Ольгерд Лукашевич, Олаф Любасенко",
-    "duration": "572 min",
-    "trailer": "",
-    "kinopoiskId": 94660,
-    "imdb": "https://www.imdb.com/title/tt0092337",
-    "type": "series",
-    "id": 619,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94660.jpg"
-  },
-  {
-    "title": "Битлз: Вернись",
-    "titleRu": "The Beatles: Get Back",
-    "year": 2021,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1355015.jpg",
-    "description": "Фильм расскажет об атмосфере, царившей на студии во время записи знаменитого альбома «Let It Be», и завершится записью последнего живого концерта группы, который состоялся на крыше дома 3 на лондонской улице Сэвил-Роу 30 января 1969 года.",
-    "fullDescription": "Фильм расскажет об атмосфере, царившей на студии во время записи знаменитого альбома «Let It Be», и завершится записью последнего живого концерта группы, который состоялся на крыше дома 3 на лондонской улице Сэвил-Роу 30 января 1969 года.",
-    "country": "США, Великобритания, Новая Зеландия",
-    "genres": "Биография, Музыка, Документальный",
-    "director": "Питер Джексон",
-    "actors": "Битлз, Джон Леннон, Пол Маккартни",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1355015,
-    "imdb": "https://www.imdb.com/title/tt9735318",
-    "type": "series",
-    "id": 620,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 8,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🧠 Thought-Provoking",
-      "⚡ High Energy",
-      "🌙 Dark Mood"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1355015.jpg"
-  },
-  {
-    "title": "Нэйтан спешит на выручку",
-    "titleRu": "Нэйтан спешит на выручку",
-    "year": 2013,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/734884.jpg",
-    "description": "Нэйтан использует своё бизнес-образование и жизненный опыт во благо владельцев малого бизнеса. Но из-за необычного подхода втягивает их в такие переделки, в которых они никак не ожидали оказаться.",
-    "fullDescription": "Нэйтан использует своё бизнес-образование и жизненный опыт во благо владельцев малого бизнеса. Но из-за необычного подхода втягивает их в такие переделки, в которых они никак не ожидали оказаться.",
-    "country": "США",
-    "genres": "Комедия, Документальный",
-    "director": "",
-    "actors": "Нэйтан Филдер, Энтони Филоса, Саломон Флорес",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 734884,
-    "imdb": "https://www.imdb.com/title/tt2297757",
-    "type": "series",
-    "id": 621,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/734884.jpg"
-  },
-  {
-    "title": "Апокалипсис: Вторая мировая война",
-    "titleRu": "Апокалипсис: Вторая мировая война",
-    "year": 2009,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/478013.jpg",
-    "description": "Эпопея рассказывает об огромных внутренних конфликтах и трагических судьбах тех, кто вынужден был участвовать в войне, тех, кто пострадал и нес лишения из-за военных действий, и  всех тех, кто развязал и вел эту войну. \n\nВпервые в истории потери с...",
-    "fullDescription": "Эпопея рассказывает об огромных внутренних конфликтах и трагических судьбах тех, кто вынужден был участвовать в войне, тех, кто пострадал и нес лишения из-за военных действий, и  всех тех, кто развязал и вел эту войну. \n\nВпервые в истории потери среди гражданского населения сравнялись с потерями среди военнослужащих. Перед зрителем предстанут рассекреченные кинокадры и любительская съемка эпизодов той страшной войны, которая унесла жизни 50-ти миллионов мужчин и женщин по всему миру.",
-    "country": "Франция",
-    "genres": "Военный, История, Документальный",
-    "director": "",
-    "actors": "Адольф Гитлер, Мартин Шин, Матье Кассовиц",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 478013,
-    "imdb": "https://www.imdb.com/title/tt1508238",
-    "type": "series",
-    "id": 622,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🌙 Dark Mood",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/478013.jpg"
-  },
-  {
-    "title": "Личность",
-    "titleRu": "Личность",
-    "year": 2018,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1112358.jpg",
-    "description": "Пенсионер с Альцгеймером начинает убивать своих обидчиков. Турецкий коктейль из «Декстера» и «Во все тяжкие»",
-    "fullDescription": "История о серийном убийце с болезнью Альцгеймера. Невра - единственная женщина-полицейский в стамбульском отделе по расследованию убийств, и однажды ее путь пересечется с Агахом. Агах – 65-летний пенсионер, ранее работал судмедэкспертом.",
-    "country": "Турция",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Халук Билгинер, Себнем Бозоклу, Реджеп Уста",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1112358,
-    "imdb": "https://www.imdb.com/title/tt7920978",
-    "type": "series",
-    "id": 623,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1112358.jpg"
-  },
-  {
-    "title": "Африка",
-    "titleRu": "Африка",
-    "year": 2013,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/743965.jpg",
-    "description": "Это новое представление ландшафтов и живых созданий дикой природы поведает в невиданном доселе ключе о горах и саваннах, вулканах и озерах, ледниках и джунглях Африки, населенных удивительными животными, пресмыкающимися, рыбами и насекомыми с необ...",
-    "fullDescription": "Это новое представление ландшафтов и живых созданий дикой природы поведает в невиданном доселе ключе о горах и саваннах, вулканах и озерах, ледниках и джунглях Африки, населенных удивительными животными, пресмыкающимися, рыбами и насекомыми с необыкновенным поведением в естественной среде обитания, по-прежнему полной тайн и загадок...",
-    "country": "Великобритания",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Дэвид Аттенборо, Саймон Блейкни, Хью Пирсон",
-    "duration": "360 min",
-    "trailer": "",
-    "kinopoiskId": 743965,
-    "imdb": "https://www.imdb.com/title/tt2571774",
-    "type": "series",
-    "id": 624,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "✨ Баланс & Атмосфера",
-      "🎬 Classic Storytelling"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/743965.jpg"
-  },
-  {
-    "title": "Избранные",
-    "titleRu": "Избранные",
-    "year": 2017,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1228882.jpg",
-    "description": "Рассказ о жизни Иисуса из Назарета, а также о людях, последовавших за ним.",
-    "fullDescription": "Рассказ о жизни Иисуса из Назарета, а также о людях, последовавших за ним.",
-    "country": "США",
-    "genres": "Драма, История",
-    "director": "",
-    "actors": "Шахар Айзек, Джордж Х. Ксантис, Джонатан Руми",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1228882,
-    "imdb": "https://www.imdb.com/title/tt5622316",
-    "type": "series",
-    "id": 625,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1228882.jpg"
-  },
-  {
-    "title": "Западное крыло",
-    "titleRu": "Западное крыло",
-    "year": 1999,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94224.jpg",
-    "description": "Сериал повествует о внутренней жизни администрации Президента США. Речь, по большей части, идет не о заговорах и политических интригах, а о повседневной рутине - законотворчестве, работе с конгрессом, правительством и прочими организациями и учреж...",
-    "fullDescription": "Сериал повествует о внутренней жизни администрации Президента США. Речь, по большей части, идет не о заговорах и политических интригах, а о повседневной рутине - законотворчестве, работе с конгрессом, правительством и прочими организациями и учреждениями; о политических торгах, дипломатической работе и отношениях с прессой. Главные герои сериала - сотрудники администрации: глава президентского аппарата, его помощники, президентские советники, пресс-секретарь… Сам Президент остается зачастую несколько в стороне от основного действия, появляясь лишь в наиболее важные моменты. Сериал наполнен блестящими остроумными диалогами, серьезными злободневными вопросами и ненавязчивым желанием сделать этот мир немного лучше.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Мартин Шин, Роб Лоу, Эллисон Дженни",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 94224,
-    "imdb": "https://www.imdb.com/title/tt0200276",
-    "type": "series",
-    "id": 626,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94224.jpg"
-  },
-  {
-    "title": "Когда они нас увидят",
-    "titleRu": "Когда они нас увидят",
-    "year": 2019,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1174230.jpg",
-    "description": "Пятеро подростков, афроамериканцев и мексиканцев из Гарлема, были приговорены к тюремным срокам за жестокое изнасилование белой девушки, которого они не совершали.",
-    "fullDescription": "Пятеро подростков, афроамериканцев и мексиканцев из Гарлема, были приговорены к тюремным срокам за жестокое изнасилование белой девушки, которого они не совершали.",
-    "country": "США",
-    "genres": "Драма, Криминал",
-    "director": "Ава ДюВерней",
-    "actors": "Асанте Блэкк, Калил Харрис, Итан Херисс",
-    "duration": "296 min",
-    "trailer": "",
-    "kinopoiskId": 1174230,
-    "imdb": "https://www.imdb.com/title/tt7137906",
-    "type": "series",
-    "id": 627,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 7,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🖤 Dark Romance / Melancholy",
-      "🌙 Dark & Gritty",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1174230.jpg"
-  },
-  {
-    "title": "В Филадельфии всегда солнечно",
-    "titleRu": "В Филадельфии всегда солнечно",
-    "year": 2005,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401515.jpg",
-    "description": "Шайка сварливых неудачников держит ирландский паб. Ситком-долгожитель с Дэнни ДеВито и звездными камео",
-    "fullDescription": "О владельцах не слишком успешного ирландского паба в южной Филадельфии, которые постоянно ссорятся, врут и пытаются что-то друг другу доказать.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Чарли Дэй, Гленн Хоуэртон, Роб Мак",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 401515,
-    "imdb": "https://www.imdb.com/title/tt0472954",
-    "type": "series",
-    "id": 628,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401515.jpg"
-  },
-  {
-    "title": "Когда жизнь даёт тебе мандарины",
-    "titleRu": "Когда жизнь даёт тебе мандарины",
-    "year": 2025,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5249436.jpg",
-    "description": "Вспыльчивая девушка с Чеджу хочет стать поэтессой, и её во всём поддерживает влюблённый тихоня.",
-    "fullDescription": "Вспыльчивая девушка с Чеджу хочет стать поэтессой, и её во всём поддерживает влюблённый тихоня.",
-    "country": "Корея Южная",
-    "genres": "Драма, Мелодрама",
-    "director": "",
-    "actors": "АйЮ, Пак Бо Гом, Мун Со Ри",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5249436,
-    "imdb": "https://www.imdb.com/title/tt26471411",
-    "type": "series",
-    "id": 629,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5249436.jpg"
-  },
-  {
-    "title": "События прошедшей недели с Джоном Оливером",
-    "titleRu": "События прошедшей недели с Джоном Оливером",
-    "year": 2014,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/839427.jpg",
-    "description": "Популярный комик комментирует новости политики и общества. Сатирическое ток-шоу с озвучкой Михаила Козырева",
-    "fullDescription": "Аналитическое шоу, в котором британский телеведущий в саркастической манере высмеивает события прошедшей недели.",
-    "country": "США",
-    "genres": "Комедия, Новости, Ток-шоу",
-    "director": "",
-    "actors": "Джон Оливер, Дэвид Кэй, Дональд Трамп",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 839427,
-    "imdb": "https://www.imdb.com/title/tt3530232",
-    "type": "series",
-    "id": 630,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "✨ Баланс & Атмосфера"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/839427.jpg"
-  },
-  {
-    "title": "ТВФ Питчеры",
-    "titleRu": "TVF Pitchers",
-    "year": 2015,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/952178.jpg",
-    "description": "Менеджер Навин решает уволиться, когда начальство не позволяет ему возглавить проект, над которым он долго работал. Навин едва вновь не устраивается на работу, но решает открыть свой стартап вместе с друзьями Джиту, Йоги и Мандалом.",
-    "fullDescription": "Менеджер Навин решает уволиться, когда начальство не позволяет ему возглавить проект, над которым он долго работал. Навин едва вновь не устраивается на работу, но решает открыть свой стартап вместе с друзьями Джиту, Йоги и Мандалом.",
-    "country": "Индия",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Навин Кастурия, Арунаб Кумар, Абхай Махаджан",
-    "duration": "40 min",
-    "trailer": "",
-    "kinopoiskId": 952178,
-    "imdb": "https://www.imdb.com/title/tt4742876",
-    "type": "series",
-    "id": 631,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/952178.jpg"
-  },
-  {
-    "title": "Умерь свой энтузиазм",
-    "titleRu": "Умерь свой энтузиазм",
-    "year": 2000,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/277559.jpg",
-    "description": "Сценарист-невротик выясняет отношения с Голливудом. Один из величайших ситкомов XXI века",
-    "fullDescription": "Создатель сериала «Сайнфелд» Ларри Дэвид живет в Калифорнии и занят склоками и интригами с женой, толстым агентом, его агрессивной супругой и своими друзьями. Ларри упрям, подвержен неврозам и постоянно попадает в неловкие ситуации.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Ларри Дэвид, Шерил Хайнс, Джефф Гарлин",
-    "duration": "28 min",
-    "trailer": "",
-    "kinopoiskId": 277559,
-    "imdb": "https://www.imdb.com/title/tt0264235",
-    "type": "series",
-    "id": 632,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/277559.jpg"
-  },
-  {
-    "title": "Монти Пайтон: Летающий цирк",
-    "titleRu": "Монти Пайтон: Летающий цирк",
-    "year": 1969,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/94730.jpg",
-    "description": "Антология телевизионных юмористических скетчей группы Монти Пайтон с 1969 по 1974 год.",
-    "fullDescription": "Антология телевизионных юмористических скетчей группы Монти Пайтон с 1969 по 1974 год.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Грэм Чепмен, Джон Клиз, Терри Гиллиам",
-    "duration": "31S min",
-    "trailer": "",
-    "kinopoiskId": 94730,
-    "imdb": "https://www.imdb.com/title/tt0063929",
-    "type": "series",
-    "id": 633,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/94730.jpg"
-  },
-  {
-    "title": "Панчаят",
-    "titleRu": "Панчаят",
-    "year": 2020,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1359425.jpg",
-    "description": "Комедия-драма, в которой рассказывается о путешествии выпускника инженерного факультета Абхишека, который из-за отсутствия лучшей работы устраивается секретарем офиса Панчаята в отдаленной деревне Уттар-Прадеш.",
-    "fullDescription": "Комедия-драма, в которой рассказывается о путешествии выпускника инженерного факультета Абхишека, который из-за отсутствия лучшей работы устраивается секретарем офиса Панчаята в отдаленной деревне Уттар-Прадеш.",
-    "country": "Индия",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Джитендра Кумар, Рагубир Ядав, Чандан Рой",
-    "duration": "35 min",
-    "trailer": "",
-    "kinopoiskId": 1359425,
-    "imdb": "https://www.imdb.com/title/tt12004706",
-    "type": "series",
-    "id": 634,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1359425.jpg"
-  },
-  {
-    "title": "Отель «Фолти Тауэрс»",
-    "titleRu": "Отель «Фолти Тауэрс»",
-    "year": 1975,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/438208.jpg",
-    "description": "Некомпетентность владельца гостиницы Бэзила Фолти, его взвинченность и самонадеянность создают комбинацию, которая гарантирует близость инцидентов и неприятностей.",
-    "fullDescription": "Некомпетентность владельца гостиницы Бэзила Фолти, его взвинченность и самонадеянность создают комбинацию, которая гарантирует близость инцидентов и неприятностей.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Джон Клиз, Прунелла Скейлс, Эндрю Сакс",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 438208,
-    "imdb": "https://www.imdb.com/title/tt0072500",
-    "type": "series",
-    "id": 635,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/438208.jpg"
-  },
-  {
-    "title": "Копилка",
-    "titleRu": "Копилка",
-    "year": 2019,
-    "rating": 9.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1277337.jpg",
-    "description": "Расположенный в причудливых переулках в самом сердце Индии, «Гуллак» представляет собой сборник обезоруживающих и захватывающих историй о семье Мишра.",
-    "fullDescription": "Расположенный в причудливых переулках в самом сердце Индии, «Гуллак» представляет собой сборник обезоруживающих и захватывающих историй о семье Мишра.",
-    "country": "Индия",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Джамиль Кхан, Гитанджали Кулкарни, Вайбхав Радж Гупта",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 1277337,
-    "imdb": "https://www.imdb.com/title/tt10530900",
-    "type": "series",
-    "id": 636,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1277337.jpg"
-  },
-  {
-    "title": "Чёрная гадюка 4",
-    "titleRu": "Чёрная гадюка 4",
-    "year": 1989,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89626.jpg",
-    "description": "Блэкэддер и его друзья оказываются в пекле Первой мировой войны, где продолжают вести себя так, как и подобает истинным проходимцам.",
-    "fullDescription": "Блэкэддер и его друзья оказываются в пекле Первой мировой войны, где продолжают вести себя так, как и подобает истинным проходимцам.",
-    "country": "Великобритания",
-    "genres": "Комедия, Военный",
-    "director": "",
-    "actors": "Роуэн Аткинсон, Тони Робинсон, Стивен Фрай",
-    "duration": "175 min",
-    "trailer": "",
-    "kinopoiskId": 89626,
-    "imdb": "https://www.imdb.com/title/tt0096548",
-    "type": "series",
-    "id": 637,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89626.jpg"
-  },
-  {
-    "title": "Лейла и Меджнун",
-    "titleRu": "Лейла и Меджнун",
-    "year": 2011,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/591995.jpg",
-    "description": "Турецкий сериал по мотивам арабской романтической истории о Лейле и Меджнуне.",
-    "fullDescription": "Турецкий сериал по мотивам арабской романтической истории о Лейле и Меджнуне.",
-    "country": "Турция",
-    "genres": "Драма, Мелодрама, Детектив, Приключения, Фэнтези, Комедия",
-    "director": "",
-    "actors": "Али Атай, Серкан Кескин, Осман Сонан",
-    "duration": "80 min",
-    "trailer": "",
-    "kinopoiskId": 591995,
-    "imdb": "https://www.imdb.com/title/tt1831164",
-    "type": "series",
-    "id": 638,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/591995.jpg"
-  },
-  {
-    "title": "Хулиганы и ботаны",
-    "titleRu": "Хулиганы и ботаны",
-    "year": 1999,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/401639.jpg",
-    "description": "Отличница хочет влиться в компанию задир. Юные Сет Роген и Джеймс Франко в комедийном сериале Джадда Апатоу",
-    "fullDescription": "Действие сериала происходит в 1980 году и разворачивается вокруг Линдси Виер и её младшего брата Сэма, учащихся старшей школы в вымышленном городке неподалеку от Детройта. Линдси, прилежная ученица и участница математических олимпиад,начинает проводить время в компании «фриков», из-за влюбленности в обаятельного, но эгоистичного Дэниеля Дезарио, неформального лидера компании.\n\nПараллельно попыткам Линдси разобраться в себе и решить проблемы в отношениях с родителями и друзьями, сюжетные линии сериала демонстрируют непростые попытки Сэма и его компании «гиков» изменить своё место в школьной иерархии.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Линда Карделлини, Джон Фрэнсис Дэйли, Джеймс Франко",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 401639,
-    "imdb": "https://www.imdb.com/title/tt0193676",
-    "type": "series",
-    "id": 639,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 3,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/401639.jpg"
-  },
-  {
-    "title": "Шоу Шаппелла",
-    "titleRu": "Шоу Шаппелла",
-    "year": 2003,
-    "rating": 6.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/403956.jpg",
-    "description": "Скетч-шоу комика Дэйва Шапэла о расовых и культурных предрассудках.",
-    "fullDescription": "Скетч-шоу комика Дэйва Шапэла о расовых и культурных предрассудках.",
-    "country": "США",
-    "genres": "Комедия, Музыка",
-    "director": "",
-    "actors": "Дэйв Шаппель, Доннелл Роулингс, Нил Бреннан",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 403956,
-    "imdb": "https://www.imdb.com/title/tt0353049",
-    "type": "series",
-    "id": 640,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/403956.jpg"
-  },
-  {
-    "title": "Твин Пикс",
-    "titleRu": "Твин Пикс",
-    "year": 1990,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/84358.jpg",
-    "description": "Кто убил Лору Палмер? Абсолютный шедевр Дэвида Линча, который навсегда изменил телевидение — и нас",
-    "fullDescription": "На берегу озера находят завёрнутое в полиэтилен тело старшеклассницы Лоры Палмер. В ходе расследования перед внимательными взглядами агента ФБР Купера, шерифа Трумана и его помощников проходят разные жители Твин Пикс. Открываются тёмные стороны обитателей на первый взгляд тихого и мирного городка.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив, Фантастика",
-    "director": "",
-    "actors": "Кайл МакЛоклен, Майкл Онткин, Girls Amick",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 84358,
-    "imdb": "https://www.imdb.com/title/tt0098936",
-    "type": "series",
-    "id": 641,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/84358.jpg"
-  },
-  {
-    "title": "Вернуться в 1988",
-    "titleRu": "Вернуться в 1988",
-    "year": 2015,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/944829.jpg",
-    "description": "Как жили сеульские подростки накануне летней Олимпиады-88? Ретродорама о первой любви и взрослении",
-    "fullDescription": "Жизнь дружелюбной компании соседей, которая живет словно большая семья, на фоне Олимпиады 1988 года в Сеуле. В каждой семье есть проблемы, но многие начинают верить в маленькое чудо на фоне грандиозного события, которое вскоре состоится в их городе.",
-    "country": "Корея Южная",
-    "genres": "Мелодрама, Комедия",
-    "director": "",
-    "actors": "Ли Хери, Пак Бо Гом, Рю Джун Ёль",
-    "duration": "25S min",
-    "trailer": "",
-    "kinopoiskId": 944829,
-    "imdb": "https://www.imdb.com/title/tt5182866",
-    "type": "series",
-    "id": 642,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/944829.jpg"
-  },
-  {
-    "title": "Я, Клавдий",
-    "titleRu": "Я, Клавдий",
-    "year": 1976,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/566991.jpg",
-    "description": "История Римской Империи, описанная одним из ее правителей.",
-    "fullDescription": "История Римской Империи, описанная одним из ее правителей.",
-    "country": "Великобритания",
-    "genres": "Драма, Биография, История",
-    "director": "",
-    "actors": "Дерек Джейкоби, Джон Хёрт, Сиан Филлипс",
-    "duration": "669 min",
-    "trailer": "",
-    "kinopoiskId": 566991,
-    "imdb": "https://www.imdb.com/title/tt0074006",
-    "type": "series",
-    "id": 643,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/566991.jpg"
-  },
-  {
-    "title": "Южный Парк",
-    "titleRu": "Южный Парк",
-    "year": 1997,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/161252.jpg",
-    "description": "Школьники высмеивают стереотипы и происходящее в мире. Провокационный мультсериал без цензуры и запретов",
-    "fullDescription": "Приключения четырёх мальчиков и их друзей, живущих в маленьком городке Южный Парк, штат Колорадо.",
-    "country": "США",
-    "genres": "Комедия, Мультфильм",
-    "director": "",
-    "actors": "Трей Паркер, Мэтт Стоун, Исаак Хейс",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 161252,
-    "imdb": "https://www.imdb.com/title/tt0121955",
-    "type": "series",
-    "id": 644,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/161252.jpg"
-  },
-  {
-    "title": "Фабрика гениев",
-    "titleRu": "Фабрика гениев",
-    "year": 2019,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1255656.jpg",
-    "description": "В городе, полном обучающих центров, где проходят подготовку лучшие умы Индии, старательный, но заурядный ученик и его друзья приспосабливаются к студенческой жизни.",
-    "fullDescription": "В городе, полном обучающих центров, где проходят подготовку лучшие умы Индии, старательный, но заурядный ученик и его друзья приспосабливаются к студенческой жизни.",
-    "country": "Индия",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Маюр Мор, Джитендра Кумар, Ранджан Радж",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 1255656,
-    "imdb": "https://www.imdb.com/title/tt9432978",
-    "type": "series",
-    "id": 645,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1255656.jpg"
-  },
-  {
-    "title": "По ту сторону изгороди",
-    "titleRu": "По ту сторону изгороди",
-    "year": 2014,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/841914.jpg",
-    "description": "Братья блуждают по странному лесу в поисках дома. Готическая сказка от создателей «Времени приключений»",
-    "fullDescription": "В центре событий находятся два брата: Грег и Вирт. Им предстоит путешествие через таинственный и страшный лес, и только пройдя его, они смогут попасть домой.",
-    "country": "США",
-    "genres": "Драма, Детектив, Приключения, Фэнтези, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Элайджа Вуд, Коллин Дин, Мелани Лински",
-    "duration": "110 min",
-    "trailer": "",
-    "kinopoiskId": 841914,
-    "imdb": "https://www.imdb.com/title/tt3718778",
-    "type": "series",
-    "id": 646,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/841914.jpg"
-  },
-  {
-    "title": "Мой аджосси",
-    "titleRu": "Мой аджосси",
-    "year": 2018,
-    "rating": 9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1114251.jpg",
-    "description": "Мужчина в свои 40 лет выдерживает тяжесть жизни. Женщина в свои 20 лет проходит через разные испытания, но также выдерживает бремя своей жизни. Мужчина и женщина собираются вместе, чтобы помочь друг другу.",
-    "fullDescription": "Мужчина в свои 40 лет выдерживает тяжесть жизни. Женщина в свои 20 лет проходит через разные испытания, но также выдерживает бремя своей жизни. Мужчина и женщина собираются вместе, чтобы помочь друг другу.",
-    "country": "Южная Корея",
-    "genres": "Драма, Семейный",
-    "director": "",
-    "actors": "Ли Сон Гюн, Айю, Ли Джи А",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1114251,
-    "imdb": "https://www.imdb.com/title/tt7923710",
-    "type": "series",
-    "id": 647,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1114251.jpg"
-  },
-  {
-    "title": "Чёрное зеркало",
-    "titleRu": "Чёрное зеркало",
-    "year": 2011,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/655800.jpg",
-    "description": "Гаджеты начинают управлять жизнью, любовью и смертью людей. Сериал-антология о том, на что способны технологии",
-    "fullDescription": "За последние годы технологии всесторонне изменили нашу жизнь, прежде чем мы успели опомниться и усомниться в них. В каждом доме, на каждом столе, на каждой ладони — плазменный телевизор, монитор компьютера, дисплей смартфона — чёрное зеркало нашего существования в XXI веке.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Детектив, Фантастика, Ужасы",
-    "director": "",
-    "actors": "Анжана Васан, Кристин Милиоти, Джесси Племонс",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 655800,
-    "imdb": "https://www.imdb.com/title/tt2085059",
-    "type": "series",
-    "id": 648,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/655800.jpg"
-  },
-  {
-    "title": "Острые козырьки",
-    "titleRu": "Острые козырьки",
-    "year": 2013,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/716587.jpg",
-    "description": "Бывший солдат встает во главе криминального семейного бизнеса. Стильная британская сага с Киллианом Мёрфи",
-    "fullDescription": "Британский сериал о криминальном мире Бирмингема 20-х годов прошлого века, в котором многолюдная семья Шелби стала одной из самых жестоких и влиятельных гангстерских банд послевоенного времени. Фирменным знаком группировки, промышлявшей грабежами и азартными играми, стали зашитые в козырьки лезвия.",
-    "country": "Великобритания",
-    "genres": "Драма, Криминал",
-    "director": "",
-    "actors": "Киллиан Мерфи, Пол Андерсон, Софи Рандл",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 716587,
-    "imdb": "https://www.imdb.com/title/tt2442560",
-    "type": "series",
-    "id": 649,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 8,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/716587.jpg"
-  },
-  {
-    "title": "Тюрьма «ОZ»",
-    "titleRu": "Тюрьма «ОZ»",
-    "year": 1997,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/258070.jpg",
-    "description": "Оз - так называют государственное исправительное учреждение строгого режима. Оз воздаёт каждому по заслугам. Кто там только ни отбывает наказание! И убийцы, и мошенники, и извращенцы. А уже среди них - психопаты, как, например, Гроуз - душевноболь...",
-    "fullDescription": "Оз - так называют государственное исправительное учреждение строгого режима. Оз воздаёт каждому по заслугам. Кто там только ни отбывает наказание! И убийцы, и мошенники, и извращенцы. А уже среди них - психопаты, как, например, Гроуз - душевнобольной социопат, прикончивший своих родителей и съевший их; или больные СПИДом; а ещё полно гомосексуалов и наркоманов, которых постоянно истребляет Дино Арталани, осуждённый пожизненно за преднамеренное убийство.\n\nТем не менее в тюрьме царят порядок, жёсткие правила и стерильная чистота. Однако всё это только днём. Ночью на смену установленному властями порядку приходит свой страшный и «крутой» закон - не каждому удаётся дожить до утра...",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Эрни Хадсон, Терри Кинни, Дж.К. Симмонс",
-    "duration": "31S min",
-    "trailer": "",
-    "kinopoiskId": 258070,
-    "imdb": "https://www.imdb.com/title/tt0118421",
-    "type": "series",
-    "id": 650,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/258070.jpg"
-  },
-  {
-    "title": "Люди Икс ’97",
-    "titleRu": "Люди Икс ’97",
-    "year": 2024,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4711940.jpg",
-    "description": "Люди Икс пытаются приспособиться к жизни без профессора Ксавье. Не всем членам команды нравится лидерство Скотта Саммерса, да и сам Циклоп тяготится своей новой ролью. Джин Грей беременна, и она предлагает мужу покинуть команду, чтобы воспитать ре...",
-    "fullDescription": "Люди Икс пытаются приспособиться к жизни без профессора Ксавье. Не всем членам команды нравится лидерство Скотта Саммерса, да и сам Циклоп тяготится своей новой ролью. Джин Грей беременна, и она предлагает мужу покинуть команду, чтобы воспитать ребенка в более спокойной обстановке. После предполагаемой гибели Ксавье симпатии к мутантам возросли, а ООН официально признала команду супергероев. Но далеко не все люди готовы к мирному сосуществованию.",
-    "country": "США, Корея Южная",
-    "genres": "Фантастика, Приключения, Боевик, Мультфильм",
-    "director": "",
-    "actors": "Джордж Буза, Кэл Додд, Холли Чоу",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4711940,
-    "imdb": "https://www.imdb.com/title/tt16026746",
-    "type": "series",
-    "id": 651,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4711940.jpg"
-  },
-  {
-    "title": "Непобедимый",
-    "titleRu": "Непобедимый",
-    "year": 2021,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1171895.jpg",
-    "description": "17-летний Марк Грэйсон — сын самого могучего супергероя на Земле, и вскоре ему самому предстоит обрести суперспобности и научиться ими управлять.",
-    "fullDescription": "17-летний Марк Грэйсон — сын самого могучего супергероя на Земле, и вскоре ему самому предстоит обрести суперспобности и научиться ими управлять.",
-    "country": "США",
-    "genres": "Триллер, Драма, Фантастика, Приключения, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Стивен Юн, Дж.К. Симмонс, Сандра О",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1171895,
-    "imdb": "https://www.imdb.com/title/tt6741278",
-    "type": "series",
-    "id": 652,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1171895.jpg"
-  },
-  {
-    "title": "Звёздный крейсер «Галактика»",
-    "titleRu": "Звёздный крейсер «Галактика»",
-    "year": 2004,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/153013.jpg",
-    "description": "В будущем остатки человечества вынуждены скрываться от расы роботов. Популярная фантастическая драма",
-    "fullDescription": "Чудом уцелев после нападения Сайлонов на колонии Кобола, гражданский колониальный флот в сопровождении Звёздного крейсера Галактика летит прочь от мест, где их могут найти вражеские силы. Восстановив гражданское правительство и собрав все имеющиеся силы, остатки человечества начинают неравную борьбу со временем, обстоятельствами и Сайлонами. Разбираясь с всё новыми внешними и внутренними проблемами, постепенно раскрывая личности 12 человекоподобных моделей Сайлонов, они летят на поиски давно потерянной 13 колонии Кобола, упоминания о которой есть в древних сказаниях, нового дома, имя которому – Земля.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Боевик",
-    "director": "",
-    "actors": "Эдвард Джеймс Олмос, Мэри МакДоннелл, Джейми Бамбер",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 153013,
-    "imdb": "https://www.imdb.com/title/tt0407362",
-    "type": "series",
-    "id": 653,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/153013.jpg"
-  },
-  {
-    "title": "Пип шоу",
-    "titleRu": "Пип шоу",
-    "year": 2003,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412006.jpg",
-    "description": "Ситком, покоривший сердца британских зрителей. Марк - типичный клерк, не приспособленный к жизни вне офиса. Он одинаково боится детей и девушек, неуклюж и наивен. Джереми энергичен и оптимистичен, пытается заработать деньги созданием нескладной эл...",
-    "fullDescription": "Ситком, покоривший сердца британских зрителей. Марк - типичный клерк, не приспособленный к жизни вне офиса. Он одинаково боится детей и девушек, неуклюж и наивен. Джереми энергичен и оптимистичен, пытается заработать деньги созданием нескладной электронной музыки, пока, правда, безуспешно. Объединить этих двух парней могло только одно - дешевая съемная квартира.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Дэвид Митчелл, Роберт Уэбб, Мэтт Кинг",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 412006,
-    "imdb": "https://www.imdb.com/title/tt0387764",
-    "type": "series",
-    "id": 654,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412006.jpg"
-  },
-  {
-    "title": "Звездный путь: Следующее поколение",
-    "titleRu": "Звездный путь: Следующее поколение",
-    "year": 1987,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229996.jpg",
-    "description": "Прошло 80 лет. Сменился экипаж, усовершенствовались технологии, сменился даже «Энтерпрайз». Но не изменились цели его команды — смело идти туда, где не ступала нога человека.",
-    "fullDescription": "Прошло 80 лет. Сменился экипаж, усовершенствовались технологии, сменился даже «Энтерпрайз». Но не изменились цели его команды — смело идти туда, где не ступала нога человека.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Боевик",
-    "director": "",
-    "actors": "Патрик Стюарт, Брент Спайнер, Джонатан Фрейкс",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 229996,
-    "imdb": "https://www.imdb.com/title/tt0092455",
-    "type": "series",
-    "id": 655,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229996.jpg"
-  },
-  {
-    "title": "Всё ещё игра",
-    "titleRu": "Всё ещё игра",
-    "year": 2002,
-    "rating": 5.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/372637.jpg",
-    "description": "Культовая шотландская комедия о жизни двух участников OAP Джека и Виктора и их взглядах на то, как было раньше и как плохо сейчас в вымышленном районе Крейгланг, Глазго.",
-    "fullDescription": "Культовая шотландская комедия о жизни двух участников OAP Джека и Виктора и их взглядах на то, как было раньше и как плохо сейчас в вымышленном районе Крейгланг, Глазго.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Форд Кирнан, Грег Хемфилл, Пол Райли",
-    "duration": "22S min",
-    "trailer": "",
-    "kinopoiskId": 372637,
-    "imdb": "https://www.imdb.com/title/tt0281491",
-    "type": "series",
-    "id": 656,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/372637.jpg"
-  },
-  {
-    "title": "Голубоглазый самурай",
-    "titleRu": "Голубоглазый самурай",
-    "year": 2023,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4992678.jpg",
-    "description": "Япония периода Эдо. Юная воительница мстит тем, из-за кого она стала изгоем.",
-    "fullDescription": "Япония периода Эдо. Юная воительница мстит тем, из-за кого она стала изгоем.",
-    "country": "США",
-    "genres": "Триллер, Драма, Приключения, Боевик, История, Мультфильм",
-    "director": "",
-    "actors": "Майя Эрскин, Джордж Такей, Маси Ока",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4992678,
-    "imdb": "https://www.imdb.com/title/tt13309742",
-    "type": "series",
-    "id": 657,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4992678.jpg"
-  },
-  {
-    "title": "Махабхарата",
-    "titleRu": "Махабхарата",
-    "year": 1988,
-    "rating": 6.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/453176.jpg",
-    "description": "В основе сюжета сериала «Махабхарата» оригинальный текст одноименного индийского эпоса, являющегося комплексом эпических повествований, новелл, басен, притч, легенд, дидактических рассуждений богословского, политического, правового характера, мифо...",
-    "fullDescription": "В основе сюжета сериала «Махабхарата» оригинальный текст одноименного индийского эпоса, являющегося комплексом эпических повествований, новелл, басен, притч, легенд, дидактических рассуждений богословского, политического, правового характера, мифов и генеалогий. Фабулой эпоса является повествование о распре между двумя претендующими на престол династиями, продолжавшейся 18 лет.",
-    "country": "Индия",
-    "genres": "Драма, Приключения, Боевик, Фэнтези, Военный, История, Мюзикл",
-    "director": "",
-    "actors": "Хариш Бхимани, Нитиш Бхарадвадж, Мукеш Кханна",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 453176,
-    "imdb": "https://www.imdb.com/title/tt0158417",
-    "type": "series",
-    "id": 658,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/453176.jpg"
-  },
-  {
-    "title": "Симпсоны",
-    "titleRu": "Симпсоны",
-    "year": 1989,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/77164.jpg",
-    "description": "Пародия на жизнь простой американской семьи. Самый длинный мультсериал из США, не раз предсказавший будущее",
-    "fullDescription": "Семейство Симпсонов — папаша Гомер, мама Мардж, дочери Лиза и маленькая Мэгги, и несносный подросток Барт — проживают в среднестатистическом городке Спрингфилд. Гомер трудится на местной атомной станции, Мардж занимается домом и детьми, любознательная Лиза отлично учится в школе, а Барт постоянно попадает во всякие переделки.",
-    "country": "США",
-    "genres": "Комедия, Мультфильм",
-    "director": "",
-    "actors": "Дэн Кастелланета, Нэнси Картрайт, Джули Кавнер",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 77164,
-    "imdb": "https://www.imdb.com/title/tt0096697",
-    "type": "series",
-    "id": 659,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/77164.jpg"
-  },
-  {
-    "title": "Лига справедливости: Без границ",
-    "titleRu": "Лига справедливости: Без границ",
-    "year": 2004,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1009665.jpg",
-    "description": "В продолжении мультсериала «Лига справедливости» к первоначальным членам команды в борьбе с преступностью и злом присоединились десятки других героев из вселенной комиксов DC.",
-    "fullDescription": "В продолжении мультсериала «Лига справедливости» к первоначальным членам команды в борьбе с преступностью и злом присоединились десятки других героев из вселенной комиксов DC.",
-    "country": "США",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Джордж Ньюберн, Кевин Конрой, Фил ЛаМарр",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1009665,
-    "imdb": "https://www.imdb.com/title/tt6025022",
-    "type": "series",
-    "id": 660,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1009665.jpg"
-  },
-  {
-    "title": "Приключения Шерлока Холмса",
-    "titleRu": "Приключения Шерлока Холмса",
-    "year": 1984,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/402506.jpg",
-    "description": "Бесстрашный детектив и его верный спутник, доктор Ватсон, разгадывают тайны лесных буков, греческого переводчика, норвудского строителя, пациента стационара, лиги красноголовых и одной последней проблемы.",
-    "fullDescription": "Бесстрашный детектив и его верный спутник, доктор Ватсон, разгадывают тайны лесных буков, греческого переводчика, норвудского строителя, пациента стационара, лиги красноголовых и одной последней проблемы.",
-    "country": "Великобритания",
-    "genres": "Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Джереми Бретт, Дэвид Берк, Розали Уильямс",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 402506,
-    "imdb": "https://www.imdb.com/title/tt0086661",
-    "type": "series",
-    "id": 661,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/402506.jpg"
-  },
-  {
-    "title": "По долгу службы",
-    "titleRu": "По долгу службы",
-    "year": 2012,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/688829.jpg",
-    "description": "Громкие дела, внутренние расследования и кухня британских копов. Хит с участием Стивена Грэма",
-    "fullDescription": "Стива Арнотта переводят в отдел по борьбе с коррупцией после плачевной перестрелки в ходе антитеррористической операции, которая закончилась гибелью человека и произошла по вине другого копа.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Мартин Компстон, Вики МакКлюр, Адриан Данбар",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 688829,
-    "imdb": "https://www.imdb.com/title/tt2303687",
-    "type": "series",
-    "id": 662,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/688829.jpg"
-  },
-  {
-    "title": "Топ Гир",
-    "titleRu": "Топ Гир",
-    "year": 2002,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/566602.jpg",
-    "description": "Джереми, Ричард и Джеймс с неподражаемым юмором рассказывают о самых значимых и интересных новинках автомобильного мира.",
-    "fullDescription": "Джереми, Ричард и Джеймс с неподражаемым юмором рассказывают о самых значимых и интересных новинках автомобильного мира.",
-    "country": "Великобритания",
-    "genres": "Комедия, Документальный, Ток-шоу",
-    "director": "",
-    "actors": "Джереми Кларксон, Ричард Хаммонд, Джеймс Мэй",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 566602,
-    "imdb": "https://www.imdb.com/title/tt1628033",
-    "type": "series",
-    "id": 663,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/566602.jpg"
-  },
-  {
-    "title": "Задержка в развитии",
-    "titleRu": "Задержка в развитии",
-    "year": 2003,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/277569.jpg",
-    "description": "Это история богатой семьи, потерявшей всё, и одного сына, которому ничего не оставалось, кроме как не дать этой семье развалиться. На первый взгляд, Майкл Блут – единственный нормальный в семействе чокнутых. Он вынужден остаться в Оранж-Каунти и в...",
-    "fullDescription": "Это история богатой семьи, потерявшей всё, и одного сына, которому ничего не оставалось, кроме как не дать этой семье развалиться. На первый взгляд, Майкл Блут – единственный нормальный в семействе чокнутых. Он вынужден остаться в Оранж-Каунти и взять на себя руководство семейным бизнесом после того, как отца семейства посадили в тюрьму за неуплату налогов. \n\nВ то время, как отец семейства занимается поисками себя, находясь в тюремной камере, Майкл пытается склеить осколки семейного бизнеса и научить членов своей необычной семьи жить по бюджету.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Джейсон Бэйтман, Майкл Сера, Порша де Росси",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 277569,
-    "imdb": "https://www.imdb.com/title/tt0367279",
-    "type": "series",
-    "id": 664,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/277569.jpg"
-  },
-  {
-    "title": "Огни ночной пятницы",
-    "titleRu": "Огни ночной пятницы",
-    "year": 2006,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/400030.jpg",
-    "description": "Действие разворачивается в вымышленном городе Диллон, штат Техас, средняя школа «Диллон Хай» известна своими сильными футболистами и прочной фанатской поддержкой. Сериал начинается с того, как в школу приходит новый тренер Эрик Тейлор, который сра...",
-    "fullDescription": "Действие разворачивается в вымышленном городе Диллон, штат Техас, средняя школа «Диллон Хай» известна своими сильными футболистами и прочной фанатской поддержкой. Сериал начинается с того, как в школу приходит новый тренер Эрик Тейлор, который сразу же оказывается под большим давлением, перед ним часто стоит выбор между тем, что правильно и тем, что приведет к победе. Его жена Тэми, которая тоже работает в школе, часто выступает в роли голоса совести своему мужу. Этот сериал о дружбе и преданности, мечтах и провалах, любви и усердности.",
-    "country": "США",
-    "genres": "Драма, Спорт",
-    "director": "",
-    "actors": "Кайл Чендлер, Конни Бриттон, Зак Гилфорд",
-    "duration": "44 min",
-    "trailer": "",
-    "kinopoiskId": 400030,
-    "imdb": "https://www.imdb.com/title/tt0758745",
-    "type": "series",
-    "id": 665,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/400030.jpg"
-  },
-  {
-    "title": "Рамаяна",
-    "titleRu": "Рамаяна",
-    "year": 1987,
-    "rating": 5.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/574668.jpg",
-    "description": "Адаптация древнего эпоса, в котором изгнанный принц Рама и его брат Лакшман намереваются спасти жену Рамы, Ситу, похищенную королем демонов Ланки Раваной.",
-    "fullDescription": "Адаптация древнего эпоса, в котором изгнанный принц Рама и его брат Лакшман намереваются спасти жену Рамы, Ситу, похищенную королем демонов Ланки Раваной.",
-    "country": "Индия",
-    "genres": "Драма, Приключения, Фэнтези, Военный, Семейный, Мюзикл",
-    "director": "",
-    "actors": "Арун Говил, Дипика Чихалиа, Сунил Лари",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 574668,
-    "imdb": "https://www.imdb.com/title/tt0268093",
-    "type": "series",
-    "id": 666,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/574668.jpg"
-  },
-  {
-    "title": "Полезные советы от Джона Уилсона",
-    "titleRu": "Полезные советы от Джона Уилсона",
-    "year": 2020,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1406458.jpg",
-    "description": "Режиссер пытается разобраться, как устроен мир. Виртуозная документальная комедия о магии повседневности",
-    "fullDescription": "Увлекательные истории и неожиданные культурные наблюдения о том, как непредсказуема и горяча жизнь в Нью-Йорке.",
-    "country": "США",
-    "genres": "Комедия, Документальный",
-    "director": "",
-    "actors": "Джон Уилсон, Кайл МакЛоклен, Джастин А. Мартелл",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1406458,
-    "imdb": "https://www.imdb.com/title/tt10801534",
-    "type": "series",
-    "id": 667,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1406458.jpg"
-  },
-  {
-    "title": "Бехзат: Серийные преступления в Анкаре",
-    "titleRu": "Бехзат: Серийные преступления в Анкаре",
-    "year": 2010,
-    "rating": 7.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/579611.jpg",
-    "description": "Коп с плохой репутацией против коррупционеров и убийц. Культовый турецкий детектив — захватывающий и честный",
-    "fullDescription": "Сюжет крутится вокруг проблемного официально дискредитированного начальника полиции в Анкаре и полицейской команды под стать ему.",
-    "country": "Турция",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Эрдал Бесикчиоглу, Инанч Конукчу, Эге Айдан",
-    "duration": "90 min",
-    "trailer": "",
-    "kinopoiskId": 579611,
-    "imdb": "https://www.imdb.com/title/tt1795096",
-    "type": "series",
-    "id": 668,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/579611.jpg"
-  },
-  {
-    "title": "Это мы",
-    "titleRu": "Это мы",
-    "year": 2016,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/969141.jpg",
-    "description": "Семейные ценности вчера, сегодня, завтра. Согревающее душу драмеди о важности каждого мгновения",
-    "fullDescription": "18 миллионов ныне живущих в мире людей одновременно отмечают собственный день рождения. Но одинаковая праздничная дата - не единственное обстоятельство, объединяющее их при всей своей непохожести...",
-    "country": "США",
-    "genres": "Драма, Мелодрама, Комедия",
-    "director": "",
-    "actors": "Майло Вентимилья, Мэнди Мур, Стерлинг К. Браун",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 969141,
-    "imdb": "https://www.imdb.com/title/tt5555260",
-    "type": "series",
-    "id": 669,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good",
-      "🧠 Thought-Provoking"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/969141.jpg"
-  },
-  {
-    "title": "Гуща событий",
-    "titleRu": "Гуща событий",
-    "year": 2005,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/570010.jpg",
-    "description": "Действие сериала происходит в коридорах власти британского правительства. Хью Эббот, новый министр по социальным вопросам, со своими помощниками, как, впрочем, и все остальные члены правительства и служащие министерств, а также работники прессы - ...",
-    "fullDescription": "Действие сериала происходит в коридорах власти британского правительства. Хью Эббот, новый министр по социальным вопросам, со своими помощниками, как, впрочем, и все остальные члены правительства и служащие министерств, а также работники прессы - все подвергаются нападкам директора по коммуникациям Малькольма Такера. Такер - маэстро подковерных интриг, чемпион по сквернословию и неприкрытый двойник Алистера Кэмпбелла, директора по коммуникациям и стратегическому планированию в правительстве Тони Блэра.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Крис Эддисон, Джеймс Смит, Питер Капальди",
-    "duration": "29 min",
-    "trailer": "",
-    "kinopoiskId": 570010,
-    "imdb": "https://www.imdb.com/title/tt0459159",
-    "type": "series",
-    "id": 670,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/570010.jpg"
-  },
-  {
-    "title": "Рыцарь Семи Королевств",
-    "titleRu": "Рыцарь Семи Королевств",
-    "year": 2026,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5281617.jpg",
-    "description": "По пути на турнир рыцарь знакомится с таинственным подростком. Новая история во вселенной «Игры престолов»",
-    "fullDescription": "Вестерос за 100 лет до борьбы Дейенерис Таргариен за Железный Трон. Наивный и отважный рыцарь сир Дункан Высокий знакомится с мальчиком по имени Эгг, который скрывает тайну своего происхождения. Сделав мальчишку своим оруженосцем, Дункан вместе с ним отправляется в путешествие по континенту, периодически попадая в различные передряги.",
-    "country": "США",
-    "genres": "Драма, Приключения, Боевик, Фэнтези",
-    "director": "",
-    "actors": "Питер Клаффи, Декстер Сол Анселл, Дэниэл Ингс",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5281617,
-    "imdb": "https://www.imdb.com/title/tt27497448",
-    "type": "series",
-    "id": 671,
-    "releaseDate": "2026-01-18",
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5281617.jpg"
-  },
-  {
-    "title": "Кандидаты",
-    "titleRu": "Кандидаты",
-    "year": 2021,
-    "rating": 9.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4438142.jpg",
-    "description": "История о трех друзьях, которые готовятся к экзамену для поступления на государственную службу.",
-    "fullDescription": "История о трех друзьях, которые готовятся к экзамену для поступления на государственную службу.",
-    "country": "Индия",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Навин Кастурия, Шиванкит Сингх Парихар, Абхилаш Таплиял",
-    "duration": "3 min",
-    "trailer": "",
-    "kinopoiskId": 4438142,
-    "imdb": "https://www.imdb.com/title/tt14392248",
-    "type": "series",
-    "id": 672,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "🧠 Mind Bender"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4438142.jpg"
-  },
-  {
-    "title": "Отец Тед",
-    "titleRu": "Отец Тед",
-    "year": 1995,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/439912.jpg",
-    "description": "Отца Теда Крилли за растрату сослали управлять церковным приходом на крошечный остров Крагги у берегов Ирландии. И в помощь ему, а точнее на беду, дали глуповатого помощника отца Дугала Магуайра и спившегося отца Джека Хаккета. Отец Дугал только з...",
-    "fullDescription": "Отца Теда Крилли за растрату сослали управлять церковным приходом на крошечный остров Крагги у берегов Ирландии. И в помощь ему, а точнее на беду, дали глуповатого помощника отца Дугала Магуайра и спившегося отца Джека Хаккета. Отец Дугал только закончил семинарию, но ведёт себя и рассуждает как девятилетний ребёнок. Отец Джек наоборот - повидал в жизни немало, но увы, растерял не только свой жизненный опыт, но и весь словарный запас, оставив для себя только самое необходимое: «Зад! Бабы! Пить!». Но даже не это отличает Теда, Дугала и Джека от нормальных католических священников. Их тяготит долг священнослужителя и они делают всё возможное, чтобы не заниматься делами прихода и проблемами прихожан. Что они только не выдумывают ради этого!",
-    "country": "Великобритания, Ирландия",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Дермот Морган, О'Хэнлон Район, Фрэнк Келли",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 439912,
-    "imdb": "https://www.imdb.com/title/tt0111958",
-    "type": "series",
-    "id": 673,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/439912.jpg"
-  },
-  {
-    "title": "Время приключений",
-    "titleRu": "Время приключений",
-    "year": 2010,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/602284.jpg",
-    "description": "Мальчик и пес, способный принимать разные формы, исследуют постапокалиптический мир. Не только для детей",
-    "fullDescription": "Волшебная страна Ууу. Финн — 13-летний мальчик, который обожает путешествовать и спасать принцесс из лап ужасных монстров и злодеев, населяющих Ууу. Джейк — лучший друг Финна. Это волшебная собака со способностью растягивать своё тело до практически любых размеров и форм. Джейку 28 лет и он исполняет роль эдакого приятеля-наставника Финна, а его волшебные способности помогают мальчику в его борьбе со злом.",
-    "country": "США, Германия, Гонконг, Япония, Корея Южная",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Джон ДиМаджио, Джереми Шада, Том Кенни",
-    "duration": "11 min",
-    "trailer": "",
-    "kinopoiskId": 602284,
-    "imdb": "https://www.imdb.com/title/tt1305826",
-    "type": "series",
-    "id": 674,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/602284.jpg"
-  },
-  {
-    "title": "Решала",
-    "titleRu": "Решала",
-    "year": 2018,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1179409.jpg",
-    "description": "Рэй Шусмит — заботливый отец, бывший муж и лучший друг. Но мало кто знает, что Рэй, помимо прочего, ещё и наёмный убийца.",
-    "fullDescription": "Рэй Шусмит — заботливый отец, бывший муж и лучший друг. Но мало кто знает, что Рэй, помимо прочего, ещё и наёмный убийца.",
-    "country": "Австралия",
-    "genres": "Триллер, Драма, Криминал, Боевик, Комедия",
-    "director": "",
-    "actors": "Скотт Райан, Джастин Росняк, Чика Ясумура",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1179409,
-    "imdb": "https://www.imdb.com/title/tt7472896",
-    "type": "series",
-    "id": 675,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1179409.jpg"
-  },
-  {
-    "title": "1883",
-    "titleRu": "1883",
-    "year": 2021,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4397594.jpg",
-    "description": "XIX век. Семья Даттон пытается спастись от нищеты и отправляется в путешествие на Запад.",
-    "fullDescription": "XIX век. Семья Даттон пытается спастись от нищеты и отправляется в путешествие на Запад.",
-    "country": "США",
-    "genres": "Драма, Вестерн",
-    "director": "",
-    "actors": "Тим МакГроу, Сэм Эллиотт, Фэйт Хилл",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4397594,
-    "imdb": "https://www.imdb.com/title/tt13991232",
-    "type": "series",
-    "id": 676,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4397594.jpg"
-  },
-  {
-    "title": "Умар ибн аль-Хаттаб",
-    "titleRu": "Умар ибн аль-Хаттаб",
-    "year": 2012,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/734161.jpg",
-    "description": "Фильм, основанный на реальных событиях, повествует об истории жизни второго праведного халифа Умара ибн аль-Хаттаба (Умар аль-Фарук), одного из самых ярых последователей пророка и первых исламских государей.",
-    "fullDescription": "Фильм, основанный на реальных событиях, повествует об истории жизни второго праведного халифа Умара ибн аль-Хаттаба (Умар аль-Фарук), одного из самых ярых последователей пророка и первых исламских государей.",
-    "country": "Марокко",
-    "genres": "Драма, Биография, Военный, История",
-    "director": "",
-    "actors": "Самер Исмаил, Асад Халифа, Мехьяр Хаддур",
-    "duration": "45 min",
-    "trailer": "",
-    "kinopoiskId": 734161,
-    "imdb": "https://www.imdb.com/title/tt2063241",
-    "type": "series",
-    "id": 677,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/734161.jpg"
-  },
-  {
-    "title": "Сарабхай против Сарабхай",
-    "titleRu": "Сарабхай против Сарабхай",
-    "year": 2004,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/838879.jpg",
-    "description": "Вращается вокруг жизни членов очень богатой семьи из высшего общества Гуджарата из Кафф-Парейд - Южный Мумбаи, чья невестка происходит из среднего класса в Дели.",
-    "fullDescription": "Вращается вокруг жизни членов очень богатой семьи из высшего общества Гуджарата из Кафф-Парейд - Южный Мумбаи, чья невестка происходит из среднего класса в Дели.",
-    "country": "Индия",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Сатиш Шах, Ратна Патхак Шах, Сумит Рагхаван",
-    "duration": "46S min",
-    "trailer": "",
-    "kinopoiskId": 838879,
-    "imdb": "https://www.imdb.com/title/tt1518542",
-    "type": "series",
-    "id": 678,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Cozy & Feel-Good",
-      "👥 Character Driven",
-      "⚡ High Energy",
-      "🧠 Mind Bender"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/838879.jpg"
-  },
-  {
-    "title": "Пуаро",
-    "titleRu": "Пуаро",
-    "year": 1989,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/85208.jpg",
-    "description": "Легендарный сыщик раскрывает убийства с помощью «маленьких серых клеточек». По романам Агаты Кристи",
-    "fullDescription": "Сериал по одноимённому циклу детективных романов Агаты Кристи о бельгийском детективе Эркюле Пуаро.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Дэвид Суше, Хью Фрейзер, Филип Джексон",
-    "duration": "100 min",
-    "trailer": "",
-    "kinopoiskId": 85208,
-    "imdb": "https://www.imdb.com/title/tt0094525",
-    "type": "series",
-    "id": 679,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/85208.jpg"
-  },
-  {
-    "title": "Атланта",
-    "titleRu": "Атланта",
-    "year": 2016,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/882408.jpg",
-    "description": "Миллениалы пытаются стать звездами рэпа и повысить качество жизни. Уникальный юмор в сериале Дональда Гловера",
-    "fullDescription": "Эрн отчислен из Принстонского университета, у него нет денег и нет дома, поэтому он живет со своей бывшей девушкой и их дочерью. Однажды он узнает, что его двоюродный брат — рэпер, который вот-вот прославится. Эрн решает стать его менеджером, чтобы заработать денег и улучшить свою жизнь и жизнь своей дочери.",
-    "country": "США",
-    "genres": "Драма, Комедия, Музыка",
-    "director": "",
-    "actors": "Дональд Гловер, Брайан Тайри Генри, ЛаКит Стэнфилд",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 882408,
-    "imdb": "https://www.imdb.com/title/tt4288182",
-    "type": "series",
-    "id": 680,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/882408.jpg"
-  },
-  {
-    "title": "Пацаны",
-    "titleRu": "Пацаны",
-    "year": 2019,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/460586.jpg",
-    "description": "Отряд простых смертных ставит на место продажных супергероев в трико. Дерзкий сериал по комиксу Гарта Энниса",
-    "fullDescription": "Супергерои являются настоящими звездами. Их все знают и обожают. Но за идеальным фасадом скрывается мрачный мир наркотиков и секса, а большинство героев в жизни не самые приятные люди. Противостоит им отряд, неофициально известный как «Пацаны».",
-    "country": "США",
-    "genres": "Драма, Криминал, Фантастика, Боевик, Комедия",
-    "director": "",
-    "actors": "Карл Урбан, Джек Куэйд, Энтони Старр",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 460586,
-    "imdb": "https://www.imdb.com/title/tt1190634",
-    "type": "series",
-    "id": 681,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/460586.jpg"
-  },
-  {
-    "title": "Это грех",
-    "titleRu": "Это грех",
-    "year": 2021,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1311396.jpg",
-    "description": "Подростки ищут себя в бурлящем Лондоне 1980-х. Драма с Нилом Патриком Харрисом от создателей «Доктора Кто»",
-    "fullDescription": "История трёх друзей, переехавших в Лондон в 1980-х: здесь они будут взрослеть, влюбляться, разочаровываться, терять и находить.",
-    "country": "Великобритания",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Олли Александер, Натаниэль Кертис, Шон Дули",
-    "duration": "239 min",
-    "trailer": "",
-    "kinopoiskId": 1311396,
-    "imdb": "https://www.imdb.com/title/tt9140342",
-    "type": "series",
-    "id": 682,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1311396.jpg"
-  },
-  {
-    "title": "Одинокий голубь",
-    "titleRu": "Одинокий голубь",
-    "year": 1988,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/276113.jpg",
-    "description": "XIX век, Западный Техас. Друзья Гас Макрэй и Вудроу Колл, в прошлом техасские рейнджеры, живут вместе с парнем Ньютом и мексиканцем Боливаром на ранчо неподалёку от городка Одинокий Голубь. Однажды после многолетнего отсутствия к ним из Арканзаса ...",
-    "fullDescription": "XIX век, Западный Техас. Друзья Гас Макрэй и Вудроу Колл, в прошлом техасские рейнджеры, живут вместе с парнем Ньютом и мексиканцем Боливаром на ранчо неподалёку от городка Одинокий Голубь. Однажды после многолетнего отсутствия к ним из Арканзаса возвращается старый приятель Джейк. Воодушевлённый его рассказами о просторах и природе Монтаны, Вудроу хочет отправиться туда, несмотря предупреждения об индейцах, которые встречаются на той территории. Он уговаривает остальных ехать с ним, но сначала друзья решают украсть скот у местного мексиканского бандита, чтобы не с пустыми руками осваивать новые места.",
-    "country": "США",
-    "genres": "Драма, Приключения, Вестерн",
-    "director": "",
-    "actors": "Роберт Дювалл, Томми Ли Джонс, Дэнни Гловер",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 276113,
-    "imdb": "https://www.imdb.com/title/tt0096639",
-    "type": "series",
-    "id": 683,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/276113.jpg"
-  },
-  {
-    "title": "Первобытный",
-    "titleRu": "Первобытный",
-    "year": 2019,
-    "rating": 8.5,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1263399.jpg",
-    "description": "Два существа пытаются выжить в мире первобытного насилия. Мультсериал без слов от автора «Самурая Джека»",
-    "fullDescription": "Доисторические времена. Чуть было не став обедом гигантского крокодила, первобытный человек возвращается с рыбалки к родной пещере прямо в тот момент, когда стая хищных динозавров съедает его женщину и детей. Вскоре осиротевший мужчина неожиданно для себя объединяется с тираннозавром, пытающимся безуспешно защитить детёнышей от тех же хищников, что убили и его семью. Это окажется началом необычной дружбы в мире, где всё, что шевелится, или станет твоей добычей, или попытается тебя сожрать.",
-    "country": "США",
-    "genres": "Приключения, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Аарон ЛаПланте, Летиция Эйдо, Фред Татаскиоре",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 1263399,
-    "imdb": "https://www.imdb.com/title/tt10332508",
-    "type": "series",
-    "id": 684,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1263399.jpg"
-  },
-  {
-    "title": "Чёрная гадюка 2",
-    "titleRu": "Чёрная гадюка 2",
-    "year": 1986,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89623.jpg",
-    "description": "Эдмунд Блэкаддер — выдающийся придворный при дворе Королевы Елизаветы I. Эдмунду снова помогают его безобразный слуга Болдрик и слабоумный лорд Перси. Его главный конкурент — льстивый лорд Мелчетт.",
-    "fullDescription": "Эдмунд Блэкаддер — выдающийся придворный при дворе Королевы Елизаветы I. Эдмунду снова помогают его безобразный слуга Болдрик и слабоумный лорд Перси. Его главный конкурент — льстивый лорд Мелчетт.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Роуэн Аткинсон, Тони Робинсон, Тим МакИннерни",
-    "duration": "176 min",
-    "trailer": "",
-    "kinopoiskId": 89623,
-    "imdb": "https://www.imdb.com/title/tt0088484",
-    "type": "series",
-    "id": 685,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89623.jpg"
-  },
-  {
-    "title": "Аварийная посадка любви",
-    "titleRu": "Аварийная посадка любви",
-    "year": 2019,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1269389.jpg",
-    "description": "Совершенно секретная история любви наследницы чеболя, совершившей вынужденную посадку в Северной Корее из-за несчастного случая с парапланом, и офицера северокорейского спецназа, который влюбляется в нее и который прячет и защищает...",
-    "fullDescription": "Совершенно секретная история любви наследницы чеболя, совершившей вынужденную посадку в Северной Корее из-за несчастного случая с парапланом, и офицера северокорейского спецназа, который влюбляется в нее и который прячет и защищает...",
-    "country": "Южная Корея",
-    "genres": "Приключения, Комедия, Драма",
-    "director": "",
-    "actors": "Хён Бин, Сон Е Чжин, Со Джи Хе",
-    "duration": "70 min",
-    "trailer": "",
-    "kinopoiskId": 1269389,
-    "imdb": "https://www.imdb.com/title/tt10850932",
-    "type": "series",
-    "id": 686,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1269389.jpg"
-  },
-  {
-    "title": "Жаркое соперничество",
-    "titleRu": "Жаркое соперничество",
-    "year": 2025,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/463191.jpg",
-    "description": "Две соперничающие звезды хоккея, находящиеся на вершине своей карьеры, сталкиваются с неожиданным испытанием, когда у них возникают чувства друг к другу, что усложняет их карьеру и ожидания от спорта.",
-    "fullDescription": "Две соперничающие звезды хоккея, находящиеся на вершине своей карьеры, сталкиваются с неожиданным испытанием, когда у них возникают чувства друг к другу, что усложняет их карьеру и ожидания от спорта.",
-    "country": "США",
-    "genres": "Драма, Мелодрама, Комедия",
-    "director": "",
-    "actors": "Хадсон Уильямс, Коннор Сторри, Франсуа Арно",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 463191,
-    "imdb": "https://www.imdb.com/title/tt35495073",
-    "type": "series",
-    "id": 687,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🍿 Cozy & Feel-Good",
-      "🧠 Thought-Provoking"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/463191.jpg"
-  },
-  {
-    "title": "Бюро легенд",
-    "titleRu": "Бюро легенд",
-    "year": 1976,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/935095.jpg",
-    "description": "Уникальный и захватывающий сериал о «Бюро легенд», мифическом центре французской секретной службы и ее отважных дьявольских агентах-призраках.",
-    "fullDescription": "Уникальный и захватывающий сериал о «Бюро легенд», мифическом центре французской секретной службы и ее отважных дьявольских агентах-призраках.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Матье Кассовиц, Флоранс Луаре Кай, Джонатан Заккай",
-    "duration": "30 мин",
-    "trailer": "",
-    "kinopoiskId": 935095,
-    "imdb": "https://www.imdb.com/title/tt4063800",
-    "type": "series",
-    "id": 688,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/935095.jpg"
-  },
-  {
-    "title": "Предложение",
-    "titleRu": "Предложение",
-    "year": 2022,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1407744.jpg",
-    "description": "Как снимали абсолютный шедевр мирового кино — «Крестного отца»? Фееричный сериал с Майлзом Теллером",
-    "fullDescription": "История создания культового фильма «Крестный отец».",
-    "country": "США, Великобритания, Италия, Канада",
-    "genres": "Драма, Криминал, Биография",
-    "director": "",
-    "actors": "Майлз Теллер, Мэттью Гуд, Дэн Фоглер",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1407744,
-    "imdb": "https://www.imdb.com/title/tt13111040",
-    "type": "series",
-    "id": 689,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1407744.jpg"
-  },
-  {
-    "title": "Да, господин министр",
-    "titleRu": "Да, господин министр",
-    "year": 1980,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89609.jpg",
-    "description": "Сатира на чиновников, заблудившихся в коридорах власти.",
-    "fullDescription": "Сатира на чиновников, заблудившихся в коридорах власти.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Пол Эддингтон, Найджел Хоторн, Дерек Фаулдс",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 89609,
-    "imdb": "https://www.imdb.com/title/tt0080306",
-    "type": "series",
-    "id": 690,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89609.jpg"
-  },
-  {
-    "title": "Возвращение Шерлока Холмса",
-    "titleRu": "Возвращение Шерлока Холмса",
-    "year": 1986,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/402507.jpg",
-    "description": "Сериал рассказывает о приключениях Шерлока Холмса и доктора Ватсона, расследующих таинственные дела.",
-    "fullDescription": "Сериал рассказывает о приключениях Шерлока Холмса и доктора Ватсона, расследующих таинственные дела.",
-    "country": "Великобритания",
-    "genres": "Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Джереми Бретт, Эдвард Хардвик, Розали Уильямс",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 402507,
-    "imdb": "https://www.imdb.com/title/tt0090509",
-    "type": "series",
-    "id": 691,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/402507.jpg"
-  },
-  {
-    "title": "Поза",
-    "titleRu": "Поза",
-    "year": 2018,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1118137.jpg",
-    "description": "Действие сериала разворачивается в Нью-Йорке 80-х годов. Главные герои — артисты-транссексуалы, живущие обычной жизнью и мечтающие о любви, признании и успехе.",
-    "fullDescription": "Действие сериала разворачивается в Нью-Йорке 80-х годов. Главные герои — артисты-транссексуалы, живущие обычной жизнью и мечтающие о любви, признании и успехе.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Микаэла Хаэ (МЮ) Родригес, Доминик Джексон, Индия Мур",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 1118137,
-    "imdb": "https://www.imdb.com/title/tt7562112",
-    "type": "series",
-    "id": 692,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1118137.jpg"
-  },
-  {
-    "title": "Чаво с восьмого",
-    "titleRu": "Чаво с восьмого",
-    "year": 1972,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/565046.jpg",
-    "description": "О приключениях бедного сироты и его друзей.",
-    "fullDescription": "О приключениях бедного сироты и его друзей.",
-    "country": "Мексика",
-    "genres": "Комедия, Семейный",
-    "director": "",
-    "actors": "Рамон Вальдес, Роберто Гомес Боланьос, Карлос Вильягран",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 565046,
-    "imdb": "https://www.imdb.com/title/tt0229889",
-    "type": "series",
-    "id": 693,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/565046.jpg"
-  },
-  {
-    "title": "Андор",
-    "titleRu": "Андор",
-    "year": 2022,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1209850.jpg",
-    "description": "Воришка становится повстанцем, чтобы сохранить свободу. Первоклассный шпионский триллер по «Звёздным войнам»",
-    "fullDescription": "Приключения разведчика Кассиана Андора в годы формирования Сопротивления.",
-    "country": "США",
-    "genres": "Триллер, Драма, Фантастика, Приключения, Боевик, Фэнтези",
-    "director": "",
-    "actors": "Диего Луна, Дениз Гоф, Стеллан Скарсгард",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 1209850,
-    "imdb": "https://www.imdb.com/title/tt9253284",
-    "type": "series",
-    "id": 694,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1209850.jpg"
-  },
-  {
-    "title": "Величайшие события Второй мировой войны",
-    "titleRu": "Величайшие события Второй мировой войны",
-    "year": 2019,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1371988.jpg",
-    "description": "Серия раскрашенных архивных кадров важных событий Второй мировой войны.",
-    "fullDescription": "Серия раскрашенных архивных кадров важных событий Второй мировой войны.",
-    "country": "Великобритания",
-    "genres": "Военный, История, Документальный",
-    "director": "",
-    "actors": "Дерек Якоби, Адольф Гитлер, Франклин Д. Рузвельт",
-    "duration": "50 min",
-    "trailer": "",
-    "kinopoiskId": 1371988,
-    "imdb": "https://www.imdb.com/title/tt9103932",
-    "type": "series",
-    "id": 695,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🌙 Dark Mood",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1371988.jpg"
-  },
-  {
-    "title": "Тайны миллиардера",
-    "titleRu": "Тайны миллиардера",
-    "year": 2015,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/870265.jpg",
-    "description": "Наследник империи недвижимости обвиняется в убийствах. Документальное расследование о деле Робера Дерста",
-    "fullDescription": "Документальный фильм-расследование НВО, в центре которого миллиардер Роберт Дерст, обвиняемый в серии нераскрытых убийств. Фильм содержит эксклюзивное интервью Дерста - первое за последние 30 лет.",
-    "country": "США",
-    "genres": "Криминал, Детектив, Биография, Документальный",
-    "director": "",
-    "actors": "Роберт Дерст, Эндрю Джареки, Чарльз Багли",
-    "duration": "279 min",
-    "trailer": "",
-    "kinopoiskId": 870265,
-    "imdb": "https://www.imdb.com/title/tt4299972",
-    "type": "series",
-    "id": 696,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 5,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/870265.jpg"
-  },
-  {
-    "title": "Чёрная гадюка 3",
-    "titleRu": "Чёрная гадюка 3",
-    "year": 1987,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89625.jpg",
-    "description": "Эдмунд Блэкэддер служит камердинером у будущего короля Георга IV. Он вынужден постоянно выручать своего хозяина из затруднительных ситуаций, в которые тот с лёгкостью попадает.",
-    "fullDescription": "Эдмунд Блэкэддер служит камердинером у будущего короля Георга IV. Он вынужден постоянно выручать своего хозяина из затруднительных ситуаций, в которые тот с лёгкостью попадает.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Роуэн Аткинсон, Тони Робинсон, Хью Лори",
-    "duration": "180 min",
-    "trailer": "",
-    "kinopoiskId": 89625,
-    "imdb": "https://www.imdb.com/title/tt0092324",
-    "type": "series",
-    "id": 697,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89625.jpg"
-  },
-  {
-    "title": "Пингвин",
-    "titleRu": "Пингвин",
-    "year": 2024,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4635062.jpg",
-    "description": "Пингвин приходит к власти над преступным миром Готэм-Сити. Спин-офф «Бэтмена» с Колином Фарреллом",
-    "fullDescription": "После смерти босса мафии Кармайна Фальконе его правая рука Освальд Кобблпот по прозвищу Пингвин решает, что он вправе занять место своего начальника. Но у Фальконе осталась дочь София, которая не готова отказываться от преступного наследия отца. В криминальном мире Готэма разгорается кровавая битва за власть.",
-    "country": "США",
-    "genres": "Драма, Криминал, Фэнтези",
-    "director": "",
-    "actors": "Колин Фаррелл, Кристин Милиоти, Рензи Фелиз",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 4635062,
-    "imdb": "https://www.imdb.com/title/tt15435876",
-    "type": "series",
-    "id": 698,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 9,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4635062.jpg"
-  },
-  {
-    "title": "Служба новостей",
-    "titleRu": "Служба новостей",
-    "year": 2012,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/584777.jpg",
-    "description": "Напряженные будни команды вечернего выпуска новостей. Хлесткие диалоги Аарона Соркина и премия «Эмми»",
-    "fullDescription": "История закулисной жизни популярной новостной программы.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Джефф Дэниэлс, Эмили Мортимер, Джон Галлахер мл.",
-    "duration": "55 min",
-    "trailer": "",
-    "kinopoiskId": 584777,
-    "imdb": "https://www.imdb.com/title/tt1870479",
-    "type": "series",
-    "id": 699,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "❤️ Heartfelt Story"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/584777.jpg"
-  },
-  {
-    "title": "Энн",
-    "titleRu": "Энн",
-    "year": 2017,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1009510.jpg",
-    "description": "Фермеры забирают из приюта озорную девчушку. Светлая и духоподъёмная семейная драма о дружбе, мечтах и свободе",
-    "fullDescription": "Энн — тринадцатилетняя сирота. Девочка рано лишилась родителей и с тех пор живёт в детском приюте. Жизнь героини резко меняется, когда в результате ошибки она попадает к новым приёмным родителям, старой деве и её младшему брату.",
-    "country": "Канада",
-    "genres": "Драма, Семейный",
-    "director": "",
-    "actors": "Эмибет МакНалти, Джеральдин Джеймс, Р. Х. Томсон",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1009510,
-    "imdb": "https://www.imdb.com/title/tt5421602",
-    "type": "series",
-    "id": 700,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1009510.jpg"
-  },
-  {
-    "title": "Убойный отдел",
-    "titleRu": "Убойный отдел",
-    "year": 1993,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/252102.jpg",
-    "description": "Что ни день – то неприятности: каждый вечер на улицах Балтимора происходят десятки убийств. Остановить разгул криминала смогут только детективы убойного дела.",
-    "fullDescription": "Что ни день – то неприятности: каждый вечер на улицах Балтимора происходят десятки убийств. Остановить разгул криминала смогут только детективы убойного дела.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Ричард Белзер, Кларк Джонсон, Яфет Котто",
-    "duration": "34S min",
-    "trailer": "",
-    "kinopoiskId": 252102,
-    "imdb": "https://www.imdb.com/title/tt0106028",
-    "type": "series",
-    "id": 701,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/252102.jpg"
-  },
-  {
-    "title": "Критикал рол",
-    "titleRu": "Критикал рол",
-    "year": 2015,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1346691.jpg",
-    "description": "Еженедельное живое шоу, в котором группа профессиональных актеров озвучивания импровизирует, разыгрывает роли и проходит эпическую кампанию Dungeons and Dragons.",
-    "fullDescription": "Еженедельное живое шоу, в котором группа профессиональных актеров озвучивания импровизирует, разыгрывает роли и проходит эпическую кампанию Dungeons and Dragons.",
-    "country": "США",
-    "genres": "Приключения, Фэнтези",
-    "director": "",
-    "actors": "Мэттью Мерсер, Лиам О’Брайен, Мариша Рэй",
-    "duration": "180 min",
-    "trailer": "",
-    "kinopoiskId": 1346691,
-    "imdb": "https://www.imdb.com/title/tt4834232",
-    "type": "series",
-    "id": 702,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 6,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🏎️ Non-Stop Thrill",
-      "🔥 Pure Action",
-      "⚡ Adrenaline Rush"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1346691.jpg"
-  },
-  {
-    "title": "Царство падальщиков",
-    "titleRu": "Царство падальщиков",
-    "year": 2023,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5002282.jpg",
-    "description": "Грузовой корабль «Деметра 227» терпит аварию где-то в глубинах космоса. Часть команды эвакуируется на планету Веста, а некоторое время спустя двое членов экипажа с помощью остатков оборудования умудряются установить контроль над кораблём и удачно ...",
-    "fullDescription": "Грузовой корабль «Деметра 227» терпит аварию где-то в глубинах космоса. Часть команды эвакуируется на планету Веста, а некоторое время спустя двое членов экипажа с помощью остатков оборудования умудряются установить контроль над кораблём и удачно посадить его. Вхождение «Деметры» в атмосферу видели другие выжившие, и в надежде на возвращение домой они отправляются на его поиски по завораживающему и смертельно опасному миру — капитан Сэм и биолог Урсула; техник Ази в компании робота, благодаря загадочному организму постепенно обретающего сознание и чувства; Кеймен, попавший под влияние существа, которое гипнозом вынуждает добывать ему еду.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Мультфильм",
-    "director": "",
-    "actors": "Сунита Мани, Вунми Мосаку, Боб Стивенсон",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5002282,
-    "imdb": "https://www.imdb.com/title/tt21056886",
-    "type": "series",
-    "id": 703,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 3,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5002282.jpg"
-  },
-  {
-    "title": "Арчер",
-    "titleRu": "Арчер",
-    "year": 2009,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/491547.jpg",
-    "description": "В международном шпионском агенстве ISIS любой мировой кризис - лишь предлог для высококлассных секретных агентов посоревноваться между собой в обмане и предательстве. Главным героем мультсериала является спецагент Стерлинг Арчер, известный также п...",
-    "fullDescription": "В международном шпионском агенстве ISIS любой мировой кризис - лишь предлог для высококлассных секретных агентов посоревноваться между собой в обмане и предательстве. Главным героем мультсериала является спецагент Стерлинг Арчер, известный также под кодовым именем «Герцогиня». На службе Арчеру приходится мириться со своей эксцентричной мамашей/начальницей - Мэлори, бывшей подружкой Ланой, озабоченной секретаршей Шерил и другими «интересными личностями».",
-    "country": "США",
-    "genres": "Боевик, Комедия, Мультфильм",
-    "director": "",
-    "actors": "Х. Джон Бенджамин, Джуди Грир, Эмбер Нэш",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 491547,
-    "imdb": "https://www.imdb.com/title/tt1486217",
-    "type": "series",
-    "id": 704,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/491547.jpg"
-  },
-  {
-    "title": "Ломка",
-    "titleRu": "Ломка",
-    "year": 2021,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1390826.jpg",
-    "description": "История доктора, который узнает о заговоре фармацевтических компаний, направленном на то, чтобы продавать больше опиоидных обезболивающих.",
-    "fullDescription": "История доктора, который узнает о заговоре фармацевтических компаний, направленном на то, чтобы продавать больше опиоидных обезболивающих.",
-    "country": "США",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Майкл Китон, Питер Сарсгаард, Майкл Стулбарг",
-    "duration": "31S min",
-    "trailer": "",
-    "kinopoiskId": 1390826,
-    "imdb": "https://www.imdb.com/title/tt9174558",
-    "type": "series",
-    "id": 705,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "🧠 Mind Bender"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1390826.jpg"
-  },
-  {
-    "title": "Таинственный театр 3000 года",
-    "titleRu": "Таинственный театр 3000 года",
-    "year": 1988,
-    "rating": 6.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/353893.jpg",
-    "description": "В не слишком отдалённом будущем человека и его роботов, связанных спутником любви, учёные-злодеи заставляют смотреть худшие фильмы всех времён.",
-    "fullDescription": "В не слишком отдалённом будущем человека и его роботов, связанных спутником любви, учёные-злодеи заставляют смотреть худшие фильмы всех времён.",
-    "country": "США",
-    "genres": "Фантастика, Комедия",
-    "director": "",
-    "actors": "Кевин Мерфи, Трэйс Болье, Джим Мэллон",
-    "duration": "92 min",
-    "trailer": "",
-    "kinopoiskId": 353893,
-    "imdb": "https://www.imdb.com/title/tt0094517",
-    "type": "series",
-    "id": 706,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/353893.jpg"
-  },
-  {
-    "title": "Семья Йе Мери",
-    "titleRu": "Yeh Meri Family",
-    "year": 2018,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1165887.jpg",
-    "description": "Через призму ребенка 90-х мы видим, как семья проходит через взлеты и падения жизни в эту волшебную и ностальгическую эпоху.",
-    "fullDescription": "Через призму ребенка 90-х мы видим, как семья проходит через взлеты и падения жизни в эту волшебную и ностальгическую эпоху.",
-    "country": "Индия",
-    "genres": "Драма, Мелодрама, Комедия, Семейный, Мюзикл",
-    "director": "",
-    "actors": "Хетал Гада, Ангад Раадж, Раджеш Кумар",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1165887,
-    "imdb": "https://www.imdb.com/title/tt8595766",
-    "type": "series",
-    "id": 707,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1165887.jpg"
-  },
-  {
-    "title": "Шоу Багса Банни",
-    "titleRu": "Шоу Багса Банни",
-    "year": 1960,
-    "rating": 7.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/447320.jpg",
-    "description": "Телесериал, основанный на классических короткометражных мультфильмах Looney Tunes.",
-    "fullDescription": "Телесериал, основанный на классических короткометражных мультфильмах Looney Tunes.",
-    "country": "США",
-    "genres": "Комедия, Мультфильм",
-    "director": "",
-    "actors": "Мел Блан, Джун Форэй, Доус Батлер",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 447320,
-    "imdb": "https://www.imdb.com/title/tt0053488",
-    "type": "series",
-    "id": 708,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/447320.jpg"
-  },
-  {
-    "title": "КьюАй. Весьма интересно",
-    "titleRu": "КьюАй. Весьма интересно",
-    "year": 2003,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/493902.jpg",
-    "description": "Комедийно-познавательная передача в форме игры, где ценится не столько ум или энциклопедические познания, сколько остроумие и умение импровизировать. Наряду с правильными ответами, засчитываются прежде всего интересные.",
-    "fullDescription": "Комедийно-познавательная передача в форме игры, где ценится не столько ум или энциклопедические познания, сколько остроумие и умение импровизировать. Наряду с правильными ответами, засчитываются прежде всего интересные.",
-    "country": "Великобритания",
-    "genres": "Комедия, Игра",
-    "director": "",
-    "actors": "Алан Дэвис, Стивен Фрай, Сэнди Токсвиг",
-    "duration": "21S min",
-    "trailer": "",
-    "kinopoiskId": 493902,
-    "imdb": "https://www.imdb.com/title/tt0380136",
-    "type": "series",
-    "id": 709,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/493902.jpg"
-  },
-  {
-    "title": "Звёздный крейсер «Галактика»",
-    "titleRu": "Звёздный крейсер «Галактика»",
-    "year": 2003,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229162.jpg",
-    "description": "Флот двенадцати колоний Кобола отправляется на поиски планеты Земля. Ребут одноименной космооперы 1978 года",
-    "fullDescription": "Сайлоны были созданы человеком. Их целью было облегчить людям жизнь в 12 колониях. Но пришёл день, когда Сайлоны решили убить своих хозяев. После долгой и кровавой битвы было объявлено перемирие. Сайлоны ушли искать другой мир, который они смогли бы назвать своим. Последующие 40 лет никто ничего не слышал о Сайлонах. И вот однажды дети человечества решили вернуться домой. Выведя из строя систему обороны Колоний, они нанесли ядерные удары по каждой из планет и уничтожили практически весь флот. Невредимым остался лишь звёздный крейсер — Галактика, на котором в это время проходила церемония списания. И теперь старому крейсеру под командованием Уильяма Адамы и группе гражданских судов, чудом уцелевших во время нападения, предстоит бороться за своё спасение и выживание человеческой расы.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Боевик",
-    "director": "",
-    "actors": "Эдвард Джеймс Олмос, Мэри МакДоннелл, Кэти Сакхофф",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 229162,
-    "imdb": "https://www.imdb.com/title/tt0314979",
-    "type": "series",
-    "id": 710,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 6,
-      "intellect": 9,
-      "emotion": 8,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229162.jpg"
-  },
-  {
-    "title": "Индевор",
-    "titleRu": "Индевор",
-    "year": 2012,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/614196.jpg",
-    "description": "1965 год. Поиски пропавшей школьницы приводят Индевора Морса обратно в Оксфорд — место, которое определит и сформирует его судьбу. Участвуя в крупномасштабном расследовании убийства во главе с инспектором Фредом Тьюздеем, Индевор оказывается не у ...",
-    "fullDescription": "1965 год. Поиски пропавшей школьницы приводят Индевора Морса обратно в Оксфорд — место, которое определит и сформирует его судьбу. Участвуя в крупномасштабном расследовании убийства во главе с инспектором Фредом Тьюздеем, Индевор оказывается не у дел, будучи дискредитированным. Столкнувшись с собственным прошлым, Индевор начинает крестовый поход в поисках справедливости, рискуя всем ради истины.",
-    "country": "Великобритания",
-    "genres": "Драма, Криминал, Детектив",
-    "director": "",
-    "actors": "Шон Эванс, Роджер Аллам, Джеймс Брэдшоу",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 614196,
-    "imdb": "https://www.imdb.com/title/tt2701582",
-    "type": "series",
-    "id": 711,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/614196.jpg"
-  },
-  {
-    "title": "Драконий жемчуг",
-    "titleRu": "Драконий жемчуг",
-    "year": 1986,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230604.jpg",
-    "description": "Сон Гоку - молодой воин, мастер боевых искусств, который может превращаться в обезьяну. Вместе с друзьями он задумал собрать вместе семь драконьих жемчужин - с их помощью можно вызвать дракона Шенлуна, который выполнит любое желание. Однако после ...",
-    "fullDescription": "Сон Гоку - молодой воин, мастер боевых искусств, который может превращаться в обезьяну. Вместе с друзьями он задумал собрать вместе семь драконьих жемчужин - с их помощью можно вызвать дракона Шенлуна, который выполнит любое желание. Однако после выполнения желания жемчужины рассеиваются по всему миру.",
-    "country": "Япония",
-    "genres": "Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Масако Нодзава, Дзёдзи Янами, Хироми Цуру",
-    "duration": "24 min",
-    "trailer": "",
-    "kinopoiskId": 230604,
-    "imdb": "https://www.imdb.com/title/tt0088509",
-    "type": "anime",
-    "id": 712,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230604.jpg"
-  },
-  {
-    "title": "Братья Вентура",
-    "titleRu": "Братья Вентура",
-    "year": 2003,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281897.jpg",
-    "description": "Сериал рассказывает о двух неразлучных и таких разных братьев Вентура. Одного из них зовут Дин, другого Хенк. Удивительно, как таким подросткам удается в течение короткого времени попадать в такое количество разных неприятностей. Дин - очень хорош...",
-    "fullDescription": "Сериал рассказывает о двух неразлучных и таких разных братьев Вентура. Одного из них зовут Дин, другого Хенк. Удивительно, как таким подросткам удается в течение короткого времени попадать в такое количество разных неприятностей. Дин - очень хороший парень, спокойный, мягкий, даже с людьми общается вежливо и ведет себя с ними осторожно, пытаясь не оскорбить или задеть их чувства. В то же время Хенк - полная ему противоположность: он совсем не привык церемониться с людьми, очень активный, в нем много энергии, и он все время пытается ее куда-то деть, предпринимая самые разные задумки. Он часто тянет за собой брата, который особо этому и не противится. Кроме них главным действующим лицом является их отец, доктор Вентура. Он сын другого гениального изобретателя. Доктор Вентура время от времени занимается продажами тех изобретений, что были созданы его отцом, на эти деньги они и живут. Но это не значит, что он растрачивает деньги впустую, являясь сам хорошим изобретателем и ученым, он достиг не малых высот в теме клонирования. Он создает роботов, на которые сразу же нашелся спрос у разных бандитских формирований. С этого момента он должен защитить себя и свою семью от наездов бандитов.",
-    "country": "США",
-    "genres": "Фантастика, Приключения, Боевик, Фэнтези, Комедия, Мультфильм",
-    "director": "",
-    "actors": "Кристофер МакКаллох, Джеймс Урбаниак, Док Хаммер",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 281897,
-    "imdb": "https://www.imdb.com/title/tt0417373",
-    "type": "series",
-    "id": 713,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281897.jpg"
-  },
-  {
-    "title": "Юная Лига Справедливости",
-    "titleRu": "Юная Лига Справедливости",
-    "year": 2010,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/570073.jpg",
-    "description": "Супергерои-подростки защищают Землю и переживают обычные проблемы взросления. Один из лучших мультсериалов DС",
-    "fullDescription": "Мультсериал о группе подростков-помощников Супергероев из Лиги Справедливости. Они захотели утвердиться и доказать своим опытным наставникам, что они готовы самостоятельно выполнять задания чрезвычайной опасности.",
-    "country": "США",
-    "genres": "Криминал, Мелодрама, Фантастика, Приключения, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Нолан Норт, Даника МакКеллар, Джесси МакКартни",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 570073,
-    "imdb": "https://www.imdb.com/title/tt1641384",
-    "type": "series",
-    "id": 714,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/570073.jpg"
-  },
-  {
-    "title": "Лига справедливости",
-    "titleRu": "Лига справедливости",
-    "year": 2001,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/229167.jpg",
-    "description": "Лига доблестных героев оберегает покой человечества! Каждый воин Света располагает своими уникальными способностями и без остатка отдает себя служению людям: Бэтмен, Супермен, Флэш, Марсианский Охотник, Затанна и многие другие готовы сразиться со ...",
-    "fullDescription": "Лига доблестных героев оберегает покой человечества! Каждый воин Света располагает своими уникальными способностями и без остатка отдает себя служению людям: Бэтмен, Супермен, Флэш, Марсианский Охотник, Затанна и многие другие готовы сразиться со злодеями и армиями их прихвостней.",
-    "country": "США, Корея Южная",
-    "genres": "Детектив, Фантастика, Приключения, Боевик, Фэнтези, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Карл Ламбли, Фил ЛаМарр, Майкл Розенбаум",
-    "duration": "5 min",
-    "trailer": "",
-    "kinopoiskId": 229167,
-    "imdb": "https://www.imdb.com/title/tt0275137",
-    "type": "series",
-    "id": 715,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 7,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🌌 Philosophical Journey"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/229167.jpg"
-  },
-  {
-    "title": "Тени над Балканами",
-    "titleRu": "Тени над Балканами",
-    "year": 2017,
-    "rating": 7.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1195676.jpg",
-    "description": "1928 год, побеждённая царская армия России во главе с генералом Врангелем нашла себе пристанище в Королевстве Сербов, Хорватов и Словенцев, стране, которую всего через год назовут Югославией. Надежды на возрождение российской монархии связаны с со...",
-    "fullDescription": "1928 год, побеждённая царская армия России во главе с генералом Врангелем нашла себе пристанище в Королевстве Сербов, Хорватов и Словенцев, стране, которую всего через год назовут Югославией. Надежды на возрождение российской монархии связаны с сокровищами Короны, спрятанными в церкви в Белграде. И вот однажды сокровища похищают, убив при этом священника православной церкви. В один тугой клубок завязываются расследование убийства, борьба македонских сепаратистов за независимость, торговля опиумом, интриги советского ОГПУ и общества Туле, попытки шантажировать главу Службы безопасности Королевства, поиски копья Судьбы и судьба обычного следователя полиции Белграда.",
-    "country": "Сербия",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Андрия Кузманович, Мария Бергам, Драган Бьелогрлич",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 1195676,
-    "imdb": "https://www.imdb.com/title/tt6108262",
-    "type": "series",
-    "id": 716,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1195676.jpg"
-  },
-  {
-    "title": "Да, господин Премьер-министр",
-    "titleRu": "Да, господин Премьер-министр",
-    "year": 1986,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89608.jpg",
-    "description": "Бывший министр вымышленного министерства административных дел Джим Хекер дорос до ранга премьер-министра. Он полон решимости «поставить работу так, как должно». На этом пути Джима Хекера ожидает немало открытий…",
-    "fullDescription": "Бывший министр вымышленного министерства административных дел Джим Хекер дорос до ранга премьер-министра. Он полон решимости «поставить работу так, как должно». На этом пути Джима Хекера ожидает немало открытий…",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Пол Эддингтон, Найджел Хоторн, Дерек Фаулдс",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 89608,
-    "imdb": "https://www.imdb.com/title/tt0086831",
-    "type": "series",
-    "id": 717,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89608.jpg"
-  },
-  {
-    "title": "Чем мы заняты в тени",
-    "titleRu": "Чем мы заняты в тени",
-    "year": 2019,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1113116.jpg",
-    "description": "Сварливые вампиры с трудом уживаются в одном доме. Остроумное шоу Тайки Вайтити по мотивам «Реальных упырей»",
-    "fullDescription": "Три вампира делят дом, решают бытовые конфликты, ищут любовь — и свежую кровь, без которой им не прожить.",
-    "country": "США, Канада",
-    "genres": "Комедия, Ужасы",
-    "director": "",
-    "actors": "Кайван Новак, Мэтт Берри, Натасия Деметриу",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1113116,
-    "imdb": "https://www.imdb.com/title/tt7908628",
-    "type": "series",
-    "id": 718,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 7,
-      "intellect": 8,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir",
-      "🖤 Dark Romance / Melancholy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1113116.jpg"
-  },
-  {
-    "title": "Звёздные войны. Дарт Мол: Повелитель теней",
-    "titleRu": "Звёздные войны. Дарт Мол: Повелитель теней",
-    "year": 2026,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7684174.jpg",
-    "description": "Мол, бывший владыка ситхов, пытается найти нового ученика и возродить свой преступный синдикат на планете Джаникс спустя год после окончания Войн клонов.",
-    "fullDescription": "Мол, бывший владыка ситхов, пытается найти нового ученика и возродить свой преступный синдикат на планете Джаникс спустя год после окончания Войн клонов.",
-    "country": "США",
-    "genres": "Фантастика, Приключения, Боевик, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Сэм Вдовер, Крис Диамантопулос, Дэвид В. Коллинз",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 7684174,
-    "imdb": "https://www.imdb.com/title/tt36594331",
-    "type": "series",
-    "id": 719,
-    "releaseDate": "2026-11-15",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 10
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7684174.jpg"
-  },
-  {
-    "title": "Обычный мультик: Утерянные пленки",
-    "titleRu": "Обычный мультик: Утерянные пленки",
-    "year": 2026,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5905719.jpg",
-    "description": "Рутинная работа в парке давно не приносит удовольствия закадычным друзьям, сойке Мордекаю и еноту Ригби, ведь им хочется приключений и безумных активностей. Однажды их очередная экстремальная идея приводит к хаосу: самые обычные ситуации начинают ...",
-    "fullDescription": "Рутинная работа в парке давно не приносит удовольствия закадычным друзьям, сойке Мордекаю и еноту Ригби, ведь им хочется приключений и безумных активностей. Однажды их очередная экстремальная идея приводит к хаосу: самые обычные ситуации начинают принимать абсурдный оборот, и друзьям приходится сталкиваться с фантастическими существами и странными явлениями.",
-    "country": "США",
-    "genres": "Драма, Фантастика, Приключения, Боевик, Фэнтези, Комедия, Мультфильм, Семейный",
-    "director": "",
-    "actors": "Дж.Г. Квинтел, Уильям Сальерс, Сэм Марин",
-    "duration": "23 min",
-    "trailer": "",
-    "kinopoiskId": 5905719,
-    "imdb": "https://www.imdb.com/title/tt1710308",
-    "type": "series",
-    "id": 720,
-    "releaseDate": "2026-08-20",
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5905719.jpg"
-  },
-  {
-    "title": "Призрак дома на холме",
-    "titleRu": "Призрак дома на холме",
-    "year": 2018,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1044279.jpg",
-    "description": "В начале 1990-х семья с пятью детьми переезжает в старый особняк в лесу. Супруги намерены отремонтировать дом и с выгодой продать, но в первую же ночь младшая девочка видит призрака. Это место хранит множество тайн, и даже через много лет, уже взр...",
-    "fullDescription": "В начале 1990-х семья с пятью детьми переезжает в старый особняк в лесу. Супруги намерены отремонтировать дом и с выгодой продать, но в первую же ночь младшая девочка видит призрака. Это место хранит множество тайн, и даже через много лет, уже взрослыми, жившие в нём никак не могут разобраться со своей жизнью.",
-    "country": "США",
-    "genres": "Драма, Ужасы",
-    "director": "",
-    "actors": "Мишель Хьюсман, Карла Гуджино, Генри Томас",
-    "duration": "572 min",
-    "trailer": "",
-    "kinopoiskId": 1044279,
-    "imdb": "https://www.imdb.com/title/tt6763664",
-    "type": "series",
-    "id": 721,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 8,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1044279.jpg"
-  },
-  {
-    "title": "Сапне против всех",
-    "titleRu": "Sapne vs Everyone",
-    "year": 2023,
-    "rating": 9.3,
-    "poster": "https://m.media-amazon.com/images/M/MV5BODI2OTA5MjYtNDg3OS00ODAzLThlNDQtMzRmNDNlMTlhZDk3XkEyXkFqcGc@._V1_SX500.jpg",
-    "description": "Два одержимых мечтателя сталкиваются с сопротивлением ожиданий, морали и друг друга.",
-    "fullDescription": "Два одержимых мечтателя сталкиваются с сопротивлением ожиданий, морали и друг друга.",
-    "country": "Индия",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Парамвир Чима, Амбриш Верма, Навин Кастурия",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": null,
-    "imdb": "https://www.imdb.com/title/tt30263074",
-    "type": "series",
-    "id": 722,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 8,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BODI2OTA5MjYtNDg3OS00ODAzLThlNDQtMzRmNDNlMTlhZDk3XkEyXkFqcGc@._V1_SX500.jpg"
-  },
-  {
-    "title": "Искатели сокровищ",
-    "titleRu": "Искатели сокровищ",
-    "year": 2014,
-    "rating": 7.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/846937.jpg",
-    "description": "Энди и Лэнс — археологи-любители, которые с энтузиазмом занимаются раскопками в надежде обнаружить бесценный саксонский клад, что позволит им в мгновение ока разбогатеть. Главные герои также не лишены профессионального тщеславия, надеясь, что их о...",
-    "fullDescription": "Энди и Лэнс — археологи-любители, которые с энтузиазмом занимаются раскопками в надежде обнаружить бесценный саксонский клад, что позволит им в мгновение ока разбогатеть. Главные герои также не лишены профессионального тщеславия, надеясь, что их открытие займёт достойное место в анналах истории и археологии. Однако в скором будущем друзьям в их захватывающих поисках придётся столкнуться с жадностью, предательством и прочими крайне неприятными вещами. Иначе и быть не могло — в своих стремлениях обнаружить клад герои невольно перешли дорогу местному крупному археологическому сообществу.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Маккензи Крук, Тоби Джонс, Рэйчел Стирлинг",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 846937,
-    "imdb": "https://www.imdb.com/title/tt4082744",
-    "type": "series",
-    "id": 723,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/846937.jpg"
-  },
-  {
-    "title": "Полет Конкордов",
-    "titleRu": "Полет Конкордов",
-    "year": 2007,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/399984.jpg",
-    "description": "Музыканты из Новой Зеландии хотят покорить Нью-Йорк. Песни, скетчи и стендап в шоу звездного комедийного дуэта",
-    "fullDescription": "Джамейн Клемент и Брет МакКинзи сначала просто сняли одну квартиру на двоих в университете, потом создали группу Flight of the Conchords, потом сделали шоу на радио, потом шоу на телевидении, потом про них самих стали делать шоу: комедийный дуэт появился в «Симпсонах». \r\n\r\nВ сериале речь идет как раз о том периоде в жизни парней, когда им приходилось делить жилье друг с другом, мечтать о девушках и мировой музыкальной славе, а пока устраивать концерты в местной стекляшке и посвящать красоткам песни.",
-    "country": "США, Новая Зеландия",
-    "genres": "Комедия, Музыка, Мюзикл",
-    "director": "",
-    "actors": "Джемейн Клемент, Брет Маккензи, Риз Дэрби",
-    "duration": "33S min",
-    "trailer": "",
-    "kinopoiskId": 399984,
-    "imdb": "https://www.imdb.com/title/tt0863046",
-    "type": "series",
-    "id": 724,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/399984.jpg"
-  },
-  {
-    "title": "Семьянин",
-    "titleRu": "Семьянин",
-    "year": 2019,
-    "rating": 8.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1226828.jpg",
-    "description": "Сотрудник Национального агентства расследований Шрикант Тивари пытается защитить страну от терроризма, а свою семью уберечь от секретной работы.",
-    "fullDescription": "Сотрудник Национального агентства расследований Шрикант Тивари пытается защитить страну от терроризма, а свою семью уберечь от секретной работы.",
-    "country": "Индия",
-    "genres": "Драма, Боевик, Комедия",
-    "director": "",
-    "actors": "Манодж Баджпаи, Саманта Рут Прабху, Приямани",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 1226828,
-    "imdb": "https://www.imdb.com/title/tt9544034",
-    "type": "series",
-    "id": 725,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1226828.jpg"
-  },
-  {
-    "title": "Любовь на шестерых",
-    "titleRu": "Любовь на шестерых",
-    "year": 2000,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/248134.jpg",
-    "description": "В центре сюжета - шестеро друзей, пытающиеся стать более близкими друг другу. При этом они выясняют, что же на самом деле работает из всех известных любовных хитростей. Друзья оказываются в причудливых и компрометирующих ситуациях, раскрывая свои ...",
-    "fullDescription": "В центре сюжета - шестеро друзей, пытающиеся стать более близкими друг другу. При этом они выясняют, что же на самом деле работает из всех известных любовных хитростей. Друзья оказываются в причудливых и компрометирующих ситуациях, раскрывая свои самые глубокие секреты, подвергая сомнению всем известные истины.",
-    "country": "Великобритания",
-    "genres": "Мелодрама, Комедия",
-    "director": "",
-    "actors": "Джек Дэвенпорт, Джина Беллман, Сара Александер",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 248134,
-    "imdb": "https://www.imdb.com/title/tt0237123",
-    "type": "series",
-    "id": 726,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/248134.jpg"
-  },
-  {
-    "title": "Я – Алан Партридж",
-    "titleRu": "Я – Алан Партридж",
-    "year": 1997,
-    "rating": 7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/230897.jpg",
-    "description": "Алан Партрдж работает на небольшой радиостанции английского городка Нориджа - ведет ночную программу, и отчаянно пытается продолжить свою карьеру на телевидении.",
-    "fullDescription": "Алан Партрдж работает на небольшой радиостанции английского городка Нориджа - ведет ночную программу, и отчаянно пытается продолжить свою карьеру на телевидении.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Стив Куган, Саймон Гриналл, Фелисити Монтегю",
-    "duration": "29 min",
-    "trailer": "",
-    "kinopoiskId": 230897,
-    "imdb": "https://www.imdb.com/title/tt0129690",
-    "type": "series",
-    "id": 727,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/230897.jpg"
-  },
-  {
-    "title": "Эзель",
-    "titleRu": "Эзель",
-    "year": 2009,
-    "rating": 7.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/497667.jpg",
-    "description": "Невинно осужденный оказывается на воле, создав себе новую личность. Турецкая драма о поиске справедливости",
-    "fullDescription": "Сначала был Омер. Вместе с семьей у него была своя простая жизнь. Он был счастлив. Потом он полюбил девушку. Он собирался жениться на ней, вернувшись из армии. Все было в порядке, так, как и должно быть. Но внезапно Омер оказался в тюрьме за убийство. Привычная жизнь, знакомые люди – все исчезло в мгновение ока. На их место пришел один-единственный вопрос – почему? Он жег его мозг, словно раскаленное клеймо. Его предали, подставили, с ним сыграли страшную игру. \n\nЛюбимая девушка Эйшан, лучший друг Дженгиз и Али, который был ему старшим братом, – все они были как-то замешаны в этом. Омер не мог найти ответы на мучавшие его вопросы, он потерял надежду… До тех пор, пока не познакомился в тюрьме с человеком, изменившим его жизнь. Омер умер в тюрьме, но родился Эзель, человек с другим лицом и другим именем. Он готов отомстить людям, отнявшим у него все, но сначала ему нужно убить внутри себя эту бесконечную, бессмертную, не отпускающую его любовь…",
-    "country": "Турция",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Кенан Имирзалиоглу, Джансу Дере, Йигит Озсенер",
-    "duration": "90 min",
-    "trailer": "",
-    "kinopoiskId": 497667,
-    "imdb": "https://www.imdb.com/title/tt1534360",
-    "type": "series",
-    "id": 728,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 10,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/497667.jpg"
-  },
-  {
-    "title": "Ракетные мальчики",
-    "titleRu": "Rocket Boys",
-    "year": 2022,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4672473.jpg",
-    "description": "История двух выдающихся людей, доктора Хоми Джехангира Бхабхи и доктора Викрама Амбалала Сарабая, которые творили историю, строя будущее Индии.",
-    "fullDescription": "История двух выдающихся людей, доктора Хоми Джехангира Бхабхи и доктора Викрама Амбалала Сарабая, которые творили историю, строя будущее Индии.",
-    "country": "Индия",
-    "genres": "Драма, История",
-    "director": "",
-    "actors": "Джим Сарбх, Саба Азад, Реджина Кассандра",
-    "duration": "3 min",
-    "trailer": "",
-    "kinopoiskId": 4672473,
-    "imdb": "https://www.imdb.com/title/tt13868972",
-    "type": "series",
-    "id": 729,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 9,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4672473.jpg"
-  },
-  {
-    "title": "Ход королевы",
-    "titleRu": "Ход королевы",
-    "year": 2020,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1253633.jpg",
-    "description": "Штат Кентукки, 1957 год. После смерти матери 9-летняя Элизабет Хармон остаётся сиротой и отправляется в католический приют. В этом заведении детям регулярно дают «витамины», и по совету другой подопечной Бет оставляет зелёные капсулы на ночь. Там ...",
-    "fullDescription": "Штат Кентукки, 1957 год. После смерти матери 9-летняя Элизабет Хармон остаётся сиротой и отправляется в католический приют. В этом заведении детям регулярно дают «витамины», и по совету другой подопечной Бет оставляет зелёные капсулы на ночь. Там же девочка знакомится с пожилым уборщиком Шайбелем, которого просит научить её играть в шахматы. Днём, сбежав со скучных занятий под предлогом помыть тряпку, Бет играет с мистером Шайбелем в его подвальной подсобке, а ночью, приняв зелёную капсулу, прокручивает шахматные партии на потолке общей спальни. Через несколько лет девочку удочерят, у неё начнётся совсем другая жизнь, но главную роль в ней будет играть любовь к шахматам.",
-    "country": "США",
-    "genres": "Драма, Спорт",
-    "director": "",
-    "actors": "Аня Тейлор-Джой, Хлоя Пирри, Билл Кэмп",
-    "duration": "395 min",
-    "trailer": "",
-    "kinopoiskId": 1253633,
-    "imdb": "https://www.imdb.com/title/tt10048342",
-    "type": "series",
-    "id": 730,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 10,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "💔 Emotional Rollercoaster",
-      "👥 Character Driven",
-      "🌙 Dark Mood"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1253633.jpg"
-  },
-  {
-    "title": "Самурай Джек",
-    "titleRu": "Самурай Джек",
-    "year": 2001,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/295050.jpg",
-    "description": "Попав в будущее, самурай борется со злом в надежде вернуться в свое время. Культовый сериал в японском стиле",
-    "fullDescription": "Злой волшебник Аку закинул великого воина древности самурая по имени Джек в далёкое будущее. Дисциплина и верность кодексу самурая делают Джека героем жителей нового времени. К тому же он — единственный воин, который может предотвратить порабощение мира злодеем Аку.",
-    "country": "США",
-    "genres": "Триллер, Драма, Фантастика, Приключения, Боевик, Фэнтези, Мультфильм",
-    "director": "",
-    "actors": "Фил ЛаМарр, Мако, Кевин Майкл Ричардсон",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 295050,
-    "imdb": "https://www.imdb.com/title/tt0278238",
-    "type": "series",
-    "id": 731,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 7,
-      "intellect": 10,
-      "emotion": 10,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/295050.jpg"
-  },
-  {
-    "title": "Счастливая долина",
-    "titleRu": "Счастливая долина",
-    "year": 2014,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/818955.jpg",
-    "description": "Женщина-коп преследует преступника, с которым у нее личные счеты. Британская детективная драма-противостояние",
-    "fullDescription": "Кэтрин Кэйвуд — сержант полиции Западного Йоркшира. Во время ее дежурства в участок приходит бухгалтер Кевин, чтобы заявить о преступлении. Он очень нервничает и не хочет сообщать детали. Затем выясняется, что когда-то Кевин придумал похитить дочь своего босса и использовать выкуп, чтобы оплатить частную школу для своих детей, и вот теперь местный наркоторговец воплотил фантазию Кевина в жизнь.",
-    "country": "Великобритания",
-    "genres": "Триллер, Драма, Криминал",
-    "director": "",
-    "actors": "Сара Ланкашир, Шивон Финнеран, Джеймс Нортон",
-    "duration": "58 min",
-    "trailer": "",
-    "kinopoiskId": 818955,
-    "imdb": "https://www.imdb.com/title/tt3428912",
-    "type": "series",
-    "id": 732,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 10,
-      "intellect": 10,
-      "emotion": 8,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/818955.jpg"
-  },
-  {
-    "title": "Девчонки из Дерри",
-    "titleRu": "Девчонки из Дерри",
-    "year": 2018,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1111962.jpg",
-    "description": "На дворе 1994 год - Эрин живет в Северной Ирландии со своей бескомпромиссной матерью, ее многострадальным отцом и грозным «Дедушкой Джо», человеком, чья любовь к его дочерям и внучкам превзошла только его презрение к зятю. Эрин привыкла видеть сво...",
-    "fullDescription": "На дворе 1994 год - Эрин живет в Северной Ирландии со своей бескомпромиссной матерью, ее многострадальным отцом и грозным «Дедушкой Джо», человеком, чья любовь к его дочерям и внучкам превзошла только его презрение к зятю. Эрин привыкла видеть свою страну в вечерних новостях. Вооружённая полиция на бронированных Land Rover, контрольно-пропускные пункты британской армии и «стены мира» - это повседневная реальность для 16-летней Эрин и её друзей. Но это также время сериала «Она написала убийство», группы «Cranberries», ботинок Доктор Мартинс, курток-бомберов, «Секретных файлов» и «Нирваны». И пока Смута приносит свои нюансы в её родной город, Эрин разбирается со своими проблемами...",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Сирша-Моника Джексон, Луиза Харланд, Тара Линн О’Нил",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 1111962,
-    "imdb": "https://www.imdb.com/title/tt7120662",
-    "type": "series",
-    "id": 733,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 8,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1111962.jpg"
-  },
-  {
-    "title": "Репетиция",
-    "titleRu": "Репетиция",
-    "year": 2022,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5030035.jpg",
-    "description": "Сможет ли комик предотвратить авиакатастрофу? Продолжение фееричного сюрреалити-шоу HBO",
-    "fullDescription": "Нэйтан Филдер создает правдоподобные симуляции важных моментов, где тренирует клиентов вести себя правильно. Правда, не факт, что после такой подготовки в реальной жизни все пройдет как по маслу. Как говорится, одна ошибка — и ты ошибся.",
-    "country": "США",
-    "genres": "Комедия, Документальный",
-    "director": "",
-    "actors": "Нэйтан Филдер, Джорни Бейкер, Анна Ламадрид",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5030035,
-    "imdb": "https://www.imdb.com/title/tt10802170",
-    "type": "series",
-    "id": 734,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5030035.jpg"
-  },
-  {
-    "title": "Долгий путь вокруг Земли",
-    "titleRu": "Долгий путь вокруг Земли",
-    "year": 2004,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/257333.jpg",
-    "description": "В 2004 году известные актёры и хорошие друзья Чарли Бурман и Юэн МакГрегор завершили кругосветное путешествие на своих BMW R 1150 GS Adventure, которые летом 2004 года обвезли их вокруг Земного шара.",
-    "fullDescription": "В 2004 году известные актёры и хорошие друзья Чарли Бурман и Юэн МакГрегор завершили кругосветное путешествие на своих BMW R 1150 GS Adventure, которые летом 2004 года обвезли их вокруг Земного шара.",
-    "country": "Великобритания",
-    "genres": "Приключения, Документальный",
-    "director": "",
-    "actors": "Юэн МакГрегор, Чарли Бурман, Дэвид Алексанян",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 257333,
-    "imdb": "https://www.imdb.com/title/tt0403778",
-    "type": "series",
-    "id": 735,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 4,
-      "intellect": 5,
-      "emotion": 4,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🏎️ Non-Stop Thrill",
-      "🔥 Pure Action",
-      "⚡ Adrenaline Rush"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/257333.jpg"
-  },
-  {
-    "title": "Создавая убийцу",
-    "titleRu": "Создавая убийцу",
-    "year": 2015,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/957236.jpg",
-    "description": "Фильм посвящен делу Стивена Эйвери, осужденного в 1985 году за изнасилование, которого он не совершал. В 2003-м Эйвери выпустили по результатам новой экспертизы ДНК, он стал едва ли не национальным героем. А потом его обвинили в убийстве и вновь о...",
-    "fullDescription": "Фильм посвящен делу Стивена Эйвери, осужденного в 1985 году за изнасилование, которого он не совершал. В 2003-м Эйвери выпустили по результатам новой экспертизы ДНК, он стал едва ли не национальным героем. А потом его обвинили в убийстве и вновь отправили за решетку, на этот раз — пожизненно.",
-    "country": "США",
-    "genres": "Криминал, Документальный",
-    "director": "",
-    "actors": "Стивен Эйвери, Долорес Эйвери, Аллан Эйвери",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 957236,
-    "imdb": "https://www.imdb.com/title/tt5189670",
-    "type": "series",
-    "id": 736,
-    "sensationVector": {
-      "energy": 5,
-      "darkness": 10,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💀 Violent Survival",
-      "🔥 Pure Action"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/957236.jpg"
-  },
-  {
-    "title": "Твин Пикс",
-    "titleRu": "Твин Пикс",
-    "year": 2017,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843207.jpg",
-    "description": "25 лет назад жители маленького городка Твин Пикс были ошеломлены загадочным убийством королевы школы Лоры Палмер. Но история еще не закончена, события давно минувших дней дают о себе знать.",
-    "fullDescription": "25 лет назад жители маленького городка Твин Пикс были ошеломлены загадочным убийством королевы школы Лоры Палмер. Но история еще не закончена, события давно минувших дней дают о себе знать.",
-    "country": "США",
-    "genres": "Триллер, Драма, Криминал, Детектив, Фэнтези",
-    "director": "",
-    "actors": "Кайл МакЛоклен, Шерил Ли, Майкл Хорс",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 843207,
-    "imdb": "https://www.imdb.com/title/tt4093826",
-    "type": "series",
-    "id": 737,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 10,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 7
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм",
-      "🕵️ Psychological Noir"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843207.jpg"
-  },
-  {
-    "title": "Алхимия душ",
-    "titleRu": "Алхимия душ",
-    "year": 2022,
-    "rating": 8.8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4872515.jpg",
-    "description": "Душа великой воительницы оказывается запертой в теле слабой девушки, которая становится слугой заносчивого и вредного дворянина.",
-    "fullDescription": "Душа великой воительницы оказывается запертой в теле слабой девушки, которая становится слугой заносчивого и вредного дворянина.",
-    "country": "Корея Южная",
-    "genres": "Мелодрама, Боевик, Фэнтези, Комедия",
-    "director": "",
-    "actors": "Виктория Грейс, Александра Бокюн Чун, Хао Фэн",
-    "duration": "40S min",
-    "trailer": "",
-    "kinopoiskId": 4872515,
-    "imdb": "https://www.imdb.com/title/tt20859920",
-    "type": "series",
-    "id": 738,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4872515.jpg"
-  },
-  {
-    "title": "Долбанутые",
-    "titleRu": "Долбанутые",
-    "year": 1999,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/281874.jpg",
-    "description": "Сериал повествует о приключениях Тима и Дейзи, которые сняли квартиру в доме Марши Кляйн, притворившись, что они - пара. Друзья выставили Дейзи из дома, а Тима выгнала его девушка, которая ушла от него к его бывшему приятелю, и они были вынуждены ...",
-    "fullDescription": "Сериал повествует о приключениях Тима и Дейзи, которые сняли квартиру в доме Марши Кляйн, притворившись, что они - пара. Друзья выставили Дейзи из дома, а Тима выгнала его девушка, которая ушла от него к его бывшему приятелю, и они были вынуждены соврать. Также в доме живет депрессивный живописец Брайан, у Тима есть лучший друг - помешанный на оружии Майк, Дейзи дружит с Твист, а у Марши вечно проблемы с ее дочерью, и все вместе они постоянно попадают в веселые ситуации и забавные приключения.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Саймон Пегг, Джессика Хайнс, Джулия Дикин",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 281874,
-    "imdb": "https://www.imdb.com/title/tt0187664",
-    "type": "series",
-    "id": 739,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/281874.jpg"
-  },
-  {
-    "title": "О всех созданиях — больших и малых",
-    "titleRu": "О всех созданиях — больших и малых",
-    "year": 2020,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1309507.jpg",
-    "description": "О приключениях дружного персонала сельской ветеринарной клиники в Йоркшире 1930-1940-х годов.",
-    "fullDescription": "О приключениях дружного персонала сельской ветеринарной клиники в Йоркшире 1930-1940-х годов.",
-    "country": "Великобритания",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Николас Ральф, Сэмюэл Уэст, Анна Мэдли",
-    "duration": "2 min",
-    "trailer": "",
-    "kinopoiskId": 1309507,
-    "imdb": "https://www.imdb.com/title/tt10590066",
-    "type": "series",
-    "id": 740,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1309507.jpg"
-  },
-  {
-    "title": "Невозможные шутники",
-    "titleRu": "Невозможные шутники",
-    "year": 2011,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/652825.jpg",
-    "description": "Кью, Сал, Джо и Мурр – лучшие друзья, которые любят кидать друг другу вызовы на совершение самых невероятных трюков, когда-либо записанных на скрытую камеру.",
-    "fullDescription": "Кью, Сал, Джо и Мурр – лучшие друзья, которые любят кидать друг другу вызовы на совершение самых невероятных трюков, когда-либо записанных на скрытую камеру.",
-    "country": "США",
-    "genres": "Комедия, Реальное ТВ",
-    "director": "",
-    "actors": "Джеймс Мюррэй, Брайан Куинн, Сэл Вулкано",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 652825,
-    "imdb": "https://www.imdb.com/title/tt2100976",
-    "type": "series",
-    "id": 741,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/652825.jpg"
-  },
-  {
-    "title": "Так чья сейчас реплика?",
-    "titleRu": "Так чья сейчас реплика?",
-    "year": 1998,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/678761.jpg",
-    "description": "Шоу состоит в импровизационной игре 4 актёров, которые на месте разыгрывают ситуации, песни и события. Темы для игры предлагают либо аудитория, либо ведущий программы, Дрю Кэри. Он же создаёт игры и ситуации, а участники программы должны их сымпро...",
-    "fullDescription": "Шоу состоит в импровизационной игре 4 актёров, которые на месте разыгрывают ситуации, песни и события. Темы для игры предлагают либо аудитория, либо ведущий программы, Дрю Кэри. Он же создаёт игры и ситуации, а участники программы должны их сымпровизировать.",
-    "country": "США, Великобритания",
-    "genres": "Комедия, Игра",
-    "director": "",
-    "actors": "Дрю Кэри, Колин Мокри, Райан Стайлз",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 678761,
-    "imdb": "https://www.imdb.com/title/tt0163507",
-    "type": "series",
-    "id": 742,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/678761.jpg"
-  },
-  {
-    "title": "Выбирайте выражения",
-    "titleRu": "Выбирайте выражения",
-    "year": 1977,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/395130.jpg",
-    "description": "Джереми Браун - преподаватель, который пытается заработать на жизнь, обучая английскому иммигрантов из Индии, Франции, Китая и других стран. Его уроки не всегда проходят по плану...",
-    "fullDescription": "Джереми Браун - преподаватель, который пытается заработать на жизнь, обучая английскому иммигрантов из Индии, Франции, Китая и других стран. Его уроки не всегда проходят по плану...",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Бэрри Эванс, Джордж Камиллер, Джеки Хардинг",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 395130,
-    "imdb": "https://www.imdb.com/title/tt0075537",
-    "type": "series",
-    "id": 743,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "⚡ Adrenaline Rush",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/395130.jpg"
-  },
-  {
-    "title": "Discovery: Сквозь пространство и время с Морганом Фрименом",
-    "titleRu": "Discovery: Сквозь пространство и время с Морганом Фрименом",
-    "year": 2010,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/542041.jpg",
-    "description": "Сериал исследует самые глубокие тайны существования - вопросы, которые всегда озадачивали человечество. Из чего мы сделаны? Что было перед началом всего? Действительно ли мы одиноки во вселенной? Есть ли создатель? Эти вопросы были обдуманы самыми...",
-    "fullDescription": "Сериал исследует самые глубокие тайны существования - вопросы, которые всегда озадачивали человечество. Из чего мы сделаны? Что было перед началом всего? Действительно ли мы одиноки во вселенной? Есть ли создатель? Эти вопросы были обдуманы самыми изящными умами человеческого рода.Теперь, наука приблизилась к сути, в область где твердые факты и свидетельства могут быть в состоянии предоставить нам ответы, вместо философских теорий. «Через Червоточину» примирит самые яркие умы и лучшие идеи с самых передних краев наук, - астрофизики, астробиологии, квантовой механики, теории струн, и более - чтобы показать экстраординарную правду о нашей Вселенной.",
-    "country": "США",
-    "genres": "Документальный",
-    "director": "",
-    "actors": "Морган Фриман, Шон Кэрролл, Мичио Каку",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 542041,
-    "imdb": "https://www.imdb.com/title/tt1513168",
-    "type": "series",
-    "id": 744,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 4,
-      "intellect": 8,
-      "emotion": 4,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🧠 Thought-Provoking",
-      "🧠 Mind Bender"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/542041.jpg"
-  },
-  {
-    "title": "Луи",
-    "titleRu": "Луи",
-    "year": 2010,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/505736.jpg",
-    "description": "Рассказ об успешном комике разговорного жанра из Нью-Йорка, который недавно стал отцом-одиночкой, однако успевает не только растить двух дочерей, но и ходить на свидания.",
-    "fullDescription": "Рассказ об успешном комике разговорного жанра из Нью-Йорка, который недавно стал отцом-одиночкой, однако успевает не только растить двух дочерей, но и ходить на свидания.",
-    "country": "США",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Луи Си Кей, Хэдли Дилэни, Урсула Паркер",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 505736,
-    "imdb": "https://www.imdb.com/title/tt1492966",
-    "type": "series",
-    "id": 745,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/505736.jpg"
-  },
-  {
-    "title": "Парни из Трейлерпарка",
-    "titleRu": "Парни из Трейлерпарка",
-    "year": 2001,
-    "rating": 7.7,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/412485.jpg",
-    "description": "Двое мелких уголовников снимают фильм про свою жизнь в трейлерном парке.",
-    "fullDescription": "Двое мелких уголовников снимают фильм про свою жизнь в трейлерном парке.",
-    "country": "Канада",
-    "genres": "Криминал, Комедия",
-    "director": "",
-    "actors": "Джон Пол Трембле, Робб Уэллс, Майк Смит",
-    "duration": "30 min",
-    "trailer": "",
-    "kinopoiskId": 412485,
-    "imdb": "https://www.imdb.com/title/tt0290988",
-    "type": "series",
-    "id": 746,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 6,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 8
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill",
-      "🔥 Pure Action"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/412485.jpg"
-  },
-  {
-    "title": "Моя гениальная подруга",
-    "titleRu": "Моя гениальная подруга",
-    "year": 2018,
-    "rating": 8.1,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1176172.jpg",
-    "description": "Две подруги всеми силами пытаются выбраться из Неаполя 1950-х. Размашистый сериал по романам Элены Ферранте",
-    "fullDescription": "Неаполь, 1950-е. Дочь швейцара Элена живёт в бедном квартале Неаполя и дружит с острой на язык Лилой, дочерью сапожника. Со временем их дружба становится настоящим полем битвы.",
-    "country": "США, Италия",
-    "genres": "Драма",
-    "director": "",
-    "actors": "Альба Рорвахер, Аннарита Витоло, Маргерита Маццукко",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 1176172,
-    "imdb": "https://www.imdb.com/title/tt7278862",
-    "type": "series",
-    "id": 747,
-    "sensationVector": {
-      "energy": 4,
-      "darkness": 5,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1176172.jpg"
-  },
-  {
-    "title": "Шоу Эрика Андре",
-    "titleRu": "Шоу Эрика Андре",
-    "year": 2012,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/703286.jpg",
-    "description": "Комедийное ток-шоу Эрика Андре, погружающее зрителя в сюрреалистический мир.",
-    "fullDescription": "Комедийное ток-шоу Эрика Андре, погружающее зрителя в сюрреалистический мир.",
-    "country": "США",
-    "genres": "Комедия, Ток-шоу",
-    "director": "",
-    "actors": "Эрик Андре, Ганнибал Буресс, Роберт Смит",
-    "duration": "11 min",
-    "trailer": "",
-    "kinopoiskId": 703286,
-    "imdb": "https://www.imdb.com/title/tt2244495",
-    "type": "series",
-    "id": 748,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/703286.jpg"
-  },
-  {
-    "title": "Йеллоустоун",
-    "titleRu": "Йеллоустоун",
-    "year": 2018,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1045172.jpg",
-    "description": "Владелец ранчо пытается сохранить землю своих предков. Брутальный вестерн, от которого не оторваться",
-    "fullDescription": "Йеллоустоун – первый в мире национальный парк, одно из самых посещаемых мест в США. Но здесь, на границе цивилизации, происходит много такого, чего не видят туристы, что не освещается средствами массовой информации. Семья Даттон, главой которой является Джон Даттон, владеет огромным ранчо, сопредельным с территорией парка. На их землю претендует и сам парк, и индейская резервация, и жадные застройщики.",
-    "country": "США",
-    "genres": "Драма, Вестерн",
-    "director": "",
-    "actors": "Кевин Костнер, Люк Граймс, Келли Райлли",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 1045172,
-    "imdb": "https://www.imdb.com/title/tt4236770",
-    "type": "series",
-    "id": 749,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 6,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🌌 Philosophical Journey",
-      "🧠 Thought-Provoking",
-      "💔 Emotional Rollercoaster"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1045172.jpg"
-  },
-  {
-    "title": "Шиттс Крик",
-    "titleRu": "Шиттс Крик",
-    "year": 2015,
-    "rating": 8,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/869554.jpg",
-    "description": "Семья миллиардеров разоряется и уезжает жить в богом забытый город. Трогательный ситком о любви и взаимопомощи",
-    "fullDescription": "Джонни Роуз — миллиардер, сделавший состояние на сети видеосалонов, его жена — актриса мыльных опер и двое детей — хипстер Дэвид и светская львица Алексис. После того как бизнес Джонни терпит крах, все семейство вынуждено переехать жить в небольшую сельскую общину Шиттс Крик, которую они приобрели несколько лет назад развлечения ради.",
-    "country": "США, Канада",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Юджин Леви, Кэтрин О’Хара, Дэн Леви",
-    "duration": "22 min",
-    "trailer": "",
-    "kinopoiskId": 869554,
-    "imdb": "https://www.imdb.com/title/tt3526078",
-    "type": "series",
-    "id": 750,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 7,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "💔 Emotional Rollercoaster",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/869554.jpg"
-  },
-  {
-    "title": "Таш ма Таш",
-    "titleRu": "Tash Ma Tash",
-    "year": 1993,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1144913.jpg",
-    "description": "Повествует о двух парнях и их приключениях в Королевстве Саудовская Аравия.",
-    "fullDescription": "Повествует о двух парнях и их приключениях в Королевстве Саудовская Аравия.",
-    "country": "Саудовская Аравия",
-    "genres": "Драма, Комедия",
-    "director": "",
-    "actors": "Абдулла аль-Садхан, Насер аль-Касаби, Абдулла аль-Синани",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 1144913,
-    "imdb": "https://www.imdb.com/title/tt5851616",
-    "type": "series",
-    "id": 751,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 2,
-      "intellect": 6,
-      "emotion": 9,
-      "dynamism": 4
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit",
-      "🍿 Cozy & Feel-Good"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1144913.jpg"
-  },
-  {
-    "title": "Задорные друзья",
-    "titleRu": "Задорные друзья",
-    "year": 2020,
-    "rating": 8.3,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1363973.jpg",
-    "description": "Сотрудники необычной компании должны веселить своих клиентов. Взрослая анимация с ноткой абсурда",
-    "fullDescription": "Пессимист Чарли и оптимист Пим работают в компании, цель которой — веселить клиентов.",
-    "country": "США, Австралия",
-    "genres": "Комедия, Мультфильм",
-    "director": "Майкл Кьюсак, Зак Хейдел",
-    "actors": "Майкл Кьюсак, Зак Хейдел, Марк М.",
-    "duration": "12 min",
-    "trailer": "",
-    "kinopoiskId": 1363973,
-    "imdb": "https://www.imdb.com/title/tt12074628",
-    "type": "series",
-    "id": 752,
-    "sensationVector": {
-      "energy": 10,
-      "darkness": 1,
-      "intellect": 5,
-      "emotion": 8,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🍿 Уютный & Легкий",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1363973.jpg"
-  },
-  {
-    "title": "Заднепроходнее отверстие",
-    "titleRu": "Заднепроходнее отверстие",
-    "year": 1997,
-    "rating": 6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/633644.jpg",
-    "description": "Сатирический киножурнал, освещающий жизнь знаменитостей в Великобритании.",
-    "fullDescription": "Сатирический киножурнал, освещающий жизнь знаменитостей в Великобритании.",
-    "country": "Великобритания",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Кристофер Моррис, Марк Хип, Кевин Элдон",
-    "duration": "25 min",
-    "trailer": "",
-    "kinopoiskId": 633644,
-    "imdb": "https://www.imdb.com/title/tt0118273",
-    "type": "series",
-    "id": 753,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 2,
-      "intellect": 5,
-      "emotion": 5,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "⚡ High Energy"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/633644.jpg"
-  },
-  {
-    "title": "Пространство",
-    "titleRu": "Пространство",
-    "year": 2015,
-    "rating": 7.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/805092.jpg",
-    "description": "В начале XXIII века детектив, привыкший всё доводить до конца при любых обстоятельствах, в рамках расследования дела об исчезновении молодой женщины оказывается на борту звездолета, капитан которого решает ему помочь. Величайший заговор в истории ...",
-    "fullDescription": "В начале XXIII века детектив, привыкший всё доводить до конца при любых обстоятельствах, в рамках расследования дела об исчезновении молодой женщины оказывается на борту звездолета, капитан которого решает ему помочь. Величайший заговор в истории человечества гарантируется, как и его непременное раскрытие.",
-    "country": "США",
-    "genres": "Драма, Детектив, Фантастика",
-    "director": "",
-    "actors": "Стивен Стрейт, Доминик Типпер, Уэс Чэтэм",
-    "duration": "60 min",
-    "trailer": "",
-    "kinopoiskId": 805092,
-    "imdb": "https://www.imdb.com/title/tt3230854",
-    "type": "series",
-    "id": 754,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 9,
-      "intellect": 9,
-      "emotion": 9,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🧠 На подумать",
-      "🔥 Экшен & Драйв",
-      "🌙 Мрачная атмосфера",
-      "💔 Эмоциональный шторм"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/805092.jpg"
-  },
-  {
-    "title": "Великий пекарь Британии",
-    "titleRu": "Великий пекарь Британии",
-    "year": 2010,
-    "rating": 8.6,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/736780.jpg",
-    "description": "Каждую неделю пекари предпринимают три испытания, пытаясь произвести на судей достаточное впечатление, чтобы пройти в следующий раунд, и в конечном итоге становятся лучшими британскими пекарями-любителями.",
-    "fullDescription": "Каждую неделю пекари предпринимают три испытания, пытаясь произвести на судей достаточное впечатление, чтобы пройти в следующий раунд, и в конечном итоге становятся лучшими британскими пекарями-любителями.",
-    "country": "Великобритания",
-    "genres": "Игровое шоу, реалити-шоу",
-    "director": "",
-    "actors": "Пол Голливуд, Прю Лейт, Ноэль Филдинг",
-    "duration": "1 min",
-    "trailer": "",
-    "kinopoiskId": 736780,
-    "imdb": "https://www.imdb.com/title/tt1877368",
-    "type": "series",
-    "id": 755,
-    "sensationVector": {
-      "energy": 6,
-      "darkness": 5,
-      "intellect": 6,
-      "emotion": 5,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "⚡ High Energy",
-      "🧠 Mind Bender",
-      "🎬 Fast Paced"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/736780.jpg"
-  },
-  {
-    "title": "Бродяга Кэнсин: Воспоминания",
-    "titleRu": "Бродяга Кэнсин: Воспоминания",
-    "year": 1999,
-    "rating": 8.2,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/335184.jpg",
-    "description": "XIX век, Японию раздирает клановая вражда. Маленький Синта в детстве был продан в рабство и попал вместе с другими в засаду - всех спутников мальчика на его глазах закололи, его же спас случайно проходивший мимо воин. Синта поступает к нему в учен...",
-    "fullDescription": "XIX век, Японию раздирает клановая вражда. Маленький Синта в детстве был продан в рабство и попал вместе с другими в засаду - всех спутников мальчика на его глазах закололи, его же спас случайно проходивший мимо воин. Синта поступает к нему в ученики и становится мастером меча по имени Кэнсин. \n\nПарень выбирает жизненный путь убийцы экстра-класса. В одной из операций он встречает девушку Томоэ, которая видит Кэнсина в действии. Хотя Кэнсин привык не оставлять свидетелей, самурай не убивает девушку, а забирает её с собой.",
-    "country": "Япония",
-    "genres": "Драма, Мелодрама, Боевик, История, Мультфильм, Аниме",
-    "director": "",
-    "actors": "Мэйо Сузукадзе, Джунко Ивао, Нозому Сасаки",
-    "duration": "118 min",
-    "trailer": "",
-    "kinopoiskId": 335184,
-    "imdb": "https://www.imdb.com/title/tt0203082",
-    "type": "anime",
-    "id": 756,
-    "sensationVector": {
-      "energy": 9,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 9
-    },
-    "vibeBadges": [
-      "🔥 Экшен & Драйв",
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🏎️ Non-Stop Thrill"
-    ],
-    "category": "anime",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/335184.jpg"
-  },
-  {
-    "title": "Силиконовая долина",
-    "titleRu": "Силиконовая долина",
-    "year": 2014,
-    "rating": 8.4,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/723959.jpg",
-    "description": "Группа гиков живет в инкубаторе и двигает мир интернета вперед. Комедийный сериал о внутренней кухне стартапов",
-    "fullDescription": "История о группе гиков, готовящих к запуску собственные стартапы в высокотехнологичном центре Сан-Франциско. Они бесплатно проживают в доме миллионера, но взамен им придётся отдать по 10% прибыли от будущих проектов.",
-    "country": "США",
-    "genres": "Комедия",
-    "director": "",
-    "actors": "Томас Миддлдитч, Т.Дж. Миллер, Джош Бренер",
-    "duration": "28 min",
-    "trailer": "",
-    "kinopoiskId": 723959,
-    "imdb": "https://www.imdb.com/title/tt2575988",
-    "type": "series",
-    "id": 757,
-    "sensationVector": {
-      "energy": 7,
-      "darkness": 3,
-      "intellect": 6,
-      "emotion": 6,
-      "dynamism": 6
-    },
-    "vibeBadges": [
-      "🍿 Уютный & Легкий",
-      "🍿 Cozy & Feel-Good",
-      "⚡ Adrenaline Rush",
-      "👥 Character Driven"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/723959.jpg"
-  },
-  {
-    "title": "Искрящийся арбуз",
-    "titleRu": "Искрящийся арбуз",
-    "year": 2023,
-    "rating": 8.9,
-    "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5275811.jpg",
-    "description": "«Сверкающий арбуз» расскажет историю мальчика, живущего двойной жизнью между образцовым студентом и участником группы, который попадает во времени и встречает своего 18-летнего отца. Там они построят дружбу.",
-    "fullDescription": "«Сверкающий арбуз» расскажет историю мальчика, живущего двойной жизнью между образцовым студентом и участником группы, который попадает во времени и встречает своего 18-летнего отца. Там они построят дружбу.",
-    "country": "Южная Корея",
-    "genres": "Комедия, Драма, Фэнтези",
-    "director": "",
-    "actors": "Рён, Соль Ин А, Квон До Хён",
-    "duration": "",
-    "trailer": "",
-    "kinopoiskId": 5275811,
-    "imdb": "https://www.imdb.com/title/tt27446493",
-    "type": "series",
-    "id": 758,
-    "sensationVector": {
-      "energy": 8,
-      "darkness": 4,
-      "intellect": 7,
-      "emotion": 10,
-      "dynamism": 5
-    },
-    "vibeBadges": [
-      "💔 Эмоциональный шторм",
-      "⚡ Заряжающий энергией",
-      "🌌 Philosophical Journey",
-      "🎉 Uplifting Spirit"
-    ],
-    "category": "series",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5275811.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/364563.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/364563.jpg"
   },
   {
     "title": "Майкл",
@@ -25711,7 +12213,8 @@ export const movies = [
       "💔 Emotional Rollercoaster"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437614.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437614.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437614.jpg"
   },
   {
     "title": "Мортал Комбат 2",
@@ -25746,7 +12249,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4876869.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4876869.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4876869.jpg"
   },
   {
     "title": "Необычайно умные создания",
@@ -25781,7 +12285,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzM3OTRlZDktYTk0OS00OTlmLWFhMjctMTZiODU4N2RiYzhhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzM3OTRlZDktYTk0OS00OTlmLWFhMjctMTZiODU4N2RiYzhhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Дьявол носит Prada 2",
@@ -25816,7 +12321,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6373982.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6373982.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6373982.jpg"
   },
   {
     "title": "Одиссея",
@@ -25851,7 +12357,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6385370.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6385370.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6385370.jpg"
   },
   {
     "title": "Вершина",
@@ -25886,7 +12393,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9403071.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/9403071.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/9403071.jpg"
   },
   {
     "title": "Проект «Конец света»",
@@ -25921,7 +12429,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1382256.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1382256.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1382256.jpg"
   },
   {
     "title": "Следствие ведут овечки",
@@ -25956,7 +12465,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNTFmZWI4YmMtNmQ0ZC00ZGQwLTk1OWEtZjAyZmIzOGY0MGFiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNTFmZWI4YmMtNmQ0ZC00ZGQwLTk1OWEtZjAyZmIzOGY0MGFiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "На помощь!",
@@ -25991,7 +12501,8 @@ export const movies = [
       "👥 Character Driven"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4997249.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4997249.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4997249.jpg"
   },
   {
     "title": "В чужой шкуре",
@@ -26025,7 +12536,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89937.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/89937.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/89937.jpg"
   },
   {
     "title": "Дьявол носит Prada",
@@ -26059,7 +12571,8 @@ export const movies = [
       "🍿 Cozy & Feel-Good"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104992.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/104992.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/104992.jpg"
   },
   {
     "title": "Вот это драма!",
@@ -26094,7 +12607,8 @@ export const movies = [
       "🎉 Uplifting Spirit"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6530127.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6530127.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6530127.jpg"
   },
   {
     "title": "Хокум",
@@ -26128,7 +12642,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1293481.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1293481.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1293481.jpg"
   },
   {
     "title": "Грозовой перевал",
@@ -26163,7 +12678,8 @@ export const movies = [
       "🌌 Philosophical Journey"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398650.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398650.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398650.jpg"
   },
   {
     "title": "Мортал Комбат",
@@ -26197,7 +12713,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8062.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8062.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8062.jpg"
   },
   {
     "title": "Обсессия",
@@ -26232,7 +12749,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454656.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454656.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454656.jpg"
   },
   {
     "title": "Супер Марио: Галактическое кино",
@@ -26267,7 +12785,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5934685.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5934685.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5934685.jpg"
   },
   {
     "title": "Мумия",
@@ -26302,7 +12821,8 @@ export const movies = [
       "🎉 Uplifting Spirit"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6384122.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6384122.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6384122.jpg"
   },
   {
     "title": "Я иду искать 2",
@@ -26337,7 +12857,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BZTM3N2EyMTEtNDhkMi00ZjNiLWI0MWUtOGViMjExODY3YTJhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BZTM3N2EyMTEtNDhkMi00ZjNiLWI0MWUtOGViMjExODY3YTJhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Горничная",
@@ -26371,7 +12892,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6750360.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6750360.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6750360.jpg"
   },
   {
     "title": "Марти Великолепный",
@@ -26405,7 +12927,8 @@ export const movies = [
       "💔 Emotional Rollercoaster"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6290547.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6290547.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6290547.jpg"
   },
   {
     "title": "Гренландия 2. Миграция",
@@ -26440,7 +12963,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BOWEzM2IzZTMtYzA2Yi00NjY0LWE1ODktNTllZmI3ZTI1MzBmXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BOWEzM2IzZTMtYzA2Yi00NjY0LWE1ODktNTllZmI3ZTI1MzBmXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Прыгуны",
@@ -26475,7 +12999,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6111021.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6111021.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6111021.jpg"
   },
   {
     "title": "Они придут за тобой",
@@ -26510,7 +13035,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463777.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463777.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463777.jpg"
   },
   {
     "title": "Ограбление в Лос-Анджелесе",
@@ -26545,7 +13071,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6450546.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6450546.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6450546.jpg"
   },
   {
     "title": "Закулисье реальности",
@@ -26580,7 +13107,8 @@ export const movies = [
       "⚡ Заряжающий энергией"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5452840.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5452840.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5452840.jpg"
   },
   {
     "title": "Обитель зла",
@@ -26615,7 +13143,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7378605.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7378605.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7378605.jpg"
   },
   {
     "title": "Раджа Шиваджи",
@@ -26650,7 +13179,8 @@ export const movies = [
       "🌌 Philosophical Journey"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BZmEwNTU4MzEtY2Y4Ni00ZWRmLThhMGMtMDE5MTZmMDIzMGVjXkEyXkFqcGc@._V1_QL75_UY562_CR35,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BZmEwNTU4MzEtY2Y4Ni00ZWRmLThhMGMtMDE5MTZmMDIzMGVjXkEyXkFqcGc@._V1_QL75_UY562_CR35,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Бой со зверем",
@@ -26685,7 +13215,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342313.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/342313.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/342313.jpg"
   },
   {
     "title": "Мандалорец и Грогу",
@@ -26720,7 +13251,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437088.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437088.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437088.jpg"
   },
   {
     "title": "Грязные деньги",
@@ -26754,7 +13286,8 @@ export const movies = [
       "❤️ Heartfelt Story"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4966408.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4966408.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4966408.jpg"
   },
   {
     "title": "Властелины вселенной",
@@ -26789,7 +13322,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/88124.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/88124.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/88124.jpg"
   },
   {
     "title": "Аватар: Пламя и пепел",
@@ -26823,7 +13357,8 @@ export const movies = [
       "💀 Violent Survival"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/570402.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/570402.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/570402.jpg"
   },
   {
     "title": "Скотный двор",
@@ -26857,7 +13392,8 @@ export const movies = [
       "🌌 Philosophical Journey"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/714085.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/714085.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/714085.jpg"
   },
   {
     "title": "Битва за битвой",
@@ -26891,7 +13427,8 @@ export const movies = [
       "💔 Эмоциональный шторм"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437094.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5437094.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5437094.jpg"
   },
   {
     "title": "Дхурандхар Месть",
@@ -26926,7 +13463,8 @@ export const movies = [
       "⚡ Заряжающий энергией"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzdkNjAxNWMtNWY3My00NTI1LTg2YWQtOGI3MDA0NzdhMjEyXkEyXkFqcGc@._V1_QL75_UY562_CR24,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BNzdkNjAxNWMtNWY3My00NTI1LTg2YWQtOGI3MDA0NzdhMjEyXkEyXkFqcGc@._V1_QL75_UY562_CR24,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Бегущий человек",
@@ -26960,7 +13498,8 @@ export const movies = [
       "💀 Violent Survival"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4387862.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4387862.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4387862.jpg"
   },
   {
     "title": "Тони",
@@ -26994,7 +13533,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419356.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/419356.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/419356.jpg"
   },
   {
     "title": "Гренландия",
@@ -27028,7 +13568,8 @@ export const movies = [
       "🎉 Uplifting Spirit"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1164520.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1164520.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1164520.jpg"
   },
   {
     "title": "Орудия",
@@ -27062,7 +13603,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6782779.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6782779.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6782779.jpg"
   },
   {
     "title": "Глубокие воды",
@@ -27097,7 +13639,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6080706.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6080706.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6080706.jpg"
   },
   {
     "title": "Бугония",
@@ -27131,7 +13674,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1378893.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1378893.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1378893.jpg"
   },
   {
     "title": "Я иду искать",
@@ -27165,7 +13709,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1198736.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1198736.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1198736.jpg"
   },
   {
     "title": "Шары вверх",
@@ -27197,7 +13742,8 @@ export const movies = [
       "⚡ High Energy"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330197.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/330197.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/330197.jpg"
   },
   {
     "title": "Грешники",
@@ -27231,7 +13777,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5499518.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5499518.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5499518.jpg"
   },
   {
     "title": "Нюрнберг",
@@ -27265,7 +13812,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5427688.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5427688.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5427688.jpg"
   },
   {
     "title": "28 лет спустя: Храм костей",
@@ -27300,7 +13848,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6745035.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6745035.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6745035.jpg"
   },
   {
     "title": "Кровавая любовь убийцы",
@@ -27335,7 +13884,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BOTQ0NzYzM2QtOWYzMC00MGU5LWJmMTQtYTU1ODU0ZjUwYjk0XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BOTQ0NzYzM2QtOWYzMC00MGU5LWJmMTQtYTU1ODU0ZjUwYjk0XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Удачи, веселья, не сдохни",
@@ -27369,7 +13919,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/463492.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/463492.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/463492.jpg"
   },
   {
     "title": "Человек-паук: Новый день",
@@ -27404,7 +13955,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5494049.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5494049.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5494049.jpg"
   },
   {
     "title": "Первые люди на Луне",
@@ -27438,7 +13990,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18923.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/18923.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/18923.jpg"
   },
   {
     "title": "Несносные леди",
@@ -27472,7 +14025,8 @@ export const movies = [
       "👥 Character Driven"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/923901.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/923901.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/923901.jpg"
   },
   {
     "title": "День разоблачения",
@@ -27507,7 +14061,8 @@ export const movies = [
       "💔 Эмоциональный шторм"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTgwNDI1ZjctYWNmMS00MTJhLTg1ZWItMzI1Yjk5NjZkYWFkXkEyXkFqcGc@._V1_QL75_UX380_CR0,20,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTgwNDI1ZjctYWNmMS00MTJhLTg1ZWItMzI1Yjk5NjZkYWFkXkEyXkFqcGc@._V1_QL75_UX380_CR0,20,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Хамнет: История, вдохновившая «Гамлета»",
@@ -27541,7 +14096,8 @@ export const movies = [
       "⚡ High Energy"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454868.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5454868.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5454868.jpg"
   },
   {
     "title": "Военная машина",
@@ -27576,7 +14132,8 @@ export const movies = [
       "🧩 Tactical Sci-Fi / Mystery"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6943933.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6943933.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6943933.jpg"
   },
   {
     "title": "F1: Фильм",
@@ -27610,7 +14167,8 @@ export const movies = [
       "👥 Character Driven"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5003510.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5003510.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5003510.jpg"
   },
   {
     "title": "GOAT: Мечтай по-крупному",
@@ -27645,7 +14203,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8613385.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8613385.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8613385.jpg"
   },
   {
     "title": "Легенда об Аанге: Последний маг воздуха",
@@ -27680,7 +14239,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5029203.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5029203.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5029203.jpg"
   },
   {
     "title": "Зверополис 2",
@@ -27714,7 +14274,8 @@ export const movies = [
       "⚡ Заряжающий энергией"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5265603.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5265603.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5265603.jpg"
   },
   {
     "title": "Последствия",
@@ -27749,7 +14310,8 @@ export const movies = [
       "💔 Emotional Rollercoaster"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1233487.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1233487.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1233487.jpg"
   },
   {
     "title": "Смертельная битва",
@@ -27783,7 +14345,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/22355.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/22355.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/22355.jpg"
   },
   {
     "title": "Долгая прогулка",
@@ -27817,7 +14380,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1290942.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1290942.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1290942.jpg"
   },
   {
     "title": "Супермен",
@@ -27851,7 +14415,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/997647.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/997647.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/997647.jpg"
   },
   {
     "title": "Я ругаюсь",
@@ -27885,7 +14450,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8472578.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8472578.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8472578.jpg"
   },
   {
     "title": "Билли Айлиш: Ударь меня сильно и мягко - тур в прямом эфире в 3D",
@@ -27918,7 +14484,8 @@ export const movies = [
       "🎬 Classic Storytelling"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTFkNzYwYWUtMjkzMS00NTYxLTk5OWMtZmVhZWNmNDc0NzMzXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BMTFkNzYwYWUtMjkzMS00NTYxLTk5OWMtZmVhZWNmNDc0NzMzXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Гнев",
@@ -27952,7 +14519,8 @@ export const movies = [
       "💔 Эмоциональный шторм"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6889.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6889.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6889.jpg"
   },
   {
     "title": "Казнить нельзя помиловать",
@@ -27987,7 +14555,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5453060.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5453060.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5453060.jpg"
   },
   {
     "title": "Выход 8",
@@ -28021,7 +14590,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7519616.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/7519616.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/7519616.jpg"
   },
   {
     "title": "Лакомый кусок",
@@ -28055,7 +14625,8 @@ export const movies = [
       "⚡ Заряжающий энергией"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398494.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6398494.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6398494.jpg"
   },
   {
     "title": "Сожалею о тебе",
@@ -28089,7 +14660,8 @@ export const movies = [
       "💔 Emotional Rollercoaster"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8075521.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/8075521.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/8075521.jpg"
   },
   {
     "title": "Тело Дженнифер",
@@ -28123,7 +14695,8 @@ export const movies = [
       "🌙 Dark & Gritty"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404510.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/404510.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/404510.jpg"
   },
   {
     "title": "Дракула",
@@ -28157,7 +14730,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5456450.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5456450.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5456450.jpg"
   },
   {
     "title": "КД: Дьявол",
@@ -28192,7 +14766,8 @@ export const movies = [
       "🖤 Dark Romance / Melancholy"
     ],
     "category": "movie",
-    "posterPreview": "https://m.media-amazon.com/images/M/MV5BYjY4ZWQxMzYtYTVjYi00ZWJkLWI2MjktYzQ0MGQ4YTZlNmEzXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+    "posterPreview": "https://m.media-amazon.com/images/M/MV5BYjY4ZWQxMzYtYTVjYi00ZWJkLWI2MjktYzQ0MGQ4YTZlNmEzXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/null.jpg"
   },
   {
     "title": "Убежище",
@@ -28227,7 +14802,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6548103.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6548103.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6548103.jpg"
   },
   {
     "title": "Зараза",
@@ -28262,7 +14838,8 @@ export const movies = [
       "👥 Character Driven"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5184669.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5184669.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5184669.jpg"
   },
   {
     "title": "Мстители: Доктор Дум",
@@ -28297,7 +14874,8 @@ export const movies = [
       "⚡ Adrenaline Rush"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5060245.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5060245.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5060245.jpg"
   },
   {
     "title": "Топ Ган: Мэверик",
@@ -28331,7 +14909,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/572032.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/572032.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/572032.jpg"
   },
   {
     "title": "Острые козырьки: Бессмертный",
@@ -28366,7 +14945,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5271813.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5271813.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5271813.jpg"
   },
   {
     "title": "Братья Супер Марио в кино",
@@ -28400,7 +14980,8 @@ export const movies = [
       "🍿 Уютный & Легкий"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1111005.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1111005.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1111005.jpg"
   },
   {
     "title": "Мстители: Финал",
@@ -28434,7 +15015,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843650.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/843650.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/843650.jpg"
   },
   {
     "title": "Спящие",
@@ -28468,7 +15050,8 @@ export const movies = [
       "🕵️ Psychological Noir"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4515.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4515.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4515.jpg"
   },
   {
     "title": "Оппенгеймер",
@@ -28502,7 +15085,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4664634.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4664634.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/4664634.jpg"
   },
   {
     "title": "Майк и Ник и Ник и Элис",
@@ -28537,7 +15121,8 @@ export const movies = [
       "🔥 Pure Action"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6976204.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/6976204.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/6976204.jpg"
   },
   {
     "title": "Гладиатор II",
@@ -28571,7 +15156,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1207839.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1207839.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1207839.jpg"
   },
   {
     "title": "Хищный рывок",
@@ -28606,7 +15192,8 @@ export const movies = [
       "🧠 Mind Bender"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1426671.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1426671.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1426671.jpg"
   },
   {
     "title": "Зловещие мертвецы: Пекло",
@@ -28641,7 +15228,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463793.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5463793.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/5463793.jpg"
   },
   {
     "title": "Уличный боец",
@@ -28676,7 +15264,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1115327.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1115327.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1115327.jpg"
   },
   {
     "title": "Крик 7",
@@ -28711,7 +15300,8 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5364826.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5364826.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oA1XlT4haoeug2YLzUccM8myBlR.jpg"
   },
   {
     "title": "Франкенштейн",
@@ -28745,7 +15335,8 @@ export const movies = [
       "🏎️ Non-Stop Thrill"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464475.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/464475.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/oCxLbnBBEmUCeRcmsBrmF9jEcHd.jpg"
   },
   {
     "title": "Достать ножи: Воскрешение покойника",
@@ -28779,7 +15370,8 @@ export const movies = [
       "⚡ Заряжающий энергией"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4421816.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4421816.jpg",
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/rffS3bS0shNAhsgCoXtJJOIEl70.jpg"
   },
   {
     "title": "Пассажир",
@@ -28814,6 +15406,7 @@ export const movies = [
       "🧠 Thought-Provoking"
     ],
     "category": "movie",
-    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1256081.jpg"
+    "posterPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1256081.jpg",
+    "tmdbPoster": "https://kinopoiskapiunofficial.tech/images/posters/kp/1256081.jpg"
   }
 ];

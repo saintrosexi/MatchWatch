@@ -25,8 +25,6 @@ export function DesktopLayout({
   onResetDeck,
   selectedMood,
   onSelectMood,
-  selectedCategory,
-  onSelectCategory,
   likedIds,
   superlikeIds,
   watchedIds,
@@ -102,27 +100,10 @@ export function DesktopLayout({
               onResetDeck={onResetDeck}
               selectedMood={selectedMood}
               onSelectMood={onSelectMood}
-              selectedCategory={selectedCategory}
-              onSelectCategory={onSelectCategory}
             />
           ) : activeTab === 'movies' ? (
             <DesktopDiscoveryView
               key="movies"
-              initialCategory="movie"
-              onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
-              onLaunchCollectionDeck={onLaunchCollectionDeck}
-            />
-          ) : activeTab === 'series' ? (
-            <DesktopDiscoveryView
-              key="series"
-              initialCategory="series"
-              onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
-              onLaunchCollectionDeck={onLaunchCollectionDeck}
-            />
-          ) : activeTab === 'anime' ? (
-            <DesktopDiscoveryView
-              key="anime"
-              initialCategory="anime"
               onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
               onLaunchCollectionDeck={onLaunchCollectionDeck}
             />

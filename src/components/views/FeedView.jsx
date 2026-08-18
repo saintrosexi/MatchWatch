@@ -27,46 +27,6 @@ export function FeedView({
 
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* 3-Category Switcher: Movies / TV Series / Anime */}
-      <div style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '0 16px 10px',
-        gap: '6px'
-      }}>
-        {categories.map((cat) => {
-          const isSelected = selectedCategory === cat.id;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => {
-                triggerHaptic('light');
-                playSound('tap');
-                onSelectCategory(cat.id);
-              }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-                padding: '6px 12px',
-                borderRadius: '999px',
-                border: isSelected ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)',
-                background: isSelected ? 'rgba(255, 94, 98, 0.18)' : 'rgba(255, 255, 255, 0.03)',
-                color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                fontSize: '0.78rem',
-                fontWeight: isSelected ? '700' : '500',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              <span>{cat.icon}</span>
-              <span>{cat.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
       {/* Quick Mood Selector Bar */}
       <div style={{
         width: '100%',

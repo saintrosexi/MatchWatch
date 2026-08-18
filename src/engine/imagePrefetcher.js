@@ -1,44 +1,64 @@
-// MatchWatch — Resilient Kinopoisk CDN & Movie Frames Poster Pipeline
+// MatchWatch — TMDB High-Resolution & Kinopoisk Cascading Poster Pipeline
 
 const cachedImages = new Set();
 
 /**
  * Returns prioritized ordered list of poster and movie frame candidate URLs.
+ * Priority: TMDB High-Res CDN -> Kinopoisk HD CDN -> Yandex Kinopoisk -> Direct Poster -> Film Frames
  */
 export const getPosterCandidates = (movie, fallbackKpId = null) => {
   if (!movie && !fallbackKpId) return [];
 
   // Normalize input if passed as a string or object
   const kpId = (typeof movie === 'object' && movie?.kinopoiskId) || (typeof fallbackKpId === 'number' ? fallbackKpId : null);
+  const tmdbPoster = typeof movie === 'object' ? (movie?.tmdbPoster || '') : '';
+  const tmdbPosterPath = typeof movie === 'object' ? (movie?.tmdbPosterPath || '') : '';
   const rawPoster = typeof movie === 'object' ? (movie?.poster || '') : (typeof movie === 'string' ? movie : '');
   const posterPreview = typeof movie === 'object' ? (movie?.posterPreview || '') : '';
 
   const candidates = [];
 
-  // 1. Primary Kinopoisk HD CDN (Fastest, cleanest resolution)
-  if (kpId) {
-    candidates.push(`https://kinopoiskapiunofficial.tech/images/posters/kp/${kpId}.jpg`);
-    candidates.push(`https://st.kp.yandex.net/images/film_iphone/iphone360_${kpId}.jpg`);
-    candidates.push(`https://st.kp.yandex.net/images/film_big/${kpId}.jpg`);
+  // 1. Primary: TMDB High-Definition Poster CDN (Fastest, crisp quality)
+  if (tmdbPoster && typeof tmdbPoster === 'string' && tmdbPoster.startsWith('http')) {
+    candidates.push(tmdbPoster.trim());
+  } else if (tmdbPosterPath && typeof tmdbPosterPath === 'string') {
+    const cleanPath = tmdbPosterPath.startsWith('/') ? tmdbPosterPath : `/${tmdbPosterPath}`;
+    candidates.push(`https://image.tmdb.org/t/p/w500${cleanPath}`);
   }
 
-  // 2. Direct movie.poster URL if valid and not a known rate-limited host
+  // 2. Secondary: Kinopoisk HD CDN (Reliable fallback)
+  if (kpId) {
+    const kpMain = `https://kinopoiskapiunofficial.tech/images/posters/kp/${kpId}.jpg`;
+    if (!candidates.includes(kpMain)) candidates.push(kpMain);
+
+    const kpIphone = `https://st.kp.yandex.net/images/film_iphone/iphone360_${kpId}.jpg`;
+    if (!candidates.includes(kpIphone)) candidates.push(kpIphone);
+
+    const kpBig = `https://st.kp.yandex.net/images/film_big/${kpId}.jpg`;
+    if (!candidates.includes(kpBig)) candidates.push(kpBig);
+  }
+
+  // 3. Direct movie.poster URL if valid and not a known rate-limited host
   if (rawPoster && typeof rawPoster === 'string' && rawPoster.trim() !== '' && !rawPoster.includes('N/A')) {
     const trimmed = rawPoster.trim();
     if (!candidates.includes(trimmed)) {
-      // If it's a direct Amazon or CDN URL, add it
       candidates.push(trimmed);
     }
   }
 
-  // 3. Movie Frames / Screenshots from Film (Кадры из фильма)
+  // 4. Movie Frames / Screenshots from Film (Кадры из фильма)
   if (kpId) {
-    candidates.push(`https://kinopoiskapiunofficial.tech/images/frames/kp/${kpId}.jpg`);
-    candidates.push(`https://st.kp.yandex.net/images/kadr/${kpId}.jpg`);
-    candidates.push(`https://kinopoiskapiunofficial.tech/images/posters/kp_small/${kpId}.jpg`);
+    const kpFrame = `https://kinopoiskapiunofficial.tech/images/frames/kp/${kpId}.jpg`;
+    if (!candidates.includes(kpFrame)) candidates.push(kpFrame);
+
+    const kpKadr = `https://st.kp.yandex.net/images/kadr/${kpId}.jpg`;
+    if (!candidates.includes(kpKadr)) candidates.push(kpKadr);
+
+    const kpSmall = `https://kinopoiskapiunofficial.tech/images/posters/kp_small/${kpId}.jpg`;
+    if (!candidates.includes(kpSmall)) candidates.push(kpSmall);
   }
 
-  // 4. Poster Preview
+  // 5. Poster Preview
   if (posterPreview && typeof posterPreview === 'string' && posterPreview.trim() !== '') {
     const preview = posterPreview.trim();
     if (!candidates.includes(preview)) {
@@ -60,10 +80,11 @@ export const getPosterUrl = (arg1, arg2, arg3) => {
 
   if (typeof arg1 === 'object') {
     const candidates = getPosterCandidates(arg1);
-    return candidates[0] || arg1.poster || '';
+    return candidates[0] || arg1.tmdbPoster || arg1.poster || '';
   }
 
   if (typeof arg1 === 'string') {
+    if (arg1.startsWith('http')) return arg1;
     const kpId = typeof arg2 === 'number' ? arg2 : (typeof arg3 === 'number' ? arg3 : null);
     if (kpId) {
       return `https://kinopoiskapiunofficial.tech/images/posters/kp/${kpId}.jpg`;

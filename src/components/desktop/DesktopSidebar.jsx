@@ -26,9 +26,7 @@ export function DesktopSidebar({
 }) {
   const mainNav = [
     { id: 'feed', label: 'Лента свайпов', icon: Flame, badge: null },
-    { id: 'movies', label: 'Фильмы', icon: Film, badge: null },
-    { id: 'series', label: 'Сериалы', icon: Tv, badge: null },
-    { id: 'anime', label: 'Аниме', icon: Sparkles, badge: null },
+    { id: 'movies', label: 'Каталог фильмов', icon: Film, badge: null },
     { id: 'actors', label: 'Звёзды кино', icon: User, badge: null },
     { id: 'vault', label: 'Фильмотека', icon: FolderHeart, badge: likesCount > 0 ? likesCount : null }
   ];

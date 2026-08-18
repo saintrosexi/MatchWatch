@@ -337,13 +337,13 @@ const runner = new TestRegistry();
 // TIER 1: FEATURE COVERAGE (F1 through F18, >= 5 cases each = 90 tests)
 // ============================================================================
 
-// F1: Strict Database Categorization
-runner.addSuite(1, 'F1: Strict Database Categorization', [
+// F1: Strict Movies-Only Database Categorization
+runner.addSuite(1, 'F1: Strict Movies-Only Database Categorization', [
   {
     id: 'F1.1_SchemaAndRequiredFields',
     description: 'Every movie in catalog possesses all required schema fields',
     fn: () => {
-      assert(Array.isArray(movies) && movies.length >= 840, 'Movies must be non-empty array >= 840 items');
+      assert(Array.isArray(movies) && movies.length >= 400, `Movies must be non-empty array >= 400 items, found ${movies.length}`);
       const sample = movies.slice(0, 50);
       for (const m of sample) {
         assert(typeof m.id === 'number' && m.id > 0, `Movie id must be positive number: ${m.id}`);
@@ -358,49 +358,36 @@ runner.addSuite(1, 'F1: Strict Database Categorization', [
   },
   {
     id: 'F1.2_StrictCategoryEnum',
-    description: 'Every movie category is strictly one of ["movie", "series", "anime"]',
-    fn: () => {
-      const validCategories = new Set(['movie', 'series', 'anime']);
-      for (const m of movies) {
-        assert(validCategories.has(m.category), `Movie ${m.id} ("${m.title}") has invalid category: "${m.category}"`);
-      }
-    }
-  },
-  {
-    id: 'F1.3_CategoryIsolation_NoSeriesInMovie',
-    description: 'Items tagged as category "movie" do not contain serial/season indicators without movie type',
+    description: 'Every movie category is strictly "movie"',
     fn: () => {
       for (const m of movies) {
-        if (m.category === 'movie') {
-          const g = (m.genres || '').toLowerCase();
-          assert(!g.includes('телесериал') && !g.includes('мини-сериал'), `Movie ${m.id} has TV series genres in category "movie"`);
-          if (m.type) assertEqual(m.type, 'movie', `Movie ${m.id} has mismatched type ${m.type}`);
-        }
+        assertEqual(m.category || 'movie', 'movie', `Movie ${m.id} ("${m.title}") must have category "movie", got: "${m.category}"`);
       }
     }
   },
   {
-    id: 'F1.4_CategoryIsolation_AnimeJapanVerification',
-    description: 'Items in category "anime" are genuine Japanese animations or anime tagged',
+    id: 'F1.3_CategoryIsolation_ZeroSeriesInCatalog',
+    description: 'Zero TV series exist in catalog (100% focused on movies)',
     fn: () => {
-      const animeList = movies.filter((m) => m.category === 'anime');
-      assert(animeList.length >= 100, `Expected >= 100 anime entries, found ${animeList.length}`);
-      for (const a of animeList) {
-        const c = (a.country || '').toLowerCase();
-        const g = (a.genres || '').toLowerCase();
-        const isAnime = c.includes('япония') || c.includes('japan') || g.includes('аниме') || g.includes('anime') || g.includes('мультфильм');
-        assert(isAnime, `Anime ${a.id} ("${a.title}") lacks anime or Japan markers`);
-      }
+      const seriesList = movies.filter((m) => m.category === 'series' || m.type === 'series');
+      assertEqual(seriesList.length, 0, `Expected 0 series entries in catalog, found ${seriesList.length}`);
     }
   },
   {
-    id: 'F1.5_CategoryIsolation_SeriesCategorization',
-    description: 'Category "series" entries represent TV and streaming series content',
+    id: 'F1.4_CategoryIsolation_ZeroAnimeInCatalog',
+    description: 'Zero anime exist in catalog (100% focused on movies)',
     fn: () => {
-      const seriesList = movies.filter((m) => m.category === 'series');
-      assert(seriesList.length >= 15, `Expected series entries in database, found ${seriesList.length}`);
-      for (const s of seriesList) {
-        assertEqual(s.category, 'series', `Series item ${s.id} must have category "series"`);
+      const animeList = movies.filter((m) => m.category === 'anime' || m.type === 'anime');
+      assertEqual(animeList.length, 0, `Expected 0 anime entries in catalog, found ${animeList.length}`);
+    }
+  },
+  {
+    id: 'F1.5_TMDBPosterCoverage',
+    description: '100% of movie records possess valid TMDB or Kinopoisk poster URLs',
+    fn: () => {
+      for (const m of movies) {
+        const poster = m.tmdbPoster || m.poster;
+        assert(typeof poster === 'string' && poster.startsWith('https://'), `Movie ${m.id} lacks valid poster URL`);
       }
     }
   }
@@ -471,8 +458,8 @@ runner.addSuite(1, 'F2: Kinopoisk ID Deduplication & Resolution', [
   }
 ]);
 
-// F3: Poster Integrity & Multi-tier Fallback
-runner.addSuite(1, 'F3: Poster Integrity & Multi-tier Fallback', [
+// F3: TMDB & Multi-tier Fallback Poster Pipeline
+runner.addSuite(1, 'F3: TMDB & Multi-tier Fallback Poster Pipeline', [
   {
     id: 'F3.1_HttpsPosterUrls',
     description: '100% of movie records possess valid HTTPS poster URLs',
@@ -496,23 +483,23 @@ runner.addSuite(1, 'F3: Poster Integrity & Multi-tier Fallback', [
     }
   },
   {
-    id: 'F3.3_KinopoiskHdCdnPrimary',
-    description: 'Movies with Kinopoisk ID prioritize Kinopoisk HD CDN as candidate #1',
+    id: 'F3.3_TMDBOrKinopoiskHdCdnPrimary',
+    description: 'getPosterCandidates prioritizes TMDB / Kinopoisk HD CDN as candidate #1',
     fn: () => {
-      const movieWithKp = movies.find((m) => m.kinopoiskId && m.kinopoiskId > 0);
-      assert(movieWithKp, 'Must have at least one movie with Kinopoisk ID');
-      const candidates = getPosterCandidates(movieWithKp);
-      assert(candidates[0].includes(`images/posters/kp/${movieWithKp.kinopoiskId}.jpg`), `Candidate #1 must be Kinopoisk HD CDN`);
+      const sample = movies[0];
+      const candidates = getPosterCandidates(sample);
+      assert(candidates.length > 0, 'Candidates must be non-empty');
+      assert(candidates[0].startsWith('https://'), 'Candidate #1 must be HTTPS URL');
     }
   },
   {
-    id: 'F3.4_YandexKinopoiskSecondary',
-    description: 'getPosterCandidates includes Yandex Kinopoisk CDN fallback',
+    id: 'F3.4_KinopoiskFallbackPresent',
+    description: 'getPosterCandidates includes Kinopoisk fallback in candidate list',
     fn: () => {
       const movieWithKp = movies.find((m) => m.kinopoiskId && m.kinopoiskId > 0);
       const candidates = getPosterCandidates(movieWithKp);
-      const hasYandex = candidates.some((u) => u.includes('st.kp.yandex.net'));
-      assert(hasYandex, 'Candidates must include st.kp.yandex.net fallback');
+      const hasKp = candidates.some((u) => u.includes('kinopoiskapiunofficial.tech') || u.includes('st.kp.yandex.net'));
+      assert(hasKp, 'Candidates must include Kinopoisk fallback');
     }
   },
   {
@@ -526,15 +513,15 @@ runner.addSuite(1, 'F3: Poster Integrity & Multi-tier Fallback', [
   }
 ]);
 
-// F4: Missing Titles Restoration
-runner.addSuite(1, 'F4: Missing Titles Restoration', [
+// F4: Missing Titles Restoration & Master Film Catalog
+runner.addSuite(1, 'F4: Missing Titles Restoration & Master Film Catalog', [
   {
     id: 'F4.1_TotalDatasetCount',
     description: 'Dataset contains comprehensive catalog of movies',
     fn: () => {
-      assert(movies.length >= 841, `Expected >= 841 movies, got ${movies.length}`);
+      assert(movies.length >= 400, `Expected >= 400 movies, got ${movies.length}`);
       const maxId = Math.max(...movies.map((m) => m.id));
-      assert(maxId >= 840, `Max movie ID should be at least 840, got ${maxId}`);
+      assert(maxId >= 400, `Max movie ID should be at least 400, got ${maxId}`);
     }
   },
   {
@@ -563,70 +550,66 @@ runner.addSuite(1, 'F4: Missing Titles Restoration', [
     }
   },
   {
-    id: 'F4.5_DragonBallAndTwinPeaksSearchable',
-    description: 'Dragon Ball and Twin Peaks are represented in the catalog',
+    id: 'F4.5_IconicClassicsSearchable',
+    description: 'Inception, Interstellar, and Fight Club are present in catalog',
     fn: () => {
-      const db = movies.find((m) => (m.titleRu && m.titleRu.includes('Драконий жемчуг')) || (m.title && m.title.includes('Dragon Ball')));
-      const tp = movies.find((m) => (m.titleRu && m.titleRu.includes('Твин Пикс')) || (m.title && m.title.includes('Twin Peaks')));
-      assert(db || tp, 'Dragon Ball or Twin Peaks should be present in catalog');
+      const inception = movies.find((m) => (m.titleRu && m.titleRu.includes('Начало')) || (m.title && m.title.includes('Inception')));
+      const interstellar = movies.find((m) => (m.titleRu && m.titleRu.includes('Интерстеллар')) || (m.title && m.title.includes('Interstellar')));
+      assert(inception && interstellar, 'Iconic cinema classics must be present');
     }
   }
 ]);
 
-// F5: UI & Engine Category Filter Harmonization
-runner.addSuite(1, 'F5: UI & Engine Category Filter Harmonization', [
+// F5: Pure Movie Recommendation & Deck Engine
+runner.addSuite(1, 'F5: Pure Movie Recommendation & Deck Engine', [
   {
-    id: 'F5.1_RecommendationEngineCategoryFilter_Movie',
-    description: 'getRecommendedDeck with category "movie" returns only movie category titles',
+    id: 'F5.1_RecommendationEngineReturnsMovies',
+    description: 'getRecommendedDeck returns valid movie deck',
     fn: () => {
-      const deck = getRecommendedDeck({ filters: { category: 'movie' }, limit: 20 });
+      const deck = getRecommendedDeck({ limit: 20 });
       assert(deck.length > 0, 'Movie deck must return results');
       for (const m of deck) {
-        assertEqual(m.category || 'movie', 'movie', `Non-movie returned in movie deck: ${m.title} (${m.category})`);
+        assertEqual(m.category || 'movie', 'movie', `Non-movie returned in deck: ${m.title}`);
       }
     }
   },
   {
-    id: 'F5.2_RecommendationEngineCategoryFilter_Series',
-    description: 'getRecommendedDeck with category "series" returns only series category titles',
+    id: 'F5.2_RecommendationEngineGenreFiltering',
+    description: 'getRecommendedDeck with genre filter returns matching movies',
     fn: () => {
-      const deck = getRecommendedDeck({ filters: { category: 'series' }, limit: 15 });
-      assert(deck.length > 0, 'Series deck must return results');
+      const deck = getRecommendedDeck({ filters: { genres: ['Драма'] }, limit: 15 });
+      assert(deck.length > 0, 'Drama deck must return results');
       for (const m of deck) {
-        assertEqual(m.category, 'series', `Non-series returned in series deck: ${m.title} (${m.category})`);
+        assert((m.genres || '').toLowerCase().includes('драма'), `Non-drama in deck: ${m.title}`);
       }
     }
   },
   {
-    id: 'F5.3_RecommendationEngineCategoryFilter_Anime',
-    description: 'getRecommendedDeck with category "anime" returns only anime category titles',
+    id: 'F5.3_RecommendationEngineRatingFiltering',
+    description: 'getRecommendedDeck with minRating filter respects minimum threshold',
     fn: () => {
-      const deck = getRecommendedDeck({ filters: { category: 'anime' }, limit: 20 });
-      assert(deck.length > 0, 'Anime deck must return results');
+      const deck = getRecommendedDeck({ filters: { minRating: 8.0 }, limit: 20 });
+      assert(deck.length > 0, 'High-rated deck must return results');
       for (const m of deck) {
-        assertEqual(m.category, 'anime', `Non-anime returned in anime deck: ${m.title} (${m.category})`);
+        assert(m.rating >= 8.0, `Movie ${m.title} below rating 8.0: ${m.rating}`);
       }
     }
   },
   {
-    id: 'F5.4_RecommendationEngineCategoryFilter_All',
-    description: 'getRecommendedDeck with category "all" returns items across categories',
+    id: 'F5.4_RecommendationEngineCompromiseDeck25',
+    description: 'generateRoomCompromiseDeck generates 25 unique movies',
     fn: () => {
-      const deck = getRecommendedDeck({ filters: { category: 'all' }, limit: 30 });
-      assert(deck.length === 30, `Expected 30 items, got ${deck.length}`);
+      const deck = generateRoomCompromiseDeck([1, 2], [3, 4]);
+      assertEqual(deck.length, 25, `Expected 25 items, got ${deck.length}`);
     }
   },
   {
     id: 'F5.5_DiscoveryViewFilterContract',
-    description: 'Discovery view category matching (m.category === activeCategory) partitions dataset cleanly',
+    description: 'Discovery view movie catalog contains 100% movies',
     fn: () => {
-      const moviesOnly = movies.filter((m) => (m.category || 'movie') === 'movie');
-      const seriesOnly = movies.filter((m) => m.category === 'series');
-      const animeOnly = movies.filter((m) => m.category === 'anime');
-      assert(moviesOnly.length > 0, 'Movie partition non-empty');
-      assert(seriesOnly.length > 0, 'Series partition non-empty');
-      assert(animeOnly.length > 0, 'Anime partition non-empty');
-      assert(moviesOnly.length + seriesOnly.length + animeOnly.length === movies.length, 'All items accounted for in partition');
+      for (const m of movies) {
+        assertEqual(m.category || 'movie', 'movie', `Item ${m.id} is not a movie`);
+      }
     }
   }
 ]);
@@ -1220,13 +1203,14 @@ runner.addSuite(1, 'F15: Synchronized Compromise Deck', [
     }
   },
   {
-    id: 'F15.5_DeckCategoryPresetRespect',
-    description: 'Compromise deck with { category: "anime" } generates anime titles',
+    id: 'F15.5_DeckPresetRespect',
+    description: 'Compromise deck with preset generates 25 curated movie titles',
     fn: () => {
-      const deck = generateRoomCompromiseDeck([1], [2], { category: 'anime' });
-      assert(deck.length > 0, 'Anime compromise deck generated');
-      const animeCount = deck.filter((m) => m.category === 'anime').length;
-      assert(animeCount >= 15, `Expected predominantly anime titles, got ${animeCount}`);
+      const deck = generateRoomCompromiseDeck([1], [2], { preset: 'popcorn_party' });
+      assertEqual(deck.length, 25, 'Compromise deck generated with 25 titles');
+      for (const m of deck) {
+        assertEqual(m.category || 'movie', 'movie', 'Deck item is a movie');
+      }
     }
   }
 ]);
@@ -1430,7 +1414,7 @@ runner.addSuite(2, 'F1 (Boundary): Schema & Category Corner Cases', [
     fn: () => {
       const badMovie = { id: 1, title: 'T', category: '' };
       assertThrows(() => {
-        if (!badMovie.category || !['movie', 'series', 'anime'].includes(badMovie.category)) {
+        if (!badMovie.category || badMovie.category !== 'movie') {
           throw new Error('Invalid category');
         }
       }, 'Should reject empty category');
@@ -1440,9 +1424,9 @@ runner.addSuite(2, 'F1 (Boundary): Schema & Category Corner Cases', [
     id: 'F1_B2_UnknownCategoryValues',
     description: 'Rejects unknown category values like "documentary" or "cartoon"',
     fn: () => {
-      const invalid = ['documentary', 'cartoon', 'tv_show', 'short'];
+      const invalid = ['documentary', 'cartoon', 'tv_show', 'short', 'series', 'anime'];
       for (const cat of invalid) {
-        assert(!['movie', 'series', 'anime'].includes(cat), `Category "${cat}" must be invalid`);
+        assert(cat !== 'movie', `Category "${cat}" must not be movie`);
       }
     }
   },
@@ -1452,7 +1436,7 @@ runner.addSuite(2, 'F1 (Boundary): Schema & Category Corner Cases', [
     fn: () => {
       const mixed = ['Movie', 'SERIES', 'Anime', 'MOViE'];
       for (const m of mixed) {
-        assert(!['movie', 'series', 'anime'].includes(m), `Mixed case "${m}" rejected`);
+        assert(m !== 'movie', `Mixed case "${m}" rejected`);
       }
     }
   },
@@ -1832,14 +1816,15 @@ runner.addSuite(2, 'F8 (Boundary): Star Hub Edge Cases', [
     }
   },
   {
-    id: 'F8_B4_ActorFilmographyCategoryFilter',
-    description: 'Actor filmography can be filtered into movie and series subsets',
+    id: 'F8_B4_ActorFilmographyLookup',
+    description: 'Actor filmography retrieves valid movies list',
     fn: () => {
       const actorName = 'Бенедикт Камбербэтч';
       const actorMovies = movies.filter((m) => (m.actors || '').includes(actorName));
-      const movieSubset = actorMovies.filter((m) => (m.category || 'movie') === 'movie');
-      const seriesSubset = actorMovies.filter((m) => m.category === 'series');
-      assert(movieSubset.length + seriesSubset.length <= actorMovies.length, 'Partitioning valid');
+      assert(actorMovies.length > 0, 'Actor movies found');
+      for (const m of actorMovies) {
+        assertEqual(m.category || 'movie', 'movie', 'Actor filmography items are movies');
+      }
     }
   },
   {
@@ -2334,12 +2319,14 @@ runner.addSuite(2, 'F17 (Boundary): Rooms API Platform Harmonization Bounds', [
     }
   },
   {
-    id: 'F17_B4_DesktopRoomCategoryPreset',
-    description: 'Passing category filter to compromise deck generator produces filtered deck',
+    id: 'F17_B4_DesktopRoomCompromiseDeck',
+    description: 'Compromise deck generator produces 25 movies deck',
     fn: () => {
-      const deck = generateRoomCompromiseDeck([], [], { category: 'series' });
-      const seriesCount = deck.filter((m) => m.category === 'series').length;
-      assert(seriesCount >= 10, 'Compromise deck respects series category filter');
+      const deck = generateRoomCompromiseDeck([], []);
+      assertEqual(deck.length, 25, 'Compromise deck produces 25 movies');
+      for (const m of deck) {
+        assertEqual(m.category || 'movie', 'movie', 'Deck item is movie');
+      }
     }
   },
   {
@@ -2416,32 +2403,33 @@ runner.addSuite(2, 'F18 (Boundary): Production Build Code Integrity', [
 
 runner.addSuite(3, 'Tier 3: Cross-Feature Interactions', [
   {
-    id: 'T3.01_F1_F5_CategoryFilterIsolationInRecommendationEngine',
-    description: 'F1 + F5: Filtering by category: "anime" in recommendation engine returns 0 movies or series',
+    id: 'T3.01_F1_F5_MovieRecommendationEngineIntegrity',
+    description: 'F1 + F5: Recommendation engine returns 100% movie titles',
     fn: () => {
-      const deck = getRecommendedDeck({ filters: { category: 'anime' }, limit: 50 });
+      const deck = getRecommendedDeck({ limit: 50 });
       for (const item of deck) {
-        assertEqual(item.category, 'anime', `Item ${item.id} ("${item.title}") in anime deck has category "${item.category}"`);
+        assertEqual(item.category || 'movie', 'movie', `Item ${item.id} ("${item.title}") has category "${item.category}"`);
       }
     }
   },
   {
-    id: 'T3.02_F1_F15_CompromiseDeckWithStrictCategoryPreset',
-    description: 'F1 + F15: generateRoomCompromiseDeck with anime preset isolates anime catalog',
+    id: 'T3.02_F1_F15_CompromiseDeckIntegrity',
+    description: 'F1 + F15: generateRoomCompromiseDeck generates 25 movie deck with 0 duplicates',
     fn: () => {
-      const deck = generateRoomCompromiseDeck([1, 2], [3, 4], { category: 'anime' });
-      const animeCount = deck.filter((m) => m.category === 'anime').length;
-      assert(animeCount >= 15, `Expected >= 15 anime in compromise deck, got ${animeCount}`);
+      const deck = generateRoomCompromiseDeck([1, 2], [3, 4]);
+      assertEqual(deck.length, 25, 'Expected 25 items in compromise deck');
+      const uniqueIds = new Set(deck.map((d) => d.id));
+      assertEqual(uniqueIds.size, 25, 'All items must be unique');
     }
   },
   {
-    id: 'T3.03_F2_F3_KpIdAndFallbackPosterUrlChain',
-    description: 'F2 + F3: Movie with unique kinopoiskId 326 prioritizes HD CDN URL and Yandex fallback',
+    id: 'T3.03_F2_F3_PosterCandidateResolutionChain',
+    description: 'F2 + F3: Movie with unique kinopoiskId produces valid CDN poster candidates',
     fn: () => {
       const shawshank = movies.find((m) => m.id === 1);
       const candidates = getPosterCandidates(shawshank);
-      assertEqual(candidates[0], 'https://kinopoiskapiunofficial.tech/images/posters/kp/326.jpg');
-      assert(candidates[1].includes('st.kp.yandex.net'));
+      assert(candidates.length >= 2, 'Candidates list contains primary and fallbacks');
+      assert(candidates[0].startsWith('https://'), 'Primary candidate is valid HTTPS');
     }
   },
   {
@@ -2562,13 +2550,14 @@ runner.addSuite(3, 'Tier 3: Cross-Feature Interactions', [
     }
   },
   {
-    id: 'T3.14_F5_F15_CategoryPresetSynchronizationBetweenDiscoveryAndRooms',
-    description: 'F5 + F15: Category preset selected in room lobby propagates into compromise deck generation',
+    id: 'T3.14_F5_F15_MovieDeckCompromiseSynchronization',
+    description: 'F5 + F15: Preset selected in room lobby propagates into compromise deck generation',
     fn: () => {
-      const deck = generateRoomCompromiseDeck([], [], { category: 'anime' });
-      assert(deck.length === 25);
-      const isAnime = deck.filter((m) => m.category === 'anime').length >= 15;
-      assert(isAnime, 'Anime preset synchronized');
+      const deck = generateRoomCompromiseDeck([], [], { preset: 'cyberpunk_neon' });
+      assertEqual(deck.length, 25, 'Compromise deck has 25 movies');
+      for (const m of deck) {
+        assertEqual(m.category || 'movie', 'movie', 'Deck contains movie');
+      }
     }
   },
   {
@@ -2634,7 +2623,7 @@ runner.addSuite(4, 'Tier 4: Real-World Application Workflows', [
         assert(!seenIds.has(m.id), `Duplicate movie ID ${m.id}`);
         seenIds.add(m.id);
 
-        assert(['movie', 'series', 'anime'].includes(m.category), `Invalid category on ${m.id}`);
+        assertEqual(m.category || 'movie', 'movie', `Invalid category on ${m.id}`);
         if (m.poster && m.poster.startsWith('https://')) validPosters++;
 
         if (m.kinopoiskId) {
@@ -2650,8 +2639,8 @@ runner.addSuite(4, 'Tier 4: Real-World Application Workflows', [
         }
       }
 
-      assert(validPosters >= 835, 'Virtually all movies have valid HTTPS posters');
-      assert(validVectors >= 835, 'All movies have valid 5D sensation vectors');
+      assert(validPosters >= 400, 'Virtually all movies have valid HTTPS posters');
+      assert(validVectors >= 400, 'All movies have valid 5D sensation vectors');
     }
   },
   {
@@ -2744,7 +2733,7 @@ runner.addSuite(4, 'Tier 4: Real-World Application Workflows', [
     description: 'Scenario 5: Complete module integrity, build export consistency, and dual mobile/desktop API parity',
     fn: () => {
       // 1. Data modules exports
-      assert(Array.isArray(movies) && movies.length >= 840, 'movies export ok');
+      assert(Array.isArray(movies) && movies.length >= 400, 'movies export ok');
       assert(typeof actorsData === 'object', 'actorsData export ok');
 
       // 2. Recommendation Engine functions

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Play, Star, Clock, Film, Tv, Sparkles } from 'lucide-react';
+import { Search, Play, Star, Clock, Film, Sparkles } from 'lucide-react';
 import { movies } from '../../data/movies.js';
 import { curatedCollections } from '../../data/collections.js';
 import { getPosterUrl, handlePosterError } from '../../engine/imagePrefetcher.js';
@@ -10,40 +10,20 @@ export function DiscoveryView({
   onOpenDetails,
   onLaunchCollectionDeck
 }) {
-  const [activeCategory, setActiveCategory] = useState('movie'); // 'movie' | 'series' | 'anime'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('Все');
 
-  const categories = [
-    { id: 'movie', label: '🎬 Фильмы' },
-    { id: 'series', label: '📺 Сериалы' },
-    { id: 'anime', label: '⛩ Аниме' }
-  ];
+  const movieGenres = ['Все', 'Боевик', 'Комедия', 'Драма', 'Триллер', 'Фантастика', 'Приключения', 'Криминал', 'Детектив', 'Фэнтези'];
 
-  const movieGenres = ['Все', 'Боевик', 'Комедия', 'Драма', 'Триллер', 'Фантастика', 'Приключения', 'Криминал'];
-  const seriesGenres = ['Все', 'Драма', 'Криминал', 'Детектив', 'Триллер', 'Фантастика', 'Комедия'];
-  const animeGenres = ['Все', 'Сёнэн', 'Приключения', 'Фэнтези', 'Драма', 'Экшн', 'Мистика'];
-
-  const currentGenres = activeCategory === 'series' ? seriesGenres : activeCategory === 'anime' ? animeGenres : movieGenres;
-
-  // Filtered collections for the active category
-  const activeCollections = useMemo(() => {
-    return curatedCollections.filter((c) => c.category === activeCategory);
-  }, [activeCategory]);
+  // All curated movie collections
+  const activeCollections = curatedCollections;
 
   // Filtered items
   const filteredItems = useMemo(() => {
     return movies.filter((m) => {
-      const mGenres = (m.genres || '').toLowerCase();
-      const mCountry = (m.country || '').toLowerCase();
-      const mDuration = (m.duration || '').toLowerCase();
-
-      // Check category match
-      const itemCategory = m.category || m.type || 'movie';
-      if (itemCategory !== activeCategory) return false;
-
       // Genre filter
       if (selectedGenre !== 'Все') {
+        const mGenres = (m.genres || '').toLowerCase();
         if (!mGenres.includes(selectedGenre.toLowerCase())) return false;
       }
 
@@ -58,7 +38,7 @@ export function DiscoveryView({
 
       return true;
     }).slice(0, 40);
-  }, [activeCategory, selectedGenre, searchQuery]);
+  }, [selectedGenre, searchQuery]);
 
   return (
     <div style={{ padding: '0 16px 24px', width: '100%' }}>
@@ -68,49 +48,16 @@ export function DiscoveryView({
           Кино-каталог
         </h1>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-          Шедевры мирового кино, сериалов и японской анимации
+          Шедевры мирового кинематографа и культовые фильмы
         </p>
       </div>
 
-      {/* Category Tabs: Movies / Series / Anime */}
+      {/* Search Input Bar */}
       <div style={{
-        display: 'flex',
-        gap: '8px',
-        marginBottom: '16px'
+        position: 'relative',
+        width: '100%',
+        marginBottom: '18px'
       }}>
-        {categories.map((cat) => {
-          const isSelected = activeCategory === cat.id;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => {
-                triggerHaptic('light');
-                playSound('tap');
-                setActiveCategory(cat.id);
-                setSelectedGenre('Все');
-              }}
-              style={{
-                flex: 1,
-                padding: '10px 8px',
-                borderRadius: 'var(--radius-full)',
-                border: isSelected ? '1.5px solid rgba(255, 94, 98, 0.6)' : '1px solid rgba(255, 255, 255, 0.08)',
-                background: isSelected ? 'rgba(255, 94, 98, 0.18)' : 'rgba(255, 255, 255, 0.03)',
-                color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                fontSize: '0.85rem',
-                fontWeight: isSelected ? '700' : '500',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                textAlign: 'center'
-              }}
-            >
-              {cat.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Search Input */}
-      <div style={{ position: 'relative', width: '100%', marginBottom: '18px' }}>
         <input
           type="text"
           placeholder="Поиск по названию или режиссёру..."
@@ -118,135 +65,157 @@ export function DiscoveryView({
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
             width: '100%',
-            padding: '13px 16px 13px 44px',
-            background: 'var(--bg-surface-2)',
+            padding: '12px 16px 12px 42px',
+            background: 'rgba(255, 255, 255, 0.05)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: 'var(--radius-full)',
+            borderRadius: 'var(--radius-md)',
             color: 'var(--text-primary)',
-            fontSize: '0.88rem',
+            fontSize: '0.9rem',
             outline: 'none'
           }}
         />
         <Search
           size={18}
           color="var(--text-muted)"
-          style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }}
+          style={{
+            position: 'absolute',
+            left: '14px',
+            top: '50%',
+            transform: 'translateY(-50%)'
+          }}
         />
       </div>
 
-      {/* Curated Collections for Active Category */}
-      {!searchQuery && activeCollections.length > 0 && (
-        <div style={{ marginBottom: '24px' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '12px'
-          }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text-sunset)' }}>
-              Подборки: {activeCategory === 'series' ? 'Сериалы' : activeCategory === 'anime' ? 'Аниме' : 'Фильмы'}
-            </h2>
-          </div>
+      {/* Curated Collections Horizontal Scroller */}
+      <div style={{ marginBottom: '22px' }}>
+        <div style={{
+          fontSize: '0.95rem',
+          fontWeight: '700',
+          marginBottom: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>🔥 Тематические подборки</span>
+        </div>
 
-          <div style={{
-            display: 'flex',
-            gap: '12px',
-            overflowX: 'auto',
-            paddingBottom: '8px',
-            scrollbarWidth: 'none'
-          }}>
-            {activeCollections.map((col) => (
-              <div
-                key={col.id}
-                onClick={() => {
-                  triggerHaptic('medium');
-                  playSound('tap');
-                  if (onLaunchCollectionDeck) onLaunchCollectionDeck(col);
-                }}
-                className="glass-card"
-                style={{
-                  minWidth: '210px',
-                  maxWidth: '230px',
-                  padding: '14px',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <div>
-                  <span
-                    className="chip"
-                    style={{
-                      background: `${col.accent}22`,
-                      borderColor: `${col.accent}55`,
-                      color: col.accent,
-                      fontSize: '0.68rem',
-                      marginBottom: '8px'
-                    }}
-                  >
-                    {col.badge}
-                  </span>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: '800', lineHeight: '1.3', marginBottom: '4px' }}>
-                    {col.title}
-                  </h3>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                    {col.subtitle}
-                  </p>
-                </div>
-
+        <div style={{
+          display: 'flex',
+          gap: '12px',
+          overflowX: 'auto',
+          paddingBottom: '8px',
+          scrollbarWidth: 'none'
+        }}>
+          {activeCollections.map((col) => (
+            <div
+              key={col.id}
+              onClick={() => {
+                triggerHaptic('medium');
+                playSound('tap');
+                if (onLaunchCollectionDeck) onLaunchCollectionDeck(col);
+              }}
+              className="glass-card"
+              style={{
+                minWidth: '200px',
+                width: '200px',
+                padding: '12px',
+                cursor: 'pointer',
+                flexShrink: 0,
+                position: 'relative',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}
+            >
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                height: '110px',
+                borderRadius: 'var(--radius-sm)',
+                overflow: 'hidden',
+                marginBottom: '8px'
+              }}>
+                <img
+                  src={col.cover}
+                  alt={col.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
                 <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  marginTop: '12px',
-                  color: col.accent,
-                  fontSize: '0.78rem',
-                  fontWeight: '700'
+                  position: 'absolute',
+                  top: '6px',
+                  left: '6px',
+                  background: 'rgba(0, 0, 0, 0.75)',
+                  backdropFilter: 'blur(8px)',
+                  borderRadius: '999px',
+                  padding: '2px 8px',
+                  fontSize: '0.68rem',
+                  fontWeight: '700',
+                  color: col.accent || 'var(--accent-coral)'
                 }}>
-                  <Play size={13} fill="currentColor" /> Запустить колоду
+                  {col.badge}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      )}
 
-      {/* Genre Chips Filter */}
+              <div>
+                <h3 style={{ fontSize: '0.88rem', fontWeight: '700', lineHeight: 1.2, marginBottom: '4px' }}>
+                  {col.title}
+                </h3>
+                <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
+                  {col.subtitle}
+                </p>
+              </div>
+
+              <div style={{
+                marginTop: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                color: 'var(--accent-coral)',
+                fontSize: '0.75rem',
+                fontWeight: '600'
+              }}>
+                <Play size={12} fill="currentColor" />
+                <span>Смотреть подборку</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Genre Filter Horizontal Scroll */}
       <div style={{
         display: 'flex',
-        gap: '6px',
+        gap: '8px',
         overflowX: 'auto',
-        paddingBottom: '12px',
-        scrollbarWidth: 'none',
-        marginBottom: '14px'
+        paddingBottom: '14px',
+        marginBottom: '16px',
+        scrollbarWidth: 'none'
       }}>
-        {currentGenres.map((g) => {
-          const isSelected = selectedGenre === g;
+        {movieGenres.map((genre) => {
+          const isSelected = selectedGenre === genre;
           return (
             <button
-              key={g}
+              key={genre}
               onClick={() => {
                 triggerHaptic('light');
                 playSound('tap');
-                setSelectedGenre(g);
+                setSelectedGenre(genre);
               }}
               style={{
-                padding: '5px 12px',
-                borderRadius: '999px',
-                border: isSelected ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)',
-                background: isSelected ? 'rgba(255, 94, 98, 0.16)' : 'rgba(255, 255, 255, 0.03)',
+                padding: '6px 14px',
+                borderRadius: 'var(--radius-full)',
+                border: isSelected ? '1px solid rgba(255, 94, 98, 0.6)' : '1px solid rgba(255, 255, 255, 0.08)',
+                background: isSelected ? 'rgba(255, 94, 98, 0.18)' : 'rgba(255, 255, 255, 0.03)',
                 color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                fontSize: '0.78rem',
+                fontSize: '0.8rem',
                 fontWeight: isSelected ? '700' : '500',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                flexShrink: 0
+                transition: 'all 0.2s ease'
               }}
             >
-              {g}
+              {genre}
             </button>
           );
         })}
@@ -301,16 +270,14 @@ export function DiscoveryView({
                 </div>
               </div>
 
-              <div style={{ padding: '10px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div style={{ padding: '10px' }}>
                 <h4 style={{
                   fontSize: '0.85rem',
                   fontWeight: '700',
-                  lineHeight: '1.25',
-                  marginBottom: '2px',
-                  display: '-webkit-box',
-                  WebkitLineClamp: 1,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  marginBottom: '2px'
                 }}>
                   {item.titleRu || item.title}
                 </h4>

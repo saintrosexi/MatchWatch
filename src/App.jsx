@@ -34,9 +34,6 @@ export function App() {
   const [activeTab, setActiveTab] = useState('feed');
   const [selectedActorForHub, setSelectedActorForHub] = useState(null);
 
-  // Content Category Filter: 'all' | 'movie' | 'series' | 'anime'
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   // User & Identity
   const { user } = useTelegramAuth();
 
@@ -127,24 +124,21 @@ export function App() {
   const [swipeHistory, setSwipeHistory] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Deck Generation with Category, Mood, Seen-Ids Filter
-  const buildFilteredDeck = useCallback((cat = selectedCategory, mood = selectedMood, filters = currentFilters) => {
+  // Deck Generation with Mood and Custom Filters
+  const buildFilteredDeck = useCallback((mood = selectedMood, filters = currentFilters) => {
     return getRecommendedDeck({
       likedIds,
       dislikedIds,
       mood,
-      filters: {
-        ...filters,
-        category: cat
-      },
+      filters,
       limit: 60
     });
-  }, [likedIds, dislikedIds, selectedCategory, selectedMood, currentFilters]);
+  }, [likedIds, dislikedIds, selectedMood, currentFilters]);
 
   const [deck, setDeck] = useState(() => buildFilteredDeck());
 
-  // Re-generate Deck when mood, category or filters change
-  const refreshDeck = useCallback((newMood = selectedMood, newFilters = currentFilters, newCategory = selectedCategory, customPool = null) => {
+  // Re-generate Deck when mood or filters change
+  const refreshDeck = useCallback((newMood = selectedMood, newFilters = currentFilters, customPool = null) => {
     if (customPool) {
       setDeck(customPool);
       setCurrentIndex(0);
@@ -152,11 +146,11 @@ export function App() {
       return;
     }
 
-    const newDeck = buildFilteredDeck(newCategory, newMood, newFilters);
+    const newDeck = buildFilteredDeck(newMood, newFilters);
     setDeck(newDeck);
     setCurrentIndex(0);
     setSwipeHistory([]);
-  }, [buildFilteredDeck, selectedMood, currentFilters, selectedCategory]);
+  }, [buildFilteredDeck, selectedMood, currentFilters]);
 
   // Modals Management (Mobile)
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
@@ -164,12 +158,6 @@ export function App() {
   const [activeMatchCelebration, setActiveMatchCelebration] = useState(null);
   const [isRouletteOpen, setIsRouletteOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
-  // Handle Category Change
-  const handleCategoryChange = (cat) => {
-    setSelectedCategory(cat);
-    refreshDeck(selectedMood, currentFilters, cat);
-  };
 
   // Handle Swiping Action
   const handleSwipe = (direction, movie) => {
@@ -343,7 +331,7 @@ export function App() {
         currentFilters={currentFilters}
         onApplyFilters={(filters) => {
           setCurrentFilters(filters);
-          refreshDeck(selectedMood, filters, selectedCategory);
+          refreshDeck(selectedMood, filters);
         }}
         activeMatchCelebration={activeMatchCelebration}
         onCloseMatchCelebration={() => setActiveMatchCelebration(null)}
@@ -386,14 +374,12 @@ export function App() {
             onUndo={handleUndo}
             canUndo={swipeHistory.length > 0 && currentIndex > 0}
             onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
-            onResetDeck={() => refreshDeck(selectedMood, currentFilters, selectedCategory)}
+            onResetDeck={() => refreshDeck(selectedMood, currentFilters)}
             selectedMood={selectedMood}
             onSelectMood={(mood) => {
               setSelectedMood(mood);
-              refreshDeck(mood, currentFilters, selectedCategory);
+              refreshDeck(mood, currentFilters);
             }}
-            selectedCategory={selectedCategory}
-            onSelectCategory={handleCategoryChange}
           />
         ) : activeTab === 'discovery' ? (
           <DiscoveryView
@@ -473,7 +459,7 @@ export function App() {
           currentFilters={currentFilters}
           onApplyFilters={(filters) => {
             setCurrentFilters(filters);
-            refreshDeck(selectedMood, filters, selectedCategory);
+            refreshDeck(selectedMood, filters);
           }}
           onClose={() => setIsFilterModalOpen(false)}
         />

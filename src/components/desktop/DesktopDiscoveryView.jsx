@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Play, Star, Sliders, Sparkles, Film, Tv } from 'lucide-react';
+import { Search, Play, Star, Sliders, Sparkles, Film, Sparkles as SparklesIcon } from 'lucide-react';
 import { movies } from '../../data/movies.js';
 import { curatedCollections } from '../../data/collections.js';
 import { getPosterUrl, handlePosterError } from '../../engine/imagePrefetcher.js';
@@ -7,33 +7,22 @@ import { triggerHaptic } from '../../engine/hapticsEngine.js';
 import { playSound } from '../../engine/soundEngine.js';
 
 export function DesktopDiscoveryView({
-  initialCategory = 'movie',
   onOpenDetails,
   onLaunchCollectionDeck
 }) {
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('Все');
   const [minRating, setMinRating] = useState(7.0);
   const [sortBy, setSortBy] = useState('rating'); // 'rating' | 'year' | 'title'
 
-  const movieGenres = ['Все', 'Боевик', 'Комедия', 'Драма', 'Триллер', 'Фантастика', 'Приключения', 'Криминал'];
-  const seriesGenres = ['Все', 'Драма', 'Криминал', 'Детектив', 'Триллер', 'Фантастика', 'Комедия'];
-  const animeGenres = ['Все', 'Сёнэн', 'Приключения', 'Фэнтези', 'Драма', 'Экшн', 'Мистика'];
+  const movieGenres = ['Все', 'Боевик', 'Комедия', 'Драма', 'Триллер', 'Фантастика', 'Приключения', 'Криминал', 'Детектив', 'Фэнтези', 'Мелодрама'];
 
-  const currentGenres = activeCategory === 'series' ? seriesGenres : activeCategory === 'anime' ? animeGenres : movieGenres;
-
-  // Filtered collections
-  const activeCollections = useMemo(() => {
-    return curatedCollections.filter((c) => c.category === activeCategory);
-  }, [activeCategory]);
+  // All curated movie collections
+  const activeCollections = curatedCollections;
 
   // Filtered items
   const filteredItems = useMemo(() => {
     let result = movies.filter((m) => {
-      const itemCategory = m.category || 'movie';
-      if (itemCategory !== activeCategory) return false;
-
       // Genre filter
       if (selectedGenre !== 'Все') {
         const mGenres = (m.genres || '').toLowerCase();
@@ -65,7 +54,7 @@ export function DesktopDiscoveryView({
     }
 
     return result;
-  }, [activeCategory, selectedGenre, minRating, searchQuery, sortBy]);
+  }, [selectedGenre, minRating, searchQuery, sortBy]);
 
   return (
     <div className="desktop-two-panel-grid">
@@ -96,46 +85,10 @@ export function DesktopDiscoveryView({
           />
         </div>
 
-        {/* Category Switcher Tabs */}
-        <div style={{ display: 'flex', gap: '6px', marginBottom: '20px' }}>
-          {[
-            { id: 'movie', label: '🎬 Фильмы' },
-            { id: 'series', label: '📺 Сериалы' },
-            { id: 'anime', label: '⛩ Аниме' }
-          ].map((cat) => {
-            const isSelected = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  triggerHaptic('light');
-                  playSound('tap');
-                  setActiveCategory(cat.id);
-                  setSelectedGenre('Все');
-                }}
-                style={{
-                  flex: 1,
-                  padding: '8px 4px',
-                  borderRadius: 'var(--radius-sm)',
-                  border: isSelected ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid rgba(255, 255, 255, 0.06)',
-                  background: isSelected ? 'rgba(255, 94, 98, 0.18)' : 'rgba(255, 255, 255, 0.02)',
-                  color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                  fontSize: '0.78rem',
-                  fontWeight: isSelected ? '700' : '500',
-                  cursor: 'pointer',
-                  textAlign: 'center'
-                }}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
-        </div>
-
         {/* Curated Collections Shelf */}
         <div style={{ marginBottom: '20px' }}>
           <div style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-sunset)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Кураторские подборки
+            Кураторские подборки кино
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {activeCollections.map((col) => (
@@ -148,126 +101,148 @@ export function DesktopDiscoveryView({
                 }}
                 style={{
                   padding: '10px 12px',
+                  borderRadius: 'var(--radius-md)',
                   background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid rgba(255, 255, 255, 0.07)',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between'
+                  gap: '10px'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = col.accent;
-                  e.currentTarget.style.background = `${col.accent}14`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                }}
+                className="hover-card-elevate"
               >
-                <div>
-                  <div style={{ fontSize: '0.825rem', fontWeight: '700', color: '#fff' }}>
+                <div style={{
+                  width: '36px',
+                  height: '48px',
+                  borderRadius: 'var(--radius-xs)',
+                  overflow: 'hidden',
+                  flexShrink: 0
+                }}>
+                  <img src={col.cover} alt={col.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: '0.825rem', fontWeight: '700', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {col.title}
                   </div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                    {col.badge}
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {col.subtitle}
                   </div>
                 </div>
-                <Play size={14} color={col.accent} fill="currentColor" />
+                <Play size={14} color="var(--accent-coral)" style={{ flexShrink: 0 }} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Genre Selector */}
+        {/* Rating Slider Filter */}
         <div style={{ marginBottom: '20px' }}>
-          <div style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Жанры
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-            {currentGenres.map((g) => {
-              const isSelected = selectedGenre === g;
-              return (
-                <button
-                  key={g}
-                  onClick={() => {
-                    triggerHaptic('light');
-                    playSound('tap');
-                    setSelectedGenre(g);
-                  }}
-                  style={{
-                    padding: '4px 10px',
-                    borderRadius: '999px',
-                    border: isSelected ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)',
-                    background: isSelected ? 'rgba(255, 94, 98, 0.16)' : 'rgba(255, 255, 255, 0.03)',
-                    color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                    fontSize: '0.75rem',
-                    fontWeight: isSelected ? '700' : '500',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {g}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Minimum Rating Slider */}
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-secondary)', marginBottom: '6px' }}>
-            <span>Мин. рейтинг</span>
-            <span style={{ color: '#ffd60a', fontFamily: 'Space Grotesk' }}>★ {minRating.toFixed(1)}</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: '600', color: 'var(--text-secondary)' }}>
+              Минимальный рейтинг
+            </span>
+            <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#ffd60a', fontFamily: 'Space Grotesk' }}>
+              ★ {minRating.toFixed(1)}
+            </span>
           </div>
           <input
             type="range"
             min="6.0"
             max="9.0"
-            step="0.2"
+            step="0.1"
             value={minRating}
             onChange={(e) => setMinRating(parseFloat(e.target.value))}
             style={{ width: '100%', accentColor: 'var(--accent-coral)' }}
           />
         </div>
+
+        {/* Sorting Switcher */}
+        <div>
+          <div style={{ fontSize: '0.8rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '6px' }}>
+            Сортировка
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            {[
+              { id: 'rating', label: 'По рейтингу' },
+              { id: 'year', label: 'По новизне' },
+              { id: 'title', label: 'По алфавиту' }
+            ].map((s) => (
+              <button
+                key={s.id}
+                onClick={() => {
+                  triggerHaptic('light');
+                  playSound('tap');
+                  setSortBy(s.id);
+                }}
+                style={{
+                  flex: 1,
+                  padding: '6px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.72rem',
+                  fontWeight: sortBy === s.id ? '700' : '500',
+                  background: sortBy === s.id ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.02)',
+                  border: sortBy === s.id ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(255, 255, 255, 0.05)',
+                  color: sortBy === s.id ? 'var(--text-primary)' : 'var(--text-muted)',
+                  cursor: 'pointer'
+                }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Right Panel: Movies Grid & Sorting Header */}
-      <div>
-        {/* Results Info & Sort Bar */}
+      {/* Right Panel: Content Grid */}
+      <div className="desktop-content-pane">
+        {/* Genre Filter Horizontal Scroll */}
         <div style={{
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '18px',
+          gap: '8px',
+          overflowX: 'auto',
           paddingBottom: '12px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+          marginBottom: '16px',
+          scrollbarWidth: 'none'
         }}>
-          <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-            Найдено: <strong style={{ color: '#fff' }}>{filteredItems.length}</strong> тайтлов
-          </div>
+          {movieGenres.map((genre) => {
+            const isSelected = selectedGenre === genre;
+            return (
+              <button
+                key={genre}
+                onClick={() => {
+                  triggerHaptic('light');
+                  playSound('tap');
+                  setSelectedGenre(genre);
+                }}
+                style={{
+                  padding: '7px 16px',
+                  borderRadius: '999px',
+                  border: isSelected ? '1px solid rgba(255, 94, 98, 0.6)' : '1px solid rgba(255, 255, 255, 0.08)',
+                  background: isSelected ? 'rgba(255, 94, 98, 0.2)' : 'rgba(255, 255, 255, 0.03)',
+                  color: isSelected ? '#ff9966' : 'var(--text-secondary)',
+                  fontSize: '0.8rem',
+                  fontWeight: isSelected ? '700' : '500',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {genre}
+              </button>
+            );
+          })}
+        </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Сортировка:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              style={{
-                background: 'rgba(16, 16, 26, 0.9)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: 'var(--radius-sm)',
-                color: 'var(--text-primary)',
-                padding: '6px 10px',
-                fontSize: '0.8rem',
-                outline: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="rating">По рейтингу ★</option>
-              <option value="year">По году выхода</option>
-              <option value="title">По названию (А-Я)</option>
-            </select>
-          </div>
+        {/* Results Header Count */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '16px'
+        }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+            Найдено фильмов: <strong style={{ color: 'var(--text-primary)' }}>{filteredItems.length}</strong>
+          </span>
         </div>
 
         {/* Media Grid */}
@@ -308,25 +283,31 @@ export function DesktopDiscoveryView({
                   }}>
                     ★ {item.rating ? Number(item.rating).toFixed(1) : '7.8'}
                   </div>
+
+                  {/* Year Tag */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '8px',
+                    background: 'rgba(0, 0, 0, 0.75)',
+                    backdropFilter: 'blur(8px)',
+                    borderRadius: '4px',
+                    padding: '1px 6px',
+                    fontSize: '0.7rem',
+                    color: '#e5e5ea'
+                  }}>
+                    {item.year}
+                  </div>
                 </div>
 
-                <div style={{ padding: '12px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <h3 style={{
-                      fontSize: '0.9rem',
-                      fontWeight: '700',
-                      lineHeight: '1.3',
-                      marginBottom: '4px',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 1,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
-                    }}>
-                      {item.titleRu || item.title}
-                    </h3>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                      {item.year} • {item.genres?.split(',')[0]}
-                    </div>
+                <div className="desktop-media-info">
+                  <h4 className="desktop-media-title">
+                    {item.titleRu || item.title}
+                  </h4>
+                  <div className="desktop-media-meta">
+                    <span>{item.genres?.split(',')[0]}</span>
+                    <span>•</span>
+                    <span>{item.country || 'Кино'}</span>
                   </div>
                 </div>
               </div>

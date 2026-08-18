@@ -41,7 +41,7 @@ export function DesktopFeedView({
         />
       )}
 
-      {/* Top Filter Bar: Categories + Mood Chips */}
+      {/* Top Cine-Moods Bar */}
       <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -50,47 +50,6 @@ export function DesktopFeedView({
         marginBottom: '16px',
         zIndex: 20
       }}>
-        {/* Category Switcher */}
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-          background: 'rgba(16, 16, 24, 0.75)',
-          backdropFilter: 'blur(16px)',
-          padding: '4px',
-          borderRadius: '999px',
-          border: '1px solid rgba(255, 255, 255, 0.08)'
-        }}>
-          {categories.map((cat) => {
-            const isSelected = selectedCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  triggerHaptic('light');
-                  playSound('tap');
-                  onSelectCategory(cat.id);
-                }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '6px 16px',
-                  borderRadius: '999px',
-                  border: isSelected ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid transparent',
-                  background: isSelected ? 'rgba(255, 94, 98, 0.2)' : 'transparent',
-                  color: isSelected ? '#ff9966' : 'var(--text-secondary)',
-                  fontSize: '0.825rem',
-                  fontWeight: isSelected ? '700' : '500',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <span>{cat.icon}</span>
-                <span>{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
 
         {/* Cine-Mood Presets */}
         <div style={{
