@@ -1,137 +1,151 @@
-// MatchWatch — Gemini AI Cinema Concierge & Multi-Tier Recommender Engine
+// MatchWatch — Master Gemini AI Cinema Concierge & High-Precision Recommender
 import { movies } from '../data/movies.js';
-import { calculateVectorDistance, calculateUserTasteVector } from './recommendationEngine.js';
+import { calculateVectorDistance } from './recommendationEngine.js';
 
 /**
- * Heuristic semantic fallback keyword map to 5D vector biases & genre matching
+ * Rich Semantic Tropes & Keyword Dictionary
  */
-const KEYWORD_VIBE_MAP = {
-  // Atmospheric / Moody
-  'мрачн': { darkness: 9, energy: 5, intellect: 7, genres: ['триллер', 'криминал', 'детектив', 'драма'] },
-  'нуар': { darkness: 10, intellect: 8, energy: 4, genres: ['криминал', 'детектив', 'триллер'] },
-  'киберпанк': { darkness: 8, energy: 8, intellect: 8, dynamism: 8, genres: ['фантастика', 'боевик', 'триллер'] },
-  'неон': { darkness: 7, energy: 8, dynamism: 8, genres: ['фантастика', 'триллер'] },
-  
-  // Thought-provoking / Brain
-  'твист': { intellect: 9, darkness: 7, genres: ['триллер', 'детектив', 'драма'] },
-  'мозг': { intellect: 10, darkness: 6, genres: ['фантастика', 'триллер', 'драма'] },
-  'запутан': { intellect: 9, darkness: 6, genres: ['детектив', 'триллер'] },
-  'смысл': { intellect: 9, emotion: 8, genres: ['драма', 'фантастика'] },
-  'нолан': { intellect: 9, dynamism: 8, genres: ['фантастика', 'боевик', 'триллер'] },
-  
-  // High Energy / Action
-  'адреналин': { energy: 10, dynamism: 10, darkness: 5, genres: ['боевик', 'триллер', 'приключения'] },
-  'драйв': { energy: 9, dynamism: 9, genres: ['боевик', 'криминал', 'триллер'] },
-  'экшн': { energy: 9, dynamism: 9, genres: ['боевик', 'приключения'] },
-  'погоня': { dynamism: 10, energy: 9, genres: ['боевик', 'криминал'] },
-  
-  // Chill / Fun / Comedy
-  'смешн': { energy: 7, emotion: 9, darkness: 2, genres: ['комедия'] },
-  'комед': { energy: 7, emotion: 8, darkness: 2, genres: ['комедия'] },
-  'пицц': { energy: 6, emotion: 8, darkness: 3, genres: ['комедия', 'приключения', 'боевик'] },
-  'друг': { emotion: 8, energy: 7, darkness: 3, genres: ['комедия', 'приключения'] },
-  'легк': { darkness: 2, emotion: 8, energy: 6, genres: ['комедия', 'мелодрама'] },
-  
-  // Deep Emotion / Romance
-  'слез': { emotion: 10, darkness: 6, energy: 4, genres: ['драма', 'мелодрама'] },
-  'любов': { emotion: 10, darkness: 3, energy: 5, genres: ['мелодрама', 'драма'] },
-  'романт': { emotion: 9, darkness: 3, energy: 5, genres: ['мелодрама', 'комедия'] },
-  'душевн': { emotion: 9, darkness: 3, intellect: 6, genres: ['драма', 'комедия'] },
-  
-  // Sci-Fi & Cosmic
-  'космос': { intellect: 8, emotion: 7, dynamism: 7, genres: ['фантастика', 'приключения'] },
-  'будущ': { intellect: 8, energy: 7, genres: ['фантастика'] },
-  'научн': { intellect: 9, genres: ['фантастика', 'документальный'] }
-};
+const TROPES_DICTIONARY = [
+  // Psychological / Twists / Intellect
+  {
+    keys: ['твист', 'концовк', 'неожидан', 'финал', 'развязк', 'головоломк', 'мозг', 'запутан', 'смысл'],
+    vectorBias: { intellect: 10, darkness: 7, dynamism: 6 },
+    genres: ['триллер', 'детектив', 'фантастика', 'драма'],
+    badgeTemplate: (m) => `🧠 Закрученная головоломка (Интеллект ${m.sensationVector?.intellect || 9}/10) с непредсказуемым финалом`
+  },
+  // Noir / Cyberpunk / Gritty Atmospheric
+  {
+    keys: ['мрачн', 'нуар', 'дожд', 'киберпанк', 'неон', 'криминал', 'детектив', 'мафи', 'гангстер'],
+    vectorBias: { darkness: 9, energy: 6, intellect: 8, dynamism: 7 },
+    genres: ['криминал', 'детектив', 'триллер', 'фантастика'],
+    badgeTemplate: (m) => `⚡ Густая нео-нуарная атмосфера (Мрачность ${m.sensationVector?.darkness || 8}/10) и высокий саспенс`
+  },
+  // High Octane / Adrenaline / Action
+  {
+    keys: ['адреналин', 'драйв', 'экшн', 'погон', 'перестрелк', 'скорост', 'динамик', 'боевик', 'крут'],
+    vectorBias: { energy: 10, dynamism: 10, darkness: 5 },
+    genres: ['боевик', 'триллер', 'приключения', 'криминал'],
+    badgeTemplate: (m) => `🔥 Бешеный темпоритм (Динамика ${m.sensationVector?.dynamism || 9}/10) и адреналиновые сцены`
+  },
+  // Chill / Pizza with friends / Comedy
+  {
+    keys: ['пицц', 'друг', 'компани', 'вечер', 'смешн', 'комед', 'легк', 'расслаб', 'угар', 'весел'],
+    vectorBias: { energy: 7, emotion: 8, darkness: 2, dynamism: 7 },
+    genres: ['комедия', 'приключения', 'боевик'],
+    badgeTemplate: (m) => `🍕 Идеально для отдыха с друзьями: искрометный юмор и рейтинг ★${Number(m.rating || 8.0).toFixed(1)}`
+  },
+  // Sci-Fi / Deep Space / Cosmic
+  {
+    keys: ['космос', 'вселенн', 'будущ', 'научн', 'фантастик', 'робот', 'ии', 'время', 'интерстеллар'],
+    vectorBias: { intellect: 9, emotion: 8, dynamism: 7, energy: 7 },
+    genres: ['фантастика', 'приключения', 'драма'],
+    badgeTemplate: (m) => `🌌 Монументальная космическая эстетика и глубокие философские размышления`
+  },
+  // Tearjerker / Deep Emotional Drama / Romance
+  {
+    keys: ['слез', 'рыдат', 'плакат', 'любов', 'романтик', 'драм', 'душевн', 'трогательн', 'чувств', 'сердц'],
+    vectorBias: { emotion: 10, darkness: 4, intellect: 7, energy: 4 },
+    genres: ['драма', 'мелодрама', 'биография'],
+    badgeTemplate: (m) => `💔 Пронзительная эмоциональная глубина (Эмоции ${m.sensationVector?.emotion || 9}/10) до мурашек`
+  },
+  // Directors
+  {
+    keys: ['нолан', 'кристофер нолан'],
+    vectorBias: { intellect: 10, dynamism: 8, energy: 8 },
+    genres: ['фантастика', 'триллер', 'боевик', 'детектив'],
+    badgeTemplate: (m) => `⏳ Масштабный визуальный нарратив и филигранная режиссура в духе Кристофера Нолана`
+  },
+  {
+    keys: ['финчер', 'дэвид финчер'],
+    vectorBias: { intellect: 9, darkness: 9, dynamism: 7 },
+    genres: ['триллер', 'детектив', 'криминал', 'драма'],
+    badgeTemplate: (m) => `🔍 Безупречный психологический детектив с хирургически выверенной режиссурой Финчера`
+  },
+  {
+    keys: ['тарантино', 'квентин тарантино'],
+    vectorBias: { energy: 9, dynamism: 9, intellect: 8, darkness: 6 },
+    genres: ['криминал', 'боевик', 'комедия', 'драма'],
+    badgeTemplate: (m) => `🎬 Культовые диалоги, острый черный юмор и неподражаемый авторский стиль`
+  }
+];
 
 /**
- * Local Semantic & 5D Vector Fallback Engine (Zero Downtime)
+ * Highly Intelligent Semantic & 5D Vector Matcher (Guaranteed 25 Movies)
  */
 export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, limit = 25) {
   const q = prompt.toLowerCase().trim();
   const vector = userTasteVector || { energy: 6, darkness: 5, intellect: 6, emotion: 7, dynamism: 6 };
 
-  // Calculate matching keyword profiles
-  const matchingVibes = [];
-  for (const [key, vibe] of Object.entries(KEYWORD_VIBE_MAP)) {
-    if (q.includes(key)) {
-      matchingVibes.push(vibe);
-    }
-  }
+  // Find matching tropes
+  const activeTropes = TROPES_DICTIONARY.filter((t) => t.keys.some((k) => q.includes(k)));
 
-  // Composite target vector based on user query + user taste
+  // Build target sensation vector
   let targetVector = { ...vector };
   let targetGenres = new Set();
 
-  if (matchingVibes.length > 0) {
-    let energySum = 0, darknessSum = 0, intellectSum = 0, emotionSum = 0, dynamismSum = 0;
-    matchingVibes.forEach((v) => {
-      energySum += v.energy ?? vector.energy;
-      darknessSum += v.darkness ?? vector.darkness;
-      intellectSum += v.intellect ?? vector.intellect;
-      emotionSum += v.emotion ?? vector.emotion;
-      dynamismSum += v.dynamism ?? vector.dynamism;
-      if (v.genres) v.genres.forEach((g) => targetGenres.add(g));
+  if (activeTropes.length > 0) {
+    let e = 0, d = 0, i = 0, em = 0, dy = 0;
+    activeTropes.forEach((t) => {
+      e += t.vectorBias.energy;
+      d += t.vectorBias.darkness;
+      i += t.vectorBias.intellect;
+      em += t.vectorBias.emotion ?? vector.emotion;
+      dy += t.vectorBias.dynamism ?? vector.dynamism;
+      t.genres.forEach((g) => targetGenres.add(g));
     });
-
-    const count = matchingVibes.length;
+    const len = activeTropes.length;
     targetVector = {
-      energy: Math.round((energySum / count + vector.energy) / 2),
-      darkness: Math.round((darknessSum / count + vector.darkness) / 2),
-      intellect: Math.round((intellectSum / count + vector.intellect) / 2),
-      emotion: Math.round((emotionSum / count + vector.emotion) / 2),
-      dynamism: Math.round((dynamismSum / count + vector.dynamism) / 2)
+      energy: Math.round((e / len + vector.energy) / 2),
+      darkness: Math.round((d / len + vector.darkness) / 2),
+      intellect: Math.round((i / len + vector.intellect) / 2),
+      emotion: Math.round((em / len + vector.emotion) / 2),
+      dynamism: Math.round((dy / len + vector.dynamism) / 2)
     };
   }
 
-  // Score movies based on query text match, genre affinity, and 5D vector proximity
+  // Score all 440 movies
   const scored = movies.map((m) => {
-    let score = (m.rating || 7.0) * 0.4;
+    let score = (m.rating || 7.5) * 0.5;
+
     const mTitle = (m.titleRu || m.title || '').toLowerCase();
     const mDirector = (m.director || '').toLowerCase();
     const mActors = (m.actors || '').toLowerCase();
     const mGenres = (m.genres || '').toLowerCase();
     const mDesc = (m.description || '').toLowerCase();
 
-    // Direct text hit bonus
-    if (q && (mTitle.includes(q) || mDirector.includes(q) || mActors.includes(q))) {
-      score += 5.0;
-    }
-    if (q && mDesc.includes(q)) {
-      score += 2.0;
+    // Query token hits
+    const queryTokens = q.split(/\s+/).filter((t) => t.length >= 3);
+    for (const tok of queryTokens) {
+      if (mTitle.includes(tok)) score += 6.0;
+      if (mDirector.includes(tok)) score += 5.0;
+      if (mActors.includes(tok)) score += 3.0;
+      if (mGenres.includes(tok)) score += 3.0;
+      if (mDesc.includes(tok)) score += 2.0;
     }
 
-    // Genre affinity bonus
+    // Genre affinity
     if (targetGenres.size > 0) {
-      let genreHits = 0;
+      let gHits = 0;
       targetGenres.forEach((g) => {
-        if (mGenres.includes(g)) genreHits++;
+        if (mGenres.includes(g)) gHits++;
       });
-      score += genreHits * 1.5;
+      score += gHits * 2.0;
     }
 
-    // 5D Vector proximity
+    // 5D Vector alignment distance
     const dist = calculateVectorDistance(m.sensationVector, targetVector);
-    score -= dist * 0.25;
+    score -= dist * 0.3;
 
-    // Small random noise to keep varied
-    score += Math.random() * 0.3;
+    // Small variance to keep feed fresh
+    score += Math.random() * 0.2;
 
-    // Generate personalized AI reason badge
+    // Dynamic high-quality reason badge
     let reason = '';
-    if (q.includes('твист') || q.includes('мозг')) {
-      reason = `🧠 Высокий интеллект (${m.sensationVector?.intellect || 8}/10) и непредсказуемый сюжет`;
-    } else if (q.includes('мрачн') || q.includes('нуар')) {
-      reason = `⚡ Глубокая нуарная атмосфера (${m.sensationVector?.darkness || 8}/10) и высокое напряжение`;
-    } else if (q.includes('комед') || q.includes('смешн') || q.includes('пицц')) {
-      reason = `🍕 Идеально для отдыха и отличного настроения (Рейтинг ★${m.rating || 8.0})`;
-    } else if (q.includes('космос')) {
-      reason = `🌌 Масштабная космическая одиссея и глубокая визуальная эстетика`;
-    } else if (q.includes('адреналин') || q.includes('экшн') || q.includes('драйв')) {
-      reason = `🔥 Максимальный динамизм (${m.sensationVector?.dynamism || 8}/10) и мощный драйв`;
+    if (activeTropes.length > 0) {
+      reason = activeTropes[0].badgeTemplate(m);
     } else {
-      const matchPct = Math.min(99, Math.max(88, Math.round(100 - dist * 4)));
-      reason = `✨ Совпадение ${matchPct}% с вашим запросом и 5D-вкусом`;
+      const matchPct = Math.min(99, Math.max(89, Math.round(100 - dist * 3.5)));
+      reason = `✨ Совпадение ${matchPct}% по параметрам сюжета, режиссуры и 5D-вкусу`;
     }
 
     return {
@@ -145,11 +159,12 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
 
   scored.sort((a, b) => b.score - a.score);
 
+  // Return strictly top 25 unique movies
   return scored.slice(0, limit).map((s) => s.movie);
 }
 
 /**
- * Main Gemini AI Concierge Recommender with Multi-Tier Fallback
+ * Master Gemini AI Concierge Engine (25 Curated Movies)
  */
 export async function generateGeminiRecommendations({
   prompt,
@@ -167,16 +182,16 @@ export async function generateGeminiRecommendations({
 
   const cleanPrompt = prompt.trim();
 
-  // Extract liked titles for context
+  // Extract previously liked titles
   const likedTitles = movies
     .filter((m) => likedIds.includes(m.id))
     .map((m) => m.titleRu || m.title)
     .slice(0, 10);
 
-  // 1. Try Vercel Serverless Function Proxy (/api/gemini-recommend)
+  // Tier 1: Try Vercel Serverless Function Proxy (/api/gemini-recommend)
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 7500);
 
     const response = await fetch('/api/gemini-recommend', {
       method: 'POST',
@@ -196,32 +211,26 @@ export async function generateGeminiRecommendations({
 
     if (response.ok) {
       const data = await response.json();
-      if (data && data.success && Array.isArray(data.deck) && data.deck.length > 0) {
+      if (data && data.success && Array.isArray(data.deck) && data.deck.length === 25) {
         return {
           success: true,
           deck: data.deck,
-          aiSummary: data.aiSummary || `Подборка от MatchWatch AI по запросу «${cleanPrompt}»`,
+          aiSummary: data.aiSummary || `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
           isAi: true,
           source: 'gemini_api_serverless'
         };
       }
     }
   } catch (err) {
-    // Network or timeout in browser/offline - gracefully fall through to Tier 2
+    // Graceful progression to Tier 2
   }
 
-  // 2. Try Client-Side Direct Key (if configured in Vite .env during dev)
+  // Tier 2: Direct Client API key fallback (Dev environment)
   try {
     const clientKey = typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY;
     if (clientKey && clientKey !== 'your_gemini_api_key' && !clientKey.includes('TODO')) {
-      const movieCatalogIndex = catalog.slice(0, 200).map((m) => ({
-        id: m.id,
-        title: m.titleRu || m.title,
-        year: m.year,
-        genres: m.genres,
-        rating: m.rating
-      }));
-
+      const catalogSummary = catalog.map((m) => `[ID: ${m.id}] "${m.titleRu}" (${m.year}, ${m.genres}) | Реж: ${m.director} | Рейтинг: ${m.rating}`).join('\n');
+      
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${clientKey}`;
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -232,14 +241,14 @@ export async function generateGeminiRecommendations({
               role: 'user',
               parts: [
                 {
-                  text: `Select 25 movie IDs from this catalog for query: "${cleanPrompt}". Return JSON: { "recommendations": [{ "id": number, "reason": "short Russian rationale" }], "aiSummary": "Russian summary" }. Catalog:\n${JSON.stringify(movieCatalogIndex)}`
+                  text: `Выбери РОВНО 25 фильмов из этого каталога под запрос: "${cleanPrompt}". Верни JSON: { "recommendations": [{ "id": number, "reason": "сочное синефильское описание 1-2 предложения" }], "aiSummary": "резюме" }.\nКаталог:\n${catalogSummary}`
                 }
               ]
             }
           ],
           generationConfig: {
             responseMimeType: 'application/json',
-            temperature: 0.3
+            temperature: 0.35
           }
         })
       });
@@ -251,16 +260,25 @@ export async function generateGeminiRecommendations({
           const parsed = JSON.parse(raw);
           const map = new Map(catalog.map((m) => [m.id, m]));
           const deck = [];
+          const seen = new Set();
+
           for (const r of parsed.recommendations || []) {
-            if (r.id && map.has(r.id)) {
-              deck.push({ ...map.get(r.id), aiReason: r.reason || 'Рекомендация MatchWatch AI' });
+            const numId = Number(r.id);
+            if (numId && map.has(numId) && !seen.has(numId)) {
+              seen.add(numId);
+              deck.push({
+                ...map.get(numId),
+                aiReason: r.reason || `Рекомендация MatchWatch AI`
+              });
             }
+            if (deck.length >= 25) break;
           }
-          if (deck.length >= 10) {
+
+          if (deck.length >= 25) {
             return {
               success: true,
-              deck,
-              aiSummary: parsed.aiSummary || `Подборка от MatchWatch AI по запросу «${cleanPrompt}»`,
+              deck: deck.slice(0, 25),
+              aiSummary: parsed.aiSummary || `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
               isAi: true,
               source: 'gemini_api_client'
             };
@@ -270,12 +288,12 @@ export async function generateGeminiRecommendations({
     }
   } catch (e) {}
 
-  // 3. Guaranteed Tier 3: Local Semantic & 5D Vector Engine (Instant & 100% Reliable)
+  // Tier 3: High-Precision Semantic & 5D Vector Fallback (Zero Downtime, Exactly 25 Movies)
   const localDeck = getSemanticAndVectorDeck(cleanPrompt, userTasteVector, 25);
   return {
     success: true,
     deck: localDeck,
-    aiSummary: `Умная 5D-подборка по запросу «${cleanPrompt}»`,
+    aiSummary: `Кураторская 5D-подборка из 25 фильмов по запросу «${cleanPrompt}»`,
     isAi: false,
     isFallback: true,
     source: 'local_5d_engine'
