@@ -4,7 +4,7 @@ import { ActionControls } from './ActionControls.jsx';
 import { useSwipePhysics } from '../../hooks/useSwipePhysics.js';
 import { prefetchPosters } from '../../engine/imagePrefetcher.js';
 import { ChamaGuide } from '../common/ChamaGuide.jsx';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, Sparkles } from 'lucide-react';
 
 export function SwipeDeck({
   movies = [],
@@ -13,7 +13,10 @@ export function SwipeDeck({
   onUndo,
   canUndo = false,
   onOpenDetails,
-  onResetDeck
+  onResetDeck,
+  isAiDeck = false,
+  activeAiPrompt = null,
+  onOpenAiModal
 }) {
   const currentMovie = movies[currentIndex];
   const nextMovies = movies.slice(currentIndex + 1, currentIndex + 3);
@@ -51,19 +54,39 @@ export function SwipeDeck({
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '440px',
-        padding: '20px'
+        padding: '20px',
+        width: '100%'
       }}>
         <ChamaGuide
           state="empty"
-          text="Колода закончилась! Все подходящие фильмы были просмотрены."
+          text={
+            isAiDeck && activeAiPrompt
+              ? `Колода окончена! Вы просмотрели все ${movies.length} фильмов по запросу «${activeAiPrompt}». Давайте придумаем, что ещё посмотреть!`
+              : "Колода закончилась! Все подходящие фильмы были просмотрены."
+          }
           actionButton={
-            <button
-              onClick={onResetDeck}
-              className="btn-primary"
-              style={{ marginTop: '8px' }}
-            >
-              <RotateCcw size={16} /> Начать заново
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '280px', marginTop: '12px' }}>
+              {isAiDeck && onOpenAiModal && (
+                <button
+                  onClick={onOpenAiModal}
+                  className="btn-primary"
+                  style={{
+                    background: 'linear-gradient(135deg, #FF5E62 0%, #FF9966 100%)',
+                    boxShadow: '0 4px 15px rgba(255, 94, 98, 0.4)',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <Sparkles size={16} /> Придумать новый AI запрос
+                </button>
+              )}
+              <button
+                onClick={onResetDeck}
+                className="btn-secondary"
+                style={{ justifyContent: 'center' }}
+              >
+                <RotateCcw size={16} /> {isAiDeck ? 'Вернуться к общей ленте' : 'Начать заново'}
+              </button>
+            </div>
           }
         />
       </div>

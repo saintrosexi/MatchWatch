@@ -45,7 +45,9 @@ export function DesktopLayout({
   currentFilters,
   onApplyFilters,
   activeMatchCelebration,
-  onCloseMatchCelebration
+  onCloseMatchCelebration,
+  isAiDeck = false,
+  activeAiPrompt = null
 }) {
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
   const [selectedActorForHub, setSelectedActorForHub] = useState(null);
@@ -104,6 +106,8 @@ export function DesktopLayout({
               selectedMood={selectedMood}
               onSelectMood={onSelectMood}
               onOpenAIPrompt={() => setIsAIPromptOpen(true)}
+              isAiDeck={isAiDeck}
+              activeAiPrompt={activeAiPrompt}
             />
           ) : activeTab === 'movies' ? (
             <DesktopDiscoveryView

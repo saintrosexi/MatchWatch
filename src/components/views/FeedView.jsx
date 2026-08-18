@@ -15,7 +15,9 @@ export function FeedView({
   onResetDeck,
   selectedMood = null,
   onSelectMood,
-  onOpenAIPrompt
+  onOpenAIPrompt,
+  isAiDeck = false,
+  activeAiPrompt = null
 }) {
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -126,6 +128,9 @@ export function FeedView({
         canUndo={canUndo}
         onOpenDetails={onOpenDetails}
         onResetDeck={onResetDeck}
+        isAiDeck={isAiDeck}
+        activeAiPrompt={activeAiPrompt}
+        onOpenAiModal={onOpenAIPrompt}
       />
     </div>
   );

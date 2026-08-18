@@ -16,7 +16,9 @@ export function DesktopFeedView({
   onResetDeck,
   selectedMood = null,
   onSelectMood,
-  onOpenAIPrompt
+  onOpenAIPrompt,
+  isAiDeck = false,
+  activeAiPrompt = null
 }) {
   const currentMovie = deck[currentIndex];
   const currentPoster = currentMovie ? getPosterUrl(currentMovie) : '';
@@ -145,6 +147,9 @@ export function DesktopFeedView({
         canUndo={canUndo}
         onOpenDetails={onOpenDetails}
         onResetDeck={onResetDeck}
+        isAiDeck={isAiDeck}
+        activeAiPrompt={activeAiPrompt}
+        onOpenAiModal={onOpenAIPrompt}
       />
     </div>
   );

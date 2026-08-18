@@ -49,7 +49,7 @@ export function AICinemaPromptModal({
       if (result && result.success && result.deck.length > 0) {
         playSound('match_celebration');
         triggerHaptic('success');
-        onApplyAIDeck(result.deck, result.aiSummary);
+        onApplyAIDeck(result.deck, result.aiSummary, q);
         onClose();
       } else {
         setErrorMsg('Не удалось собрать колоду. Попробуйте другой запрос.');

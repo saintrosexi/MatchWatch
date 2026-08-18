@@ -26,6 +26,22 @@ export function normalizeQueryText(text = '') {
  */
 const FRANCHISES_AND_CHARACTERS = [
   {
+    name: 'samurai_cinema',
+    triggers: ['самура', 'самураи', 'самурай', 'самураев', 'самурайский', 'самурайское', 'катана', 'куросава', 'ронин', 'японский воин', 'сёгун'],
+    requiredMovieIds: [33, 165, 128, 112, 138],
+    relatedKeywords: ['самураи', 'самурай', 'самурайский экшен', 'катана', 'куросава', 'япония', 'ронин', 'боевые искусства'],
+    relatedGenres: ['боевик', 'драма', 'приключения', 'военный'],
+    vectorBias: { energy: 8, darkness: 6, intellect: 8, emotion: 7, dynamism: 8 },
+    badgeTemplate: (m) => {
+      if (m.id === 33) return `⚔️ Легендарный шедевр Акиры Куросавы: величайший самурайский эпос в истории кино (★8.6)`;
+      if (m.id === 165) return `⚔️ Культовый самурайский экшен: Тосиро Мифунэ в роли хитроумного ронина Сандзюро (★8.2)`;
+      if (m.id === 128) return `⚔️ Монументальная трагедия Куросавы: эпические самурайские баталии феодальной Японии (★8.2)`;
+      if (m.id === 112) return `⚔️ Философская загадка Куросавы о чести, правде и самурайской дуэли (★8.1)`;
+      if (m.id === 138) return `⚔️ Виртуозный экшн Квентина Тарантино с катанами Хаттори Хандзо (★8.7)`;
+      return `⚔️ Культовый самурайский экшн и боевые искусства (★${Number(m.rating || 8.0).toFixed(1)})`;
+    }
+  },
+  {
     name: 'batman_dc',
     triggers: ['бетмен', 'бетмэн', 'бэтмен', 'бэтмэн', 'batman', 'темныи рыцарь', 'темный рыцарь', 'готем', 'готэм', 'брюс уэин', 'брюс уэйн', 'джокер', 'джокера', 'беил', 'бэйл'],
     requiredMovieIds: [3, 86, 122], // Тёмный рыцарь, Бэтмен: Начало, Тёмный рыцарь: Возрождение легенды
@@ -197,7 +213,7 @@ const STOP_WORDS = new Set([
 function getQueryStem(token = '') {
   if (token.length <= 3) return token;
   return token
-    .replace(/(е|и|у|а|о|ы|ом|ем|ам|ами|ах|ях|ой|ей|ую|юю|ого|его|ому|ему|ым|им|ых|их|ся|сь)$/gi, '')
+    .replace(/(ов|ев|ёв|ин|ий|ый|ая|ое|ые|ие|ям|ях|ями|ами|ом|ем|ам|ах|ой|ей|ую|юю|ого|его|ому|ему|ым|им|ых|их|ся|сь|е|и|у|а|о|ы|я|ю)$/gi, '')
     .trim();
 }
 
@@ -257,11 +273,13 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
 
   // 3. Score all 440 movies with enriched metadata
   const scored = movies.map((m) => {
-    let score = (m.rating || 7.5) * 0.5;
+    let score = (m.rating || 7.5) * 0.4;
+    let matchHits = 0;
 
     // Hard Boost for must-include franchise IDs
     if (mustIncludeIds.has(m.id)) {
       score += 100.0;
+      matchHits += 5;
     }
 
     const normTitleRu = normalizeQueryText(m.titleRu);
@@ -276,47 +294,90 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     const movieTropes = (m.tropes || []).map(normalizeQueryText);
 
     // 1. Full normalized query exact phrase match in Title (Massive Boost)
-    if (normTitleRu.includes(normQ) || normTitleOrig.includes(normQ)) score += 60.0;
-    if (normDesc.includes(normQ)) score += 25.0;
-    if (normDirector.includes(normQ)) score += 35.0;
+    if (normTitleRu.includes(normQ) || normTitleOrig.includes(normQ)) {
+      score += 60.0;
+      matchHits += 3;
+    }
+    if (normDesc.includes(normQ)) {
+      score += 25.0;
+      matchHits += 2;
+    }
+    if (normDirector.includes(normQ)) {
+      score += 35.0;
+      matchHits += 3;
+    }
 
     // 2. Thematic Keywords & Tropes
     for (const tok of allSearchTokens) {
       if (movieKeywords.some((k) => k.includes(tok) || tok.includes(k))) {
         score += 30.0;
+        matchHits++;
       }
       if (movieTropes.some((tr) => tr.includes(tok) || tok.includes(tr))) {
         score += 25.0;
+        matchHits++;
       }
     }
 
     // 3. Individual query tokens in Title / Director / Actors
     for (const tok of allSearchTokens) {
-      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) score += 15.0;
-      if (normDirector.includes(tok)) score += 10.0;
-      if (normActors.includes(tok)) score += 6.0;
-      if (normGenres.includes(tok)) score += 5.0;
-      if (normDesc.includes(tok)) score += 4.0;
+      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) {
+        score += 15.0;
+        matchHits++;
+      }
+      if (normDirector.includes(tok)) {
+        score += 10.0;
+        matchHits++;
+      }
+      if (normActors.includes(tok)) {
+        score += 6.0;
+        matchHits++;
+      }
+      if (normGenres.includes(tok)) {
+        score += 5.0;
+        matchHits++;
+      }
+      if (normDesc.includes(tok)) {
+        score += 4.0;
+        matchHits++;
+      }
     }
 
     // 4. Country & Era matches
     if ((normQ.includes('советск') || normQ.includes('ссср')) && (normCountry.includes('ссср') || normEra.includes('советск'))) {
       score += 50.0;
+      matchHits += 2;
     }
     if ((normQ.includes('чб') || normQ.includes('черно бел') || normQ.includes('монохром')) && m.isBW) {
       score += 45.0;
+      matchHits += 2;
     }
-    if (normQ.includes('90') && normEra.includes('90')) score += 30.0;
-    if (normQ.includes('2000') && normEra.includes('2000')) score += 30.0;
+    if (normQ.includes('90') && normEra.includes('90')) {
+      score += 30.0;
+      matchHits++;
+    }
+    if (normQ.includes('2000') && normEra.includes('2000')) {
+      score += 30.0;
+      matchHits++;
+    }
 
     // 5. Franchise related keywords
     if (matchedFranchises.length > 0) {
       for (const f of matchedFranchises) {
         for (const kw of f.relatedKeywords) {
           const normKw = normalizeQueryText(kw);
-          if (normTitleRu.includes(normKw) || normTitleOrig.includes(normKw)) score += 12.0;
-          if (normDesc.includes(normKw)) score += 6.0;
-          if (normDirector.includes(normKw)) score += 8.0;
+          if (normTitleRu.includes(normKw) || normTitleOrig.includes(normKw)) {
+            score += 12.0;
+            matchHits++;
+          }
+          if (normDesc.includes(normKw)) {
+            score += 6.0;
+            matchHits++;
+          }
+          if (normDirector.includes(normKw)) {
+            score += 8.0;
+            matchHits++;
+          }
         }
       }
     }
@@ -339,14 +400,24 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
         ...m,
         aiReason: reason
       },
-      score
+      score,
+      matchHits
     };
   });
 
-  scored.sort((a, b) => b.score - a.score);
+  // Strict relevance filter: if specific search tokens were provided, only return genuine matches!
+  let candidates = scored;
+  if (allSearchTokens.length > 0) {
+    const relevant = scored.filter((s) => s.matchHits > 0);
+    if (relevant.length > 0) {
+      candidates = relevant;
+    }
+  }
 
-  // Return strictly top 25 unique movies
-  return scored.slice(0, limit).map((s) => s.movie);
+  candidates.sort((a, b) => b.score - a.score);
+
+  // Return strictly top unique relevant movies (up to limit)
+  return candidates.slice(0, limit).map((s) => s.movie);
 }
 
 /**

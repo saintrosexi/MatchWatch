@@ -130,6 +130,7 @@ export function App() {
   const [currentFilters, setCurrentFilters] = useState({});
   const [swipeHistory, setSwipeHistory] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeAiPrompt, setActiveAiPrompt] = useState(null);
 
   // Deck Generation with Mood and Custom Filters
   const buildFilteredDeck = useCallback((mood = selectedMood, filters = currentFilters) => {
@@ -153,6 +154,7 @@ export function App() {
       return;
     }
 
+    setActiveAiPrompt(null);
     const newDeck = buildFilteredDeck(newMood, newFilters);
     setDeck(newDeck);
     setCurrentIndex(0);
@@ -214,8 +216,8 @@ export function App() {
 
     setCurrentIndex((prev) => prev + 1);
 
-    // Replenish cards if running low
-    if (currentIndex >= deck.length - 6) {
+    // Replenish cards if running low (ONLY for standard feed, NEVER for custom AI deck)
+    if (!activeAiPrompt && currentIndex >= deck.length - 6) {
       const additional = getRecommendedDeck({
         likedIds: [...safeLikedIds, ...(direction === 'like' ? [movie.id] : [])],
         dislikedIds: [...safeDislikedIds, ...(direction === 'pass' ? [movie.id] : [])],
@@ -254,6 +256,7 @@ export function App() {
   // Launch Curated Collection as a Swipe Deck
   const handleLaunchCollectionDeck = (collection) => {
     if (!collection) return;
+    setActiveAiPrompt(null);
     refreshDeck(null, {}, collection.movies);
     setActiveTab('feed');
     showIslandAlert('Подборка загружена', collection.title, '🎬');
@@ -262,6 +265,7 @@ export function App() {
   // Launch Actor Filmography Deck
   const handleLaunchActorDeck = (actorName) => {
     if (!actorName) return;
+    setActiveAiPrompt(null);
     const actorDeck = getRecommendedDeck({
       actorName,
       likedIds: safeLikedIds,
@@ -277,17 +281,19 @@ export function App() {
   // Launch CineVault Saved Movies Deck
   const handleLaunchVaultDeck = (savedMovies) => {
     if (!savedMovies || savedMovies.length === 0) return;
+    setActiveAiPrompt(null);
     refreshDeck(null, {}, savedMovies);
     setActiveTab('feed');
     showIslandAlert('Фильмотека', `Загружено ${savedMovies.length} фильмов`, '📁');
   };
 
-  // Launch Gemini AI Concierge 25-movie Smart Deck
-  const handleLaunchAIDeck = (aiDeck, aiSummary) => {
+  // Launch Gemini AI Concierge Smart Deck
+  const handleLaunchAIDeck = (aiDeck, aiSummary, prompt) => {
     if (!aiDeck || aiDeck.length === 0) return;
+    setActiveAiPrompt(prompt || 'AI подборка');
     refreshDeck(null, {}, aiDeck);
     setActiveTab('feed');
-    showIslandAlert('✨ AI-колода готова', aiSummary || '25 фильмов от MatchWatch AI', '✨');
+    showIslandAlert('✨ AI-колода готова', aiSummary || `${aiDeck.length} фильмов от MatchWatch AI`, '✨');
   };
 
   // Start Room Swiping Session
@@ -364,6 +370,8 @@ export function App() {
         }}
         activeMatchCelebration={activeMatchCelebration}
         onCloseMatchCelebration={() => setActiveMatchCelebration(null)}
+        isAiDeck={Boolean(activeAiPrompt)}
+        activeAiPrompt={activeAiPrompt}
       />
     );
   }
@@ -410,6 +418,8 @@ export function App() {
               refreshDeck(mood, currentFilters);
             }}
             onOpenAIPrompt={() => setIsAIPromptOpen(true)}
+            isAiDeck={Boolean(activeAiPrompt)}
+            activeAiPrompt={activeAiPrompt}
           />
         ) : activeTab === 'discovery' ? (
           <DiscoveryView
