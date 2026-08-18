@@ -1,6 +1,6 @@
 import React from 'react';
 import { SwipeDeck } from '../deck/SwipeDeck.jsx';
-import { Sparkles, Film, Tv, Flame } from 'lucide-react';
+import { Sparkles, Film, Flame } from 'lucide-react';
 import { cineMoods } from '../../data/moods.js';
 import { triggerHaptic } from '../../engine/hapticsEngine.js';
 import { playSound } from '../../engine/soundEngine.js';
@@ -15,19 +15,11 @@ export function FeedView({
   onResetDeck,
   selectedMood = null,
   onSelectMood,
-  selectedCategory = 'all',
-  onSelectCategory
+  onOpenAIPrompt
 }) {
-  const categories = [
-    { id: 'all', label: 'Всё подряд', icon: '✨' },
-    { id: 'movie', label: 'Фильмы', icon: '🎬' },
-    { id: 'series', label: 'Сериалы', icon: '📺' },
-    { id: 'anime', label: 'Аниме', icon: '⛩' }
-  ];
-
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Quick Mood Selector Bar */}
+      {/* Quick Mood & AI Selector Bar */}
       <div style={{
         width: '100%',
         display: 'flex',
@@ -37,6 +29,34 @@ export function FeedView({
         padding: '0 16px 10px',
         scrollbarWidth: 'none'
       }}>
+        {/* Gemini AI Concierge Trigger Chip */}
+        <button
+          onClick={() => {
+            triggerHaptic('medium');
+            playSound('tap');
+            if (onOpenAIPrompt) onOpenAIPrompt();
+          }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            padding: '5px 12px',
+            borderRadius: '999px',
+            border: '1px solid rgba(255, 94, 98, 0.55)',
+            background: 'linear-gradient(135deg, rgba(255, 94, 98, 0.22), rgba(255, 153, 102, 0.12))',
+            color: '#ff9966',
+            fontSize: '0.75rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+            boxShadow: '0 0 12px rgba(255, 94, 98, 0.2)'
+          }}
+        >
+          <Sparkles size={13} />
+          <span>✨ AI Подбор</span>
+        </button>
+
         {/* All Moods Chip */}
         <button
           onClick={() => {
@@ -60,10 +80,10 @@ export function FeedView({
             flexShrink: 0
           }}
         >
-          <Sparkles size={12} /> Все вайбы
+          <span>🔥 Все вайбы</span>
         </button>
 
-        {/* Quick Mood Chips */}
+        {/* Dynamic Mood Chips */}
         {cineMoods.map((mood) => {
           const isSelected = selectedMood?.id === mood.id;
           return (

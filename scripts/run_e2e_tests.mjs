@@ -48,6 +48,10 @@ import {
   recordRoomSwipe,
   subscribeToRoom
 } from '../src/engine/realtimeRooms.js';
+import {
+  generateGeminiRecommendations,
+  getSemanticAndVectorDeck
+} from '../src/engine/geminiRecommender.js';
 
 // Dynamically load actorResolver if available, else use contract reference
 let actorResolver = null;
@@ -2756,6 +2760,15 @@ runner.addSuite(4, 'Tier 4: Real-World Application Workflows', [
       assert(typeof leaveRoom === 'function');
       assert(typeof recordRoomSwipe === 'function');
       assert(typeof subscribeToRoom === 'function');
+
+      // 5. Gemini AI Concierge & Fallback Engine
+      assert(typeof generateGeminiRecommendations === 'function', 'generateGeminiRecommendations is function');
+      assert(typeof getSemanticAndVectorDeck === 'function', 'getSemanticAndVectorDeck is function');
+      const aiDeck = getSemanticAndVectorDeck('мрачный триллер с твистом', null, 25);
+      assertEqual(aiDeck.length, 25, 'Semantic fallback produces 25 movies');
+      for (const m of aiDeck) {
+        assert(typeof m.aiReason === 'string' && m.aiReason.length > 0, `Movie ${m.id} has AI reason`);
+      }
     }
   }
 ]);

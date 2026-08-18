@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SwipeDeck } from '../deck/SwipeDeck.jsx';
-import { Sparkles, Film, Tv, Flame, Info, Heart, X, Star, RotateCcw } from 'lucide-react';
+import { Sparkles, Film, Flame, Info, Heart, X, Star, RotateCcw } from 'lucide-react';
 import { cineMoods } from '../../data/moods.js';
 import { triggerHaptic } from '../../engine/hapticsEngine.js';
 import { playSound } from '../../engine/soundEngine.js';
@@ -16,18 +16,10 @@ export function DesktopFeedView({
   onResetDeck,
   selectedMood = null,
   onSelectMood,
-  selectedCategory = 'all',
-  onSelectCategory
+  onOpenAIPrompt
 }) {
   const currentMovie = deck[currentIndex];
   const currentPoster = currentMovie ? getPosterUrl(currentMovie) : '';
-
-  const categories = [
-    { id: 'all', label: 'Всё подряд', icon: '✨' },
-    { id: 'movie', label: 'Фильмы', icon: '🎬' },
-    { id: 'series', label: 'Сериалы', icon: '📺' },
-    { id: 'anime', label: 'Аниме', icon: '⛩' }
-  ];
 
   return (
     <div className="desktop-theatre-stage">
@@ -41,7 +33,7 @@ export function DesktopFeedView({
         />
       )}
 
-      {/* Top Cine-Moods Bar */}
+      {/* Top Cine-Moods & AI Concierge Bar */}
       <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -50,8 +42,7 @@ export function DesktopFeedView({
         marginBottom: '16px',
         zIndex: 20
       }}>
-
-        {/* Cine-Mood Presets */}
+        {/* Cine-Mood Presets & AI Button */}
         <div style={{
           display: 'flex',
           gap: '6px',
@@ -60,6 +51,34 @@ export function DesktopFeedView({
           paddingBottom: '4px',
           scrollbarWidth: 'none'
         }}>
+          {/* Gemini AI Concierge Trigger */}
+          <button
+            onClick={() => {
+              triggerHaptic('medium');
+              playSound('tap');
+              if (onOpenAIPrompt) onOpenAIPrompt();
+            }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 14px',
+              borderRadius: '999px',
+              border: '1px solid rgba(255, 94, 98, 0.55)',
+              background: 'linear-gradient(135deg, rgba(255, 94, 98, 0.25), rgba(255, 153, 102, 0.15))',
+              color: '#ff9966',
+              fontSize: '0.8rem',
+              fontWeight: '700',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 0 16px rgba(255, 94, 98, 0.2)'
+            }}
+          >
+            <Sparkles size={14} />
+            <span>✨ AI Подбор</span>
+          </button>
+
+          {/* All Moods Chip */}
           <button
             onClick={() => {
               triggerHaptic('light');
@@ -67,10 +86,13 @@ export function DesktopFeedView({
               onSelectMood(null);
             }}
             style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
               padding: '4px 12px',
               borderRadius: '999px',
               border: !selectedMood ? '1px solid rgba(255, 94, 98, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)',
-              background: !selectedMood ? 'rgba(255, 94, 98, 0.16)' : 'rgba(255, 255, 255, 0.03)',
+              background: !selectedMood ? 'rgba(255, 94, 98, 0.18)' : 'rgba(255, 255, 255, 0.03)',
               color: !selectedMood ? '#ff9966' : 'var(--text-secondary)',
               fontSize: '0.75rem',
               fontWeight: '600',
@@ -78,7 +100,7 @@ export function DesktopFeedView({
               whiteSpace: 'nowrap'
             }}
           >
-            ✨ Все вайбы
+            🔥 Все вайбы
           </button>
 
           {cineMoods.map((mood) => {

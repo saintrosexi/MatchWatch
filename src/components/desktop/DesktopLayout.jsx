@@ -12,6 +12,7 @@ import { DesktopSlotRouletteModal } from './DesktopSlotRouletteModal.jsx';
 
 import { FilterMatrixModal } from '../modals/FilterMatrixModal.jsx';
 import { MatchCelebrationModal } from '../modals/MatchCelebrationModal.jsx';
+import { AICinemaPromptModal } from '../common/AICinemaPromptModal.jsx';
 import { SettingsView } from '../views/SettingsView.jsx';
 
 export function DesktopLayout({
@@ -39,6 +40,7 @@ export function DesktopLayout({
   onLaunchCollectionDeck,
   onLaunchActorDeck,
   onLaunchVaultDeck,
+  onLaunchAIDeck,
   onStartRoomSwipe,
   currentFilters,
   onApplyFilters,
@@ -49,6 +51,7 @@ export function DesktopLayout({
   const [selectedActorForHub, setSelectedActorForHub] = useState(null);
   const [isSlotRouletteOpen, setIsSlotRouletteOpen] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [isAIPromptOpen, setIsAIPromptOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
@@ -100,6 +103,7 @@ export function DesktopLayout({
               onResetDeck={onResetDeck}
               selectedMood={selectedMood}
               onSelectMood={onSelectMood}
+              onOpenAIPrompt={() => setIsAIPromptOpen(true)}
             />
           ) : activeTab === 'movies' ? (
             <DesktopDiscoveryView
@@ -198,6 +202,21 @@ export function DesktopLayout({
             onCloseMatchCelebration();
             setIsSlotRouletteOpen(true);
           }}
+        />
+      )}
+
+      {/* 7. Gemini AI Cinema Concierge Prompt Modal */}
+      {isAIPromptOpen && (
+        <AICinemaPromptModal
+          isOpen={isAIPromptOpen}
+          onClose={() => setIsAIPromptOpen(false)}
+          onApplyAIDeck={(aiDeck, aiSummary) => {
+            if (onLaunchAIDeck) {
+              onLaunchAIDeck(aiDeck, aiSummary);
+            }
+            setActiveTab('feed');
+          }}
+          likedIds={likedIds}
         />
       )}
     </div>

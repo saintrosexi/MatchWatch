@@ -14,6 +14,7 @@ import { FilterMatrixModal } from './components/modals/FilterMatrixModal.jsx';
 import { MatchCelebrationModal } from './components/modals/MatchCelebrationModal.jsx';
 import { FortuneWheelModal } from './components/modals/FortuneWheelModal.jsx';
 import { OnboardingStoryModal } from './components/modals/OnboardingStoryModal.jsx';
+import { AICinemaPromptModal } from './components/common/AICinemaPromptModal.jsx';
 
 import { DesktopLayout } from './components/desktop/DesktopLayout.jsx';
 
@@ -43,6 +44,12 @@ export function App() {
   const [dislikedIds, setDislikedIds] = useLocalStorage('mw_disliked_ids', []);
   const [watchedIds, setWatchedIds] = useLocalStorage('mw_watched_ids', []);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useLocalStorage('mw_onboarding_done', false);
+
+  // Safe Array Wrappers
+  const safeLikedIds = Array.isArray(likedIds) ? likedIds : [];
+  const safeDislikedIds = Array.isArray(dislikedIds) ? dislikedIds : [];
+  const safeSuperlikeIds = Array.isArray(superlikeIds) ? superlikeIds : [];
+  const safeWatchedIds = Array.isArray(watchedIds) ? watchedIds : [];
 
   // Audio & HUD
   const [soundOn, setSoundOn] = useState(() => getSoundEnabled());
@@ -127,13 +134,13 @@ export function App() {
   // Deck Generation with Mood and Custom Filters
   const buildFilteredDeck = useCallback((mood = selectedMood, filters = currentFilters) => {
     return getRecommendedDeck({
-      likedIds,
-      dislikedIds,
+      likedIds: safeLikedIds,
+      dislikedIds: safeDislikedIds,
       mood,
       filters,
       limit: 60
     });
-  }, [likedIds, dislikedIds, selectedMood, currentFilters]);
+  }, [safeLikedIds, safeDislikedIds, selectedMood, currentFilters]);
 
   const [deck, setDeck] = useState(() => buildFilteredDeck());
 
@@ -152,11 +159,12 @@ export function App() {
     setSwipeHistory([]);
   }, [buildFilteredDeck, selectedMood, currentFilters]);
 
-  // Modals Management (Mobile)
+  // Modals Management (Mobile & Desktop)
   const [selectedMovieForDetails, setSelectedMovieForDetails] = useState(null);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [activeMatchCelebration, setActiveMatchCelebration] = useState(null);
   const [isRouletteOpen, setIsRouletteOpen] = useState(false);
+  const [isAIPromptOpen, setIsAIPromptOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Handle Swiping Action
@@ -167,7 +175,7 @@ export function App() {
     setSwipeHistory((prev) => [...prev, { direction, movie, index: currentIndex }]);
 
     if (direction === 'like') {
-      if (!likedIds.includes(movie.id)) {
+      if (!safeLikedIds.includes(movie.id)) {
         setLikedIds((prev) => [...prev, movie.id]);
       }
       // Check in realtime room
@@ -180,10 +188,10 @@ export function App() {
         }
       }
     } else if (direction === 'superlike') {
-      if (!likedIds.includes(movie.id)) {
+      if (!safeLikedIds.includes(movie.id)) {
         setLikedIds((prev) => [...prev, movie.id]);
       }
-      if (!superlikeIds.includes(movie.id)) {
+      if (!safeSuperlikeIds.includes(movie.id)) {
         setSuperlikeIds((prev) => [...prev, movie.id]);
       }
       showIslandAlert('В избранном ★', movie.titleRu || movie.title, '★');
@@ -196,7 +204,7 @@ export function App() {
         }
       }
     } else if (direction === 'pass') {
-      if (!dislikedIds.includes(movie.id)) {
+      if (!safeDislikedIds.includes(movie.id)) {
         setDislikedIds((prev) => [...prev, movie.id]);
       }
       if (activeRoom) {
@@ -209,88 +217,109 @@ export function App() {
     // Replenish cards if running low
     if (currentIndex >= deck.length - 6) {
       const additional = getRecommendedDeck({
-        likedIds: [...likedIds, ...(direction === 'like' ? [movie.id] : [])],
-        dislikedIds: [...dislikedIds, ...(direction === 'pass' ? [movie.id] : [])],
+        likedIds: [...safeLikedIds, ...(direction === 'like' ? [movie.id] : [])],
+        dislikedIds: [...safeDislikedIds, ...(direction === 'pass' ? [movie.id] : [])],
         mood: selectedMood,
-        filters: { ...currentFilters, category: selectedCategory },
+        filters: currentFilters,
         limit: 30
       });
       setDeck((prev) => [...prev, ...additional]);
     }
   };
 
-  // Undo Last Swipe
+  // Handle Kinetic Undo
   const handleUndo = () => {
     if (swipeHistory.length === 0 || currentIndex === 0) return;
 
     const lastAction = swipeHistory[swipeHistory.length - 1];
+    const { direction, movie } = lastAction;
+
+    if (direction === 'like' || direction === 'superlike') {
+      setLikedIds((prev) => prev.filter((id) => id !== movie.id));
+      if (direction === 'superlike') {
+        setSuperlikeIds((prev) => prev.filter((id) => id !== movie.id));
+      }
+    } else if (direction === 'pass') {
+      setDislikedIds((prev) => prev.filter((id) => id !== movie.id));
+    }
+
     setSwipeHistory((prev) => prev.slice(0, -1));
     setCurrentIndex((prev) => Math.max(0, prev - 1));
 
-    if (lastAction.direction === 'like' || lastAction.direction === 'superlike') {
-      setLikedIds((prev) => prev.filter((id) => id !== lastAction.movie.id));
-      if (lastAction.direction === 'superlike') {
-        setSuperlikeIds((prev) => prev.filter((id) => id !== lastAction.movie.id));
-      }
-    } else if (lastAction.direction === 'pass') {
-      setDislikedIds((prev) => prev.filter((id) => id !== lastAction.movie.id));
-    }
-
-    showIslandAlert('Свайп отменен', lastAction.movie.titleRu || lastAction.movie.title, '↩');
+    triggerHaptic('medium');
+    playSound('pop');
+    showIslandAlert('Отмена действия', movie.titleRu || movie.title, '↩️');
   };
 
-  // Launch Collection into Swipe Feed
+  // Launch Curated Collection as a Swipe Deck
   const handleLaunchCollectionDeck = (collection) => {
-    const matching = getRecommendedDeck({
+    if (!collection) return;
+    refreshDeck(null, {}, collection.movies);
+    setActiveTab('feed');
+    showIslandAlert('Подборка загружена', collection.title, '🎬');
+  };
+
+  // Launch Actor Filmography Deck
+  const handleLaunchActorDeck = (actorName) => {
+    if (!actorName) return;
+    const actorDeck = getRecommendedDeck({
+      actorName,
+      likedIds: safeLikedIds,
+      dislikedIds: [],
       filters: { includeSeen: true },
-      limit: 60
-    }).filter((m) => collection.filter(m));
-
-    refreshDeck(null, {}, 'all', matching);
+      limit: 30
+    });
+    refreshDeck(null, {}, actorDeck);
     setActiveTab('feed');
-    showIslandAlert('Коллекция запущена:', collection.title, '🎬');
+    showIslandAlert('Фильмы актёра', actorName, '🌟');
   };
 
-  // Launch Actor Deck
-  const handleLaunchActorDeck = (actorName, moviesList) => {
-    refreshDeck(null, {}, 'all', moviesList);
+  // Launch CineVault Saved Movies Deck
+  const handleLaunchVaultDeck = (savedMovies) => {
+    if (!savedMovies || savedMovies.length === 0) return;
+    refreshDeck(null, {}, savedMovies);
     setActiveTab('feed');
-    showIslandAlert('Колода запущена:', `Только с ${actorName}`, '🎭');
+    showIslandAlert('Фильмотека', `Загружено ${savedMovies.length} фильмов`, '📁');
   };
 
-  // Launch Vault Deck
-  const handleLaunchVaultDeck = (vaultMovies) => {
-    refreshDeck(null, {}, 'all', vaultMovies);
+  // Launch Gemini AI Concierge 25-movie Smart Deck
+  const handleLaunchAIDeck = (aiDeck, aiSummary) => {
+    if (!aiDeck || aiDeck.length === 0) return;
+    refreshDeck(null, {}, aiDeck);
     setActiveTab('feed');
-    showIslandAlert('Запущена фильмотека', `${vaultMovies.length} фильмов`, '📁');
+    showIslandAlert('✨ AI-колода готова', aiSummary || '25 фильмов от MatchWatch AI', '✨');
   };
 
-  // Launch Room Deck
-  const handleStartRoomSwipe = (roomDeck) => {
-    refreshDeck(null, {}, 'all', roomDeck);
+  // Start Room Swiping Session
+  const handleStartRoomSwipe = (room) => {
+    if (!room || !room.deck) return;
+    setDeck(room.deck);
+    setCurrentIndex(0);
+    setSwipeHistory([]);
     setActiveTab('feed');
-    showIslandAlert(`Комната ${activeRoom?.code}`, 'Совместный свайп начался!', '👥');
+    showIslandAlert(`Комната ${room.code}`, `Свайпают: ${room.members?.length || 2} чел.`, '🍿');
   };
 
-  // Reset Dislikes ONLY (Preserves all likes!)
+  // Reset Dislikes only
   const handleResetDislikesOnly = () => {
     setDislikedIds([]);
-    refreshDeck(selectedMood, currentFilters, selectedCategory);
-    showIslandAlert('Пропуски сброшены', 'Фильмы снова доступны в колоде', '🔄');
+    refreshDeck(selectedMood, currentFilters);
+    showIslandAlert('История сброшена', 'Пропущенные фильмы снова в ленте', '🧹');
   };
 
-  // Reset All Data
+  // Reset All User Data
   const handleResetAllData = () => {
     setLikedIds([]);
     setSuperlikeIds([]);
     setDislikedIds([]);
     setWatchedIds([]);
-    refreshDeck(null, {}, 'all');
-    showIslandAlert('Данные очищены', 'История свайпов сброшена', '🗑');
+    setHasCompletedOnboarding(false);
+    refreshDeck(null, {});
+    showIslandAlert('Память очищена', 'Все оценки и история сброшены', '🗑️');
   };
 
   // =========================================================================
-  // 1. DESKTOP STUDIO RENDERING (>= 1024px or user forced desktop)
+  // 1. DESKTOP STUDIO RENDERING (>= 1024px)
   // =========================================================================
   if (isDesktop) {
     return (
@@ -302,18 +331,17 @@ export function App() {
         onSwipe={handleSwipe}
         onUndo={handleUndo}
         canUndo={swipeHistory.length > 0 && currentIndex > 0}
-        onResetDeck={() => refreshDeck(selectedMood, currentFilters, selectedCategory)}
+        onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
+        onResetDeck={() => refreshDeck(selectedMood, currentFilters)}
         selectedMood={selectedMood}
         onSelectMood={(mood) => {
           setSelectedMood(mood);
-          refreshDeck(mood, currentFilters, selectedCategory);
+          refreshDeck(mood, currentFilters);
         }}
-        selectedCategory={selectedCategory}
-        onSelectCategory={handleCategoryChange}
-        likedIds={likedIds}
-        superlikeIds={superlikeIds}
-        watchedIds={watchedIds}
-        dislikedIds={dislikedIds}
+        likedIds={safeLikedIds}
+        superlikeIds={safeSuperlikeIds}
+        watchedIds={safeWatchedIds}
+        dislikedIds={safeDislikedIds}
         user={user}
         activeRoom={activeRoom}
         soundOn={soundOn}
@@ -327,6 +355,7 @@ export function App() {
         onLaunchCollectionDeck={handleLaunchCollectionDeck}
         onLaunchActorDeck={handleLaunchActorDeck}
         onLaunchVaultDeck={handleLaunchVaultDeck}
+        onLaunchAIDeck={handleLaunchAIDeck}
         onStartRoomSwipe={handleStartRoomSwipe}
         currentFilters={currentFilters}
         onApplyFilters={(filters) => {
@@ -364,7 +393,7 @@ export function App() {
             onResetDislikesOnly={handleResetDislikesOnly}
             onResetAllData={handleResetAllData}
             onClose={() => setIsSettingsOpen(false)}
-            allLikesData={{ likedIds, superlikeIds, watchedIds, dislikedIds }}
+            allLikesData={{ likedIds: safeLikedIds, superlikeIds: safeSuperlikeIds, watchedIds: safeWatchedIds, dislikedIds: safeDislikedIds }}
           />
         ) : activeTab === 'feed' ? (
           <FeedView
@@ -380,6 +409,7 @@ export function App() {
               setSelectedMood(mood);
               refreshDeck(mood, currentFilters);
             }}
+            onOpenAIPrompt={() => setIsAIPromptOpen(true)}
           />
         ) : activeTab === 'discovery' ? (
           <DiscoveryView
@@ -396,9 +426,9 @@ export function App() {
           />
         ) : activeTab === 'vault' ? (
           <CineVaultView
-            likedIds={likedIds}
-            superlikeIds={superlikeIds}
-            watchedIds={watchedIds}
+            likedIds={safeLikedIds}
+            superlikeIds={safeSuperlikeIds}
+            watchedIds={safeWatchedIds}
             onOpenDetails={(movie) => setSelectedMovieForDetails(movie)}
             onRemoveLike={(id) => {
               setLikedIds((prev) => prev.filter((item) => item !== id));
@@ -416,7 +446,7 @@ export function App() {
         ) : activeTab === 'profile' ? (
           <ProfileView
             user={user}
-            likedIds={likedIds}
+            likedIds={safeLikedIds}
             onOpenSettings={() => setIsSettingsOpen(true)}
             onSharePassport={(dna) => {
               showIslandAlert('Кино-паспорт скопирован', `${dna.archetype.name} (Ур. ${dna.level})`, '🧬');
@@ -432,17 +462,17 @@ export function App() {
           setIsSettingsOpen(false);
           setActiveTab(tab);
         }}
-        likesCount={likedIds.length}
+        likesCount={safeLikedIds.length}
       />
 
       {/* Modals & Sheets (Mobile) */}
       {selectedMovieForDetails && (
         <MovieDetailsSheet
           movie={selectedMovieForDetails}
-          isLiked={likedIds.includes(selectedMovieForDetails.id)}
+          isLiked={safeLikedIds.includes(selectedMovieForDetails.id)}
           onClose={() => setSelectedMovieForDetails(null)}
           onLike={(m) => {
-            if (!likedIds.includes(m.id)) {
+            if (!safeLikedIds.includes(m.id)) {
               setLikedIds((prev) => [...prev, m.id]);
             }
           }}
@@ -488,6 +518,15 @@ export function App() {
             setIsRouletteOpen(false);
             setSelectedMovieForDetails(movie);
           }}
+        />
+      )}
+
+      {isAIPromptOpen && (
+        <AICinemaPromptModal
+          isOpen={isAIPromptOpen}
+          onClose={() => setIsAIPromptOpen(false)}
+          onApplyAIDeck={handleLaunchAIDeck}
+          likedIds={safeLikedIds}
         />
       )}
 

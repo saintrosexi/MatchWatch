@@ -125,6 +125,15 @@ export const getRecommendedDeck = ({
     return true;
   });
 
+  // Fallback: if pool is empty purely due to seenIds (and not explicit non-existent genre/actor filters), recycle catalog
+  if (pool.length === 0 && !filters.genres && !filters.excludedGenres && !actorName) {
+    pool = movies.filter((m) => {
+      if (filters.minRating && m.rating < filters.minRating) return false;
+      return true;
+    });
+    if (pool.length === 0) pool = [...movies];
+  }
+
   const targetVector = mood?.sensationVector || userTasteVector || DEFAULT_VECTOR;
 
   // Rank by proximity to target vector + rating

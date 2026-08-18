@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, Clock, Info } from 'lucide-react';
+import { Star, Clock, Info, Sparkles } from 'lucide-react';
 import { getPosterCandidates } from '../../engine/imagePrefetcher.js';
 
 export function SwipeCard({
@@ -252,6 +252,30 @@ export function SwipeCard({
         flexDirection: 'column',
         gap: '6px'
       }}>
+        {/* AI Rationale Badge */}
+        {movie.aiReason && (
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            background: 'linear-gradient(135deg, rgba(255, 94, 98, 0.28), rgba(255, 153, 102, 0.18))',
+            border: '1px solid rgba(255, 94, 98, 0.45)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            padding: '3px 9px',
+            borderRadius: '999px',
+            fontSize: '0.68rem',
+            color: '#ff9966',
+            fontWeight: '600',
+            boxShadow: '0 0 12px rgba(255, 94, 98, 0.2)',
+            marginBottom: '2px',
+            width: 'fit-content'
+          }}>
+            <Sparkles size={11} />
+            <span>{movie.aiReason}</span>
+          </div>
+        )}
+
         {/* Genre Tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
           {genresList.map((genre, idx) => (
