@@ -398,8 +398,6 @@ export async function generateGeminiRecommendations({
   try {
     const clientKey = typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY;
     if (clientKey && clientKey !== 'your_gemini_api_key' && !clientKey.includes('TODO')) {
-      const catalogSummary = catalog.map((m) => `[ID: ${m.id}] "${m.titleRu}" (${m.year}, ${m.genres}) | Реж: ${m.director} | Рейтинг: ${m.rating}`).join('\n');
-      
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${clientKey}`;
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -410,14 +408,14 @@ export async function generateGeminiRecommendations({
               role: 'user',
               parts: [
                 {
-                  text: `Ты — кинокритик. Выбери РОВНО 25 фильмов из этого каталога под запрос: "${cleanPrompt}". Если зритель ищет конкретного персонажа или режиссера (например бетмен, нолан), обязательно включи все фильмы с ним. Верни JSON: { "recommendations": [{ "id": number, "reason": "сочное синефильское описание 1-2 предложения" }], "aiSummary": "резюме" }.\nКаталог:\n${catalogSummary}`
+                  text: `Ты — кинокритик. По запросу зрителя «${cleanPrompt}» предложи список из 40-60 лучших подходящих фильмов мирового кино. Верни JSON: { "candidates": [{ "titleRu": "Русское название", "titleOriginal": "Original Title", "year": 2000, "reason": "1-2 предложения описания" }], "aiSummary": "резюме" }.`
                 }
               ]
             }
           ],
           generationConfig: {
             responseMimeType: 'application/json',
-            temperature: 0.35
+            temperature: 0.4
           }
         })
       });
@@ -427,23 +425,38 @@ export async function generateGeminiRecommendations({
         const raw = d?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (raw) {
           const parsed = JSON.parse(raw);
-          const map = new Map(catalog.map((m) => [m.id, m]));
+          const candidates = parsed.candidates || parsed.recommendations || [];
           const deck = [];
           const seen = new Set();
 
-          for (const r of parsed.recommendations || []) {
-            const numId = Number(r.id);
-            if (numId && map.has(numId) && !seen.has(numId)) {
-              seen.add(numId);
-              deck.push({
-                ...map.get(numId),
-                aiReason: r.reason || `Рекомендация MatchWatch AI`
-              });
+          for (const cand of candidates) {
+            const candTitles = [cand.titleRu, cand.title, cand.titleOriginal, cand.originalTitle].filter(Boolean).map(normalizeQueryText);
+            for (const m of catalog) {
+              const mNormRu = normalizeQueryText(m.titleRu);
+              const mNormOrig = normalizeQueryText(m.title);
+              const isMatch = candTitles.some((t) => t === mNormRu || t === mNormOrig || (t.length >= 4 && (mNormRu.includes(t) || mNormOrig.includes(t))));
+              if (isMatch && !seen.has(m.id)) {
+                seen.add(m.id);
+                deck.push({
+                  ...m,
+                  aiReason: cand.reason || `Рекомендация MatchWatch AI`
+                });
+                break;
+              }
             }
             if (deck.length >= 25) break;
           }
 
-          if (deck.length >= 25) {
+          if (deck.length >= 10) {
+            // Pad if under 25
+            for (const m of catalog) {
+              if (!seen.has(m.id)) {
+                seen.add(m.id);
+                deck.push({ ...m, aiReason: `Кураторский выбор MatchWatch AI` });
+              }
+              if (deck.length >= 25) break;
+            }
+
             return {
               success: true,
               deck: deck.slice(0, 25),

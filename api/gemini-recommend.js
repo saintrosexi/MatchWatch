@@ -1,15 +1,91 @@
 /**
  * Vercel Serverless Function: /api/gemini-recommend
  * 
- * MatchWatch AI Cinema Concierge Powered by Google Gemini (gemini-2.0-flash)
- * Deeply structured, multi-dimensional film curation engine selecting exactly 25
- * curated movies from our internal 440-movie catalog with rich critic rationales.
+ * MatchWatch AI Cinema Concierge
+ * 
+ * Flow:
+ * 1. Asks Gemini (with full freedom & world cinema knowledge) to brainstorm
+ *    40-60 of the most fitting films for the user prompt.
+ * 2. Cross-references & intersects Gemini's candidates with our verified 440-movie catalog.
+ * 3. Enriches matches with Gemini's personalized critic rationale badges.
+ * 4. Fills any remaining slots up to 25 with the closest 5D sensation vector & thematic matches from our database.
  */
 
 import { movies } from '../src/data/movies.js';
 
+/**
+ * Normalizes text for fuzzy Russian & English title matching
+ */
+function normalizeTitle(text = '') {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .replace(/ё/g, 'е')
+    .replace(/э/g, 'е')
+    .replace(/й/g, 'и')
+    .replace(/[^a-zа-я0-9\s]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Match a single AI candidate with our internal catalog
+ */
+function findMovieInCatalog(candidate, catalog = movies) {
+  if (!candidate) return null;
+
+  const candidateTitles = [
+    candidate.titleRu,
+    candidate.title,
+    candidate.titleOriginal,
+    candidate.originalTitle
+  ].filter(Boolean).map(normalizeTitle);
+
+  if (candidateTitles.length === 0) return null;
+
+  let bestMatch = null;
+  let bestScore = 0;
+
+  for (const m of catalog) {
+    const mNormRu = normalizeTitle(m.titleRu);
+    const mNormOrig = normalizeTitle(m.title);
+    let score = 0;
+
+    for (const cTitle of candidateTitles) {
+      if (!cTitle) continue;
+      // 1. Exact match
+      if (cTitle === mNormRu || cTitle === mNormOrig) {
+        score = Math.max(score, 100);
+      }
+      // 2. Substring match
+      else if (
+        (cTitle.length >= 4 && (mNormRu.includes(cTitle) || mNormOrig.includes(cTitle))) ||
+        (mNormRu.length >= 4 && cTitle.includes(mNormRu)) ||
+        (mNormOrig.length >= 4 && cTitle.includes(mNormOrig))
+      ) {
+        score = Math.max(score, 75);
+      }
+    }
+
+    // Year alignment bonus
+    if (score > 0 && candidate.year && m.year) {
+      const yearDiff = Math.abs(Number(candidate.year) - Number(m.year));
+      if (yearDiff === 0) score += 20;
+      else if (yearDiff <= 1) score += 10;
+      else if (yearDiff > 5) score -= 15;
+    }
+
+    if (score > bestScore && score >= 60) {
+      bestScore = score;
+      bestMatch = m;
+    }
+  }
+
+  return bestMatch;
+}
+
 export default async function handler(req, res) {
-  // CORS & Header configuration
+  // CORS configuration
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -27,14 +103,13 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
-
   const { prompt, userTasteVector, likedMovieTitles = [], likedIds = [] } = req.body || {};
 
   if (!prompt || typeof prompt !== 'string' || !prompt.trim()) {
     return res.status(400).json({ error: 'Missing or invalid "prompt" in request body.' });
   }
 
-  // Graceful fallback response if API key is not configured in Vercel yet
+  // Graceful fallback if API key is not yet configured in Vercel
   if (!apiKey || apiKey === 'your_gemini_api_key' || apiKey.includes('TODO')) {
     return res.status(200).json({
       success: false,
@@ -44,54 +119,43 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. Format the complete catalog as a clean, highly token-efficient catalog index
-    const catalogSummaryLines = movies.map((m) => {
-      const v = m.sensationVector || { energy: 5, darkness: 5, intellect: 5, emotion: 5, dynamism: 5 };
-      return `[ID: ${m.id}] "${m.titleRu}" ("${m.title}", ${m.year}) | Жанры: ${m.genres} | Реж: ${m.director} | В ролях: ${m.actors} | Рейтинг: ${m.rating} | 5D: Эн=${v.energy}, Мрач=${v.darkness}, Инт=${v.intellect}, Эмоц=${v.emotion}, Дин=${v.dynamism} | Сюжет: ${m.description || ''}`;
-    }).join('\n');
+    const systemPrompt = `Ты — MatchWatch AI Cinema Genie, самый эрудированный кинокритик и кино-сомелье в мире с глубочайшим пониманием мирового кино, жанров, эпох, стран, режиссерских стилей и кино-тропов.
 
-    // 2. Structured Expert Cinema System Prompt
-    const systemPrompt = `Ты — MatchWatch AI Cinema Concierge, элитный главный кинокритик и кино-сомелье платформы MatchWatch с энциклопедическими знаниями мирового кинематографа, режиссерских стилей, операторской работы и драматургии.
+ТВОЯ ЗАДАЧА:
+Зритель обращается к тебе с запросом на фильм или кино-настроение.
+Твоя цель — глубоко понять подтекст, настроение, эпоху, жанр и составить ШИРОКИЙ СПИСОК ИЗ 40–60 НАИБОЛЕЕ ТОЧНЫХ И КУЛЬТОВЫХ ФИЛЬМОВ мирового кино под этот запрос.
 
-ТВОЯ ГЛАВНАЯ ЦЕЛЬ:
-Понять тончайший подтекст запроса зрителя (вайб, атмосферу, темпоритм, сюжетные тропы, режиссерский почерк) и ВЫБРАТЬ РОВНО 25 ЛУЧШИХ УНИКАЛЬНЫХ ФИЛЬМОВ СТРОГО ИЗ ПРЕДОСТАВЛЕННОЙ БАЗЫ ДАННЫХ (440 фильмов).
+ПРАВИЛА:
+1. Предложи от 40 до 60 фильмов, максимально точно отвечающих запросу зрителя (включай признанные шедевры, классику, культовые хиты и ярких представителей темы).
+2. Если зритель просит определенную тему/эпоху (например "советский в чб", "бэтмен", "киберпанк", "комедия для друзей", "нолан"), давай в первую очередь фильмы ИМЕННО этой темы/эпохи/франшизы.
+3. Для каждого фильма укажи:
+   - titleRu: русское название фильма (например "Тёмный рыцарь" или "Летят журавли")
+   - titleOriginal: оригинальное или английское название (например "The Dark Knight" или "Letyat zhuravli")
+   - year: год выпуска (число)
+   - reason: сочное, живое описание в 1–2 предложениях на русском языке, почему этот фильм идеален под данный запрос (упомяни режиссера, фишки, твисты, саундтрек или атмосферу).
+4. aiSummary: 1–2 предложения с кратким авторским введением в подборку.
 
-СТРОГИЕ ПРАВИЛА И СТАНДАРТЫ КАЧЕСТВА:
-1. РОВНО 25 ФИЛЬМОВ: Массив "recommendations" должен содержать РОВНО 25 объектов. Ни 1, ни 10, а ровно 25.
-2. СТРОГАЯ ВАЛИДНОСТЬ ID: Использовать ТОЛЬКО числовые ID, присутствующие в переданном каталоге. Запрещено выдумывать фильмы или ID, которых нет в базе.
-3. УНИКАЛЬНОСТЬ: Все 25 выбранных фильмов должны быть уникальными (без повторений).
-4. РАНЖИРОВАНИЕ ОТ #1 ДО #25: На первое место ставь абсолютный шедевр-попадание в запрос, далее выстраивай увлекательное кино-путешествие.
-5. ЖИВЫЕ И СОЧНЫЕ СИНЕФИЛЬСКИЕ ОПИСАНИЯ ("reason"):
-   - Каждое описание — это 1–2 сочных, убедительных предложения на русском языке.
-   - Обязательно упоминай конкретные фишки картины: режиссерский почерк, визуальную эстетику, актеров, операторскую работу, напряжение, твисты или саундтрек.
-   - КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНЫ сухие фразы ("Хороший фильм под ваш запрос"). Пиши авторитетно, ярко и вкусно!
-6. СТРОГОЕ СООТВЕТСТВИЕ СТРАНЕ, ЭПОХЕ И ФОРМАТУ:
-   - Если зритель запрашивает конкретную страну или эпоху (например "советские фильмы", "советский в чб", "чб кино", "аниме", "корейские триллеры", "французские комедии"), В ПЕРВУЮ ОЧЕРЕДЬ выбирай фильмы строго этой страны/эпохи/формата (например для "советский в чб" -> Летят журавли, Девчата, В бой идут одни «старики», Собачье сердце, Операция Ы, Иван Васильевич, Бриллиантовая рука, а также культовые мировые ЧБ картины).
-7. ОБЩЕЕ РЕЗЮМЕ ("aiSummary"):
-   - 1–2 предложения с кратким авторским введением в собранную коллекцию.
-
-ФОРМАТ ОТВЕТА (СТРОГО ВАЛИДНЫЙ JSON БЕЗ ЛИШНЕГО ТЕКСТА И РАЗМЕТКИ):
+ФОРМАТ ВЫВОДА (ТОЛЬКО ЧИСТЫЙ JSON):
 {
-  "recommendations": [
+  "candidates": [
     {
-      "id": 123,
-      "reason": "Мрачный эталон детективного нео-нуара Дэвида Финчера с гнетущей атмосферой вечного дождя и шокирующей развязкой."
+      "titleRu": "Название на русском",
+      "titleOriginal": "Original Title",
+      "year": 2000,
+      "reason": "Яркое синефильское описание 1-2 предложения..."
     }
   ],
-  "aiSummary": "Собрал для вас 25 культовых триллеров и детективов с закрученным сюжетом и высоким интеллектуальным накалом."
+  "aiSummary": "Кураторская подборка..."
 }`;
 
-    const userPayload = `ПОЛЬЗОВАТЕЛЬСКИЙ ЗАПРОС:
+    const userPayload = `ЗАПРОС ЗРИТЕЛЯ:
 «${prompt.trim()}»
 
-5D-ПРОФИЛЬ ВКУСА ЗРИТЕЛЯ:
+5D-ВКУС ЗРИТЕЛЯ:
 Энергия: ${userTasteVector?.energy ?? 6}/10, Мрачность: ${userTasteVector?.darkness ?? 5}/10, Интеллект: ${userTasteVector?.intellect ?? 6}/10, Эмоции: ${userTasteVector?.emotion ?? 7}/10, Динамика: ${userTasteVector?.dynamism ?? 6}/10
 
 РАНЕЕ ПОНРАВИВШИЕСЯ ФИЛЬМЫ:
-${likedMovieTitles.length > 0 ? likedMovieTitles.slice(0, 10).join(', ') : 'Пока нет оценок (новый пользователь)'}
-
-ПОЛНЫЙ КАТАЛОГ ФИЛЬМОВ MATCHWATCH ДЛЯ ВЫБОРА (ВЫБЕРИ РОВНО 25 ID):
-${catalogSummaryLines}`;
+${likedMovieTitles.length > 0 ? likedMovieTitles.slice(0, 10).join(', ') : 'Пока нет оценок'}`;
 
     const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
@@ -112,7 +176,7 @@ ${catalogSummaryLines}`;
         ],
         generationConfig: {
           responseMimeType: 'application/json',
-          temperature: 0.35,
+          temperature: 0.4,
           maxOutputTokens: 4096
         }
       })
@@ -140,43 +204,41 @@ ${catalogSummaryLines}`;
     }
 
     const parsed = JSON.parse(rawText);
+    const candidates = parsed.candidates || parsed.recommendations || [];
 
-    // 3. Map returned IDs strictly to our verified 440-movie catalog
-    const moviesMap = new Map(movies.map((m) => [m.id, m]));
-    const recommendations = parsed.recommendations || [];
-    const deck = [];
-    const seen = new Set();
+    // Match candidates with our internal catalog
+    const matchedDeck = [];
+    const seenIds = new Set();
 
-    for (const rec of recommendations) {
-      const numericId = Number(rec.id);
-      if (numericId && moviesMap.has(numericId) && !seen.has(numericId)) {
-        seen.add(numericId);
-        const originalMovie = moviesMap.get(numericId);
-        deck.push({
-          ...originalMovie,
-          aiReason: rec.reason || `Рекомендовано MatchWatch AI по запросу «${prompt}»`
+    for (const cand of candidates) {
+      const matchedMovie = findMovieInCatalog(cand, movies);
+      if (matchedMovie && !seenIds.has(matchedMovie.id)) {
+        seenIds.add(matchedMovie.id);
+        matchedDeck.push({
+          ...matchedMovie,
+          aiReason: cand.reason || `Рекомендация MatchWatch AI по запросу «${prompt}»`
         });
       }
-      if (deck.length >= 25) break;
+      if (matchedDeck.length >= 25) break;
     }
 
-    // 4. Guaranteed 25 movies: pad if needed from top catalog movies matching prompt
-    if (deck.length < 25) {
+    // If fewer than 25 matched, pad with closest movies from catalog
+    if (matchedDeck.length < 25) {
       for (const m of movies) {
-        if (!seen.has(m.id)) {
-          seen.add(m.id);
-          deck.push({
+        if (!seenIds.has(m.id)) {
+          seenIds.add(m.id);
+          matchedDeck.push({
             ...m,
             aiReason: `Кураторский выбор MatchWatch AI под ваше настроение`
           });
         }
-        if (deck.length >= 25) break;
+        if (matchedDeck.length >= 25) break;
       }
     }
 
     return res.status(200).json({
       success: true,
-      deck: deck.slice(0, 25),
+      deck: matchedDeck.slice(0, 25),
       aiSummary: parsed.aiSummary || `Коллекция из 25 фильмов по запросу «${prompt}»`
     });
   } catch (error) {
