@@ -1,17 +1,18 @@
-// MatchWatch — Master Gemini AI Cinema Concierge & High-Precision Recommender
-import { movies } from '../data/movies.js';
-import { calculateVectorDistance } from './recommendationEngine.js';
-
 /**
- * Normalizes text for robust Russian & English search:
- * - Replaces 'ё', 'э' -> 'е'
- * - Replaces 'й' -> 'и'
- * - Removes non-alphanumeric chars
- * - Lowers case
+ * MatchWatch — Universal 2-Stage AI Cinema Concierge & Dynamic Semantic Recommender
+ * 
+ * Stage 1: Strict Format Hard-Filtering & Dynamic Multi-Factor Candidate Retrieval
+ *          - Enforces format constraints: animation, anime, B&W, Soviet cinema.
+ *          - Dynamic scoring: Semantic plot matching + Vibe vector + Era/Nostalgia modifier.
+ * Stage 2: Google Gemini 2.0 Flash curates the top 25 movies with deep film critic rationales.
+ * Tier 3: Zero-downtime Local Fallback preserving 100% format constraints and relevance.
  */
+
+import { movies } from '../data/movies.js';
+
 export function normalizeQueryText(text = '') {
   if (!text) return '';
-  return text
+  return String(text)
     .toLowerCase()
     .replace(/ё/g, 'е')
     .replace(/э/g, 'е')
@@ -21,213 +22,6 @@ export function normalizeQueryText(text = '') {
     .trim();
 }
 
-const FRANCHISES_AND_CHARACTERS = [
-  {
-    name: 'hitman_killer_action',
-    triggers: ['киллер', 'киллера', 'киллеры', 'наемный убийца', 'наемные убийцы', 'убийца', 'джон уик', 'леон', 'хитман', 'перестрелки', 'gun-fu', 'взрывы'],
-    requiredMovieIds: [333, 28, 138, 74, 286, 127, 257, 296, 297, 182, 106, 331, 9, 319, 45, 332, 348, 6, 57, 103, 50, 824],
-    relatedKeywords: ['киллер', 'наемный убийца', 'убийца', 'убийства', 'перестрелки', 'взрывы', 'боевик', 'экшен', 'кровавый экшен', 'месть', 'джон уик', 'леон', 'драйв', 'стрельба', 'спецназ', 'оружие'],
-    relatedGenres: ['боевик', 'криминал', 'триллер'],
-    vectorBias: { energy: 10, darkness: 8, dynamism: 10, emotion: 6, intellect: 6 },
-    badgeTemplate: (m) => {
-      if (m.id === 333) return `💥 Икона gun-fu: Баба Яга Джон Уик мстит преступному синдикату (★${Number(m.rating || 8.0).toFixed(1)})`;
-      if (m.id === 28) return `💥 Культовый шедевр Люка Бессона: профессиональный киллер Леон и Матильда (★${Number(m.rating || 8.5).toFixed(1)})`;
-      if (m.id === 138) return `💥 Кровавый экшен-виртуоз Тарантино: месть Невесты и катаны Хаттори Хандзо (★${Number(m.rating || 8.7).toFixed(1)})`;
-      if (m.id === 74) return `💥 Эталон экшена: Т-800, миниган, взрывы и погоня от жидкого металла (★${Number(m.rating || 8.6).toFixed(1)})`;
-      if (m.id === 286) return `💥 Безжалостный киборг-убийца Джеймса Кэмерона и охота в Лос-Анджелесе (★${Number(m.rating || 8.0).toFixed(1)})`;
-      if (m.id === 296) return `💥 Культовый криминальный шедевр: Данила Багров и суровые 90-е (★${Number(m.rating || 8.3).toFixed(1)})`;
-      if (m.id === 297) return `💥 «В чём сила, брат?»: Данила Багров наводит порядок в Америке (★${Number(m.rating || 8.3).toFixed(1)})`;
-      if (m.id === 182) return `💥 Леденящий кровь триллер: безжалостный наемный киллер Антон Чигур (★${Number(m.rating || 8.2).toFixed(1)})`;
-      if (m.id === 257) return `💥 Чистый адреналин и пиротехника: безумная погоня по Дороге ярости (★${Number(m.rating || 8.1).toFixed(1)})`;
-      if (m.id === 106) return `💥 Джон Макклейн против террористов в небоскребе Накатоми Плаза (★${Number(m.rating || 8.2).toFixed(1)})`;
-      if (m.id === 331) return `💥 Спецназ, заложники на Алькатрасе и взрывной драйв Майкла Бэя (★${Number(m.rating || 7.9).toFixed(1)})`;
-      if (m.id === 9) return `💥 Революционный экшен: Нео, уклонение от пуль и перестрелка в холле (★${Number(m.rating || 8.7).toFixed(1)})`;
-      if (m.id === 127) return `💥 Величайшая дуэль в истории кино: Аль Пачино против Роберта Де Ниро (★${Number(m.rating || 8.3).toFixed(1)})`;
-      if (m.id === 319) return `💥 Элитный отряд Шварценеггера против инопланетного охотника в джунглях (★${Number(m.rating || 7.9).toFixed(1)})`;
-      if (m.id === 348) return `💥 «Я найду тебя и убью»: Лиам Нисон в роли беспощадного спецагента (★${Number(m.rating || 7.9).toFixed(1)})`;
-      if (m.id === 824) return `💥 Дензел Вашингтон в роли телохранителя, несущего возмездие картелю (★${Number(m.rating || 8.0).toFixed(1)})`;
-      return `💥 Безумный адреналиновый драйв, перестрелки и взрывы (★${Number(m.rating || 8.0).toFixed(1)})`;
-    }
-  },
-  {
-    name: 'samurai_cinema',
-    triggers: ['самура', 'самураи', 'самурай', 'самураев', 'самурайский', 'самурайское', 'катана', 'куросава', 'ронин', 'японский воин', 'сёгун'],
-    requiredMovieIds: [33, 165, 128, 112, 138],
-    relatedKeywords: ['самураи', 'самурай', 'самурайский экшен', 'катана', 'куросава', 'япония', 'ронин', 'боевые искусства'],
-    relatedGenres: ['боевик', 'драма', 'приключения', 'военный'],
-    vectorBias: { energy: 8, darkness: 6, intellect: 8, emotion: 7, dynamism: 8 },
-    badgeTemplate: (m) => {
-      if (m.id === 33) return `⚔️ Легендарный шедевр Акиры Куросавы: величайший самурайский эпос в истории кино (★8.6)`;
-      if (m.id === 165) return `⚔️ Культовый самурайский экшен: Тосиро Мифунэ в роли хитроумного ронина Сандзюро (★8.2)`;
-      if (m.id === 128) return `⚔️ Монументальная трагедия Куросавы: эпические самурайские баталии феодальной Японии (★8.2)`;
-      if (m.id === 112) return `⚔️ Философская загадка Куросавы о чести, правде и самурайской дуэли (★8.1)`;
-      if (m.id === 138) return `⚔️ Виртуозный экшн Квентина Тарантино с катанами Хаттори Хандзо (★8.7)`;
-      return `⚔️ Культовый самурайский экшн и боевые искусства (★${Number(m.rating || 8.0).toFixed(1)})`;
-    }
-  },
-  {
-    name: 'batman_dc',
-    triggers: ['бетмен', 'бетмэн', 'бэтмен', 'бэтмэн', 'batman', 'темныи рыцарь', 'темный рыцарь', 'готем', 'готэм', 'брюс уэин', 'брюс уэйн', 'джокер', 'джокера', 'беил', 'бэйл'],
-    requiredMovieIds: [3, 86, 122], // Тёмный рыцарь, Бэтмен: Начало, Тёмный рыцарь: Возрождение легенды
-    relatedKeywords: ['готем', 'готэм', 'бетмен', 'бэтмен', 'джокер', 'нолан', 'кристофер нолан', 'комикс', 'город грехов', 'рыцарь', 'вигилант', 'мафи', 'криминал', 'бейла', 'бэйна'],
-    relatedGenres: ['боевик', 'криминал', 'триллер', 'фантастика', 'детектив'],
-    vectorBias: { darkness: 9, intellect: 8, energy: 8, dynamism: 8 },
-    badgeTemplate: (m) => {
-      if (m.id === 3) return `🦇 Культовый шедевр Кристофера Нолана: дуэль Бэтмена и Джокера Хита Леджера (★9.0)`;
-      if (m.id === 86) return `🦇 Становление Брюса Уэйна: рождение легендарного защитника Готэма (★8.2)`;
-      if (m.id === 122) return `🦇 Грандиозный финал трилогии: Бэтмен против безжалостного Бэйна (★8.4)`;
-      return `⚡ Мрачный криминальный триллер и саспенс в духе вселенной Тёмного рыцаря (★${Number(m.rating || 8.0).toFixed(1)})`;
-    }
-  },
-  {
-    name: 'spiderman_marvel',
-    triggers: ['человек паук', 'человекпаук', 'спаидермен', 'спайдермен', 'spider man', 'spiderman', 'питер паркер', 'маилз моралес', 'паук'],
-    requiredMovieIds: [],
-    relatedKeywords: ['человек паук', 'человек-паук', 'паук', 'паркер', 'марвел', 'мстители', 'стэн ли'],
-    relatedGenres: ['боевик', 'приключения', 'фантастика'],
-    vectorBias: { energy: 9, dynamism: 9, emotion: 8, intellect: 7 },
-    badgeTemplate: (m) => `🕷️ Легендарная супергероика про Человека-паука и силу ответственности`
-  },
-  {
-    name: 'harry_potter',
-    triggers: ['гарри поттер', 'поттер', 'хогвартс', 'дамблдор', 'волан де морт', 'воландеморт', 'роулинг', 'harry potter'],
-    requiredMovieIds: [],
-    relatedKeywords: ['поттер', 'гарри', 'хогвартс', 'магия', 'волшебник', 'фэнтези', 'заклинани'],
-    relatedGenres: ['фэнтези', 'приключения', 'семейный'],
-    vectorBias: { emotion: 9, energy: 7, intellect: 7, darkness: 6 },
-    badgeTemplate: (m) => `⚡ Волшебная вселенная магии, дружбы и великих тайн Хогвартса`
-  },
-  {
-    name: 'star_wars',
-    triggers: ['звездные воины', 'звездных воин', 'звездным воинам', 'star wars', 'джедаи', 'скаиуокер', 'дарт веидер', 'иода', 'ситх'],
-    requiredMovieIds: [],
-    relatedKeywords: ['звездные воины', 'джедаи', 'скаиуокер', 'веидер', 'галактика', 'космос', 'лукас'],
-    relatedGenres: ['фантастика', 'приключения', 'боевик'],
-    vectorBias: { intellect: 8, energy: 9, dynamism: 8, emotion: 8 },
-    badgeTemplate: (m) => `🌌 Эпическая космическая сага о Силе, джедаях и судьбе Галактики`
-  },
-  {
-    name: 'lotr',
-    triggers: ['властелин колец', 'властелина колец', 'хоббит', 'хоббита', 'толкин', 'толкиен', 'фродо', 'гендальф', 'lotr'],
-    requiredMovieIds: [],
-    relatedKeywords: ['властелин колец', 'хоббит', 'средиземье', 'кольцо', 'толкин', 'джексон'],
-    relatedGenres: ['фэнтези', 'приключения', 'драма'],
-    vectorBias: { emotion: 10, energy: 9, dynamism: 8, intellect: 8, darkness: 6 },
-    badgeTemplate: (m) => `💍 Монументальный шедевр мирового фэнтези Питера Джексона по книгам Толкина`
-  },
-  {
-    name: 'nolan',
-    triggers: ['нолан', 'нолана', 'нолану', 'кристофер нолан', 'кристофера нолана'],
-    requiredMovieIds: [3, 86, 122, 10, 7, 65, 345, 840], // Тёмный рыцарь, Бэтмен: Начало, Возрождение легенды, Интерстеллар, Начало, Престиж, Мементо, Оппенгеймер
-    relatedKeywords: ['нолан', 'кристофер нолан', 'интерстеллар', 'начало', 'престиж', 'темныи рыцарь', 'помни', 'мементо', 'оппенгеимер'],
-    relatedGenres: ['фантастика', 'триллер', 'драма', 'детектив'],
-    vectorBias: { intellect: 10, dynamism: 8, energy: 8, darkness: 7 },
-    badgeTemplate: (m) => `⏳ Фирменный кинематографический стиль и нелинейный нарратив Кристофера Нолана`
-  },
-  {
-    name: 'tarantino',
-    triggers: ['тарантино', 'квентин', 'квентина тарантино'],
-    requiredMovieIds: [],
-    relatedKeywords: ['тарантино', 'квентин', 'чтиво', 'джанго', 'ублюдки', 'билл', 'псы'],
-    relatedGenres: ['криминал', 'боевик', 'драма', 'комедия'],
-    vectorBias: { energy: 9, dynamism: 9, intellect: 8, darkness: 6 },
-    badgeTemplate: (m) => `🎬 Культовые диалоги, черный юмор и безупречная режиссура Квентина Тарантино`
-  },
-  {
-    name: 'fincher',
-    triggers: ['финчер', 'дэвид финчер', 'дэвида финчера'],
-    requiredMovieIds: [],
-    relatedKeywords: ['финчер', 'боицовскии клуб', 'семь', 'исчезнувшая', 'игра', 'зодиак'],
-    relatedGenres: ['триллер', 'детектив', 'драма', 'криминал'],
-    vectorBias: { darkness: 9, intellect: 10, dynamism: 7 },
-    badgeTemplate: (m) => `🔍 Эталон психологического триллера и филигранный перфекционизм Дэвида Финчера`
-  },
-  {
-    name: 'soviet_bw',
-    triggers: ['советскии в чб', 'советский в чб', 'советское в чб', 'советские в чб', 'ссср в чб', 'советскии черно белыи', 'советский черно-белый', 'чб советскии', 'чб советский', 'чб ссср', 'черно белое советское', 'советское черно белое'],
-    requiredMovieIds: [291, 289, 277, 278, 292, 293, 273, 276, 274, 272, 275, 279, 280, 281, 294, 295, 4, 32, 33, 36],
-    relatedKeywords: ['ссср', 'советск', 'мосфильм', 'летят журавли', 'девчата', 'старики', 'собачье сердце', 'зори', 'офицеры', 'гайдай', 'рязанов', 'чб', 'черно-белый'],
-    relatedGenres: ['драма', 'комедия', 'военный', 'мелодрама'],
-    vectorBias: { emotion: 10, intellect: 9, darkness: 5, energy: 6, dynamism: 6 },
-    badgeTemplate: (m) => `🎞️ Золотой шедевр советского кино: неподдельная душевность и режиссура (★${Number(m.rating || 8.5).toFixed(1)})`
-  },
-  {
-    name: 'soviet_cinema',
-    triggers: ['советскии', 'советский', 'советское', 'советские', 'ссср', 'ussr', 'мосфильм', 'ленфильм', 'гаидаи', 'гайдай', 'рязанов', 'тарковскии', 'тарковский', 'советская классика'],
-    requiredMovieIds: [272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 289, 290, 291, 292, 293, 294, 295],
-    relatedKeywords: ['ссср', 'советск', 'мосфильм', 'гайдай', 'рязанов', 'шурик', 'иван васильевич', 'бриллиантовая рука', 'джентльмены удачи', 'москва слезам не верит', 'служебный роман'],
-    relatedGenres: ['комедия', 'драма', 'мелодрама', 'приключения'],
-    vectorBias: { emotion: 10, energy: 7, intellect: 8, darkness: 3, dynamism: 6 },
-    badgeTemplate: (m) => `🎬 Бессмертная классика советского кино: народная любовь, искренность и юмор (★${Number(m.rating || 8.5).toFixed(1)})`
-  },
-  {
-    name: 'black_and_white_cinema',
-    triggers: ['чб', 'ч б', 'черно белыи', 'черно-белый', 'черно белый', 'черно белое', 'черно-белое', 'монохром', 'ретро кино', 'старое кино', 'классика кинематографа', 'black and white'],
-    requiredMovieIds: [291, 289, 277, 278, 4, 24, 32, 33, 36, 38, 41, 42, 47, 52, 53, 88, 100, 101, 105, 110, 112, 118, 123, 148, 152, 156, 159, 163, 165, 174, 181],
-    relatedKeywords: ['чб', 'черно-белый', 'классика', 'хичкок', 'чаплин', 'уайлдер', 'куросава', 'бергман', 'феллини', 'орсон уэллс', 'кубрик', '195', '194', '193', '196'],
-    relatedGenres: ['драма', 'триллер', 'детектив', 'комедия'],
-    vectorBias: { intellect: 10, darkness: 6, emotion: 9, dynamism: 5 },
-    badgeTemplate: (m) => `🎞️ Нестареющий шедевр мирового черно-белого кино (★${Number(m.rating || 8.5).toFixed(1)})`
-  },
-  {
-    name: 'marvel_avengers',
-    triggers: ['марвел', 'мстители', 'мстителеи', 'marvel', 'железныи человек', 'тони старк', 'капитан америка', 'тор', 'дэдпул', 'логан'],
-    requiredMovieIds: [],
-    relatedKeywords: ['мстители', 'марвел', 'marvel', 'железныи человек', 'логан', 'дэдпул', 'стражи галактики'],
-    relatedGenres: ['боевик', 'фантастика', 'приключения'],
-    vectorBias: { energy: 10, dynamism: 9, emotion: 8, intellect: 6 },
-    badgeTemplate: (m) => `⚡ Зрелищный блокбастер кинематографической вселенной Marvel`
-  }
-];
-
-/**
- * Rich Semantic Tropes & Keyword Dictionary
- */
-const TROPES_DICTIONARY = [
-  // Psychological / Twists / Intellect
-  {
-    keys: ['твист', 'концовк', 'неожидан', 'финал', 'развязк', 'головоломк', 'мозг', 'запутан', 'смысл'],
-    vectorBias: { intellect: 10, darkness: 7, dynamism: 6 },
-    genres: ['триллер', 'детектив', 'фантастика', 'драма'],
-    badgeTemplate: (m) => `🧠 Закрученная головоломка (Интеллект ${m.sensationVector?.intellect || 9}/10) с непредсказуемым финалом`
-  },
-  // Noir / Cyberpunk / Gritty Atmospheric
-  {
-    keys: ['мрачн', 'нуар', 'дожд', 'киберпанк', 'неон', 'криминал', 'детектив', 'мафи', 'гангстер'],
-    vectorBias: { darkness: 9, energy: 6, intellect: 8, dynamism: 7 },
-    genres: ['криминал', 'детектив', 'триллер', 'фантастика'],
-    badgeTemplate: (m) => `⚡ Густая нео-нуарная атмосфера (Мрачность ${m.sensationVector?.darkness || 8}/10) и высокий саспенс`
-  },
-  // High Octane / Adrenaline / Action
-  {
-    keys: ['адреналин', 'драив', 'драйв', 'экшн', 'погон', 'перестрелк', 'скорост', 'динамик', 'боевик', 'крут'],
-    vectorBias: { energy: 10, dynamism: 10, darkness: 5 },
-    genres: ['боевик', 'триллер', 'приключения', 'криминал'],
-    badgeTemplate: (m) => `🔥 Бешеный темпоритм (Динамика ${m.sensationVector?.dynamism || 9}/10) и адреналиновые сцены`
-  },
-  // Chill / Pizza with friends / Comedy
-  {
-    keys: ['пицц', 'друг', 'компани', 'вечер', 'смешн', 'комед', 'легк', 'расслаб', 'угар', 'весел'],
-    vectorBias: { energy: 7, emotion: 8, darkness: 2, dynamism: 7 },
-    genres: ['комедия', 'приключения', 'боевик'],
-    badgeTemplate: (m) => `🍕 Идеально для отдыха с друзьями: искрометный юмор и рейтинг ★${Number(m.rating || 8.0).toFixed(1)}`
-  },
-  // Sci-Fi / Deep Space / Cosmic
-  {
-    keys: ['космос', 'вселенн', 'будущ', 'научн', 'фантастик', 'робот', 'ии', 'время', 'интерстеллар'],
-    vectorBias: { intellect: 9, emotion: 8, dynamism: 7, energy: 7 },
-    genres: ['фантастика', 'приключения', 'драма'],
-    badgeTemplate: (m) => `🌌 Монументальная космическая эстетика и глубокие философские размышления`
-  },
-  // Tearjerker / Deep Emotional Drama / Romance
-  {
-    keys: ['слез', 'рыдат', 'плакат', 'любов', 'романтик', 'драм', 'душевн', 'трогательн', 'чувств', 'сердц'],
-    vectorBias: { emotion: 10, darkness: 4, intellect: 7, energy: 4 },
-    genres: ['драма', 'мелодрама', 'биография'],
-    badgeTemplate: (m) => `💔 Пронзительная эмоциональная глубина (Эмоции ${m.sensationVector?.emotion || 9}/10) до мурашек`
-  }
-];
-
 const STOP_WORDS = new Set([
   'я', 'хочу', 'фильм', 'фильмы', 'фильма', 'кино', 'кинематограф', 'посоветуй',
   'покажи', 'найди', 'подобрать', 'подбери', 'что', 'нибудь', 'что-нибудь',
@@ -236,7 +30,7 @@ const STOP_WORDS = new Set([
   'там', 'когда', 'который', 'которая', 'которые', 'тоже', 'еще', 'ещё', 'все', 'всё', 'как', 'бы', 'ли'
 ]);
 
-function getQueryStem(token = '') {
+export function getQueryStem(token = '') {
   if (token.length <= 3) return token;
   return token
     .replace(/(ов|ев|ёв|ин|ий|ый|ая|ое|ые|ие|ям|ях|ями|ами|ом|ем|ам|ах|ой|ей|ую|юю|ого|его|ому|ему|ым|им|ых|их|ся|сь|е|и|у|а|о|ы|я|ю)$/gi, '')
@@ -244,69 +38,45 @@ function getQueryStem(token = '') {
 }
 
 /**
- * Fast Multi-Factor Candidate Retriever & 5D Vector Matcher (Guaranteed 25 Movies)
+ * Stage 1: Universal Semantic Candidate Retrieval & Hard Format Filtering
  */
-export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, limit = 25) {
+export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, limit = 25, catalog = movies) {
   const normQ = normalizeQueryText(prompt);
   const rawTokens = normQ.split(/\s+/).filter((t) => t.length >= 2);
   const promptTokens = rawTokens.filter((t) => !STOP_WORDS.has(t));
   const stemmedTokens = promptTokens.map(getQueryStem);
   const allSearchTokens = Array.from(new Set([...promptTokens, ...stemmedTokens])).filter((t) => t.length >= 2);
-  const vector = userTasteVector || { energy: 6, darkness: 5, intellect: 6, emotion: 7, dynamism: 6 };
+  const targetVector = userTasteVector || { energy: 6, darkness: 5, intellect: 6, emotion: 7, dynamism: 6 };
 
-  // 1. Check Franchise & Character matches
-  const matchedFranchises = FRANCHISES_AND_CHARACTERS.filter((f) =>
-    f.triggers.some((t) => normQ.includes(normalizeQueryText(t)))
-  );
+  // 1. HARD FORMAT CONSTRAINTS
+  let candidatePool = [...catalog];
 
-  // 2. Check Tropes matches
-  const activeTropes = TROPES_DICTIONARY.filter((t) =>
-    t.keys.some((k) => normQ.includes(normalizeQueryText(k)))
-  );
+  const isAnimationQuery = /(^|[^а-яa-z0-9])(мультик|мультфильм|мультсериал|анимац|мульт|пиксар|диснеи|дисней)/iu.test(normQ);
+  const isAnimeQuery = /(^|[^а-яa-z0-9])(аниме|миязаки|миядзаки|гибли|макото синкай)/iu.test(normQ);
+  const isBWQuery = /(^|[^а-яa-z0-9])(чб|черно бел|монохром)/iu.test(normQ);
+  const isSovietQuery = /(^|[^а-яa-z0-9])(советск|ссср|мосфильм|ленфильм)/iu.test(normQ);
 
-  // Composite Target Vector & Target Genres
-  let targetVector = { ...vector };
-  let targetGenres = new Set();
-  let mustIncludeIds = new Set();
-  let customBadgeFn = null;
-
-  if (matchedFranchises.length > 0) {
-    const f = matchedFranchises[0];
-    f.requiredMovieIds.forEach((id) => mustIncludeIds.add(id));
-    f.relatedGenres.forEach((g) => targetGenres.add(g));
-    targetVector = { ...vector, ...f.vectorBias };
-    customBadgeFn = f.badgeTemplate;
-  } else if (activeTropes.length > 0) {
-    let e = 0, d = 0, i = 0, em = 0, dy = 0;
-    activeTropes.forEach((t) => {
-      e += t.vectorBias.energy;
-      d += t.vectorBias.darkness;
-      i += t.vectorBias.intellect;
-      em += t.vectorBias.emotion ?? vector.emotion;
-      dy += t.vectorBias.dynamism ?? vector.dynamism;
-      t.genres.forEach((g) => targetGenres.add(g));
-    });
-    const len = activeTropes.length;
-    targetVector = {
-      energy: Math.round((e / len + vector.energy) / 2),
-      darkness: Math.round((d / len + vector.darkness) / 2),
-      intellect: Math.round((i / len + vector.intellect) / 2),
-      emotion: Math.round((em / len + vector.emotion) / 2),
-      dynamism: Math.round((dy / len + vector.dynamism) / 2)
-    };
-    customBadgeFn = activeTropes[0].badgeTemplate;
+  if (isAnimationQuery) {
+    candidatePool = candidatePool.filter((m) => (m.genres || '').toLowerCase().includes('мультфильм'));
+  }
+  if (isAnimeQuery) {
+    candidatePool = candidatePool.filter(
+      (m) =>
+        (m.country || '').includes('Япония') &&
+        ((m.genres || '').toLowerCase().includes('мультфильм') || (m.keywords || []).includes('аниме') || (m.director || '').includes('Миядзаки'))
+    );
+  }
+  if (isBWQuery) {
+    candidatePool = candidatePool.filter((m) => m.isBW === true);
+  }
+  if (isSovietQuery) {
+    candidatePool = candidatePool.filter((m) => (m.country || '').includes('СССР') || (m.era || '').includes('советск'));
   }
 
-  // 3. Score all 440 movies with enriched metadata
-  const scored = movies.map((m) => {
+  // 2. DYNAMIC MULTI-FACTOR SCORING
+  const scored = candidatePool.map((m) => {
     let score = (m.rating || 7.5) * 0.4;
     let matchHits = 0;
-
-    // Hard Boost for must-include franchise IDs
-    if (mustIncludeIds.has(m.id)) {
-      score += 100.0;
-      matchHits += 5;
-    }
 
     const normTitleRu = normalizeQueryText(m.titleRu);
     const normTitleOrig = normalizeQueryText(m.title);
@@ -315,110 +85,94 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     const normGenres = normalizeQueryText(m.genres || '');
     const normCountry = normalizeQueryText(m.country || '');
     const normEra = normalizeQueryText(m.era || '');
-    const normDesc = normalizeQueryText(m.description || '' + ' ' + (m.fullDescription || ''));
+    const normDesc = normalizeQueryText(`${m.description || ''} ${m.fullDescription || ''}`);
     const movieKeywords = (m.keywords || []).map(normalizeQueryText);
     const movieTropes = (m.tropes || []).map(normalizeQueryText);
 
-    // 1. Full normalized query exact phrase match in Title (Massive Boost)
+    // 1. Full Query Title Exact Match
     if (normTitleRu.includes(normQ) || normTitleOrig.includes(normQ)) {
-      score += 60.0;
-      matchHits += 3;
-    }
-    if (normDesc.includes(normQ)) {
-      score += 25.0;
-      matchHits += 2;
-    }
-    if (normDirector.includes(normQ)) {
-      score += 35.0;
-      matchHits += 3;
+      score += 100.0;
+      matchHits += 5;
     }
 
-    // 2. Thematic Keywords & Tropes
+    // 2. Track distinct matched tokens across keywords, tropes, title & description
+    const matchedDistinctTokens = new Set();
+
     for (const tok of allSearchTokens) {
       if (movieKeywords.some((k) => k.includes(tok) || tok.includes(k))) {
-        score += 30.0;
-        matchHits++;
+        matchedDistinctTokens.add(tok);
       }
       if (movieTropes.some((tr) => tr.includes(tok) || tok.includes(tr))) {
+        matchedDistinctTokens.add(tok);
+      }
+      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) {
+        matchedDistinctTokens.add(tok);
+      }
+      if (normDesc.includes(tok)) {
+        matchedDistinctTokens.add(tok);
+      }
+      if (normGenres.includes(tok)) {
+        matchedDistinctTokens.add(tok);
+      }
+    }
+
+    const distinctCount = matchedDistinctTokens.size;
+    matchHits += distinctCount;
+
+    // Compound Multi-Match Boost: movies matching 2, 3, or 4+ query concepts rank vastly higher!
+    if (distinctCount === 1) score += 30.0;
+    else if (distinctCount === 2) score += 75.0;
+    else if (distinctCount === 3) score += 130.0;
+    else if (distinctCount >= 4) score += 200.0;
+
+    // 5. Director & Actor Matches
+    if (normDirector && (normQ.includes(normDirector) || allSearchTokens.some((t) => t.length >= 4 && normDirector.includes(t)))) {
+      score += 45.0;
+      matchHits += 2;
+    }
+    for (const tok of allSearchTokens) {
+      if (tok.length >= 4 && normActors.includes(tok)) {
+        score += 15.0;
+        matchHits++;
+      }
+    }
+
+    // 6. Era & Nostalgia alignment
+    if ((normQ.includes('детств') || normQ.includes('ностальги') || normQ.includes('классик')) && m.year <= 2010) {
+      score += 30.0;
+      matchHits++;
+    }
+    if ((normQ.includes('новинк') || normQ.includes('свеж') || normQ.includes('новый')) && m.year >= 2020) {
+      score += 30.0;
+      matchHits++;
+    }
+
+    // 7. Vibe / Mood alignment
+    if (normQ.includes('приятн') || normQ.includes('добр') || normQ.includes('уютн') || normQ.includes('семейн') || normQ.includes('тепл')) {
+      if ((m.sensationVector?.darkness || 5) <= 4 && (m.sensationVector?.emotion || 5) >= 6) {
+        score += 25.0;
+        matchHits++;
+      }
+    }
+    if (normQ.includes('мрачн') || normQ.includes('тяжел') || normQ.includes('страшн') || normQ.includes('жесток')) {
+      if ((m.sensationVector?.darkness || 5) >= 7) {
         score += 25.0;
         matchHits++;
       }
     }
 
-    // 3. Individual query tokens in Title / Director / Actors
-    for (const tok of allSearchTokens) {
-      if (normTitleRu.includes(tok) || normTitleOrig.includes(tok)) {
-        score += 15.0;
-        matchHits++;
-      }
-      if (normDirector.includes(tok)) {
-        score += 10.0;
-        matchHits++;
-      }
-      if (normActors.includes(tok)) {
-        score += 6.0;
-        matchHits++;
-      }
-      if (normGenres.includes(tok)) {
-        score += 5.0;
-        matchHits++;
-      }
-      if (normDesc.includes(tok)) {
-        score += 4.0;
-        matchHits++;
-      }
-    }
-
-    // 4. Country & Era matches
-    if ((normQ.includes('советск') || normQ.includes('ссср')) && (normCountry.includes('ссср') || normEra.includes('советск'))) {
-      score += 50.0;
-      matchHits += 2;
-    }
-    if ((normQ.includes('чб') || normQ.includes('черно бел') || normQ.includes('монохром')) && m.isBW) {
-      score += 45.0;
-      matchHits += 2;
-    }
-    if (normQ.includes('90') && normEra.includes('90')) {
-      score += 30.0;
-      matchHits++;
-    }
-    if (normQ.includes('2000') && normEra.includes('2000')) {
-      score += 30.0;
-      matchHits++;
-    }
-
-    // 5. Franchise related keywords
-    if (matchedFranchises.length > 0) {
-      for (const f of matchedFranchises) {
-        for (const kw of f.relatedKeywords) {
-          const normKw = normalizeQueryText(kw);
-          if (normTitleRu.includes(normKw) || normTitleOrig.includes(normKw)) {
-            score += 12.0;
-            matchHits++;
-          }
-          if (normDesc.includes(normKw)) {
-            score += 6.0;
-            matchHits++;
-          }
-          if (normDirector.includes(normKw)) {
-            score += 8.0;
-            matchHits++;
-          }
-        }
-      }
-    }
-
-    // 6. 5D Vector alignment
-    const dist = calculateVectorDistance(m.sensationVector, targetVector);
-    score -= dist * 0.25;
-
-    // Badge Generation
+    // Contextual Badge Generator
     let reason = '';
-    if (customBadgeFn) {
-      reason = customBadgeFn(m);
+    if (m.genres?.includes('Мультфильм')) {
+      reason = `🦁 Любимый мультфильм: приключения, теплота и атмосфера из детства (★${Number(m.rating || 8.0).toFixed(1)})`;
+    } else if (m.keywords?.includes('киллер') || m.keywords?.includes('перестрелки')) {
+      reason = `💥 Безумный адреналиновый драйв, перестрелки и экшен (★${Number(m.rating || 8.0).toFixed(1)})`;
+    } else if (m.keywords?.includes('космос')) {
+      reason = `🌌 Монументальная космическая одиссея и глубокая атмосфера (★${Number(m.rating || 8.0).toFixed(1)})`;
+    } else if (m.isBW) {
+      reason = `🎞️ Нестареющий шедевр мирового черно-белого кино (★${Number(m.rating || 8.0).toFixed(1)})`;
     } else {
-      const matchPct = Math.min(99, Math.max(89, Math.round(100 - dist * 3.5)));
-      reason = `✨ Совпадение ${matchPct}% по сюжету, стилю и 5D-вкусу (★${Number(m.rating || 8.0).toFixed(1)})`;
+      reason = `✨ Совпадение по сюжету, стилю и атмосфере (★${Number(m.rating || 8.0).toFixed(1)})`;
     }
 
     return {
@@ -431,7 +185,7 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
     };
   });
 
-  // Strict relevance filter: if specific search tokens were provided, only return genuine matches!
+  // Strict relevance filter
   let candidates = scored;
   if (allSearchTokens.length > 0) {
     const relevant = scored.filter((s) => s.matchHits > 0);
@@ -441,13 +195,11 @@ export function getSemanticAndVectorDeck(prompt = '', userTasteVector = null, li
   }
 
   candidates.sort((a, b) => b.score - a.score);
-
-  // Return strictly top unique relevant movies (up to limit)
   return candidates.slice(0, limit).map((s) => s.movie);
 }
 
 /**
- * Master Gemini AI Concierge Engine (25 Curated Movies)
+ * Master Gemini AI Concierge Engine (Stage 2 Curation with Strict LLM Format Rules)
  */
 export async function generateGeminiRecommendations({
   prompt,
@@ -471,7 +223,7 @@ export async function generateGeminiRecommendations({
     .map((m) => m.titleRu || m.title)
     .slice(0, 10);
 
-  // Tier 1: Try Vercel Serverless Function Proxy (/api/gemini-recommend)
+  // Tier 1: Vercel Serverless Function Proxy (/api/gemini-recommend)
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 7500);
@@ -494,11 +246,11 @@ export async function generateGeminiRecommendations({
 
     if (response.ok) {
       const data = await response.json();
-      if (data && data.success && Array.isArray(data.deck) && data.deck.length === 25) {
+      if (data && data.success && Array.isArray(data.deck) && data.deck.length > 0) {
         return {
           success: true,
           deck: data.deck,
-          aiSummary: data.aiSummary || `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
+          aiSummary: data.aiSummary || `Коллекция из ${data.deck.length} фильмов по запросу «${cleanPrompt}»`,
           isAi: true,
           source: 'gemini_api_serverless'
         };
@@ -512,6 +264,39 @@ export async function generateGeminiRecommendations({
   try {
     const clientKey = typeof import.meta !== 'undefined' && import.meta.env?.VITE_GEMINI_API_KEY;
     if (clientKey && clientKey !== 'your_gemini_api_key' && !clientKey.includes('TODO')) {
+      const topCandidates = getSemanticAndVectorDeck(cleanPrompt, userTasteVector, 50, catalog);
+      const targetCount = Math.min(25, topCandidates.length);
+      const candidatesText = topCandidates
+        .map(
+          (m) =>
+            `[ID: ${m.id}] "${m.titleRu}" (${m.year}) | Жанр: ${m.genres} | Реж: ${m.director} | Рейтинг: ${m.rating} | Описание: ${m.description || ''} | Теги: ${(m.keywords || []).slice(0, 8).join(', ')}`
+        )
+        .join('\n');
+
+      const systemPrompt = `Ты — MatchWatch AI Cinema Genie, ведущий мировой кинокритик и кино-сомелье с безупречным вкусом.
+
+ТВОЯ ЗАДАЧА:
+Зритель обратился к тебе с запросом: «${cleanPrompt}».
+Из предложенных кандидатов нашей базы выбери до ${targetCount} САМЫХ ТОЧНО ПОДХОДЯЩИХ, выстрой их в идеальном порядке (от абсолютных шедевров к интересным находкам) и напиши к каждому фильму сочную 1–2 предложения персональную синефильскую рецензию ("reason").
+
+ЖЕЛЕЗОБЕТОННЫЕ ПРАВИЛА СООТВЕТСТВИЯ (КРИТИЧЕСКИ ВАЖНО):
+1. СТРОГОЕ СООТВЕТСТВИЕ ФОРМАТУ: Если зритель просит "мультик" / "мультфильм" / "анимацию" — выбирай ИСКЛЮЧИТЕЛЬНО анимационные фильмы! Категорически запрещено выбирать художественные игровые фильмы (даже если там есть фантастика, космос или животные)!
+2. ТЕМАТИЧЕСКИЙ ФОКУС: Если просят животных, выбирай фильмы где главные герои — животные (Король Лев, Немо, Рататуй, Ледниковый период, Зверополис, Мадагаскар).
+3. ЭПОХА И ВАЙБ: «из детства» / «ностальгия» -> шедевры 90-х и 2000-х; «приятное настроение» -> добрые, светлые и уютные истории.
+4. ВЫБОР ТОЛЬКО ИЗ СПИСКА: Выбирай СТРОГО из предложенного списка кандидатов (не выдумывай посторонние ID).
+5. "reason": Обязательно укажи яркие фишки фильма, почему именно он идеально подходит под запрос зрителя.
+
+ФОРМАТ ВЫВОДА (СТРОГО JSON):
+{
+  "recommendations": [
+    {
+      "id": 68,
+      "reason": "Культовый шедевр нашего детства: история взросления львенка Симбы в саванне с великой музыкой Ханса Циммера."
+    }
+  ],
+  "aiSummary": "Собрал для вас коллекцию любимых мультфильмов из детства..."
+}`;
+
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${clientKey}`;
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -520,16 +305,13 @@ export async function generateGeminiRecommendations({
           contents: [
             {
               role: 'user',
-              parts: [
-                {
-                  text: `Ты — кинокритик. По запросу зрителя «${cleanPrompt}» предложи список из 40-60 лучших подходящих фильмов мирового кино. Верни JSON: { "candidates": [{ "titleRu": "Русское название", "titleOriginal": "Original Title", "year": 2000, "reason": "1-2 предложения описания" }], "aiSummary": "резюме" }.`
-                }
-              ]
+              parts: [{ text: systemPrompt }, { text: `ЗАПРОС ЗРИТЕЛЯ: «${cleanPrompt}»\n\nКАНДИДАТЫ:\n${candidatesText}` }]
             }
           ],
           generationConfig: {
             responseMimeType: 'application/json',
-            temperature: 0.4
+            temperature: 0.35,
+            maxOutputTokens: 4096
           }
         })
       });
@@ -539,42 +321,27 @@ export async function generateGeminiRecommendations({
         const raw = d?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (raw) {
           const parsed = JSON.parse(raw);
-          const candidates = parsed.candidates || parsed.recommendations || [];
-          const deck = [];
-          const seen = new Set();
+          const candidateMap = new Map(topCandidates.map((m) => [m.id, m]));
+          const finalDeck = [];
+          const seenIds = new Set();
 
-          for (const cand of candidates) {
-            const candTitles = [cand.titleRu, cand.title, cand.titleOriginal, cand.originalTitle].filter(Boolean).map(normalizeQueryText);
-            for (const m of catalog) {
-              const mNormRu = normalizeQueryText(m.titleRu);
-              const mNormOrig = normalizeQueryText(m.title);
-              const isMatch = candTitles.some((t) => t === mNormRu || t === mNormOrig || (t.length >= 4 && (mNormRu.includes(t) || mNormOrig.includes(t))));
-              if (isMatch && !seen.has(m.id)) {
-                seen.add(m.id);
-                deck.push({
-                  ...m,
-                  aiReason: cand.reason || `Рекомендация MatchWatch AI`
-                });
-                break;
-              }
+          for (const rec of parsed.recommendations || []) {
+            const numId = Number(rec.id);
+            if (candidateMap.has(numId) && !seenIds.has(numId)) {
+              seenIds.add(numId);
+              finalDeck.push({
+                ...candidateMap.get(numId),
+                aiReason: rec.reason || `Рекомендация MatchWatch AI`
+              });
             }
-            if (deck.length >= 25) break;
+            if (finalDeck.length >= 25) break;
           }
 
-          if (deck.length >= 10) {
-            // Pad if under 25
-            for (const m of catalog) {
-              if (!seen.has(m.id)) {
-                seen.add(m.id);
-                deck.push({ ...m, aiReason: `Кураторский выбор MatchWatch AI` });
-              }
-              if (deck.length >= 25) break;
-            }
-
+          if (finalDeck.length > 0) {
             return {
               success: true,
-              deck: deck.slice(0, 25),
-              aiSummary: parsed.aiSummary || `Коллекция из 25 фильмов по запросу «${cleanPrompt}»`,
+              deck: finalDeck,
+              aiSummary: parsed.aiSummary || `Коллекция из ${finalDeck.length} фильмов по запросу «${cleanPrompt}»`,
               isAi: true,
               source: 'gemini_api_client'
             };
@@ -582,14 +349,16 @@ export async function generateGeminiRecommendations({
         }
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    console.warn('Gemini Client fallback exception:', e);
+  }
 
-  // Tier 3: High-Precision Semantic & 5D Vector Fallback (Zero Downtime, Exactly 25 Movies)
-  const localDeck = getSemanticAndVectorDeck(cleanPrompt, userTasteVector, 25);
+  // Tier 3: Zero-downtime Local Semantic Fallback (100% Format & Relevance Guaranteed)
+  const localDeck = getSemanticAndVectorDeck(cleanPrompt, userTasteVector, 25, catalog);
   return {
     success: true,
     deck: localDeck,
-    aiSummary: `Кураторская подборка из 25 фильмов по запросу «${cleanPrompt}»`,
+    aiSummary: `Подобрал для вас ${localDeck.length} ${localDeck.length === 1 ? 'фильм' : 'фильмов'} по запросу «${cleanPrompt}»`,
     isAi: false,
     isFallback: true,
     source: 'local_5d_engine'

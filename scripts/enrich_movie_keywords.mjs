@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * MatchWatch — Deep Catalog Keyword & Thematic Metadata Enrichment Script
+ * MatchWatch — Master Deep Catalog Keyword & Thematic Metadata Enrichment Script
  * 
  * Automatically analyzes all 440 movies in src/data/movies.js and enriches each movie with:
- * - keywords: array of search tags, topics, plot concepts, synonyms, and transliterated tokens
+ * - keywords: array of search tags, topics, plot concepts, synonyms, animal species, and format tokens
  * - era: decade / era categorization ("советская классика", "золотой век", "60-е", "70-е", "80-е", "90-е", "2000-е", "2010-е", "2020-е")
  * - tropes: storytelling tropes, visual aesthetics, and cinematic styles
  * - isBW: boolean indicating classic black-and-white release
@@ -22,6 +22,18 @@ import { movies } from '../src/data/movies.js';
 
 // Thematic Keyword Taxonomy Map with Strict Regexes and Word Boundaries
 const THEMATIC_KEYWORD_PATTERNS = [
+  // Animals, Wildlife, Animal Protagonists
+  {
+    regex: /(^|[^а-яa-z0-9])(животн|звер|лев|львенок|львица|рыб|клоун|крыс|мамонт|тигр|ленивец|зебр|жираф|бегемот|пингвин|кролик|крольчиха|лис|кот|кошк|собак|пес|птиц|волк|медвед|обезьян|осел|зоопарк|саванн|океан)/iu,
+    tags: ['животные', 'звери', 'главные герои животные', 'животный мир', 'природа', 'фауна', 'зоопарк', 'добрый']
+  },
+
+  // Childhood, Nostalgia, Disney, Pixar, Family Animation
+  {
+    regex: /(^|[^а-яa-z0-9])(детств|ностальги|мультик|мультфильм|анимац|диснеи|дисней|пиксар|дримворкс|семейн|для детей|сказк)/iu,
+    tags: ['детство', 'из детства', 'ностальгия', 'мультик', 'мультфильм', 'анимация', 'семейный', 'сказка', 'добрый', 'для всей семьи']
+  },
+
   // Killer, Assassin, Hitman, Gun-Fu, Explosions & High-Octane Action
   {
     regex: /(^|[^а-яa-z0-9])(киллер|наемн[а-я]* убийц|убийц|убива|перестрелк|взрыв|джон уик|леон(?!ид)|хитман|массов[а-я]* убийств|кровав[а-я]* экшен|карател|заказн[а-я]* убийств|снайпер|стрельб)/iu,
@@ -48,7 +60,7 @@ const THEMATIC_KEYWORD_PATTERNS = [
     tags: ['искусственный интеллект', 'роботы', 'киберпанк', 'технологии', 'будущее']
   },
   
-  // Batman & DC & Superhero (Only for genuine superhero/comic titles)
+  // Batman & DC & Superhero
   {
     regex: /(^|[^а-яa-z0-9])(бэтмен|бэтмэн|бетмен|готем|готэм|брюс уэйн|тёмн.*рыцар|темн.*рыцар|бэйн|харви дент)/iu,
     tags: ['бэтмен', 'джокер', 'готэм', 'тёмный рыцарь', 'комиксы', 'супергерои', 'dc', 'вигилант']
@@ -140,7 +152,7 @@ const DIRECTOR_KEYWORDS = {
   'Альфред Хичкок': ['хичкок', 'альфред хичкок', 'мастер саспенса', 'классический детектив', 'триллер', 'твист'],
   'Леонид Гайдай': ['гайдай', 'леонид гайдай', 'советская комедия', 'шурик', 'эксцентрика', 'юмор'],
   'Эльдар Рязанов': ['рязанов', 'эльдар рязанов', 'советская лирическая комедия', 'душевное кино'],
-  'Хаяо Миядзаки': ['миядзаки', 'хаяо миядзаки', 'гибли', 'аниме', 'волшебство', 'душевность'],
+  'Хаяо Миядзаки': ['миядзаки', 'хаяо миядзаки', 'гибли', 'аниме', 'волшебство', 'душевность', 'анимация', 'мультфильм', 'животные'],
   'Джеймс Кэмерон': ['кэмерон', 'джеймс кэмерон', 'масштабный блокбастер', 'революционный визуал', 'взрывы', 'экшен', 'боевик'],
   'Стивен Спилберг': ['спилберг', 'стивен спилберг', 'приключения', 'культовое кино', 'эмоции'],
   'Акира Куросава': ['куросава', 'акира куросава', 'самураи', 'самурайский экшен', 'катана', 'япония', 'ронин']
@@ -177,6 +189,16 @@ function extractTropes(m) {
   const tropes = new Set();
   const text = `${m.titleRu} ${m.title} ${m.description} ${m.fullDescription || ''} ${m.genres}`.toLowerCase();
 
+  if (m.genres?.toLowerCase().includes('мультфильм')) {
+    tropes.add('анимационный шедевр');
+    tropes.add('семейная анимация');
+    if (m.year >= 1990 && m.year <= 2010) tropes.add('золотая классика анимации из детства');
+  }
+
+  if (text.includes('животн') || text.includes('лев') || text.includes('рыб') || text.includes('крыс') || text.includes('мамонт') || text.includes('лис') || text.includes('кот')) {
+    tropes.add('приключения животных');
+  }
+
   if (text.includes('киллер') || text.includes('наемн') || text.includes('джон уик') || (text.includes('леон') && !text.includes('леонид')) || text.includes('перестрелк')) tropes.add('киллер и перестрелки');
   if (text.includes('самура') || text.includes('катана') || text.includes('куросава')) tropes.add('самурайский экшен');
   if (text.includes('космос') || text.includes('галактик') || text.includes('астронавт') || text.includes('гравитац')) tropes.add('космическая одиссея');
@@ -209,6 +231,13 @@ const enrichedMovies = movies.map((m) => {
   if (m.genres) {
     m.genres.split(',').map(g => g.trim().toLowerCase()).forEach(g => {
       keywordSet.add(g);
+      if (g.includes('мультфильм')) {
+        keywordSet.add('мультик');
+        keywordSet.add('мультфильм');
+        keywordSet.add('анимация');
+        keywordSet.add('семейный');
+        keywordSet.add('детство');
+      }
       if (g.includes('триллер')) {
         keywordSet.add('триллер');
         keywordSet.add('саспенс');
@@ -230,6 +259,22 @@ const enrichedMovies = movies.map((m) => {
 
   if (m.actors) {
     m.actors.split(',').map(a => a.trim().toLowerCase()).forEach(a => keywordSet.add(a));
+  }
+
+  // Explicit additions for Animal Animated Masterpieces
+  if ([68, 144, 185, 336, 337, 338, 817, 240, 815, 792, 214, 288, 67, 93, 219, 248, 251, 271, 198, 109].includes(m.id)) {
+    keywordSet.add('мультик');
+    keywordSet.add('мультфильм');
+    keywordSet.add('анимация');
+    keywordSet.add('животные');
+    keywordSet.add('звери');
+    keywordSet.add('главные герои животные');
+    keywordSet.add('из детства');
+    keywordSet.add('детство');
+    keywordSet.add('ностальгия');
+    keywordSet.add('приятное настроение');
+    keywordSet.add('добрый');
+    keywordSet.add('душевный');
   }
 
   // Explicit additions for Hitmen, Killers, Gun-Fu, Explosions & High-Octane Action
