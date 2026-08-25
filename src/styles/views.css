@@ -170,6 +170,10 @@
   flex: 0 0 auto;
 }
 /* Строка участника кликабельна целиком: попасть пальцем в имя трудно. */
+/* Завершённая комната гасится, но остаётся в списке: она часть истории. */
+.room-row[data-done='true'] { opacity: .55; }
+.room-row[data-done='true'] .room-row__code { color: var(--text-low); }
+
 .member__link {
   display: flex;
   align-items: center;

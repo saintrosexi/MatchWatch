@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Download, Share2, Sparkles } from '../../ui/icons.js';
+import { Check, Download, Share2, Sparkles, UserPlus } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster, posterVariant } from '../../ui/Poster.jsx';
 import { downloadMatchImage, haptic, roomInviteLink, shareToTelegram, shareViaInlineQuery } from '../../lib/telegram.js';
 import { trackMetric, trackError } from '../../lib/telemetry.js';
+import { requestFriend } from '../../engine/social.js';
 import { METRIC, MODULE } from '../../../shared/telemetry/events.js';
 
 /**
  * Празднование обоюдного лайка: конфетти, звук, тактильный отклик
  * и готовая карточка для репоста.
  */
-export function MatchCelebration({ match, roomCode, onClose, onOpenWatchlist }) {
+export function MatchCelebration({ match, roomCode, partners = [], onClose, onOpenWatchlist }) {
   const canvasRef = useRef(null);
   const [shareUrl, setShareUrl] = useState(null);
+  const [added, setAdded] = useState({});
 
   useEffect(() => {
     if (!match) return undefined;
@@ -78,8 +80,34 @@ export function MatchCelebration({ match, roomCode, onClose, onOpenWatchlist }) 
         </div>
 
         <p className="state__text">
-          Вы оба свайпнули вправо. Фильм уже в вашем общем списке «к просмотру».
+          Вы оба сказали «да». Фильм уже лежит в «Буду смотреть» у каждого.
         </p>
+
+        {/*
+          * Добавить в друзья предлагаем именно здесь: только что стало
+          * видно, что вкусы сходятся, и объяснять предложение не нужно.
+          */}
+        {partners.filter((p) => !p.isFriend).map((partner) => (
+          <button
+            key={partner.uid}
+            type="button"
+            className="btn btn--ghost btn--sm"
+            disabled={added[partner.uid] === 'busy'}
+            onClick={async () => {
+              setAdded((prev) => ({ ...prev, [partner.uid]: 'busy' }));
+              try {
+                await requestFriend(partner.uid);
+                setAdded((prev) => ({ ...prev, [partner.uid]: 'done' }));
+              } catch {
+                setAdded((prev) => ({ ...prev, [partner.uid]: null }));
+              }
+            }}
+          >
+            {added[partner.uid] === 'done'
+              ? <><Check size={16} /> {partner.name} — заявка отправлена</>
+              : <><UserPlus size={16} /> Добавить {partner.name} в друзья</>}
+          </button>
+        ))}
 
         <canvas ref={canvasRef} width={1080} height={1350} style={{ display: 'none' }} />
 

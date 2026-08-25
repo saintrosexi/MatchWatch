@@ -429,9 +429,14 @@ export async function loadRecentRooms(uid) {
   const local = loadLocal(STORAGE_KEYS.LAST_ROOMS, []);
   if (!supabaseReady() || !uid) return local;
 
+  /*
+   * Статус тянем вместе с членством: завершённая комната обязана
+   * выглядеть завершённой. Иначе человек жмёт на неё и упирается
+   * в отказ, не понимая, что произошло.
+   */
   const { data } = await supabase
     .from('room_members')
-    .select('room_code,is_host,last_seen')
+    .select('room_code,is_host,last_seen,rooms(status,expires_at)')
     .eq('user_id', uid)
     .order('last_seen', { ascending: false })
     .limit(8);
@@ -439,10 +444,12 @@ export async function loadRecentRooms(uid) {
   const merged = new Map(local.map((entry) => [entry.code, entry]));
   for (const row of data ?? []) {
     const existing = merged.get(row.room_code);
+    const expired = row.rooms?.expires_at ? Date.parse(row.rooms.expires_at) < Date.now() : false;
     merged.set(row.room_code, {
       code: row.room_code,
       role: row.is_host ? 'host' : 'member',
       at: Math.max(existing?.at ?? 0, new Date(row.last_seen).getTime()),
+      status: row.rooms?.status === 'closed' ? 'closed' : expired ? 'expired' : 'open',
     });
   }
 

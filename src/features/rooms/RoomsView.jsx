@@ -133,26 +133,34 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
           />
         ) : (
           <div className="room-list">
-            {recent.map((entry) => (
-              <button
-                key={entry.code}
-                type="button"
-                className="room-row"
-                onClick={() => handleJoin(entry.code, JOIN_SOURCE.RECENT)}
-                disabled={busy}
-              >
-                <span className="room-row__code">{entry.code}</span>
-                <span className="stack grow">
-                  <span style={{ fontSize: 'var(--t-small)' }}>
-                    {entry.role === 'host' ? 'Вы создали' : 'Вы заходили'}
+            {recent.map((entry) => {
+              // Завершённая комната не притворяется живой: нажатие на неё
+              // упёрлось бы в отказ, а причина осталась бы непонятной.
+              const done = entry.status === 'closed' || entry.status === 'expired';
+              return (
+                <button
+                  key={entry.code}
+                  type="button"
+                  className="room-row"
+                  data-done={String(done)}
+                  onClick={() => handleJoin(entry.code, JOIN_SOURCE.RECENT)}
+                  disabled={busy || done}
+                >
+                  <span className="room-row__code">{entry.code}</span>
+                  <span className="stack grow">
+                    <span style={{ fontSize: 'var(--t-small)' }}>
+                      {entry.role === 'host' ? 'Вы создали' : 'Вы заходили'}
+                    </span>
+                    <span className="faint" style={{ fontSize: 'var(--t-micro)' }}>
+                      {formatAgo(entry.at)}
+                    </span>
                   </span>
-                  <span className="faint" style={{ fontSize: 'var(--t-micro)' }}>
-                    {formatAgo(entry.at)}
-                  </span>
-                </span>
-                <DoorOpen size={20} color="var(--text-low)" />
-              </button>
-            ))}
+                  {done
+                    ? <span className="chip">{entry.status === 'closed' ? 'завершена' : 'истекла'}</span>
+                    : <DoorOpen size={20} color="var(--text-low)" />}
+                </button>
+              );
+            })}
           </div>
         )}
       </section>

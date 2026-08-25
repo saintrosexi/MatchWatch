@@ -562,6 +562,7 @@ export default function App() {
           <MatchCelebration
             match={room.celebration}
             roomCode={room.code}
+            partners={room.members.filter((m) => m.uid !== user?.uid)}
             onClose={room.dismissCelebration}
             onOpenWatchlist={() => { room.dismissCelebration(); setView(VIEW.MINE); }}
           />
