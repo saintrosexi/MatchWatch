@@ -24,8 +24,23 @@ const UP_THRESHOLD = 0.34;
  * если тянуть карточку, раздумывая, и отпустить там же, где начал,
  * конечное смещение равно нулю — по конечной точке это выглядит тапом,
  * хотя пользователь явно перетаскивал.
+ *
+ * 20 пикселей — с запасом на дрожание пальца на телефоне и всё ещё
+ * вчетверо меньше порога свайпа, так что перепутать эти два жеста нельзя.
  */
-const TAP_SLOP = 14;
+const TAP_SLOP = 20;
+
+/** Долгое удержание — это раздумье над свайпом, а не нажатие. */
+const TAP_MAX_MS = 600;
+
+/** Окно, в котором повторный тап считается тем же самым нажатием. */
+const TAP_DEDUPE_MS = 350;
+
+/** Элементы со своим поведением: жест их не трогает. */
+const INERT = 'button, a, [data-no-drag]';
+
+/** Цель события не обязана быть элементом — у текстового узла нет closest. */
+const inInert = (target) => typeof target?.closest === 'function' && Boolean(target.closest(INERT));
 
 export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true } = {}) {
   const cardRef = useRef(null);
@@ -34,7 +49,27 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     lastX: 0, lastT: 0, velocity: 0, pointerId: null, width: 320,
     /** Наибольшее удаление от точки нажатия за весь жест. */
     travel: 0,
+    /** Момент нажатия — короткий жест отличаем от долгого раздумья. */
+    downT: 0,
+    /** Предыдущий жест был перетаскиванием: следующий click — не тап. */
+    dragged: false,
+    /** Когда тап уже отдали наружу: страховка от двойного срабатывания. */
+    lastTap: 0,
   });
+
+  /*
+   * Тап отдаётся наружу ровно один раз, откуда бы он ни пришёл —
+   * из разбора жеста или из нативного click. Два независимых источника
+   * нужны потому, что цепочка pointer-событий обрывается на некоторых
+   * платформах (WebView Telegram, захват указателя), и тогда нажатие
+   * по карточке просто пропадало. Нативный click в этих случаях доходит.
+   */
+  const fireTap = useCallback(() => {
+    const now = performance.now();
+    if (now - state.current.lastTap < TAP_DEDUPE_MS) return;
+    state.current.lastTap = now;
+    onTap?.();
+  }, [onTap]);
 
   const paint = useCallback((x, y, { animate = false } = {}) => {
     const node = cardRef.current;
@@ -87,7 +122,7 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
   const onPointerDown = useCallback((event) => {
     if (!enabled) return;
     // Кнопки внутри карточки не должны запускать перетаскивание.
-    if (event.target.closest('button, a, [data-no-drag]')) return;
+    if (inInert(event.target)) return;
 
     const node = cardRef.current;
     if (!node) return;
@@ -99,6 +134,8 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
       startY: event.clientY,
       x: 0, y: 0,
       travel: 0,
+      downT: event.timeStamp,
+      dragged: false,
       lastX: event.clientX,
       lastT: event.timeStamp,
       velocity: 0,
@@ -152,12 +189,20 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     const farEnough = Math.abs(s.x) > threshold;
     const upEnough = -s.y > (node?.offsetHeight ?? 480) * UP_THRESHOLD;
 
-    // Палец почти не двигался за весь жест — это тап, а не перетаскивание.
-    if (s.travel < TAP_SLOP) {
+    /*
+     * Палец почти не двигался и отпущен быстро — это нажатие. Иначе жест
+     * считается перетаскиванием, и нативный click, который придёт следом,
+     * тапом уже не станет: иначе описание открывалось бы каждый раз, когда
+     * карточку подвигали, раздумывая, и вернули на место.
+     */
+    const quick = !event || (event.timeStamp - s.downT) < TAP_MAX_MS;
+    if (s.travel < TAP_SLOP && quick) {
+      s.dragged = false;
       reset({ animate: false });
-      onTap?.();
+      fireTap();
       return;
     }
+    s.dragged = true;
 
     if (upEnough && Math.abs(s.x) < threshold) {
       fling('up', 'details');
@@ -170,7 +215,28 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     }
 
     reset();
-  }, [fling, reset, onTap]);
+  }, [fling, reset, fireTap]);
+
+  /*
+   * Отмена жеста — браузер забрал управление себе. Нажатием это уже не
+   * является, поэтому click после неё игнорируем.
+   */
+  const cancel = useCallback((event) => {
+    state.current.dragged = true;
+    finish(event);
+  }, [finish]);
+
+  /*
+   * Запасной путь распознавания нажатия. Срабатывает, когда разбор жеста
+   * до тапа не дошёл — например, pointerup не доехал до карточки. Если
+   * жест уже был признан перетаскиванием, click пропускаем.
+   */
+  const onClick = useCallback((event) => {
+    if (!enabled) return;
+    if (inInert(event.target)) return;
+    if (state.current.dragged) { state.current.dragged = false; return; }
+    fireTap();
+  }, [enabled, fireTap]);
 
   useEffect(() => reset({ animate: false }), [reset]);
 
@@ -182,8 +248,9 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
       onPointerDown,
       onPointerMove,
       onPointerUp: finish,
-      onPointerCancel: finish,
+      onPointerCancel: cancel,
       onLostPointerCapture: finish,
+      onClick,
     },
   };
 }

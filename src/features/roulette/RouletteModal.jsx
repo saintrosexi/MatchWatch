@@ -83,7 +83,22 @@ export function RouletteModal({ open, onClose, pool = [], onPick, history = {} }
     }, SPIN_MS));
   }, [spinning, reel, winner, candidates.length]);
 
-  const close = () => { clearTimers(); setSpinning(false); setResult(null); setOffset(0); onClose(); };
+  /*
+   * Закрытие обязано быть безотказным. Здесь уже жила опечатка от прошлой
+   * реализации — вызов исчезнувшего сеттера ронял обработчик до onClose(),
+   * и крестик переставал работать. Поэтому уборка обёрнута в try, а
+   * onClose() стоит так, чтобы выполниться при любом исходе.
+   */
+  const close = useCallback(() => {
+    try {
+      clearTimers();
+      stopAnimation();
+      setSpinning(false);
+      setResult(null);
+    } finally {
+      onClose?.();
+    }
+  }, [onClose]);
 
   // Лента повторяется, чтобы прокрутка выглядела бесконечной.
   const strip = useMemo(
