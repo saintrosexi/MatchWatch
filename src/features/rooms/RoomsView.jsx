@@ -20,7 +20,6 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
  * технически невозможен.
  */
 export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toasts }) {
-  const [friendBusy, setFriendBusy] = useState(null);
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [recent, setRecent] = useState([]);
@@ -62,7 +61,12 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
   };
 
   if (room.code && room.state) {
-    return <RoomLobby room={room} user={user} toasts={toasts} onEnterRoom={onEnterRoom} />;
+    return (
+      <RoomLobby
+        room={room} user={user} toasts={toasts}
+        onEnterRoom={onEnterRoom} onOpenMember={onOpenMember}
+      />
+    );
   }
 
   return (
@@ -169,7 +173,8 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
 }
 
 /** Лобби активной комнаты: код, участники, приглашение, старт сессии. */
-function RoomLobby({ room, user, toasts, onEnterRoom }) {
+function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember }) {
+  const [friendBusy, setFriendBusy] = useState(null);
   const invite = roomInviteLink(room.code);
   const [copied, setCopied] = useState(false);
 

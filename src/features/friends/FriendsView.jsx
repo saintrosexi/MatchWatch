@@ -229,23 +229,6 @@ export function FriendsView({ me, onOpenProfile, onOpenTitle, toasts }) {
           </div>
         </section>
       )}
-    </div>
-  );
-}
-
-function PersonRow({ person, action, onOpen }) {
-  return (
-    <div className="member">
-      <button type="button" className="row gap-3 grow" style={{ minWidth: 0, textAlign: 'left' }} onClick={onOpen}>
-        {person.photoURL
-          ? <img className="member__avatar" src={person.photoURL} alt="" />
-          : <span className="member__avatar member__avatar--empty">{initials(person.displayName)}</span>}
-        <span className="stack grow" style={{ minWidth: 0 }}>
-          <span className="member__name truncate">{person.displayName}</span>
-          <span className="member__state truncate">@{person.username}</span>
-        </span>
-      </button>
-      {action}
 
       <Sheet
         open={Boolean(shared)}
@@ -278,7 +261,23 @@ function PersonRow({ person, action, onOpen }) {
           </div>
         )}
       </Sheet>
+    </div>
+  );
+}
 
+function PersonRow({ person, action, onOpen }) {
+  return (
+    <div className="member">
+      <button type="button" className="row gap-3 grow" style={{ minWidth: 0, textAlign: 'left' }} onClick={onOpen}>
+        {person.photoURL
+          ? <img className="member__avatar" src={person.photoURL} alt="" />
+          : <span className="member__avatar member__avatar--empty">{initials(person.displayName)}</span>}
+        <span className="stack grow" style={{ minWidth: 0 }}>
+          <span className="member__name truncate">{person.displayName}</span>
+          <span className="member__state truncate">@{person.username}</span>
+        </span>
+      </button>
+      {action}
     </div>
   );
 }
