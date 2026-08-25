@@ -59,7 +59,7 @@ export default withHandler({ methods: ['GET', 'POST'], module: MODULE.AUTH_TELEG
       'Вход через Telegram не настроен: не задан TELEGRAM_BOT_TOKEN');
   }
 
-  const verified = validateInitData(initData, { botToken });
+  const verified = await verifyOrExplain(initData, botToken);
   const profile = {
     displayName: displayNameOf(verified.user),
     photoURL: verified.user.photoUrl ?? null,
@@ -117,6 +117,29 @@ export default withHandler({ methods: ['GET', 'POST'], module: MODULE.AUTH_TELEG
     linked: !email.endsWith('.invalid'),
   };
 });
+
+/**
+ * Несошедшаяся подпись означает ровно одно: initData подписан не тем
+ * токеном, что лежит на сервере. Но причин у этого две, и лечатся они
+ * по-разному — Mini App открыт в другом боте либо на сервере чужой токен.
+ * Отличить их по коду ошибки нельзя, поэтому ответ называет бота, от
+ * имени которого сервер считает подпись. Юзернейм публичен.
+ */
+async function verifyOrExplain(initData, botToken) {
+  try {
+    return validateInitData(initData, { botToken });
+  } catch (error) {
+    if (error?.code !== 'initdata_invalid') throw error;
+    const bot = await describeBot();
+    const named = bot.username ? `@${bot.username}` : `бот ${bot.botId ?? 'неизвестен'}`;
+    throw new ApiError(401, 'initdata_invalid',
+      `Подпись Telegram не сошлась. Сервер проверяет её токеном ${named} — `
+      + 'Mini App должен открываться в этом же боте. Если бот тот самый, '
+      + 'токен на сервере обновился только что: закройте приложение полностью '
+      + 'и откройте заново.',
+      { context: { serverBot: bot.username ?? null, serverBotId: bot.botId ?? null } });
+  }
+}
 
 /** Как записан юзернеймом бот в настройках: «@bot» и «bot» — одно и то же. */
 const normalizeUsername = (value) =>
