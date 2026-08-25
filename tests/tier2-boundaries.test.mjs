@@ -18,6 +18,7 @@ import {
 import { rankDeck, scoreTitle, buildConsensusProfile, matchedTags } from '../src/engine/ranking.js';
 import { cacheKeyFor } from '../api/_lib/cache.js';
 import { validateInitData, botToken as readBotToken, botIdFromToken } from '../api/_lib/telegram.js';
+import { usernameFromTelegram } from '../api/_lib/identity.js';
 import { describeError, ApiClientError } from '../src/lib/api.js';
 import { LIBRARY, ALL_TITLES, makeTitle, seededRandom } from './helpers/fixtures.mjs';
 
@@ -295,6 +296,17 @@ function signedInitData(token, user, extra = {}, { signSignature = true } = {}) 
   params.set('hash', createHmac('sha256', secret).update(dcs).digest('hex'));
   return params.toString();
 }
+
+test('B19c · ник Telegram приводится к формату MatchWatch или отбрасывается', () => {
+  assert.equal(usernameFromTelegram('@SaintRose'), 'saintrose');
+  assert.equal(usernameFromTelegram('Ann_2000'), 'ann_2000');
+  // Кириллица и знаки вырезаются, длина режется до 24.
+  assert.equal(usernameFromTelegram('Аня'), null);
+  assert.equal(usernameFromTelegram('a'.repeat(32)), 'a'.repeat(24));
+  for (const bad of [null, undefined, '', '  ', '@@', 'ab']) {
+    assert.equal(usernameFromTelegram(bad), null, `«${bad}» не годится как ник`);
+  }
+});
 
 test('B20 · сериализация профиля не пропускает NaN и undefined в базу', () => {
   const dirty = hydrateProfile({

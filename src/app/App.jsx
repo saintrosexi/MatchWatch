@@ -568,6 +568,7 @@ function renderView(ctx) {
     setView, setPrefs, setRoomSession, setDetailsEntry, setActorDeck,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
+    setEditorOpen, publicProfile, setPublicProfile,
   } = ctx;
 
   const openDetails = (stub) => setDetailsEntry({

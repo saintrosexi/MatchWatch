@@ -25,7 +25,12 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
     if (!open) return;
     setForm({
       displayName: profile?.display_name ?? profile?.displayName ?? '',
-      username: profile?.username ?? suggestUsername(profile?.display_name ?? profile?.username ?? ''),
+      /*
+       * Ник подставляем из Telegram: он уже уникален и человек его знает.
+       * Производное от имени — запасной вариант для входа по email.
+       */
+      username: profile?.username
+        ?? suggestUsername(telegram?.username ?? profile?.display_name ?? ''),
       bio: profile?.bio ?? '',
       photoURL: profile?.photo_url ?? profile?.photoURL ?? '',
     });

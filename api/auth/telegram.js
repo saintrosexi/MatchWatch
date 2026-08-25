@@ -28,7 +28,7 @@ import { createHmac } from 'node:crypto';
 import { withHandler, badRequest, ApiError } from '../_lib/http.js';
 import { validateInitData, describeBot, botToken as readBotToken, hasBotToken } from '../_lib/telegram.js';
 import { hasServiceKey, authAdmin } from '../_lib/supabaseAdmin.js';
-import { resolveUser, PROVIDER, telegramEmail } from '../_lib/identity.js';
+import { resolveUser, PROVIDER, telegramEmail, usernameFromTelegram } from '../_lib/identity.js';
 import { logMetric } from '../_lib/telemetry.js';
 import { METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
@@ -64,6 +64,8 @@ export default withHandler({ methods: ['GET', 'POST'], module: MODULE.AUTH_TELEG
     displayName: displayNameOf(verified.user),
     photoURL: verified.user.photoUrl ?? null,
     locale: verified.user.languageCode ?? 'ru',
+    /** Ник берётся из Telegram: без него человека не найдут друзья. */
+    username: usernameFromTelegram(verified.user.username),
   };
 
   logMetric(METRIC.SIGN_IN, { context: { provider: 'telegram', telegramId: verified.telegramId } });

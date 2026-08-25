@@ -78,6 +78,16 @@ export async function resolveUser(provider, externalKey, { email, profile = {}, 
   return { userId, created: true, email };
 }
 
+/**
+ * Ник Telegram годится как ник MatchWatch не всегда: у нас 3–24 символа
+ * из латиницы, цифр, точки и подчёркивания, у Telegram — до 32.
+ * Возвращает null, если привести нечего.
+ */
+export function usernameFromTelegram(raw) {
+  const value = String(raw ?? '').trim().replace(/^@+/, '').replace(/[^a-zA-Z0-9._]/g, '');
+  return value.length >= 3 ? value.slice(0, 24).toLowerCase() : null;
+}
+
 async function touchProfile(userId, profile) {
   const patch = { last_seen_at: new Date().toISOString() };
   if (profile.displayName) patch.display_name = profile.displayName;
@@ -88,6 +98,24 @@ async function touchProfile(userId, profile) {
   await sbUpdate('profiles', { id: `eq.${userId}` }, patch).catch(() => {
     // Профиль появляется триггером; гонка на первом входе не фатальна.
   });
+
+  await claimUsername(userId, profile.username);
+}
+
+/**
+ * Ник подставляется из Telegram, но только пока человек не выбрал свой:
+ * перезаписывать осознанный выбор чужим значением нельзя. Занятый ник —
+ * штатная ситуация (тёзка успел раньше), а не ошибка входа, поэтому
+ * конфликт уникального индекса гасится молча.
+ */
+async function claimUsername(userId, candidate) {
+  if (!candidate) return;
+  const rows = await sbSelect('profiles', { select: 'username', id: `eq.${userId}`, limit: 1 })
+    .catch(() => null);
+  if (rows?.[0]?.username) return;
+
+  await sbUpdate('profiles', { id: `eq.${userId}`, username: 'is.null' }, { username: candidate })
+    .catch(() => {});
 }
 
 export async function loadProfile(userId) {
