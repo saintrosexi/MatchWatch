@@ -13,6 +13,7 @@
 
 import { MOOD_AXES, RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
 import { hydrateProfile, isWarm } from './tasteProfile.js';
+import { isColdStartTitle } from '../../shared/config/coldStart.js';
 
 /** Косинусное сходство разреженных векторов тегов. 0..1 (отрицательные веса гасятся). */
 export function cosineSimilarity(titleTags, profileTags) {
@@ -92,9 +93,19 @@ export function scoreTitle(title, profile, { config = RECOMMENDATION_CONFIG, his
 
   const penalty = historyMultiplier(title.id, history, config);
 
+  /*
+   * Пока профиль пуст, сравнивать фильмы по вкусу не с чем, и наверх
+   * всплывает просто популярное. Стартовый набор поднимается выше не
+   * потому, что он лучше, а потому, что по нему быстрее становится
+   * понятно, что человеку вообще нравится.
+   */
+  const seedBoost = !isWarm(p, config) && isColdStartTitle(title)
+    ? config.exploration.coldStartBoost
+    : 1;
+
   return {
     id: title.id,
-    score: Math.round(base * penalty * 10000) / 10000,
+    score: Math.round(base * penalty * seedBoost * 10000) / 10000,
     rawScore: Math.round(base * 10000) / 10000,
     tagScore: Math.round(tagScore * 10000) / 10000,
     moodScore: Math.round(moodScore * 10000) / 10000,

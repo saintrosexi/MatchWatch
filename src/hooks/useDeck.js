@@ -214,8 +214,15 @@ export function useDeck({
         const pool = new CatalogPool({ filters });
         poolRef.current = pool;
 
-        // Первая стадия: ровно столько, сколько нужно для первой колоды.
-        await pool.fill(getConfig().deck.firstFill, { signal: controller.signal });
+        /*
+         * Первая стадия: ровно столько, сколько нужно для первой колоды.
+         * Стартовый набор грузится параллельно — он приезжает одним
+         * запросом и первую карточку не задерживает.
+         */
+        await Promise.all([
+          pool.fill(getConfig().deck.firstFill, { signal: controller.signal }),
+          pool.primeColdStart({ signal: controller.signal }),
+        ]);
         if (generation.current !== myGeneration) return;
 
         const { added, poolExhausted, pages } = await pullNewCards(pool, {

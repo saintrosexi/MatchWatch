@@ -13,14 +13,15 @@ import { normalizeTmdbMovie, buildTags, deriveMoodVector, makeTitleId, parseTitl
 import { normalizeRoomCode, generateRoomCode, roomPath, isValidRoomCode, ROOM_CODE_ALPHABET } from '../shared/model/roomCode.js';
 import { TMDB_GENRES, GENRE_LIST } from '../shared/taxonomy/genres.js';
 import { slugifyTag, TAG_EXPANSIONS, TAG_MOODS } from '../shared/taxonomy/tagOntology.js';
-import { RECOMMENDATION_CONFIG, MOOD_AXES } from '../shared/config/recommendation.js';
+import { RECOMMENDATION_CONFIG, MOOD_AXES, NEUTRAL_MOOD } from '../shared/config/recommendation.js';
+import { COLD_START_IDS, COLD_START_TITLES } from '../shared/config/coldStart.js';
 import { BIZ, METRIC, MODULE, LEVEL, resolveEnvironment } from '../shared/telemetry/events.js';
 import { parseDsn, createSentryTransport } from '../shared/telemetry/sentryTransport.js';
-import { createEmptyProfile, applySignal, topTags, ACTION } from '../src/engine/tasteProfile.js';
+import { createEmptyProfile, applySignal, topTags, ACTION, isWarm } from '../src/engine/tasteProfile.js';
 import { rankDeck, scoreTitle, buildConsensusProfile, cosineSimilarity, moodSimilarity } from '../src/engine/ranking.js';
 import { validateInitData } from '../api/_lib/telegram.js';
 import { createHmac } from 'node:crypto';
-import { LIBRARY, ALL_TITLES, TMDB_RAW_MOVIE, seededRandom } from './helpers/fixtures.mjs';
+import { LIBRARY, ALL_TITLES, TMDB_RAW_MOVIE, makeTitle, seededRandom } from './helpers/fixtures.mjs';
 
 test('F1 · каталог содержит только фильмы, но схема готова к другим категориям', () => {
   const title = normalizeTmdbMovie(TMDB_RAW_MOVIE);
@@ -217,6 +218,35 @@ test('F15 · подделанный initData отклоняется', () => {
     hash: 'deadbeef'.repeat(8),
   });
   assert.throws(() => validateInitData(params.toString(), { botToken: '123:TOKEN' }), /подпись/i);
+});
+
+test('F14a · стартовый набор поднимается только пока профиль холодный', () => {
+  const seed = makeTitle(COLD_START_IDS[0], 'Из набора');
+  const other = makeTitle(999999, 'Обычный');
+
+  const cold = createEmptyProfile();
+  const seedCold = scoreTitle(seed, cold).score;
+  const otherCold = scoreTitle(other, cold).score;
+  assert.ok(seedCold > otherCold,
+    'на холодном старте набор обязан обгонять равный по качеству фильм');
+
+  // Прогретый профиль: набор больше не поднимается, иначе торчал бы вечно.
+  let warm = createEmptyProfile();
+  for (let i = 0; i < 60; i += 1) {
+    warm = applySignal(warm, { tags: { drama: 1 }, moods: NEUTRAL_MOOD }, ACTION.FAVORITE);
+  }
+  assert.ok(isWarm(warm), 'профиль должен прогреться');
+  assert.equal(scoreTitle(seed, warm).score, scoreTitle(other, warm).score,
+    'после прогрева набор не должен иметь преимущества');
+});
+
+test('F14b · стартовый набор разводит по осям, а не повторяется', () => {
+  assert.equal(COLD_START_IDS.length, new Set(COLD_START_IDS).size, 'дубликаты в наборе');
+  assert.ok(COLD_START_IDS.length >= 12 && COLD_START_IDS.length <= 20,
+    'набор должен оставаться коротким: это редакторский список, а не выборка');
+  for (const item of COLD_START_TITLES) {
+    assert.ok(item.note?.length > 3, `у ${item.id} нет пояснения, зачем он в наборе`);
+  }
 });
 
 test('F16 · словарь телеметрии покрывает бизнес-сбои из ТЗ', () => {

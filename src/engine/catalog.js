@@ -12,6 +12,7 @@ import { trackBusiness, trackError } from '../lib/telemetry.js';
 import { BIZ, MODULE } from '../../shared/telemetry/events.js';
 import { parseTitleId } from '../../shared/model/title.js';
 import { getConfig } from './recommendationConfig.js';
+import { COLD_START_IDS } from '../../shared/config/coldStart.js';
 
 export class CatalogPool {
   constructor({ filters = {}, onUpdate } = {}) {
@@ -24,6 +25,7 @@ export class CatalogPool {
     this.enriching = new Set();
     this.exhausted = false;
     this.lastError = null;
+    this.primed = false;
   }
 
   get all() { return [...this.titles.values()]; }
@@ -36,6 +38,7 @@ export class CatalogPool {
     this.totalPages = 1;
     this.exhausted = false;
     this.lastError = null;
+    this.primed = false;
   }
 
   /** Подтягивает следующую страницу каталога. Возвращает число новых тайтлов. */
@@ -80,6 +83,37 @@ export class CatalogPool {
       throw error;
     } finally {
       this.loading = false;
+    }
+  }
+
+  /**
+   * Подмешивает стартовый набор.
+   *
+   * Полагаться на то, что эти пятнадцать фильмов и так попадутся в выдаче
+   * популярного, нельзя: состав популярного меняется каждую неделю, а
+   * набор должен приезжать всегда. Грузится он один раз за сессию пула
+   * и параллельно первой странице, поэтому первую карточку не задерживает.
+   */
+  async primeColdStart({ signal } = {}) {
+    if (this.primed) return 0;
+    this.primed = true;
+
+    try {
+      const payload = await api.enrich(COLD_START_IDS, { signal });
+      let added = 0;
+      for (const title of payload.titles ?? []) {
+        if (this.titles.has(title.id)) continue;
+        this.titles.set(title.id, { ...title, enriched: true });
+        added += 1;
+      }
+      if (added) this.onUpdate?.(this.all);
+      return added;
+    } catch (error) {
+      // Набор — улучшение, а не условие работы: без него лента живёт.
+      trackError('Не удалось подгрузить стартовый набор', {
+        module: MODULE.CATALOG, error,
+      });
+      return 0;
     }
   }
 
