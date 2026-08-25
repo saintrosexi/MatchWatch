@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 112" role="img" aria-label="MatchWatch">
+  <defs>
+    <linearGradient id="cardA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F4676F"/><stop offset="100%" stop-color="#E8437F"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EC4A85"/><stop offset="100%" stop-color="#F2566A"/>
+    </linearGradient>
+    <linearGradient id="heartBack" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#F5828F"/><stop offset="100%" stop-color="#E05068"/>
+    </linearGradient>
+    <linearGradient id="heartFront" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#E8556B"/><stop offset="55%" stop-color="#CE2743"/>
+      <stop offset="100%" stop-color="#A81733"/>
+    </linearGradient>
+    <linearGradient id="heartGloss" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".5"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Две карточки, сходящиеся в одну: метафора совпадения вкусов.
+       Разлёт и наклон подобраны так, чтобы обе читались как отдельные
+       даже в 24 пикселя, а сердце садилось точно в их пересечение. -->
+  <rect x="-26" y="-35" width="52" height="70" rx="13"
+        fill="none" stroke="url(#cardA)" stroke-width="7" stroke-linejoin="round"
+        transform="translate(43 56) rotate(-17)"/>
+  <rect x="-26" y="-35" width="52" height="70" rx="13"
+        fill="none" stroke="url(#cardB)" stroke-width="7" stroke-linejoin="round"
+        transform="translate(85 56) rotate(17)"/>
+
+  <!-- Сердце: задняя доля светлее и смещена вправо, передняя насыщенная -->
+  <path d="M0,-6 C3.5,-13.5 16,-12.5 16,-1.5 C16,7.5 5,15 0,20 C-5,15 -16,7.5 -16,-1.5 C-16,-12.5 -3.5,-13.5 0,-6 Z"
+        fill="url(#heartBack)" transform="translate(74 55) scale(1.28)"/>
+  <path d="M0,-6 C3.5,-13.5 16,-12.5 16,-1.5 C16,7.5 5,15 0,20 C-5,15 -16,7.5 -16,-1.5 C-16,-12.5 -3.5,-13.5 0,-6 Z"
+        fill="url(#heartFront)" transform="translate(58 57) scale(1.38)"/>
+  <path d="M-10,-4.5 C-10.5,-9.5 -4,-11 -1,-6.5 C-4,-8 -8,-7 -9,-3.5 Z"
+        fill="url(#heartGloss)" transform="translate(58 57) scale(1.38)"/>
+</svg>

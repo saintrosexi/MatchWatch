@@ -1,0 +1,161 @@
+/**
+ * Поставщик кандидатов для колоды.
+ *
+ * Работает в две волны: сначала «лёгкие» тайтлы (быстро, теги из жанров),
+ * следом фоновое обогащение детальными keywords. Колода пересобирается,
+ * когда обогащение приезжает, — пользователь этого не замечает, а точность
+ * тегов вырастает на порядок.
+ */
+
+import { api, describeError } from '../lib/api.js';
+import { trackBusiness, trackError } from '../lib/telemetry.js';
+import { BIZ, MODULE } from '../../shared/telemetry/events.js';
+import { parseTitleId } from '../../shared/model/title.js';
+import { getConfig } from './recommendationConfig.js';
+
+export class CatalogPool {
+  constructor({ filters = {}, onUpdate } = {}) {
+    this.filters = filters;
+    this.onUpdate = onUpdate;
+    this.titles = new Map();     // id -> title
+    this.page = 0;
+    this.totalPages = 1;
+    this.loading = false;
+    this.enriching = new Set();
+    this.exhausted = false;
+    this.lastError = null;
+  }
+
+  get all() { return [...this.titles.values()]; }
+  get size() { return this.titles.size; }
+
+  setFilters(filters) {
+    this.filters = filters;
+    this.titles.clear();
+    this.page = 0;
+    this.totalPages = 1;
+    this.exhausted = false;
+    this.lastError = null;
+  }
+
+  /** Подтягивает следующую страницу каталога. Возвращает число новых тайтлов. */
+  async loadMore({ signal } = {}) {
+    if (this.loading || this.exhausted) return 0;
+    this.loading = true;
+    this.lastError = null;
+
+    try {
+      const next = this.page + 1;
+      if (next > this.totalPages) { this.exhausted = true; return 0; }
+
+      const params = buildParams(this.filters, next);
+      const payload = await api.catalog(params, { signal });
+
+      this.page = payload.page ?? next;
+      this.totalPages = payload.totalPages ?? 1;
+
+      let added = 0;
+      for (const title of payload.titles ?? []) {
+        if (this.titles.has(title.id)) continue;
+        this.titles.set(title.id, title);
+        added += 1;
+      }
+
+      if (added === 0 && this.page >= this.totalPages) this.exhausted = true;
+      if (this.size === 0) {
+        trackBusiness(BIZ.DECK_EMPTY_AFTER_FILTERS, {
+          module: MODULE.CATALOG, context: { ...params },
+        });
+      }
+
+      this.onUpdate?.(this.all);
+      return added;
+    } catch (error) {
+      this.lastError = describeError(error);
+      if (!['offline', 'timeout', 'network'].includes(error?.code)) {
+        trackError('Не удалось загрузить каталог', {
+          module: MODULE.CATALOG, error, context: { page: this.page + 1, filters: this.filters },
+        });
+      }
+      throw error;
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  /**
+   * Догружает детальные теги для ближайших карточек.
+   * Вызывать оптимистично: повторный запрос по тому же id почти бесплатен
+   * (кэш на сервере), а точность ранжирования растёт заметно.
+   */
+  async enrich(ids, { signal } = {}) {
+    const pending = ids
+      .map((id) => (typeof id === 'string' ? id : id?.id))
+      .filter((id) => id && !this.enriching.has(id) && this.titles.get(id)?.enriched !== true)
+      .slice(0, 24);
+    if (!pending.length) return 0;
+
+    pending.forEach((id) => this.enriching.add(id));
+
+    try {
+      const externalIds = pending
+        .map((id) => Number(parseTitleId(id)?.externalId))
+        .filter(Number.isFinite);
+      if (!externalIds.length) return 0;
+
+      const payload = await api.enrich(externalIds, { signal });
+      let updated = 0;
+      for (const title of payload.titles ?? []) {
+        this.titles.set(title.id, { ...this.titles.get(title.id), ...title, enriched: true });
+        updated += 1;
+      }
+      if (updated) this.onUpdate?.(this.all);
+      return updated;
+    } catch (error) {
+      // Обогащение — улучшение, а не обязательство: молча остаёмся на жанровых тегах.
+      trackBusiness(BIZ.TMDB_UPSTREAM_ERROR, {
+        module: MODULE.CATALOG, context: { phase: 'enrich', reason: error?.code ?? 'unknown' },
+      });
+      return 0;
+    } finally {
+      pending.forEach((id) => this.enriching.delete(id));
+    }
+  }
+
+  /**
+   * Загружает страницы, пока не наберётся пул нужного размера.
+   *
+   * Лимит страниц выводится из цели, а не из константы: раньше он был
+   * жёстко равен шести, поэтому пул физически не мог дорасти до
+   * заявленных в конфиге 320 карточек.
+   */
+  async fill(targetSize = getConfig().deck.candidatePool, { signal, maxPages } = {}) {
+    const remaining = Math.max(0, targetSize - this.size);
+    const limit = maxPages ?? Math.min(25, Math.ceil(remaining / 20) + 2);
+
+    let pages = 0;
+    while (this.size < targetSize && !this.exhausted && pages < limit) {
+      const added = await this.loadMore({ signal });
+      pages += 1;
+      if (added === 0 && this.exhausted) break;
+    }
+    return this.size;
+  }
+}
+
+function buildParams(filters, page) {
+  const params = { page, list: 'discover' };
+  if (filters.genres?.length) params.genres = filters.genres.join(',');
+  if (filters.yearFrom) params.yearFrom = filters.yearFrom;
+  if (filters.yearTo) params.yearTo = filters.yearTo;
+  if (filters.minRating) params.minRating = filters.minRating;
+  if (filters.sort) params.sort = filters.sort;
+  if (filters.list) params.list = filters.list;
+  return params;
+}
+
+/** Колода по конкретному актёру — «мгновенно все фильмы с ним». */
+export async function loadActorDeck(personId, { signal } = {}) {
+  const payload = await api.person(personId, { signal });
+  return { person: payload.person, titles: payload.filmography ?? [] };
+}

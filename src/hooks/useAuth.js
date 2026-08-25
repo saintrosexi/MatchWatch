@@ -1,0 +1,249 @@
+/**
+ * Сессия пользователя.
+ *
+ * Два способа входа, один внутренний user_id:
+ *   Telegram — initData уходит на сервер, там проверяется подпись HMAC,
+ *              обратно приходит одноразовый token_hash, который клиент
+ *              меняет на полноценную сессию;
+ *   Email    — обычный вход Supabase Auth, затем сервер фиксирует
+ *              идентичность, чтобы её потом можно было связать.
+ *
+ * Оба пути приводят к одному auth.users.id, а таблица identities
+ * позволяет прицепить второй способ входа к тому же профилю.
+ */
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { supabase, supabaseReady, supabaseInitError } from '../lib/supabase.js';
+import { api, describeError, ApiClientError } from '../lib/api.js';
+import { getInitData, getTelegramUser, isTelegram } from '../lib/telegram.js';
+import { setTelemetryUser, trackError, trackMetric, breadcrumb } from '../lib/telemetry.js';
+import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
+
+const STATUS = Object.freeze({
+  BOOTING: 'booting',
+  ANONYMOUS: 'anonymous',
+  SIGNING_IN: 'signing-in',
+  READY: 'ready',
+  DEGRADED: 'degraded',
+});
+
+const toSession = (user) => ({
+  uid: user.id,
+  displayName: user.user_metadata?.display_name
+    ?? getTelegramUser()?.first_name
+    ?? user.email?.split('@')[0]
+    ?? 'Зритель',
+  photoURL: user.user_metadata?.photo_url ?? getTelegramUser()?.photo_url ?? null,
+  // Служебный адрес Telegram-аккаунта показывать пользователю незачем.
+  email: user.email?.endsWith('.invalid') ? null : user.email ?? null,
+  provider: user.user_metadata?.provider ?? user.app_metadata?.provider ?? 'email',
+});
+
+export function useAuth() {
+  const [status, setStatus] = useState(STATUS.BOOTING);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [startRoom, setStartRoom] = useState(null);
+  const autoAttempted = useRef(false);
+
+  useEffect(() => {
+    if (!supabaseReady()) {
+      setStatus(STATUS.DEGRADED);
+      setError({
+        text: 'Supabase не настроен — комнаты и синхронизация недоступны. Личная лента работает локально.',
+        retryable: false,
+        detail: supabaseInitError()?.message,
+      });
+      return undefined;
+    }
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user) {
+        const session = toSession(data.session.user);
+        setUser(session);
+        setTelemetryUser(session.uid, session);
+        setStatus(STATUS.READY);
+      } else {
+        setStatus(STATUS.ANONYMOUS);
+      }
+    });
+
+    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        const next = toSession(session.user);
+        setUser(next);
+        setTelemetryUser(next.uid, next);
+        setStatus(STATUS.READY);
+        setError(null);
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+        setTelemetryUser(null);
+        setStatus(STATUS.ANONYMOUS);
+      }
+    });
+
+    return () => subscription.subscription.unsubscribe();
+  }, []);
+
+  const signInWithTelegram = useCallback(async () => {
+    setStatus(STATUS.SIGNING_IN);
+    setError(null);
+    breadcrumb('auth: telegram start');
+
+    try {
+      const initData = getInitData();
+      if (!initData) {
+        throw Object.assign(new Error('Telegram не передал initData'), { code: 'initdata_missing' });
+      }
+
+      // Сервер проверил подпись и вернул учётные данные, выведенные из
+      // telegram_id секретом бота. Клиент входит ими как обычно.
+      const result = await api.authTelegram(initData);
+
+      let { error: signInError } = await supabase.auth.signInWithPassword({
+        email: result.email,
+        password: result.password,
+      });
+
+      // Первый вход: аккаунта ещё нет — заводим. Подтверждать нечего,
+      // почта служебная и никуда не отправляется.
+      if (signInError) {
+        const { error: signUpError } = await supabase.auth.signUp({
+          email: result.email,
+          password: result.password,
+          options: { data: result.metadata },
+        });
+        if (signUpError) throw signUpError;
+
+        ({ error: signInError } = await supabase.auth.signInWithPassword({
+          email: result.email,
+          password: result.password,
+        }));
+        if (signInError) throw signInError;
+      }
+
+      if (result.startRoom) setStartRoom(result.startRoom);
+      trackMetric(METRIC.SIGN_IN, { context: { provider: 'telegram' } });
+      return result;
+    } catch (e) {
+      const described = describeError(e);
+      setError(described);
+      setStatus(STATUS.ANONYMOUS);
+      trackError('Вход через Telegram не удался', {
+        module: MODULE.AUTH_TELEGRAM, level: LEVEL.ERROR, error: e, context: { code: e?.code },
+      });
+      throw e;
+    }
+  }, []);
+
+  const signInWithEmail = useCallback(async (email, password, { register = false, displayName } = {}) => {
+    setStatus(STATUS.SIGNING_IN);
+    setError(null);
+    breadcrumb(`auth: email ${register ? 'register' : 'login'}`);
+
+    try {
+      /*
+       * Регистрация не требует подтверждения почты: триггер
+       * on_auth_user_autoconfirm помечает адрес подтверждённым в момент
+       * создания, поэтому сессия выдаётся сразу и письма не уходят.
+       * Email здесь — логин, а не канал верификации.
+       */
+      if (register) {
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { display_name: displayName ?? email.split('@')[0], provider: 'email' } },
+        });
+        if (signUpError) throw signUpError;
+      }
+
+      const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
+      if (authError) throw authError;
+
+      if (!data.session) {
+        setStatus(STATUS.ANONYMOUS);
+        setError({ text: 'Аккаунт создан, но сессия не выдана. Попробуйте войти ещё раз.', retryable: true });
+        return false;
+      }
+
+      trackMetric(METRIC.SIGN_IN, { context: { provider: 'email', register } });
+      return true;
+    } catch (e) {
+      // Ошибка нашего эндпоинта регистрации уже человекочитаема.
+      const described = e instanceof ApiClientError ? describeError(e) : { text: emailErrorText(e), retryable: true };
+      setError(described);
+      setStatus(STATUS.ANONYMOUS);
+      trackError('Вход по email не удался', {
+        module: MODULE.AUTH_EMAIL, level: LEVEL.WARNING, error: e,
+        context: { code: e?.code ?? e?.status, register },
+      });
+      throw e;
+    }
+  }, []);
+
+  const resetPassword = useCallback(async (email) => {
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/`,
+    });
+    if (resetError) throw resetError;
+  }, []);
+
+  const logout = useCallback(async () => {
+    if (supabaseReady()) await supabase.auth.signOut().catch(() => {});
+    setUser(null);
+    setStatus(STATUS.ANONYMOUS);
+  }, []);
+
+  // Внутри Telegram вход происходит сам: заставлять пользователя нажимать
+  // «Войти через Telegram», когда мы уже внутри Telegram, — лишний шаг.
+  useEffect(() => {
+    if (autoAttempted.current) return;
+    if (status !== STATUS.ANONYMOUS || !isTelegram() || !supabaseReady()) return;
+    autoAttempted.current = true;
+    signInWithTelegram().catch(() => {});
+  }, [status, signInWithTelegram]);
+
+  return {
+    status, user, error, startRoom,
+    isReady: status === STATUS.READY,
+    isDegraded: status === STATUS.DEGRADED,
+    signInWithTelegram, signInWithEmail, resetPassword, logout,
+    clearStartRoom: () => setStartRoom(null),
+  };
+}
+
+export { STATUS as AUTH_STATUS };
+
+/**
+ * Текст ошибки должен называть настоящую причину.
+ *
+ * Отдельно разобран лимит писем: встроенный SMTP Supabase шлёт всего
+ * пару писем в час, и упереться в него — не вина пользователя. Без явного
+ * текста это выглядит как «приложение сломалось».
+ */
+function emailErrorText(error) {
+  const code = String(error?.code ?? error?.error_code ?? '').toLowerCase();
+  const message = String(error?.message ?? '').toLowerCase();
+  const has = (...needles) => needles.some((n) => code.includes(n) || message.includes(n));
+
+  if (has('over_email_send_rate_limit', 'email rate limit')) {
+    return 'Supabase не отправляет письмо: исчерпан лимит встроенной почты '
+      + '(пара писем в час). Отключите подтверждение email в настройках проекта '
+      + 'или подключите свой SMTP.';
+  }
+  if (has('email_not_confirmed')) {
+    return 'Аккаунт не подтверждён. Проверьте почту или отключите подтверждение '
+      + 'email в настройках Supabase.';
+  }
+  if (has('email_address_invalid', 'unable to validate email')) {
+    return 'Supabase считает этот адрес недействительным. Тестовые домены вроде '
+      + 'example.com он отклоняет — возьмите настоящий.';
+  }
+  if (has('invalid_credentials', 'invalid login')) return 'Email или пароль не подходят.';
+  if (has('user_already_exists', 'already registered')) return 'Этот email уже занят — попробуйте войти.';
+  if (has('weak_password', 'password should be')) return 'Пароль слишком простой: минимум 6 символов.';
+  if (has('over_request_rate_limit', 'too many')) return 'Слишком много попыток. Подождите минуту.';
+  if (has('signup_disabled', 'signups not allowed')) return 'Регистрация отключена в настройках Supabase.';
+  if (has('failed to fetch', 'network')) return 'Нет связи с сервером авторизации.';
+  return error?.message ? `Не удалось войти: ${error.message}` : 'Не удалось войти. Попробуйте ещё раз.';
+}

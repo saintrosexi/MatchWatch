@@ -1,0 +1,252 @@
+/* ────────────────────────────────────────────────────────────────
+   Свайп-колода — сердце продукта
+   ──────────────────────────────────────────────────────────────── */
+
+.deck {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--s-3);
+  perspective: 1400px;
+}
+
+/* Карточка занимает всю доступную высоту, ширина выводится из пропорции
+   постера 2:3. На узких экранах ограничение переходит на ширину. */
+.deck__stage {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  max-width: min(100%, 440px);
+  max-height: 100%;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-800);
+  box-shadow: var(--shadow-card);
+  will-change: transform, opacity;
+  transform-origin: center bottom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* Карточки в глубине стопки — уменьшены и притушены. */
+.card[data-depth='1'] { transform: translateY(14px) scale(0.945); opacity: .82; filter: brightness(.68); }
+.card[data-depth='2'] { transform: translateY(26px) scale(0.895); opacity: .5; filter: brightness(.45); }
+.card[data-depth='3'] { transform: translateY(36px) scale(0.86); opacity: 0; }
+.card[data-depth] { transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out), filter var(--dur-base) var(--ease-out); }
+
+.card--top { cursor: grab; touch-action: none; z-index: 3; }
+.card--top:active { cursor: grabbing; }
+.card--settling { transition: transform var(--dur-base) var(--ease-out); }
+.card--flying { transition: transform 420ms var(--ease-out), opacity 420ms var(--ease-out); }
+
+.card__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--ink-800);
+}
+.card__poster[data-loaded='false'] { opacity: 0; }
+.card__poster[data-loaded='true'] { opacity: 1; transition: opacity var(--dur-slow) var(--ease-out); }
+
+/* Заглушка, когда постера нет — не пустой прямоугольник, а осмысленная карточка. */
+.card__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  padding: var(--s-8);
+  text-align: center;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(255,77,94,.22), transparent 60%),
+    var(--ink-800);
+}
+.card__fallback-title { font-family: var(--font-display); font-size: var(--t-title); }
+
+.card__shade {
+  position: absolute;
+  inset: 0;
+  /* Нижняя треть гасится почти в ноль — там лежит текст, и собственная
+     типографика постера не должна сквозь него просвечивать. Верх лишь
+     слегка притемнён под штампы «ДА»/«НЕТ»: тёмные постеры и так почти
+     чёрные, а карточка не должна выглядеть пустой. */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.96) 0%,
+    rgba(0,0,0,.88) 22%,
+    rgba(0,0,0,.58) 38%,
+    rgba(0,0,0,.14) 56%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0,.2) 100%
+  );
+  pointer-events: none;
+}
+
+.card__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.card__meta { display: flex; align-items: center; gap: 6px var(--s-2); flex-wrap: wrap; }
+.card__title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 5.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 24px rgba(0,0,0,.8);
+}
+.card__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.card__tag {
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(8px);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  color: var(--text-hi);
+  border: 1px solid rgba(255,255,255,.1);
+}
+/* Тег, совпавший с профилем вкуса, — светится: видно, почему это показано. */
+.card__tag--hit {
+  background: var(--coral-soft);
+  border-color: rgba(255,77,94,.5);
+  color: #ffd0d5;
+}
+
+.card__why {
+  font-size: var(--t-small);
+  color: var(--text-mid);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card__why strong { color: var(--coral); font-weight: 600; }
+
+/* Штампы «ДА»/«НЕТ», появляющиеся при перетаскивании. */
+.card__stamp {
+  position: absolute;
+  top: 32px;
+  padding: 8px 18px;
+  border-radius: var(--r-sm);
+  border: 3px solid currentColor;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+.card__stamp--yes {
+  left: 24px;
+  color: var(--gold);
+  transform: rotate(-14deg);
+  background: rgba(255, 194, 75, .14);
+}
+.card__stamp--info { display: none; }
+.card__stamp--no { right: 24px; color: var(--no); transform: rotate(14deg); background: rgba(90,90,114,.14); }
+.card__stamp--info { left: 50%; top: auto; bottom: 120px; margin-left: -54px; color: var(--ice); transform: none; background: rgba(111,216,255,.12); }
+
+/* Свечение краёв по направлению свайпа. */
+.deck__edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) linear;
+  z-index: var(--z-deck);
+}
+.deck__edge--yes { right: 0; background: linear-gradient(to left, rgba(255,194,75,.35), transparent); }
+.deck__edge--no { left: 0; background: linear-gradient(to right, rgba(120,120,150,.28), transparent); }
+
+/* ── Панель действий ─────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-4) var(--s-2);
+}
+.action {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  color: var(--text-mid);
+  transition: transform var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-base) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.action:active:not(:disabled) { transform: scale(0.88); }
+.action--sm { width: 46px; height: 46px; }
+.action--md { width: 58px; height: 58px; }
+.action--lg { width: 68px; height: 68px; }
+.action--no:hover { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
+.action--wish { color: var(--coral); box-shadow: var(--glow-coral); }
+.action--seen { color: var(--mint); }
+.action--seen:hover { box-shadow: 0 0 0 1px rgba(75,227,164,.4), 0 12px 40px -8px rgba(75,227,164,.35); }
+.action--fav { color: var(--gold); box-shadow: var(--glow-gold); }
+.action--undo:hover:not(:disabled) { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
+
+/* ── Прогресс колоды ─────────────────────────────────────────── */
+.deck-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0 var(--s-5);
+  font-size: var(--t-micro);
+  color: var(--text-low);
+}
+.deck-progress__bar {
+  flex: 1;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--ink-700);
+  overflow: hidden;
+}
+.deck-progress__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--grad-flame);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+/* ── Радар 5D ────────────────────────────────────────────────── */
+.radar { width: 100%; max-width: 320px; margin: 0 auto; }
+.radar__grid { stroke: var(--ink-600); fill: none; stroke-width: 1; }
+.radar__axis { stroke: var(--ink-600); stroke-width: 1; }
+.radar__shape { fill: rgba(255,77,94,.22); stroke: var(--coral); stroke-width: 2; stroke-linejoin: round; }
+.radar__shape--partner { fill: rgba(111,216,255,.18); stroke: var(--ice); }
+.radar__shape--consensus { fill: rgba(255,194,75,.2); stroke: var(--gold); stroke-dasharray: 5 4; }
+.radar__dot { fill: var(--coral); }
+.radar__label { fill: var(--text-mid); font-size: 11px; font-family: var(--font-ui); }
+.radar__value { fill: var(--text-hi); font-size: 11px; font-family: var(--font-mono); font-weight: 600; }
+
+
+/* Подсказка про тап по карточке: гасится, как только пользователь
+   начинает тянуть — в этот момент она только мешает. */
+.card__hint {
+  font-size: var(--t-micro);
+  color: var(--text-low);
+  opacity: 0.75;
+}
+.card--top:active .card__hint { opacity: 0; }

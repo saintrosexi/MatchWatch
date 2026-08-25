@@ -1,0 +1,164 @@
+import { useEffect, useState } from 'react';
+import { Eye, EyeOff, Play, Star, Users } from 'lucide-react';
+import { Sheet } from '../../ui/Sheet.jsx';
+import { Poster } from '../../ui/Poster.jsx';
+import { MoodBars } from '../../ui/Radar.jsx';
+import { RatingPicker } from '../../ui/RatingPicker.jsx';
+import { api } from '../../lib/api.js';
+import { openLink } from '../../lib/telegram.js';
+import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
+import { parseTitleId } from '../../../shared/model/title.js';
+import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
+
+/**
+ * Карточка деталей. Подтягивает полные данные (описание, актёры, трейлер),
+ * если тайтл пришёл «лёгким» из списка каталога.
+ */
+export function DetailsSheet({
+  open, entry, onClose, onOpenActor, onToggleWatched, isWatched,
+  rating = null, onRate,
+}) {
+  const [full, setFull] = useState(entry?.title ?? null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!open || !entry) return undefined;
+    setFull(entry.title);
+
+    if (entry.title?.overview && entry.title?.cast?.length) return undefined;
+
+    const externalId = Number(parseTitleId(entry.title.id)?.externalId);
+    if (!Number.isFinite(externalId)) return undefined;
+
+    let cancelled = false;
+    setLoading(true);
+    api.title(externalId)
+      .then((payload) => { if (!cancelled && payload?.title) setFull(payload.title); })
+      .catch(() => { /* остаёмся на том, что есть */ })
+      .finally(() => { if (!cancelled) setLoading(false); });
+
+    return () => { cancelled = true; };
+  }, [open, entry]);
+
+  if (!entry) return null;
+  const title = full ?? entry.title;
+
+  return (
+    <Sheet open={open} onClose={onClose} title={title.title}>
+      <div className="details__body">
+        {title.backdrop && (
+          <div className="details__hero">
+            <Poster className="details__backdrop" src={title.backdrop} size="w780" alt="" rounded={false} />
+            <div className="details__backdrop-shade" />
+          </div>
+        )}
+
+        <div className="details__meta">
+          {title.rating > 0 && (
+            <span className="badge badge--rating">
+              <Star size={11} fill="currentColor" /> {title.rating.toFixed(1)}
+              {title.votes ? <span className="faint"> · {formatVotes(title.votes)}</span> : null}
+            </span>
+          )}
+          {title.year && <span className="chip">{title.year}</span>}
+          {title.runtime && <span className="chip">{Math.floor(title.runtime / 60)} ч {title.runtime % 60} мин</span>}
+          {(title.genres ?? []).slice(0, 3).map((g) => <span key={g} className="chip">{g}</span>)}
+          {title.collection && (
+            <span className="chip chip--ice" title="Часть франшизы">
+              {title.collection.name.replace(/\s*\(Коллекция\)\s*/i, '')}
+            </span>
+          )}
+        </div>
+
+        {title.tagline && <p className="muted" style={{ fontStyle: 'italic' }}>«{title.tagline}»</p>}
+
+        {onRate && (
+          <section className="section surface" style={{ padding: 'var(--s-4)' }}>
+            <span className="eyebrow">Ваша оценка</span>
+            <RatingPicker value={rating} onRate={(value) => onRate(title, value)} />
+          </section>
+        )}
+
+        <p className="details__overview">
+          {title.overview ?? (loading ? 'Загружаем описание…' : 'Описание пока не добавлено в TMDB.')}
+        </p>
+
+        {Object.keys(title.tags ?? {}).length > 0 && (
+          <section className="section">
+            <span className="eyebrow">Темы и поджанры</span>
+            <div className="tag-cloud">
+              {Object.entries(title.tags)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 12)
+                .map(([tag, weight]) => (
+                  <span
+                    key={tag}
+                    className={`tag-cloud__item ${entry.matchedTags?.includes(tag) ? 'chip--on' : ''}`}
+                  >
+                    {tagLabel(tag)} <b>{weight}</b>
+                  </span>
+                ))}
+            </div>
+          </section>
+        )}
+
+        {title.moods && (
+          <section className="section">
+            <span className="eyebrow">Настроение фильма</span>
+            <MoodBars vector={title.moods} />
+          </section>
+        )}
+
+        {title.directors?.length > 0 && (
+          <p className="muted" style={{ fontSize: 'var(--t-small)' }}>
+            Режиссёр: {title.directors.map((d) => d.name).join(', ')}
+          </p>
+        )}
+
+        {title.cast?.length > 0 && (
+          <section className="section">
+            <span className="eyebrow"><Users size={12} style={{ verticalAlign: -2 }} /> В ролях</span>
+            <div className="cast-strip">
+              {title.cast.map((person) => (
+                <button
+                  key={person.id}
+                  type="button"
+                  className="cast"
+                  onClick={() => onOpenActor?.(person.id)}
+                  title={`Открыть профиль: ${person.name}`}
+                >
+                  {person.photo
+                    ? <img className="cast__photo" src={person.photo} alt="" loading="lazy" />
+                    : <div className="cast__photo" />}
+                  <span className="cast__name">{person.name}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="row gap-3" style={{ flexWrap: 'wrap' }}>
+          {title.trailerKey && (
+            <button
+              type="button"
+              className="btn btn--ghost"
+              onClick={() => openLink(`https://www.youtube.com/watch?v=${title.trailerKey}`)}
+            >
+              <Play size={16} /> Трейлер
+            </button>
+          )}
+          {onToggleWatched && (
+            <button type="button" className="btn btn--ghost" onClick={() => onToggleWatched(title)}>
+              {isWatched ? <><EyeOff size={16} /> Убрать «посмотрено»</> : <><Eye size={16} /> Уже посмотрел</>}
+            </button>
+          )}
+        </div>
+      </div>
+    </Sheet>
+  );
+}
+
+const formatVotes = (votes) =>
+  (votes >= 1000
+    ? `${Math.round(votes / 100) / 10} тыс. оценок`
+    : withPlural(votes, FORMS.RATING));

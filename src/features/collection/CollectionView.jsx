@@ -1,0 +1,48 @@
+import { useEffect, useState } from 'react';
+import { Clapperboard, Star } from 'lucide-react';
+import { CatalogBrowser } from './CatalogBrowser.jsx';
+import { StarHubView } from '../stars/StarHubView.jsx';
+
+const SECTIONS = [
+  { key: 'catalog', label: 'Каталог', icon: Clapperboard },
+  { key: 'stars', label: 'Звёзды', icon: Star },
+];
+
+/**
+ * «Каталог» — два способа найти новое кино, кроме свайпа:
+ * весь TMDB с фильтрами и вход через актёра.
+ *
+ * То, про что решение уже принято, живёт в отдельном разделе «Моё»:
+ * искать новое и перебирать выбранное — разные задачи, смешивать их
+ * в одной вкладке значило заставлять переключаться туда-обратно.
+ */
+export function CollectionView({ catalog, stars, initialSection = 'catalog' }) {
+  const [section, setSection] = useState(initialSection);
+
+  // Переход из карточки фильма к актёру должен сразу открывать звёзды.
+  useEffect(() => {
+    if (stars.initialPersonId) setSection('stars');
+  }, [stars.initialPersonId]);
+
+  return (
+    <div className="stack">
+      <div className="segmented segmented--capped" role="tablist" aria-label="Раздел коллекции">
+        {SECTIONS.map(({ key, label, icon: Icon }) => (
+          <button
+            key={key}
+            type="button"
+            role="tab"
+            aria-selected={section === key}
+            className="segmented__item"
+            onClick={() => setSection(key)}
+          >
+            <Icon size={15} /> {label}
+          </button>
+        ))}
+      </div>
+
+      {section === 'catalog' && <CatalogBrowser {...catalog} />}
+      {section === 'stars' && <StarHubView {...stars} embedded />}
+    </div>
+  );
+}

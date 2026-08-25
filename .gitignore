@@ -33,3 +33,6 @@ dist-ssr
 # Internal agent artefacts
 .agents
 .system_generated
+
+# repowise index (local caches, regenerate with: repowise init --no-prose -y)
+.repowise/

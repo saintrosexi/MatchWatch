@@ -1,16 +1,19 @@
 {
   "name": "matchwatch",
   "private": true,
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
+  "description": "Свайп-подбор фильмов для одного и для двоих: Telegram Mini App + десктопная кино-студия",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test \"tests/tier*.test.mjs\"",
+    "test:watch": "node --test --watch \"tests/tier*.test.mjs\""
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.4",
     "canvas-confetti": "^1.9.4",
-    "firebase": "^12.16.0",
     "lucide-react": "^1.16.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"

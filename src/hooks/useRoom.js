@@ -1,0 +1,231 @@
+/**
+ * Жизненный цикл комнаты на клиенте.
+ *
+ * Восстановление после сворачивания решается тем, что локального прогресса
+ * попросту нет: какие карточки я уже свайпнул — записано в room_swipes
+ * на сервере. Приложение вернулось из фона → подписка ожила → прогресс
+ * на месте. Терять нечего, потому что нечего было хранить локально.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  addToWatchlist, closeRoom, createRoom, joinRoom, leaveRoom, markWatched,
+  publishDeck, recordSwipe, removeFromWatchlist, subscribeRoom,
+  RoomError, JOIN_SOURCE,
+} from '../engine/rooms.js';
+import { buildConsensusProfile } from '../engine/ranking.js';
+import { getConfig } from '../engine/recommendationConfig.js';
+import { rememberRoom } from '../engine/userData.js';
+import { setTelemetryRoom, trackBusiness, trackMetric, breadcrumb } from '../lib/telemetry.js';
+import { BIZ, LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
+import { haptic } from '../lib/telegram.js';
+import { sfx } from '../lib/sound.js';
+
+export function useRoom({ user, taste }) {
+  const [code, setCode] = useState(null);
+  const [state, setState] = useState(null);
+  const [status, setStatus] = useState('idle'); // idle | joining | live | error
+  const [error, setError] = useState(null);
+  const [celebration, setCelebration] = useState(null);
+  const [presentUids, setPresentUids] = useState([]);
+
+  const seenMatches = useRef(new Set());
+  const unsubscribeRef = useRef(null);
+  const reconnectedRef = useRef(false);
+
+  /* Подписка на состояние комнаты и присутствие участников. */
+  useEffect(() => {
+    if (!code || !user?.uid) return undefined;
+
+    setStatus('joining');
+    seenMatches.current = new Set();
+
+    unsubscribeRef.current = subscribeRoom(code, {
+      uid: user.uid,
+      onState: (next) => {
+        setState(next);
+        setStatus('live');
+        setError(null);
+
+        if (reconnectedRef.current) {
+          reconnectedRef.current = false;
+          trackBusiness(BIZ.RECONNECT_RECOVERED, {
+            module: MODULE.ROOMS_SYNC, room: code, level: LEVEL.INFO,
+            context: { members: Object.keys(next.members ?? {}).length },
+          });
+        }
+
+        // Празднование показываем ровно один раз на мэтч, в том числе
+        // тому участнику, чей свайп был вторым: событие приходит подпиской.
+        for (const [titleId, match] of Object.entries(next.matches ?? {})) {
+          if (seenMatches.current.has(titleId)) continue;
+          seenMatches.current.add(titleId);
+          // При первом входе не празднуем то, что случилось до нас.
+          if (Date.now() - (match.at ?? 0) > 15_000) continue;
+          setCelebration(match);
+          haptic('success');
+          sfx.match();
+        }
+      },
+      onError: (err) => {
+        setError(err);
+        setStatus('error');
+      },
+      onPresence: setPresentUids,
+    });
+
+    return () => {
+      unsubscribeRef.current?.();
+      unsubscribeRef.current = null;
+    };
+  }, [code, user?.uid]);
+
+  /* Возврат из фона: Telegram сворачивают постоянно. */
+  useEffect(() => {
+    if (!code) return undefined;
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') {
+        reconnectedRef.current = true;
+        breadcrumb('room: вернулись из фона');
+      }
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => document.removeEventListener('visibilitychange', onVisible);
+  }, [code]);
+
+  const create = useCallback(async ({ deck = [], filters = null }) => {
+    setError(null);
+    setStatus('joining');
+    try {
+      const newCode = await createRoom({ user, deck, filters, profile: compactTaste(taste) });
+      setCode(newCode);
+      rememberRoom({ code: newCode, role: 'host' });
+      sfx.join();
+      haptic('medium');
+      return newCode;
+    } catch (e) {
+      setError(toRoomError(e));
+      setStatus('error');
+      throw e;
+    }
+  }, [user, taste]);
+
+  const join = useCallback(async (rawCode, source = JOIN_SOURCE.MANUAL) => {
+    setError(null);
+    setStatus('joining');
+    try {
+      const { code: joined } = await joinRoom(rawCode, { user, source, profile: compactTaste(taste) });
+      setCode(joined);
+      rememberRoom({ code: joined, role: 'member' });
+      sfx.join();
+      haptic('medium');
+      return joined;
+    } catch (e) {
+      const roomError = toRoomError(e);
+      setError(roomError);
+      setStatus('error');
+      sfx.error();
+      haptic('error');
+      throw roomError;
+    }
+  }, [user, taste]);
+
+  const leave = useCallback(async () => {
+    if (code) await leaveRoom(code);
+    unsubscribeRef.current?.();
+    unsubscribeRef.current = null;
+    setCode(null);
+    setState(null);
+    setStatus('idle');
+    setTelemetryRoom(null);
+  }, [code]);
+
+  const close = useCallback(async () => {
+    if (!code) return;
+    await closeRoom(code);
+    unsubscribeRef.current?.();
+    unsubscribeRef.current = null;
+    setCode(null);
+    setState(null);
+    setStatus('idle');
+  }, [code]);
+
+  const swipe = useCallback(async (title, action) => {
+    if (!code) return { matched: false };
+    try {
+      return await recordSwipe(code, { title, action });
+    } catch (e) {
+      setError(toRoomError(e));
+      return { matched: false };
+    }
+  }, [code]);
+
+  const setDeck = useCallback(
+    (deck) => (code ? publishDeck(code, deck) : Promise.resolve()),
+    [code],
+  );
+
+  /** Компромиссный вектор комнаты — из профилей всех, кто внутри. */
+  const consensus = useMemo(
+    () => (state ? buildConsensusProfile(Object.values(state.profiles ?? {}), { config: getConfig() }) : null),
+    [state],
+  );
+
+  /**
+   * Присутствие: колонка `online` в базе плюс живой канал.
+   * Канал точнее — он снимает участника при обрыве связи, а колонка
+   * держится до следующего heartbeat.
+   */
+  const members = useMemo(() => Object.values(state?.members ?? {}).map((member) => ({
+    ...member,
+    online: presentUids.includes(member.uid) || member.online,
+  })), [state?.members, presentUids]);
+
+  const onlineCount = members.filter((m) => m.online).length;
+
+  const mySwipes = useMemo(
+    () => Object.entries(state?.swipes ?? {})
+      .filter(([, votes]) => votes?.[user?.uid])
+      .map(([titleId]) => titleId),
+    [state?.swipes, user?.uid],
+  );
+
+  return {
+    code, state, status, error, celebration, consensus,
+    members, onlineCount,
+    isHost: state?.meta?.createdBy === user?.uid,
+    matches: Object.values(state?.matches ?? {}).sort((a, b) => (b.at ?? 0) - (a.at ?? 0)),
+    watchlist: Object.values(state?.watchlist ?? {}).sort((a, b) => (b.addedAt ?? 0) - (a.addedAt ?? 0)),
+    /** Карточки, которые я уже отсвайпал, — прогресс переживает сворачивание. */
+    swipedTitleIds: mySwipes,
+    create, join, leave, close, swipe, setDeck,
+    addToWatchlist: (title) => addToWatchlist(code, title),
+    markWatched: (titleId, watched) => markWatched(code, titleId, watched),
+    removeFromWatchlist: (titleId) => removeFromWatchlist(code, titleId),
+    dismissCelebration: () => setCelebration(null),
+    clearError: () => setError(null),
+    trackInvite: () => trackMetric(METRIC.ROOM_INVITE_SENT, { room: code }),
+  };
+}
+
+/** В комнату уезжает только то, что нужно для компромисса, — не весь профиль. */
+function compactTaste(taste) {
+  if (!taste) return null;
+  const top = Object.entries(taste.tagWeights ?? {})
+    .filter(([, w]) => w > 0)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 60);
+  return {
+    tagWeights: Object.fromEntries(top),
+    moods: taste.moods ?? null,
+    moodMass: taste.moodMass ?? 0,
+    signals: taste.signals ?? 0,
+  };
+}
+
+function toRoomError(error) {
+  if (error instanceof RoomError) return error;
+  return new RoomError('unknown', error?.message ?? 'Не удалось выполнить действие в комнате');
+}
+
+export { JOIN_SOURCE };

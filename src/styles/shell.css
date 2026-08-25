@@ -1,0 +1,335 @@
+/* ────────────────────────────────────────────────────────────────
+   Mobile TMA Shell — плавающий док, компактный HUD
+   ──────────────────────────────────────────────────────────────── */
+
+.mobile-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: calc(var(--safe-top) + var(--tg-top));
+}
+
+.mobile-shell__main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(var(--safe-bottom) + 84px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+.mobile-shell__main--fixed { overflow: hidden; padding-bottom: calc(var(--safe-bottom) + 84px); }
+
+/* HUD-полоса вверху: кто я, что происходит, быстрые действия. */
+.hud {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  min-height: 60px;
+  /* Брендовая связка не сжимается, поэтому строку надо явно ограничить,
+     иначе аватар уезжает за правый край экрана. */
+  max-width: 100%;
+  overflow: hidden;
+}
+.hud > .brand { min-width: 0; flex: 0 1 auto; overflow: hidden; }
+.hud__pill, .hud__avatar-btn { flex: 0 0 auto; }
+
+.hud__spacer { flex: 1; }
+.hud__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  font-size: var(--t-small);
+  color: var(--text-mid);
+}
+.hud__avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--glass-border);
+  background: var(--ink-700);
+}
+
+/* Живая строка состояния — заменяет тихие зависания. */
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0 var(--s-4) var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  font-size: var(--t-small);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-mid);
+}
+.status-strip--warn { background: var(--gold-soft); border-color: rgba(255,194,75,.35); color: var(--gold); }
+.status-strip--error { background: var(--coral-soft); border-color: rgba(255,77,94,.4); color: #ffc2c8; }
+.status-strip--live { background: rgba(75,227,164,.1); border-color: rgba(75,227,164,.3); color: var(--mint); }
+
+/* Плавающий док навигации. */
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--safe-bottom) + var(--tg-bottom) + 14px);
+  transform: translateX(-50%);
+  z-index: var(--z-dock);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  border-radius: var(--r-pill);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  max-width: calc(100vw - 24px);
+}
+.dock__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 58px;
+  height: 52px;
+  padding: 0 var(--s-2);
+  border-radius: var(--r-pill);
+  color: var(--text-low);
+  font-size: 10px;
+  font-weight: 600;
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.dock__item[aria-current='page'] { color: var(--text-hi); background: rgba(255,255,255,.08); }
+.dock__item[aria-current='page'] .dock__icon { color: var(--coral); }
+.dock__badge {
+  position: absolute;
+  top: 6px; right: 10px;
+  min-width: 16px; height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  background: var(--grad-flame);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Desktop Cinema Studio — боковая панель, широкая сцена
+   ──────────────────────────────────────────────────────────────── */
+
+.studio {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  height: 100%;
+  gap: 0;
+}
+
+.studio__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-4);
+  border-right: 1px solid var(--glass-border);
+  background: linear-gradient(180deg, rgba(18,18,28,.62), rgba(6,6,10,.62));
+  backdrop-filter: var(--glass-blur);
+  overflow-y: auto;
+}
+.studio__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0 var(--s-3) var(--s-6);
+}
+.studio__brand-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+.studio__brand-sub { font-size: var(--t-micro); color: var(--text-low); letter-spacing: .1em; text-transform: uppercase; }
+
+.studio__nav { display: flex; flex-direction: column; gap: 2px; }
+.studio__nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: 46px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-sm);
+  color: var(--text-mid);
+  font-weight: 500;
+  font-size: var(--t-body);
+  transition: all var(--dur-fast) var(--ease-out);
+  position: relative;
+}
+.studio__nav-item:hover { background: rgba(255,255,255,.05); color: var(--text-hi); }
+.studio__nav-item[aria-current='page'] {
+  background: var(--coral-soft);
+  color: var(--text-hi);
+}
+.studio__nav-item[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  left: -16px; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: var(--r-pill);
+  background: var(--grad-flame);
+}
+.studio__nav-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--text-low);
+}
+
+.studio__user {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--glass-border);
+}
+
+.studio__stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.studio__topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-8);
+  border-bottom: 1px solid var(--glass-border);
+}
+.studio__title { font-size: var(--t-title); }
+.studio__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--s-6) var(--s-8) var(--s-10);
+}
+.studio__content--flush { padding: 0; overflow: hidden; display: flex; }
+
+/* Полноэкранная сцена просмотра карточек на десктопе:
+   колода по центру, детали справа — не нужно открывать модалку. */
+.cinema {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  gap: var(--s-8);
+  width: 100%;
+  /* Занимает всю высоту сцены: иначе высота колоды выводится из её же
+     содержимого и карточка схлопывается. */
+  flex: 1;
+  min-height: 0;
+  padding: var(--s-6) var(--s-8) var(--s-8);
+}
+.cinema__deck { display: flex; flex-direction: column; min-height: 0; }
+.cinema__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  overflow-y: auto;
+  padding-right: var(--s-2);
+}
+
+@media (max-width: 1180px) {
+  .cinema { grid-template-columns: minmax(0, 1fr); }
+  .cinema__panel { display: none; }
+}
+@media (max-width: 1080px) {
+  .studio { grid-template-columns: 76px minmax(0, 1fr); }
+  .studio__side { padding: var(--s-5) var(--s-2); align-items: center; }
+  .studio__brand { padding: 0 0 var(--s-5); }
+  .studio__brand-text, .studio__nav-item span, .studio__nav-count, .studio__user-text { display: none; }
+  .studio__nav-item { justify-content: center; padding: 0; }
+  .studio__nav-item[aria-current='page']::before { left: -8px; }
+  .studio__topbar, .studio__content { padding-left: var(--s-5); padding-right: var(--s-5); }
+  .cinema { padding-left: var(--s-5); padding-right: var(--s-5); }
+}
+
+/* Аватар в шапке ведёт в профиль — он вынесен из дока, чтобы «Вместе»
+   встало ровно по центру. */
+.hud__avatar-btn {
+  border-radius: 50%;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);
+}
+.hud__avatar-btn:active { transform: scale(0.92); }
+.hud__avatar-btn[aria-current='page'] .hud__avatar { border-color: var(--coral); box-shadow: var(--glow-coral); }
+.hud__avatar--empty {
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-mid);
+  background: var(--ink-700);
+}
+
+/* Док из трёх пунктов растягивается на комфортную ширину. */
+.dock:has(> :nth-child(3):last-child) .dock__item { min-width: 84px; }
+
+/* ────────────────────────────────────────────────────────────────
+   Десктоп ≠ растянутая мобилка
+   ────────────────────────────────────────────────────────────────
+   Мобильные экраны рассчитаны на ширину пальца: там кнопка во всю
+   строку — норма. На полутора тысячах пикселей та же кнопка
+   превращается в полосу через весь экран. Ограничиваем всё, что
+   на мобильном было «во всю ширину», и центрируем колонку. */
+
+.studio__content .view {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.studio__content .btn--block,
+.studio__content .btn--lg.btn--block {
+  width: auto;
+  min-width: 220px;
+  max-width: 360px;
+  align-self: flex-start;
+}
+
+/* Кнопки, стоящие в ряд, сохраняют свою логику, но не растягиваются. */
+.studio__content .row > .btn.grow { flex: 0 1 auto; min-width: 200px; }
+
+.studio__content .code-input { max-width: 280px; }
+.studio__content .room-hero { max-width: 560px; }
+.studio__content .room-list,
+.studio__content .room-members,
+.studio__content .stack.gap-2 { max-width: 720px; }
+
+/* Формы читаются лучше в узкой колонке, чем во всю сцену. */
+.studio__content .field,
+.studio__content .catalog__search { max-width: 520px; }
+.studio__content .catalog__controls { max-width: 640px; }
+
+/* Сетки, наоборот, должны использовать всю ширину — им простор на пользу. */
+.studio__content .poster-grid {
+  max-width: none;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.studio__content .star-grid {
+  max-width: none;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+}
+
+.studio__content .state { max-width: 560px; margin: 0 auto; }
+.studio__content .taste-panel { max-width: 720px; }
+.studio__content .segmented { margin-left: 0; margin-right: 0; }
