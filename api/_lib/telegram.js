@@ -77,6 +77,30 @@ export async function describeBot() {
   return result;
 }
 
+/**
+ * Вариантов data_check_string два, и выбирает не сервер.
+ *
+ * Документация описывает строку как «все поля, кроме hash», и клиенты,
+ * присылающие `signature` (Ed25519 для сторонней проверки), включают его
+ * в подпись. Часть SDK, наоборот, signature исключает. Угадывать версию
+ * клиента бессмысленно — проверяем оба варианта.
+ *
+ * Безопасность от этого не страдает: обе строки подписаны одним и тем же
+ * секретом бота, и подделать любую из них, не зная токена, одинаково
+ * невозможно. Перебор расширяет совместимость, а не доверие.
+ */
+function checkStrings(params) {
+  const build = (skip) => [...params.entries()]
+    .filter(([key]) => !skip.has(key))
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    .map(([key, value]) => `${key}=${value}`)
+    .join('\n');
+
+  const full = build(new Set(['hash']));
+  const trimmed = build(new Set(['hash', 'signature']));
+  return full === trimmed ? [full] : [full, trimmed];
+}
+
 export function validateInitData(initData, { botToken: token = botToken(), maxAgeSeconds = MAX_AGE_SECONDS, now = Date.now() } = {}) {
   const botToken = token;
   if (!botToken) {
@@ -99,18 +123,13 @@ export function validateInitData(initData, { botToken: token = botToken(), maxAg
     throw new ApiError(401, 'initdata_no_hash', 'Подпись Telegram отсутствует');
   }
 
-  const dataCheckString = [...params.entries()]
-    .filter(([key]) => key !== 'hash' && key !== 'signature')
-    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
-    .map(([key, value]) => `${key}=${value}`)
-    .join('\n');
-
   const secretKey = createHmac('sha256', 'WebAppData').update(botToken).digest();
-  const computed = createHmac('sha256', secretKey).update(dataCheckString).digest('hex');
-
-  const a = Buffer.from(computed, 'utf8');
-  const b = Buffer.from(hash, 'utf8');
-  const valid = a.length === b.length && timingSafeEqual(a, b);
+  const valid = checkStrings(params).some((dataCheckString) => {
+    const computed = createHmac('sha256', secretKey).update(dataCheckString).digest('hex');
+    const a = Buffer.from(computed, 'utf8');
+    const b = Buffer.from(hash, 'utf8');
+    return a.length === b.length && timingSafeEqual(a, b);
+  });
 
   if (!valid) {
     logBusinessEvent(BIZ.TELEGRAM_INITDATA_INVALID, {

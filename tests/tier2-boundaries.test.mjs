@@ -248,25 +248,48 @@ test('B19a · токен бота из окружения читается бе�
 });
 
 /**
- * Свежие клиенты Telegram добавляют в initData поле `signature` (Ed25519
- * для сторонней проверки). В HMAC-подпись оно не входит: если его учесть,
- * вход ломается ровно у тех, у кого клиент новее.
+ * Регрессия на боевой сбой: вход не работал ни у кого.
+ *
+ * Свежие клиенты добавляют в initData поле `signature` (Ed25519 для
+ * сторонней проверки) и включают его в подписываемую строку — сервер же
+ * его выбрасывал, и подпись не сходилась никогда. Часть SDK, наоборот,
+ * signature исключает, так что проходить обязаны оба варианта.
+ *
+ * Тест намеренно строит подпись независимо от кода валидации: прошлый
+ * вариант генерировал её тем же выражением, что и проверял, и потому
+ * подтверждал сам себя, а не совместимость с Telegram.
  */
-test('B19b · поле signature не участвует в проверке подписи', () => {
+test('B19b · подпись сходится и с signature внутри строки, и без него', () => {
   const token = '999:sig-token';
-  const params = signedInitData(token, { id: 7, first_name: 'Лев' });
-  const withSignature = `${params}&signature=${encodeURIComponent('ed25519-payload')}`;
-  assert.equal(validateInitData(withSignature, { botToken: token }).telegramId, '7');
+  const user = { id: 7, first_name: 'Лев' };
+
+  const included = signedInitData(token, user, { signature: 'ed25519-payload' }, { signSignature: true });
+  assert.equal(validateInitData(included, { botToken: token }).telegramId, '7',
+    'клиент включил signature в подпись — так делает сам Telegram');
+
+  const excluded = signedInitData(token, user, { signature: 'ed25519-payload' }, { signSignature: false });
+  assert.equal(validateInitData(excluded, { botToken: token }).telegramId, '7',
+    'клиент signature не подписывал — так делает часть SDK');
+
+  // Подмена значения ломает подпись в обоих вариантах: перебор строк
+  // не должен превращаться в дырку.
+  const tampered = included.replace(/user=[^&]*/, `user=${encodeURIComponent(JSON.stringify({ id: 66 }))}`);
+  assert.throws(() => validateInitData(tampered, { botToken: token }), /подпись/i);
 });
 
-/** Подписанный initData — как его собирает клиент Telegram. */
-function signedInitData(token, user, extra = {}) {
+/**
+ * Подписанный initData, собранный вручную по спецификации Telegram.
+ * @param {{signSignature?: boolean}} mode включать ли `signature` в data_check_string
+ */
+function signedInitData(token, user, extra = {}, { signSignature = true } = {}) {
   const params = new URLSearchParams({
     auth_date: String(Math.floor(Date.now() / 1000)),
     user: JSON.stringify(user),
     ...extra,
   });
-  const dcs = [...params.entries()].sort(([a], [b]) => (a < b ? -1 : 1))
+  const dcs = [...params.entries()]
+    .filter(([k]) => (signSignature ? true : k !== 'signature'))
+    .sort(([a], [b]) => (a < b ? -1 : 1))
     .map(([k, v]) => `${k}=${v}`).join('\n');
   const secret = createHmac('sha256', 'WebAppData').update(token).digest();
   params.set('hash', createHmac('sha256', secret).update(dcs).digest('hex'));
