@@ -36,3 +36,6 @@ dist-ssr
 
 # repowise index (local caches, regenerate with: repowise init --no-prose -y)
 .repowise/
+
+# Подготовленный блок переменных для Vercel — секреты, не коммитим
+vercel-env.txt
