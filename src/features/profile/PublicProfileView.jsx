@@ -68,7 +68,7 @@ export function PublicProfileView({ username, onBack, toasts }) {
           </div>
           <div className="stat">
             <span className="stat__value">{stats.favorites}</span>
-            <span className="stat__label">в избранном</span>
+            <span className="stat__label">понравилось</span>
           </div>
           <div className="stat">
             <span className="stat__value">{stats.ratings}</span>

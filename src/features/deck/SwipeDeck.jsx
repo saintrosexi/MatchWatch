@@ -18,6 +18,8 @@ import { Compass, PartyPopper, SlidersHorizontal } from 'lucide-react';
  */
 export function SwipeDeck({
   deck, onDecision, onOpenDetails, onOpenFilters, onRestart, onUndo, canUndo,
+  /** В комнате остаются только «нет» и «да» — личные пометки там лишние. */
+  compact = false,
   emptyTitle = 'Колода закончилась',
   emptyText = 'Мы показали всё, что подходит под фильтры. Ослабьте их — и лента оживёт.',
   emptyArt = null,
@@ -47,7 +49,7 @@ export function SwipeDeck({
     onDecision: (decision) => {
       unlockAudio();
       if (decision === 'details') { onOpenDetails?.(current); return; }
-      // Свайп вправо — избранное: главный жест несёт главный вес.
+      // Свайп вправо — «нравится»: главный жест несёт главный вес.
       if (decision === 'like') { haptic('success'); sfx.favorite(); commit(ACTION.FAVORITE); }
       else { haptic('light'); sfx.pass(); commit(ACTION.DISLIKE); }
     },
@@ -59,7 +61,7 @@ export function SwipeDeck({
     prefetchPosters(upcoming.slice(0, count).map((e) => e.title.poster));
   }, [upcoming]);
 
-  /* Клавиатура: стрелки — свайп, F — избранное, пробел — детали. */
+  /* Клавиатура: стрелки — свайп, F — «нравится», пробел — детали. */
   useEffect(() => {
     if (!current) return undefined;
     const onKey = (e) => {
@@ -156,11 +158,12 @@ export function SwipeDeck({
       <ActionBar
         disabled={busy}
         canUndo={canUndo}
+        compact={compact}
         onUndo={onUndo}
         onPass={() => { haptic('light'); sfx.pass(); fling('left', 'pass'); }}
         onWish={() => { haptic('medium'); sfx.like(); commit(ACTION.LATER); }}
         onWatched={() => { haptic('medium'); sfx.tick(); commit(ACTION.WATCHED); }}
-        onFavorite={() => { haptic('success'); sfx.favorite(); fling('right', 'like'); }}
+        onLike={() => { haptic('success'); sfx.favorite(); fling('right', 'like'); }}
       />
     </>
   );

@@ -286,6 +286,28 @@ export default function App() {
     }
   }, [user?.uid, taste, deckMode, room]);
 
+  /**
+   * Отметка прямо из карточки фильма.
+   *
+   * В отличие от свайпа, это решение не идёт в комнату: карточку
+   * открывают из каталога и от актёра, где никакого общего выбора нет.
+   * Повторное нажатие снимает отметку — иначе поставленное по ошибке
+   * сердце убрать неоткуда.
+   */
+  const handleToggleDecision = useCallback(async (title, action) => {
+    const already = history[title.id] === action;
+    if (already) {
+      setUserState((prev) => removeLocalDecision(prev, title.id));
+      const restored = await undoDecision({ uid: user?.uid, titleId: title.id, previousTaste: taste });
+      setTaste(restored ?? taste);
+      return;
+    }
+
+    setUserState((prev) => applyLocalDecision(prev, title, action));
+    const nextTaste = await recordReaction({ uid: user?.uid, title, action, taste, surface: 'details' });
+    setTaste(nextTaste);
+  }, [history, user?.uid, taste]);
+
   const handleToggleWatched = useCallback(async (title) => {
     const watched = history[title.id] === 'watched';
     const nextTaste = await markWatchedPersonal({ uid: user?.uid, title, taste, watched: !watched });
@@ -341,7 +363,7 @@ export default function App() {
     });
     setTaste(nextTaste);
     await undoDecision({ uid: user?.uid, titleId, previousTaste: taste });
-    toasts.push(`«${stub.title}» убран из избранного`);
+    toasts.push(`«${stub.title}» убран из понравившихся`);
   }, [user?.uid, taste, toasts]);
 
   const startActorDeck = useCallback((person) => {
@@ -408,6 +430,7 @@ export default function App() {
   const deckPanel = (
     <SwipeDeck
       deck={deck}
+      compact={deckMode === DECK_MODE.ROOM}
       onDecision={handleDecision}
       onOpenDetails={setDetailsEntry}
       onOpenFilters={() => setFiltersOpen(true)}
@@ -511,6 +534,10 @@ export default function App() {
           onClose={() => setDetailsEntry(null)}
           onOpenActor={(personId) => { setDetailsEntry(null); setFocusPerson(personId); setView(VIEW.COLLECTION); }}
           onToggleWatched={handleToggleWatched}
+          onToggleLike={(title) => handleToggleDecision(title, ACTION.FAVORITE)}
+          isLiked={detailsEntry ? history[detailsEntry.title.id] === ACTION.FAVORITE : false}
+          onToggleWish={(title) => handleToggleDecision(title, ACTION.LATER)}
+          isWished={detailsEntry ? history[detailsEntry.title.id] === ACTION.LATER : false}
           isWatched={detailsEntry ? history[detailsEntry.title.id] === 'watched' : false}
           rating={detailsEntry ? (userState?.ratings?.[detailsEntry.title.id]?.rating ?? null) : null}
           onRate={handleRate}

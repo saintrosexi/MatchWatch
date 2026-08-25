@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Eye, EyeOff, Play, Star, Users } from 'lucide-react';
+import { Bookmark, BookmarkX, Eye, EyeOff, Heart, HeartOff, Play, Star, Users } from 'lucide-react';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { MoodBars } from '../../ui/Radar.jsx';
@@ -16,6 +16,7 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
  */
 export function DetailsSheet({
   open, entry, onClose, onOpenActor, onToggleWatched, isWatched,
+  onToggleLike, isLiked = false, onToggleWish, isWished = false,
   rating = null, onRate,
 }) {
   const [full, setFull] = useState(entry?.title ?? null);
@@ -147,9 +148,32 @@ export function DetailsSheet({
               <Play size={16} /> Трейлер
             </button>
           )}
+          {/*
+            * Решение о фильме принимается и отсюда, а не только свайпом:
+            * в каталог и к актёру человек приходит целенаправленно, и
+            * возвращать его в ленту ради одной отметки — лишний круг.
+            */}
+          {onToggleLike && (
+            <button
+              type="button"
+              className={`btn ${isLiked ? 'btn--primary' : 'btn--ghost'}`}
+              onClick={() => onToggleLike(title)}
+            >
+              {isLiked
+                ? <><HeartOff size={16} /> Убрать «нравится»</>
+                : <><Heart size={16} fill="currentColor" strokeWidth={0} /> Нравится</>}
+            </button>
+          )}
+          {onToggleWish && (
+            <button type="button" className="btn btn--ghost" onClick={() => onToggleWish(title)}>
+              {isWished
+                ? <><BookmarkX size={16} /> Убрать из «буду смотреть»</>
+                : <><Bookmark size={16} /> Буду смотреть</>}
+            </button>
+          )}
           {onToggleWatched && (
             <button type="button" className="btn btn--ghost" onClick={() => onToggleWatched(title)}>
-              {isWatched ? <><EyeOff size={16} /> Убрать «посмотрено»</> : <><Eye size={16} /> Уже посмотрел</>}
+              {isWatched ? <><EyeOff size={16} /> Убрать «просмотрено»</> : <><Eye size={16} /> Просмотрено</>}
             </button>
           )}
         </div>

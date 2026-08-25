@@ -141,6 +141,10 @@
 .card__stamp {
   position: absolute;
   top: 32px;
+  /* Внутри штампа теперь иконка, а не буква: без выравнивания она
+     садится на базовую линию текста и висит выше рамки. */
+  display: grid;
+  place-items: center;
   padding: 8px 18px;
   border-radius: var(--r-sm);
   border: 3px solid currentColor;

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Star, Clock, Sparkles, Compass } from 'lucide-react';
+import { Clock, Compass, Heart, Sparkles, Star } from 'lucide-react';
 import { Poster } from '../../ui/Poster.jsx';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 
@@ -45,7 +45,9 @@ export const SwipeCard = forwardRef(function SwipeCard(
 
       {isTop && (
         <>
-          <div className="card__stamp card__stamp--yes" aria-hidden="true">★</div>
+          <div className="card__stamp card__stamp--yes" aria-hidden="true">
+            <Heart size={26} fill="currentColor" strokeWidth={0} />
+          </div>
           <div className="card__stamp card__stamp--no" aria-hidden="true">НЕТ</div>
           <div className="card__stamp card__stamp--info" aria-hidden="true">ДЕТАЛИ</div>
         </>

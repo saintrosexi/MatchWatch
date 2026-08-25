@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Bookmark, Check, Eye, Star, Trash2, Users } from 'lucide-react';
+import { Bookmark, Check, Eye, Heart, Star, Trash2, Users } from 'lucide-react';
 import { RatingBadge } from '../../ui/RatingPicker.jsx';
 import { EmptyState } from '../../ui/States.jsx';
 import { Poster } from '../../ui/Poster.jsx';
@@ -12,10 +12,10 @@ import { Poster } from '../../ui/Poster.jsx';
  * список незачем.
  */
 const TABS = [
-  { key: 'wishlist', label: 'Желаемое', icon: Bookmark },
+  { key: 'wishlist', label: 'Буду смотреть', icon: Bookmark },
   { key: 'watched', label: 'Просмотрено', icon: Eye },
   { key: 'ratings', label: 'Оценки', icon: Star },
-  { key: 'favorites', label: 'Избранное', icon: Star },
+  { key: 'favorites', label: 'Нравится', icon: Heart },
   { key: 'matches', label: 'Мэтчи', icon: Check },
   { key: 'room', label: 'Комната', icon: Users },
 ];
@@ -133,11 +133,11 @@ export function VaultView({
           items={favoriteItems}
           onOpenTitle={onOpenTitle}
           onRemove={onRemoveFavorite}
-          removeLabel="Убрать из избранного"
+          removeLabel="Убрать из понравившихся"
           empty={{
-            icon: Star,
-            title: 'Избранного нет',
-            text: 'Звёздочка кладёт фильм сюда и заметно сильнее влияет на рекомендации, чем обычный свайп.',
+            icon: Heart,
+            title: 'Пока ничего не понравилось',
+            text: 'Сердечко кладёт фильм сюда и влияет на подборку заметно сильнее обычного свайпа.',
           }}
         />
       )}

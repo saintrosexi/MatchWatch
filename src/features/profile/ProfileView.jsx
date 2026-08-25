@@ -78,11 +78,11 @@ export function ProfileView({
       <div className="stat-row">
         <div className="stat">
           <span className="stat__value">{taste.counts.like + taste.counts.favorite}</span>
-          <span className="stat__label">понравилось</span>
+          <span className="stat__label">оценок «да»</span>
         </div>
         <div className="stat">
           <span className="stat__value">{favoriteCount}</span>
-          <span className="stat__label">в избранном</span>
+          <span className="stat__label">нравится</span>
         </div>
         <div className="stat">
           <span className="stat__value">{matchCount}</span>
@@ -148,7 +148,7 @@ export function ProfileView({
               ))}
             </div>
             <p className="faint" style={{ fontSize: 'var(--t-micro)' }}>
-              Вес растёт от лайков и особенно от избранного, медленно снижается от «не нравится»
+              Вес растёт от свайпов и особенно от сердечка, медленно снижается от пропусков
               и стареет со временем — вкус живой.
             </p>
           </>
