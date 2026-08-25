@@ -666,7 +666,7 @@ function renderView(ctx) {
           initialSection={collectionSection}
           showTabs={!desktopShell}
           catalog={{ onOpenTitle: openDetails, history }}
-          stars={{ onStartActorDeck: startActorDeck, initialPersonId: focusPerson }}
+          stars={{ onStartActorDeck: startActorDeck, onOpenTitle: openDetails, initialPersonId: focusPerson }}
         />
       );
 

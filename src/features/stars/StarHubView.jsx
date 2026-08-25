@@ -10,7 +10,7 @@ import { METRIC } from '../../../shared/telemetry/events.js';
  * Star Hub: витрина актёров, профиль с фактами и фильмографией,
  * и главное — кнопка «собрать колоду только с ним».
  */
-export function StarHubView({ onStartActorDeck, initialPersonId = null, embedded = false }) {
+export function StarHubView({ onStartActorDeck, onOpenTitle, initialPersonId = null, embedded = false }) {
   const [people, setPeople] = useState([]);
   const [selected, setSelected] = useState(null);
   const [query, setQuery] = useState('');
@@ -76,6 +76,7 @@ export function StarHubView({ onStartActorDeck, initialPersonId = null, embedded
           trackMetric(METRIC.STAR_DECK, { context: { personId: person.id } });
           onStartActorDeck(person);
         }}
+        onOpenTitle={onOpenTitle}
         onRetry={() => openPerson(selected.id)}
       />
     );
@@ -126,7 +127,7 @@ export function StarHubView({ onStartActorDeck, initialPersonId = null, embedded
   );
 }
 
-function PersonProfile({ data, onBack, onStartDeck, onRetry }) {
+function PersonProfile({ data, onBack, onStartDeck, onOpenTitle, onRetry }) {
   if (data.loading) return <LoadingState text="Открываем профиль…" />;
   if (data.error) return <ErrorState error={data.error} onRetry={onRetry} module="stars.hub" />;
 
@@ -169,11 +170,23 @@ function PersonProfile({ data, onBack, onStartDeck, onRetry }) {
       <section className="section">
         <h2 className="section__title">Фильмография</h2>
         <div className="poster-grid">
+          {/*
+            * Фильмография была витриной: постер видно, а нажать нельзя.
+            * Человек приходит сюда посмотреть, что снял актёр, — и решение
+            * о конкретном фильме принимается здесь же, а не после
+            * возвращения в ленту.
+            */}
           {filmography.map((movie) => (
-            <div className="poster-card" key={movie.id}>
+            <button
+              type="button"
+              className="poster-card"
+              key={movie.id}
+              onClick={() => onOpenTitle?.(movie)}
+              title={movie.title}
+            >
               <Poster src={movie.poster} alt={movie.title} size="w342" />
-              <div className="poster-card__cap truncate">{movie.title}</div>
-            </div>
+              <span className="poster-card__cap truncate">{movie.title}</span>
+            </button>
           ))}
         </div>
       </section>

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { AtSign, Check, Image as ImageIcon, Loader2, UserRound } from '../../ui/icons.js';
+import { useEffect, useRef, useState } from 'react';
+import { AtSign, Check, Image as ImageIcon, Loader2, UserRound, Trash2 } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
-import { isUsernameAvailable, saveProfile, suggestUsername } from '../../engine/social.js';
+import {
+  AVATAR_MIME, isUsernameAvailable, saveProfile, suggestUsername, uploadAvatar,
+} from '../../engine/social.js';
 import { getTelegramUser } from '../../lib/telegram.js';
 
 const BIO_LIMIT = 280;
@@ -17,6 +19,8 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
   const telegram = getTelegramUser();
 
   const [form, setForm] = useState({ displayName: '', username: '', bio: '', photoURL: '' });
+  const fileRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
   const [availability, setAvailability] = useState(null); // null | 'checking' | 'free' | 'taken'
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
@@ -53,6 +57,25 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
     return () => clearTimeout(timer);
   }, [form.username, open, currentUsername]);
 
+  const pickPhoto = async (e) => {
+    const file = e.target.files?.[0];
+    // Значение поля сбрасываем сразу: иначе повторный выбор того же
+    // файла не вызовет change и кнопка будет выглядеть сломанной.
+    e.target.value = '';
+    if (!file) return;
+
+    setUploading(true);
+    setError(null);
+    try {
+      const url = await uploadAvatar(uid, file);
+      if (url) setForm((f) => ({ ...f, photoURL: url }));
+    } catch (err) {
+      setError(err?.message ?? 'Не удалось загрузить фото');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -84,23 +107,60 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
             : <span className="editor__avatar editor__avatar--empty"><UserRound size={26} /></span>}
 
           <div className="stack gap-2 grow" style={{ minWidth: 0 }}>
-            <span className="field__label">Аватар</span>
-            {telegram?.photo_url && form.photoURL !== telegram.photo_url && (
+            <span className="field__label">Фото</span>
+
+            {/*
+              * Ссылку на картинку человек ввести не может — у него есть
+              * фотография, а не URL. Заодно уходит битая картинка в чужом
+              * профиле: сторонние ссылки протухают, и отвечать за них некому.
+              */}
+            <input
+              ref={fileRef}
+              type="file"
+              accept={AVATAR_MIME.join(',')}
+              hidden
+              onChange={pickPhoto}
+            />
+
+            <div className="row gap-2" style={{ flexWrap: 'wrap' }}>
               <button
                 type="button"
                 className="btn btn--ghost btn--sm"
-                onClick={() => setForm((f) => ({ ...f, photoURL: telegram.photo_url }))}
+                disabled={uploading}
+                onClick={() => fileRef.current?.click()}
               >
-                <ImageIcon size={16} /> Взять из Telegram
+                {uploading
+                  ? <><Loader2 size={16} className="spin" /> Загружаем…</>
+                  : <><ImageIcon size={16} /> {form.photoURL ? 'Заменить' : 'Загрузить'}</>}
               </button>
-            )}
-            <input
-              className="input"
-              type="url"
-              placeholder="Ссылка на изображение"
-              value={form.photoURL}
-              onChange={(e) => setForm((f) => ({ ...f, photoURL: e.target.value }))}
-            />
+
+              {telegram?.photo_url && form.photoURL !== telegram.photo_url && (
+                <button
+                  type="button"
+                  className="btn btn--ghost btn--sm"
+                  disabled={uploading}
+                  onClick={() => setForm((f) => ({ ...f, photoURL: telegram.photo_url }))}
+                >
+                  Из Telegram
+                </button>
+              )}
+
+              {form.photoURL && (
+                <button
+                  type="button"
+                  className="btn btn--quiet btn--sm"
+                  disabled={uploading}
+                  onClick={() => setForm((f) => ({ ...f, photoURL: '' }))}
+                  aria-label="Убрать фото"
+                >
+                  <Trash2 size={16} />
+                </button>
+              )}
+            </div>
+
+            <span className="faint" style={{ fontSize: 'var(--t-micro)' }}>
+              JPEG, PNG, WebP или GIF, до 2 МБ.
+            </span>
           </div>
         </div>
 

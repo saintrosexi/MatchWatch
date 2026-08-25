@@ -151,6 +151,41 @@ export async function loadSharedWatchlist(friendId) {
   }));
 }
 
+/** Что принимаем: браузер отдаёт mime, и по нему же фильтрует диалог выбора. */
+export const AVATAR_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+export const AVATAR_MAX_BYTES = 2 * 1024 * 1024;
+
+/**
+ * Загрузка аватара.
+ *
+ * Файл кладётся в папку по uid — политика хранилища проверяет именно это,
+ * поэтому чужую картинку подменить нельзя. Имя каждый раз новое: путь
+ * попадает в кэш CDN, и перезапись под тем же именем оставляла бы
+ * старое фото висеть ещё сутки.
+ */
+export async function uploadAvatar(uid, file) {
+  if (!supabaseReady() || !uid || !file) return null;
+
+  if (!AVATAR_MIME.includes(file.type)) {
+    throw Object.assign(new Error('Нужен файл JPEG, PNG, WebP или GIF'), { code: 'avatar_type' });
+  }
+  if (file.size > AVATAR_MAX_BYTES) {
+    throw Object.assign(new Error('Файл больше 2 МБ — выберите поменьше'), { code: 'avatar_size' });
+  }
+
+  const ext = ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif' })[file.type];
+  const path = `${uid}/${Date.now()}.${ext}`;
+
+  const { error } = await supabase.storage.from('avatars').upload(path, file, {
+    contentType: file.type,
+    cacheControl: '31536000',
+  });
+  if (error) throw error;
+
+  const { data } = supabase.storage.from('avatars').getPublicUrl(path);
+  return data?.publicUrl ?? null;
+}
+
 /** Ник по умолчанию из имени или почты: человеку не нужно придумывать с нуля. */
 export function suggestUsername(source) {
   const base = String(source ?? '')
