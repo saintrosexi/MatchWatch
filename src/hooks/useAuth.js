@@ -10,6 +10,11 @@
  *
  * Оба пути приводят к одному auth.users.id, а таблица identities
  * позволяет прицепить второй способ входа к тому же профилю.
+ *
+ * Запасной режим `password` включается, когда на сервере нет
+ * SUPABASE_SERVICE_ROLE_KEY: там token_hash выписать некому, и клиент
+ * входит выведенными из telegram_id учётными данными. Вход работает,
+ * привязка к существующему аккаунту — нет.
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -39,11 +44,46 @@ const toSession = (user) => ({
   provider: user.user_metadata?.provider ?? user.app_metadata?.provider ?? 'email',
 });
 
+/** Access-token текущей сессии: им эндпоинты привязки доказывают, кто мы. */
+async function accessToken() {
+  if (!supabaseReady()) return null;
+  const { data } = await supabase.auth.getSession();
+  return data.session?.access_token ?? null;
+}
+
+/**
+ * Запасной вход без service_role: учётные данные выведены сервером из
+ * telegram_id. Первый заход заводит аккаунт — подтверждать нечего,
+ * адрес служебный и никуда не отправляется.
+ */
+async function signInWithDerivedCredentials(result) {
+  let { error: signInError } = await supabase.auth.signInWithPassword({
+    email: result.email,
+    password: result.password,
+  });
+  if (!signInError) return;
+
+  const { error: signUpError } = await supabase.auth.signUp({
+    email: result.email,
+    password: result.password,
+    options: { data: result.metadata },
+  });
+  if (signUpError) throw signUpError;
+
+  ({ error: signInError } = await supabase.auth.signInWithPassword({
+    email: result.email,
+    password: result.password,
+  }));
+  if (signInError) throw signInError;
+}
+
 export function useAuth() {
   const [status, setStatus] = useState(STATUS.BOOTING);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [startRoom, setStartRoom] = useState(null);
+  const [justRegistered, setJustRegistered] = useState(false);
+  const [links, setLinks] = useState(null);
   const autoAttempted = useRef(false);
 
   useEffect(() => {
@@ -96,34 +136,26 @@ export function useAuth() {
         throw Object.assign(new Error('Telegram не передал initData'), { code: 'initdata_missing' });
       }
 
-      // Сервер проверил подпись и вернул учётные данные, выведенные из
-      // telegram_id секретом бота. Клиент входит ими как обычно.
+      // Сервер проверил подпись и решил, в какой аккаунт нас пускать:
+      // в привязанный, если Telegram уже прицеплен к чужому email,
+      // иначе в собственный телеграмный.
       const result = await api.authTelegram(initData);
 
-      let { error: signInError } = await supabase.auth.signInWithPassword({
-        email: result.email,
-        password: result.password,
-      });
-
-      // Первый вход: аккаунта ещё нет — заводим. Подтверждать нечего,
-      // почта служебная и никуда не отправляется.
-      if (signInError) {
-        const { error: signUpError } = await supabase.auth.signUp({
-          email: result.email,
-          password: result.password,
-          options: { data: result.metadata },
+      if (result.mode === 'otp') {
+        const { error: otpError } = await supabase.auth.verifyOtp({
+          token_hash: result.tokenHash,
+          type: 'magiclink',
         });
-        if (signUpError) throw signUpError;
-
-        ({ error: signInError } = await supabase.auth.signInWithPassword({
-          email: result.email,
-          password: result.password,
-        }));
-        if (signInError) throw signInError;
+        if (otpError) throw otpError;
+      } else {
+        await signInWithDerivedCredentials(result);
       }
 
       if (result.startRoom) setStartRoom(result.startRoom);
-      trackMetric(METRIC.SIGN_IN, { context: { provider: 'telegram' } });
+      // Свежесозданному телеграмному аккаунту стоит рассказать, что его
+      // можно было привязать к уже существующему, — но ровно один раз.
+      setJustRegistered(result.created === true && !result.linked);
+      trackMetric(METRIC.SIGN_IN, { context: { provider: 'telegram', mode: result.mode } });
       return result;
     } catch (e) {
       const described = describeError(e);
@@ -134,6 +166,55 @@ export function useAuth() {
       });
       throw e;
     }
+  }, []);
+
+  /* ── Привязка Telegram к уже существующему аккаунту ───────────── */
+
+  const refreshLinks = useCallback(async () => {
+    if (!supabaseReady()) return null;
+    const token = await accessToken();
+    if (!token) return null;
+    try {
+      const result = await api.identityStatus(token);
+      setLinks(result);
+      return result;
+    } catch (e) {
+      /*
+       * Отсутствие service_role — не ошибка пользователя: вход работает,
+       * просто привязка недоступна. Запоминаем это состояние, чтобы не
+       * показывать кнопку, которая заведомо не сработает.
+       */
+      if (e?.code === 'linking_not_configured') {
+        setLinks({ unavailable: true, reason: e.code, telegram: { linked: false } });
+        return null;
+      }
+      trackError('Не удалось прочитать привязки аккаунта', {
+        module: MODULE.AUTH_SESSION, level: LEVEL.WARNING, error: e,
+      });
+      return null;
+    }
+  }, []);
+
+  const linkTelegram = useCallback(async () => {
+    const initData = getInitData();
+    if (!initData) {
+      throw Object.assign(new Error('Telegram не передал initData'), { code: 'initdata_missing' });
+    }
+    const token = await accessToken();
+    if (!token) throw Object.assign(new Error('Нет активной сессии'), { code: 'session_required' });
+
+    const result = await api.linkTelegram(initData, token);
+    setLinks(result);
+    setJustRegistered(false);
+    return result;
+  }, []);
+
+  const unlinkTelegram = useCallback(async () => {
+    const token = await accessToken();
+    if (!token) throw Object.assign(new Error('Нет активной сессии'), { code: 'session_required' });
+    const result = await api.unlinkTelegram(token);
+    setLinks(result);
+    return result;
   }, []);
 
   const signInWithEmail = useCallback(async (email, password, { register = false, displayName } = {}) => {
@@ -191,6 +272,8 @@ export function useAuth() {
   const logout = useCallback(async () => {
     if (supabaseReady()) await supabase.auth.signOut().catch(() => {});
     setUser(null);
+    setLinks(null);
+    setJustRegistered(false);
     setStatus(STATUS.ANONYMOUS);
   }, []);
 
@@ -203,12 +286,21 @@ export function useAuth() {
     signInWithTelegram().catch(() => {});
   }, [status, signInWithTelegram]);
 
+  // Список привязок нужен профилю; читаем один раз на сессию.
+  useEffect(() => {
+    if (status !== STATUS.READY || !user?.uid) return;
+    refreshLinks();
+  }, [status, user?.uid, refreshLinks]);
+
   return {
-    status, user, error, startRoom,
+    status, user, error, startRoom, links, justRegistered,
     isReady: status === STATUS.READY,
     isDegraded: status === STATUS.DEGRADED,
+    inTelegram: isTelegram(),
     signInWithTelegram, signInWithEmail, resetPassword, logout,
+    refreshLinks, linkTelegram, unlinkTelegram,
     clearStartRoom: () => setStartRoom(null),
+    dismissJustRegistered: () => setJustRegistered(false),
   };
 }
 

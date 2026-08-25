@@ -57,6 +57,8 @@ export const BIZ = Object.freeze({
   DB_POLICY_DENIED: 'db_policy_denied',
   TELEGRAM_INITDATA_INVALID: 'telegram_initdata_invalid',
   TELEGRAM_INITDATA_EXPIRED: 'telegram_initdata_expired',
+  TELEGRAM_LINKED: 'telegram_linked',
+  TELEGRAM_UNLINKED: 'telegram_unlinked',
   DECK_EXHAUSTED: 'deck_exhausted',
   DECK_EMPTY_AFTER_FILTERS: 'deck_empty_after_filters',
   OFFLINE_DEGRADED: 'offline_degraded',

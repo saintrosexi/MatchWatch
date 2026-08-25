@@ -7,6 +7,7 @@ import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
+import { TelegramLinkCard } from './TelegramLinkCard.jsx';
 
 /**
  * Профиль вкуса.
@@ -18,7 +19,7 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 export function ProfileView({
   user, taste, access, matches = {}, favorites = {}, ratings = {},
   prefs, onPrefsChange, onLogout, onOpenDashboard, onOpenTitle,
-  onEditProfile, onOpenFriends, profile,
+  onEditProfile, onOpenFriends, profile, auth, toasts,
 }) {
   const [showAllTags, setShowAllTags] = useState(false);
   const tags = useMemo(() => topTags(taste, showAllTags ? 40 : 14), [taste, showAllTags]);
@@ -175,6 +176,17 @@ export function ProfileView({
             ))}
           </div>
         </section>
+      )}
+
+      {auth && (
+        <TelegramLinkCard
+          user={user}
+          links={auth.links}
+          inTelegram={auth.inTelegram}
+          onLink={auth.linkTelegram}
+          onUnlink={auth.unlinkTelegram}
+          toast={toasts}
+        />
       )}
 
       <section className="section">

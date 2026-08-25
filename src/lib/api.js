@@ -25,7 +25,7 @@ const memoCache = new Map();
 const inflight = new Map();
 const MEMO_TTL = 120_000;
 
-async function request(path, { method = 'GET', body, timeoutMs = 12_000, retries = 1, signal } = {}) {
+async function request(path, { method = 'GET', body, timeoutMs = 12_000, retries = 1, signal, accessToken } = {}) {
   if (!isOnline()) {
     throw new ApiClientError('Нет соединения с интернетом', { code: 'offline', retryable: true });
   }
@@ -43,6 +43,8 @@ async function request(path, { method = 'GET', body, timeoutMs = 12_000, retries
         headers: {
           'x-matchwatch-client': 'web',
           ...(body ? { 'content-type': 'application/json' } : {}),
+          // Эндпоинты привязки работают от имени текущей сессии, а не анонимно.
+          ...(accessToken ? { authorization: `Bearer ${accessToken}` } : {}),
         },
         body: body ? JSON.stringify(body) : undefined,
         signal: controller.signal,
@@ -153,6 +155,18 @@ export const api = {
 
   authTelegram: (initData) => request('/auth/telegram', { method: 'POST', body: { initData }, retries: 2 }),
 
+  /** Диагностика конфигурации входа: какой бот настроен и есть ли ключи. */
+  authTelegramConfig: () => request('/auth/telegram', { retries: 0 }),
+
+  /** Какие способы входа привязаны к текущему аккаунту. */
+  identityStatus: (accessToken) => request('/auth/link-telegram', { accessToken, retries: 0 }),
+
+  linkTelegram: (initData, accessToken) =>
+    request('/auth/link-telegram', { method: 'POST', body: { initData }, accessToken, retries: 0 }),
+
+  unlinkTelegram: (accessToken) =>
+    request('/auth/link-telegram', { method: 'DELETE', accessToken, retries: 0 }),
+
   metrics: (days, token) => request(`/ops/metrics${qs({ days, token })}`, { timeoutMs: 20_000 }),
 };
 
@@ -173,8 +187,24 @@ export function describeError(error) {
     tmdb_upstream_error: 'Каталог TMDB сейчас недоступен.',
     tmdb_unreachable: 'Каталог TMDB не отвечает.',
     telegram_not_configured: 'Вход через Telegram не настроен: не задан токен бота.',
-    initdata_invalid: 'Telegram не подтвердил вашу личность. Переоткройте приложение.',
+    /*
+     * Подпись не сходится не потому, что пользователь что-то сделал не так.
+     * Практически всегда это несовпадение бота: Mini App открыт в одном боте,
+     * а на сервере лежит токен другого. Текст должен вести к настройке,
+     * а не предлагать бесконечно переоткрывать приложение.
+     */
+    initdata_invalid: 'Telegram не подтвердил вашу личность: на сервере настроен '
+      + 'другой бот. Проверьте TELEGRAM_BOT_TOKEN — он должен быть от того же '
+      + 'бота, в котором открыт Mini App.',
     initdata_expired: 'Сессия Telegram устарела. Переоткройте приложение.',
+    initdata_missing: 'Telegram не передал данные авторизации. Откройте приложение '
+      + 'через бота, а не по прямой ссылке.',
+    linking_not_configured: 'Привязка Telegram не настроена на сервере '
+      + '(нет SUPABASE_SERVICE_ROLE_KEY).',
+    telegram_linked_elsewhere: 'Этот Telegram уже привязан к другому аккаунту.',
+    last_login_method: 'Telegram — единственный вход в аккаунт. Сначала добавьте email.',
+    session_required: 'Нужен вход в аккаунт.',
+    session_invalid: 'Сессия истекла — войдите заново.',
   };
   return { text: map[error.code] ?? error.message, retryable: error.retryable };
 }

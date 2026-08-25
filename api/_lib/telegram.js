@@ -15,9 +15,58 @@ import { ApiError } from './http.js';
 /** Максимальный возраст initData: защита от переигрывания старого пакета. */
 const MAX_AGE_SECONDS = Number(process.env.TELEGRAM_INITDATA_MAX_AGE ?? 24 * 3600);
 
-export const hasBotToken = () => Boolean(process.env.TELEGRAM_BOT_TOKEN);
+/**
+ * Токен читается только через эту функцию.
+ *
+ * `.trim()` здесь не косметика: значение почти всегда попадает в окружение
+ * копипастой, и лишний перевод строки на конце меняет секрет HMAC целиком.
+ * Подпись тогда не сходится ни у одного пользователя, а выглядит это как
+ * «Telegram не подтвердил личность» — ошибка, в которой нечего чинить в коде.
+ */
+export const botToken = () => (process.env.TELEGRAM_BOT_TOKEN ?? '').trim() || null;
 
-export function validateInitData(initData, { botToken = process.env.TELEGRAM_BOT_TOKEN, maxAgeSeconds = MAX_AGE_SECONDS, now = Date.now() } = {}) {
+export const hasBotToken = () => Boolean(botToken());
+
+/** Числовой префикс токена — это публичный id бота, не секрет. */
+export const botIdFromToken = (token = botToken()) => {
+  const id = String(token ?? '').split(':')[0];
+  return /^\d+$/.test(id) ? id : null;
+};
+
+let botDescription = null;
+
+/**
+ * Кто именно стоит за токеном. Нужно ровно для одной цели: понять, тот ли
+ * это бот, под которым зарегистрирован Mini App. Если токен от другого бота,
+ * подпись initData не сойдётся никогда, сколько ни переоткрывай приложение.
+ */
+export async function describeBot() {
+  const token = botToken();
+  if (!token) return { configured: false, botId: null, username: null, tokenValid: false };
+  if (botDescription) return botDescription;
+
+  const result = { configured: true, botId: botIdFromToken(token), username: null, tokenValid: false };
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/getMe`);
+    const payload = await res.json().catch(() => null);
+    if (payload?.ok) {
+      result.tokenValid = true;
+      result.username = payload.result?.username ?? null;
+      result.botId = String(payload.result?.id ?? result.botId ?? '');
+    } else {
+      result.error = payload?.description ?? `getMe -> ${res.status}`;
+    }
+  } catch (error) {
+    result.error = error.message;
+  }
+
+  // Кэшируем только удачный ответ: неудачу имеет смысл перепроверить.
+  if (result.tokenValid) botDescription = result;
+  return result;
+}
+
+export function validateInitData(initData, { botToken: token = botToken(), maxAgeSeconds = MAX_AGE_SECONDS, now = Date.now() } = {}) {
+  const botToken = token;
   if (!botToken) {
     throw new ApiError(503, 'telegram_not_configured',
       'TELEGRAM_BOT_TOKEN не задан — вход через Telegram недоступен', { level: LEVEL.CRITICAL });

@@ -1,33 +1,39 @@
 /**
- * POST /api/auth/telegram   { initData }
+ * Вход через Telegram Mini App.
  *
- * Единственное место, где Telegram-пользователь превращается в аккаунт.
+ * POST /api/auth/telegram { initData } — единственное место, где
+ * Telegram-пользователь превращается в сессию. Порядок такой:
  *
- * Порядок такой:
  *   1. Проверяем подпись initData секретом бота. Без этой проверки любой
  *      может подставить чужой telegram_id — подделать тело запроса ничего
  *      не стоит.
- *   2. Выводим учётные данные детерминированно из telegram_id:
- *        email    = tg-<id>@telegram.matchwatch.invalid
- *        password = HMAC-SHA256(bot_token, "mw-auth:" + telegram_id)
- *      Пароль невозможно угадать, не зная токена бота, а токен живёт
- *      только на сервере.
- *   3. Отдаём их клиенту, и тот входит обычным способом.
+ *   2. Ищем, к какому аккаунту этот telegram_id уже привязан (таблица
+ *      identities). Привязка важнее всего остального: если пользователь
+ *      прицепил Telegram к своему email-аккаунту, войти он должен именно
+ *      в него, а не в отдельный «телеграмный».
+ *   3. Выдаём одноразовый token_hash, который клиент меняет на сессию
+ *      через verifyOtp. Пароля у Telegram-аккаунта нет вовсе.
  *
- * Почему так, а не через Admin API: этот путь не требует service_role.
- * Один секрет вместо двух, а гарантия та же — учётные данные выдаются
- * исключительно после успешной проверки подписи Telegram.
+ * Запасной режим (`mode: 'password'`) работает без SUPABASE_SERVICE_ROLE_KEY:
+ * учётные данные выводятся детерминированно из telegram_id секретом бота.
+ * Он проще в настройке, но привязка к существующему аккаунту в нём
+ * невозможна — некому связать telegram_id с чужим user_id.
+ *
+ * GET /api/auth/telegram — диагностика конфигурации. Секретов не отдаёт:
+ * только id и юзернейм бота (публичные) и факт наличия ключей. Нужна,
+ * чтобы отличить «токен не тот» от «токен не задан» без чтения логов.
  */
 
 import { createHmac } from 'node:crypto';
 import { withHandler, badRequest, ApiError } from '../_lib/http.js';
-import { validateInitData } from '../_lib/telegram.js';
+import { validateInitData, describeBot, botToken as readBotToken, hasBotToken } from '../_lib/telegram.js';
+import { hasServiceKey, authAdmin } from '../_lib/supabaseAdmin.js';
+import { resolveUser, PROVIDER, telegramEmail } from '../_lib/identity.js';
 import { logMetric } from '../_lib/telemetry.js';
 import { METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
 
-/** Служебный домен: письма туда никогда не уходят, это просто ключ аккаунта. */
-export const telegramEmail = (telegramId) => `tg-${telegramId}@telegram.matchwatch.invalid`;
+export { telegramEmail };
 
 function derivePassword(telegramId, botToken) {
   return createHmac('sha256', botToken)
@@ -36,37 +42,119 @@ function derivePassword(telegramId, botToken) {
     .slice(0, 40);
 }
 
-export default withHandler({ methods: ['POST'], module: MODULE.AUTH_TELEGRAM }, async ({ body }) => {
+const displayNameOf = (user) =>
+  [user.firstName, user.lastName].filter(Boolean).join(' ')
+  || user.username
+  || 'Зритель';
+
+export default withHandler({ methods: ['GET', 'POST'], module: MODULE.AUTH_TELEGRAM }, async ({ req, body }) => {
+  if (req.method === 'GET') return diagnostics();
+
   const initData = body?.initData;
   if (!initData) throw badRequest('initdata_required', 'Не передан initData');
 
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const botToken = readBotToken();
   if (!botToken) {
     throw new ApiError(503, 'telegram_not_configured',
       'Вход через Telegram не настроен: не задан TELEGRAM_BOT_TOKEN');
   }
 
   const verified = validateInitData(initData, { botToken });
-
-  const displayName = [verified.user.firstName, verified.user.lastName].filter(Boolean).join(' ')
-    || verified.user.username
-    || 'Зритель';
+  const profile = {
+    displayName: displayNameOf(verified.user),
+    photoURL: verified.user.photoUrl ?? null,
+    locale: verified.user.languageCode ?? 'ru',
+  };
 
   logMetric(METRIC.SIGN_IN, { context: { provider: 'telegram', telegramId: verified.telegramId } });
 
-  return {
-    email: telegramEmail(verified.telegramId),
-    password: derivePassword(verified.telegramId, botToken),
-    /** Уезжает в user_metadata: профиль и связку заполнит триггер в базе. */
-    metadata: {
-      display_name: displayName,
-      photo_url: verified.user.photoUrl ?? null,
-      provider: 'telegram',
-      external_key: verified.telegramId,
-      locale: verified.user.languageCode ?? 'ru',
-    },
+  const common = {
     telegram: verified.user,
     /** Комната из deep-link — клиент откроет её сразу после входа. */
     startRoom: normalizeRoomCode(verified.startParam),
   };
+
+  if (!hasServiceKey()) {
+    return {
+      ...common,
+      mode: 'password',
+      created: null,
+      linked: false,
+      email: telegramEmail(verified.telegramId),
+      password: derivePassword(verified.telegramId, botToken),
+      /** Уезжает в user_metadata: профиль заполнит триггер в базе. */
+      metadata: {
+        display_name: profile.displayName,
+        photo_url: profile.photoURL,
+        provider: 'telegram',
+        external_key: verified.telegramId,
+        locale: profile.locale,
+      },
+    };
+  }
+
+  const fallbackEmail = telegramEmail(verified.telegramId);
+  const { userId, created } = await resolveUser(PROVIDER.TELEGRAM, verified.telegramId, {
+    email: fallbackEmail,
+    profile,
+  });
+
+  /*
+   * Адрес берём у самого аккаунта, а не у Telegram: если идентичность
+   * привязана к email-аккаунту, ссылка на вход должна выписываться на
+   * его настоящую почту, иначе войдём не туда.
+   */
+  const account = await authAdmin.getUser(userId);
+  const email = account?.email ?? fallbackEmail;
+  const tokenHash = await authAdmin.generateSessionToken(email);
+
+  return {
+    ...common,
+    mode: 'otp',
+    tokenHash,
+    created,
+    /** Аккаунт заведён не Telegram-ом, значит вход пришёл по привязке. */
+    linked: !email.endsWith('.invalid'),
+  };
 });
+
+/** Как записан юзернеймом бот в настройках: «@bot» и «bot» — одно и то же. */
+const normalizeUsername = (value) =>
+  String(value ?? '').trim().replace(/^@+/, '').toLowerCase() || null;
+
+async function diagnostics() {
+  const bot = hasBotToken() ? await describeBot() : { configured: false };
+
+  /*
+   * Ключевая проверка. VITE_TELEGRAM_BOT_USERNAME виден и серверу, так что
+   * рассогласование «Mini App в одном боте, токен от другого» ловится здесь,
+   * а не по жалобам пользователей на «Telegram не подтвердил личность».
+   */
+  const expected = normalizeUsername(process.env.VITE_TELEGRAM_BOT_USERNAME);
+  const actual = normalizeUsername(bot.username);
+  const mismatch = Boolean(expected && actual && expected !== actual);
+
+  return {
+    telegram: {
+      configured: Boolean(bot.configured),
+      tokenValid: Boolean(bot.tokenValid),
+      botId: bot.botId ?? null,
+      /** С этим юзернеймом должен совпадать бот, в котором открыт Mini App. */
+      botUsername: bot.username ?? null,
+      expectedBotUsername: expected,
+      botMismatch: mismatch,
+      ...(mismatch ? {
+        hint: `TELEGRAM_BOT_TOKEN принадлежит @${actual}, а Mini App настроен на @${expected}. `
+          + 'Подпись initData с таким сочетанием не сойдётся никогда — '
+          + `возьмите у @BotFather токен бота @${expected}.`,
+      } : {}),
+      ...(bot.error ? { error: bot.error } : {}),
+    },
+    supabase: {
+      serviceKey: hasServiceKey(),
+      /** Без service_role привязка Telegram к существующему аккаунту выключена. */
+      linkingAvailable: hasServiceKey(),
+    },
+    mode: hasServiceKey() ? 'otp' : 'password',
+  };
+}

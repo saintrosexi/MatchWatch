@@ -358,6 +358,17 @@ export default function App() {
     return room.create({ deck: roomDeckEntries, filters });
   }, [taste, filters, userState?.history, room]);
 
+  /*
+   * Первый вход через Telegram завёл новый аккаунт. Если у человека уже был
+   * профиль по email, он об этом сейчас не догадывается — история окажется
+   * пустой, и виноватым будет выглядеть приложение.
+   */
+  useEffect(() => {
+    if (!auth.justRegistered) return;
+    toasts.push('Аккаунт создан через Telegram. Был профиль по email? Профиль → «Вход через Telegram».', { ttl: 8000 });
+    auth.dismissJustRegistered();
+  }, [auth.justRegistered]);
+
   /* ── Гейты рендера ───────────────────────────────────────────── */
   if (auth.status === 'booting') {
     return <div className="app-root"><LoadingState text="Открываем кинозал…" /></div>;
@@ -633,6 +644,8 @@ function renderView(ctx) {
           onOpenDashboard={() => setView(VIEW.DASHBOARD)}
           onEditProfile={() => setEditorOpen(true)}
           onOpenFriends={() => setView(VIEW.FRIENDS)}
+          auth={auth}
+          toasts={toasts}
         />
       );
 

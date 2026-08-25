@@ -17,7 +17,7 @@ import {
 } from '../src/engine/tasteProfile.js';
 import { rankDeck, scoreTitle, buildConsensusProfile, matchedTags } from '../src/engine/ranking.js';
 import { cacheKeyFor } from '../api/_lib/cache.js';
-import { validateInitData } from '../api/_lib/telegram.js';
+import { validateInitData, botToken as readBotToken, botIdFromToken } from '../api/_lib/telegram.js';
 import { describeError, ApiClientError } from '../src/lib/api.js';
 import { LIBRARY, ALL_TITLES, makeTitle, seededRandom } from './helpers/fixtures.mjs';
 
@@ -219,6 +219,59 @@ test('B19 · initData без пользователя и без подписи �
   assert.throws(() => validateInitData('auth_date=1', { botToken: 'x' }), /подпись/i);
   assert.throws(() => validateInitData(null, { botToken: 'x' }), /не передал/i);
 });
+
+/**
+ * Регрессия на реальный сбой: токен, скопированный в панель хостинга,
+ * приезжает с переводом строки на конце. Секрет HMAC от этого меняется
+ * целиком, подпись не сходится ни у кого, а по симптому это неотличимо
+ * от «Telegram сломался».
+ */
+test('B19a · токен бота из окружения читается без окружающих пробелов', () => {
+  const clean = '123456:AA-clean-token';
+  const previous = process.env.TELEGRAM_BOT_TOKEN;
+  try {
+    process.env.TELEGRAM_BOT_TOKEN = `  ${clean}\n`;
+    assert.equal(readBotToken(), clean);
+    assert.equal(botIdFromToken(), '123456');
+
+    const params = signedInitData(clean, { id: 42, first_name: 'Ким' });
+    // Подпись сходится, хотя в окружении лежит замусоренное значение.
+    assert.equal(validateInitData(params).telegramId, '42');
+
+    process.env.TELEGRAM_BOT_TOKEN = '   ';
+    assert.equal(readBotToken(), null);
+    assert.equal(botIdFromToken(), null);
+  } finally {
+    if (previous === undefined) delete process.env.TELEGRAM_BOT_TOKEN;
+    else process.env.TELEGRAM_BOT_TOKEN = previous;
+  }
+});
+
+/**
+ * Свежие клиенты Telegram добавляют в initData поле `signature` (Ed25519
+ * для сторонней проверки). В HMAC-подпись оно не входит: если его учесть,
+ * вход ломается ровно у тех, у кого клиент новее.
+ */
+test('B19b · поле signature не участвует в проверке подписи', () => {
+  const token = '999:sig-token';
+  const params = signedInitData(token, { id: 7, first_name: 'Лев' });
+  const withSignature = `${params}&signature=${encodeURIComponent('ed25519-payload')}`;
+  assert.equal(validateInitData(withSignature, { botToken: token }).telegramId, '7');
+});
+
+/** Подписанный initData — как его собирает клиент Telegram. */
+function signedInitData(token, user, extra = {}) {
+  const params = new URLSearchParams({
+    auth_date: String(Math.floor(Date.now() / 1000)),
+    user: JSON.stringify(user),
+    ...extra,
+  });
+  const dcs = [...params.entries()].sort(([a], [b]) => (a < b ? -1 : 1))
+    .map(([k, v]) => `${k}=${v}`).join('\n');
+  const secret = createHmac('sha256', 'WebAppData').update(token).digest();
+  params.set('hash', createHmac('sha256', secret).update(dcs).digest('hex'));
+  return params.toString();
+}
 
 test('B20 · сериализация профиля не пропускает NaN и undefined в базу', () => {
   const dirty = hydrateProfile({

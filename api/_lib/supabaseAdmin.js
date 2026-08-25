@@ -125,6 +125,16 @@ export const authAdmin = {
     });
   },
 
+  /** Пользователь по внутреннему id. Возвращает null, если его уже нет. */
+  async getUser(userId) {
+    try {
+      return await request(`/auth/v1/admin/users/${userId}`);
+    } catch (error) {
+      if (error.status === 404) return null;
+      throw error;
+    }
+  },
+
   updateUser(userId, patch) {
     return request(`/auth/v1/admin/users/${userId}`, { method: 'PUT', body: patch });
   },
