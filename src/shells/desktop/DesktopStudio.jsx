@@ -9,7 +9,7 @@ import { BrandLockup, BrandMark } from '../../ui/Brand.jsx';
  * с карточкой, и решение принимается быстрее.
  */
 export function DesktopStudio({
-  nav, active, onNavigate, title, subtitle, actions, children,
+  nav, secondaryNav = [], active, onNavigate, title, subtitle, actions, children,
   user, online = true, onLogout, onOpenProfile,
 }) {
   return (
@@ -32,8 +32,10 @@ export function DesktopStudio({
               key={item.key}
               type="button"
               className="studio__nav-item"
-              aria-current={active === item.key ? 'page' : undefined}
-              onClick={() => onNavigate(item.key)}
+              /* Пункт может вести не во «вкладку», а в её часть — тогда
+                 он сам знает, выбран ли, и сам решает, что открыть. */
+              aria-current={(item.current ?? active === item.key) ? 'page' : undefined}
+              onClick={() => (item.onSelect ? item.onSelect() : onNavigate(item.key))}
               title={item.label}
             >
               <item.icon size={20} />
@@ -42,6 +44,30 @@ export function DesktopStudio({
             </button>
           ))}
         </nav>
+
+        {/*
+          * На телефоне «Я» — одна вкладка с переключателем: места внизу
+          * ровно на пять пунктов. В боковом меню места хватает, и прятать
+          * друзей за переключателем незачем — это отдельный маршрут.
+          */}
+        {secondaryNav.length > 0 && (
+          <nav className="studio__nav studio__nav--secondary" aria-label="Аккаунт">
+            {secondaryNav.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                className="studio__nav-item"
+                aria-current={item.current ? 'page' : undefined}
+                onClick={item.onSelect}
+                title={item.label}
+              >
+                <item.icon size={20} />
+                <span>{item.label}</span>
+                {item.badge > 0 && <span className="studio__nav-count">{item.badge}</span>}
+              </button>
+            ))}
+          </nav>
+        )}
 
         {user && (
           <div className="studio__user">

@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { initTelegramShell, isTelegram, readTheme } from '../lib/telegram.js';
+import { initTelegramShell, isTelegram, isTelegramMobile, readTheme, telegramPlatform } from '../lib/telegram.js';
 import { setTelemetryPlatform } from '../lib/telemetry.js';
 
 const DESKTOP_MIN_WIDTH = 1024;
@@ -23,12 +23,25 @@ const detect = () => {
    * ноутбук с тачскрином на 1440 пикселях — это десктоп. Сенсор лишь
    * разрешает спор в промежуточной полосе 1024–1280, где планшет
    * действительно удобнее листать пальцем.
+   *
+   * Telegram раньше сам по себе означал мобильный шелл, и Telegram
+   * Desktop на большом мониторе показывал телефонную вёрстку. Клиент
+   * называет себя сам: телефонные версии держат в руке, настольные —
+   * нет, и дальше решает ширина, как в обычном вебе.
    */
-  const shell = tg || width < DESKTOP_MIN_WIDTH || (coarse && width < TOUCH_TIEBREAK_WIDTH)
+  const handheld = tg && isTelegramMobile();
+  const shell = handheld || width < DESKTOP_MIN_WIDTH || (coarse && width < TOUCH_TIEBREAK_WIDTH)
     ? 'mobile'
     : 'desktop';
 
-  return { telegram: tg, shell, width, theme: readTheme(), touch: coarse };
+  return {
+    telegram: tg,
+    telegramPlatform: telegramPlatform(),
+    shell,
+    width,
+    theme: readTheme(),
+    touch: coarse,
+  };
 };
 
 export function usePlatform() {

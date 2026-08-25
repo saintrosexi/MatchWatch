@@ -124,6 +124,11 @@
 .legend__action { font-weight: 600; font-size: var(--t-small); }
 .legend__target { font-size: var(--t-micro); color: var(--text-low); }
 
+/* Кнопки обучения не должны спорить с картинкой: это шаг вперёд,
+   а не главное действие экрана. */
+.onboarding__foot .btn { min-height: 48px; font-size: var(--t-body); }
+.onboarding__foot .btn--icon { width: 48px; flex: 0 0 auto; }
+
 .onboarding__foot { padding: var(--s-4) var(--s-6) calc(var(--safe-bottom) + var(--s-6)); display: flex; flex-direction: column; gap: var(--s-4); }
 
 /* ── Комнаты ─────────────────────────────────────────────────── */

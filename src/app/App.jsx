@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Bookmark, Dices, Flame, Library, SlidersHorizontal, UserRound, Users, IconContext, ICON } from '../ui/icons.js';
+import { Bookmark, Dices, Flame, Library, SlidersHorizontal, UserRound, Users, IconContext, ICON, Star } from '../ui/icons.js';
 
 import { useAuth } from '../hooks/useAuth.js';
 import { usePlatform } from '../hooks/usePlatform.js';
@@ -87,6 +87,10 @@ export default function App() {
   const [lastDecision, setLastDecision] = useState(null);
   const [editorOpen, setEditorOpen] = useState(false);
   const [publicProfile, setPublicProfile] = useState(null);
+  /** Какую половину раздела «Я» открыть — задаётся меню на большом экране. */
+  const [meTab, setMeTab] = useState('profile');
+  /** Каталог или актёры — на большом экране это два пункта меню. */
+  const [collectionSection, setCollectionSection] = useState('catalog');
   const [focusPerson, setFocusPerson] = useState(null);
   const [roomSession, setRoomSession] = useState(false);
 
@@ -422,6 +426,41 @@ export default function App() {
     { key: VIEW.ME, label: 'Я', icon: UserRound, avatar: sessionUser?.photoURL ?? null },
   ];
 
+  /*
+   * На большом экране меню длиннее дока, и прятать разделы за
+   * переключателями незачем: каталог и актёры разъезжаются в отдельные
+   * пункты, «Вместе» встаёт сразу под лентой.
+   */
+  const desktopNav = [
+    { key: VIEW.DECK, label: 'Кино', icon: Flame },
+    { key: VIEW.ROOMS, label: 'Вместе', icon: Users, badge: room.onlineCount > 1 ? room.onlineCount : 0 },
+    {
+      key: 'collection-catalog', label: 'Каталог', icon: Library,
+      current: view === VIEW.COLLECTION && collectionSection === 'catalog',
+      onSelect: () => { setCollectionSection('catalog'); navigate(VIEW.COLLECTION); },
+    },
+    {
+      key: 'collection-stars', label: 'Актёры', icon: Star,
+      current: view === VIEW.COLLECTION && collectionSection === 'stars',
+      onSelect: () => { setCollectionSection('stars'); navigate(VIEW.COLLECTION); },
+    },
+    { key: VIEW.MINE, label: 'Моё', icon: Bookmark, badge: pendingInRoom || mineCount },
+  ];
+
+  // На большом экране профиль и друзья — два отдельных пункта меню.
+  const secondaryNav = [
+    {
+      key: 'me-friends', label: 'Друзья', icon: Users,
+      current: view === VIEW.ME && meTab === 'friends',
+      onSelect: () => { setMeTab('friends'); navigate(VIEW.ME); },
+    },
+    {
+      key: 'me-profile', label: 'Профиль', icon: UserRound,
+      current: view === VIEW.ME && meTab === 'profile',
+      onSelect: () => { setMeTab('profile'); navigate(VIEW.ME); },
+    },
+  ];
+
   const deckPanel = (
     <SwipeDeck
       deck={deck}
@@ -445,7 +484,8 @@ export default function App() {
     setView, setPrefs, setActorDeck, setRoomSession, setDetailsEntry,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
-    setEditorOpen, publicProfile, setPublicProfile,
+    setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection,
+    desktopShell: platform.shell === 'desktop',
   });
 
   const statusStrip = renderStatus({ online, room, roomSession, deckMode, auth, pendingWrites });
@@ -466,9 +506,12 @@ export default function App() {
         {platform.shell === 'desktop' ? (
           <DesktopStudio
             {...shellProps}
-            nav={nav}
+            nav={desktopNav}
+            secondaryNav={secondaryNav}
             onOpenProfile={() => navigate(VIEW.ME)}
-            title={TITLES[view] ?? 'MatchWatch'}
+            title={view === VIEW.COLLECTION && collectionSection === 'stars'
+              ? 'Актёры'
+              : TITLES[view] ?? 'MatchWatch'}
             subtitle={SUBTITLES({ view, room, actorDeck })}
             onLogout={auth.logout}
             actions={view === VIEW.DECK && (
@@ -596,7 +639,7 @@ function renderView(ctx) {
     setView, setPrefs, setRoomSession, setDetailsEntry, setActorDeck,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
-    setEditorOpen, publicProfile, setPublicProfile,
+    setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection, desktopShell,
   } = ctx;
 
   const openDetails = (stub) => setDetailsEntry({
@@ -619,6 +662,9 @@ function renderView(ctx) {
     case VIEW.COLLECTION:
       return (
         <CollectionView
+          key={collectionSection}
+          initialSection={collectionSection}
+          showTabs={!desktopShell}
           catalog={{ onOpenTitle: openDetails, history }}
           stars={{ onStartActorDeck: startActorDeck, initialPersonId: focusPerson }}
         />
@@ -652,6 +698,8 @@ function renderView(ctx) {
     case VIEW.ME:
       return (
         <MeView
+          key={meTab}
+          initialTab={meTab}
           user={sessionUser}
           profile={userState?.profile}
           taste={taste}

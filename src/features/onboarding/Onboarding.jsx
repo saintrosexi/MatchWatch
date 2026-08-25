@@ -168,7 +168,7 @@ export function Onboarding({ onDone }) {
               <ArrowLeft size={ICON.sm} />
             </button>
           )}
-          <button type="button" className="btn btn--primary btn--lg grow" onClick={next}>
+          <button type="button" className="btn btn--primary grow" onClick={next}>
             {last ? 'Погнали' : 'Дальше'}
           </button>
         </div>

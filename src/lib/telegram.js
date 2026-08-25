@@ -90,6 +90,19 @@ function applyInsets(app) {
 }
 
 export const readTheme = () => wa()?.colorScheme ?? 'dark';
+
+/**
+ * Клиент, в котором открыт Mini App: 'ios', 'android', 'tdesktop',
+ * 'macos', 'weba', 'webk'. Отличать телефон от компьютера по ширине
+ * окна недостаточно — окно Telegram Desktop бывает и узким, но ввод
+ * там мышью, а не пальцем.
+ */
+export const telegramPlatform = () => wa()?.platform ?? null;
+
+/** Мобильные клиенты Telegram — единственные, где интерфейс держат в руке. */
+const MOBILE_CLIENTS = new Set(['android', 'android_x', 'ios']);
+
+export const isTelegramMobile = () => MOBILE_CLIENTS.has(telegramPlatform() ?? '');
 export const getInitData = () => wa()?.initData ?? null;
 export const getTelegramUser = () => wa()?.initDataUnsafe?.user ?? null;
 

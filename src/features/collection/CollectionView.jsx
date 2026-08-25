@@ -16,7 +16,7 @@ const SECTIONS = [
  * искать новое и перебирать выбранное — разные задачи, смешивать их
  * в одной вкладке значило заставлять переключаться туда-обратно.
  */
-export function CollectionView({ catalog, stars, initialSection = 'catalog' }) {
+export function CollectionView({ catalog, stars, initialSection = 'catalog', showTabs = true }) {
   const [section, setSection] = useState(initialSection);
 
   // Переход из карточки фильма к актёру должен сразу открывать звёзды.
@@ -26,6 +26,11 @@ export function CollectionView({ catalog, stars, initialSection = 'catalog' }) {
 
   return (
     <div className="stack">
+      {/*
+        * На большом экране каталог и актёры — два пункта бокового меню,
+        * и переключатель здесь дублировал бы навигацию.
+        */}
+      {showTabs && (
       <div className="segmented segmented--capped" role="tablist" aria-label="Раздел коллекции">
         {SECTIONS.map(({ key, label, icon: Icon }) => (
           <button
@@ -40,6 +45,7 @@ export function CollectionView({ catalog, stars, initialSection = 'catalog' }) {
           </button>
         ))}
       </div>
+      )}
 
       {section === 'catalog' && <CatalogBrowser {...catalog} />}
       {section === 'stars' && <StarHubView {...stars} embedded />}

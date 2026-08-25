@@ -223,6 +223,14 @@
   color: var(--text-low);
 }
 
+/* Второй блок навигации прижат к низу — над карточкой аккаунта. */
+.studio__nav--secondary {
+  margin-top: auto;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--glass-border);
+}
+.studio__nav--secondary + .studio__user { margin-top: var(--s-2); }
+
 .studio__user {
   margin-top: auto;
   display: flex;
