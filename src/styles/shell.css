@@ -120,6 +120,25 @@
 }
 .dock__item[aria-current='page'] { color: var(--text-hi); background: rgba(255,255,255,.08); }
 .dock__item[aria-current='page'] .dock__icon { color: var(--coral); }
+/*
+ * Аватар в панели приглушён, пока вкладка не выбрана: фотография рядом
+ * с монохромными иконками иначе перетягивает взгляд на себя и ломает
+ * ровный ряд.
+ */
+.dock__avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--glass-border);
+  filter: grayscale(0.35) brightness(0.7);
+  transition: filter var(--dur-base) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.dock__item[aria-current='page'] .dock__avatar {
+  filter: none;
+  border-color: var(--coral);
+}
+
 .dock__badge {
   position: absolute;
   top: 6px; right: 10px;

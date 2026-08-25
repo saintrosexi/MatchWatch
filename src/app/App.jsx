@@ -18,11 +18,10 @@ import { FiltersSheet, DEFAULT_FILTERS } from '../features/deck/FiltersSheet.jsx
 import { RoomsView } from '../features/rooms/RoomsView.jsx';
 import { MatchCelebration } from '../features/rooms/MatchCelebration.jsx';
 import { CollectionView } from '../features/collection/CollectionView.jsx';
-import { FriendsView } from '../features/friends/FriendsView.jsx';
 import { ProfileEditor } from '../features/profile/ProfileEditor.jsx';
 import { PublicProfileView } from '../features/profile/PublicProfileView.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
-import { ProfileView } from '../features/profile/ProfileView.jsx';
+import { MeView } from '../features/profile/MeView.jsx';
 import { DashboardView } from '../features/profile/DashboardView.jsx';
 import { RouletteModal } from '../features/roulette/RouletteModal.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
@@ -59,8 +58,8 @@ const VIEW = {
   ROOMS: 'rooms',
   /** Всё, про что решение уже принято, — самостоятельный раздел. */
   MINE: 'mine',
-  FRIENDS: 'friends',
-  PROFILE: 'profile',
+  /** «Я» — профиль и друзья под одной вкладкой. */
+  ME: 'me',
   PUBLIC_PROFILE: 'public-profile',
   DASHBOARD: 'dashboard',
 };
@@ -424,7 +423,8 @@ export default function App() {
     { key: VIEW.COLLECTION, label: 'Каталог', icon: Library },
     { key: VIEW.ROOMS, label: 'Вместе', icon: Users, badge: room.onlineCount > 1 ? room.onlineCount : 0 },
     { key: VIEW.MINE, label: 'Моё', icon: Bookmark, badge: pendingInRoom || mineCount },
-    { key: VIEW.FRIENDS, label: 'Друзья', icon: UserRound },
+    // Вместо иконки — аватар: собственное лицо узнаётся быстрее пиктограммы.
+    { key: VIEW.ME, label: 'Я', icon: UserRound, avatar: sessionUser?.photoURL ?? null },
   ];
 
   const deckPanel = (
@@ -466,7 +466,7 @@ export default function App() {
           <DesktopStudio
             {...shellProps}
             nav={nav}
-            onOpenProfile={() => navigate(VIEW.PROFILE)}
+            onOpenProfile={() => navigate(VIEW.ME)}
             title={TITLES[view] ?? 'MatchWatch'}
             subtitle={SUBTITLES({ view, room, actorDeck })}
             onLogout={auth.logout}
@@ -499,7 +499,6 @@ export default function App() {
           <MobileShell
             {...shellProps}
             nav={nav}
-            onOpenProfile={() => navigate(VIEW.PROFILE)}
             fixed={view === VIEW.DECK}
             statusStrip={statusStrip}
             right={view === VIEW.DECK && (
@@ -576,8 +575,7 @@ const TITLES = {
   [VIEW.COLLECTION]: 'Каталог',
   [VIEW.ROOMS]: 'Смотрим вместе',
   [VIEW.MINE]: 'Моё',
-  [VIEW.FRIENDS]: 'Друзья',
-  [VIEW.PROFILE]: 'Профиль',
+  [VIEW.ME]: 'Я',
   [VIEW.PUBLIC_PROFILE]: 'Профиль',
   [VIEW.DASHBOARD]: 'Метрики',
 };
@@ -637,27 +635,18 @@ function renderView(ctx) {
         />
       );
 
-    case VIEW.FRIENDS:
-      return (
-        <FriendsView
-          me={sessionUser}
-          toasts={toasts}
-          onOpenProfile={(username) => { setPublicProfile(username); setView(VIEW.PUBLIC_PROFILE); }}
-        />
-      );
-
     case VIEW.PUBLIC_PROFILE:
       return (
         <PublicProfileView
           username={publicProfile}
           toasts={toasts}
-          onBack={() => setView(VIEW.FRIENDS)}
+          onBack={() => setView(VIEW.ME)}
         />
       );
 
-    case VIEW.PROFILE:
+    case VIEW.ME:
       return (
-        <ProfileView
+        <MeView
           user={sessionUser}
           profile={userState?.profile}
           taste={taste}
@@ -671,14 +660,14 @@ function renderView(ctx) {
           onLogout={auth.logout}
           onOpenDashboard={() => setView(VIEW.DASHBOARD)}
           onEditProfile={() => setEditorOpen(true)}
-          onOpenFriends={() => setView(VIEW.FRIENDS)}
+          onOpenPublicProfile={(username) => { setPublicProfile(username); setView(VIEW.PUBLIC_PROFILE); }}
           auth={auth}
           toasts={toasts}
         />
       );
 
     case VIEW.DASHBOARD:
-      return <DashboardView onBack={() => setView(VIEW.PROFILE)} />;
+      return <DashboardView onBack={() => setView(VIEW.ME)} />;
 
     default:
       // Лента рисуется шеллом напрямую — сюда попадать не должны.
