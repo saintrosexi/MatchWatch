@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: calc(var(--safe-top) + var(--tg-top));
+  padding-top: var(--inset-top);
 }
 
 .mobile-shell__main {
@@ -94,7 +94,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 6px var(--s-2) calc(6px + var(--safe-bottom) + var(--tg-bottom));
+  padding: 6px var(--s-2) calc(6px + var(--inset-bottom));
   background: var(--glass-bg-strong);
   border-top: 1px solid var(--glass-border);
   backdrop-filter: var(--glass-blur);
@@ -299,7 +299,14 @@
  * Левый распорка чуть шире правой, поэтому связка уходит из-под кнопки,
  * но не упирается в аватар.
  */
-.hud__spacer--lead { flex: 1.35; }
+.hud__spacer--lead { flex: 1.9; }
+
+/*
+ * Аватар опущен относительно строки: справа вверху висят кнопки Telegram
+ * («свернуть» и меню), и на одной с ними высоте вход в профиль просто
+ * не виден. Сдвиг делает его достижимым, не трогая логотип.
+ */
+.hud__avatar-btn { margin-top: var(--s-5); }
 
 /* ────────────────────────────────────────────────────────────────
    Десктоп ≠ растянутая мобилка
