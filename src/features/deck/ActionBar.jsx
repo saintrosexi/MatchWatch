@@ -1,4 +1,4 @@
-import { Bookmark, Eye, Heart, RotateCcw, X } from 'lucide-react';
+import { Bookmark, Eye, Heart, RotateCcw, X } from '../../ui/icons.js';
 
 /**
  * Кнопки под колодой.
@@ -29,7 +29,7 @@ export function ActionBar({
           aria-label="Вернуть последнее решение"
           title="Вернуть последнее решение"
         >
-          <RotateCcw size={18} />
+          <RotateCcw size={20} />
         </button>
       )}
 
@@ -41,7 +41,7 @@ export function ActionBar({
         aria-label={compact ? 'Нет' : 'Пропустить — больше не показывать'}
         title={compact ? 'Нет' : 'Пропустить — больше не показывать'}
       >
-        <X size={compact ? 28 : 24} strokeWidth={2.4} />
+        <X size={compact ? 28 : 24} />
       </button>
 
       {!compact && (
@@ -54,7 +54,7 @@ export function ActionBar({
             aria-label="Буду смотреть"
             title="Буду смотреть — отложить на вечер"
           >
-            <Bookmark size={27} fill="currentColor" strokeWidth={0} />
+            <Bookmark size={26} weight="fill" />
           </button>
 
           <button
@@ -65,7 +65,7 @@ export function ActionBar({
             aria-label="Просмотрено"
             title="Просмотрено"
           >
-            <Eye size={22} />
+            <Eye size={20} />
           </button>
         </>
       )}
@@ -78,7 +78,7 @@ export function ActionBar({
         aria-label={compact ? 'Да' : 'Нравится'}
         title={compact ? 'Да' : 'Нравится — то же, что свайп вправо'}
       >
-        <Heart size={compact ? 28 : 22} fill="currentColor" strokeWidth={0} />
+        <Heart size={compact ? 28 : 22} weight="fill" />
       </button>
     </div>
   );

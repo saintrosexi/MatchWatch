@@ -1,4 +1,4 @@
-import { RefreshCw, WifiOff } from 'lucide-react';
+import { RefreshCw, WifiOff } from './icons.js';
 
 /** Экран-состояние. Никогда не бесконечный спиннер — всегда текст и выход. */
 export function EmptyState({ icon: Icon, title, text, action, art }) {
@@ -6,7 +6,7 @@ export function EmptyState({ icon: Icon, title, text, action, art }) {
     <div className="state">
       {art
         ? <img className="state__art" src={art} alt="" />
-        : Icon && <Icon size={44} strokeWidth={1.4} color="var(--text-low)" />}
+        : Icon && <Icon size={44} color="var(--text-low)" />}
       {title && <h3 className="state__title">{title}</h3>}
       {text && <p className="state__text">{text}</p>}
       {action}
@@ -32,8 +32,8 @@ export function ErrorState({ error, onRetry, module }) {
   return (
     <div className="state">
       {offline
-        ? <WifiOff size={44} strokeWidth={1.4} color="var(--coral)" />
-        : <RefreshCw size={44} strokeWidth={1.4} color="var(--coral)" />}
+        ? <WifiOff size={44} color="var(--coral)" />
+        : <RefreshCw size={44} color="var(--coral)" />}
       <h3 className="state__title">{offline ? 'Нет соединения' : 'Не получилось загрузить'}</h3>
       <p className="state__text">{error?.text ?? 'Попробуйте ещё раз.'}</p>
       {module && <span className="eyebrow">{module}</span>}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Clapperboard, Star } from 'lucide-react';
+import { Clapperboard, Star } from '../../ui/icons.js';
 import { CatalogBrowser } from './CatalogBrowser.jsx';
 import { StarHubView } from '../stars/StarHubView.jsx';
 
@@ -36,7 +36,7 @@ export function CollectionView({ catalog, stars, initialSection = 'catalog' }) {
             className="segmented__item"
             onClick={() => setSection(key)}
           >
-            <Icon size={15} /> {label}
+            <Icon size={16} /> {label}
           </button>
         ))}
       </div>

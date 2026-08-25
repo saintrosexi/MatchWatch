@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ArrowLeft, Clapperboard, Search, Star } from 'lucide-react';
+import { ArrowLeft, Clapperboard, Search, Star } from '../../ui/icons.js';
 import { api, describeError } from '../../lib/api.js';
 import { EmptyState, ErrorState, LoadingState, SkeletonGrid } from '../../ui/States.jsx';
 import { Poster } from '../../ui/Poster.jsx';
@@ -91,7 +91,7 @@ export function StarHubView({ onStartActorDeck, initialPersonId = null, embedded
       )}
 
       <div className="row gap-2 surface" style={{ padding: '0 var(--s-4)', borderRadius: 'var(--r-pill)' }}>
-        <Search size={18} color="var(--text-low)" />
+        <Search size={20} color="var(--text-low)" />
         <input
           className="input"
           style={{ background: 'none', border: 'none', minHeight: 46 }}
@@ -162,7 +162,7 @@ function PersonProfile({ data, onBack, onStartDeck, onRetry }) {
           onClick={() => onStartDeck(person)}
           disabled={filmography.length === 0}
         >
-          <Clapperboard size={18} /> Колода из фильмов ({filmography.length})
+          <Clapperboard size={20} /> Колода из фильмов ({filmography.length})
         </button>
       </div>
 

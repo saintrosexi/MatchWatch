@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Film } from 'lucide-react';
+import { Film } from './icons.js';
 import { isSlowConnection } from '../lib/network.js';
 
 /** Переключение размера постера TMDB без повторного запроса к API. */
@@ -34,7 +34,7 @@ export function Poster({
   if (!url || failed) {
     return (
       <div className={`poster-fallback ${className}`} style={fallbackStyle(rounded)} aria-label={alt}>
-        <Film size={28} strokeWidth={1.5} color="var(--text-faint)" />
+        <Film size={26} color="var(--text-faint)" />
         <span style={{ fontSize: 11, color: 'var(--text-low)', textAlign: 'center', padding: '0 8px' }}>
           {alt || 'Постер недоступен'}
         </span>

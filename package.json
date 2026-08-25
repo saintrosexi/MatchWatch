@@ -12,6 +12,7 @@
     "test:watch": "node --test --watch \"tests/tier*.test.mjs\""
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.112.4",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^1.16.0",

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw } from './icons.js';
 import { trackError } from '../lib/telemetry.js';
 import { LEVEL, MODULE } from '../../shared/telemetry/events.js';
 

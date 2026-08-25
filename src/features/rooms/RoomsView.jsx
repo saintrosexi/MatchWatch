@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AlertCircle, Copy, DoorOpen, LogIn, Plus, Share2, Users,
-} from 'lucide-react';
+} from '../../ui/icons.js';
 import { EmptyState } from '../../ui/States.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
@@ -106,7 +106,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, toasts }) {
 
         {Boolean(input) && !normalized && !inputTooShort && (
           <p className="row gap-2" style={{ color: 'var(--coral)', fontSize: 'var(--t-small)' }}>
-            <AlertCircle size={14} /> Код состоит из 4 символов — букв и цифр.
+            <AlertCircle size={16} /> Код состоит из 4 символов — букв и цифр.
           </p>
         )}
 
@@ -115,7 +115,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, toasts }) {
           className="btn btn--ghost btn--lg btn--block"
           disabled={!normalized || busy}
         >
-          <LogIn size={18} /> Войти в комнату {normalized ?? ''}
+          <LogIn size={20} /> Войти в комнату {normalized ?? ''}
         </button>
       </form>
 
@@ -150,7 +150,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, toasts }) {
                     {formatAgo(entry.at)}
                   </span>
                 </span>
-                <DoorOpen size={18} color="var(--text-low)" />
+                <DoorOpen size={20} color="var(--text-low)" />
               </button>
             ))}
           </div>

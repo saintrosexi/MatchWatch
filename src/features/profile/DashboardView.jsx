@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { ArrowLeft, RefreshCw } from '../../ui/icons.js';
 import { api } from '../../lib/api.js';
 import { ErrorState, LoadingState } from '../../ui/States.jsx';
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../../lib/storage.js';
@@ -68,7 +68,7 @@ export function DashboardView({ onBack }) {
           aria-label="Токен доступа к дашборду"
         />
         <button type="button" className="btn btn--ghost btn--sm" onClick={load}>
-          <RefreshCw size={14} />
+          <RefreshCw size={16} />
         </button>
       </div>
 

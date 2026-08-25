@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { GENRE_LIST } from '../../../shared/taxonomy/genres.js';
 

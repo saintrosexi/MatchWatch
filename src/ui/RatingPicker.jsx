@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+import { Star } from './icons.js';
 
 /**
  * Выбор личной оценки по десятибалльной шкале.
@@ -41,7 +41,7 @@ export function RatingPicker({ value = null, onRate, size = 'md' }) {
       <div className="rating__caption">
         {shown ? (
           <>
-            <Star size={13} fill="currentColor" strokeWidth={0} />
+            <Star size={12} weight="fill" />
             <b>{shown}</b>
             <span className="faint">{VERDICTS[shown]}</span>
           </>
@@ -64,7 +64,7 @@ export function RatingBadge({ value, className = '' }) {
   if (!value) return null;
   return (
     <span className={`badge badge--rating ${className}`} title={`Ваша оценка: ${value} из 10`}>
-      <Star size={11} fill="currentColor" strokeWidth={0} /> {value}
+      <Star size={12} weight="fill" /> {value}
     </span>
   );
 }

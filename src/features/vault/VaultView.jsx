@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Bookmark, Check, Eye, Heart, Star, Trash2, Users } from 'lucide-react';
+import { Bookmark, Check, Eye, Heart, Star, Trash2, Users } from '../../ui/icons.js';
 import { RatingBadge } from '../../ui/RatingPicker.jsx';
 import { EmptyState } from '../../ui/States.jsx';
 import { Poster } from '../../ui/Poster.jsx';
@@ -68,7 +68,7 @@ export function VaultView({
               className={`chip chip--interactive ${tab === key ? 'chip--on' : ''}`}
               onClick={() => setTab(key)}
             >
-              <Icon size={13} /> {label}
+              <Icon size={12} /> {label}
               {count > 0 && <b className="chip__count">{count}</b>}
             </button>
           );
@@ -207,7 +207,7 @@ export function VaultView({
                   aria-label="Убрать из списка"
                   onClick={() => room.removeFromWatchlist(item.titleId)}
                 >
-                  <Trash2 size={15} />
+                  <Trash2 size={16} />
                 </button>
               </div>
             ))}
@@ -243,7 +243,7 @@ function Grid({ items, onOpenTitle, onRemove, removeLabel, empty }) {
               onClick={(e) => { e.stopPropagation(); onRemove(item); }}
               onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); onRemove(item); } }}
             >
-              <Trash2 size={13} />
+              <Trash2 size={12} />
             </span>
           )}
         </button>

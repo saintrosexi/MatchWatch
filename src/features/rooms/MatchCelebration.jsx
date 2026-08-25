@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Download, Share2, Sparkles } from 'lucide-react';
+import { Download, Share2, Sparkles } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster, posterVariant } from '../../ui/Poster.jsx';
 import { downloadMatchImage, haptic, roomInviteLink, shareToTelegram, shareViaInlineQuery } from '../../lib/telegram.js';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AtSign, Check, Image as ImageIcon, Loader2, UserRound } from 'lucide-react';
+import { AtSign, Check, Image as ImageIcon, Loader2, UserRound } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { isUsernameAvailable, saveProfile, suggestUsername } from '../../engine/social.js';
 import { getTelegramUser } from '../../lib/telegram.js';
@@ -81,7 +81,7 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
         <div className="row gap-4">
           {form.photoURL
             ? <img className="editor__avatar" src={form.photoURL} alt="" />
-            : <span className="editor__avatar editor__avatar--empty"><UserRound size={28} /></span>}
+            : <span className="editor__avatar editor__avatar--empty"><UserRound size={26} /></span>}
 
           <div className="stack gap-2 grow" style={{ minWidth: 0 }}>
             <span className="field__label">Аватар</span>
@@ -91,7 +91,7 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
                 className="btn btn--ghost btn--sm"
                 onClick={() => setForm((f) => ({ ...f, photoURL: telegram.photo_url }))}
               >
-                <ImageIcon size={14} /> Взять из Telegram
+                <ImageIcon size={16} /> Взять из Telegram
               </button>
             )}
             <input
@@ -135,8 +135,8 @@ export function ProfileEditor({ open, onClose, uid, profile, onSaved, toasts }) 
               value={form.username}
               onChange={(e) => setForm((f) => ({ ...f, username: e.target.value.replace(/[^a-zA-Z0-9._]/g, '') }))}
             />
-            {availability === 'checking' && <Loader2 size={15} color="var(--text-low)" />}
-            {availability === 'free' && <Check size={15} color="var(--mint)" />}
+            {availability === 'checking' && <Loader2 size={16} color="var(--text-low)" />}
+            {availability === 'free' && <Check size={16} color="var(--mint)" />}
           </div>
           <span
             className="faint"

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Bookmark, BookmarkX, Eye, EyeOff, Heart, HeartOff, Play, Star, Users } from 'lucide-react';
+import { Bookmark, BookmarkX, Eye, EyeOff, Heart, HeartOff, Play, Star, Users } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { MoodBars } from '../../ui/Radar.jsx';
@@ -57,7 +57,7 @@ export function DetailsSheet({
         <div className="details__meta">
           {title.rating > 0 && (
             <span className="badge badge--rating">
-              <Star size={11} fill="currentColor" /> {title.rating.toFixed(1)}
+              <Star size={12} weight="fill" /> {title.rating.toFixed(1)}
               {title.votes ? <span className="faint"> · {formatVotes(title.votes)}</span> : null}
             </span>
           )}
@@ -161,7 +161,7 @@ export function DetailsSheet({
             >
               {isLiked
                 ? <><HeartOff size={16} /> Убрать «нравится»</>
-                : <><Heart size={16} fill="currentColor" strokeWidth={0} /> Нравится</>}
+                : <><Heart size={16} weight="fill" /> Нравится</>}
             </button>
           )}
           {onToggleWish && (

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AtSign, KeyRound, Loader2, Send, UserRound } from 'lucide-react';
+import { AtSign, KeyRound, Loader2, Send, UserRound } from '../../ui/icons.js';
 import { isTelegram } from '../../lib/telegram.js';
 import { BrandLockup } from '../../ui/Brand.jsx';
 
@@ -68,8 +68,8 @@ export function AuthScreen({ auth }) {
             disabled={busy || auth.status === 'signing-in'}
           >
             {auth.status === 'signing-in'
-              ? <><Loader2 size={18} className="spin" /> Входим…</>
-              : <><Send size={18} /> Продолжить в Telegram</>}
+              ? <><Loader2 size={20} className="spin" /> Входим…</>
+              : <><Send size={20} /> Продолжить в Telegram</>}
           </button>
         )}
 

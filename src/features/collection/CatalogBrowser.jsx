@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Search, SlidersHorizontal, Star, X } from 'lucide-react';
+import { Search, SlidersHorizontal, Star, X } from '../../ui/icons.js';
 import { api, describeError } from '../../lib/api.js';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState, ErrorState, SkeletonGrid } from '../../ui/States.jsx';
@@ -90,7 +90,7 @@ export function CatalogBrowser({ onOpenTitle, history = {} }) {
     <div className="view">
       <div className="catalog__controls">
         <div className="catalog__search">
-          <Search size={17} color="var(--text-low)" />
+          <Search size={16} color="var(--text-low)" />
           <input
             className="input"
             style={{ background: 'none', border: 'none', minHeight: 44 }}
@@ -112,7 +112,7 @@ export function CatalogBrowser({ onOpenTitle, history = {} }) {
           onClick={() => setShowFilters((v) => !v)}
           aria-expanded={showFilters}
         >
-          <SlidersHorizontal size={15} />
+          <SlidersHorizontal size={16} />
           {filters.genres.length > 0 && <span className="catalog__badge">{filters.genres.length}</span>}
         </button>
       </div>
@@ -127,7 +127,7 @@ export function CatalogBrowser({ onOpenTitle, history = {} }) {
               aria-pressed={filters.minRating === r.value}
               onClick={() => patch({ minRating: r.value })}
             >
-              {r.value > 0 && <Star size={12} fill="currentColor" strokeWidth={0} />}
+              {r.value > 0 && <Star size={12} weight="fill" />}
               {r.label}
             </button>
           ))}
@@ -223,7 +223,7 @@ export function CatalogBrowser({ onOpenTitle, history = {} }) {
                 <span className="poster-card__cap truncate">{title.title}</span>
                 {title.rating > 0 && (
                   <span className="poster-card__rating">
-                    <Star size={10} fill="currentColor" strokeWidth={0} /> {title.rating.toFixed(1)}
+                    <Star size={12} weight="fill" /> {title.rating.toFixed(1)}
                   </span>
                 )}
               </button>

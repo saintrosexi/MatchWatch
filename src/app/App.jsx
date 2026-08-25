@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  Bookmark, Dices, Flame, Library, SlidersHorizontal, UserRound, Users,
-} from 'lucide-react';
+import { Bookmark, Dices, Flame, Library, SlidersHorizontal, UserRound, Users, IconContext, ICON } from '../ui/icons.js';
 
 import { useAuth } from '../hooks/useAuth.js';
 import { usePlatform } from '../hooks/usePlatform.js';
@@ -459,6 +457,12 @@ export default function App() {
   const shellProps = { active: view, onNavigate: navigate, user: sessionUser, online };
 
   return (
+    /*
+     * Вес и размер по умолчанию задаются один раз. Экран, которому нужна
+     * иная иконка, переопределяет их у себя, но ряд кнопок больше
+     * не разъезжается оттого, что кто-то поставил размер на глаз.
+     */
+    <IconContext.Provider value={{ size: ICON.md, weight: 'regular' }}>
     <ErrorBoundary name="app-root">
       <div className="aurora" data-mood={room.celebration ? 'match' : room.code ? 'room' : undefined} />
       <div className="app-root">
@@ -473,10 +477,10 @@ export default function App() {
             actions={view === VIEW.DECK && (
               <div className="row gap-2">
                 <button type="button" className="btn btn--ghost btn--sm" onClick={() => setRouletteOpen(true)}>
-                  <Dices size={15} /> Рулетка
+                  <Dices size={16} /> Рулетка
                 </button>
                 <button type="button" className="btn btn--ghost btn--sm" onClick={() => setFiltersOpen(true)}>
-                  <SlidersHorizontal size={15} /> Фильтры
+                  <SlidersHorizontal size={16} /> Фильтры
                 </button>
               </div>
             )}
@@ -504,10 +508,10 @@ export default function App() {
             right={view === VIEW.DECK && (
               <>
                 <button type="button" className="hud__pill" onClick={() => setRouletteOpen(true)} aria-label="Кино-рулетка">
-                  <Dices size={15} />
+                  <Dices size={16} />
                 </button>
                 <button type="button" className="hud__pill" onClick={() => setFiltersOpen(true)} aria-label="Фильтры">
-                  <SlidersHorizontal size={15} />
+                  <SlidersHorizontal size={16} />
                 </button>
               </>
             )}
@@ -567,6 +571,7 @@ export default function App() {
         )}
       </div>
     </ErrorBoundary>
+    </IconContext.Provider>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Link2, Link2Off, Loader2, Send } from 'lucide-react';
+import { Check, Link2, Link2Off, Loader2, Send } from '../../ui/icons.js';
 import { ENV } from '../../lib/env.js';
 import { describeError } from '../../lib/api.js';
 
@@ -57,7 +57,7 @@ export function TelegramLinkCard({ user, links, inTelegram, onLink, onUnlink, to
               : 'Без привязки Mini App заведёт отдельный профиль с пустой историей.'}
           </span>
         </span>
-        {linked && <Check size={18} color="var(--coral)" />}
+        {linked && <Check size={20} color="var(--coral)" />}
       </div>
 
       {unavailable && (

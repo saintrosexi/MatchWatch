@@ -1,4 +1,4 @@
-import { WifiOff } from 'lucide-react';
+import { WifiOff } from '../../ui/icons.js';
 import { BrandLockup, BrandMark } from '../../ui/Brand.jsx';
 
 /**
@@ -17,7 +17,7 @@ export function DesktopStudio({
       <aside className="studio__side">
         <div className="studio__brand">
           {/* На узкой панели остаётся только знак — слово прячет CSS. */}
-          <BrandMark size={38} />
+          <BrandMark size={44} />
           <span className="stack studio__brand-text">
             <span className="studio__brand-name">
               <span className="brand__word-a">Match</span><span className="brand__word-b">Watch</span>
@@ -36,7 +36,7 @@ export function DesktopStudio({
               onClick={() => onNavigate(item.key)}
               title={item.label}
             >
-              <item.icon size={19} strokeWidth={active === item.key ? 2.2 : 1.7} />
+              <item.icon size={20} />
               <span>{item.label}</span>
               {item.badge > 0 && <span className="studio__nav-count">{item.badge}</span>}
             </button>
@@ -68,7 +68,7 @@ export function DesktopStudio({
           </div>
           {!online && (
             <span className="hud__pill">
-              <WifiOff size={14} color="var(--coral)" /> Нет сети
+              <WifiOff size={16} color="var(--coral)" /> Нет сети
             </span>
           )}
           {actions}

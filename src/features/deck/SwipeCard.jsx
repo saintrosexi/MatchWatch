@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Clock, Compass, Heart, Sparkles, Star } from 'lucide-react';
+import { Clock, Compass, Heart, Sparkles, Star } from '../../ui/icons.js';
 import { Poster } from '../../ui/Poster.jsx';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 
@@ -46,7 +46,7 @@ export const SwipeCard = forwardRef(function SwipeCard(
       {isTop && (
         <>
           <div className="card__stamp card__stamp--yes" aria-hidden="true">
-            <Heart size={26} fill="currentColor" strokeWidth={0} />
+            <Heart size={26} weight="fill" />
           </div>
           <div className="card__stamp card__stamp--no" aria-hidden="true">НЕТ</div>
           <div className="card__stamp card__stamp--info" aria-hidden="true">ДЕТАЛИ</div>
@@ -57,7 +57,7 @@ export const SwipeCard = forwardRef(function SwipeCard(
         <div className="card__meta">
           {title.rating > 0 && (
             <span className="badge badge--rating">
-              <Star size={11} fill="currentColor" /> {title.rating.toFixed(1)}
+              <Star size={12} weight="fill" /> {title.rating.toFixed(1)}
             </span>
           )}
           {title.year && <span className="muted" style={{ fontSize: 'var(--t-small)' }}>{title.year}</span>}
@@ -68,12 +68,12 @@ export const SwipeCard = forwardRef(function SwipeCard(
           )}
           {explore && (
             <span className="chip chip--ice" style={{ padding: '2px 8px', fontSize: 10 }}>
-              <Compass size={11} /> разведка
+              <Compass size={12} /> разведка
             </span>
           )}
           {!explore && confidence === 'strong' && (
             <span className="chip chip--on" style={{ padding: '2px 8px', fontSize: 10 }}>
-              <Sparkles size={11} /> в точку
+              <Sparkles size={12} /> в точку
             </span>
           )}
         </div>

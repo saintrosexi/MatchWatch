@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Dices, Play, Star } from 'lucide-react';
+import { Dices, Play, Star } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { haptic } from '../../lib/telegram.js';
@@ -132,7 +132,7 @@ export function RouletteModal({ open, onClose, pool = [], onPick, history = {} }
             <div className="row gap-2">
               {result.rating > 0 && (
                 <span className="badge badge--rating">
-                  <Star size={11} fill="currentColor" strokeWidth={0} /> {result.rating.toFixed(1)}
+                  <Star size={12} weight="fill" /> {result.rating.toFixed(1)}
                 </span>
               )}
               {result.year && <span className="chip">{result.year}</span>}
@@ -148,11 +148,11 @@ export function RouletteModal({ open, onClose, pool = [], onPick, history = {} }
             onClick={spin}
             disabled={spinning || reel.length < 2}
           >
-            <Dices size={18} /> {result ? 'Ещё раз' : 'Крутить'}
+            <Dices size={20} /> {result ? 'Ещё раз' : 'Крутить'}
           </button>
           {result && (
             <button type="button" className="btn btn--primary btn--lg" onClick={() => { onPick?.(result); close(); }}>
-              <Play size={18} /> Открыть
+              <Play size={20} /> Открыть
             </button>
           )}
         </div>

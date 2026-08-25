@@ -1,4 +1,4 @@
-import { WifiOff } from 'lucide-react';
+import { WifiOff } from '../../ui/icons.js';
 import { BrandLockup } from '../../ui/Brand.jsx';
 
 /**
@@ -26,7 +26,7 @@ export function MobileShell({
         {right}
         {!online && (
           <span className="hud__pill" title="Нет соединения">
-            <WifiOff size={14} color="var(--coral)" />
+            <WifiOff size={16} color="var(--coral)" />
           </span>
         )}
       </header>
@@ -52,7 +52,7 @@ export function MobileShell({
                    спорить с иконками соседей яркостью фотографии. */
                 <img className="dock__avatar" src={item.avatar} alt="" />
               )
-              : <item.icon className="dock__icon" size={20} strokeWidth={active === item.key ? 2.3 : 1.8} />}
+              : <item.icon className="dock__icon" size={20} />}
             <span>{item.label}</span>
             {item.badge > 0 && <span className="dock__badge">{item.badge > 9 ? '9+' : item.badge}</span>}
           </button>

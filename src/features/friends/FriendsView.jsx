@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Check, Search, UserMinus, UserPlus, Users, X } from 'lucide-react';
+import { Check, Search, UserMinus, UserPlus, Users, X } from '../../ui/icons.js';
 import { EmptyState, LoadingState } from '../../ui/States.jsx';
 import {
   acceptFriend, loadFriends, removeFriend, requestFriend, searchPeople,
@@ -67,7 +67,7 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
       </header>
 
       <div className="catalog__search">
-        <Search size={17} color="var(--text-low)" />
+        <Search size={16} color="var(--text-low)" />
         <input
           className="input"
           style={{ background: 'none', border: 'none', minHeight: 44 }}
@@ -107,7 +107,7 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
                     className="btn btn--sm btn--primary"
                     onClick={() => act(requestFriend, person, `Заявка отправлена ${person.displayName}`)}
                   >
-                    <UserPlus size={14} /> Добавить
+                    <UserPlus size={16} /> Добавить
                   </button>
                 )}
               />
@@ -131,11 +131,11 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
                   <div className="row gap-2">
                     <button type="button" className="btn btn--sm btn--primary"
                       onClick={() => act(acceptFriend, person, `${person.displayName} теперь в друзьях`)}>
-                      <Check size={14} /> Принять
+                      <Check size={16} /> Принять
                     </button>
                     <button type="button" className="btn btn--sm btn--ghost"
                       onClick={() => act(removeFriend, person, 'Заявка отклонена')}>
-                      <X size={14} />
+                      <X size={16} />
                     </button>
                   </div>
                 )}
@@ -169,7 +169,7 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
                     <button type="button" className="btn btn--sm btn--quiet"
                       onClick={() => act(removeFriend, person, 'Убрали из друзей')}
                       aria-label="Убрать из друзей">
-                      <UserMinus size={15} />
+                      <UserMinus size={16} />
                     </button>
                   )}
                 />

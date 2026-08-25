@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { BarChart3, Crown, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from 'lucide-react';
+import { BarChart3, Crown, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
 import { Radar } from '../../ui/Radar.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState } from '../../ui/States.jsx';
@@ -52,18 +52,18 @@ export function ProfileView({
               ? <span className="public-profile__handle">@{profile.username}</span>
               : <span className="faint" style={{ fontSize: 'var(--t-small)' }}>ник не задан</span>}
           </div>
-          {access?.tier === 'plus' && <span className="chip chip--gold"><Crown size={13} /> Plus</span>}
+          {access?.tier === 'plus' && <span className="chip chip--gold"><Crown size={12} /> Plus</span>}
         </div>
 
         {profile?.bio && <p className="public-profile__bio" style={{ textAlign: 'left' }}>{profile.bio}</p>}
 
         <div className="row gap-2">
           <button type="button" className="btn btn--ghost btn--sm" onClick={onEditProfile}>
-            <Pencil size={14} /> Редактировать
+            <Pencil size={16} /> Редактировать
           </button>
           {onOpenFriends && (
             <button type="button" className="btn btn--ghost btn--sm" onClick={onOpenFriends}>
-              <Users size={14} /> Друзья
+              <Users size={16} /> Друзья
             </button>
           )}
         </div>

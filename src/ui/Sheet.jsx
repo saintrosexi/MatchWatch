@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
+import { X } from './icons.js';
 
 /**
  * Модальная шторка. Держит фокус внутри, закрывается по Escape и по клику
@@ -58,7 +58,7 @@ export function Sheet({ open, onClose, title, children, footer, variant = 'botto
           <div className="row row--between" style={{ marginBottom: 'var(--s-4)' }}>
             <h2 className="section__title">{title}</h2>
             <button type="button" className="btn btn--icon btn--ghost" onClick={onClose} aria-label="Закрыть">
-              <X size={18} />
+              <X size={20} />
             </button>
           </div>
         )}

@@ -158,9 +158,9 @@
 }
 .card__stamp--yes {
   left: 24px;
-  color: var(--gold);
+  color: var(--coral);
   transform: rotate(-14deg);
-  background: rgba(255, 194, 75, .14);
+  background: rgba(255, 77, 94, .14);
 }
 .card__stamp--info { display: none; }
 .card__stamp--no { right: 24px; color: var(--no); transform: rotate(14deg); background: rgba(90,90,114,.14); }
@@ -205,10 +205,12 @@
 .action--md { width: 58px; height: 58px; }
 .action--lg { width: 68px; height: 68px; }
 .action--no:hover { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
-.action--wish { color: var(--coral); box-shadow: var(--glow-coral); }
+/* Цвет закреплён за смыслом: сердце всегда коралловое, отложенное —
+   золотое. Одинаковые действия не должны менять цвет от экрана к экрану. */
+.action--wish { color: var(--gold); box-shadow: var(--glow-gold); }
 .action--seen { color: var(--mint); }
 .action--seen:hover { box-shadow: 0 0 0 1px rgba(75,227,164,.4), 0 12px 40px -8px rgba(75,227,164,.35); }
-.action--fav { color: var(--gold); box-shadow: var(--glow-gold); }
+.action--fav { color: var(--coral); box-shadow: var(--glow-coral); }
 .action--undo:hover:not(:disabled) { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
 
 /* ── Прогресс колоды ─────────────────────────────────────────── */

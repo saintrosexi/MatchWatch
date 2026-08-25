@@ -8,7 +8,7 @@ import { haptic } from '../../lib/telegram.js';
 import { sfx, unlockAudio } from '../../lib/sound.js';
 import { ACTION } from '../../engine/tasteProfile.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
-import { Compass, PartyPopper, SlidersHorizontal } from 'lucide-react';
+import { Compass, PartyPopper, SlidersHorizontal } from '../../ui/icons.js';
 
 /**
  * Стопка карточек: жест, кнопки, клавиатура и предзагрузка постеров.

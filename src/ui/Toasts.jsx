@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, Info, X } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, X } from './icons.js';
 
 const ICONS = { info: Info, success: CheckCircle2, error: AlertTriangle };
 
@@ -18,7 +18,7 @@ export function Toasts({ toasts, onDismiss }) {
               </button>
             )}
             <button type="button" aria-label="Закрыть" onClick={() => onDismiss(toast.id)}>
-              <X size={14} />
+              <X size={16} />
             </button>
           </div>
         );

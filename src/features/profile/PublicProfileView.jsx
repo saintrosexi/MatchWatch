@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Star, UserPlus, UserRound } from 'lucide-react';
+import { ArrowLeft, Star, UserPlus, UserRound } from '../../ui/icons.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
 import { loadPublicProfile, requestFriend } from '../../engine/social.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
@@ -51,7 +51,7 @@ export function PublicProfileView({ username, onBack, toasts }) {
         {person.photoURL
           ? <img className="public-profile__avatar" src={person.photoURL} alt="" />
           : <span className="public-profile__avatar" style={{ display: 'grid', placeItems: 'center' }}>
-              <UserRound size={40} color="var(--text-low)" />
+              <UserRound size={44} color="var(--text-low)" />
             </span>}
 
         <div className="stack gap-1" style={{ alignItems: 'center' }}>
@@ -85,7 +85,7 @@ export function PublicProfileView({ username, onBack, toasts }) {
         {stats.ratings > 0 && (
           <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
             Поставил {withPlural(stats.ratings, FORMS.RATING)}
-            {stats.averageRating !== null && <> · в среднем <Star size={11} style={{ verticalAlign: -1 }} /> {stats.averageRating}</>}
+            {stats.averageRating !== null && <> · в среднем <Star size={12} style={{ verticalAlign: -1 }} /> {stats.averageRating}</>}
           </p>
         )}
 
