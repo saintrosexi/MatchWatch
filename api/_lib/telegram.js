@@ -33,7 +33,16 @@ export const botIdFromToken = (token = botToken()) => {
   return /^\d+$/.test(id) ? id : null;
 };
 
+/**
+ * Ключ кеша — сам токен, а не факт «уже спрашивали».
+ *
+ * Инстанс серверлес-функции живёт минутами и переживает смену переменной
+ * окружения. Кеш «на инстанс» после подмены токена продолжал бы называть
+ * прежнего бота — то есть врал бы ровно в тот момент, ради которого
+ * диагностика и написана.
+ */
 let botDescription = null;
+let botDescriptionKey = null;
 
 /**
  * Кто именно стоит за токеном. Нужно ровно для одной цели: понять, тот ли
@@ -43,7 +52,7 @@ let botDescription = null;
 export async function describeBot() {
   const token = botToken();
   if (!token) return { configured: false, botId: null, username: null, tokenValid: false };
-  if (botDescription) return botDescription;
+  if (botDescription && botDescriptionKey === token) return botDescription;
 
   const result = { configured: true, botId: botIdFromToken(token), username: null, tokenValid: false };
   try {
@@ -61,7 +70,10 @@ export async function describeBot() {
   }
 
   // Кэшируем только удачный ответ: неудачу имеет смысл перепроверить.
-  if (result.tokenValid) botDescription = result;
+  if (result.tokenValid) {
+    botDescription = result;
+    botDescriptionKey = token;
+  }
   return result;
 }
 
