@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────────
-   Mobile TMA Shell — плавающий док, компактный HUD
+   Mobile TMA Shell — нижняя панель, компактный HUD
    ──────────────────────────────────────────────────────────────── */
 
 .mobile-shell {
@@ -14,11 +14,13 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--safe-bottom) + 84px);
+  /* Контент прокручивается ровно до панели: иначе последний элемент
+     списка навсегда остаётся под ней и выглядит как обрезанный. */
+  padding-bottom: calc(var(--dock-h) + var(--s-4));
   overflow-y: auto;
   overscroll-behavior-y: contain;
 }
-.mobile-shell__main--fixed { overflow: hidden; padding-bottom: calc(var(--safe-bottom) + 84px); }
+.mobile-shell__main--fixed { overflow: hidden; padding-bottom: var(--dock-h); }
 
 /* HUD-полоса вверху: кто я, что происходит, быстрые действия. */
 .hud {
@@ -74,35 +76,43 @@
 .status-strip--error { background: var(--coral-soft); border-color: rgba(255,77,94,.4); color: #ffc2c8; }
 .status-strip--live { background: rgba(75,227,164,.1); border-color: rgba(75,227,164,.3); color: var(--mint); }
 
-/* Плавающий док навигации. */
+/*
+ * Панель навигации прижата к нижней кромке.
+ *
+ * Плавающая пилюля красива на макете, но в Telegram Mini App нижняя
+ * зона — это ещё и системный отступ телефона: панель над ним висела
+ * в воздухе, а под ней оставалась мёртвая полоса. Прижатая панель сама
+ * закрывает safe-area, и её высота становится честной величиной,
+ * на которую можно опереть отступ контента.
+ */
 .dock {
   position: fixed;
-  left: 50%;
-  bottom: calc(var(--safe-bottom) + var(--tg-bottom) + 14px);
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: var(--z-dock);
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 6px;
-  border-radius: var(--r-pill);
+  padding: 6px var(--s-2) calc(6px + var(--safe-bottom) + var(--tg-bottom));
   background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
+  border-top: 1px solid var(--glass-border);
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow-card);
-  max-width: calc(100vw - 24px);
 }
 .dock__item {
   position: relative;
+  /* Пункты делят ширину поровну — во всю строку палец попадает вернее. */
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  min-width: 58px;
+  min-width: 0;
   height: 52px;
   padding: 0 var(--s-2);
-  border-radius: var(--r-pill);
+  border-radius: var(--r-md);
   color: var(--text-low);
   font-size: 10px;
   font-weight: 600;
@@ -281,8 +291,15 @@
   background: var(--ink-700);
 }
 
-/* Док из трёх пунктов растягивается на комфортную ширину. */
-.dock:has(> :nth-child(3):last-child) .dock__item { min-width: 84px; }
+/*
+ * Брендовая связка стоит правее середины.
+ *
+ * В Mini App верхнюю левую четверть занимает кнопка «Закрыть» самого
+ * Telegram — логотип, прижатый к левому краю, оказывается под ней.
+ * Левый распорка чуть шире правой, поэтому связка уходит из-под кнопки,
+ * но не упирается в аватар.
+ */
+.hud__spacer--lead { flex: 1.35; }
 
 /* ────────────────────────────────────────────────────────────────
    Десктоп ≠ растянутая мобилка

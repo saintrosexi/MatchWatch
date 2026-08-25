@@ -4,8 +4,9 @@ import { BrandLockup } from '../../ui/Brand.jsx';
 /**
  * Mobile TMA Shell.
  *
- * Плавающий док вместо таб-бара: он не съедает высоту под карточку
- * и переживает fullscreen-режим Telegram, где системные отступы плавают.
+ * Панель навигации прижата к нижней кромке и сама закрывает системный
+ * отступ телефона: в fullscreen-режиме Telegram плавающая пилюля висела
+ * над мёртвой полосой, а контент уезжал под неё.
  */
 /** Инициалы вместо пустого кружка, когда у пользователя нет аватара. */
 const initials = (name) => String(name ?? '?')
@@ -21,6 +22,8 @@ export function MobileShell({
   return (
     <div className="mobile-shell">
       <header className="hud">
+        {/* Распорка уводит логотип из-под кнопки «Закрыть» Telegram. */}
+        <div className="hud__spacer hud__spacer--lead" />
         <BrandLockup size="sm" />
         <div className="hud__spacer" />
         {right}
