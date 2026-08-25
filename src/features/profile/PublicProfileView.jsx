@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Star, UserPlus, UserRound } from '../../ui/icons.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
-import { loadPublicProfile, requestFriend } from '../../engine/social.js';
+import { loadPublicProfile, loadPublicProfileById, requestFriend } from '../../engine/social.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 
 /**
@@ -11,17 +11,19 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
  * и обезличенную статистику. Ни почты, ни истории решений — списки
  * фильмов остаются личным делом каждого.
  */
-export function PublicProfileView({ username, onBack, toasts }) {
+export function PublicProfileView({ username, userId, onBack, toasts }) {
   const [state, setState] = useState({ loading: true });
 
   useEffect(() => {
     let alive = true;
     setState({ loading: true });
-    loadPublicProfile(username)
+    // Из комнаты человек известен по идентификатору, из поиска — по нику.
+    const load = userId ? loadPublicProfileById(userId) : loadPublicProfile(username);
+    load
       .then((person) => { if (alive) setState({ loading: false, person }); })
       .catch((error) => { if (alive) setState({ loading: false, error }); });
     return () => { alive = false; };
-  }, [username]);
+  }, [username, userId]);
 
   if (state.loading) return <LoadingState text="Открываем профиль…" />;
   if (state.error) {
@@ -33,7 +35,7 @@ export function PublicProfileView({ username, onBack, toasts }) {
         <button type="button" className="btn btn--quiet btn--sm" style={{ alignSelf: 'flex-start' }} onClick={onBack}>
           <ArrowLeft size={16} /> Назад
         </button>
-        <EmptyState icon={UserRound} title="Профиль не найден" text={`Ника @${username} не существует.`} />
+        <EmptyState icon={UserRound} title="Профиль не найден" text={userId ? 'Этот человек ещё не заполнил профиль.' : `Ника @${username} не существует.`} />
       </div>
     );
   }

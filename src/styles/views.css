@@ -169,6 +169,18 @@
   background: var(--ink-700);
   flex: 0 0 auto;
 }
+/* Строка участника кликабельна целиком: попасть пальцем в имя трудно. */
+.member__link {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  color: inherit;
+}
+.member__link:disabled { cursor: default; }
+
 .member__presence {
   width: 9px; height: 9px;
   border-radius: 50%;

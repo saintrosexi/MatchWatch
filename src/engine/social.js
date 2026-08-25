@@ -108,6 +108,49 @@ export const removeFriend = (friendId) => guarded(
   { module: MODULE.ROOMS_JOIN, description: 'remove friend' },
 );
 
+/**
+ * Публичная карточка по идентификатору.
+ *
+ * Участник комнаты известен по user_id, а не по нику — открыть его
+ * профиль иначе нечем.
+ */
+export async function loadPublicProfileById(userId) {
+  if (!supabaseReady() || !userId) return null;
+  const { data, error } = await supabase.rpc('public_profile_by_id', { p_user: userId });
+  if (error) throw error;
+  const row = (data ?? [])[0];
+  if (!row) return null;
+  return {
+    ...shapePerson(row),
+    createdAt: row.created_at,
+    stats: {
+      ratings: Number(row.ratings_count ?? 0),
+      averageRating: row.average_rating === null ? null : Number(row.average_rating),
+      favorites: Number(row.favorites_count ?? 0),
+      watched: Number(row.watched_count ?? 0),
+    },
+  };
+}
+
+/**
+ * Что вы оба собираетесь посмотреть.
+ *
+ * Отдаётся только пересечение и только для подтверждённой дружбы: чужой
+ * список целиком — это чужие планы на вечер, а пересечение обе стороны
+ * и так собирались обсуждать.
+ */
+export async function loadSharedWatchlist(friendId) {
+  if (!supabaseReady() || !friendId) return [];
+  const { data, error } = await supabase.rpc('shared_watchlist', { p_friend: friendId });
+  if (error) throw error;
+  return (data ?? []).map((row) => ({
+    ...(row.title ?? {}),
+    id: row.title_id,
+    mineAt: row.mine_at ? new Date(row.mine_at).getTime() : null,
+    theirsAt: row.theirs_at ? new Date(row.theirs_at).getTime() : null,
+  }));
+}
+
 /** Ник по умолчанию из имени или почты: человеку не нужно придумывать с нуля. */
 export function suggestUsername(source) {
   const base = String(source ?? '')

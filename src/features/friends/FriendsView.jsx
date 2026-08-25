@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Check, Search, UserMinus, UserPlus, Users, X } from '../../ui/icons.js';
+import { Bookmark, Check, ICON, Search, UserMinus, UserPlus, Users, X } from '../../ui/icons.js';
 import { EmptyState, LoadingState } from '../../ui/States.jsx';
+import { Sheet } from '../../ui/Sheet.jsx';
+import { Poster } from '../../ui/Poster.jsx';
 import {
-  acceptFriend, loadFriends, removeFriend, requestFriend, searchPeople,
+  acceptFriend, loadFriends, loadSharedWatchlist, removeFriend, requestFriend, searchPeople,
 } from '../../engine/social.js';
 
 /**
@@ -12,7 +14,8 @@ import {
  * Это не придирка к удобству: поиск по части адреса позволил бы
  * перебором вычерпать базу пользователей.
  */
-export function FriendsView({ me, onOpenProfile, toasts }) {
+export function FriendsView({ me, onOpenProfile, onOpenTitle, toasts }) {
+  const [shared, setShared] = useState(null);
   const [query, setQuery] = useState('');
   const [found, setFound] = useState([]);
   const [friends, setFriends] = useState([]);
@@ -51,6 +54,23 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
       if (message) toasts.success(message);
     } catch (error) {
       toasts.error(error?.message ?? 'Не получилось');
+    }
+  };
+
+  /**
+   * Что вы оба собираетесь посмотреть.
+   *
+   * Показываем только пересечение: чужой список целиком — это чужие
+   * планы на вечер, а совпавшее обе стороны и так собирались обсуждать.
+   */
+  const compare = async (person) => {
+    setShared({ person, loading: true, items: [] });
+    try {
+      const items = await loadSharedWatchlist(person.id);
+      setShared({ person, loading: false, items });
+    } catch (error) {
+      setShared(null);
+      toasts.error(error?.message ?? 'Не удалось сверить списки');
     }
   };
 
@@ -166,11 +186,21 @@ export function FriendsView({ me, onOpenProfile, toasts }) {
                   person={person}
                   onOpen={() => onOpenProfile(person.username)}
                   action={(
-                    <button type="button" className="btn btn--sm btn--quiet"
-                      onClick={() => act(removeFriend, person, 'Убрали из друзей')}
-                      aria-label="Убрать из друзей">
-                      <UserMinus size={16} />
-                    </button>
+                    <div className="row gap-2">
+                      {/* Сверка списков: то, что оба уже отложили, —
+                          готовый ответ на «что посмотрим сегодня». */}
+                      <button type="button" className="btn btn--sm btn--ghost"
+                        onClick={() => compare(person)}
+                        aria-label={`Сверить списки с ${person.displayName}`}
+                        title="Сверить «буду смотреть»">
+                        <Bookmark size={16} />
+                      </button>
+                      <button type="button" className="btn btn--sm btn--quiet"
+                        onClick={() => act(removeFriend, person, 'Убрали из друзей')}
+                        aria-label="Убрать из друзей">
+                        <UserMinus size={16} />
+                      </button>
+                    </div>
                   )}
                 />
               ))}
@@ -216,6 +246,39 @@ function PersonRow({ person, action, onOpen }) {
         </span>
       </button>
       {action}
+
+      <Sheet
+        open={Boolean(shared)}
+        onClose={() => setShared(null)}
+        title={shared ? `Оба хотим посмотреть · ${shared.person.displayName}` : ''}
+      >
+        {shared?.loading && <LoadingState text="Сверяем списки…" />}
+
+        {shared && !shared.loading && shared.items.length === 0 && (
+          <EmptyState
+            icon={Bookmark}
+            title="Совпадений нет"
+            text="Пока вы отложили разное. Посвайпайте ещё — или заведите комнату и выберите вместе."
+          />
+        )}
+
+        {shared && !shared.loading && shared.items.length > 0 && (
+          <div className="poster-grid">
+            {shared.items.map((item) => (
+              <button
+                type="button"
+                className="poster-card"
+                key={item.id}
+                onClick={() => { onOpenTitle?.(item); setShared(null); }}
+              >
+                <Poster src={item.poster} alt={item.title} size="w342" />
+                <span className="poster-card__cap truncate">{item.title}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </Sheet>
+
     </div>
   );
 }

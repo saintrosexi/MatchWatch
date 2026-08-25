@@ -33,7 +33,7 @@ import { Radar } from '../ui/Radar.jsx';
 import { ACTION, createEmptyProfile, hydrateProfile } from '../engine/tasteProfile.js';
 import {
   loadUserState, subscribeUserState, recordReaction, toggleFavorite,
-  undoDecision, markWatchedPersonal, saveMatch, rateTitle,
+  undoDecision, markWatchedPersonal, rateTitle,
   applyLocalDecision, removeLocalDecision,
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
@@ -273,14 +273,11 @@ export default function App() {
     const roomAction = action === ACTION.DISLIKE ? 'pass' : 'like';
     const result = await room.swipe(title, roomAction);
 
-    if (result?.matched && result.match) {
-      saveMatch({
-        uid: user.uid,
-        title,
-        roomCode: room.code,
-        partners: room.members.filter((m) => m.uid !== user.uid).map((m) => m.name),
-      });
-    }
+    /*
+     * Запись мэтча делает сама функция комнаты — и сразу всем участникам,
+     * включая личное «буду смотреть». Дублировать её здесь значит писать
+     * половину правды: у второго человека клиент этот код не выполняет.
+     */
   }, [user?.uid, taste, deckMode, room]);
 
   /**
@@ -614,6 +611,7 @@ function renderView(ctx) {
           toasts={toasts}
           onCreate={createRoom}
           onEnterRoom={() => { setRoomSession(true); setActorDeck(null); setView(VIEW.DECK); }}
+          onOpenMember={(member) => { setPublicProfile(member); setView(VIEW.PUBLIC_PROFILE); }}
         />
       );
 
@@ -643,9 +641,10 @@ function renderView(ctx) {
     case VIEW.PUBLIC_PROFILE:
       return (
         <PublicProfileView
-          username={publicProfile}
+          username={typeof publicProfile === 'string' ? publicProfile : null}
+          userId={typeof publicProfile === 'object' ? publicProfile?.uid : null}
           toasts={toasts}
-          onBack={() => setView(VIEW.ME)}
+          onBack={() => setView(publicProfile?.uid ? VIEW.ROOMS : VIEW.ME)}
         />
       );
 

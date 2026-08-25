@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-  AlertCircle, Copy, DoorOpen, LogIn, Plus, Share2, Users,
-} from '../../ui/icons.js';
+import { AlertCircle, Copy, DoorOpen, LogIn, Plus, Share2, UserPlus, Users } from '../../ui/icons.js';
 import { EmptyState } from '../../ui/States.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
@@ -10,6 +8,7 @@ import { roomInviteLink, shareToTelegram, haptic } from '../../lib/telegram.js';
 import { trackMetric } from '../../lib/telemetry.js';
 import { METRIC } from '../../../shared/telemetry/events.js';
 import { sfx } from '../../lib/sound.js';
+import { requestFriend } from '../../engine/social.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 
 /**
@@ -20,7 +19,8 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
  * главная причина, по которой комнаты «не находятся», и здесь он
  * технически невозможен.
  */
-export function RoomsView({ room, user, onCreate, onEnterRoom, toasts }) {
+export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toasts }) {
+  const [friendBusy, setFriendBusy] = useState(null);
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [recent, setRecent] = useState([]);
@@ -190,6 +190,25 @@ function RoomLobby({ room, user, toasts, onEnterRoom }) {
     }
   };
 
+  /*
+   * Заявка в друзья прямо из комнаты. Момент, когда с человеком уже
+   * смотрят кино, — единственный, когда добавление в друзья не требует
+   * объяснений; в списке поиска его потом надо ещё найти по нику.
+   */
+  const addFriend = async (member) => {
+    setFriendBusy(member.uid);
+    try {
+      const status = await requestFriend(member.uid);
+      toasts.success(status === 'accepted'
+        ? `${member.name} теперь в друзьях`
+        : `Заявка отправлена ${member.name}`);
+    } catch (error) {
+      toasts.error(error?.message ?? 'Не получилось добавить в друзья');
+    } finally {
+      setFriendBusy(null);
+    }
+  };
+
   const waiting = room.members.length < 2;
 
   return (
@@ -224,23 +243,48 @@ function RoomLobby({ room, user, toasts, onEnterRoom }) {
         </div>
 
         <div className="room-members">
-          {room.members.map((member) => (
-            <div className="member" key={member.uid}>
-              {member.photo
-                ? <img className="member__avatar" src={member.photo} alt="" />
-                : <div className="member__avatar" />}
-              <span className="stack grow">
-                <span className="member__name">
-                  {member.name}{member.uid === user.uid ? ' (вы)' : ''}
-                </span>
-                <span className="member__state">
-                  {member.online ? 'в сети, свайпает' : `не в сети · ${formatAgo(member.lastSeen)}`}
-                </span>
-              </span>
-              {member.host && <span className="chip chip--gold">хост</span>}
-              <span className="member__presence" data-online={String(Boolean(member.online))} />
-            </div>
-          ))}
+          {room.members.map((member) => {
+            const isMe = member.uid === user.uid;
+            return (
+              <div className="member" key={member.uid}>
+                {/* Тап по человеку открывает его профиль: смотреть кино
+                    с незнакомцем странно, а узнать вкус — половина смысла. */}
+                <button
+                  type="button"
+                  className="member__link"
+                  onClick={() => !isMe && onOpenMember?.(member)}
+                  disabled={isMe}
+                  aria-label={isMe ? member.name : `Профиль: ${member.name}`}
+                >
+                  {member.photo
+                    ? <img className="member__avatar" src={member.photo} alt="" />
+                    : <div className="member__avatar" />}
+                  <span className="stack grow">
+                    <span className="member__name">
+                      {member.name}{isMe ? ' (вы)' : ''}
+                    </span>
+                    <span className="member__state">
+                      {member.online ? 'в сети, свайпает' : `не в сети · ${formatAgo(member.lastSeen)}`}
+                    </span>
+                  </span>
+                </button>
+                {member.host && <span className="chip chip--gold">хост</span>}
+                {!isMe && (
+                  <button
+                    type="button"
+                    className="btn btn--ghost btn--icon btn--sm"
+                    disabled={friendBusy === member.uid}
+                    onClick={() => addFriend(member)}
+                    aria-label={`Добавить ${member.name} в друзья`}
+                    title="Добавить в друзья"
+                  >
+                    <UserPlus size={16} />
+                  </button>
+                )}
+                <span className="member__presence" data-online={String(Boolean(member.online))} />
+              </div>
+            );
+          })}
         </div>
 
         {waiting && (
@@ -261,8 +305,18 @@ function RoomLobby({ room, user, toasts, onEnterRoom }) {
       </div>
 
       {room.isHost && (
-        <button type="button" className="btn btn--quiet btn--sm" onClick={() => room.close()}>
-          Закрыть комнату для всех
+        <button
+          type="button"
+          className="btn btn--quiet btn--sm"
+          onClick={() => {
+            // Действие необратимо и задевает не только хоста — спрашиваем.
+            if (!window.confirm('Завершить комнату для всех? Вернуться в неё будет нельзя, '
+              + 'но мэтчи уже лежат в вашем «Буду смотреть».')) return;
+            room.close();
+            toasts.success('Комната завершена');
+          }}
+        >
+          <DoorOpen size={16} /> Завершить комнату для всех
         </button>
       )}
     </div>

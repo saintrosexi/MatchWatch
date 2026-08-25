@@ -42,6 +42,7 @@ export function MeView({ initialTab = 'profile', onOpenPublicProfile, ...rest })
             me={rest.user}
             toasts={rest.toasts}
             onOpenProfile={onOpenPublicProfile}
+            onOpenTitle={rest.onOpenTitle}
           />
         )}
     </div>

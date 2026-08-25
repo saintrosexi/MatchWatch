@@ -399,15 +399,23 @@ export async function leaveRoom(code) {
   setTelemetryRoom(null);
 }
 
+/**
+ * Завершение комнаты хостом.
+ *
+ * Комната не удаляется, а закрывается: по её участникам собирается
+ * «с кем смотрели», а мэтчи уже разошлись по личным спискам. Стирать
+ * всё это ради опустевшей строки — плохой обмен. Право есть только
+ * у создателя, и проверяет его сама функция, а не клиент.
+ */
 export async function closeRoom(code) {
   requireClient();
   const normalized = normalizeRoomCode(code);
-  // Право удалить есть только у создателя — это гарантирует RLS.
-  await guarded(
-    () => supabase.from('rooms').delete().eq('code', normalized),
+  const result = await guarded(
+    () => supabase.rpc('close_room', { p_code: normalized }),
     { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'close room' },
   );
   setTelemetryRoom(null);
+  return result;
 }
 
 /** Размер синхронизированной колоды берётся из конфига, а не из константы в UI. */
