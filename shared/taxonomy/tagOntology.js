@@ -626,8 +626,6 @@ Object.assign(TAG_MOODS, {
    * чего словарю не хватает, — вместо того чтобы гадать об этом.
    */
   'investigation': { intellect: 32, dynamism: 10, darkness: 16 },
-  /* Просила сама модель при разметке — значит слово живое, а не наше. */
-  'investigation': { intellect: 32, dynamism: 10, darkness: 16 },
   'disaster': { energy: 28, dynamism: 30, darkness: 26 },
   'first-contact': { intellect: 30, emotion: 18 },
   'alien-invasion': { energy: 26, dynamism: 28, darkness: 22 },
