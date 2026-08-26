@@ -240,6 +240,44 @@ test('F14a · стартовый набор поднимается только 
     'после прогрева набор не должен иметь преимущества');
 });
 
+test('F14c · колода начинается с калибровочного набора', () => {
+  // Обычные фильмы намеренно сильнее по качеству: набор обязан идти
+  // первым не потому, что он лучше, а потому что о нём спрашивают.
+  const seeds = COLD_START_IDS.slice(0, 6).map((id, i) => makeTitle(id, `Набор ${i}`, { rating: 6.2, votes: 400 }));
+  const strong = Array.from({ length: 20 }, (_, i) => makeTitle(900000 + i, `Хит ${i}`, { rating: 8.6, votes: 40000 }));
+
+  const deck = rankDeck([...strong, ...seeds], createEmptyProfile(), { size: 12 });
+  const head = deck.slice(0, seeds.length).map((e) => e.title.externalId);
+
+  for (const id of seeds.map((t) => t.externalId)) {
+    assert.ok(head.includes(id), `фильм набора ${id} не попал в начало колоды`);
+  }
+  assert.ok(deck.slice(0, seeds.length).every((e) => e.slot === 'calibration'));
+});
+
+test('F14d · ответ на калибровочный фильм весит больше обычного', () => {
+  const seed = makeTitle(COLD_START_IDS[0], 'Из набора', { genres: [18], keywords: ['drama'] });
+  const plain = makeTitle(999999, 'Обычный', { genres: [18], keywords: ['drama'] });
+
+  const afterSeed = applySignal(createEmptyProfile(), seed, ACTION.FAVORITE);
+  const afterPlain = applySignal(createEmptyProfile(), plain, ACTION.FAVORITE);
+
+  const weightOf = (profile) => Math.max(0, ...Object.values(profile.tagWeights));
+  assert.ok(weightOf(afterSeed) > weightOf(afterPlain) * 2,
+    'калибровочный ответ должен двигать профиль заметно сильнее');
+
+  // После прогрева преимущество снимается: иначе первые ответы
+  // навсегда перевесили бы всё сказанное потом.
+  let warm = createEmptyProfile();
+  for (let i = 0; i < 60; i += 1) {
+    warm = applySignal(warm, makeTitle(800000 + i, `Ф${i}`, { genres: [28] }), ACTION.LIKE);
+  }
+  const seedWarm = applySignal(warm, seed, ACTION.FAVORITE);
+  const plainWarm = applySignal(warm, plain, ACTION.FAVORITE);
+  assert.equal(seedWarm.tagWeights.drama, plainWarm.tagWeights.drama,
+    'на прогретом профиле набор не должен весить больше');
+});
+
 test('F14b · стартовый набор разводит по осям, а не повторяется', () => {
   assert.equal(COLD_START_IDS.length, new Set(COLD_START_IDS).size, 'дубликаты в наборе');
   assert.ok(COLD_START_IDS.length >= 12 && COLD_START_IDS.length <= 20,

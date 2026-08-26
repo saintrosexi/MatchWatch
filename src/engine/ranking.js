@@ -179,6 +179,23 @@ export function rankDeck(titles, profile, {
 
   const used = new Set();
   const deck = [];
+
+  /*
+   * Пока профиль пуст, колода начинается с калибровочного набора.
+   *
+   * Множителя к оценке для этого мало: очень качественная популярка
+   * всё равно всплывала выше, и набор рассыпался по ленте вместо того,
+   * чтобы отработать сразу. Порядок внутри набора — не по качеству,
+   * а по непохожести: две подряд идущие карточки должны спрашивать
+   * о разном, иначе полтора десятка ответов дадут одну и ту же грань.
+   */
+  if (!warm) {
+    for (const candidate of spreadByMood(scored.filter((c) => isColdStartTitle(c.title)))) {
+      if (deck.length >= target) break;
+      used.add(candidate.id);
+      deck.push({ ...candidate, slot: 'calibration' });
+    }
+  }
   let exploitCursor = 0;
   let exploreCursor = 0;
 
@@ -192,7 +209,7 @@ export function rankDeck(titles, profile, {
     }
   }
 
-  for (let position = 0; position < target; position += 1) {
+  for (let position = deck.length; position < target; position += 1) {
     const wantExplore = explorePositions.has(position);
     let pick = null;
 
@@ -214,6 +231,40 @@ export function rankDeck(titles, profile, {
   }
 
   return applyDiversity(deck, config);
+}
+
+/**
+ * Раскладывает карточки так, чтобы соседние были максимально непохожи.
+ *
+ * Жадный проход: первой идёт самая качественная, каждая следующая — та,
+ * что дальше всего по вектору настроения от уже показанной. Сортировка
+ * по качеству дала бы подряд три драмы, и первые ответы рассказали бы
+ * об одной и той же грани вкуса.
+ */
+function spreadByMood(candidates) {
+  if (candidates.length < 3) return [...candidates];
+
+  const pool = [...candidates].sort((a, b) => b.qualityScore - a.qualityScore);
+  const out = [pool.shift()];
+
+  while (pool.length) {
+    let bestIndex = 0;
+    let bestDistance = -Infinity;
+    const previous = out[out.length - 1].title.moods ?? {};
+
+    for (let i = 0; i < pool.length; i += 1) {
+      const moods = pool[i].title.moods ?? {};
+      let distance = 0;
+      for (const axis of MOOD_AXES) {
+        distance += Math.abs((moods[axis] ?? 50) - (previous[axis] ?? 50));
+      }
+      if (distance > bestDistance) { bestDistance = distance; bestIndex = i; }
+    }
+
+    out.push(pool.splice(bestIndex, 1)[0]);
+  }
+
+  return out;
 }
 
 /**

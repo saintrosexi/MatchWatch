@@ -11,6 +11,7 @@
  */
 
 import { MOOD_AXES, NEUTRAL_MOOD, RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
+import { isColdStartTitle } from '../../shared/config/coldStart.js';
 
 export const ACTION = Object.freeze({
   /** Свайп вправо: «смотрел и понравилось». Это же и есть «просмотрено». */
@@ -57,8 +58,22 @@ export function hydrateProfile(raw) {
  */
 export function applySignal(profile, title, action, { config = RECOMMENDATION_CONFIG, now = Date.now() } = {}) {
   const current = hydrateProfile(profile);
-  const weight = config.signals[action];
-  if (!Number.isFinite(weight) || !title) return current;
+  const base = config.signals[action];
+  if (!Number.isFinite(base) || !title) return current;
+
+  /*
+   * Ответ на калибровочный фильм весит больше обычного.
+   *
+   * Пока профиль пуст, эти полтора десятка реакций — единственное, на чём
+   * строится лента. Набор подобран по непохожести, поэтому «да» комедии
+   * и «нет» космической драме говорят о вкусе больше, чем десяток
+   * реакций на соседние боевики. После прогрева множитель снимается:
+   * иначе первые ответы навсегда перевесили бы всё сказанное потом.
+   */
+  const calibrating = !isWarm(current, config) && isColdStartTitle(title);
+  const weight = calibrating
+    ? base * config.exploration.coldStartSignalBoost
+    : base;
 
   const tagWeights = { ...current.tagWeights };
   const maxTagWeight = Math.max(1, ...Object.values(title.tags ?? {}));
