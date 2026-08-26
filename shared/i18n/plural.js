@@ -29,3 +29,18 @@ export const FORMS = Object.freeze({
   ROLE: ['роль', 'роли', 'ролей'],
   YEAR: ['год', 'года', 'лет'],
 });
+
+/**
+ * Перечисление имён по-русски: «Аня», «Аня и Егор», «Аня, Егор и ещё 2».
+ *
+ * Нужна там, где важно, КТО именно, а не сколько. «Двое из трёх» —
+ * число; «Аня и Егор» — довод: в комнате сидят знакомые люди, и чьё
+ * мнение совпало, наполовину отвечает на вопрос, соглашаться ли.
+ */
+export function listNames(names) {
+  const list = (names ?? []).filter(Boolean);
+  if (!list.length) return 'Кто-то';
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} и ${list[1]}`;
+  return `${list[0]}, ${list[1]} и ещё ${list.length - 2}`;
+}

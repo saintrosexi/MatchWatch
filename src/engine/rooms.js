@@ -462,6 +462,38 @@ export async function closeRoom(code) {
 }
 
 /**
+ * Фильмы, на которых сошлось большинство, но не все.
+ *
+ * Мэтч по-прежнему требует согласия каждого. Но почти-совпадения
+ * пропадали молча: в одной комнате четыре раза двое из троих выбирали
+ * один и тот же фильм, и вечер каждый раз кончался ничем.
+ */
+export async function roomNearMatches(code) {
+  if (!supabaseReady()) return [];
+  const normalized = normalizeRoomCode(code);
+  if (!normalized) return [];
+
+  const rows = await guarded(
+    () => supabase.rpc('room_near_matches', { p_code: normalized }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'near matches' },
+  );
+
+  return (rows ?? []).map((row) => ({
+    titleId: row.title_id,
+    title: row.title ?? null,
+    likes: row.likes,
+    members: row.members,
+    likedBy: row.liked_by ?? [],
+    /*
+     * «Прошёл мимо» и «не дошёл» — разные вещи, и путать их нельзя:
+     * первого спрашиваем один раз и мягко, второму просто показываем
+     * карточку раньше очереди.
+     */
+    skipped: row.my_action === 'pass',
+  }));
+}
+
+/**
  * Выгнать участника.
  *
  * Заодно закрывает ему вход по коду: без этого «выгнать» означало бы

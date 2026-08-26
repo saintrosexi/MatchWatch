@@ -600,6 +600,22 @@ export default function App() {
       compact={deckMode === DECK_MODE.ROOM}
       roomProgress={deckMode === DECK_MODE.ROOM ? room.progress : null}
       roomMembers={deckMode === DECK_MODE.ROOM ? room.members : null}
+      nearMatches={deckMode === DECK_MODE.ROOM ? room.nearMatches : []}
+      onRefreshNear={deckMode === DECK_MODE.ROOM ? room.refreshNearMatches : null}
+      /*
+       * Согласие — это обычный голос «за», а не отдельная сущность.
+       * Мэтч после него срабатывает тем же путём, что и всегда: правило
+       * «сошлись все» не обходится, просто человеку показали, что от него
+       * зависит развязка.
+       */
+      onAgreeNear={deckMode === DECK_MODE.ROOM ? (async (item) => {
+        const title = item.title?.title ? item.title : { id: item.titleId };
+        const result = await room.swipe(title, ACTION.LIKE);
+        await room.refreshNearMatches();
+        if (!result?.matched) {
+          toasts.success('Ваш голос учтён — ждём остальных');
+        }
+      }) : null}
       onDecision={handleDecision}
       onOpenDetails={setDetailsEntry}
       onOpenFilters={() => setFiltersOpen(true)}

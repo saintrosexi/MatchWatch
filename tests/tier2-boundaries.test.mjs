@@ -957,3 +957,22 @@ test('B47 · решение человека главнее и TMDB, и моде
   assert.equal(russianEra(1991), 'soviet');
   assert.equal(russianEra(1997), 'modern');
 });
+
+test('B48 · имена в почти-совпадении читаются, а не перечисляются', async () => {
+  const { listNames } = await import('../shared/i18n/plural.js');
+
+  /*
+   * Имена вместо «двое из трёх» намеренно: в комнате сидят знакомые
+   * люди, и чьё именно мнение совпало — половина ответа на вопрос,
+   * соглашаться ли.
+   */
+  assert.equal(listNames(['Аня']), 'Аня');
+  assert.equal(listNames(['Аня', 'Егор']), 'Аня и Егор');
+  assert.equal(listNames(['Аня', 'Егор', 'Саня']), 'Аня, Егор и ещё 1');
+  assert.equal(listNames(['Аня', 'Егор', 'Саня', 'Даня']), 'Аня, Егор и ещё 2');
+
+  // Без имён экран всё равно должен читаться.
+  assert.equal(listNames([]), 'Кто-то');
+  assert.equal(listNames(undefined), 'Кто-то');
+  assert.equal(listNames([null, 'Аня']), 'Аня');
+});

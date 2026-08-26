@@ -673,3 +673,25 @@
 
 .why-film__icon { color: var(--coral); flex: 0 0 auto; }
 .why-film__error { font-size: var(--t-micro); color: var(--coral); }
+
+/* ── Почти-совпадения на паузе ──────────────────────────────────── */
+.near__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-radius: var(--r-lg, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+}
+
+.near__poster {
+  width: 46px;
+  height: 68px;
+  flex: 0 0 auto;
+  border-radius: var(--r-sm, 8px);
+  object-fit: cover;
+}
+
+.near__title { font-weight: 600; font-size: var(--t-body); color: var(--text-hi); }
+.near__who { font-size: var(--t-small); color: var(--text-mid); }

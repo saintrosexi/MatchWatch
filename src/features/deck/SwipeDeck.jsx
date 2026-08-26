@@ -3,6 +3,7 @@ import { SwipeCard } from './SwipeCard.jsx';
 import { ActionBar } from './ActionBar.jsx';
 import { useSwipeGesture } from '../../hooks/useSwipeGesture.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
+import { NearMatches } from '../rooms/NearMatches.jsx';
 import { prefetchPosters } from '../../ui/Poster.jsx';
 import { haptic } from '../../lib/telegram.js';
 import { sfx, unlockAudio } from '../../lib/sound.js';
@@ -23,6 +24,9 @@ export function SwipeDeck({
   /** Прогресс участников комнаты: { size, mine, slowest, byUser }. */
   roomProgress = null,
   roomMembers = null,
+  nearMatches = [],
+  onAgreeNear = null,
+  onRefreshNear = null,
   emptyTitle = 'Колода закончилась',
   emptyText = 'Мы показали всё, что подходит под фильтры. Ослабьте их — и лента оживёт.',
   emptyArt = null,
@@ -125,21 +129,36 @@ export function SwipeDeck({
         }));
 
       return (
-        <EmptyState
-          icon={Users}
-          title="Свою пачку вы прошли"
-          text="Ждём остальных — как только все закончат, добавим ещё карточек."
-          action={(
-            <div className="stack gap-2" style={{ minWidth: 220 }}>
-              {waiting.map((person) => (
-                <div className="row row--between" key={person.name}>
-                  <span className="member__name">{person.name}</span>
-                  <span className="mono faint">{person.done} из {roomProgress.size}</span>
-                </div>
-              ))}
-            </div>
+        <div className="stack gap-4">
+          <EmptyState
+            icon={Users}
+            title="Свою пачку вы прошли"
+            text="Ждём остальных — как только все закончат, добавим ещё карточек."
+            action={(
+              <div className="stack gap-2" style={{ minWidth: 220 }}>
+                {waiting.map((person) => (
+                  <div className="row row--between" key={person.name}>
+                    <span className="member__name">{person.name}</span>
+                    <span className="mono faint">{person.done} из {roomProgress.size}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          />
+
+          {/*
+            * Почти-совпадения показываем ровно здесь: человек и так
+            * стоит без дела. Вклиниваться с этим в ленту нельзя —
+            * посреди свайпов такой вопрос читается как давление.
+            */}
+          {onAgreeNear && (
+            <NearMatches
+              items={nearMatches}
+              onAgree={onAgreeNear}
+              onRefresh={onRefreshNear}
+            />
           )}
-        />
+        </div>
       );
     }
 

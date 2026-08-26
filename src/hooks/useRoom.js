@@ -11,7 +11,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   addToWatchlist, closeRoom, createRoom, joinRoom, kickRoomMember, leaveRoom, markWatched,
   appendDeck, publishDeck, recordSwipe, removeFromWatchlist, setRoomMood, subscribeRoom,
-  transferRoomHost, RoomError, JOIN_SOURCE,
+  transferRoomHost, roomNearMatches, RoomError, JOIN_SOURCE,
 } from '../engine/rooms.js';
 import { buildConsensusProfile } from '../engine/ranking.js';
 import { getConfig } from '../engine/recommendationConfig.js';
@@ -195,6 +195,23 @@ export function useRoom({ user, taste }) {
     [code],
   );
 
+  /*
+   * Почти-совпадения. Обновляются на паузе, а не подпиской: экран
+   * ожидания открывают редко, и держать ради него живой запрос
+   * ко всей комнате незачем.
+   */
+  const [nearMatches, setNearMatches] = useState([]);
+
+  const refreshNearMatches = useCallback(async () => {
+    if (!code) return;
+    try {
+      setNearMatches(await roomNearMatches(code));
+    } catch {
+      // Подсказка — не то, ради чего стоит показывать ошибку.
+      setNearMatches([]);
+    }
+  }, [code]);
+
   /** Выгнать участника — умеет только хост. */
   const kick = useCallback(
     (uid) => (code ? kickRoomMember(code, uid) : Promise.resolve(null)),
@@ -274,6 +291,7 @@ export function useRoom({ user, taste }) {
     code, state, status, error, celebration, consensus,
     members, onlineCount, progress,
     growDeck, setMood, kick, makeHost,
+    nearMatches, refreshNearMatches,
     /** Запросы всех участников — из них складывается общая колода. */
     moodRequests: members.map((m) => m.mood ?? { keys: [], ai: null }),
     myMood: members.find((m) => m.uid === user?.uid)?.mood ?? { keys: [], ai: null },
