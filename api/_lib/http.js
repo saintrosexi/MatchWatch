@@ -11,7 +11,19 @@ import { timingSafeEqual } from 'node:crypto';
 import { LEVEL } from '../../shared/telemetry/events.js';
 import { logError } from './telemetry.js';
 
-const ALLOWED_ORIGIN_SUFFIXES = ['.vercel.app', '.t.me', 'telegram.org'];
+/*
+ * Кому браузер разрешит читать наши ответы.
+ *
+ * Здесь стоял суффикс `.vercel.app` — то есть доступ получал любой чужой
+ * проект на Vercel, а их там миллионы. Настоящей беды это не давало:
+ * всё чувствительное требует Bearer-токен, которого чужой сайт не знает,
+ * а cookie мы не используем. Но раздавать доступ незнакомцам без причины
+ * незачем — суффикс сужен до собственных развёрток.
+ *
+ * telegram.org нужен самому Mini App: он открывается в домене клиента.
+ */
+const ALLOWED_ORIGIN_SUFFIXES = ['telegram.org'];
+const OWN_DEPLOYMENT = /^matchwatch[a-z0-9-]*\.vercel\.app$/;
 
 function resolveOrigin(req) {
   const origin = req.headers?.origin;
@@ -21,9 +33,18 @@ function resolveOrigin(req) {
   try {
     const { hostname, protocol } = new URL(origin);
     if (hostname === 'localhost' || hostname === '127.0.0.1') return origin;
-    if (protocol === 'https:' && ALLOWED_ORIGIN_SUFFIXES.some((s) => hostname.endsWith(s))) return origin;
+    if (protocol === 'https:'
+      && (OWN_DEPLOYMENT.test(hostname) || ALLOWED_ORIGIN_SUFFIXES.some((s) => hostname.endsWith(s)))) {
+      return origin;
+    }
   } catch { /* ignore */ }
-  return explicit[0] ?? '*';
+
+  /*
+   * Незнакомый origin. Раньше здесь отдавалась звёздочка — то есть отказ
+   * превращался в разрешение для всех. Отдаём свой домен: браузер сверит
+   * его с фактическим и ответ читать не даст.
+   */
+  return explicit[0] ?? 'https://matchwatch-seven.vercel.app';
 }
 
 export function sendJson(res, status, payload, { cacheSeconds = 0 } = {}) {

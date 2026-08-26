@@ -213,6 +213,31 @@ test('X9a · служебный секрет закрывает доступ, а
   }
 });
 
+test('X9b · CORS не раздаёт доступ незнакомым сайтам', async () => {
+  const handler = withHandler({ methods: ['GET'], module: MODULE.OPS }, async () => ({ ok: true }));
+
+  const originFor = async (origin) => {
+    const res = fakeRes();
+    await handler(fakeReq({ headers: origin ? { origin } : {} }), res);
+    return res.headers['access-control-allow-origin'];
+  };
+
+  // Свои развёртки и клиент Telegram — можно.
+  assert.equal(await originFor('https://matchwatch-seven.vercel.app'), 'https://matchwatch-seven.vercel.app');
+  assert.equal(await originFor('https://web.telegram.org'), 'https://web.telegram.org');
+
+  /*
+   * Чужой проект на Vercel — нельзя. Раньше сюда пускал суффикс
+   * `.vercel.app`, то есть любой из миллионов чужих развёрток.
+   */
+  assert.notEqual(await originFor('https://evil-project.vercel.app'), 'https://evil-project.vercel.app');
+  assert.notEqual(await originFor('https://example.com'), 'https://example.com');
+
+  // И звёздочку незнакомцу не отдаём: отказ не должен превращаться
+  // в разрешение для всех.
+  assert.notEqual(await originFor('https://example.com'), '*');
+});
+
 test('X10 · обёртка хендлера отдаёт машиночитаемую ошибку вместо голого 500', async () => {
   const handler = withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY }, async () => {
     throw badRequest('bad_input', 'Параметр id обязателен');
