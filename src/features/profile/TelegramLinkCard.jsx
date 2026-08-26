@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Check, Link2, Link2Off, Loader2, Send } from '../../ui/icons.js';
+import { StatusStrip } from '../../ui/States.jsx';
 import { ENV } from '../../lib/env.js';
 import { describeError } from '../../lib/api.js';
 
@@ -61,9 +62,9 @@ export function TelegramLinkCard({ user, links, inTelegram, onLink, onUnlink, to
       </div>
 
       {unavailable && (
-        <p className="status-strip status-strip--warn">
+        <StatusStrip tone="warn">
           Привязка выключена: на сервере не задан SUPABASE_SERVICE_ROLE_KEY.
-        </p>
+        </StatusStrip>
       )}
 
       {!unavailable && !linked && inTelegram && (

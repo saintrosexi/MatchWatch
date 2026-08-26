@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AlertCircle, Copy, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles, UserPlus, Users } from '../../ui/icons.js';
-import { EmptyState } from '../../ui/States.jsx';
+import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
 import { JOIN_SOURCE } from '../../engine/rooms.js';
@@ -311,10 +311,10 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
         </div>
 
         {waiting && (
-          <p className="status-strip">
+          <StatusStrip>
             Ждём второго участника. Отправьте ему код — и соберём общую колоду
             по вкусам вас обоих.
-          </p>
+          </StatusStrip>
         )}
       </section>
 

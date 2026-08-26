@@ -43,7 +43,7 @@ const Onboarding = lazy(() => import('../features/onboarding/Onboarding.jsx')
 
 import { Toasts } from '../ui/Toasts.jsx';
 import { ErrorBoundary } from '../ui/ErrorBoundary.jsx';
-import { LoadingState } from '../ui/States.jsx';
+import { LoadingState, StatusStrip } from '../ui/States.jsx';
 import { Radar } from '../ui/Radar.jsx';
 
 import { ACTION, createEmptyProfile, hydrateProfile } from '../engine/tasteProfile.js';
@@ -586,7 +586,10 @@ export default function App() {
     buildSharedDeck, deckBuilding,
   });
 
-  const statusStrip = renderStatus({ online, room, roomSession, deckMode, auth, pendingWrites });
+  const statusStrip = renderStatus({
+    online, room, roomSession, deckMode, auth, pendingWrites,
+    onOpenRoom: () => navigate(VIEW.ROOMS),
+  });
 
   const navigate = (key) => { haptic('select'); setActorDeck(null); setView(key); };
   const shellProps = { active: view, onNavigate: navigate, user: sessionUser, online };
@@ -841,34 +844,44 @@ function renderView(ctx) {
 }
 
 /** Строка состояния: сеть, комната, режим колоды. Молчание — худший UX. */
-function renderStatus({ online, room, roomSession, deckMode, auth, pendingWrites }) {
+function renderStatus({ online, room, roomSession, deckMode, auth, pendingWrites, onOpenRoom }) {
+  /*
+   * У каждой строки свой ключ: он же ключ React-элемента. Смена ключа
+   * пересоздаёт компонент, а вместе с ним и состояние «закрыто» —
+   * иначе однажды скрытое уведомление не показалось бы и тогда,
+   * когда случилось что-то новое.
+   */
   if (!online) {
     return (
-      <p className="status-strip status-strip--error">
+      <StatusStrip key="offline" tone="error" dismissible={false}>
         Нет соединения. Отметки сохраняются и уедут в базу, когда сеть вернётся.
-      </p>
+      </StatusStrip>
     );
   }
 
   // Сеть есть, но что-то ещё не доехало — честно показываем, а не молчим.
   if (pendingWrites > 0) {
     return (
-      <p className="status-strip status-strip--warn">
+      <StatusStrip key="pending" tone="warn" dismissible={false}>
         Досылаем {pendingWrites} {pendingWrites === 1 ? 'отметку' : 'отметок'} в базу…
-      </p>
+      </StatusStrip>
     );
   }
   if (auth.isDegraded) {
-    return <p className="status-strip status-strip--warn">{auth.error?.text}</p>;
+    return <StatusStrip key="degraded" tone="warn">{auth.error?.text}</StatusStrip>;
   }
   if (room.error) {
-    return <p className="status-strip status-strip--error">{room.error.message}</p>;
+    return <StatusStrip key={`room-error:${room.error.message}`} tone="error">{room.error.message}</StatusStrip>;
   }
   if (deckMode === 'room' && roomSession) {
     return (
-      <p className="status-strip status-strip--live">
+      <StatusStrip
+        key={`room:${room.code}`}
+        tone="live"
+        action={{ label: 'В комнату', onClick: onOpenRoom }}
+      >
         Комната {room.code} · {room.onlineCount} в сети · общая колода
-      </p>
+      </StatusStrip>
     );
   }
   return null;

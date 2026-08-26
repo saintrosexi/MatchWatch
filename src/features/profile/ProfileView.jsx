@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { BarChart3, Crown, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
 import { Radar } from '../../ui/Radar.jsx';
 import { Poster } from '../../ui/Poster.jsx';
-import { EmptyState } from '../../ui/States.jsx';
+import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
@@ -69,9 +69,9 @@ export function ProfileView({
         </div>
 
         {!profile?.username && (
-          <p className="status-strip status-strip--warn">
+          <StatusStrip tone="warn" action={{ label: 'Задать', onClick: onEditProfile }}>
             Задайте ник — без него друзья не смогут вас найти.
-          </p>
+          </StatusStrip>
         )}
       </header>
 
