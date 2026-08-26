@@ -976,3 +976,55 @@ test('B48 · имена в почти-совпадении читаются, а 
   assert.equal(listNames(undefined), 'Кто-то');
   assert.equal(listNames([null, 'Аня']), 'Аня');
 });
+
+test('B49 · близость считается к ближайшему любимому, а не к среднему', async () => {
+  const { affinityToLoved } = await import('../src/engine/affinity.js');
+
+  /*
+   * Суть замены центроида. Человек любит и мрачное, и лёгкое. Усреднение
+   * дало бы центр между ними — и подборку из фильмов, не похожих ни на
+   * один из двух. Максимум по любимым сохраняет обе ветки живыми.
+   */
+  const loved = [
+    { id: 'grim', title: 'Брат', tags: { crime: 100, loner: 90 }, moods: { darkness: 80, energy: 50, intellect: 50, emotion: 50, dynamism: 50 } },
+    { id: 'light', title: 'Кин-дза-дза', tags: { comedy: 100, absurdist: 90 }, moods: { darkness: 40, energy: 50, intellect: 50, emotion: 50, dynamism: 50 } },
+  ];
+
+  const grimCandidate = { id: 'x', tags: { crime: 95, loner: 85 }, moods: { darkness: 78, energy: 50, intellect: 50, emotion: 50, dynamism: 50 } };
+  const lightCandidate = { id: 'y', tags: { comedy: 95, absurdist: 85 }, moods: { darkness: 42, energy: 50, intellect: 50, emotion: 50, dynamism: 50 } };
+  const middling = { id: 'z', tags: { drama: 60 }, moods: { darkness: 60, energy: 50, intellect: 50, emotion: 50, dynamism: 50 } };
+
+  const grim = affinityToLoved(grimCandidate, loved);
+  const light = affinityToLoved(lightCandidate, loved);
+  const mid = affinityToLoved(middling, loved);
+
+  assert.ok(grim.score > 0.7, `мрачный кандидат должен попасть в «Брата», получили ${grim.score}`);
+  assert.ok(light.score > 0.7, `лёгкий должен попасть в «Кин-дза-дзу», получили ${light.score}`);
+
+  /*
+   * Главная проверка: серединка проигрывает обоим краям. При усреднении
+   * профиля было бы ровно наоборот — она лежала бы ближе всех к центру.
+   */
+  assert.ok(mid.score < grim.score && mid.score < light.score,
+    `среднее не должно выигрывать: серединка ${mid.score}, края ${grim.score}/${light.score}`);
+
+  // Объяснение называет конкретный фильм, а не «вектор».
+  assert.equal(grim.best.title, 'Брат');
+  assert.equal(light.best.title, 'Кин-дза-дза');
+
+  // Без опор функция не падает и не выдумывает.
+  assert.deepEqual(affinityToLoved(grimCandidate, []), { score: 0, best: null, alsoLike: [] });
+});
+
+test('B50 · похожее на отвергнутое понижается, но не запрещается', async () => {
+  const { affinityToRefused } = await import('../src/engine/affinity.js');
+
+  const refused = [{ id: 'r', tags: { superhero: 100, action: 90 }, moods: { darkness: 40, energy: 80, intellect: 30, emotion: 50, dynamism: 85 } }];
+
+  const twin = { id: 'a', tags: { superhero: 95, action: 85 }, moods: { darkness: 42, energy: 78, intellect: 32, emotion: 50, dynamism: 83 } };
+  const distant = { id: 'b', tags: { documentary: 90 }, moods: { darkness: 50, energy: 40, intellect: 80, emotion: 60, dynamism: 30 } };
+
+  assert.ok(affinityToRefused(twin, refused) > 0.8, 'почти тот же фильм — высокая похожесть');
+  assert.ok(affinityToRefused(distant, refused) < 0.4, 'непохожий не должен наказываться');
+  assert.equal(affinityToRefused(twin, []), 0);
+});

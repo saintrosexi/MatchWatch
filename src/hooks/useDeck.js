@@ -80,6 +80,14 @@ export function useDeck({
   filters = {},
   taste,
   history = {},
+  /**
+   * Опоры вкуса: конкретные любимые и отвергнутые фильмы.
+   *
+   * Заменяют усреднённый профиль как главный сигнал. Без них движок
+   * работает по накопленному вектору, как раньше, — то есть новичок
+   * ничего не теряет, просто не получает лучшего.
+   */
+  anchors = null,
   actorId = null,
   roomDeck = null,
   /**
@@ -115,10 +123,12 @@ export function useDeck({
   const refillBlockedUntil = useRef(0);
   const queuedIds = useRef(new Set());
   const tasteRef = useRef(taste);
+  const anchorsRef = useRef(anchors);
   const historyRef = useRef(history);
   const generation = useRef(0);
 
   tasteRef.current = taste;
+  anchorsRef.current = anchors;
   historyRef.current = history;
 
   const filterKey = useMemo(() => JSON.stringify(filters ?? {}), [filters]);
@@ -134,6 +144,8 @@ export function useDeck({
     if (!candidates.length) return 0;
 
     const ranked = rankDeck(candidates, tasteRef.current, {
+      loved: anchorsRef.current?.loved,
+      refused: anchorsRef.current?.refused,
       config,
       history: historyRef.current,
       size: size ?? config.deck.soloSize,
@@ -253,6 +265,8 @@ export function useDeck({
           const { titles } = await loadActorDeck(actorId, { signal: controller.signal });
           if (generation.current !== myGeneration) return;
           const ranked = rankDeck(titles, tasteRef.current, {
+            loved: anchorsRef.current?.loved,
+            refused: anchorsRef.current?.refused,
             config: getConfig(), history: historyRef.current, size: titles.length, explorationRate: 0,
           });
           ranked.forEach((e) => queuedIds.current.add(e.id));

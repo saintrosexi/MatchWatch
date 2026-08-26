@@ -16,7 +16,7 @@ export const SwipeCard = forwardRef(function SwipeCard(
   { entry, depth = 0, isTop = false, bind, onOpenDetails },
   ref,
 ) {
-  const { title, matchedTags = [], slot, confidence } = entry;
+  const { title, matchedTags = [], slot, confidence, becauseOf } = entry;
   const explore = slot === 'explore';
 
   return (
@@ -90,11 +90,24 @@ export const SwipeCard = forwardRef(function SwipeCard(
 
         {isTop && (
           <p className="card__why">
+            {/*
+              * Конкретный фильм вместо перечня тем.
+              *
+              * «Похоже на "Брата", который вам зашёл» человек проверяет
+              * сам за секунду: он помнит «Брата» и знает, похоже ли.
+              * «Совпало по темам: криминал, одиночка» проверить нечем —
+              * это отчёт о работе движка, а не довод.
+              *
+              * Темы остаются запасным вариантом: у карточек без опоры
+              * сказать больше нечего.
+              */}
             {explore
               ? <>Показываем, чтобы расширить ваш вкус — тема для вас новая</>
-              : matchedTags.length
-                ? <>Похоже на то, что вы любите: <strong>{matchedTags.slice(0, 2).map(tagLabel).join(', ')}</strong></>
-                : <>Высокий рейтинг у зрителей — присмотритесь</>}
+              : becauseOf?.title
+                ? <>Похоже на <strong>«{becauseOf.title}»</strong> из ваших любимых</>
+                : matchedTags.length
+                  ? <>Похоже на то, что вы любите: <strong>{matchedTags.slice(0, 2).map(tagLabel).join(', ')}</strong></>
+                  : <>Высокий рейтинг у зрителей — присмотритесь</>}
           </p>
         )}
 

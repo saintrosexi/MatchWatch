@@ -533,3 +533,47 @@ test('X12 · колода комнаты растёт только когда п
   swipes['tmdb:movie:999'] = { alice: 'like', bob: 'like' };
   assert.equal(progressOf(swipes, members).slowest, done.size);
 });
+
+test('X20 · подборка идёт по краям вкуса, а не по его середине', async () => {
+  const { rankDeck } = await import('../src/engine/ranking.js');
+  const { createEmptyProfile, applySignal, ACTION } = await import('../src/engine/tasteProfile.js');
+
+  const mk = (id, title, tags, darkness, quality) => ({
+    id, title, tags, quality,
+    moods: { darkness, energy: 50, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  /*
+   * Человек любит и мрачное, и лёгкое. Усреднение давало центр между
+   * ними — и подборку из фильмов, не похожих ни на один из двух.
+   * Это и было «среднее дерьмо»: система награждала посредственность
+   * за то, что она посередине.
+   */
+  const loved = [
+    mk('l1', 'Брат', { crime: 100, loner: 90 }, 80, 0.7),
+    mk('l2', 'Кин-дза-дза', { comedy: 100, absurdist: 90 }, 40, 0.8),
+  ];
+
+  const grim = mk('c1', 'Мрачный', { crime: 95, loner: 85 }, 78, 0.6);
+  const light = mk('c2', 'Лёгкий', { comedy: 95, absurdist: 80 }, 42, 0.6);
+  // Середина намеренно сделана КАЧЕСТВЕННЕЕ краёв: даже так она
+  // не должна выигрывать, иначе замена центроида ничего не дала.
+  const middle = mk('c3', 'Серединка', { drama: 60 }, 60, 0.9);
+
+  let profile = createEmptyProfile();
+  for (const l of loved) profile = applySignal(profile, l, ACTION.FAVORITE);
+
+  const deck = rankDeck([grim, light, middle], profile, {
+    loved, size: 3, explorationRate: 0,
+  });
+
+  const byId = Object.fromEntries(deck.map((e) => [e.id, e]));
+
+  assert.ok(byId.c1.score > byId.c3.score * 1.5,
+    `край вкуса должен уверенно обгонять середину: ${byId.c1.score} против ${byId.c3.score}`);
+  assert.ok(byId.c2.score > byId.c3.score * 1.5);
+
+  // Каждый край тянется к своей опоре, а не к общей точке.
+  assert.equal(byId.c1.becauseOf.title, 'Брат');
+  assert.equal(byId.c2.becauseOf.title, 'Кин-дза-дза');
+});

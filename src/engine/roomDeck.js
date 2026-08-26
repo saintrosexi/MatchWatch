@@ -30,6 +30,15 @@ export async function buildRoomDeck({
   consensus, filters = {}, history = {}, excludeIds = [], size, signal, pool: reusablePool = null,
   /** Что участники выбрали на сегодня: массив массивов ключей чипов. */
   moodRequests = [],
+  /**
+   * Опоры всех участников, слитые в один список.
+   *
+   * Для комнаты это работает даже лучше, чем для одного человека: фильм,
+   * похожий на любимое ЕГО, и фильм, похожий на любимое ЕЁ, оба попадают
+   * наверх — вместо одного компромисса посередине, не похожего ни на что
+   * из того, что любит хоть кто-то.
+   */
+  anchors = null,
 } = {}) {
   const config = getConfig();
   const pool = reusablePool ?? new CatalogPool({ filters });
@@ -63,6 +72,8 @@ export async function buildRoomDeck({
   const rank = () => {
     const candidates = pool.all.filter((t) => !excluded.has(t.id));
     const ranked = rankDeck(candidates, consensus, {
+      loved: anchors?.loved,
+      refused: anchors?.refused,
       config,
       history,
       size: requests.length ? Math.max(target * 3, target) : target,

@@ -12,6 +12,7 @@
  */
 
 import { MOOD_AXES, RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
+import { affinityToLoved, affinityToRefused } from './affinity.js';
 import { hydrateProfile, isWarm } from './tasteProfile.js';
 import { isColdStartTitle } from '../../shared/config/coldStart.js';
 
@@ -87,17 +88,61 @@ function historyMultiplier(titleId, history, config) {
  * Возвращает не только число, но и разложение — оно нужно UI,
  * чтобы честно объяснить «почему эта карточка здесь».
  */
-export function scoreTitle(title, profile, { config = RECOMMENDATION_CONFIG, history } = {}) {
+export function scoreTitle(title, profile, {
+  config = RECOMMENDATION_CONFIG,
+  history,
+  /** Любимые фильмы как опоры. Без них работает по-старому, на векторе. */
+  loved = null,
+  /** Отвергнутые — второй полюс. */
+  refused = null,
+} = {}) {
   const p = hydrateProfile(profile);
   const tagScore = cosineSimilarity(title.tags, p.tagWeights);
   const moodScore = moodSimilarity(title.moods, p.moods);
   const qualityScore = title.quality ?? 0.5;
 
-  const { tagWeight, moodWeight, qualityWeight } = config.blend;
-  const totalWeight = tagWeight + moodWeight + qualityWeight;
-  const base = (tagScore * tagWeight + moodScore * moodWeight + qualityScore * qualityWeight) / totalWeight;
+  /*
+   * Близость к конкретному любимому фильму — главный сигнал.
+   *
+   * Накопленный вектор остаётся, но уходит на роль широты: он знает,
+   * какие темы человеку вообще близки, и этим страхует случаи, когда
+   * ни один любимый фильм не похож на кандидата.
+   */
+  const affinity = affinityToLoved(title, loved, { config });
+  const refusedScore = affinityToRefused(title, refused, { config });
 
-  const penalty = historyMultiplier(title.id, history, config);
+  const { affinityWeight, tagWeight, moodWeight, qualityWeight } = config.blend;
+
+  /*
+   * Когда опор нет — у новичка или пока любимые не догрузились — вес
+   * близости выпадает из расчёта целиком, вместе со знаменателем.
+   * Оставить его значило бы делить на гарантированный ноль и занижать
+   * все оценки холодного профиля; переложить на другой сигнал —
+   * сломать изоляцию весов, из-за которой конфиг и вынесен наружу:
+   * выставив вес тегов в единицу, а остальные в ноль, обязано получиться
+   * ровно совпадение по тегам, иначе настраивать нечего.
+   *
+   * Оставшиеся сигналы делят полный вес между собой сами: знаменатель
+   * их и нормализует.
+   */
+  const effectiveAffinity = loved?.length ? affinityWeight : 0;
+
+  const totalWeight = effectiveAffinity + tagWeight + moodWeight + qualityWeight;
+  const base = totalWeight === 0 ? 0 : (
+    affinity.score * effectiveAffinity
+    + tagScore * tagWeight
+    + moodScore * moodWeight
+    + qualityScore * qualityWeight
+  ) / totalWeight;
+
+  /*
+   * Похожесть на отвергнутое понижает мягко и пропорционально: фильм,
+   * неотличимый от того, что человек листал влево, теряет треть оценки,
+   * а отдалённо напоминающий — почти ничего.
+   */
+  const refusedDrag = 1 - refusedScore * (config.affinity?.refusedPenalty ?? 0.35);
+
+  const penalty = historyMultiplier(title.id, history, config) * refusedDrag;
 
   /*
    * Пока профиль пуст, сравнивать фильмы по вкусу не с чем, и наверх
@@ -114,6 +159,10 @@ export function scoreTitle(title, profile, { config = RECOMMENDATION_CONFIG, his
     score: Math.round(base * penalty * seedBoost * 10000) / 10000,
     rawScore: Math.round(base * 10000) / 10000,
     tagScore: Math.round(tagScore * 10000) / 10000,
+    affinityScore: Math.round(affinity.score * 10000) / 10000,
+    /** Тот самый любимый фильм, на который похож этот. Идёт в объяснение. */
+    becauseOf: affinity.best ? { id: affinity.best.id, title: affinity.best.title } : null,
+    refusedScore: Math.round(refusedScore * 10000) / 10000,
     moodScore: Math.round(moodScore * 10000) / 10000,
     qualityScore: Math.round(qualityScore * 10000) / 10000,
     penalty,
@@ -153,6 +202,10 @@ export function rankDeck(titles, profile, {
   size = config.deck.soloSize,
   explorationRate,
   random = Math.random,
+  /** Опоры вкуса: конкретные любимые фильмы вместо усреднённой точки. */
+  loved = null,
+  /** Отвергнутое — второй полюс, понижающий похожее. */
+  refused = null,
 } = {}) {
   const p = hydrateProfile(profile);
   const warm = isWarm(p, config);
@@ -161,7 +214,7 @@ export function rankDeck(titles, profile, {
   const scored = [];
   for (const title of titles) {
     if (!title?.id) continue;
-    const evaluation = scoreTitle(title, p, { config, history });
+    const evaluation = scoreTitle(title, p, { config, history, loved, refused });
     if (evaluation.penalty === 0) continue; // жёстко исключено
     scored.push({
       title,

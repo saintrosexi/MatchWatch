@@ -263,6 +263,8 @@ export default function App() {
     filters,
     taste,
     history,
+    /** Опоры вкуса: конкретные любимые фильмы вместо усреднённой точки. */
+    anchors: userState?.anchors ?? null,
     actorId: actorDeck?.id ?? null,
     roomDeck: deckMode === DECK_MODE.ROOM ? room.state?.deck : null,
     roomSwiped: deckMode === DECK_MODE.ROOM ? room.swipedTitleIds : null,
@@ -320,6 +322,7 @@ export default function App() {
       .catch(() => [])
       .then((excluded) => buildRoomDeck({
         consensus: room.consensus ?? taste,
+        anchors: userState?.anchors ?? null,
         filters,
         history: roomHistory(room.state, user?.uid),
         excludeIds: [...published, ...excluded],
@@ -517,6 +520,7 @@ export default function App() {
       const asked = mergeRequestFilters(room.moodRequests ?? []);
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
+        anchors: userState?.anchors ?? null,
         filters: { ...asked, ...filters },
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,

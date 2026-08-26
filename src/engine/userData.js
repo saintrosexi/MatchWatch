@@ -18,6 +18,7 @@ import { serializeProfile, hydrateProfile, decayProfile, applySignal, applyRatin
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
 import { durableWrite, registerHandler } from '../lib/outbox.js';
 import { trackMetric } from '../lib/telemetry.js';
+import { RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
 import { METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
 
@@ -87,6 +88,20 @@ export async function loadUserState(uid) {
     favorites: Object.fromEntries((favorites.data ?? []).map((r) => [r.title_id, {
       ...r.title, id: r.title_id, addedAt: new Date(r.added_at).getTime(),
     }])),
+
+    /**
+     * Опоры вкуса и антиопоры — конкретные фильмы, к которым движок
+     * меряет близость.
+     *
+     * Это замена усреднённому профилю. Средняя точка между «Братом» и
+     * «Кин-дза-дзой» не похожа ни на один из них, и подборка вокруг неё
+     * состояла из фильмов, которых человек не любит. Здесь усреднения
+     * нет: каждый любимый тянет к себе отдельно.
+     *
+     * Свежие важнее давних: вкус меняется, и то, что человек отметил
+     * вчера, говорит о нём больше прошлогоднего.
+     */
+    anchors: anchorsFrom(history.data, favorites.data),
     matches: Object.fromEntries((matches.data ?? []).map((r) => [`${r.title_id}_${r.room_code ?? 'solo'}`, {
       ...r.title,
       titleId: r.title_id,
@@ -471,4 +486,52 @@ export async function updateProfileFields(uid, fields) {
     () => supabase.from('profiles').update(patch).eq('id', uid),
     { module: MODULE.TASTE, description: 'update profile' },
   );
+}
+
+/**
+ * Собирает опоры и антиопоры из истории.
+ *
+ * Опорой становится всё, чем человек сказал «да»: избранное, мэтч,
+ * свайп вправо и высокая оценка. «Просмотрено» опорой НЕ становится —
+ * посмотреть можно и по чужому совету, и от скуки, и это ничего
+ * не говорит о желании смотреть похожее.
+ *
+ * Карточки без тегов отбрасываются: мерить близость нечем, а место
+ * в списке они занимают.
+ */
+function anchorsFrom(history, favorites, { config = RECOMMENDATION_CONFIG } = {}) {
+  const limit = config.affinity?.maxAnchors ?? 40;
+  const refusedLimit = config.affinity?.maxRefused ?? 60;
+  const rating = config.rating?.neutral ?? 6;
+
+  const usable = (row) => row?.title && Object.keys(row.title.tags ?? {}).length > 0;
+  const shape = (row) => ({
+    id: row.title_id,
+    title: row.title.title ?? null,
+    tags: row.title.tags ?? {},
+    moods: row.title.moods ?? null,
+    at: new Date(row.updated_at ?? row.added_at ?? 0).getTime(),
+  });
+
+  const rows = (history ?? []).filter(usable);
+  const byRecency = (a, b) => b.at - a.at;
+
+  const loved = rows
+    .filter((r) => ['favorite', 'match', 'like'].includes(r.action) || (r.rating ?? 0) > rating)
+    .map(shape);
+
+  // Избранное лежит и отдельной таблицей — берём оттуда то, чего нет в истории.
+  const known = new Set(loved.map((a) => a.id));
+  for (const row of (favorites ?? []).filter(usable)) {
+    if (known.has(row.title_id)) continue;
+    loved.push(shape(row));
+    known.add(row.title_id);
+  }
+
+  const refused = rows.filter((r) => r.action === 'dislike').map(shape);
+
+  return {
+    loved: loved.sort(byRecency).slice(0, limit),
+    refused: refused.sort(byRecency).slice(0, refusedLimit),
+  };
 }
