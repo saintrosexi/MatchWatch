@@ -191,7 +191,7 @@ export function useRoom({ user, taste }) {
 
   /** Настроение на сегодня: своё меняем, чужие только читаем. */
   const setMood = useCallback(
-    (keys) => (code ? setRoomMood(code, keys) : Promise.resolve(null)),
+    (keys, ai = null) => (code ? setRoomMood(code, keys, ai) : Promise.resolve(null)),
     [code],
   );
 
@@ -275,8 +275,8 @@ export function useRoom({ user, taste }) {
     members, onlineCount, progress,
     growDeck, setMood, kick, makeHost,
     /** Запросы всех участников — из них складывается общая колода. */
-    moodRequests: members.map((m) => m.mood ?? []),
-    myMood: members.find((m) => m.uid === user?.uid)?.mood ?? [],
+    moodRequests: members.map((m) => m.mood ?? { keys: [], ai: null }),
+    myMood: members.find((m) => m.uid === user?.uid)?.mood ?? { keys: [], ai: null },
     /*
      * Хост — по флагу в составе, а не по создателю: хоста можно передать,
      * и после передачи полномочия обязаны уехать вместе с ним. На старых

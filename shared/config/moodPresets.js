@@ -73,7 +73,16 @@ export const moodPreset = (key) => BY_KEY.get(key) ?? null;
  * @param {string[]} keys выбранные ключи чипов
  * @returns {{axes: Record<string, number>, rewatch: boolean, keys: string[]}}
  */
-export function buildMoodRequest(keys) {
+export function buildMoodRequest(input) {
+  /*
+   * На вход приходит либо массив ключей чипов, либо запрос целиком:
+   * `{ keys, ai }`, где `ai` — разбор фразы, сказанной словами.
+   * Массив поддерживается не ради совместимости, а потому что чипы
+   * остаются самостоятельным способом сказать, чего хочешь, — и
+   * работают, когда разбор недоступен или не настроен.
+   */
+  const keys = Array.isArray(input) ? input : (input?.keys ?? []);
+  const ai = Array.isArray(input) ? null : (input?.ai ?? null);
   const chosen = (keys ?? []).filter((k) => BY_KEY.has(k));
   const sums = {};
   const counts = {};
@@ -85,6 +94,21 @@ export function buildMoodRequest(keys) {
     }
   }
 
+  /*
+   * Сказанное словами складывается с чипами, а не заменяет их.
+   *
+   * Это один и тот же человек, выразивший одно и то же желание двумя
+   * способами: выбрал «Посмеяться» и дописал «но не тупое». Отдать
+   * победу одному из них значило бы выбросить половину сказанного.
+   * По каждой оси берётся среднее из всех источников, которые её
+   * назвали, — ровно то же правило, что между самими чипами.
+   */
+  for (const [axis, value] of Object.entries(ai?.axes ?? {})) {
+    if (!Number.isFinite(Number(value))) continue;
+    sums[axis] = (sums[axis] ?? 0) + Number(value);
+    counts[axis] = (counts[axis] ?? 0) + 1;
+  }
+
   const axes = {};
   for (const axis of Object.keys(sums)) {
     axes[axis] = Math.round(sums[axis] / counts[axis]);
@@ -92,8 +116,20 @@ export function buildMoodRequest(keys) {
 
   return {
     axes,
+    /*
+     * Пересмотр остаётся кнопкой и разбору не отдаётся. Это не
+     * настроение, а состав колоды: «пересмотреть любимое» подмешивает
+     * уже увиденное вместо того, чтобы его исключить. Такое решение
+     * человек принимает сам, а не через угадывание по фразе.
+     */
     rewatch: (keys ?? []).includes(REWATCH),
     keys: chosen,
+    /** Теги из разбора — для прямого совпадения там, где карточка обогащена. */
+    tags: (ai?.tags ?? []).filter((t) => t?.tag),
+    /** Что именно поняли из фразы. Показывается человеку. */
+    summary: ai?.summary ?? null,
+    text: ai?.text ?? null,
+    filters: ai?.filters ?? {},
   };
 }
 

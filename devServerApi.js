@@ -47,7 +47,34 @@ export function devServerApi({ root = process.cwd(), prefix = '/api' } = {}) {
           resolve(root, 'api', `${relative}.js`),
           resolve(root, 'api', relative, 'index.js'),
         ];
-        const file = candidates.find(existsSync);
+        let file = candidates.find(existsSync);
+
+        /*
+         * Повторяем переписывание из vercel.json.
+         *
+         * На проде /api/ai/interpret доезжает до api/ai/index.js с
+         * параметром action — эндпоинты сведены в роутеры, потому что
+         * тариф ограничивает число функций. Локальный сервер про
+         * переписывания не знает, и без этой ветки всё сведённое —
+         * ии, бот, служебные — отвечало бы 404 только в разработке.
+         * Расхождение прода и локали хуже любой из двух поломок:
+         * его замечаешь последним.
+         */
+        if (!file) {
+          const cut = relative.lastIndexOf('/');
+          if (cut > 0) {
+            const router = resolve(root, 'api', relative.slice(0, cut), 'index.js');
+            if (existsSync(router)) {
+              file = router;
+              const action = relative.slice(cut + 1);
+              const [, search = ''] = req.url.split('?');
+              const params = new URLSearchParams(search);
+              params.set('action', action);
+              req.url = `${pathname}?${params.toString()}`;
+            }
+          }
+        }
+
         if (!file) {
           res.statusCode = 404;
           res.setHeader('content-type', 'application/json; charset=utf-8');

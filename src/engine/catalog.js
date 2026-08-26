@@ -183,6 +183,7 @@ function buildParams(filters, page) {
   if (filters.yearFrom) params.yearFrom = filters.yearFrom;
   if (filters.yearTo) params.yearTo = filters.yearTo;
   if (filters.minRating) params.minRating = filters.minRating;
+  if (filters.maxRuntime) params.maxRuntime = filters.maxRuntime;
   if (filters.sort) params.sort = filters.sort;
   if (filters.list) params.list = filters.list;
   return params;

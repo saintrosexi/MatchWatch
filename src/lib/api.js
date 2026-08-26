@@ -168,6 +168,25 @@ export const api = {
     request('/auth/link-telegram', { method: 'DELETE', accessToken, retries: 0 }),
 
   metrics: (days, token) => request(`/ops/metrics${qs({ days, token })}`, { timeoutMs: 20_000 }),
+
+  /**
+   * Разбор фразы «чего хочется сегодня».
+   *
+   * Минута на ожидание и ни одной повторной попытки — оба решения
+   * намеренные. Двенадцати секунд по умолчанию думающей модели мало,
+   * и обрыв по таймауту здесь означал бы подборку не по запросу.
+   * Повтор же стоил бы второго обращения к модели и мог вернуть другой
+   * разбор: человек попросил один раз — разбираем один раз.
+   */
+  aiInterpret: (text, options) =>
+    request('/ai/interpret', { method: 'POST', body: { text }, timeoutMs: 60_000, retries: 0, ...options }),
+
+  /** Почему подборка предложила этот фильм. */
+  aiExplain: (payload, options) =>
+    request('/ai/explain', { method: 'POST', body: payload, timeoutMs: 45_000, retries: 0, ...options }),
+
+  /** Какие модели видит ключ — чтобы имя модели не приходилось угадывать. */
+  aiModels: () => request('/ai/models', { timeoutMs: 20_000, retries: 0 }),
 };
 
 /** Единый разбор ошибки в текст для пользователя. */

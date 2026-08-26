@@ -4,7 +4,7 @@
  * теги выведены из жанров, детальные keywords подтягивает /api/tmdb/enrich.
  * Так первая карточка появляется быстро, а точность тегов догоняет фоном.
  *
- * Параметры: list, genres, yearFrom, yearTo, minRating, page, sort
+ * Параметры: list, genres, yearFrom, yearTo, minRating, maxRuntime, page, sort
  */
 
 import { withHandler } from '../_lib/http.js';
@@ -51,6 +51,12 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
   const yearFrom = clampInt(query.get('yearFrom'), 1900, 2100, null);
   const yearTo = clampInt(query.get('yearTo'), 1900, 2100, null);
   const minRating = toFloat(query.get('minRating'), null);
+  /*
+   * Потолок длительности. Появился ради запросов словами: «не длиннее
+   * двух часов» люди называют часто, и это ровно то жёсткое условие,
+   * которое человек выдвинул прямо, а не то, что за него угадали.
+   */
+  const maxRuntime = clampInt(query.get('maxRuntime'), 40, 400, null);
   const sort = SORTS[query.get('sort')] ?? SORTS.popularity;
   const language = query.get('language') ?? 'ru-RU';
 
@@ -69,6 +75,7 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
         'primary_release_date.gte': yearFrom ? `${yearFrom}-01-01` : undefined,
         'primary_release_date.lte': upperBound,
         'vote_average.gte': minRating ?? undefined,
+        'with_runtime.lte': maxRuntime ?? undefined,
         // Без порога голосов discover вытаскивает случайный шум с рейтингом 10.
         'vote_count.gte': minRating ? 200 : 60,
       }

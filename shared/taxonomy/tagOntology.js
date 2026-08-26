@@ -492,6 +492,167 @@ export const GENRE_MOODS = {
 };
 
 /**
+ * Досыпка вкладов тем тегам, которые их не имели.
+ *
+ * Без вклада в настроение тег работает только прямым совпадением,
+ * а ниже жанрового слоя каталог почти пуст: `slow-burn` стоит у пяти
+ * фильмов из тысячи восьмисот. Вклад в оси работает у всех — вектор
+ * настроения есть у каждого тайтла без исключения.
+ *
+ * Поэтому сюда попали только те теги, которые настроение действительно
+ * несут. Место действия и формат — `japan`, `europe`, `stop-motion`,
+ * `franchise` — оставлены без вклада намеренно: японское кино бывает
+ * и нежным, и беспросветным, и приписывать им общий тон значило бы
+ * врать о половине каталога.
+ */
+Object.assign(TAG_MOODS, {
+  'drama': { emotion: 24, intellect: 10, energy: -8 },
+  'music': { emotion: 24, energy: 14 },
+
+  // ── Криминал и его тон ──────────────────────────────────────────
+  'yakuza': { darkness: 30, dynamism: 18, energy: 12 },
+  'mafia': { darkness: 26, intellect: 14, emotion: 10 },
+  'drug-trade': { darkness: 32, emotion: 8 },
+  'serial-killer': { darkness: 42, intellect: 18, dynamism: -6 },
+  'assassin': { darkness: 24, dynamism: 30, energy: 22 },
+  'detective': { intellect: 30, darkness: 14, dynamism: -8 },
+  'police': { dynamism: 14, darkness: 12 },
+  'spy': { intellect: 26, dynamism: 20, darkness: 12 },
+  'cold-war': { intellect: 24, darkness: 20, dynamism: -10 },
+  'con-artist': { intellect: 28, energy: 18, darkness: 6 },
+  'crew-dynamics': { energy: 16, emotion: 14 },
+  'charisma-lead': { energy: 20, emotion: 12 },
+  'vigilante': { darkness: 26, dynamism: 24, energy: 18 },
+  'prison': { darkness: 34, emotion: 20, energy: -14 },
+  'courtroom': { intellect: 32, emotion: 16, dynamism: -18 },
+  'journalism': { intellect: 28, darkness: 12, dynamism: -8 },
+  'corporate': { intellect: 22, darkness: 16, emotion: -8 },
+
+  // ── Фантастика ──────────────────────────────────────────────────
+  'time-travel': { intellect: 30, energy: 12 },
+  'time-loop': { intellect: 34, darkness: 10 },
+  'cyberpunk': { darkness: 30, intellect: 24, energy: 14 },
+  'ai': { intellect: 32, darkness: 14 },
+  'robot': { intellect: 22, energy: 10 },
+  'space-opera': { energy: 24, dynamism: 24, emotion: 14 },
+  'post-apocalyptic': { darkness: 38, emotion: 14, energy: -6 },
+  'virtual-reality': { intellect: 28, darkness: 12 },
+
+  // ── Ужасы ───────────────────────────────────────────────────────
+  'zombie': { darkness: 36, dynamism: 26, energy: 20 },
+  'vampire': { darkness: 32, emotion: 14 },
+  'werewolf': { darkness: 30, dynamism: 22, energy: 16 },
+  'ghost': { darkness: 28, emotion: 18, dynamism: -12 },
+  'haunted-house': { darkness: 32, dynamism: -14 },
+  'found-footage': { darkness: 26, dynamism: 14, intellect: -8 },
+
+  // ── Люди и отношения ────────────────────────────────────────────
+  'high-school': { energy: 18, emotion: 20, darkness: -10 },
+  'romance-drama': { emotion: 36, darkness: 12, energy: -10 },
+  'mental-health': { emotion: 34, darkness: 28, intellect: 16 },
+  'addiction': { darkness: 36, emotion: 30, energy: -8 },
+  'buddy': { emotion: 22, energy: 18, darkness: -14 },
+  'ensemble': { emotion: 12, energy: 10 },
+
+  // ── История и вера ──────────────────────────────────────────────
+  'medieval': { darkness: 16, emotion: 10 },
+  'sword-and-sorcery': { energy: 22, dynamism: 24 },
+  'dark-fantasy': { darkness: 34, emotion: 14, intellect: 12 },
+  'mythology': { intellect: 20, emotion: 16, dynamism: 8 },
+  'religion': { intellect: 26, emotion: 20, dynamism: -14 },
+  'aristocracy': { intellect: 16, emotion: 12, dynamism: -12 },
+  'biopic': { emotion: 22, intellect: 18, dynamism: -10 },
+  'holocaust': { darkness: 46, emotion: 40, dynamism: -16 },
+  'wwii': { darkness: 30, emotion: 24, dynamism: 12 },
+  'wwi': { darkness: 34, emotion: 26, dynamism: 6 },
+  'vietnam-war': { darkness: 36, emotion: 26, dynamism: 10 },
+  'post-soviet': { darkness: 26, emotion: 22, intellect: 14 },
+
+  // ── Форма и приёмы ──────────────────────────────────────────────
+  'silent-film': { intellect: 20, dynamism: -14, emotion: 16 },
+  'mockumentary': { intellect: 22, darkness: -12 },
+  'anthology': { intellect: 16 },
+  'unreliable-narrator': { intellect: 34, darkness: 16 },
+  'plot-twist': { intellect: 26, dynamism: 12 },
+  'technical-showcase': { energy: 18, dynamism: 16, intellect: 12 },
+  'intellectual-game': { intellect: 36, dynamism: -10 },
+  'martial-arts': { energy: 30, dynamism: 34 },
+  'sword-fight': { energy: 24, dynamism: 30 },
+  'period-action': { energy: 20, dynamism: 22, darkness: 10 },
+  'car-chase': { energy: 34, dynamism: 40 },
+  'motorsport': { energy: 32, dynamism: 34 },
+  'dance': { energy: 26, emotion: 24, darkness: -16 },
+  'road-movie': { emotion: 22, energy: 8, intellect: 10 },
+  'wilderness': { emotion: 14, intellect: 8, energy: -6 },
+  'ocean': { emotion: 16, energy: 8 },
+  'small-town': { emotion: 18, dynamism: -16, darkness: 8 },
+  'globetrotting': { energy: 22, dynamism: 20 },
+  'comic-adaptation': { energy: 24, dynamism: 24, darkness: -8 },
+  'literary-adaptation': { intellect: 24, emotion: 18, dynamism: -12 },
+});
+
+/**
+ * Новые теги под то, как люди говорят о кино.
+ *
+ * Онтология росла от жанров и ключевых слов TMDB, то есть от того, чем
+ * кино **является**. Просьба звучит иначе — чем оно **будет для меня
+ * сегодня вечером**: «лёгкое», «под фон», «чтобы поплакать», «доброе».
+ * Без таких слов разбор сваливает всё в «драму».
+ *
+ * Каждый тег здесь несёт вклад в оси — иначе он не работал бы нигде,
+ * кроме сотни обогащённых карточек.
+ */
+Object.assign(TAG_MOODS, {
+  'cozy': { darkness: -34, emotion: 26, energy: -12, dynamism: -20 },
+  'wholesome': { darkness: -38, emotion: 30, intellect: -6 },
+  'hopeful': { darkness: -26, emotion: 28 },
+  'bittersweet': { emotion: 34, darkness: 18, intellect: 12 },
+  'tearjerker': { emotion: 46, darkness: 24, dynamism: -14 },
+  'uplifting': { darkness: -32, emotion: 30, energy: 20 },
+  'easy-watch': { intellect: -24, darkness: -20, energy: 12 },
+  'demanding': { intellect: 38, dynamism: -18 },
+  'background-watch': { intellect: -30, energy: -8, dynamism: -14 },
+  'meditative': { dynamism: -34, intellect: 24, energy: -26 },
+  'relentless': { energy: 34, dynamism: 38, darkness: 20 },
+  'absurdist': { intellect: 24, darkness: -14, energy: 18 },
+  'whimsical': { darkness: -28, emotion: 22, energy: 14 },
+  'cringe-comedy': { darkness: 12, emotion: 16, intellect: 10 },
+  'date-night': { emotion: 28, darkness: -22 },
+  'crowd-pleaser': { darkness: -24, energy: 22, emotion: 18 },
+  'thought-provoking': { intellect: 38, emotion: 14 },
+  'disaster': { energy: 28, dynamism: 30, darkness: 26 },
+  'first-contact': { intellect: 30, emotion: 18 },
+  'alien-invasion': { energy: 26, dynamism: 28, darkness: 22 },
+  'hard-sci-fi': { intellect: 40, emotion: -8, dynamism: -12 },
+  'multiverse': { intellect: 30, energy: 22, dynamism: 20 },
+  'folk-horror': { darkness: 36, intellect: 18, dynamism: -16 },
+  'home-invasion': { darkness: 34, dynamism: 26, energy: 22 },
+  'possession': { darkness: 38, emotion: 20 },
+  'class-conflict': { intellect: 28, darkness: 24, emotion: 18 },
+  'immigration': { emotion: 32, darkness: 22, intellect: 16 },
+  'poverty': { darkness: 30, emotion: 30 },
+  'illness': { emotion: 40, darkness: 30, dynamism: -20 },
+  'parenthood': { emotion: 34, darkness: 10 },
+  'siblings': { emotion: 28 },
+  'marriage': { emotion: 30, intellect: 12 },
+  'infidelity': { emotion: 30, darkness: 22, intellect: 10 },
+  'forbidden-love': { emotion: 38, darkness: 20 },
+  'love-triangle': { emotion: 30, darkness: 8 },
+  'queer': { emotion: 30, intellect: 14 },
+  'female-lead': { emotion: 16 },
+  'workplace': { intellect: 16, emotion: 12 },
+  'medical': { emotion: 26, intellect: 22, darkness: 18 },
+  'food': { darkness: -26, emotion: 24, dynamism: -14 },
+  'art': { intellect: 30, emotion: 22, dynamism: -16 },
+  'aviation': { energy: 24, dynamism: 26 },
+  'submarine': { darkness: 26, dynamism: -12, intellect: 18 },
+  'military': { darkness: 22, dynamism: 18, energy: 16 },
+  'heist-comedy': { intellect: 22, energy: 24, darkness: -18 },
+  'soviet-classic': { emotion: 26, intellect: 20, dynamism: -18 },
+  'russian-cinema': { emotion: 22, intellect: 14 },
+});
+
+/**
  * Человекочитаемые подписи тегов.
  *
  * Покрывать нужно всё, что может доехать до карточки: и теги из жанров,
@@ -593,6 +754,78 @@ export const TAG_LABELS_RU = {
  * Франшизы и авторы живут в отдельном справочнике, но пользователю
  * это различие безразлично — здесь они склеиваются в один поиск.
  */
+/**
+ * Подписи новых тегов — тех, что описывают не устройство фильма,
+ * а то, чем он станет для зрителя сегодня вечером.
+ */
+Object.assign(TAG_LABELS_RU, {
+  'cozy': 'уютное', 'wholesome': 'доброе', 'hopeful': 'обнадёживающее',
+  'bittersweet': 'горько-сладкое', 'tearjerker': 'до слёз', 'uplifting': 'воодушевляющее',
+  'easy-watch': 'не грузит', 'demanding': 'требует внимания', 'background-watch': 'под фон',
+  'meditative': 'медитативное', 'relentless': 'без передышки', 'absurdist': 'абсурд',
+  'whimsical': 'причудливое', 'cringe-comedy': 'неловкий юмор', 'date-night': 'на свидание',
+  'crowd-pleaser': 'зайдёт всем', 'thought-provoking': 'заставляет думать',
+  'disaster': 'катастрофа', 'first-contact': 'первый контакт',
+  'alien-invasion': 'вторжение', 'hard-sci-fi': 'твёрдая фантастика',
+  'multiverse': 'мультивселенная', 'folk-horror': 'фолк-хоррор',
+  'home-invasion': 'вторжение в дом', 'possession': 'одержимость',
+  'class-conflict': 'классовый конфликт', 'immigration': 'эмиграция',
+  'poverty': 'бедность', 'illness': 'болезнь', 'parenthood': 'родительство',
+  'siblings': 'братья и сёстры', 'marriage': 'брак', 'infidelity': 'измена',
+  'forbidden-love': 'запретная любовь', 'love-triangle': 'любовный треугольник',
+  'queer': 'квир', 'female-lead': 'женщина в центре', 'workplace': 'работа',
+  'medical': 'медицина', 'food': 'еда', 'art': 'искусство',
+  'aviation': 'авиация', 'submarine': 'подводная лодка', 'military': 'армия',
+  'heist-comedy': 'весёлое ограбление', 'soviet-classic': 'советская классика',
+  'russian-cinema': 'российское кино',
+});
+
+/**
+ * Синонимы для новых тегов.
+ *
+ * Без них тег не появится ни на одном фильме: теги собираются из
+ * ключевых слов TMDB, а те приходят на английском и в своей форме.
+ */
+Object.assign(TAG_ALIASES, {
+  'natural-disaster': 'disaster', 'disaster': 'disaster', 'earthquake': 'disaster',
+  'tsunami': 'disaster', 'volcano': 'disaster', 'shipwreck': 'disaster',
+  'first-contact': 'first-contact', 'alien-invasion': 'alien-invasion',
+  'alien-life-form': 'first-contact', 'extraterrestrial': 'first-contact',
+  'hard-science-fiction': 'hard-sci-fi', 'parallel-universe': 'multiverse',
+  'multiverse': 'multiverse', 'alternate-reality': 'multiverse',
+  'folk-horror': 'folk-horror', 'home-invasion': 'home-invasion',
+  'demonic-possession': 'possession', 'exorcism': 'possession', 'possession': 'possession',
+  'class-differences': 'class-conflict', 'social-class': 'class-conflict',
+  'class-conflict': 'class-conflict', 'immigrant': 'immigration',
+  'immigration': 'immigration', 'refugee': 'immigration',
+  'poverty': 'poverty', 'homelessness': 'poverty',
+  'terminal-illness': 'illness', 'cancer': 'illness', 'disease': 'illness',
+  'illness': 'illness', 'hospital': 'medical', 'doctor': 'medical',
+  'surgeon': 'medical', 'nurse': 'medical', 'epidemic': 'medical', 'pandemic': 'medical',
+  'parenthood': 'parenthood', 'motherhood': 'parenthood', 'fatherhood': 'parenthood',
+  'father-son-relationship': 'parenthood', 'mother-daughter-relationship': 'parenthood',
+  'single-parent': 'parenthood', 'adoption': 'parenthood',
+  'sibling-relationship': 'siblings', 'brother-brother-relationship': 'siblings',
+  'sister-sister-relationship': 'siblings', 'twins': 'siblings',
+  'marriage': 'marriage', 'wedding': 'marriage', 'divorce': 'marriage',
+  'marriage-crisis': 'marriage', 'infidelity': 'infidelity',
+  'extramarital-affair': 'infidelity', 'adultery': 'infidelity',
+  'forbidden-love': 'forbidden-love', 'love-triangle': 'love-triangle',
+  'lgbt': 'queer', 'gay': 'queer', 'lesbian': 'queer', 'transgender': 'queer',
+  'gay-theme': 'queer', 'female-protagonist': 'female-lead',
+  'strong-female-lead': 'female-lead', 'woman-director': 'female-lead',
+  'workplace': 'workplace', 'office': 'workplace', 'coworker': 'workplace',
+  'food': 'food', 'cooking': 'food', 'chef': 'food', 'restaurant': 'food',
+  'art': 'art', 'painter': 'art', 'artist': 'art', 'museum': 'art',
+  'aviation': 'aviation', 'airplane': 'aviation', 'pilot': 'aviation',
+  'air-force': 'aviation', 'submarine': 'submarine',
+  'military': 'military', 'army': 'military', 'soldier': 'military',
+  'feel-good-movie': 'feel-good', 'heartwarming': 'wholesome',
+  'coming-of-age': 'coming-of-age', 'road-trip': 'road-movie',
+  'soviet-union': 'soviet-classic', 'russia': 'russian-cinema',
+  'moscow': 'russian-cinema', 'saint-petersburg': 'russian-cinema',
+});
+
 export const tagLabel = (tag) => TAG_LABELS_RU[tag]
   ?? FRANCHISE_LABELS_RU[tag]
   ?? tag.replace(/^collection-\d+$/, 'франшиза').replace(/-/g, ' ');

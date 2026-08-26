@@ -392,7 +392,7 @@ test('F20 · сборка и обязательные артефакты на м
   const root = new URL('../', import.meta.url);
   for (const file of ['package.json', 'vite.config.js', 'vercel.json',
     'index.html', '.env.example', 'api/tmdb/catalog.js', 'api/auth/telegram.js',
-    'api/ops/index.js', 'api/telegram/bot.js', 'api/_lib/opsRoomsGc.js',
+    'api/ops/index.js', 'api/telegram/index.js', 'api/_lib/opsRoomsGc.js',
     'supabase/migrations', 'src/lib/supabase.js', 'api/_lib/supabaseAdmin.js']) {
     assert.ok(existsSync(new URL(file, root)), `нет файла ${file}`);
   }

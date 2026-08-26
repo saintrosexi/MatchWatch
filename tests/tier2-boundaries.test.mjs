@@ -579,3 +579,173 @@ test('B33 · личная история не режет общую колоду
   assert.equal(solo.length, 22, 'в личной ленте решённое убирается');
   assert.equal(solo[0].id, 't0', 'верхняя карточка не трогается никогда');
 });
+
+test('B34 · разбор фразы не придумывает требований за человека', async () => {
+  const { requestFromInterpretation } = await import('../shared/ai/interpretation.js');
+
+  /*
+   * Молчание — не требование. Если про мрачность в запросе ничего нет,
+   * ось darkness не должна появиться: приписать человеку требование,
+   * которого он не выдвигал, значит отвергнуть половину каталога
+   * по причине, которую он не называл.
+   */
+  const light = requestFromInterpretation({
+    summary: 'Ищем лёгкое',
+    axes: { energy: 70 },
+    tags: [],
+  });
+  assert.deepEqual(Object.keys(light.axes), ['energy']);
+
+  // Пустой ответ остаётся пустым, а не превращается в нейтральные 50.
+  const empty = requestFromInterpretation({ summary: '', axes: {}, tags: [] });
+  assert.deepEqual(empty.axes, {});
+  assert.deepEqual(empty.tags, []);
+});
+
+test('B35 · выдуманные моделью теги отбрасываются, а не уходят в запрос', async () => {
+  const { requestFromInterpretation, AI_TAG_VOCABULARY } = await import('../shared/ai/interpretation.js');
+
+  const real = AI_TAG_VOCABULARY[0];
+  const result = requestFromInterpretation({
+    summary: 'проверка',
+    axes: {},
+    tags: [
+      { tag: real, weight: 1 },
+      { tag: 'совершенно-выдуманный-тег', weight: 1 },
+      { tag: 'another-invented-one', weight: 0.5 },
+    ],
+  });
+
+  assert.deepEqual(result.tags.map((t) => t.tag), [real],
+    'в запрос попадают только теги из словаря');
+  assert.equal(result.dropped.length, 2, 'отброшенные названы — по ним видно, чего не хватает словарю');
+});
+
+test('B36 · тег двигает подборку даже когда его нет ни на одном фильме', async () => {
+  const { requestFromInterpretation } = await import('../shared/ai/interpretation.js');
+
+  /*
+   * Главная гарантия результата. Ниже жанрового слоя теги в каталоге
+   * почти пусты, зато вектор настроения есть у каждого тайтла. Поэтому
+   * выбранный тег обязан превращаться в сдвиг по осям — иначе запрос
+   * вроде «до слёз» тихо не сделал бы ничего.
+   */
+  const tearjerker = requestFromInterpretation({
+    summary: 'Поплакать',
+    axes: {},
+    tags: [{ tag: 'tearjerker', weight: 1 }],
+  });
+
+  assert.ok(tearjerker.axes.emotion > 70,
+    `эмоциональность должна вырасти, получили ${tearjerker.axes.emotion}`);
+  assert.ok(Object.keys(tearjerker.axes).length > 0, 'оси не могут остаться пустыми');
+});
+
+test('B37 · названная моделью ось побеждает выведенную из тегов', async () => {
+  const { requestFromInterpretation } = await import('../shared/ai/interpretation.js');
+
+  // Прямое утверждение сильнее производного: модель сказала «энергия 20»,
+  // и тег «без передышки» это не переспорит.
+  const result = requestFromInterpretation({
+    summary: 'проверка',
+    axes: { energy: 20 },
+    tags: [{ tag: 'relentless', weight: 1 }],
+  });
+
+  assert.equal(result.axes.energy, 20);
+  // А оси, о которых модель промолчала, тег заполняет.
+  assert.ok(result.axes.dynamism > 50, 'динамизм пришёл из тега');
+});
+
+test('B38 · жёсткими фильтрами становится только названное прямо', async () => {
+  const { requestFromInterpretation } = await import('../shared/ai/interpretation.js');
+
+  const ok = requestFromInterpretation({
+    summary: '', axes: {}, tags: [],
+    filters: { yearFrom: 2010, yearTo: 2020, maxRuntime: 120, minRating: 7, genres: ['35'] },
+  });
+  assert.deepEqual(ok.filters,
+    { yearFrom: 2010, yearTo: 2020, maxRuntime: 120, minRating: 7, genres: ['35'] });
+
+  // Мусор отсекается: пустой каталог хуже, чем проигнорированное условие.
+  const junk = requestFromInterpretation({
+    summary: '', axes: {}, tags: [],
+    filters: { yearFrom: 1200, yearTo: 3000, maxRuntime: 5, minRating: 99, genres: ['нету', '35'] },
+  });
+  assert.deepEqual(junk.filters, { genres: ['35'] });
+
+  // Перепутанные границы разворачиваются, а не отдают пустоту.
+  const swapped = requestFromInterpretation({
+    summary: '', axes: {}, tags: [], filters: { yearFrom: 2020, yearTo: 2010 },
+  });
+  assert.deepEqual(swapped.filters, { yearFrom: 2010, yearTo: 2020 });
+});
+
+test('B39 · сказанное словами складывается с чипами, а не заменяет их', async () => {
+  const { buildMoodRequest, REWATCH } = await import('../shared/config/moodPresets.js');
+
+  const chipsOnly = buildMoodRequest({ keys: ['laugh'], ai: null });
+  const bothSaid = buildMoodRequest({
+    keys: ['laugh'],
+    ai: { axes: { energy: 20, intellect: 80 }, tags: [], summary: 'но не тупое' },
+  });
+
+  /*
+   * Это один человек, сказавший одно желание двумя способами: выбрал
+   * «Посмеяться» и дописал «но не тупое». Отдать победу одному из них
+   * значило бы выбросить половину сказанного.
+   */
+  assert.ok(bothSaid.axes.energy < chipsOnly.axes.energy,
+    'ось, названную обоими, усредняем');
+  assert.equal(bothSaid.axes.intellect, 80,
+    'ось, названную только словами, берём как есть');
+  assert.equal(bothSaid.summary, 'но не тупое');
+
+  // Пересмотр остаётся кнопкой и разбору не отдаётся.
+  assert.equal(buildMoodRequest({ keys: [REWATCH], ai: null }).rewatch, true);
+  assert.equal(buildMoodRequest({ keys: [], ai: { axes: {}, tags: [] } }).rewatch, false);
+
+  // Старый формат — просто массив ключей — обязан работать по-прежнему.
+  assert.deepEqual(buildMoodRequest(['laugh']).axes, chipsOnly.axes);
+});
+
+test('B40 · условия участников складываются так, чтобы колода не опустела', async () => {
+  const { mergeRequestFilters } = await import('../shared/ai/interpretation.js');
+
+  // Длительность — по строгому: фильм длиннее того, что один готов
+  // высидеть, плох для обоих.
+  assert.equal(mergeRequestFilters([
+    { filters: { maxRuntime: 120 } },
+    { filters: { maxRuntime: 180 } },
+  ]).maxRuntime, 120);
+
+  // Названное одним применяется, когда второй промолчал.
+  assert.equal(mergeRequestFilters([
+    { filters: { maxRuntime: 120 } },
+    { filters: {} },
+  ]).maxRuntime, 120);
+
+  /*
+   * Жанры — объединением. Пересечение «комедии» и «ужасов» пусто,
+   * а пустая колода означает, что вечер не состоится вовсе.
+   */
+  assert.deepEqual(mergeRequestFilters([
+    { filters: { genres: ['35'] } },
+    { filters: { genres: ['27'] } },
+  ]).genres, ['35', '27']);
+
+  // Годы пересекаются, когда пересечение существует…
+  assert.deepEqual(mergeRequestFilters([
+    { filters: { yearFrom: 2000, yearTo: 2020 } },
+    { filters: { yearFrom: 2010, yearTo: 2030 } },
+  ]), { yearFrom: 2010, yearTo: 2020 });
+
+  // …и расходятся на общий размах, когда не существует.
+  assert.deepEqual(mergeRequestFilters([
+    { filters: { yearFrom: 1990, yearTo: 1999 } },
+    { filters: { yearFrom: 2015, yearTo: 2020 } },
+  ]), { yearFrom: 1990, yearTo: 2020 });
+
+  assert.deepEqual(mergeRequestFilters([]), {});
+  assert.deepEqual(mergeRequestFilters([{ filters: {} }]), {});
+});

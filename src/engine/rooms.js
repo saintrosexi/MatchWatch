@@ -211,8 +211,15 @@ function shapeState(code, room, members, swipes, matches, watchlist) {
       online: m.online,
       joinedAt: m.joined_at,
       lastSeen: m.last_seen,
-      /** Что человек хочет сегодня — видно всем в комнате. */
-      mood: Array.isArray(m.mood_request) ? m.mood_request : [],
+      /*
+       * Что человек хочет сегодня — видно всем в комнате.
+       *
+       * Формат читается двух видов: старые строки хранят просто массив
+       * ключей чипов, новые — объект с ключами и разбором фразы. Живые
+       * комнаты миграцией не переписывались: менять форму под теми,
+       * кто прямо сейчас свайпает, — плохой размен.
+       */
+      mood: normalizeMoodRequest(m.mood_request),
     }])),
     profiles: Object.fromEntries((members ?? []).filter((m) => m.taste).map((m) => [m.user_id, m.taste])),
     swipes: swipeMap,
@@ -496,13 +503,17 @@ export async function transferRoomHost(code, uid) {
  * Меняет только свою строку: чужой запрос — не тот предмет, который
  * можно поправить за человека.
  */
-export async function setRoomMood(code, keys) {
+export async function setRoomMood(code, keys, ai = null) {
   requireClient();
   const normalized = normalizeRoomCode(code);
   if (!normalized) return null;
 
   return guarded(
-    () => supabase.rpc('set_room_mood', { p_code: normalized, p_keys: keys ?? [] }),
+    () => supabase.rpc('set_room_mood', {
+      p_code: normalized,
+      p_keys: keys ?? [],
+      p_ai: ai ?? null,
+    }),
     { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'set room mood' },
   );
 }
@@ -528,3 +539,20 @@ export async function roomExcludedTitles(code, { keepFavorites = false } = {}) {
 export const roomDeckSize = () => RECOMMENDATION_CONFIG.room.deckSize;
 
 export { JOIN_SOURCE, normalizeRoomCode };
+
+/**
+ * Приводит запрос на сегодня к одному виду: `{ keys, ai }`.
+ *
+ * Возвращает объект всегда, даже пустой, — вызывающий код не должен
+ * гадать, какой формат ему достался.
+ */
+function normalizeMoodRequest(raw) {
+  if (Array.isArray(raw)) return { keys: raw, ai: null };
+  if (raw && typeof raw === 'object') {
+    return {
+      keys: Array.isArray(raw.keys) ? raw.keys : [],
+      ai: raw.ai ?? null,
+    };
+  }
+  return { keys: [], ai: null };
+}

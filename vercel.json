@@ -15,8 +15,12 @@
   ],
   "rewrites": [
     {
+      "source": "/api/ai/:action",
+      "destination": "/api/ai/index?action=:action"
+    },
+    {
       "source": "/api/telegram/:action",
-      "destination": "/api/telegram/bot?action=:action"
+      "destination": "/api/telegram/index?action=:action"
     },
     {
       "source": "/api/ops/:action",

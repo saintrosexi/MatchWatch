@@ -611,6 +611,37 @@
 }
 .mood-chip--wide { width: 100%; margin-top: var(--s-2); }
 
+/* ── Запрос словами ─────────────────────────────────────────────── */
+.mood-free {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+
+/*
+ * Разобранный запрос выглядит иначе поля ввода намеренно: это уже
+ * не приглашение печатать, а принятое решение, которое можно снять.
+ */
+.mood-free--applied {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-lg, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  flex-wrap: nowrap;
+}
+
+.mood-free__icon { color: var(--coral); display: flex; flex: 0 0 auto; }
+.mood-free__summary { font-size: var(--t-small); color: var(--text-hi); }
+
+.mood-free__error {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--t-micro);
+  color: var(--coral);
+}
+
 /* Выбранное читается рамкой и фоном, а не только галочкой: на телефоне
    мелкий значок в углу теряется. */
 .mood-chip[aria-pressed='true'] {

@@ -80,3 +80,35 @@ test('S3 · интерфейс не полагается на системные
   assert.deepEqual(offenders, [],
     `системный диалог вместо своей шторки:\n  ${offenders.join('\n  ')}`);
 });
+
+/**
+ * `describeError` возвращает объект `{ text, retryable }`.
+ *
+ * Отданный в текстовую позицию разметки, он роняет весь экран: React
+ * не умеет рисовать объект и уходит в границу ошибки. Сборка это
+ * пропускает, а на экране выходит «что-то сломалось» без подсказки.
+ *
+ * Проверка нарочно узкая — только прямая вставка в разметку. Класть
+ * объект в состояние и отдавать его в `ErrorState`, который знает эту
+ * форму, совершенно законно, и запрещать это значило бы шуметь на
+ * работающем коде.
+ */
+test('S4 · объект ошибки не вставляется в разметку напрямую', async () => {
+  const { readdirSync, readFileSync, statSync } = await import('node:fs');
+  const { join } = await import('node:path');
+
+  const walk = (dir) => readdirSync(dir).flatMap((name) => {
+    const full = join(dir, name);
+    return statSync(full).isDirectory() ? walk(full) : [full];
+  });
+
+  const offenders = walk('src')
+    .filter((f) => f.endsWith('.jsx'))
+    .flatMap((file) => readFileSync(file, 'utf8').split('\n')
+      .map((text, i) => ({ file, line: i + 1, text }))
+      .filter(({ text }) => /[>{]\s*\{\s*describeError\([^)]*\)\s*\}/.test(text))
+      .map(({ file, line }) => `${file}:${line}`));
+
+  assert.deepEqual(offenders, [],
+    `объект ошибки уходит в разметку целиком:\n  ${offenders.join('\n  ')}`);
+});

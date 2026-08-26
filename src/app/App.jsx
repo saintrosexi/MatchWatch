@@ -55,6 +55,7 @@ import {
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
 import { getConfig, initRemoteConfig } from '../engine/recommendationConfig.js';
 import { REWATCH } from '../../shared/config/moodPresets.js';
+import { mergeRequestFilters } from '../../shared/ai/interpretation.js';
 import { JOIN_SOURCE, roomExcludedTitles } from '../engine/rooms.js';
 
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
@@ -477,12 +478,20 @@ export default function App() {
        * здесь: показывать паре то, что кто-то из них уже видел, незачем,
        * а личная фильтрация при показе разъезжала общий порядок.
        */
-      const rewatch = (room.moodRequests ?? []).some((keys) => keys?.includes(REWATCH));
+      const rewatch = (room.moodRequests ?? []).some((r) => (r?.keys ?? r ?? []).includes(REWATCH));
       const excluded = await roomExcludedTitles(room.code, { keepFavorites: rewatch });
 
+      /*
+       * Жёсткие условия, названные словами, доезжают до каталога:
+       * «не длиннее двух часов» — это запрос к выборке, а не оттенок
+       * настроения, и решать его подкруткой весов было бы враньём.
+       * Фильтры комнаты при этом главнее: их выставили осознанно
+       * и заранее.
+       */
+      const asked = mergeRequestFilters(room.moodRequests ?? []);
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
-        filters,
+        filters: { ...asked, ...filters },
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,
         moodRequests: room.moodRequests,
