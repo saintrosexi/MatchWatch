@@ -9,8 +9,9 @@
 
 import { withHandler } from '../_lib/http.js';
 import { assertNonEmpty, getImageBase, tmdbFetch } from '../_lib/tmdb.js';
-import { cached, cacheKeyFor, storeTitles, TTL } from '../_lib/cache.js';
+import { cached, cacheKeyFor, storeTitles, loadMarkup, TTL } from '../_lib/cache.js';
 import { normalizeTmdbMovie } from '../../shared/model/title.js';
+import { applyMarkup } from '../../shared/ai/markup.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { clampInt, toFloat } from '../_lib/util.js';
 
@@ -102,5 +103,24 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
     };
   });
 
-  return { ...value, enriched: false, cacheSource: source };
+  /*
+   * Разметка подмешивается ПОСЛЕ кэша, а не внутри него.
+   *
+   * Список живёт шесть часов. Подмешав внутри, мы получили бы разметку
+   * на экране только после того, как кэш протухнет, — то есть спустя
+   * полдня после прогона. Снаружи она действует сразу.
+   */
+  const titles = await withMarkup(value.titles);
+
+  return { ...value, titles, enriched: false, cacheSource: source };
 });
+
+/** Накладывает разметку модели на пачку карточек. */
+async function withMarkup(titles) {
+  if (!titles?.length) return titles;
+  const markup = await loadMarkup(titles.map((t) => t.id));
+  if (!markup.size) return titles;
+  return titles.map((title) => (markup.has(title.id)
+    ? applyMarkup(title, markup.get(title.id))
+    : title));
+}

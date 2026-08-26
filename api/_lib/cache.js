@@ -121,3 +121,32 @@ export const cacheKeyFor = (kind, params) => {
 };
 
 export function __clearMemoryCache() { memory.clear(); }
+
+/**
+ * Разметка модели для пачки тайтлов.
+ *
+ * Нужна на выдаче, а не только в архиве: приложение читает карточки
+ * через этот прокси, и разметка, лежащая в базе без подмешивания,
+ * не влияла бы ни на подборку, ни на что-либо ещё — то есть не
+ * существовала бы для пользователя вовсе.
+ *
+ * Молча возвращает пустую карту при любой беде: разметка улучшает
+ * выдачу, но каталог обязан работать и без неё.
+ */
+export async function loadMarkup(ids) {
+  if (!hasServiceKey() || !ids?.length) return new Map();
+
+  try {
+    const rows = await sbSelect('catalog_titles', {
+      select: 'id,ai_markup',
+      id: `in.(${ids.map((id) => `"${id}"`).join(',')})`,
+      markup_status: 'eq.done',
+    });
+    return new Map((rows ?? [])
+      .filter((row) => row.ai_markup?.tags)
+      .map((row) => [row.id, row.ai_markup]));
+  } catch (error) {
+    console.warn('[cache] loadMarkup не удалась:', error?.message ?? error);
+    return new Map();
+  }
+}

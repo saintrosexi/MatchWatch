@@ -6,8 +6,9 @@
 
 import { withHandler, badRequest, notFound } from '../_lib/http.js';
 import { getImageBase, tmdbFetch } from '../_lib/tmdb.js';
-import { cached, storeTitles, TTL } from '../_lib/cache.js';
+import { cached, storeTitles, loadMarkup, TTL } from '../_lib/cache.js';
 import { normalizeTmdbMovie, TITLE_SCHEMA_VERSION } from '../../shared/model/title.js';
+import { applyMarkup } from '../../shared/ai/markup.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { toInt } from '../_lib/util.js';
 
@@ -26,7 +27,17 @@ export async function loadFullTitle(tmdbId, { language = 'ru-RU' } = {}) {
     }
     return title;
   });
-  return { title: value, source };
+  /*
+   * Разметка накладывается на выходе из кэша: карточка держится неделю,
+   * и внутри кэша разметка ждала бы столько же, прежде чем что-то
+   * изменить.
+   */
+  if (!value) return { title: value, source };
+  const markup = await loadMarkup([value.id]);
+  return {
+    title: markup.size ? applyMarkup(value, markup.get(value.id)) : value,
+    source,
+  };
 }
 
 export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheSeconds: 3600 }, async ({ query }) => {

@@ -11,6 +11,7 @@
 
 import { interpretHandler } from '../_lib/aiInterpret.js';
 import { explainHandler } from '../_lib/aiExplain.js';
+import { markupHandler } from '../_lib/aiMarkup.js';
 import {
   listModels, geminiModel, geminiFastModel, hasGemini, GeminiError, generateStructured,
 } from '../_lib/gemini.js';
@@ -142,6 +143,7 @@ const ROUTES = {
   explain: explainHandler,
   models: modelsHandler,
   bench: benchHandler,
+  markup: markupHandler,
 };
 
 export default async function handler(req, res) {

@@ -786,3 +786,70 @@ test('B41 · просьба чего-то избежать действител�
     'по каждой теме берётся самая настойчивая просьба',
   );
 });
+
+test('B42 · неполная разметка не принимается', async () => {
+  const { normalizeMarkup } = await import('../shared/ai/markup.js');
+  const { MOOD_AXES } = await import('../shared/config/recommendation.js');
+
+  const full = Object.fromEntries(MOOD_AXES.map((a) => [a, 70]));
+
+  /*
+   * Достроить недостающую ось до нейтральных пятидесяти значило бы
+   * выдать догадку за измерение — а именно на этих числах потом
+   * строится вся подборка.
+   */
+  const partial = { ...full };
+  delete partial[MOOD_AXES[0]];
+  assert.equal(normalizeMarkup({ tags: [{ tag: 'drama', weight: 80 }], moods: partial }), null,
+    'вектор без одной оси — не вектор');
+
+  assert.equal(normalizeMarkup({ tags: [], moods: full }), null,
+    'разметка без тегов бесполезна');
+
+  const ok = normalizeMarkup({ tags: [{ tag: 'drama', weight: 80 }], moods: full, confidence: 'low' });
+  assert.deepEqual(ok.tags, { drama: 80 });
+  assert.equal(ok.confidence, 'low');
+});
+
+test('B43 · выдуманные теги в разметку не попадают', async () => {
+  const { normalizeMarkup, MARKUP_VOCABULARY } = await import('../shared/ai/markup.js');
+  const { MOOD_AXES } = await import('../shared/config/recommendation.js');
+  const moods = Object.fromEntries(MOOD_AXES.map((a) => [a, 50]));
+
+  const result = normalizeMarkup({
+    moods,
+    tags: [
+      { tag: MARKUP_VOCABULARY[0], weight: 90 },
+      { tag: 'выдуманный-тег', weight: 90 },
+    ],
+  });
+
+  assert.deepEqual(Object.keys(result.tags), [MARKUP_VOCABULARY[0]]);
+  assert.deepEqual(result.dropped, ['выдуманный-тег'],
+    'отброшенное называется — по нему видно, чего не хватает словарю');
+});
+
+test('B44 · настоящие теги TMDB главнее того, что придумала модель', async () => {
+  const { applyMarkup } = await import('../shared/ai/markup.js');
+
+  /*
+   * Ключевые слова TMDB — факт, разметка модели — предположение.
+   * Там, где они спорят о весе, побеждает факт; разметка добавляет
+   * то, чего в TMDB не было вовсе.
+   */
+  const title = { id: 'x', tags: { drama: 90 }, moods: { energy: 50 } };
+  const merged = applyMarkup(title, {
+    tags: { drama: 30, 'slow-burn': 80 },
+    moods: { energy: 20, darkness: 85 },
+    confidence: 'high',
+  });
+
+  assert.equal(merged.tags.drama, 90, 'вес из TMDB не понижается разметкой');
+  assert.equal(merged.tags['slow-burn'], 80, 'новое от модели добавляется');
+  assert.deepEqual(merged.moods, { energy: 20, darkness: 85 },
+    'вектор заменяется целиком: прежний посчитан из тех же жанровых тегов');
+
+  // Без разметки карточка обязана остаться собой.
+  assert.deepEqual(applyMarkup(title, null), title);
+  assert.deepEqual(applyMarkup(title, { moods: {} }), title);
+});
