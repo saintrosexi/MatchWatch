@@ -53,6 +53,23 @@ function toRoomError(error, { code, source } = {}) {
     [PG_ERROR.CODE_EXHAUSTED]: ['code_exhausted', 'Сейчас слишком много активных комнат. Попробуйте через минуту.'],
   };
 
+  /*
+   * Отказов по MW403 несколько, и они означают разное. «Нет доступа»
+   * человеку, которого выгнали, ничего не объясняет — он видит поломку
+   * там, где на самом деле решение хоста.
+   */
+  const forbidden = {
+    room_banned: ['banned', 'Хост закрыл вам вход в эту комнату.'],
+    not_a_host: ['not_a_host', 'Это может только хост комнаты.'],
+    cannot_kick_self: ['cannot_kick_self', 'Себя из комнаты не выгоняют — из неё выходят.'],
+    not_a_member: ['not_a_member', 'Этого человека в комнате уже нет.'],
+  };
+
+  if (error?.code === PG_ERROR.FORBIDDEN || forbidden[error?.message]) {
+    const known = forbidden[error?.message];
+    if (known) return new RoomError(known[0], known[1], { roomCode: code, source });
+  }
+
   const [domainCode, message] = map[error?.code] ?? ['unknown', error?.message ?? 'Не удалось выполнить действие в комнате'];
   return new RoomError(domainCode, message, { roomCode: code, source });
 }
@@ -435,6 +452,42 @@ export async function closeRoom(code) {
   );
   setTelemetryRoom(null);
   return result;
+}
+
+/**
+ * Выгнать участника.
+ *
+ * Заодно закрывает ему вход по коду: без этого «выгнать» означало бы
+ * паузу на одну секунду. Голоса выгнанного остаются — мэтчи по ним уже
+ * лежат в личных списках обоих, и стирать их задним числом комната
+ * права не имеет.
+ */
+export async function kickRoomMember(code, uid) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized || !uid) return null;
+
+  return guarded(
+    () => supabase.rpc('kick_room_member', { p_code: normalized, p_uid: uid }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'kick member' },
+  );
+}
+
+/**
+ * Передать хоста другому участнику.
+ *
+ * Создателя комнаты это не меняет: `created_by` — историческая запись
+ * о том, кто её завёл, а полномочия ходят отдельно.
+ */
+export async function transferRoomHost(code, uid) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized || !uid) return null;
+
+  return guarded(
+    () => supabase.rpc('transfer_room_host', { p_code: normalized, p_uid: uid }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'transfer host' },
+  );
 }
 
 /**

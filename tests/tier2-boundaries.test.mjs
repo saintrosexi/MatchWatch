@@ -550,3 +550,32 @@ test('B26 · догрузка колоды переиспользует пул, 
   const overlap = again.deck.filter((e) => deck.some((d) => d.title.id === e.title.id));
   assert.equal(overlap.length, 0, 'вторая порция не повторяет первую');
 });
+
+test('B33 · личная история не режет общую колоду комнаты', async () => {
+  const { pruneDecided, DECK_MODE } = await import('../src/hooks/useDeck.js');
+
+  const deck = Array.from({ length: 25 }, (_, i) => ({ id: `t${i}` }));
+
+  /*
+   * У двоих в комнате истории разные — и раньше каждый вычитал свою
+   * из общей колоды. Из одних и тех же двадцати пяти карточек у одного
+   * оставалась одна, у другого три, и оба упирались в «колода
+   * закончилась», хотя колода была цела.
+   */
+  const mine = { t1: 'watched', t2: 'dislike', t3: 'favorite' };
+  const hers = { t5: 'later' };
+
+  assert.equal(pruneDecided(deck, mine, DECK_MODE.ROOM).length, 25,
+    'общая колода одна на всех и личной историей не режется');
+  assert.equal(pruneDecided(deck, hers, DECK_MODE.ROOM).length, 25);
+  assert.deepEqual(
+    pruneDecided(deck, mine, DECK_MODE.ROOM),
+    pruneDecided(deck, hers, DECK_MODE.ROOM),
+    'у обоих участников набор обязан совпадать карточка в карточку',
+  );
+
+  // Вне комнаты страховка обязана работать как прежде.
+  const solo = pruneDecided(deck, mine, DECK_MODE.SOLO);
+  assert.equal(solo.length, 22, 'в личной ленте решённое убирается');
+  assert.equal(solo[0].id, 't0', 'верхняя карточка не трогается никогда');
+});

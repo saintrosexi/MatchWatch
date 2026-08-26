@@ -68,6 +68,25 @@
 .btn--quiet { color: var(--text-mid); }
 .btn--quiet:hover:not(:disabled) { color: var(--text-hi); }
 .btn--danger { background: rgba(255, 77, 94, 0.16); color: var(--coral); }
+
+/*
+ * Необратимое действие. Громкость здесь не украшение: кнопка удаляет
+ * комнату у всех сразу, и спутать её с соседней «Выйти» нельзя.
+ */
+.btn--danger-solid {
+  background: linear-gradient(135deg, var(--acid-red) 0%, var(--acid-red-hot) 100%);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 10, 60, 0.45),
+              0 12px 40px -8px rgba(255, 10, 60, 0.55);
+}
+.btn--danger-solid:hover:not(:disabled) { filter: brightness(1.08); }
+
+/** Тот же смысл в размере иконки: выгнать одного человека. */
+.btn--danger-ghost { color: var(--acid-red); }
+.btn--danger-ghost:hover:not(:disabled) {
+  background: rgba(255, 10, 60, 0.14);
+  border-color: rgba(255, 10, 60, 0.4);
+}
 .btn--block { width: 100%; }
 .btn--lg { min-height: 54px; font-size: var(--t-head); padding: 0 var(--s-8); }
 .btn--sm { min-height: 34px; font-size: var(--t-small); padding: 0 var(--s-4); }

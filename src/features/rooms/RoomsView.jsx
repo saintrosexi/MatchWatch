@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { AlertCircle, Copy, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles, UserPlus, Users } from '../../ui/icons.js';
+import {
+  AlertCircle, Copy, Crown, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles,
+  Trash2, UserMinus, UserPlus, Users,
+} from '../../ui/icons.js';
 import { EmptyState, StatusStrip } from '../../ui/States.jsx';
+import { Sheet } from '../../ui/Sheet.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
 import { JOIN_SOURCE } from '../../engine/rooms.js';
@@ -185,6 +189,15 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, onB
 /** Лобби активной комнаты: код, участники, приглашение, старт сессии. */
 function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck, deckBuilding }) {
   const [friendBusy, setFriendBusy] = useState(null);
+  const [memberBusy, setMemberBusy] = useState(null);
+  /*
+   * Подтверждение — своей шторкой, а не window.confirm.
+   *
+   * В Telegram WebView системный confirm заблокирован и молча возвращает
+   * false: кнопка «Удалить комнату» выглядела живой, но не делала ничего,
+   * и понять почему было нельзя.
+   */
+  const [confirming, setConfirming] = useState(null);
   const invite = roomInviteLink(room.code);
   const [copied, setCopied] = useState(false);
 
@@ -229,6 +242,26 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
       toasts.error(error?.message ?? 'Не получилось добавить в друзья');
     } finally {
       setFriendBusy(null);
+    }
+  };
+
+  /** Выгнать или передать хоста — оба действия только у хоста. */
+  const runOnMember = async (member, kind) => {
+    setMemberBusy(member.uid);
+    try {
+      if (kind === 'kick') {
+        await room.kick(member.uid);
+        toasts.success(`${member.name} больше не в комнате`);
+      } else {
+        await room.makeHost(member.uid);
+        toasts.success(`${member.name} теперь хост`);
+      }
+      haptic('light');
+    } catch (error) {
+      toasts.error(error?.message ?? 'Не получилось');
+    } finally {
+      setMemberBusy(null);
+      setConfirming(null);
     }
   };
 
@@ -305,6 +338,37 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
                     <UserPlus size={16} />
                   </button>
                 )}
+                {/*
+                  * Права хоста над участником. Передача хоста
+                  * необратима — после неё кнопки исчезнут, и вернуть
+                  * их сможет только новый хост, — поэтому спрашиваем.
+                  */}
+                {room.isHost && !isMe && (
+                  <>
+                    {!member.host && (
+                      <button
+                        type="button"
+                        className="btn btn--ghost btn--icon btn--sm"
+                        disabled={memberBusy === member.uid}
+                        onClick={() => setConfirming({ kind: 'host', member })}
+                        aria-label={`Сделать ${member.name} хостом`}
+                        title="Сделать хостом"
+                      >
+                        <Crown size={16} />
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="btn btn--ghost btn--icon btn--sm btn--danger-ghost"
+                      disabled={memberBusy === member.uid}
+                      onClick={() => setConfirming({ kind: 'kick', member })}
+                      aria-label={`Выгнать ${member.name} из комнаты`}
+                      title="Выгнать из комнаты"
+                    >
+                      <UserMinus size={16} />
+                    </button>
+                  </>
+                )}
                 <span className="member__presence" data-online={String(Boolean(member.online))} />
               </div>
             );
@@ -366,18 +430,67 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
       {room.isHost && (
         <button
           type="button"
-          className="btn btn--quiet btn--sm"
-          onClick={() => {
-            // Действие необратимо и задевает не только хоста — спрашиваем.
-            if (!window.confirm('Завершить комнату для всех? Вернуться в неё будет нельзя, '
-              + 'но мэтчи уже лежат в вашем «Буду смотреть».')) return;
-            room.close();
-            toasts.success('Комната завершена');
-          }}
+          className="btn btn--danger-solid btn--block"
+          onClick={() => setConfirming({ kind: 'close' })}
         >
-          <DoorOpen size={16} /> Завершить комнату для всех
+          <Trash2 size={18} /> Удалить эту комнату и выгнать всех
         </button>
       )}
+
+      {/*
+        * Все три подтверждения — в одной шторке: вопрос каждый раз
+        * разный, а поведение одинаковое, и три копии кода разъехались
+        * бы при первой же правке.
+        */}
+      <Sheet
+        open={Boolean(confirming)}
+        onClose={() => setConfirming(null)}
+        variant="center"
+        title={confirming?.kind === 'close'
+          ? 'Удалить комнату?'
+          : confirming?.kind === 'kick'
+            ? `Выгнать ${confirming?.member?.name}?`
+            : `Передать хоста ${confirming?.member?.name}?`}
+      >
+        <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
+          {confirming?.kind === 'close'
+            ? 'Комната закроется у всех сразу, и вернуться в неё будет нельзя. '
+              + 'Мэтчи никуда не денутся — они уже лежат в вашем «Буду смотреть».'
+            : confirming?.kind === 'kick'
+              ? 'Человек выйдет из комнаты, и вход по коду для него закроется. '
+                + 'Мэтчи, которые вы уже собрали вместе, останутся у обоих.'
+              : 'Собирать колоду и управлять комнатой будет он. У вас эти права пропадут — '
+                + 'вернуть их сможет только новый хост.'}
+        </p>
+
+        <div className="row gap-3" style={{ marginTop: 'var(--s-5)' }}>
+          <button
+            type="button"
+            className={`btn grow ${confirming?.kind === 'host' ? 'btn--primary' : 'btn--danger-solid'}`}
+            disabled={Boolean(memberBusy)}
+            onClick={async () => {
+              if (confirming?.kind === 'close') {
+                setConfirming(null);
+                try {
+                  await room.close();
+                  toasts.success('Комната удалена');
+                } catch (error) {
+                  toasts.error(error?.message ?? 'Не получилось удалить комнату');
+                }
+                return;
+              }
+              runOnMember(confirming.member, confirming.kind);
+            }}
+          >
+            {confirming?.kind === 'close'
+              ? 'Удалить и выгнать всех'
+              : confirming?.kind === 'kick' ? 'Выгнать' : 'Передать'}
+          </button>
+          <button type="button" className="btn btn--ghost" onClick={() => setConfirming(null)}>
+            Отмена
+          </button>
+        </div>
+      </Sheet>
     </div>
   );
 }
