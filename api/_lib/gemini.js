@@ -18,10 +18,32 @@
 
 const API = 'https://generativelanguage.googleapis.com/v1beta';
 
+/**
+ * Ключи по порядку. Запасные нужны для одного: бесплатная квота
+ * кончается посреди прогона, и без второго ключа работа встаёт.
+ *
+ * Лимиты Google считаются на проект, поэтому запасной имеет смысл
+ * только из другого проекта — два ключа одного не дадут ничего.
+ */
+export const geminiKeys = () => ['GEMINI_API_KEY', 'GEMINI_API_KEY_2', 'GEMINI_API_KEY_3']
+  .map((name) => (process.env[name] ?? '').trim())
+  .filter(Boolean);
+
 /** Ключ читается только отсюда — как и токен бота. */
-export const geminiKey = () => (process.env.GEMINI_API_KEY ?? '').trim() || null;
+export const geminiKey = () => geminiKeys()[0] ?? null;
 
 export const hasGemini = () => Boolean(geminiKey());
+
+/**
+ * Исчерпана ли квота.
+ *
+ * Отличается от прочих отказов принципиально: это не про конкретный
+ * запрос, а про то, что работать сейчас нечем вообще. Такую ошибку
+ * нельзя записывать в неудачи фильма — он ни при чём, и три исчерпания
+ * квоты подряд иначе вычеркнули бы его из разметки навсегда.
+ */
+export const isQuotaError = (error) => error?.code === 'quota'
+  || /quota|rate limit|resource_exhausted/i.test(String(error?.message ?? ''));
 
 /**
  * Имя модели вынесено в переменную окружения намеренно.
@@ -117,8 +139,8 @@ export async function generateStructured({
    */
   thinking = null,
 } = {}) {
-  const key = geminiKey();
-  if (!key) throw new GeminiError('no_key', 'GEMINI_API_KEY не задан', { status: 503 });
+  const keys = geminiKeys();
+  if (!keys.length) throw new GeminiError('no_key', 'GEMINI_API_KEY не задан', { status: 503 });
 
   const model = requestedModel ?? geminiModel();
 
@@ -135,21 +157,41 @@ export async function generateStructured({
   };
 
   let res;
-  try {
-    res = await fetch(`${API}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-      signal,
-    });
-  } catch (error) {
-    if (error?.name === 'AbortError') {
-      throw new GeminiError('aborted', 'Запрос к модели прерван', { status: 499 });
-    }
-    throw new GeminiError('network', `Не удалось связаться с моделью: ${error?.message}`, { status: 502 });
-  }
+  let data;
 
-  const data = await res.json().catch(() => null);
+  /*
+   * Ключи перебираются только при исчерпании квоты. Прочие отказы —
+   * про сам запрос, и повторять их другим ключом бессмысленно.
+   */
+  for (let i = 0; i < keys.length; i += 1) {
+    try {
+      res = await fetch(`${API}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(keys[i])}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+        signal,
+      });
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        throw new GeminiError('aborted', 'Запрос к модели прерван', { status: 499 });
+      }
+      throw new GeminiError('network', `Не удалось связаться с моделью: ${error?.message}`, { status: 502 });
+    }
+
+    data = await res.json().catch(() => null);
+
+    const quota = res.status === 429
+      || /quota|resource_exhausted/i.test(String(data?.error?.message ?? ''));
+
+    if (!quota) break;
+
+    if (i === keys.length - 1) {
+      throw new GeminiError('quota',
+        `Квота исчерпана на всех ключах (${keys.length}). `
+        + 'Подождите сброса лимита или добавьте GEMINI_API_KEY_2 из другого проекта Google.',
+        { status: 429, detail: data?.error?.message ?? null });
+    }
+  }
 
   if (!res.ok) {
     const message = data?.error?.message ?? `Google ответил ${res.status}`;

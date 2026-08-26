@@ -12,7 +12,7 @@
  */
 
 import { withHandler, ApiError, requireSecret } from './http.js';
-import { generateStructured, GeminiError, hasGemini } from './gemini.js';
+import { generateStructured, GeminiError, hasGemini, isQuotaError } from './gemini.js';
 import { sbRpc, hasServiceKey } from './supabaseAdmin.js';
 import {
   MARKUP_SCHEMA, MARKUP_VERSION, MARKUP_VOCABULARY, normalizeMarkup,
@@ -90,8 +90,24 @@ export const markupHandler = withHandler(
       return { done: 0, failed: 0, remaining: 0, note: 'неразмеченного больше нет' };
     }
 
+    /*
+     * Исчерпание квоты останавливает пачку целиком.
+     *
+     * Прежде каждый следующий фильм получал тот же отказ и записывался
+     * в неудачники: за один прогон 254 фильма были помечены провальными
+     * из-за одной кончившейся квоты, а их попытки — потрачены. Квота
+     * не про фильм, поэтому она снимает бронь и не считает попытку.
+     */
+    let quotaHit = false;
+
     const results = await mapWithConcurrency(films, CONCURRENCY, async (film) => {
       const title = film.data;
+
+      if (quotaHit) {
+        if (!dry) await sbRpc('release_markup', { p_id: film.id });
+        return { ok: false, skipped: true, title: title.title, error: 'квота исчерпана' };
+      }
+
       try {
         const raw = await generateStructured({
           model,
@@ -128,6 +144,13 @@ export const markupHandler = withHandler(
           ? `${error.code}: ${error.message}`
           : String(error?.message ?? error);
 
+        if (isQuotaError(error)) {
+          quotaHit = true;
+          // Бронь снимается, попытка не засчитывается: фильм ни при чём.
+          if (!dry) await sbRpc('release_markup', { p_id: film.id });
+          return { ok: false, quota: true, title: title.title, error: reason };
+        }
+
         if (!dry) {
           await sbRpc('fail_markup', { p_id: film.id, p_reason: reason.slice(0, 300) });
         }
@@ -142,7 +165,13 @@ export const markupHandler = withHandler(
       model,
       claimed: films.length,
       done,
-      failed: results.length - done,
+      failed: results.filter((r) => !r.ok && !r.quota && !r.skipped).length,
+      /*
+       * Отдельным полем, а не среди неудач: вызывающему нужно знать,
+       * что продолжать бессмысленно, — иначе он прогонит весь каталог
+       * в стену, как это уже случилось.
+       */
+      quotaExhausted: results.some((r) => r.quota || r.skipped),
       /** Что модель просила, но словарь не знает: подсказка, чего дописать. */
       dropped: [...new Set(results.flatMap((r) => r.dropped ?? []))],
       results,
