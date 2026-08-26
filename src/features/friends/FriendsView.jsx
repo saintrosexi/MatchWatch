@@ -34,7 +34,9 @@ export function FriendsView({ me, onOpenProfile, onOpenTitle, toasts }) {
   // Поиск с задержкой: не дёргаем базу на каждую букву.
   useEffect(() => {
     const trimmed = query.trim();
-    if (trimmed.length < 2) { setFound([]); return undefined; }
+    // Три символа — тот же порог, что и на сервере: иначе поиск молча
+    // возвращает пустоту и выглядит сломанным.
+    if (trimmed.length < 3) { setFound([]); return undefined; }
 
     setSearching(true);
     const timer = setTimeout(() => {
@@ -106,13 +108,13 @@ export function FriendsView({ me, onOpenProfile, onOpenTitle, toasts }) {
         )}
       </div>
 
-      {query.trim().length >= 2 && (
+      {query.trim().length >= 3 && (
         <section className="section">
           <h2 className="section__title">Результаты</h2>
           {searching && <div className="spinner" style={{ margin: '0 auto' }} />}
           {!searching && found.length === 0 && (
             <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
-              Никого не нашли. Ник ищется с первых букв, почта — целиком.
+              Никого не нашли. Ник ищется с первых трёх букв, почта — целиком.
             </p>
           )}
           <div className="stack gap-2">

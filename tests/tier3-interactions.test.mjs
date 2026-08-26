@@ -170,6 +170,49 @@ test('X9 · код комнаты одинаков независимо от с�
   assert.equal([...paths][0], 'rooms/40719/swipes');
 });
 
+/**
+ * Регрессия на боевую дыру: служебные эндпоинты были открыты всему
+ * интернету. Проверка вида «если секрет задан — сверить» пропускала
+ * запрос при незаполненной переменной, то есть забытая настройка молча
+ * открывала уборку комнат и дашборд метрик.
+ */
+test('X9a · служебный секрет закрывает доступ, а не открывает', async () => {
+  const { requireSecret } = await import('../api/_lib/http.js');
+  const previous = process.env.X_TEST_SECRET;
+  const query = new URLSearchParams();
+
+  try {
+    delete process.env.X_TEST_SECRET;
+    assert.throws(() => requireSecret(fakeReq(), query, 'X_TEST_SECRET'),
+      (e) => e.status === 503 && e.code === 'secret_not_configured',
+      'без заданного секрета эндпоинт обязан быть закрыт');
+
+    process.env.X_TEST_SECRET = 'правильный';
+
+    assert.throws(() => requireSecret(fakeReq(), query, 'X_TEST_SECRET'),
+      (e) => e.status === 401, 'без токена — отказ');
+
+    assert.throws(
+      () => requireSecret(fakeReq({ headers: { authorization: 'Bearer неправильный' } }), query, 'X_TEST_SECRET'),
+      (e) => e.status === 401, 'с чужим токеном — отказ');
+
+    // Совпадение длины, но не содержимого: сравнение обязано смотреть целиком.
+    assert.throws(
+      () => requireSecret(fakeReq({ headers: { authorization: 'Bearer правильныЙ' } }), query, 'X_TEST_SECRET'),
+      (e) => e.status === 401);
+
+    assert.doesNotThrow(
+      () => requireSecret(fakeReq({ headers: { authorization: 'Bearer правильный' } }), query, 'X_TEST_SECRET'));
+
+    query.set('token', 'правильный');
+    assert.doesNotThrow(() => requireSecret(fakeReq(), query, 'X_TEST_SECRET'),
+      'крон Vercel передаёт секрет параметром');
+  } finally {
+    if (previous === undefined) delete process.env.X_TEST_SECRET;
+    else process.env.X_TEST_SECRET = previous;
+  }
+});
+
 test('X10 · обёртка хендлера отдаёт машиночитаемую ошибку вместо голого 500', async () => {
   const handler = withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY }, async () => {
     throw badRequest('bad_input', 'Параметр id обязателен');

@@ -7,6 +7,7 @@
  * его вместо бесконечного спиннера.
  */
 
+import { timingSafeEqual } from 'node:crypto';
 import { LEVEL } from '../../shared/telemetry/events.js';
 import { logError } from './telemetry.js';
 
@@ -72,6 +73,45 @@ async function readBody(req) {
  * @param {{methods?: string[], module: string, cacheSeconds?: number}} options
  * @param {(ctx: {req, res, query: URLSearchParams, body: object}) => Promise<any>} handler
  */
+/**
+ * Проверка служебного секрета.
+ *
+ * Прежняя логика пропускала запрос, если переменная окружения не задана:
+ * «нет секрета — нечего сверять». На практике это значит, что забытая
+ * переменная не ломает ничего заметного, а просто открывает эндпоинт
+ * всему интернету — и узнать об этом неоткуда. Отсутствие секрета
+ * теперь закрывает доступ, а не открывает его.
+ *
+ * Сравнение постоянного времени: обычное `!==` выходит на первом
+ * несовпавшем символе, и по времени ответа секрет подбирается посимвольно.
+ */
+export function requireSecret(req, query, envName, { allowQuery = true } = {}) {
+  const expected = process.env[envName];
+  if (!expected) {
+    throw new ApiError(503, 'secret_not_configured',
+      `Эндпоинт закрыт: не задан ${envName}`, { level: LEVEL.CRITICAL });
+  }
+
+  const provided = req.headers?.authorization?.replace(/^Bearer\s+/i, '')
+    ?? (allowQuery ? query?.get?.('token') : null);
+
+  if (!provided || !timingSafeEqualStrings(provided, expected)) {
+    throw new ApiError(401, 'unauthorized', 'Неверный или отсутствующий токен доступа',
+      { level: LEVEL.WARNING });
+  }
+}
+
+function timingSafeEqualStrings(a, b) {
+  const bufA = Buffer.from(String(a), 'utf8');
+  const bufB = Buffer.from(String(b), 'utf8');
+  if (bufA.length !== bufB.length) {
+    // Длину скрыть нельзя, но сравнить всё равно надо целиком.
+    timingSafeEqual(bufA, bufA);
+    return false;
+  }
+  return timingSafeEqual(bufA, bufB);
+}
+
 export function withHandler(options, handler) {
   const methods = options.methods ?? ['GET'];
 

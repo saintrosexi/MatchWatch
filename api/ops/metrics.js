@@ -11,7 +11,7 @@
  * Доступ закрыт токеном OPS_DASHBOARD_TOKEN — эндпоинт внутренний.
  */
 
-import { withHandler, ApiError } from '../_lib/http.js';
+import { withHandler, ApiError, requireSecret } from '../_lib/http.js';
 import { sbSelect, sbRpc, hasServiceKey } from '../_lib/supabaseAdmin.js';
 import { telemetryEnv } from '../_lib/telemetry.js';
 import { MODULE } from '../../shared/telemetry/events.js';
@@ -20,11 +20,7 @@ import { clampInt } from '../_lib/util.js';
 const dayKeyOffset = (offset) => new Date(Date.now() - offset * 86400_000).toISOString().slice(0, 10);
 
 export default withHandler({ methods: ['GET'], module: MODULE.OPS }, async ({ query, req }) => {
-  const expected = process.env.OPS_DASHBOARD_TOKEN;
-  const provided = req.headers.authorization?.replace(/^Bearer\s+/i, '') ?? query.get('token');
-  if (expected && provided !== expected) {
-    throw new ApiError(401, 'unauthorized', 'Нужен токен доступа к дашборду');
-  }
+  requireSecret(req, query, 'OPS_DASHBOARD_TOKEN');
   if (!hasServiceKey()) {
     throw new ApiError(503, 'ops_not_configured',
       'Метрики недоступны: не задан SUPABASE_SERVICE_ROLE_KEY');

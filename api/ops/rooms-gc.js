@@ -8,7 +8,7 @@
  * участников, свайпы, мэтчи и списки одной транзакцией.
  */
 
-import { withHandler, ApiError } from '../_lib/http.js';
+import { withHandler, ApiError, requireSecret } from '../_lib/http.js';
 import { sbRpc, hasServiceKey } from '../_lib/supabaseAdmin.js';
 import { logMetric, telemetryEnv } from '../_lib/telemetry.js';
 import { MODULE } from '../../shared/telemetry/events.js';
@@ -31,9 +31,11 @@ export default withHandler({ methods: ['GET', 'POST'], module: MODULE.ROOMS_TTL 
   return { removed: Number(removed ?? 0), idleHours };
 });
 
+/**
+ * Крон-эндпоинты меняют данные — уборка сносит комнаты вместе с историей.
+ * Открытыми они быть не могут нигде, включая превью: адрес превью-деплоя
+ * так же доступен из интернета, как и боевой.
+ */
 export function assertCronAuthorized(req, query) {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) return; // Локально и на превью крон-эндпоинты открыты.
-  const provided = req.headers.authorization?.replace(/^Bearer\s+/i, '') ?? query.get('token');
-  if (provided !== secret) throw new ApiError(401, 'unauthorized', 'Неверный секрет крона');
+  requireSecret(req, query, 'CRON_SECRET');
 }

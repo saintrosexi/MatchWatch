@@ -76,7 +76,9 @@ export async function loadPublicProfile(username) {
 
 /** Поиск людей: по началу ника или по точному адресу почты. */
 export async function searchPeople(query) {
-  if (!supabaseReady() || !query || query.trim().length < 2) return [];
+  // Порог тот же, что в SQL: перебор алфавита по одной букве выгрузил бы
+  // список всех, кто завёл ник.
+  if (!supabaseReady() || !query || query.trim().length < 3) return [];
   const { data, error } = await supabase.rpc('search_users', { p_query: query.trim() });
   if (error) throw error;
   return (data ?? []).map(shapePerson);
