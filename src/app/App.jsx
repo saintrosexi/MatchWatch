@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react';
 import { Bookmark, Dices, Flame, Library, SlidersHorizontal, UserRound, Users, IconContext, ICON, Star } from '../ui/icons.js';
 
 import { useAuth } from '../hooks/useAuth.js';
@@ -14,16 +14,32 @@ import { SwipeDeck } from '../features/deck/SwipeDeck.jsx';
 import { DetailsSheet } from '../features/deck/DetailsSheet.jsx';
 import { FiltersSheet, DEFAULT_FILTERS } from '../features/deck/FiltersSheet.jsx';
 import { RoomsView } from '../features/rooms/RoomsView.jsx';
-import { MatchCelebration } from '../features/rooms/MatchCelebration.jsx';
 import { CollectionView } from '../features/collection/CollectionView.jsx';
-import { ProfileEditor } from '../features/profile/ProfileEditor.jsx';
-import { PublicProfileView } from '../features/profile/PublicProfileView.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
 import { MeView } from '../features/profile/MeView.jsx';
-import { DashboardView } from '../features/profile/DashboardView.jsx';
-import { RouletteModal } from '../features/roulette/RouletteModal.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
-import { Onboarding } from '../features/onboarding/Onboarding.jsx';
+
+/*
+ * Отложенные куски.
+ *
+ * Всё это открывается по случаю: празднование мэтча, рулетка, редактор
+ * профиля, метрики, чужой профиль, обучение. Держать их в первом
+ * загружаемом файле значит платить их весом на каждом холодном старте
+ * ради экранов, до которых человек может не дойти вовсе. Празднование
+ * вдобавок тянет за собой библиотеку конфетти.
+ */
+const MatchCelebration = lazy(() => import('../features/rooms/MatchCelebration.jsx')
+  .then((m) => ({ default: m.MatchCelebration })));
+const ProfileEditor = lazy(() => import('../features/profile/ProfileEditor.jsx')
+  .then((m) => ({ default: m.ProfileEditor })));
+const PublicProfileView = lazy(() => import('../features/profile/PublicProfileView.jsx')
+  .then((m) => ({ default: m.PublicProfileView })));
+const DashboardView = lazy(() => import('../features/profile/DashboardView.jsx')
+  .then((m) => ({ default: m.DashboardView })));
+const RouletteModal = lazy(() => import('../features/roulette/RouletteModal.jsx')
+  .then((m) => ({ default: m.RouletteModal })));
+const Onboarding = lazy(() => import('../features/onboarding/Onboarding.jsx')
+  .then((m) => ({ default: m.Onboarding })));
 
 import { Toasts } from '../ui/Toasts.jsx';
 import { ErrorBoundary } from '../ui/ErrorBoundary.jsx';
@@ -249,14 +265,24 @@ export default function App() {
    * пришлась на чужой ход, а не на пустой экран.
    */
   const growingRef = useRef(false);
+  /*
+   * Сколько раз подряд дозагрузка вернулась ни с чем. Каталог конечен,
+   * и когда он вычерпан, каждый следующий свайп запускал бы полную
+   * пересборку колоды — десяток запросов к каталогу впустую, на телефоне
+   * это греет корпус и сажает батарею. После трёх пустых попыток
+   * перестаём спрашивать до смены комнаты или фильтров.
+   */
+  const emptyGrowthsRef = useRef(0);
+  const MAX_EMPTY_GROWTHS = 3;
+
+  useEffect(() => { emptyGrowthsRef.current = 0; }, [room.code, filters]);
 
   useEffect(() => {
     if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
-    if (growingRef.current) return;
+    if (growingRef.current || emptyGrowthsRef.current >= MAX_EMPTY_GROWTHS) return;
 
     const config = getConfig();
-    const left = deck.queue.length;
-    if (left > config.room.refillThreshold) return;
+    if (deck.queue.length > config.room.refillThreshold) return;
 
     growingRef.current = true;
     const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
@@ -267,8 +293,12 @@ export default function App() {
       history: roomHistory(room.state, user?.uid),
       excludeIds: published,
     })
-      .then(({ deck: next }) => (next.length ? room.growDeck(next) : null))
-      .catch(() => { /* следующая карточка попробует снова */ })
+      .then(({ deck: next }) => {
+        if (!next.length) { emptyGrowthsRef.current += 1; return null; }
+        emptyGrowthsRef.current = 0;
+        return room.growDeck(next);
+      })
+      .catch(() => { emptyGrowthsRef.current += 1; })
       .finally(() => { growingRef.current = false; });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckMode, room.code, deck.queue.length]);
@@ -459,7 +489,9 @@ export default function App() {
   if (!onboarded) {
     return (
       <div className="app-root">
-        <Onboarding onDone={() => { setOnboarded(true); saveLocal(STORAGE_KEYS.ONBOARDED, true); }} />
+        <Suspense fallback={<LoadingState text="Загружаем…" />}>
+          <Onboarding onDone={() => { setOnboarded(true); saveLocal(STORAGE_KEYS.ONBOARDED, true); }} />
+        </Suspense>
       </div>
     );
   }
@@ -537,6 +569,10 @@ export default function App() {
     />
   );
 
+  /*
+   * Экраны из renderView тоже бывают отложенными — оборачиваем результат
+   * целиком, а не каждый по отдельности: одновременно виден ровно один.
+   */
   const content = renderView({
     view, room, sessionUser, userState, taste, prefs, toasts, history,
     setView, setPrefs, setActorDeck, setRoomSession, setDetailsEntry,
@@ -595,7 +631,9 @@ export default function App() {
                 </aside>
               </div>
             ) : (
-              <div className="studio__content">{content}</div>
+              <div className="studio__content">
+                <Suspense fallback={<LoadingState text="Загружаем…" />}>{content}</Suspense>
+              </div>
             )}
           </DesktopStudio>
         ) : (
@@ -615,12 +653,18 @@ export default function App() {
               </>
             )}
           >
-            {view === VIEW.DECK ? deckPanel : content}
+            {view === VIEW.DECK
+              ? deckPanel
+              : <Suspense fallback={<LoadingState text="Загружаем…" />}>{content}</Suspense>}
           </MobileShell>
         )}
 
         <Toasts toasts={toasts.toasts} onDismiss={toasts.dismiss} />
 
+        {/* Один барьер на все отложенные оверлеи: они не показываются
+            одновременно, и отдельный fallback для каждого только плодил бы
+            мигающие заглушки. */}
+        <Suspense fallback={null}>
         <ProfileEditor
           open={editorOpen}
           onClose={() => setEditorOpen(false)}
@@ -670,6 +714,7 @@ export default function App() {
             onOpenWatchlist={() => { room.dismissCelebration(); setView(VIEW.MINE); }}
           />
         )}
+        </Suspense>
       </div>
     </ErrorBoundary>
     </IconContext.Provider>

@@ -111,11 +111,15 @@
   text-shadow: 0 2px 24px rgba(0,0,0,.8);
 }
 .card__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+/*
+ * Тегов на карточке до шести, и каждый backdrop-filter — свой проход
+ * композитинга поверх постера. Под ними уже лежит затемнение карточки,
+ * так что размывать почти нечего: меняем блюр на чуть более плотный фон.
+ */
 .card__tag {
   padding: 4px 9px;
   border-radius: var(--r-pill);
-  background: rgba(255,255,255,.1);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.14);
   font-size: var(--t-micro);
   font-weight: 500;
   color: var(--text-hi);
@@ -147,6 +151,8 @@
   display: grid;
   place-items: center;
   padding: 8px 18px;
+  /* Штамп появляется во время жеста: размытие здесь пересчитывалось бы
+     на каждом кадре свайпа — самое неудачное место для него. */
   border-radius: var(--r-sm);
   border: 3px solid currentColor;
   font-family: var(--font-display);
@@ -155,7 +161,6 @@
   letter-spacing: 0.06em;
   opacity: 0;
   pointer-events: none;
-  backdrop-filter: blur(4px);
 }
 .card__stamp--yes {
   left: 24px;

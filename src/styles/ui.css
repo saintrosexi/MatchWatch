@@ -3,13 +3,19 @@
    ──────────────────────────────────────────────────────────────── */
 
 /* ── Поверхности ─────────────────────────────────────────────── */
+/*
+ * Поверхность без размытия.
+ *
+ * `.surface` встречается на экране десятками, и каждый backdrop-filter —
+ * отдельный проход композитинга. Под ними лежит почти чёрный фон, где
+ * размывать нечего: видимой разницы нет, а работа выполняется вся.
+ * Непрозрачность фона поднята, чтобы глубина сохранилась.
+ */
 .surface {
   position: relative;
-  background: var(--glass-bg);
+  background: var(--glass-bg-flat);
   border: 1px solid var(--glass-border);
   border-radius: var(--r-md);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
 }
 .surface--solid { background: var(--ink-900); backdrop-filter: none; }
 .surface--raised { box-shadow: var(--shadow-panel); }

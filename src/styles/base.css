@@ -22,8 +22,20 @@ body {
   touch-action: manipulation;
 }
 
-/* Аврора — единственный источник цвета на чёрном фоне.
-   Живёт за контентом, не перерисовывается при скролле. */
+/*
+ * Аврора — единственный источник цвета на чёрном фоне.
+ *
+ * Здесь было `filter: blur(90px)` на двух слоях размером с экран, и оба
+ * непрерывно двигались. Размытие пересчитывается на каждом кадре анимации,
+ * то есть телефон рисовал два полноэкранных блюра шестьдесят раз в секунду
+ * всё время, пока приложение открыто, — на iPhone это заметно нагревает
+ * корпус и сажает батарею.
+ *
+ * Мягкость даёт сам радиальный градиент: он и так расплывается к краям,
+ * а блюр поверх него добавлял почти незаметный глазу нюанс за очень
+ * дорогую цену. Движение осталось — трансформация композитного слоя
+ * ничего не пересчитывает.
+ */
 .aurora {
   position: fixed;
   inset: 0;
@@ -38,24 +50,22 @@ body {
   width: 70vmax;
   height: 70vmax;
   border-radius: 50%;
-  filter: blur(90px);
   opacity: 0.5;
-  will-change: transform;
 }
 .aurora::before {
-  background: radial-gradient(circle, rgba(255, 77, 94, 0.5), transparent 62%);
+  background: radial-gradient(circle, rgba(255, 77, 94, 0.42), rgba(255, 77, 94, 0.12) 45%, transparent 72%);
   top: -28vmax;
   left: -18vmax;
   animation: aurora-drift-a 26s var(--ease-in-out) infinite alternate;
 }
 .aurora::after {
-  background: radial-gradient(circle, rgba(111, 216, 255, 0.32), transparent 62%);
+  background: radial-gradient(circle, rgba(111, 216, 255, 0.28), rgba(111, 216, 255, 0.08) 45%, transparent 72%);
   bottom: -32vmax;
   right: -22vmax;
   animation: aurora-drift-b 32s var(--ease-in-out) infinite alternate;
 }
-.aurora[data-mood='match']::before { background: radial-gradient(circle, rgba(255, 194, 75, 0.55), transparent 62%); }
-.aurora[data-mood='room']::after { background: radial-gradient(circle, rgba(169, 123, 255, 0.4), transparent 62%); }
+.aurora[data-mood='match']::before { background: radial-gradient(circle, rgba(255, 194, 75, 0.45), rgba(255, 194, 75, 0.14) 45%, transparent 72%); }
+.aurora[data-mood='room']::after { background: radial-gradient(circle, rgba(169, 123, 255, 0.34), rgba(169, 123, 255, 0.1) 45%, transparent 72%); }
 
 @keyframes aurora-drift-a {
   from { transform: translate3d(0, 0, 0) scale(1); }
