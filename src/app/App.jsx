@@ -657,6 +657,7 @@ export default function App() {
           onClose={() => setRouletteOpen(false)}
           pool={deckPoolRef.current}
           history={history}
+          taste={taste}
           onPick={(title) => setDetailsEntry({ id: title.id, title, matchedTags: [] })}
         />
 

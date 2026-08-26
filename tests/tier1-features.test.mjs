@@ -465,30 +465,52 @@ test('F27 · лайк франшизы поднимает родственные
   assert.ok(score(batman) > score(rocky), 'супергероика ближе, чем спорт');
 });
 
-test('F28 · рулетка крутит десятку, а побеждает лучший по качеству', async () => {
+test('F28 · рулетка тянет из любимой темы, а внутри — честный жребий', async () => {
   const { pickReel } = await import('../src/engine/roulette.js');
 
-  // Качество у всех разное: при ничьей «лучший» неоднозначен, и проверять
-  // тогда нечего.
-  const films = Array.from({ length: 40 }, (_, i) => ({
+  const withTag = (i, tag) => ({
     id: `tmdb:movie:${i}`,
     title: `Фильм ${i}`,
-    quality: i / 40,
-  }));
+    quality: i / 60,
+    tags: tag ? { [tag]: 1 } : {},
+  });
 
-  // Прогоняем несколько раз: состав случаен, инвариант — нет.
+  // Половина каталога с любимой темой, половина — без неё вовсе.
+  const films = [
+    ...Array.from({ length: 30 }, (_, i) => withTag(i, 'самураи')),
+    ...Array.from({ length: 30 }, (_, i) => withTag(100 + i, 'мелодрама')),
+  ];
+
+  let taste = createEmptyProfile();
+  for (let i = 0; i < 5; i += 1) {
+    taste = applySignal(taste, { tags: { самураи: 1 }, moods: NEUTRAL_MOOD }, ACTION.FAVORITE);
+  }
+
   for (let seed = 1; seed <= 5; seed += 1) {
-    const reel = pickReel(films, 10, seededRandom(seed));
+    const reel = pickReel(films, { size: 10, taste, random: seededRandom(seed) });
 
     assert.equal(reel.length, 10, 'в барабане ровно десять фильмов');
     assert.equal(new Set(reel.map((t) => t.id)).size, 10, 'без повторов');
-
-    const maxQuality = Math.max(...reel.map((t) => t.quality));
-    assert.equal(reel[reel.length - 1].quality, maxQuality,
-      'на последней позиции — там, где останавливается лента, — должен стоять лучший');
+    assert.ok(reel.every((t) => t.tags.самураи),
+      'барабан набирается из фильмов с любимой темой');
   }
 
+  /*
+   * Победитель обязан быть случайным. Раньше на последнее место всегда
+   * вставал лучший по качеству — рулетка выдавала одно и то же.
+   */
+  const winners = new Set();
+  for (let seed = 1; seed <= 40; seed += 1) {
+    const reel = pickReel(films, { size: 10, taste, random: seededRandom(seed) });
+    winners.add(reel[reel.length - 1].id);
+  }
+  assert.ok(winners.size > 5, `победитель предопределён: всего ${winners.size} вариантов на 40 прогонов`);
+
+  // Пустого профиля достаточно, чтобы крутить: тема просто не учитывается.
+  const cold = pickReel(films, { size: 10, taste: createEmptyProfile(), random: seededRandom(7) });
+  assert.equal(cold.length, 10);
+
   // Меньше двух фильмов крутить нечего, но падать тоже нельзя.
-  assert.deepEqual(pickReel([], 10), []);
-  assert.equal(pickReel([films[0]], 10).length, 1);
+  assert.deepEqual(pickReel([], { size: 10 }), []);
+  assert.equal(pickReel([films[0]], { size: 10 }).length, 1);
 });

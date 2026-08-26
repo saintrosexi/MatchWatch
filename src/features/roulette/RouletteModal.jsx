@@ -20,7 +20,7 @@ const SPIN_MS = 2800;
  * намеренно: рулетка здесь не про случайность выбора, а про то, чтобы
  * снять с человека необходимость решать. Случаен состав, а не победитель.
  */
-export function RouletteModal({ open, onClose, pool = [], onPick, history = {} }) {
+export function RouletteModal({ open, onClose, pool = [], onPick, history = {}, taste = null }) {
   const [spinning, setSpinning] = useState(false);
   const [result, setResult] = useState(null);
   const timers = useRef([]);
@@ -29,11 +29,11 @@ export function RouletteModal({ open, onClose, pool = [], onPick, history = {} }
 
   const candidates = useMemo(() => rouletteCandidates(pool, history), [pool, history]);
 
-  /**
-   * Барабан: девять случайных фильмов, а на последнем месте — лучший
-   * по качеству из выбранной десятки. Он и выпадет.
+  /*
+   * Барабан набирается из фильмов с самой любимой темой пользователя,
+   * а внутри десятки случайность честная — включая того, кто выпадет.
    */
-  const reel = useMemo(() => pickReel(candidates), [candidates, open]);
+  const reel = useMemo(() => pickReel(candidates, { taste }), [candidates, taste, open]);
 
   const winner = reel[reel.length - 1] ?? null;
 
