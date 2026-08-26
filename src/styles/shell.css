@@ -42,7 +42,8 @@
  */
 .hud {
   position: fixed;
-  top: calc(var(--safe-top) + 19px);
+  /* Чуть ниже логотипа: кнопки лежат на нём, но не спорят с надписью. */
+  top: calc(var(--safe-top) + 24px);
   left: 50%;
   /*
    * Ряд ровно по ширине логотипа, кнопки разведены по его краям: так они
@@ -369,7 +370,7 @@
 .hud__brand {
   position: fixed;
   /* На уровне кнопки «Закрыть» Telegram, а не выше её. */
-  top: calc(var(--safe-top) + 19px);
+  top: calc(var(--safe-top) + 16px);
   left: 50%;
   /* Смещение вправо: слева от центра у Telegram шире кнопка «Закрыть». */
   transform: translateX(calc(-50% + 15px));
