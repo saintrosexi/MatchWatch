@@ -54,7 +54,7 @@ import {
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
 import { getConfig, initRemoteConfig } from '../engine/recommendationConfig.js';
-import { JOIN_SOURCE } from '../engine/rooms.js';
+import { JOIN_SOURCE, roomExcludedTitles } from '../engine/rooms.js';
 
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
 import { subscribeNetwork } from '../lib/network.js';
@@ -249,6 +249,7 @@ export default function App() {
     history,
     actorId: actorDeck?.id ?? null,
     roomDeck: deckMode === DECK_MODE.ROOM ? room.state?.deck : null,
+    roomSwiped: deckMode === DECK_MODE.ROOM ? room.swipedTitleIds : null,
     /*
      * Колода не собирается, пока не приехала история решений: иначе
      * исключать нечего и всё отклонённое возвращается в ленту.
@@ -290,13 +291,15 @@ export default function App() {
     growingRef.current = true;
     const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
 
-    buildRoomDeck({
-      consensus: room.consensus ?? taste,
-      filters,
-      history: roomHistory(room.state, user?.uid),
-      excludeIds: published,
-      pool: growthPoolRef.current,
-    })
+    roomExcludedTitles(room.code)
+      .catch(() => [])
+      .then((excluded) => buildRoomDeck({
+        consensus: room.consensus ?? taste,
+        filters,
+        history: roomHistory(room.state, user?.uid),
+        excludeIds: [...published, ...excluded],
+        pool: growthPoolRef.current,
+      }))
       .then(({ deck: next, pool }) => {
         growthPoolRef.current = pool;
         return next.length ? room.growDeck(next) : null;
@@ -449,12 +452,27 @@ export default function App() {
   /** Собрать общую колоду по вкусам всех, кто сейчас в комнате. */
   const buildSharedDeck = useCallback(async () => {
     if (!room.code || deckBuilding) return;
+    /*
+     * Собирает только хост. Колода публикуется на всю комнату, и если
+     * её пересоберёт второй участник, у первого прогресс обнулится
+     * посреди сессии.
+     */
+    if (!room.isHost) return;
+
     setDeckBuilding(true);
     try {
+      /*
+       * Просмотренное и любимое всех участников выкидывается один раз,
+       * здесь: показывать паре то, что кто-то из них уже видел, незачем,
+       * а личная фильтрация при показе разъезжала общий порядок.
+       */
+      const excluded = await roomExcludedTitles(room.code);
+
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
         filters,
         history: roomHistory(room.state, user?.uid),
+        excludeIds: excluded,
       });
       if (!deck.length) {
         toasts.error('Под эти фильтры ничего не нашлось. Ослабьте их и попробуйте снова.');

@@ -435,6 +435,23 @@ export async function closeRoom(code) {
   return result;
 }
 
+/**
+ * Что не должно попасть в общую колоду: просмотренное и любимое всех,
+ * кто в комнате. Считается на сервере — чужую историю клиент не видит
+ * и видеть не должен.
+ */
+export async function roomExcludedTitles(code, { keepFavorites = false } = {}) {
+  if (!supabaseReady()) return [];
+  const normalized = normalizeRoomCode(code);
+  if (!normalized) return [];
+
+  const rows = await guarded(
+    () => supabase.rpc('room_excluded_titles', { p_code: normalized, p_keep_favorites: keepFavorites }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'room exclusions' },
+  );
+  return (rows ?? []).map((r) => r.title_id).filter(Boolean);
+}
+
 /** Размер синхронизированной колоды берётся из конфига, а не из константы в UI. */
 export const roomDeckSize = () => RECOMMENDATION_CONFIG.room.deckSize;
 

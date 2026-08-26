@@ -49,6 +49,12 @@ export function useDeck({
   history = {},
   actorId = null,
   roomDeck = null,
+  /**
+   * Мои голоса в этой комнате. Отдельно от личной истории намеренно:
+   * общая колода одна на всех, и отсеивать из неё можно только то,
+   * на что этот человек уже ответил, — иначе наборы разъезжаются.
+   */
+  roomSwiped = null,
   enabled = true,
 }) {
   const [queue, setQueue] = useState([]);
@@ -180,10 +186,20 @@ export function useDeck({
           if (generation.current !== myGeneration) return;
 
           const byId = new Map(responses.flatMap((r) => r.titles ?? []).map((t) => [t.id, t]));
+
+          /*
+           * Порядок берётся из колоды комнаты как есть и ничем больше
+           * не фильтруется. Раньше здесь отсеивалось личное «просмотрено»,
+           * и у двоих получались разные наборы — со стороны это выглядело
+           * как случайные карточки вместо общей колоды. Всё, что нужно
+           * исключить, отсекается один раз при генерации, сразу по всем
+           * участникам; свои уже отданные голоса убирает `extend`.
+           */
+          const voted = new Set(roomSwiped ?? []);
           const ordered = stubs
             .map((stub) => byId.get(stub.id ?? stub.titleId) ?? hydrateStub(stub))
             .filter(Boolean)
-            .filter((t) => historyRef.current[t.id] !== 'watched');
+            .filter((t) => !voted.has(t.id));
 
           ordered.forEach((t) => queuedIds.current.add(t.id));
           setQueue(ordered.map((title) => ({
@@ -260,6 +276,12 @@ export function useDeck({
     })();
 
     return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    /*
+     * `roomSwiped` намеренно вне зависимостей: он меняется на каждый свой
+     * свайп, и колода пересобиралась бы под руками. Учитывается он только
+     * при сборке — то есть при входе в комнату и при росте колоды.
+     */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, filterKey, actorId, roomDeckKey, enabled]);
 
