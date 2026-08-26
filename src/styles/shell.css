@@ -7,7 +7,12 @@
   flex-direction: column;
   height: 100%;
   /* Под логотипом: в Mini App его держит полоса Telegram, в вебе — ничто. */
-  padding-top: max(var(--inset-top), 34px);
+  /*
+   * Ровно под логотипом. На отступ Telegram не опираемся: он отмеряет
+   * полосу под кнопки клиента, а логотип стоит в той же полосе — значит
+   * контенту незачем ждать её конца, иначе между ними зияет пустота.
+   */
+  padding-top: calc(var(--safe-top) + 61px);
 }
 
 .mobile-shell__main {
@@ -27,24 +32,32 @@
 .mobile-shell__main--fixed { overflow: hidden; padding-bottom: var(--dock-h); }
 
 /* HUD-полоса вверху: кто я, что происходит, быстрые действия. */
+/*
+ * Кнопки раздела лежат прямо на логотипе.
+ *
+ * Своей строки они не заслуживают: их всего две и только на ленте, а
+ * высота на телефоне дороже. Логотип некликабелен и работает фоном —
+ * поэтому кнопки стеклянные и полупрозрачные, чтобы слово читалось
+ * сквозь них, а не пряталось за плашкой.
+ */
 .hud {
-  position: relative;
+  position: fixed;
+  top: calc(var(--safe-top) + 19px);
+  left: 50%;
+  /*
+   * Ряд ровно по ширине логотипа, кнопки разведены по его краям: так они
+   * лежат на самой связке, а не рядом с ней, и при этом не режут слово
+   * посередине — центр остаётся читаемым.
+   */
+  width: 232px;
+  transform: translateX(calc(-50% + 15px));
+  height: 38px;
   display: flex;
   align-items: center;
-  /* Кнопки раздела стоят по центру — ровно под логотипом, а не сбоку. */
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--s-2);
-  /*
-   * Верхнего отступа нет: кнопки стоят вплотную под логотипом.
-   * Левый отступ шире правого ровно на два смещения логотипа — так центр
-   * ряда совпадает с центром самого логотипа, а не экрана.
-   */
-  padding: 0 var(--s-4) var(--s-2) calc(var(--s-4) + 30px);
-  min-height: 0;
-  /* Брендовая связка не сжимается, поэтому строку надо явно ограничить,
-     иначе аватар уезжает за правый край экрана. */
-  max-width: 100%;
-  overflow: hidden;
+  padding: 0;
+  z-index: calc(var(--z-hud) + 1);
 }
 .hud > .brand { min-width: 0; flex: 0 1 auto; overflow: hidden; }
 .hud__pill, .hud__avatar-btn { flex: 0 0 auto; }
@@ -52,16 +65,22 @@
 .hud__pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  height: 34px;
-  padding: 0 var(--s-3);
+  height: 30px;
+  min-width: 30px;
+  padding: 0 var(--s-2);
   border-radius: var(--r-pill);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  /* Полупрозрачное стекло: под кнопкой лежит логотип, и глухая заливка
+     разрезала бы слово пополам. */
+  background: rgba(10, 10, 16, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px) saturate(1.2);
   font-size: var(--t-small);
   color: var(--text-mid);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
+.hud__pill:active { background: rgba(10, 10, 16, 0.6); color: var(--text-hi); }
 .hud__avatar {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -349,7 +368,8 @@
  */
 .hud__brand {
   position: fixed;
-  top: var(--safe-top);
+  /* На уровне кнопки «Закрыть» Telegram, а не выше её. */
+  top: calc(var(--safe-top) + 19px);
   left: 50%;
   /* Смещение вправо: слева от центра у Telegram шире кнопка «Закрыть». */
   transform: translateX(calc(-50% + 15px));
