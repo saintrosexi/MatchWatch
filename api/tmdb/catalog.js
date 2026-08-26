@@ -9,9 +9,10 @@
 
 import { withHandler } from '../_lib/http.js';
 import { assertNonEmpty, getImageBase, tmdbFetch } from '../_lib/tmdb.js';
-import { cached, cacheKeyFor, storeTitles, loadMarkup, TTL } from '../_lib/cache.js';
+import { cached, cacheKeyFor, storeTitles, loadOverlays, TTL } from '../_lib/cache.js';
 import { normalizeTmdbMovie } from '../../shared/model/title.js';
 import { applyMarkup } from '../../shared/ai/markup.js';
+import { applyCurated } from '../../shared/model/curated.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { clampInt, toFloat } from '../_lib/util.js';
 
@@ -115,12 +116,17 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
   return { ...value, titles, enriched: false, cacheSource: source };
 });
 
-/** Накладывает разметку модели на пачку карточек. */
+/**
+ * Накладывает оба слоя. Порядок важен: ручной отбор идёт последним,
+ * потому что решение человека главнее предположения модели.
+ */
 async function withMarkup(titles) {
   if (!titles?.length) return titles;
-  const markup = await loadMarkup(titles.map((t) => t.id));
-  if (!markup.size) return titles;
-  return titles.map((title) => (markup.has(title.id)
-    ? applyMarkup(title, markup.get(title.id))
-    : title));
+  const { markup, curated } = await loadOverlays(titles.map((t) => t.id));
+  if (!markup.size && !curated.size) return titles;
+
+  return titles.map((title) => {
+    const withModel = markup.has(title.id) ? applyMarkup(title, markup.get(title.id)) : title;
+    return curated.has(title.id) ? applyCurated(withModel, curated.get(title.id)) : withModel;
+  });
 }

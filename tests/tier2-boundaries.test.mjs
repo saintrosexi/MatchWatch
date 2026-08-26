@@ -906,3 +906,48 @@ test('B46 · накопленный до потолка профиль подр�
   assert.ok(next.moods.darkness > 21,
     `после подрезки один сигнал уже двигает вектор, получили ${next.moods.darkness}`);
 });
+
+test('B47 · решение человека главнее и TMDB, и модели', async () => {
+  const { applyCurated, russianEra } = await import('../shared/model/curated.js');
+  const { applyMarkup } = await import('../shared/ai/markup.js');
+
+  const fromTmdb = { id: 'x', tags: { comedy: 80 }, moods: { energy: 50 }, rating: 7.2 };
+
+  const withModel = applyMarkup(fromTmdb, {
+    tags: { comedy: 60, satire: 70 },
+    moods: { energy: 70, darkness: 30 },
+    confidence: 'high',
+  });
+
+  const final = applyCurated(withModel, {
+    forceTags: ['russian-soviet'],
+    imdbRating: 8.3,
+    imdbVotes: 12000,
+    collection: 'russian',
+  });
+
+  /*
+   * Принудительный тег ставится с полным весом: «это наше кино» —
+   * не наблюдение модели над описанием, а факт, который человек знает
+   * и без неё. Никакая переразметка его не снимет.
+   */
+  assert.equal(final.tags['russian-soviet'], 100);
+  assert.equal(final.tags.comedy, 80, 'вес TMDB сохранился');
+  assert.equal(final.tags.satire, 70, 'находка модели сохранилась');
+
+  /*
+   * Рейтинг IMDB — отдельным полем, а не подменой оценки TMDB: шкалы
+   * разные, и подмена сделала бы несравнимыми карточки с ним и без него.
+   */
+  assert.equal(final.imdbRating, 8.3);
+  assert.equal(final.rating, 7.2, 'оценка TMDB на месте');
+  assert.equal(final.collection, 'russian');
+
+  // Без слоя карточка обязана остаться собой.
+  assert.deepEqual(applyCurated(fromTmdb, null), fromTmdb);
+
+  // Границей эпох служит распад СССР.
+  assert.equal(russianEra(1968), 'soviet');
+  assert.equal(russianEra(1991), 'soviet');
+  assert.equal(russianEra(1997), 'modern');
+});

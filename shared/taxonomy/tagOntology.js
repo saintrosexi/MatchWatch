@@ -666,6 +666,17 @@ Object.assign(TAG_MOODS, {
   'military': { darkness: 22, dynamism: 18, energy: 16 },
   'heist-comedy': { intellect: 22, energy: 24, darkness: -18 },
   'soviet-classic': { emotion: 26, intellect: 20, dynamism: -18 },
+  /*
+   * Один тег на всё наше кино, а не два.
+   *
+   * Советское и российское разделены годом, а не сутью: человек, который
+   * ищет «наше кино», не выбирает между «Бриллиантовой рукой» и «Братом» —
+   * ему нужно и то и другое. Разделение по эпохам остаётся подкатегориями
+   * подборки, но в профиль вкуса идёт один общий сигнал: иначе любовь
+   * к отечественному размазалась бы по двум тегам и оба весили бы вдвое
+   * меньше, чем заслуживают.
+   */
+  'russian-soviet': { emotion: 24, intellect: 16 },
   'russian-cinema': { emotion: 22, intellect: 14 },
 });
 
@@ -797,6 +808,7 @@ Object.assign(TAG_LABELS_RU, {
   'medical': 'медицина', 'food': 'еда', 'art': 'искусство',
   'aviation': 'авиация', 'submarine': 'подводная лодка', 'military': 'армия',
   'heist-comedy': 'весёлое ограбление', 'soviet-classic': 'советская классика',
+  'russian-soviet': 'Русское/СССР',
   'russian-cinema': 'российское кино',
 });
 

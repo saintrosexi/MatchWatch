@@ -134,19 +134,36 @@ export function __clearMemoryCache() { memory.clear(); }
  * выдачу, но каталог обязан работать и без неё.
  */
 export async function loadMarkup(ids) {
-  if (!hasServiceKey() || !ids?.length) return new Map();
+  const { markup } = await loadOverlays(ids);
+  return markup;
+}
+
+/**
+ * Оба слоя поверх карточки одним запросом.
+ *
+ * Разметка модели и ручной отбор лежат в соседних колонках, и тянуть
+ * их двумя запросами значило бы удвоить обращения к базе на каждую
+ * страницу каталога ради разделения, которого нет в хранении.
+ */
+export async function loadOverlays(ids) {
+  const empty = { markup: new Map(), curated: new Map() };
+  if (!hasServiceKey() || !ids?.length) return empty;
 
   try {
     const rows = await sbSelect('catalog_titles', {
-      select: 'id,ai_markup',
+      select: 'id,ai_markup,markup_status,curated',
       id: `in.(${ids.map((id) => `"${id}"`).join(',')})`,
-      markup_status: 'eq.done',
     });
-    return new Map((rows ?? [])
-      .filter((row) => row.ai_markup?.tags)
-      .map((row) => [row.id, row.ai_markup]));
+
+    const markup = new Map();
+    const curated = new Map();
+    for (const row of rows ?? []) {
+      if (row.markup_status === 'done' && row.ai_markup?.tags) markup.set(row.id, row.ai_markup);
+      if (row.curated) curated.set(row.id, row.curated);
+    }
+    return { markup, curated };
   } catch (error) {
-    console.warn('[cache] loadMarkup не удалась:', error?.message ?? error);
-    return new Map();
+    console.warn('[cache] loadOverlays не удалась:', error?.message ?? error);
+    return empty;
   }
 }
