@@ -487,3 +487,49 @@ test('X20 · страница из уже решённых фильмов не �
   assert.ok(secondPass.length > 0,
     'следующая страница обязана дать карточки — иначе лента встаёт навсегда');
 });
+
+/**
+ * Синхронный рост колоды.
+ *
+ * Каждый свайпает в своём темпе, но порция общая: пока её не прошли все,
+ * добавлять карточки нельзя. Иначе быстрый участник уезжает на новую
+ * порцию, пока медленный ещё в старой, и общая колода перестаёт быть
+ * общей — а «мэтч» превращается в совпадение позиций.
+ */
+test('X12 · колода комнаты растёт только когда порцию прошли все', () => {
+  const deck = Array.from({ length: 25 }, (_, i) => ({ id: `tmdb:movie:${i}` }));
+
+  /** Повторяет расчёт из useRoom: кто сколько карточек колоды отсвайпал. */
+  const progressOf = (swipes, members) => {
+    const deckIds = new Set(deck.map((t) => t.id));
+    const byUser = Object.fromEntries(members.map((uid) => [uid, 0]));
+    for (const [titleId, votes] of Object.entries(swipes)) {
+      if (!deckIds.has(titleId)) continue;
+      for (const uid of Object.keys(votes)) if (uid in byUser) byUser[uid] += 1;
+    }
+    const values = Object.values(byUser);
+    return { size: deck.length, byUser, slowest: values.length ? Math.min(...values) : 0 };
+  };
+
+  const swipes = {};
+  const members = ['alice', 'bob'];
+
+  // Алиса пролетела всю пачку, Боб — половину.
+  deck.forEach((t, i) => {
+    swipes[t.id] = { alice: 'like', ...(i < 12 ? { bob: 'pass' } : {}) };
+  });
+
+  const mid = progressOf(swipes, members);
+  assert.equal(mid.byUser.alice, 25);
+  assert.equal(mid.byUser.bob, 12);
+  assert.ok(mid.slowest < mid.size, 'пока медленный не закончил, колода расти не должна');
+
+  // Боб догнал — теперь можно.
+  deck.forEach((t) => { swipes[t.id].bob = 'pass'; });
+  const done = progressOf(swipes, members);
+  assert.equal(done.slowest, done.size, 'все прошли порцию — пора добавлять карточки');
+
+  // Голоса за карточки вне колоды не считаются прогрессом по ней.
+  swipes['tmdb:movie:999'] = { alice: 'like', bob: 'like' };
+  assert.equal(progressOf(swipes, members).slowest, done.size);
+});

@@ -219,6 +219,38 @@ export function useRoom({ user, taste }) {
 
   const onlineCount = members.filter((m) => m.online).length;
 
+  /**
+   * Кто сколько прошёл из общей колоды.
+   *
+   * Считается из состояния комнаты, которое и так приходит подпиской:
+   * отдельный счётчик в базе тут был бы лишней сущностью, способной
+   * разойтись с настоящими голосами.
+   */
+  const progress = useMemo(() => {
+    const deck = state?.deck ?? [];
+    const deckIds = new Set(deck.map((t) => t.id ?? t.titleId).filter(Boolean));
+    const swipes = state?.swipes ?? {};
+
+    const byUser = {};
+    for (const member of Object.values(state?.members ?? {})) byUser[member.uid] = 0;
+
+    for (const [titleId, votes] of Object.entries(swipes)) {
+      if (!deckIds.has(titleId)) continue;
+      for (const uid of Object.keys(votes ?? {})) {
+        if (uid in byUser) byUser[uid] += 1;
+      }
+    }
+
+    const values = Object.values(byUser);
+    return {
+      size: deck.length,
+      byUser,
+      mine: byUser[user?.uid] ?? 0,
+      /** Медленнее всех — по нему решается, пора ли растить колоду. */
+      slowest: values.length ? Math.min(...values) : 0,
+    };
+  }, [state?.deck, state?.swipes, state?.members, user?.uid]);
+
   const mySwipes = useMemo(
     () => Object.entries(state?.swipes ?? {})
       .filter(([, votes]) => votes?.[user?.uid])
@@ -228,7 +260,7 @@ export function useRoom({ user, taste }) {
 
   return {
     code, state, status, error, celebration, consensus,
-    members, onlineCount,
+    members, onlineCount, progress,
     growDeck, setMood,
     /** Запросы всех участников — из них складывается общая колода. */
     moodRequests: members.map((m) => m.mood ?? []),

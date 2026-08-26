@@ -286,8 +286,17 @@ export default function App() {
     if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
     if (growingRef.current) return;
 
-    const config = getConfig();
-    if (deck.queue.length > config.room.refillThreshold) return;
+    /*
+     * Колода растёт, только когда порцию прошли ВСЕ.
+     *
+     * Упреждающая догрузка «за восемь карточек до конца» здесь не годится:
+     * быстрый участник уехал бы вперёд на новую порцию, пока медленный
+     * ещё в старой, и общая колода перестала бы быть общей. Тот, кто
+     * закончил раньше, видит экран ожидания — это честная пауза, а не
+     * пустой экран.
+     */
+    const { size, slowest } = room.progress;
+    if (!size || slowest < size) return;
 
     growingRef.current = true;
     const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
@@ -580,6 +589,8 @@ export default function App() {
     <SwipeDeck
       deck={deck}
       compact={deckMode === DECK_MODE.ROOM}
+      roomProgress={deckMode === DECK_MODE.ROOM ? room.progress : null}
+      roomMembers={deckMode === DECK_MODE.ROOM ? room.members : null}
       onDecision={handleDecision}
       onOpenDetails={setDetailsEntry}
       onOpenFilters={() => setFiltersOpen(true)}

@@ -8,7 +8,7 @@ import { haptic } from '../../lib/telegram.js';
 import { sfx, unlockAudio } from '../../lib/sound.js';
 import { ACTION } from '../../engine/tasteProfile.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
-import { Compass, PartyPopper, SlidersHorizontal } from '../../ui/icons.js';
+import { Compass, PartyPopper, SlidersHorizontal, Users } from '../../ui/icons.js';
 
 /**
  * Стопка карточек: жест, кнопки, клавиатура и предзагрузка постеров.
@@ -20,6 +20,9 @@ export function SwipeDeck({
   deck, onDecision, onOpenDetails, onOpenFilters, onRestart, onUndo, canUndo,
   /** В комнате остаются только «нет» и «да» — личные пометки там лишние. */
   compact = false,
+  /** Прогресс участников комнаты: { size, mine, slowest, byUser }. */
+  roomProgress = null,
+  roomMembers = null,
   emptyTitle = 'Колода закончилась',
   emptyText = 'Мы показали всё, что подходит под фильтры. Ослабьте их — и лента оживёт.',
   emptyArt = null,
@@ -108,6 +111,38 @@ export function SwipeDeck({
      * с сотнями отметок это обычное дело, и объявлять ему конец кино
      * посреди каталога — враньё.
      */
+    /*
+     * В комнате пустая очередь чаще всего значит «я закончил порцию,
+     * остальные ещё нет». Показывать здесь загрузку было бы враньём:
+     * ничего не грузится, идёт ожидание живых людей.
+     */
+    if (roomProgress?.size && roomProgress.slowest < roomProgress.size) {
+      const waiting = Object.entries(roomProgress.byUser ?? {})
+        .filter(([, done]) => done < roomProgress.size)
+        .map(([uid, done]) => ({
+          name: roomMembers?.find((m) => m.uid === uid)?.name ?? 'Участник',
+          done,
+        }));
+
+      return (
+        <EmptyState
+          icon={Users}
+          title="Свою пачку вы прошли"
+          text="Ждём остальных — как только все закончат, добавим ещё карточек."
+          action={(
+            <div className="stack gap-2" style={{ minWidth: 220 }}>
+              {waiting.map((person) => (
+                <div className="row row--between" key={person.name}>
+                  <span className="member__name">{person.name}</span>
+                  <span className="mono faint">{person.done} из {roomProgress.size}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        />
+      );
+    }
+
     if (!exhausted) {
       return <LoadingState text="Листаем каталог дальше — вы много чего уже видели…" />;
     }
