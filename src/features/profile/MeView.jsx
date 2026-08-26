@@ -15,11 +15,16 @@ const TABS = [
   { key: 'friends', label: 'Друзья' },
 ];
 
-export function MeView({ initialTab = 'profile', onOpenPublicProfile, ...rest }) {
+export function MeView({ initialTab = 'profile', onOpenPublicProfile, showTabs = true, ...rest }) {
   const [tab, setTab] = useState(initialTab);
 
   return (
     <div className="me">
+      {/*
+        * На большом экране профиль и друзья — два пункта бокового меню,
+        * и переключатель здесь повторял бы навигацию.
+        */}
+      {showTabs && (
       <div className="segmented" role="tablist" aria-label="Раздел «Я»">
         {TABS.map((item) => (
           <button
@@ -34,6 +39,7 @@ export function MeView({ initialTab = 'profile', onOpenPublicProfile, ...rest })
           </button>
         ))}
       </div>
+      )}
 
       {tab === 'profile'
         ? <ProfileView {...rest} onOpenFriends={() => setTab('friends')} />

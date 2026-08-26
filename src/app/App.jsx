@@ -762,6 +762,7 @@ function renderView(ctx) {
         <MeView
           key={meTab}
           initialTab={meTab}
+          showTabs={!desktopShell}
           user={sessionUser}
           profile={userState?.profile}
           taste={taste}
