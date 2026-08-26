@@ -626,6 +626,17 @@ Object.assign(TAG_MOODS, {
    * чего словарю не хватает, — вместо того чтобы гадать об этом.
    */
   'investigation': { intellect: 32, dynamism: 10, darkness: 16 },
+  /*
+   * Просила сама модель при разметке трёхсот фильмов. Отброшенные теги
+   * для того и перечисляются в ответе: они показывают, чего не хватает
+   * словарю, — вместо того чтобы гадать об этом за людей.
+   */
+  'conspiracy': { intellect: 34, darkness: 30, dynamism: 14 },
+  'nature': { emotion: 20, darkness: -18, dynamism: -22, intellect: 14 },
+  'science': { intellect: 40, dynamism: -10 },
+  'ecological': { intellect: 30, emotion: 24, darkness: 22 },
+  'moral-corruption': { darkness: 38, intellect: 24, emotion: 12 },
+  'cannibalism': { darkness: 46, emotion: 10 },
   'disaster': { energy: 28, dynamism: 30, darkness: 26 },
   'first-contact': { intellect: 30, emotion: 18 },
   'alien-invasion': { energy: 26, dynamism: 28, darkness: 22 },
@@ -771,7 +782,9 @@ Object.assign(TAG_LABELS_RU, {
   'meditative': 'медитативное', 'relentless': 'без передышки', 'absurdist': 'абсурд',
   'whimsical': 'причудливое', 'cringe-comedy': 'неловкий юмор', 'date-night': 'на свидание',
   'crowd-pleaser': 'зайдёт всем', 'thought-provoking': 'заставляет думать',
-  'investigation': 'расследование',
+  'investigation': 'расследование', 'conspiracy': 'заговор', 'nature': 'природа',
+  'science': 'наука', 'ecological': 'экология', 'moral-corruption': 'нравственное падение',
+  'cannibalism': 'каннибализм',
   'disaster': 'катастрофа', 'first-contact': 'первый контакт',
   'alien-invasion': 'вторжение', 'hard-sci-fi': 'твёрдая фантастика',
   'multiverse': 'мультивселенная', 'folk-horror': 'фолк-хоррор',

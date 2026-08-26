@@ -35,6 +35,20 @@ export const geminiKey = () => geminiKeys()[0] ?? null;
 export const hasGemini = () => Boolean(geminiKey());
 
 /**
+ * Следующий ключ по кругу.
+ *
+ * Счётчик живёт в экземпляре функции. Идеальной равномерности он не даёт —
+ * экземпляров бывает несколько, и каждый считает своё, — но чередование
+ * внутри экземпляра важнее: именно там идут запросы пачкой, и именно там
+ * прежняя схема упиралась в лимит одного ключа.
+ */
+let keyCursor = 0;
+const nextKeyIndex = (count) => {
+  keyCursor = (keyCursor + 1) % Math.max(count, 1);
+  return keyCursor;
+};
+
+/**
  * Исчерпана ли квота.
  *
  * Отличается от прочих отказов принципиально: это не про конкретный
@@ -160,12 +174,19 @@ export async function generateStructured({
   let data;
 
   /*
-   * Ключи перебираются только при исчерпании квоты. Прочие отказы —
-   * про сам запрос, и повторять их другим ключом бессмысленно.
+   * Ключи чередуются с самого начала, а не только после отказа.
+   *
+   * Лимиты Google считаются на проект: два ключа из разных проектов
+   * дают вдвое больший темп, но только если нагрузку делить сразу.
+   * Прежняя схема «жмём первый, пока не умрёт» оставляла второй
+   * простаивать и упиралась в тот же потолок, что и один ключ.
    */
+  const start = nextKeyIndex(keys.length);
+
   for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[(start + i) % keys.length];
     try {
-      res = await fetch(`${API}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(keys[i])}`, {
+      res = await fetch(`${API}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body),

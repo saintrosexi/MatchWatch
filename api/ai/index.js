@@ -13,7 +13,7 @@ import { interpretHandler } from '../_lib/aiInterpret.js';
 import { explainHandler } from '../_lib/aiExplain.js';
 import { markupHandler } from '../_lib/aiMarkup.js';
 import {
-  listModels, geminiModel, geminiFastModel, hasGemini, GeminiError, generateStructured,
+  listModels, geminiModel, geminiFastModel, geminiKeys, hasGemini, GeminiError, generateStructured,
 } from '../_lib/gemini.js';
 import { requireSecret } from '../_lib/http.js';
 import { withHandler, ApiError, sendJson } from '../_lib/http.js';
@@ -66,6 +66,8 @@ const modelsHandler = withHandler(
     return {
       configured,
       fast,
+      /** Сколько ключей видит сервер: без этого «второй ключ задан?» — гадание. */
+      keys: geminiKeys().length,
       available: models.some((m) => m.name === configured),
       fastAvailable: models.some((m) => m.name === fast),
       models,
