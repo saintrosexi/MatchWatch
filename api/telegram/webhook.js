@@ -15,7 +15,9 @@
 
 import { withHandler, ApiError } from '../_lib/http.js';
 import { sbSelect, sbInsert, sbUpdate, hasServiceKey } from '../_lib/supabaseAdmin.js';
-import { sendMessage, openAppButton, miniAppUrl, TEXTS } from '../_lib/botApi.js';
+import {
+  sendMessage, openAppButton, answerInlineQuery, appLink, linkButton, miniAppUrl, TEXTS,
+} from '../_lib/botApi.js';
 import { logError, logMetric } from '../_lib/telemetry.js';
 import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { timingSafeEqual } from 'node:crypto';
@@ -67,6 +69,11 @@ function assertFromTelegram(req) {
 }
 
 async function handleUpdate(update) {
+  if (update.inline_query) {
+    await onInlineQuery(update.inline_query);
+    return;
+  }
+
   const message = update.message ?? update.edited_message;
   if (!message?.chat || message.chat.type !== 'private') return;
 
@@ -162,4 +169,102 @@ async function linkedUserId(telegramId) {
 
 async function setNotify(telegramId, notify) {
   await sbUpdate('telegram_chats', { telegram_id: `eq.${telegramId}` }, { notify });
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Инлайн-режим: карточка, которую человек отправляет сам
+   ──────────────────────────────────────────────────────────────── */
+
+/**
+ * Приложение зовёт `switchInlineQuery('match <titleId>')` или
+ * `switchInlineQuery('room <code>')`, Telegram открывает список чатов,
+ * и в выбранный чат уходит настоящая карточка с постером — а не голая
+ * ссылка, из которой непонятно, о каком фильме речь.
+ *
+ * Отвечать обязательно, даже когда сказать нечего: без ответа Telegram
+ * показывает бесконечную загрузку, и это выглядит как поломка.
+ */
+async function onInlineQuery(query) {
+  const text = String(query.query ?? '').trim();
+  const [kind, ...rest] = text.split(/\s+/);
+  const argument = rest.join(' ').trim();
+
+  let results = [];
+
+  if (kind === 'match' && argument) {
+    results = await matchResult(argument);
+  } else if (kind === 'room') {
+    const code = /^\d{5}$/.test(argument) ? argument : null;
+    if (code) results = roomResult(code);
+  }
+
+  // Пустой запрос и всё непонятное сводятся к карточке приложения:
+  // человек уже выбрал чат, и остаться ни с чем — худший исход.
+  if (!results.length) results = appResult();
+
+  await answerInlineQuery(query.id, results);
+}
+
+async function matchResult(titleId) {
+  const rows = await sbSelect('catalog_titles', {
+    select: 'id,data',
+    id: `eq.${titleId}`,
+    limit: 1,
+  });
+
+  const title = rows?.[0]?.data;
+  // Постер обязателен: без него это не фотокарточка, а тот же голый текст.
+  if (!title?.title || !title?.poster) return [];
+
+  const link = appLink();
+
+  return [{
+    type: 'photo',
+    id: `match:${titleId}`.slice(0, 64),
+    photo_url: title.poster,
+    thumbnail_url: title.posterSmall ?? title.poster,
+    title: `Мэтч: ${title.title}`,
+    description: 'Отправить карточку в чат',
+    caption: TEXTS.inline.match(title.title, title.year),
+    parse_mode: 'HTML',
+    ...(linkButton('Открыть MatchWatch', link) ? { reply_markup: linkButton('Открыть MatchWatch', link) } : {}),
+  }];
+}
+
+export function roomResult(code) {
+  const link = appLink(code);
+
+  return [{
+    type: 'article',
+    id: `room:${code}`,
+    title: `Комната ${code}`,
+    description: 'Позвать выбирать кино вместе',
+    input_message_content: {
+      message_text: TEXTS.inline.room(code),
+      parse_mode: 'HTML',
+      link_preview_options: { is_disabled: true },
+    },
+    ...(linkButton(`Войти в комнату ${code}`, link)
+      ? { reply_markup: linkButton(`Войти в комнату ${code}`, link) }
+      : {}),
+  }];
+}
+
+function appResult() {
+  const link = appLink();
+
+  return [{
+    type: 'article',
+    id: 'app',
+    title: 'MatchWatch',
+    description: 'Выбирать кино вдвоём',
+    input_message_content: {
+      message_text: TEXTS.inline.app,
+      parse_mode: 'HTML',
+      link_preview_options: { is_disabled: true },
+    },
+    ...(linkButton('Открыть MatchWatch', link)
+      ? { reply_markup: linkButton('Открыть MatchWatch', link) }
+      : {}),
+  }];
 }

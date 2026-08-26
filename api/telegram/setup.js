@@ -52,9 +52,10 @@ export default withHandler({ methods: ['GET', 'POST'], module: MODULE.BOT }, asy
   const webhook = await callBot('setWebhook', {
     url: webhookUrl,
     secret_token: process.env.TELEGRAM_WEBHOOK_SECRET.trim(),
-    // Мэтчи мы не шлём, кнопок под сообщениями нет — лишние типы
-    // обновлений только жгут вызовы функции.
-    allowed_updates: ['message'],
+    // Только то, на что бот действительно отвечает: сообщения и
+    // инлайн-карточки. Остальные типы обновлений жгли бы вызовы
+    // функции впустую.
+    allowed_updates: ['message', 'inline_query'],
     drop_pending_updates: true,
   });
 

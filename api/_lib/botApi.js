@@ -85,6 +85,38 @@ export function sendMessage(chatId, text, { keyboard = null, preview = false } =
   });
 }
 
+/**
+ * Ссылка на мини-приложение внутри Telegram.
+ *
+ * Кнопка `web_app` в инлайн-результатах не поддерживается: результат
+ * отправляет пользователь, а не бот, и права на открытие приложения
+ * у такого сообщения нет. Поэтому обычная ссылка `t.me`, которая
+ * открывает то же самое.
+ */
+export function appLink(startParam) {
+  const bot = (process.env.VITE_TELEGRAM_BOT_USERNAME ?? process.env.TELEGRAM_BOT_USERNAME ?? '')
+    .trim().replace(/^@/, '');
+  if (!bot) return miniAppUrl();
+
+  const app = (process.env.VITE_TELEGRAM_APP_NAME ?? process.env.TELEGRAM_APP_NAME ?? 'app').trim();
+  const base = `https://t.me/${bot}/${app}`;
+  return startParam ? `${base}?startapp=${encodeURIComponent(startParam)}` : base;
+}
+
+/** Кнопка-ссылка под инлайн-карточкой. */
+export const linkButton = (text, url) => (url
+  ? { inline_keyboard: [[{ text, url }]] }
+  : undefined);
+
+export function answerInlineQuery(id, results, { cacheTime = 60 } = {}) {
+  return callBot('answerInlineQuery', {
+    inline_query_id: id,
+    results,
+    cache_time: cacheTime,
+    is_personal: true,
+  });
+}
+
 /** Экранирование под parse_mode: HTML — имена приходят от людей. */
 export const esc = (value) => String(value ?? '')
   .replace(/&/g, '&amp;')
@@ -136,5 +168,21 @@ export const TEXTS = {
     const tail = total > titles.length ? `\n\n…и ещё ${total - titles.length}.` : '';
     return 'Вы откладывали кино и пока до него не дошли:\n\n' + list + tail
       + '\n\nВечер свободен?';
+  },
+
+  /* ── Карточки, которые человек отправляет в чат ── */
+
+  inline: {
+    match: (title, year) => `<b>Мэтч!</b> Мы сошлись на фильме «${esc(title)}»`
+      + (year ? ` (${year})` : '')
+      + '.\n\nВыбирали в MatchWatch — там каждый свайпает со своего телефона, '
+      + 'а приложение показывает общее.',
+
+    room: (code) => `Собираемся выбирать кино. Комната <b>${esc(code)}</b>.\n\n`
+      + 'Заходи: свайпаешь со своего телефона, а MatchWatch покажет, '
+      + 'на чём мы сошлись.',
+
+    app: 'Выбираем кино вдвоём: каждый свайпает со своего телефона, '
+      + 'а <b>MatchWatch</b> показывает то, на чём вы сошлись.',
   },
 };

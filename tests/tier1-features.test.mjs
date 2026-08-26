@@ -648,3 +648,33 @@ test('F45 · кнопка «Открыть» не появляется без а
     else process.env.TELEGRAM_MINIAPP_URL = saved;
   }
 });
+
+test('F46 · приглашение в комнату уходит карточкой с кодом и кнопкой', async () => {
+  const { roomResult } = await import('../api/telegram/webhook.js');
+  const saved = process.env.VITE_TELEGRAM_BOT_USERNAME;
+
+  try {
+    process.env.VITE_TELEGRAM_BOT_USERNAME = '@MatchWatchApp_bot';
+    process.env.VITE_TELEGRAM_APP_NAME = 'app';
+
+    const [card] = roomResult('23356');
+
+    /*
+     * Голая ссылка не говорит ни во что зовут, ни от кого. В карточке
+     * код виден до того, как получатель куда-то нажмёт.
+     */
+    assert.ok(card.input_message_content.message_text.includes('23356'));
+    assert.equal(card.reply_markup.inline_keyboard[0][0].url,
+      'https://t.me/MatchWatchApp_bot/app?startapp=23356');
+
+    /*
+     * Кнопка `web_app` в инлайн-результате не работает: сообщение
+     * отправляет человек, а не бот. Обычная ссылка t.me открывает то же
+     * приложение и не ломается.
+     */
+    assert.equal(card.reply_markup.inline_keyboard[0][0].web_app, undefined);
+  } finally {
+    if (saved === undefined) delete process.env.VITE_TELEGRAM_BOT_USERNAME;
+    else process.env.VITE_TELEGRAM_BOT_USERNAME = saved;
+  }
+});

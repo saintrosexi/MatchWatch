@@ -8,7 +8,7 @@ import { Sheet } from '../../ui/Sheet.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
 import { JOIN_SOURCE } from '../../engine/rooms.js';
-import { roomInviteLink, shareToTelegram, haptic } from '../../lib/telegram.js';
+import { roomInviteLink, shareToTelegram, shareViaInlineQuery, haptic } from '../../lib/telegram.js';
 import { trackMetric } from '../../lib/telemetry.js';
 import { METRIC } from '../../../shared/telemetry/events.js';
 import { sfx } from '../../lib/sound.js';
@@ -207,9 +207,21 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
     return () => clearTimeout(t);
   }, [copied]);
 
+  /*
+   * Приглашение уходит карточкой, а не голой ссылкой.
+   *
+   * `switchInlineQuery` открывает список чатов, и бот кладёт в выбранный
+   * чат сообщение с кодом комнаты и кнопкой входа. Ссылка сама по себе
+   * не говорит ни во что зовут, ни от кого — получателю приходилось
+   * догадываться.
+   *
+   * Инлайн-режим включается у бота отдельно, поэтому запасные пути
+   * остаются: обычный шаринг ссылки, системный «поделиться», копия.
+   */
   const share = () => {
     room.trackInvite();
     haptic('light');
+    if (shareViaInlineQuery(`room ${room.code}`, ['users', 'groups'])) return;
     if (shareToTelegram({ url: invite, text: `Заходи в комнату ${room.code} — выберем кино вместе 🍿` })) return;
     navigator.share?.({ title: 'MatchWatch', text: `Код комнаты: ${room.code}`, url: invite })
       ?.catch(() => copy());
