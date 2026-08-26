@@ -16,7 +16,7 @@
  */
 
 import { withHandler, ApiError, requireSecret } from './http.js';
-import { generateStructured, GeminiError, hasGemini } from './gemini.js';
+import { generateStructured, GeminiError, hasGemini, geminiFastModel } from './gemini.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 
 const SCHEMA = {
@@ -66,6 +66,12 @@ export const filmListHandler = withHandler(
     let result;
     try {
       result = await generateStructured({
+        /*
+         * Быстрая модель по умолчанию: список названий — это знание,
+         * а не рассуждение, и тяжёлая тут ничего не добавляет, зато
+         * чаще отвечает отказом по перегрузке.
+         */
+        model: (body?.model ?? query.get('model') ?? '').trim() || geminiFastModel(),
         system: SYSTEM,
         prompt: `Составь список из ${count} фильмов.\n\n${brief}`,
         schema: SCHEMA,
