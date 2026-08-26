@@ -43,7 +43,12 @@ export function applyCurated(title, curated) {
      */
     ...(Number.isFinite(curated.imdbRating) ? { imdbRating: curated.imdbRating } : {}),
     ...(Number.isFinite(curated.imdbVotes) ? { imdbVotes: curated.imdbVotes } : {}),
-    ...(curated.collection ? { collection: curated.collection } : {}),
+    /*
+     * Имя намеренно не `collection`: у TMDB это поле уже занято
+     * франшизой — «Брат (Коллекция)», «Лёд (Коллекция)». Заняв его,
+     * мы затирали бы настоящие данные своей меткой подборки.
+     */
+    ...(curated.collection ? { curatedList: curated.collection, curatedEra: curated.era ?? null } : {}),
   };
 }
 

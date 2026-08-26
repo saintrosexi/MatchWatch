@@ -924,6 +924,7 @@ test('B47 · решение человека главнее и TMDB, и моде
     imdbRating: 8.3,
     imdbVotes: 12000,
     collection: 'russian',
+    era: 'soviet',
   });
 
   /*
@@ -941,7 +942,12 @@ test('B47 · решение человека главнее и TMDB, и моде
    */
   assert.equal(final.imdbRating, 8.3);
   assert.equal(final.rating, 7.2, 'оценка TMDB на месте');
-  assert.equal(final.collection, 'russian');
+  /*
+   * Метка подборки не занимает поле `collection`: у TMDB там франшиза
+   * («Брат (Коллекция)»), и заняв его, мы затирали бы настоящие данные.
+   */
+  assert.equal(final.curatedList, 'russian');
+  assert.equal(final.collection, undefined, 'поле TMDB осталось нетронутым');
 
   // Без слоя карточка обязана остаться собой.
   assert.deepEqual(applyCurated(fromTmdb, null), fromTmdb);
