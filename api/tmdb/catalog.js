@@ -7,7 +7,7 @@
  * Параметры: list, genres, yearFrom, yearTo, minRating, maxRuntime, page, sort
  */
 
-import { withHandler } from '../_lib/http.js';
+import { withHandler, badRequest } from '../_lib/http.js';
 import { assertNonEmpty, getImageBase, tmdbFetch } from '../_lib/tmdb.js';
 import { cached, cacheKeyFor, storeTitles, loadOverlays, TTL } from '../_lib/cache.js';
 import { normalizeTmdbMovie } from '../../shared/model/title.js';
@@ -21,6 +21,22 @@ const LISTS = {
   top_rated: '/movie/top_rated',
   now_playing: '/movie/now_playing',
   upcoming: '/movie/upcoming',
+};
+
+/**
+ * Списки, привязанные к конкретному фильму.
+ *
+ * Это готовый коллаборативный сигнал: TMDB считает их по поведению
+ * миллионов людей — «кто смотрел это, смотрел и то». Своей такой
+ * статистики у нас нет и не будет ещё долго, а здесь она бесплатна.
+ *
+ * Именно из них строится пул кандидатов «похоже на то, что вы
+ * полюбили». До этого пул набирался мировой популярностью, то есть
+ * признаком, не имеющим к человеку никакого отношения.
+ */
+const RELATED = {
+  similar: 'similar',
+  recommendations: 'recommendations',
 };
 
 const SORTS = {
@@ -62,8 +78,16 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
   const sort = SORTS[query.get('sort')] ?? SORTS.popularity;
   const language = query.get('language') ?? 'ru-RU';
 
-  const isDiscover = !LISTS[list];
-  const path = isDiscover ? '/discover/movie' : LISTS[list];
+  const relatedTo = RELATED[list] ? clampInt(query.get('id'), 1, 99999999, null) : null;
+  if (RELATED[list] && !relatedTo) {
+    // Список «похожих» без фильма — это не список, а ошибка вызова.
+    throw badRequest('id_required', `Для списка «${list}» нужен id фильма`);
+  }
+
+  const isDiscover = !LISTS[list] && !relatedTo;
+  const path = relatedTo
+    ? `/movie/${relatedTo}/${RELATED[list]}`
+    : (isDiscover ? '/discover/movie' : LISTS[list]);
 
   // Верхняя граница по дате — минимум из «не позже выбранного года»
   // и «уже вышло»: будущие премьеры в выбор не попадают.
@@ -83,7 +107,13 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
       }
     : { page, language };
 
-  const key = `catalog/lists/${cacheKeyFor(list, params)}`;
+  /*
+   * Идентификатор фильма обязан входить в ключ кэша. Списки «похожих»
+   * получают одни и те же параметры (страница и язык), и без него
+   * похожие на «Брата» и похожие на «Дюну» легли бы в одну ячейку —
+   * второй запрос молча получил бы чужой ответ.
+   */
+  const key = `catalog/lists/${cacheKeyFor(relatedTo ? `${list}-${relatedTo}` : list, params)}`;
 
   const { value, source } = await cached(key, TTL.LIST, async () => {
     const [payload, imageBase] = await Promise.all([tmdbFetch(path, params), getImageBase()]);

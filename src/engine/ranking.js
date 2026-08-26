@@ -70,6 +70,12 @@ function historyMultiplier(titleId, history, config) {
   if (!state) return 1;
   const p = config.penalties;
   if (state === 'dislike') return p.disliked;
+  /*
+   * Отказ одного участника комнаты. Понижение сильное, но не запрет:
+   * его «нет» весит много, а вычёркивать фильм для второго человека
+   * оснований не даёт.
+   */
+  if (state === 'refused-by-some') return config.room?.refusedBySome ?? 0.15;
   if (state === 'watched') return p.watched;
   if (DECIDED.has(state)) return p.liked;
   if (state === 'seen') return p.recentlySeen;
