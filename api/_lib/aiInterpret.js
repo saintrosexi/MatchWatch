@@ -32,7 +32,8 @@ const SYSTEM = `Ты переводишь запрос человека о ки�
 3. Вес тега 0..1: насколько это важно в запросе.
 4. Жёсткие фильтры ставь, только если человек назвал их прямо (год, длительность, рейтинг, жанр). «Хорошее кино» — это не minRating, а настроение.
 5. Если человек назвал фильм как ориентир — разложи на теги и оси то, чем этот фильм является, а сам фильм не упоминай.
-6. summary — одна короткая фраза по-русски о том, что ты понял. Она показывается человеку до сборки подборки, поэтому будь точен и не обещай лишнего.`;
+6. Просьбу чего-то избежать («только не про болезни», «без ужасов») клади в avoid — тем же словарём. Это ЕДИНСТВЕННЫЙ способ выразить отказ: ни оси, ни отрицательные веса его не передают.
+7. summary — одна короткая фраза по-русски о том, что ты понял. Она показывается человеку до сборки подборки. Не обещай в ней того, чего нет в структуре: если исключение не попало в avoid, не пиши, что ты его учёл.`;
 
 export const interpretHandler = withHandler(
   { methods: ['POST'], module: MODULE.DECK },
@@ -76,7 +77,7 @@ export const interpretHandler = withHandler(
     const request = requestFromInterpretation(result.data);
 
     if (!Object.keys(request.axes).length && !request.tags.length
-        && !Object.keys(request.filters).length) {
+        && !request.avoid.length && !Object.keys(request.filters).length) {
       /*
        * Пустой разбор — не результат. Отдать его значило бы собрать
        * подборку «как обычно» и сделать вид, что запрос учтён.
@@ -103,6 +104,7 @@ export const interpretHandler = withHandler(
         tookMs: Date.now() - started,
         axes: Object.keys(request.axes).length,
         tags: request.tags.length,
+        avoid: request.avoid.length,
         dropped: request.dropped.length,
         ...result.usage,
       },
@@ -112,6 +114,7 @@ export const interpretHandler = withHandler(
       request: {
         axes: request.axes,
         tags: request.tags,
+        avoid: request.avoid,
         filters: request.filters,
         summary: request.summary,
         text,

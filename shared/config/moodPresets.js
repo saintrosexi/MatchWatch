@@ -126,6 +126,8 @@ export function buildMoodRequest(input) {
     keys: chosen,
     /** Теги из разбора — для прямого совпадения там, где карточка обогащена. */
     tags: (ai?.tags ?? []).filter((t) => t?.tag),
+    /** Чего просили избежать. Просьбу одного уважают все. */
+    avoid: (ai?.avoid ?? []).filter((t) => t?.tag),
     /** Что именно поняли из фразы. Показывается человеку. */
     summary: ai?.summary ?? null,
     text: ai?.text ?? null,

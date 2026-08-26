@@ -9,6 +9,7 @@
 import { CatalogPool } from './catalog.js';
 import { rankDeck } from './ranking.js';
 import { buildMoodRequest, moodRequestFit, roomMoodFit } from '../../shared/config/moodPresets.js';
+import { avoidancePenalty, mergeAvoided } from '../../shared/ai/interpretation.js';
 import { getConfig } from './recommendationConfig.js';
 import { trackBusiness } from '../lib/telemetry.js';
 import { BIZ, MODULE } from '../../shared/telemetry/events.js';
@@ -132,11 +133,24 @@ function blendByMood(ranked, requests, target, config) {
   const requestWeight = config.room.requestWeight ?? 0.5;
   const personalShare = config.room.personalMoodShare ?? 0.2;
 
-  const scored = ranked.map((entry) => ({
-    entry,
-    shared: roomMoodFit(entry.title.moods, requests) ?? 0,
-    personal: requests.map((r) => moodRequestFit(entry.title.moods, r) ?? 0),
-  }));
+  /*
+   * Просьба чего-то избежать — общая: если один сказал «только не про
+   * болезни», такой фильм плох для вечера обоих, и «зато второй не
+   * возражал» тут не довод.
+   *
+   * Понижение, а не отсев: ниже жанрового слоя каталог размечен редко,
+   * и жёсткий отсев по тегу выбросил бы заодно всё неразмеченное.
+   */
+  const avoided = mergeAvoided(requests);
+
+  const scored = ranked.map((entry) => {
+    const penalty = avoidancePenalty(entry.title.tags, avoided);
+    return {
+      entry,
+      shared: (roomMoodFit(entry.title.moods, requests) ?? 0) * penalty,
+      personal: requests.map((r) => (moodRequestFit(entry.title.moods, r) ?? 0) * penalty),
+    };
+  });
 
   // Общая часть: вкус комнаты и общее настроение поровну.
   const common = [...scored]

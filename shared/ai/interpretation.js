@@ -122,12 +122,25 @@ export function requestFromInterpretation(raw) {
     explicit[axis] = clamp(Math.round(Number(value)), 0, 100);
   }
 
+  const avoid = (Array.isArray(raw?.avoid) ? raw.avoid : [])
+    .map((entry) => ({
+      tag: String(entry?.tag ?? '').trim(),
+      weight: clamp(Number(entry?.weight ?? 1) || 0, 0, 1),
+    }))
+    .filter(({ tag, weight }) => {
+      if (!tag || weight <= 0) return false;
+      if (!known.has(tag)) { dropped.push(tag); return false; }
+      return true;
+    })
+    .slice(0, 8);
+
   const derived = axesFromTags(tags);
   const axes = { ...derived, ...explicit };
 
   return {
     axes,
     tags,
+    avoid,
     filters: normalizeFilters(raw?.filters),
     summary: String(raw?.summary ?? '').trim().slice(0, 200),
     dropped,
@@ -197,6 +210,19 @@ export const INTERPRETATION_SCHEMA = {
         required: ['tag', 'weight'],
       },
     },
+    avoid: {
+      type: 'array',
+      description: 'Темы, которых человек просил избежать. Только из того же словаря. '
+        + 'Если избегать нечего — пустой список.',
+      items: {
+        type: 'object',
+        properties: {
+          tag: { type: 'string' },
+          weight: { type: 'number' },
+        },
+        required: ['tag', 'weight'],
+      },
+    },
     filters: {
       type: 'object',
       properties: {
@@ -257,4 +283,49 @@ export function mergeRequestFilters(requests) {
   if (genres.length) out.genres = genres;
 
   return out;
+}
+
+/**
+ * Насколько фильм задевает то, чего просили избежать.
+ *
+ * Появилось потому, что модель научилась писать «исключая болезни»
+ * раньше, чем у неё появился способ это выразить: обещание в тексте
+ * без механизма — обман, который заметит первый же зритель, получивший
+ * ровно то, от чего отказывался.
+ *
+ * Исключение — не жёсткий отсев, а сильное понижение. Отсеивать нечем:
+ * ниже жанрового слоя каталог размечен редко, и жёсткий фильтр по тегу
+ * выбросил бы заодно всё неразмеченное, то есть почти всё. Понижение
+ * же работает там, где разметка есть, и ничего не ломает там, где её нет.
+ *
+ * @returns {number} множитель 0..1: 1 — не задевает, ниже — задевает
+ */
+export function avoidancePenalty(titleTags, avoid) {
+  if (!avoid?.length || !titleTags) return 1;
+
+  const tags = Array.isArray(titleTags)
+    ? new Map(titleTags.map((t) => [t, 100]))
+    : new Map(Object.entries(titleTags));
+
+  let worst = 0;
+  for (const { tag, weight = 1 } of avoid) {
+    const strength = tags.get(tag);
+    if (!strength) continue;
+    // Вес темы в фильме и настойчивость просьбы перемножаются:
+    // мимоходом упомянутая тема — не то же, что тема фильма.
+    worst = Math.max(worst, (Number(strength) / 100) * clamp(Number(weight) || 0, 0, 1));
+  }
+
+  return clamp(1 - worst * 0.85, 0.15, 1);
+}
+
+/** Всё нежелательное со всех участников: просьбу одного уважают все. */
+export function mergeAvoided(requests) {
+  const merged = new Map();
+  for (const request of requests ?? []) {
+    for (const { tag, weight = 1 } of request?.avoid ?? []) {
+      merged.set(tag, Math.max(merged.get(tag) ?? 0, weight));
+    }
+  }
+  return [...merged].map(([tag, weight]) => ({ tag, weight }));
 }

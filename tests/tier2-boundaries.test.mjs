@@ -749,3 +749,40 @@ test('B40 · условия участников складываются так
   assert.deepEqual(mergeRequestFilters([]), {});
   assert.deepEqual(mergeRequestFilters([{ filters: {} }]), {});
 });
+
+test('B41 · просьба чего-то избежать действительно понижает такие фильмы', async () => {
+  const { avoidancePenalty, mergeAvoided } = await import('../shared/ai/interpretation.js');
+
+  /*
+   * Появилось после живой проверки: модель писала «исключая болезни»,
+   * а выразить это ей было нечем — и фильм про болезнь спокойно попадал
+   * в подборку. Обещание в тексте без механизма замечает первый же
+   * зритель, получивший ровно то, от чего отказывался.
+   */
+  const avoid = [{ tag: 'illness', weight: 1 }];
+
+  assert.ok(avoidancePenalty({ illness: 90, drama: 70 }, avoid) < 0.3,
+    'фильм, где это главная тема, уходит вниз');
+  assert.ok(avoidancePenalty({ illness: 20, comedy: 90 }, avoid) > 0.7,
+    'мимоходом упомянутая тема — не то же самое');
+  assert.equal(avoidancePenalty({ comedy: 90 }, avoid), 1,
+    'не задевающий фильм не наказывается вовсе');
+
+  // Отсева нет намеренно: жёсткий фильтр по тегу выбросил бы заодно
+  // всё неразмеченное, то есть почти весь каталог.
+  assert.ok(avoidancePenalty({ illness: 100 }, avoid) > 0,
+    'даже задетый фильм остаётся возможным, просто маловероятным');
+
+  assert.equal(avoidancePenalty({ illness: 100 }, []), 1);
+  assert.equal(avoidancePenalty(null, avoid), 1);
+
+  // Просьбу одного уважают все: отказы участников складываются.
+  assert.deepEqual(
+    mergeAvoided([
+      { avoid: [{ tag: 'illness', weight: 0.5 }] },
+      { avoid: [{ tag: 'illness', weight: 1 }, { tag: 'gore', weight: 0.8 }] },
+    ]),
+    [{ tag: 'illness', weight: 1 }, { tag: 'gore', weight: 0.8 }],
+    'по каждой теме берётся самая настойчивая просьба',
+  );
+});
