@@ -853,3 +853,56 @@ test('B44 · настоящие теги TMDB главнее того, что п
   assert.deepEqual(applyMarkup(title, null), title);
   assert.deepEqual(applyMarkup(title, { moods: {} }), title);
 });
+
+test('B45 · профиль настроения не застывает от количества решений', async () => {
+  const { applySignal } = await import('../src/engine/tasteProfile.js');
+  const { RECOMMENDATION_CONFIG } = await import('../shared/config/recommendation.js');
+
+  const bright = { id: 'a', tags: { comedy: 100 }, moods: { energy: 80, darkness: 10, intellect: 40, emotion: 60, dynamism: 70 } };
+  const grim = { id: 'b', tags: { horror: 100 }, moods: { energy: 40, darkness: 95, intellect: 50, emotion: 50, dynamism: 40 } };
+
+  // Триста решений про светлое кино: раньше масса дорастала до сотен.
+  let profile = null;
+  for (let i = 0; i < 300; i += 1) {
+    profile = applySignal(profile, { ...bright, id: `a${i}` }, 'favorite');
+  }
+
+  assert.ok(profile.moodMass <= RECOMMENDATION_CONFIG.decay.moodMassCap,
+    `масса обязана быть ограничена, получили ${profile.moodMass}`);
+
+  const before = profile.moods.darkness;
+
+  /*
+   * Человек передумал. Без потолка массы двадцать новых решений сдвинули
+   * бы вектор на считанные пункты: при массе 300 каждое весит треть
+   * процента. Профиль переставал слушать человека вовсе.
+   */
+  for (let i = 0; i < 20; i += 1) {
+    profile = applySignal(profile, { ...grim, id: `b${i}` }, 'favorite');
+  }
+
+  const shift = profile.moods.darkness - before;
+  assert.ok(shift > 20,
+    `двадцать решений должны заметно сдвинуть вектор, сдвинулось на ${shift}`);
+});
+
+test('B46 · накопленный до потолка профиль подрезается и снова слушает', async () => {
+  const { applySignal } = await import('../src/engine/tasteProfile.js');
+  const { RECOMMENDATION_CONFIG } = await import('../shared/config/recommendation.js');
+  const cap = RECOMMENDATION_CONFIG.decay.moodMassCap;
+
+  // Профили, накопленные до исправления, приходят с массой больше потолка.
+  const heavy = {
+    tagWeights: {}, moods: { energy: 50, darkness: 20, intellect: 50, emotion: 50, dynamism: 50 },
+    moodMass: 135, counts: {}, signals: 300,
+  };
+
+  const next = applySignal(heavy, {
+    id: 'x', tags: { horror: 100 },
+    moods: { energy: 50, darkness: 100, intellect: 50, emotion: 50, dynamism: 50 },
+  }, 'favorite');
+
+  assert.ok(next.moodMass <= cap, 'старая масса подрезается при первой же записи');
+  assert.ok(next.moods.darkness > 21,
+    `после подрезки один сигнал уже двигает вектор, получили ${next.moods.darkness}`);
+});

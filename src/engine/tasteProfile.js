@@ -87,18 +87,33 @@ export function applySignal(profile, title, action, { config = RECOMMENDATION_CO
     tagWeights[tag] = Math.round(next * 1000) / 1000;
   }
 
-  // Настроение — экспоненциальное скользящее среднее с массой сигнала.
+  /*
+   * Настроение — скользящее среднее с ОГРАНИЧЕННОЙ массой.
+   *
+   * Потолок здесь не оптимизация, а исправление: без него масса росла
+   * без предела и профиль застывал. При накопленной массе 135 новый
+   * фильм сдвигал вектор меньше чем на процент — человек менял вкусы,
+   * а лента этого уже не замечала.
+   *
+   * Ограниченная масса даёт постоянную чувствительность: последние
+   * полсотни решений всегда весят больше всей предыдущей истории.
+   * Уже накопленные профили подрезаются при первой же записи и снова
+   * начинают слушать человека.
+   */
   const moodInfluence = Math.max(0, weight);
   const moods = { ...current.moods };
-  let moodMass = current.moodMass;
+  const cap = config.decay.moodMassCap ?? 50;
+  let moodMass = Math.min(current.moodMass, cap);
+
   if (moodInfluence > 0 && title.moods) {
-    moodMass = current.moodMass + moodInfluence;
+    const carried = moodMass;
     for (const axis of MOOD_AXES) {
       const target = title.moods[axis] ?? 50;
       moods[axis] = Math.round(
-        (current.moods[axis] * current.moodMass + target * moodInfluence) / moodMass,
+        (current.moods[axis] * carried + target * moodInfluence) / (carried + moodInfluence),
       );
     }
+    moodMass = Math.min(carried + moodInfluence, cap);
   }
 
   const counts = { ...current.counts, [action]: (current.counts[action] ?? 0) + 1 };
@@ -141,15 +156,20 @@ export function applyRating(profile, title, rating, { config = RECOMMENDATION_CO
 
   // Настроение двигаем только похвалой: низкая оценка говорит «не то кино»,
   // а не «мне не нравится такое настроение».
+  // Потолок массы тот же, что и у свайпов: оставь его здесь без ограничения,
+  // и профиль застывал бы через оценки ровно так же, как раньше через свайпы.
   const moods = { ...current.moods };
-  let moodMass = current.moodMass;
+  const cap = config.decay.moodMassCap ?? 50;
+  let moodMass = Math.min(current.moodMass, cap);
+
   if (weight > 0 && title.moods) {
-    moodMass = current.moodMass + weight;
+    const carried = moodMass;
     for (const axis of MOOD_AXES) {
       moods[axis] = Math.round(
-        (current.moods[axis] * current.moodMass + (title.moods[axis] ?? 50) * weight) / moodMass,
+        (current.moods[axis] * carried + (title.moods[axis] ?? 50) * weight) / (carried + weight),
       );
     }
+    moodMass = Math.min(carried + weight, cap);
   }
 
   return pruneProfile({
