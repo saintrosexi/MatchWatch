@@ -15,7 +15,9 @@ import { BIZ, MODULE } from '../../shared/telemetry/events.js';
 /** Сколько страниц каталога готовы пролистать, добирая колоду. */
 const MAX_REFILL_PAGES = 12;
 
-export async function buildRoomDeck({ consensus, filters = {}, history = {}, signal } = {}) {
+export async function buildRoomDeck({
+  consensus, filters = {}, history = {}, excludeIds = [], size, signal,
+} = {}) {
   const config = getConfig();
   const pool = new CatalogPool({ filters });
 
@@ -25,10 +27,18 @@ export async function buildRoomDeck({ consensus, filters = {}, history = {}, sig
   // стоит времени двух человек, а не одного.
   await pool.enrich(pool.all.slice(0, 24).map((t) => t.id), { signal });
 
-  const rank = () => rankDeck(pool.all, consensus, {
+  /*
+   * Уже опубликованное в колоде исключается до ранжирования, а не после:
+   * иначе следующая порция состоит из тех же карточек, что и предыдущая,
+   * и колода «растёт», не прибавляя ни одного нового фильма.
+   */
+  const excluded = new Set(excludeIds);
+  const target = size ?? config.room.deckSize;
+
+  const rank = () => rankDeck(pool.all.filter((t) => !excluded.has(t.id)), consensus, {
     config,
     history,
-    size: config.room.deckSize,
+    size: target,
     explorationRate: config.room.explorationRate,
   });
 
@@ -42,7 +52,7 @@ export async function buildRoomDeck({ consensus, filters = {}, history = {}, sig
    * пять карточек. Листаем каталог, пока колода не наберётся.
    */
   let pages = 0;
-  while (ranked.length < config.room.deckSize && pages < MAX_REFILL_PAGES && !pool.exhausted) {
+  while (ranked.length < target && pages < MAX_REFILL_PAGES && !pool.exhausted) {
     pages += 1;
     const before = pool.size;
     await pool.loadMore({ signal });
@@ -50,7 +60,7 @@ export async function buildRoomDeck({ consensus, filters = {}, history = {}, sig
     ranked = rank();
   }
 
-  if (ranked.length < config.room.deckSize) {
+  if (ranked.length < target) {
     trackBusiness(BIZ.DECK_EMPTY_AFTER_FILTERS, {
       module: MODULE.ROOMS_SYNC,
       context: { poolSize: pool.size, deckSize: ranked.length, pages, ...filters },

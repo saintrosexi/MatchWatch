@@ -6,19 +6,15 @@
  * через `normalizeRoomCode` — расхождение форматов между записью и поиском
  * является классической причиной «комната не находится».
  *
- * Формат: ровно 4 символа из алфавита без визуально спорных знаков
- * (нет 0/O, 1/I/L), всегда верхний регистр, всегда строка.
+ * Формат: ровно 5 цифр. Буквы ушли намеренно — код диктуют вслух и
+ * набирают на телефоне, а цифровая клавиатура вдвое крупнее и не знает
+ * ни регистра, ни спора «O или ноль». Пять знаков вместо четырёх дают
+ * стотысячное пространство: случайное попадание в чужую комнату
+ * перестаёт быть правдоподобным.
  */
 
-export const ROOM_CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
-export const ROOM_CODE_LENGTH = 4;
-
-/**
- * Схожие символы, которые пользователи путают при ручном вводе.
- * O/0 и I/1/L в алфавите отсутствуют, поэтому их однозначно схлопываем
- * в ближайший допустимый символ — один проход, без цепочек.
- */
-const CONFUSABLES = { '0': 'Q', 'O': 'Q', '1': 'J', 'I': 'J', 'L': 'J' };
+export const ROOM_CODE_ALPHABET = '0123456789';
+export const ROOM_CODE_LENGTH = 5;
 
 /**
  * Приводит любой пользовательский ввод к каноническому коду.
@@ -29,17 +25,13 @@ export function normalizeRoomCode(input) {
   let s = String(input).trim().toUpperCase();
 
   // Пользователь мог вставить целую ссылку — вытащим код.
-  const fromUrl = s.match(/[?&](?:ROOM|STARTAPP|TGWEBAPPSTARTPARAM)=([A-Z0-9]{4})/i);
-  if (fromUrl) s = fromUrl[1].toUpperCase();
+  const fromUrl = s.match(/[?&](?:ROOM|STARTAPP|TGWEBAPPSTARTPARAM)=(\d{5})/i);
+  if (fromUrl) s = fromUrl[1];
 
-  s = s.replace(/[^A-Z0-9]/g, '');
+  // Всё, кроме цифр, отбрасываем: пробелы и дефисы люди ставят сами,
+  // а буквы в коде не встречаются вовсе.
+  s = s.replace(/\D/g, '');
   if (s.length !== ROOM_CODE_LENGTH) return null;
-
-  // Мягкая коррекция визуально спорных символов — ровно один проход.
-  s = s.split('').map((ch) => (ROOM_CODE_ALPHABET.includes(ch) ? ch : CONFUSABLES[ch] ?? ch)).join('');
-
-  if (s.length !== ROOM_CODE_LENGTH) return null;
-  if (![...s].every((ch) => ROOM_CODE_ALPHABET.includes(ch))) return null;
   return s;
 }
 

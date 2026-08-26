@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { AlertCircle, Copy, DoorOpen, LogIn, Plus, Share2, UserPlus, Users } from '../../ui/icons.js';
+import { AlertCircle, Copy, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles, UserPlus, Users } from '../../ui/icons.js';
 import { EmptyState } from '../../ui/States.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
 import { normalizeRoomCode, ROOM_CODE_LENGTH } from '../../../shared/model/roomCode.js';
@@ -19,7 +19,7 @@ import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
  * главная причина, по которой комнаты «не находятся», и здесь он
  * технически невозможен.
  */
-export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toasts }) {
+export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, onBuildDeck, deckBuilding, toasts }) {
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [recent, setRecent] = useState([]);
@@ -33,7 +33,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
   useEffect(refreshRecent, [refreshRecent, room.code]);
 
   const normalized = normalizeRoomCode(input);
-  const inputTooShort = input.replace(/[^A-Za-z0-9]/g, '').length < ROOM_CODE_LENGTH;
+  const inputTooShort = input.replace(/\D/g, '').length < ROOM_CODE_LENGTH;
 
   const handleJoin = async (code, source) => {
     setBusy(true);
@@ -65,6 +65,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
       <RoomLobby
         room={room} user={user} toasts={toasts}
         onEnterRoom={onEnterRoom} onOpenMember={onOpenMember}
+        onBuildDeck={onBuildDeck} deckBuilding={deckBuilding}
       />
     );
   }
@@ -94,23 +95,26 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
         className="section"
         onSubmit={(e) => { e.preventDefault(); if (normalized) handleJoin(normalized, JOIN_SOURCE.MANUAL); }}
       >
+        {/* Цифровая клавиатура: код состоит только из цифр, и буквенная
+            раскладка здесь лишь мешает попасть пальцем. */}
         <input
           className="code-input"
           value={input}
-          onChange={(e) => setInput(e.target.value.toUpperCase().slice(0, 8))}
-          placeholder="––––"
-          inputMode="text"
-          autoCapitalize="characters"
-          autoComplete="off"
+          onChange={(e) => setInput(e.target.value.replace(/\D/g, '').slice(0, ROOM_CODE_LENGTH))}
+          placeholder="–––––"
+          type="tel"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          autoComplete="one-time-code"
           spellCheck={false}
-          maxLength={8}
+          maxLength={ROOM_CODE_LENGTH}
           aria-label="Код комнаты"
           aria-invalid={Boolean(input) && !normalized && !inputTooShort}
         />
 
         {Boolean(input) && !normalized && !inputTooShort && (
           <p className="row gap-2" style={{ color: 'var(--coral)', fontSize: 'var(--t-small)' }}>
-            <AlertCircle size={16} /> Код состоит из 4 символов — букв и цифр.
+            <AlertCircle size={16} /> Код состоит из {ROOM_CODE_LENGTH} цифр.
           </p>
         )}
 
@@ -173,7 +177,7 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, toa
 }
 
 /** Лобби активной комнаты: код, участники, приглашение, старт сессии. */
-function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember }) {
+function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck, deckBuilding }) {
   const [friendBusy, setFriendBusy] = useState(null);
   const invite = roomInviteLink(room.code);
   const [copied, setCopied] = useState(false);
@@ -223,12 +227,13 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember }) {
   };
 
   const waiting = room.members.length < 2;
+  const hasDeck = (room.state?.deck?.length ?? 0) > 0;
 
   return (
     <div className="view">
       <header className="view__head">
         <h1 className="view__title">Комната готова</h1>
-        <p className="view__sub">Отправьте код — и начинайте свайпать одновременно.</p>
+        <p className="view__sub">Отправьте код. Когда все соберутся — соберите общую колоду.</p>
       </header>
 
       <div className="room-hero">
@@ -308,6 +313,32 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember }) {
         )}
       </section>
 
+      {/*
+        * Колода собирается осознанно, а не в момент создания комнаты:
+        * пока все не зашли, компромисса ещё нет и подборка вышла бы
+        * по вкусу одного человека.
+        */}
+      {!hasDeck ? (
+        <div className="stack gap-2">
+          <button
+            type="button"
+            className="btn btn--primary btn--lg btn--block"
+            onClick={onBuildDeck}
+            disabled={deckBuilding || waiting || !room.isHost}
+          >
+            {deckBuilding
+              ? <><Loader2 size={20} className="spin" /> Собираем колоду…</>
+              : <><Sparkles size={20} /> Собрать общую колоду</>}
+          </button>
+          <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
+            {waiting
+              ? 'Ждём второго участника — колода собирается по вкусам всех, кто внутри.'
+              : room.isHost
+                ? 'Соберём подборку по тому, что любите вы оба.'
+                : 'Колоду собирает хост комнаты. Как только он нажмёт — начнём.'}
+          </p>
+        </div>
+      ) : (
       <div className="row gap-3">
         <button type="button" className="btn btn--primary btn--lg grow" onClick={onEnterRoom}>
           Начать свайпать
@@ -316,6 +347,7 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember }) {
           Выйти
         </button>
       </div>
+      )}
 
       {room.isHost && (
         <button

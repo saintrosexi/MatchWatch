@@ -30,22 +30,24 @@ test('B1 · невалидные коды комнат отклоняются, �
   assert.throws(() => roomPath('ABC'), /невалидный код/);
 });
 
-test('B2 · визуально спорные символы схлопываются детерминированно', () => {
-  assert.equal(normalizeRoomCode('0O1L'), 'QQJJ');
-  assert.equal(normalizeRoomCode('0o1l'), 'QQJJ');
+test('B2 · код очищается от того, что люди дописывают руками', () => {
+  // Пробелы и дефисы человек ставит сам, диктуя код вслух.
+  assert.equal(normalizeRoomCode('12 345'), '12345');
+  assert.equal(normalizeRoomCode('12-345'), '12345');
+  assert.equal(normalizeRoomCode(' 12345 '), '12345');
   // Двойная нормализация не меняет результат.
-  const once = normalizeRoomCode('ab12');
+  const once = normalizeRoomCode('54321');
   assert.equal(normalizeRoomCode(once), once);
 });
 
-test('B3 · алфавит кода не содержит визуально спорных символов', () => {
+test('B3 · код состоит ровно из пяти цифр', () => {
   const codes = new Set();
   for (let i = 0; i < 3000; i += 1) codes.add(generateRoomCode());
   for (const code of codes) {
-    assert.ok(!/[O0IL1]/.test(code), `код ${code} содержит спорный символ`);
+    assert.match(code, /^\d{5}$/, `код ${code} не пятизначный`);
   }
-  // 3000 генераций из ~923k кодов не должны давать много коллизий.
-  assert.ok(codes.size > 2900, `слишком много коллизий: ${codes.size}/3000`);
+  // 3000 генераций из 100k кодов: коллизии возможны, но редки.
+  assert.ok(codes.size > 2850, `слишком много коллизий: ${codes.size}/3000`);
 });
 
 test('B4 · нормализация переживает мусорный ответ TMDB', () => {

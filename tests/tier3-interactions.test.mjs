@@ -156,18 +156,18 @@ test('X8 · антимонотонность разбавляет однород
 
 test('X9 · код комнаты одинаков независимо от способа входа', () => {
   const inputs = {
-    [JOIN_SOURCE.MANUAL]: ' qw3r ',
-    [JOIN_SOURCE.LINK]: 'https://matchwatch.app/?room=QW3R',
-    [JOIN_SOURCE.DEEP_LINK]: 'https://t.me/bot/app?startapp=qw3r',
-    [JOIN_SOURCE.RECENT]: 'QW3R',
+    [JOIN_SOURCE.MANUAL]: ' 40719 ',
+    [JOIN_SOURCE.LINK]: 'https://matchwatch.app/?room=40719',
+    [JOIN_SOURCE.DEEP_LINK]: 'https://t.me/bot/app?startapp=40719',
+    [JOIN_SOURCE.RECENT]: '40719',
   };
   const codes = new Set(Object.values(inputs).map(normalizeRoomCode));
   assert.equal(codes.size, 1, 'все способы входа обязаны сойтись в один код');
-  assert.equal([...codes][0], 'QW3R');
+  assert.equal([...codes][0], '40719');
 
   const paths = new Set(Object.values(inputs).map((raw) => roomPath(raw, 'swipes')));
   assert.equal(paths.size, 1, 'а значит, и путь записи/чтения совпадает');
-  assert.equal([...paths][0], 'rooms/QW3R/swipes');
+  assert.equal([...paths][0], 'rooms/40719/swipes');
 });
 
 test('X10 · обёртка хендлера отдаёт машиночитаемую ошибку вместо голого 500', async () => {

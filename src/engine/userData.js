@@ -447,7 +447,15 @@ export async function loadRecentRooms(uid) {
     });
   }
 
-  return [...merged.values()].sort((a, b) => (b.at ?? 0) - (a.at ?? 0)).slice(0, 8);
+  /*
+   * Коды сменили формат на пятизначный числовой. Старые буквенные записи
+   * не откроются никогда, а в списке выглядят живыми — отсеиваем их тем же
+   * нормализатором, что решает судьбу любого ввода.
+   */
+  return [...merged.values()]
+    .filter((entry) => normalizeRoomCode(entry.code))
+    .sort((a, b) => (b.at ?? 0) - (a.at ?? 0))
+    .slice(0, 8);
 }
 
 export const localRecentRooms = () => loadLocal(STORAGE_KEYS.LAST_ROOMS, []);

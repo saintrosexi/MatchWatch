@@ -37,7 +37,7 @@ import {
   applyLocalDecision, removeLocalDecision,
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
-import { initRemoteConfig } from '../engine/recommendationConfig.js';
+import { getConfig, initRemoteConfig } from '../engine/recommendationConfig.js';
 import { JOIN_SOURCE } from '../engine/rooms.js';
 
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
@@ -195,23 +195,49 @@ export default function App() {
   useEffect(() => {
     if (!room.code || !room.isHost || !room.consensus) return;
     const memberCount = room.members.length;
+    /*
+     * Колода больше не пересобирается сама при каждом входе участника:
+     * пересборка стирала прогресс тех, кто уже свайпал. Её строят один
+     * раз кнопкой в лобби, а дальше она только дописывается.
+     */
     const key = `${room.code}:${memberCount}`;
-    if (publishedFor.current === key || memberCount < 2) return;
+    if (publishedFor.current === key) return;
     publishedFor.current = key;
-
-    breadcrumb(`комната ${room.code}: пересобираем колоду на ${memberCount} участников`);
-
-    buildRoomDeck({
-      consensus: room.consensus,
-      filters,
-      history: roomHistory(room.state, user.uid),
-    })
-      .then(({ deck }) => {
-        if (deck.length) room.setDeck(deck);
-      })
-      .catch(() => toasts.error('Не удалось собрать общую колоду. Свайпайте — попробуем ещё раз.'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room.code, room.isHost, room.members.length, room.consensus]);
+
+  /*
+   * Колода дописывается, пока в ней есть что смотреть.
+   *
+   * Публиковалась она один раз, и вдвоём её проходили за десяток свайпов —
+   * «колода закончилась» приходило там, где раньше листали сотнями.
+   * Заказ уходит заранее, за несколько карточек до конца, чтобы пауза
+   * пришлась на чужой ход, а не на пустой экран.
+   */
+  const growingRef = useRef(false);
+
+  useEffect(() => {
+    if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
+    if (growingRef.current) return;
+
+    const config = getConfig();
+    const left = deck.queue.length;
+    if (left > config.room.refillThreshold) return;
+
+    growingRef.current = true;
+    const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
+
+    buildRoomDeck({
+      consensus: room.consensus ?? taste,
+      filters,
+      history: roomHistory(room.state, user?.uid),
+      excludeIds: published,
+    })
+      .then(({ deck: next }) => (next.length ? room.growDeck(next) : null))
+      .catch(() => { /* следующая карточка попробует снова */ })
+      .finally(() => { growingRef.current = false; });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deckMode, room.code, deck.queue.length]);
 
   /* ── Подтверждение выхода, пока идёт сессия в комнате ─────────── */
   useEffect(() => {
@@ -371,12 +397,43 @@ export default function App() {
     toasts.success(`Колода: ${person.name}`);
   }, [toasts]);
 
-  const createRoom = useCallback(async () => {
-    const { deck: roomDeckEntries } = await buildRoomDeck({
-      consensus: taste, filters, history: userState?.history ?? {},
-    });
-    return room.create({ deck: roomDeckEntries, filters });
-  }, [taste, filters, userState?.history, room]);
+  /*
+   * Комната создаётся пустой.
+   *
+   * Раньше колода собиралась в момент создания — по вкусу одного хоста,
+   * ещё до того, как кто-то зашёл. Общей она при этом не была: второй
+   * участник получал чужую подборку. Теперь сначала все собираются,
+   * и только потом колода строится по компромиссу всех, кто внутри.
+   */
+  const createRoom = useCallback(
+    () => room.create({ deck: [], filters }),
+    [filters, room],
+  );
+
+  const [deckBuilding, setDeckBuilding] = useState(false);
+
+  /** Собрать общую колоду по вкусам всех, кто сейчас в комнате. */
+  const buildSharedDeck = useCallback(async () => {
+    if (!room.code || deckBuilding) return;
+    setDeckBuilding(true);
+    try {
+      const { deck } = await buildRoomDeck({
+        consensus: room.consensus ?? taste,
+        filters,
+        history: roomHistory(room.state, user?.uid),
+      });
+      if (!deck.length) {
+        toasts.error('Под эти фильтры ничего не нашлось. Ослабьте их и попробуйте снова.');
+        return;
+      }
+      await room.setDeck(deck);
+      toasts.success(`Колода готова: ${deck.length} фильмов`);
+    } catch {
+      toasts.error('Не удалось собрать общую колоду. Попробуйте ещё раз.');
+    } finally {
+      setDeckBuilding(false);
+    }
+  }, [room, deckBuilding, taste, filters, user?.uid, toasts]);
 
   /*
    * Первый вход через Telegram завёл новый аккаунт. Если у человека уже был
@@ -486,6 +543,7 @@ export default function App() {
     handleRemoveFavorite, handleUndoFromList, auth,
     setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection,
     desktopShell: platform.shell === 'desktop',
+    buildSharedDeck, deckBuilding,
   });
 
   const statusStrip = renderStatus({ online, room, roomSession, deckMode, auth, pendingWrites });
@@ -640,6 +698,7 @@ function renderView(ctx) {
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
     setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection, desktopShell,
+    buildSharedDeck, deckBuilding,
   } = ctx;
 
   const openDetails = (stub) => setDetailsEntry({
@@ -656,6 +715,8 @@ function renderView(ctx) {
           onCreate={createRoom}
           onEnterRoom={() => { setRoomSession(true); setActorDeck(null); setView(VIEW.DECK); }}
           onOpenMember={(member) => { setPublicProfile(member); setView(VIEW.PUBLIC_PROFILE); }}
+          onBuildDeck={buildSharedDeck}
+          deckBuilding={deckBuilding}
         />
       );
 

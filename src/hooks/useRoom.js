@@ -10,7 +10,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   addToWatchlist, closeRoom, createRoom, joinRoom, leaveRoom, markWatched,
-  publishDeck, recordSwipe, removeFromWatchlist, subscribeRoom,
+  appendDeck, publishDeck, recordSwipe, removeFromWatchlist, subscribeRoom,
   RoomError, JOIN_SOURCE,
 } from '../engine/rooms.js';
 import { buildConsensusProfile } from '../engine/ranking.js';
@@ -189,6 +189,12 @@ export function useRoom({ user, taste }) {
     [code],
   );
 
+  /** Дописать порцию в конец общей колоды — умеет любой участник. */
+  const growDeck = useCallback(
+    (deck) => (code ? appendDeck(code, deck) : Promise.resolve(null)),
+    [code],
+  );
+
   /** Компромиссный вектор комнаты — из профилей всех, кто внутри. */
   const consensus = useMemo(
     () => (state ? buildConsensusProfile(Object.values(state.profiles ?? {}), { config: getConfig() }) : null),
@@ -217,6 +223,7 @@ export function useRoom({ user, taste }) {
   return {
     code, state, status, error, celebration, consensus,
     members, onlineCount,
+    growDeck,
     isHost: state?.meta?.createdBy === user?.uid,
     matches: Object.values(state?.matches ?? {}).sort((a, b) => (b.at ?? 0) - (a.at ?? 0)),
     watchlist: Object.values(state?.watchlist ?? {}).sort((a, b) => (b.addedAt ?? 0) - (a.addedAt ?? 0)),

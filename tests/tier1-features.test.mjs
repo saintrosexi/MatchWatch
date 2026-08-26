@@ -10,7 +10,7 @@ import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import { normalizeTmdbMovie, buildTags, deriveMoodVector, makeTitleId, parseTitleId, titleStub, posterUrl } from '../shared/model/title.js';
-import { normalizeRoomCode, generateRoomCode, roomPath, isValidRoomCode, ROOM_CODE_ALPHABET } from '../shared/model/roomCode.js';
+import { normalizeRoomCode, generateRoomCode, roomPath, isValidRoomCode, ROOM_CODE_ALPHABET, ROOM_CODE_LENGTH } from '../shared/model/roomCode.js';
 import { TMDB_GENRES, GENRE_LIST } from '../shared/taxonomy/genres.js';
 import { slugifyTag, TAG_EXPANSIONS, TAG_MOODS } from '../shared/taxonomy/tagOntology.js';
 import { RECOMMENDATION_CONFIG, MOOD_AXES, NEUTRAL_MOOD } from '../shared/config/recommendation.js';
@@ -160,14 +160,14 @@ test('F10 · exploration подмешивает разведочные карт�
 test('F11 · комнаты: единый формат кода для создания, ввода и ссылок', () => {
   for (let i = 0; i < 200; i += 1) {
     const code = generateRoomCode();
-    assert.equal(code.length, 4);
+    assert.equal(code.length, ROOM_CODE_LENGTH);
     assert.equal(normalizeRoomCode(code), code, 'сгенерированный код должен быть каноничным');
     assert.ok([...code].every((c) => ROOM_CODE_ALPHABET.includes(c)));
   }
-  assert.equal(normalizeRoomCode(' qw3r '), 'QW3R');
-  assert.equal(normalizeRoomCode('https://t.me/bot/app?startapp=QW3R'), 'QW3R');
-  assert.equal(normalizeRoomCode('https://mw.app/?room=qw3r'), 'QW3R');
-  assert.equal(roomPath('qw3r', 'members'), 'rooms/QW3R/members');
+  assert.equal(normalizeRoomCode(' 40719 '), '40719');
+  assert.equal(normalizeRoomCode('https://t.me/bot/app?startapp=40719'), '40719');
+  assert.equal(normalizeRoomCode('https://mw.app/?room=40719'), '40719');
+  assert.equal(roomPath('40719', 'members'), 'rooms/40719/members');
 });
 
 test('F12 · компромиссный вектор комнаты бустит общие темы, а не усредняет', () => {

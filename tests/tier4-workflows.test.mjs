@@ -57,11 +57,11 @@ test('W1 · путь нового пользователя: холодный с�
  */
 
 test('W5 · вход по коду из трёх источников ведёт в одну комнату', () => {
-  const code = 'QW3R';
+  const code = '40719';
   const entries = [
-    { source: JOIN_SOURCE.MANUAL, raw: 'qw3r' },
+    { source: JOIN_SOURCE.MANUAL, raw: ' 40719 ' },
     { source: JOIN_SOURCE.LINK, raw: `https://matchwatch.app/?room=${code}` },
-    { source: JOIN_SOURCE.DEEP_LINK, raw: `https://t.me/mwbot/app?startapp=${code.toLowerCase()}` },
+    { source: JOIN_SOURCE.DEEP_LINK, raw: `https://t.me/mwbot/app?startapp=${code}` },
   ];
 
   for (const entry of entries) {

@@ -391,6 +391,23 @@ export async function publishDeck(code, deck) {
   );
 }
 
+/**
+ * Дописывает карточки в конец общей колоды.
+ *
+ * Публикацией это не назвать: колода не заменяется, а растёт, и делать
+ * это может любой участник. Иначе колода замирает, стоит хосту свернуть
+ * приложение, — а сворачивают его постоянно.
+ */
+export async function appendDeck(code, deck) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized || !deck?.length) return null;
+  return guarded(
+    () => supabase.rpc('append_room_deck', { p_code: normalized, p_deck: deck }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'append deck' },
+  );
+}
+
 export async function leaveRoom(code) {
   if (!supabaseReady()) return;
   const normalized = normalizeRoomCode(code);
