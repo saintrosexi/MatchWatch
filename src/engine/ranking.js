@@ -12,7 +12,7 @@
  */
 
 import { MOOD_AXES, RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
-import { affinityToLoved, affinityToRefused } from './affinity.js';
+import { affinityToLoved, affinityToRefused, prepare, prepareAll } from './affinity.js';
 import { hydrateProfile, isWarm } from './tasteProfile.js';
 import { isColdStartTitle } from '../../shared/config/coldStart.js';
 
@@ -211,10 +211,20 @@ export function rankDeck(titles, profile, {
   const warm = isWarm(p, config);
   const rate = explorationRate ?? (warm ? config.exploration.rate : config.exploration.coldStartRate);
 
+  /*
+   * Опоры готовятся один раз на всю колоду, а не на каждого кандидата.
+   * Триста кандидатов против сорока опор — это двенадцать тысяч пар,
+   * и пересчёт норм внутри каждой доходил на телефоне до трети секунды.
+   */
+  const lovedReady = loved?.length ? prepareAll(loved) : null;
+  const refusedReady = refused?.length ? prepareAll(refused) : null;
+
   const scored = [];
   for (const title of titles) {
     if (!title?.id) continue;
-    const evaluation = scoreTitle(title, p, { config, history, loved, refused });
+    const evaluation = scoreTitle(prepare(title), p, {
+      config, history, loved: lovedReady, refused: refusedReady,
+    });
     if (evaluation.penalty === 0) continue; // жёстко исключено
     scored.push({
       title,

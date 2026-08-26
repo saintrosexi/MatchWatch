@@ -13,6 +13,7 @@
  */
 
 import { withHandler, ApiError } from './http.js';
+import { requireUser } from './session.js';
 import { generateStructured, GeminiError, hasGemini, geminiModel } from './gemini.js';
 import {
   AI_TAG_GLOSSARY, INTERPRETATION_SCHEMA, TMDB_GENRES, requestFromInterpretation,
@@ -38,6 +39,13 @@ const SYSTEM = `Ты переводишь запрос человека о ки�
 export const interpretHandler = withHandler(
   { methods: ['POST'], module: MODULE.DECK },
   async ({ body, req }) => {
+    /*
+     * Обращение к платной модели — только для вошедших. Открытый
+     * эндпоинт выбирается скриптом за минуты, и приложение остаётся
+     * без разбора запросов до следующих суток.
+     */
+    await requireUser(req);
+
     if (!hasGemini()) {
       throw new ApiError(503, 'ai_not_configured',
         'Разбор запроса недоступен: не задан GEMINI_API_KEY');

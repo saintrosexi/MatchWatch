@@ -1028,3 +1028,49 @@ test('B50 · похожее на отвергнутое понижается, н
   assert.ok(affinityToRefused(distant, refused) < 0.4, 'непохожий не должен наказываться');
   assert.equal(affinityToRefused(twin, []), 0);
 });
+
+test('B51 · ускорение подбора не меняет ни опору, ни состав колоды', async () => {
+  const { prepare, prepareAll, affinityToLoved } = await import('../src/engine/affinity.js');
+
+  const pool = Array.from({ length: 220 }, (_, i) => `tag${i}`);
+  const mk = (id) => {
+    const tags = {};
+    for (let i = 0; i < 8; i += 1) tags[pool[(id * 7 + i * 3) % 220]] = 40 + ((id + i) % 60);
+    return {
+      id: `t${id}`, tags,
+      moods: {
+        darkness: (id * 13) % 100, energy: (id * 7) % 100, intellect: (id * 11) % 100,
+        emotion: (id * 5) % 100, dynamism: (id * 3) % 100,
+      },
+    };
+  };
+
+  const loved = Array.from({ length: 40 }, (_, i) => mk(i));
+  const candidates = Array.from({ length: 400 }, (_, i) => mk(1000 + i));
+
+  /*
+   * Обратный индекс сравнивает кандидата только с теми опорами, с кем
+   * у него есть общая тема. Проверяем, что от этого не меняется то,
+   * что видит человек: выбранная опора и состав колоды.
+   */
+  const indexed = prepareAll(loved);
+  const plain = loved.map(prepare);
+
+  const byIndex = [];
+  const byBrute = [];
+
+  for (const candidate of candidates) {
+    const fast = affinityToLoved(prepare(candidate), indexed);
+    const slow = affinityToLoved(prepare(candidate), plain);
+
+    assert.equal(fast.best?.id, slow.best?.id,
+      `опора обязана совпадать: ${candidate.id}`);
+
+    byIndex.push([candidate.id, fast.score]);
+    byBrute.push([candidate.id, slow.score]);
+  }
+
+  const top = (rows) => rows.slice().sort((a, b) => b[1] - a[1]).slice(0, 25).map((r) => r[0]);
+  assert.deepEqual(top(byIndex), top(byBrute),
+    'первая двадцатка пятёрка обязана совпадать карточка в карточку');
+});

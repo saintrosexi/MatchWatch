@@ -178,16 +178,49 @@ export const api = {
    * Повтор же стоил бы второго обращения к модели и мог вернуть другой
    * разбор: человек попросил один раз — разбираем один раз.
    */
-  aiInterpret: (text, options) =>
-    request('/ai/interpret', { method: 'POST', body: { text }, timeoutMs: 60_000, retries: 0, ...options }),
+  aiInterpret: async (text, options) =>
+    request('/ai/interpret', {
+      method: 'POST',
+      body: { text },
+      timeoutMs: 60_000,
+      retries: 0,
+      /*
+       * Токен сессии обязателен: за этим вызовом стоит платная модель,
+       * и открытым он был бы выбран скриптом за минуты.
+       */
+      accessToken: await sessionToken(),
+      ...options,
+    }),
 
   /** Почему подборка предложила этот фильм. */
-  aiExplain: (payload, options) =>
-    request('/ai/explain', { method: 'POST', body: payload, timeoutMs: 45_000, retries: 0, ...options }),
-
-  /** Какие модели видит ключ — чтобы имя модели не приходилось угадывать. */
-  aiModels: () => request('/ai/models', { timeoutMs: 20_000, retries: 0 }),
+  aiExplain: async (payload, options) =>
+    request('/ai/explain', {
+      method: 'POST',
+      body: payload,
+      timeoutMs: 45_000,
+      retries: 0,
+      accessToken: await sessionToken(),
+      ...options,
+    }),
 };
+
+/**
+ * Токен текущей сессии.
+ *
+ * Берётся на каждый вызов, а не запоминается: токен живёт около часа,
+ * и сохранённый однажды однажды же и протухнет — посреди сеанса,
+ * без всякого объяснения для человека.
+ */
+async function sessionToken() {
+  try {
+    const { supabase, supabaseReady } = await import('./supabase.js');
+    if (!supabaseReady()) return null;
+    const { data } = await supabase.auth.getSession();
+    return data?.session?.access_token ?? null;
+  } catch {
+    return null;
+  }
+}
 
 /** Единый разбор ошибки в текст для пользователя. */
 export function describeError(error) {

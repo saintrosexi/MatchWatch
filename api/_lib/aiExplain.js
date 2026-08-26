@@ -13,6 +13,7 @@
  */
 
 import { withHandler, ApiError } from './http.js';
+import { requireUser } from './session.js';
 import { generateStructured, GeminiError, hasGemini, geminiFastModel } from './gemini.js';
 import { logMetric } from './telemetry.js';
 import { LEVEL, MODULE } from '../../shared/telemetry/events.js';
@@ -42,7 +43,14 @@ const SCHEMA = {
 
 export const explainHandler = withHandler(
   { methods: ['POST'], module: MODULE.DECK },
-  async ({ body }) => {
+  async ({ body, req }) => {
+    /*
+     * Обращение к платной модели — только для вошедших. Открытый
+     * эндпоинт выбирается скриптом за минуты, и приложение остаётся
+     * без разбора запросов до следующих суток.
+     */
+    await requireUser(req);
+
     if (!hasGemini()) {
       throw new ApiError(503, 'ai_not_configured',
         'Объяснение недоступно: не задан GEMINI_API_KEY');

@@ -40,7 +40,11 @@ export const maxDuration = 60;
  */
 const modelsHandler = withHandler(
   { methods: ['GET'], module: MODULE.DECK },
-  async () => {
+  async ({ req, query }) => {
+    // Диагностика: показывает, чем настроен сервер и сколько у него
+    // ключей. Наружу это не нужно никому, кроме нас.
+    requireSecret(req, query, 'CRON_SECRET');
+
     if (!hasGemini()) {
       throw new ApiError(503, 'ai_not_configured', 'Не задан GEMINI_API_KEY');
     }
