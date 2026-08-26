@@ -9,7 +9,8 @@
   align-items: center;
   justify-content: center;
   min-height: 0;
-  padding: var(--s-3);
+  /* Сверху воздуха не нужно: над колодой уже стоят логотип и кнопки. */
+  padding: 0 var(--s-3) var(--s-3);
   perspective: 1400px;
 }
 

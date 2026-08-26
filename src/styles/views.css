@@ -2,7 +2,7 @@
    Экраны: вход, комнаты, звёзды, хранилище, профиль, рулетка
    ──────────────────────────────────────────────────────────────── */
 
-.view { display: flex; flex-direction: column; gap: var(--s-5); padding: var(--s-4); }
+.view { display: flex; flex-direction: column; gap: var(--s-5); padding: var(--s-2) var(--s-4) var(--s-4); }
 .view__head { display: flex; flex-direction: column; gap: var(--s-1); padding: 0 var(--s-1); }
 .view__title { font-size: var(--t-title); }
 .view__sub { color: var(--text-mid); font-size: var(--t-small); }
