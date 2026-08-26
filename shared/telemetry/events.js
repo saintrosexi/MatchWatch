@@ -40,6 +40,7 @@ export const MODULE = Object.freeze({
   NETWORK: 'net.connectivity',
   UI: 'ui.render',
   OPS: 'ops.pipeline',
+  BOT: 'telegram.bot',
 });
 
 /** Бизнес-сбои: логика не сработала, хотя код не упал. */
@@ -81,6 +82,8 @@ export const METRIC = Object.freeze({
   WATCHED_MARK: 'watched_mark',
   ROULETTE_SPIN: 'roulette_spin',
   STAR_DECK: 'star_deck_generated',
+  BOT_STARTED: 'bot_started',
+  BOT_NOTIFIED: 'bot_notified',
 });
 
 /** Окружения разделены, чтобы локальная разработка не будила прод-алерты. */

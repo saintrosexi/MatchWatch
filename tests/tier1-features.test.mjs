@@ -568,3 +568,83 @@ test('F28 · рулетка тянет из любимой темы, а внут
   assert.deepEqual(pickReel([], { size: 10 }), []);
   assert.equal(pickReel([films[0]], { size: 10 }).length, 1);
 });
+
+test('F41 · бот разбирает приглашение в комнату только в верном формате', async () => {
+  const { parseRoomPayload } = await import('../api/telegram/webhook.js');
+
+  assert.equal(parseRoomPayload('room_23356'), '23356');
+  assert.equal(parseRoomPayload('room-23356'), '23356');
+  assert.equal(parseRoomPayload('ROOM23356'), '23356');
+
+  /*
+   * Payload приходит из ссылки, то есть снаружи. Всё, что не наш код
+   * комнаты, обязано остаться без ответа: иначе бот радостно позовёт
+   * в комнату, которой нет, — и человек решит, что сломано приложение.
+   */
+  assert.equal(parseRoomPayload('room_2335'), null, 'четыре цифры — не наш код');
+  assert.equal(parseRoomPayload('room_233567'), null, 'шесть цифр — тоже не наш');
+  assert.equal(parseRoomPayload('room_abcde'), null);
+  assert.equal(parseRoomPayload('23356'), null, 'без префикса это не приглашение');
+  assert.equal(parseRoomPayload(''), null);
+  assert.equal(parseRoomPayload(undefined), null);
+});
+
+test('F42 · отказ Telegram отличается от сетевого сбоя', async () => {
+  const { isFatalSendError } = await import('../api/_lib/botApi.js');
+
+  /*
+   * Разница определяет судьбу строки в очереди: окончательный отказ
+   * закрывает её навсегда, временный — оставляет на повтор. Спутав их,
+   * очередь либо вечно долбится в заблокировавшего, либо молча теряет
+   * сообщение из-за минутного сбоя сети.
+   */
+  assert.equal(isFatalSendError({ errorCode: 403, description: 'Forbidden: bot was blocked by the user' }), true);
+  assert.equal(isFatalSendError({ errorCode: 400, description: 'Bad Request: chat not found' }), true);
+  assert.equal(isFatalSendError({ errorCode: 403, description: 'user is deactivated' }), true);
+
+  assert.equal(isFatalSendError({ errorCode: 429, description: 'Too Many Requests' }), false);
+  assert.equal(isFatalSendError({ errorCode: 500, description: 'Internal Server Error' }), false);
+  assert.equal(isFatalSendError({ errorCode: 0, description: 'сетевая ошибка' }), false);
+});
+
+test('F43 · имена людей не ломают разметку сообщения', async () => {
+  const { esc, TEXTS } = await import('../api/_lib/botApi.js');
+
+  // Имя человек задаёт сам, а сообщение уходит с parse_mode: HTML.
+  assert.equal(esc('<b>Аня</b>'), '&lt;b&gt;Аня&lt;/b&gt;');
+  assert.ok(!TEXTS.friendRequest('<script>').includes('<script>'));
+  assert.ok(TEXTS.friendRequest('Аня').includes('Аня'));
+});
+
+test('F44 · напоминание называет фильмы, а не их количество', async () => {
+  const { TEXTS } = await import('../api/_lib/botApi.js');
+
+  const short = TEXTS.watchlistDigest(['Дюна', 'Анора'], 2);
+  assert.ok(short.includes('Дюна') && short.includes('Анора'));
+  assert.ok(!short.includes('и ещё'), 'хвоста нет, когда показали всё');
+
+  const long = TEXTS.watchlistDigest(['Дюна', 'Анора', 'Барби'], 7);
+  assert.ok(long.includes('и ещё 4'), 'остаток называется числом, а не списком');
+});
+
+test('F45 · кнопка «Открыть» не появляется без адреса приложения', async () => {
+  const { openAppButton } = await import('../api/_lib/botApi.js');
+  const saved = process.env.TELEGRAM_MINIAPP_URL;
+
+  try {
+    delete process.env.TELEGRAM_MINIAPP_URL;
+    delete process.env.PUBLIC_APP_URL;
+    // Кнопка без адреса — это кнопка, которая ничего не открывает.
+    assert.equal(openAppButton(), null);
+
+    process.env.TELEGRAM_MINIAPP_URL = 'https://example.test/';
+    const plain = openAppButton();
+    assert.equal(plain.inline_keyboard[0][0].web_app.url, 'https://example.test');
+
+    const toRoom = openAppButton('В комнату', { startParam: 'room_23356' });
+    assert.match(toRoom.inline_keyboard[0][0].web_app.url, /tgWebAppStartParam=room_23356$/);
+  } finally {
+    if (saved === undefined) delete process.env.TELEGRAM_MINIAPP_URL;
+    else process.env.TELEGRAM_MINIAPP_URL = saved;
+  }
+});
