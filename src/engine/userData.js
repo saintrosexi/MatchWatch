@@ -276,13 +276,6 @@ registerHandler('rating', async ({ uid, titleId, title, rating, action, taste })
   if (failed) throw Object.assign(new Error(failed.error.message), { code: failed.error.code });
 });
 
-registerHandler('match', async ({ uid, titleId, roomCode, title, partners }) => {
-  const { error } = await supabase.from('user_matches').upsert({
-    user_id: uid, title_id: titleId, room_code: roomCode, title, partners,
-  }, { onConflict: 'user_id,title_id,room_code', ignoreDuplicates: true });
-  if (error) throw Object.assign(new Error(error.message), { code: error.code });
-});
-
 /**
  * Записывает реакцию на тайтл: обновляет историю, профиль вкуса и,
  * если нужно, избранное.
@@ -401,12 +394,13 @@ export async function rateTitle({ uid, title, rating, taste }) {
 }
 
 /** История мэтчей: и личных, и совместных. */
-export async function saveMatch({ uid, title, roomCode = null, partners = [] }) {
-  if (!supabaseReady() || !uid) return;
-  await durableWrite('match', {
-    uid, titleId: title.id, roomCode, title: titleStub(title), partners,
-  }, { key: `match:${uid}:${title.id}:${roomCode ?? 'solo'}` });
-}
+/*
+ * Запись мэтча жила здесь и падала: upsert указывал onConflict по трём
+ * колонкам, а уникальный индекс построен на выражении с coalesce —
+ * такой констрейнт PostgREST не находит. Восемь попыток, отказ, потерянный
+ * мэтч. Теперь строку пишет сама функция комнаты, и сразу обоим
+ * участникам: у второго человека клиентский код всё равно не выполняется.
+ */
 
 /** Недавние комнаты — питают вкладку «Друзья». */
 export async function rememberRoom({ code, role = 'member' }) {

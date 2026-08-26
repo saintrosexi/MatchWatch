@@ -32,13 +32,22 @@ export function useRoom({ user, taste }) {
   const seenMatches = useRef(new Set());
   const unsubscribeRef = useRef(null);
   const reconnectedRef = useRef(false);
+  /** Номер попытки переподключения — он же ключ перезапуска подписки. */
+  const [attempt, setAttempt] = useState(0);
 
-  /* Подписка на состояние комнаты и присутствие участников. */
+  /*
+   * Подписка на состояние комнаты и присутствие участников.
+   *
+   * `attempt` перезапускает эффект: сам по себе оборвавшийся канал
+   * не оживает, и комната молча замирала — партнёр свайпает, а на экране
+   * ничего не происходит. Пересоздаём подписку с нарастающей паузой.
+   */
   useEffect(() => {
     if (!code || !user?.uid) return undefined;
 
     setStatus('joining');
     seenMatches.current = new Set();
+    let retryTimer = null;
 
     unsubscribeRef.current = subscribeRoom(code, {
       uid: user.uid,
@@ -70,15 +79,30 @@ export function useRoom({ user, taste }) {
       onError: (err) => {
         setError(err);
         setStatus('error');
+
+        // Пауза растёт, но упирается в потолок: комната — живой разговор,
+        // и ждать минуту переподключения бессмысленно.
+        if (retryTimer) return;
+        const delay = Math.min(1000 * 2 ** attempt, 15_000);
+        retryTimer = setTimeout(() => {
+          reconnectedRef.current = true;
+          setAttempt((n) => n + 1);
+        }, delay);
       },
       onPresence: setPresentUids,
     });
 
     return () => {
+      if (retryTimer) clearTimeout(retryTimer);
       unsubscribeRef.current?.();
       unsubscribeRef.current = null;
     };
-  }, [code, user?.uid]);
+  }, [code, user?.uid, attempt]);
+
+  // Успешный кадр состояния снимает счётчик: следующий обрыв начнёт с нуля.
+  useEffect(() => {
+    if (status === 'live' && attempt !== 0) setAttempt(0);
+  }, [status, attempt]);
 
   /* Возврат из фона: Telegram сворачивают постоянно. */
   useEffect(() => {

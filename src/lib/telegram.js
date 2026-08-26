@@ -204,7 +204,16 @@ export function shareViaInlineQuery(queryText, chatTypes = ['users', 'groups']) 
   try {
     if (app?.switchInlineQuery) { app.switchInlineQuery(queryText, chatTypes); return true; }
   } catch (error) {
-    trackError('switchInlineQuery недоступен', { module: MODULE.SHARE, error, context: { queryText } });
+    /*
+     * Инлайн-режим включается у бота отдельно, и его отсутствие — не сбой:
+     * ниже по стеку карточка уходит обычной ссылкой. Ошибкой это писать
+     * нельзя, иначе в журнале тонут настоящие поломки.
+     */
+    trackBusiness(BIZ.OFFLINE_DEGRADED, {
+      module: MODULE.SHARE,
+      level: LEVEL.INFO,
+      context: { missingFeature: 'switchInlineQuery', reason: error?.message ?? 'unavailable' },
+    });
   }
   return false;
 }
