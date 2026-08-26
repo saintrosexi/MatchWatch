@@ -23,7 +23,17 @@ export const DECK_MODE = Object.freeze({ SOLO: 'solo', ACTOR: 'actor', ROOM: 'ro
  * целиком просмотренной. Двенадцать страниц за круг — это до трёх тысяч
  * фильмов, дальше честнее сказать, что под фильтры ничего не осталось.
  */
-const MAX_REFILL_ROUNDS = 4;
+/**
+ * Сколько страниц каталога перелистываем за один заход дозагрузки.
+ *
+ * Числа кругов не ограничиваем вовсе: единственный честный признак конца —
+ * исчерпанный каталог, и его сообщает сам пул. Лимит на круги стоял
+ * раньше и упирался в стенку там, где человек просто много насмотрел:
+ * у пятисот решений первые двадцать страниц популярного выедены почти
+ * целиком, и лента замирала на горстке карточек с надписью «колода
+ * закончилась», хотя впереди оставалось ещё четыреста восемьдесят страниц.
+ */
+const REFILL_PAGES_PER_ROUND = 20;
 
 /**
  * Снимает карточку с очереди.
@@ -66,6 +76,15 @@ export function useDeck({
   const [processed, setProcessed] = useState(0);
   /** Счётчик кругов дозагрузки: растёт, когда очередная порция вся решена. */
   const [refillNonce, setRefillNonce] = useState(0);
+  /*
+   * Пулы каталога по набору фильтров.
+   *
+   * Смена фильтров создавала пул заново, с первой страницы. Вернувшись
+   * к прежнему набору, человек снова упирался в те же уже просмотренные
+   * страницы — и лента «кончалась» через несколько карточек. Сохранённый
+   * пул продолжает с того места, где остановился.
+   */
+  const poolsRef = useRef(new Map());
 
   const poolRef = useRef(null);
   const refillingRef = useRef(false);
@@ -227,7 +246,8 @@ export function useDeck({
           return;
         }
 
-        const pool = new CatalogPool({ filters });
+        const pool = poolsRef.current.get(filterKey) ?? new CatalogPool({ filters });
+        poolsRef.current.set(filterKey, pool);
         poolRef.current = pool;
 
         /*
@@ -308,7 +328,12 @@ export function useDeck({
     setRefilling(true);
 
     try {
-      const { added, poolExhausted, pages } = await pullNewCards(pool, { size: 40 });
+      const { added, poolExhausted, pages } = await pullNewCards(pool, {
+        size: 40, maxPages: REFILL_PAGES_PER_ROUND,
+      });
+
+      // Нашли хоть что-то — полоса решённого кончилась, счёт заново.
+      if (added) setRefillNonce(0);
 
       if (!added) {
         if (poolExhausted) {
@@ -342,9 +367,7 @@ export function useDeck({
     if (mode !== DECK_MODE.SOLO || loading || exhausted) return;
     if (!poolRef.current) return;
     if (queue.length > getConfig().deck.prefetchThreshold) return;
-    // Ограничение на число кругов: длинная полоса решённого — не повод
-    // листать каталог бесконечно.
-    if (refillNonce > MAX_REFILL_ROUNDS) return;
+
     refill();
   }, [queue.length, loading, exhausted, mode, refill, refillNonce]);
 
@@ -379,15 +402,18 @@ export function useDeck({
     setLoading(true);
     setQueue([]);
     queuedIds.current = new Set();
+    // Повтор после сбоя начинает с чистого пула: прежний мог остаться
+    // на середине неудачной страницы.
+    poolsRef.current.delete(filterKey);
     poolRef.current = null;
-    // Смена ключа перезапустит основной эффект.
     setProcessed((n) => n);
     const pool = new CatalogPool({ filters });
+    poolsRef.current.set(filterKey, pool);
     poolRef.current = pool;
     pool.fill(getConfig().deck.candidatePool)
       .then(() => { extend(pool); setLoading(false); })
       .catch((e) => { setError(describeError(e)); setLoading(false); });
-  }, [filters, extend]);
+  }, [filters, filterKey, extend]);
 
   const total = processed + queue.length;
 
