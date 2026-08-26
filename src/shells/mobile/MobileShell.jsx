@@ -18,10 +18,17 @@ export function MobileShell({
 }) {
   return (
     <div className="mobile-shell">
-      <header className="hud">
-        {/* Распорка уводит логотип из-под кнопки «Закрыть» Telegram. */}
-        <div className="hud__spacer hud__spacer--lead" />
+      {/*
+        * Логотип вынесен из потока и прибит к центру экрана.
+        * В строке он стоял между распорок, а справа число кнопок меняется
+        * от экрана к экрану — и логотип переезжал вслед за ними. Центр
+        * верхней полосы у Telegram свободен: слева «Закрыть», справа меню.
+        */}
+      <div className="hud__brand">
         <BrandLockup size="sm" />
+      </div>
+
+      <header className="hud">
         <div className="hud__spacer" />
         {right}
         {!online && (

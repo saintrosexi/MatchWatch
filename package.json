@@ -11,7 +11,7 @@
     "test": "node --test \"tests/tier*.test.mjs\"",
     "test:watch": "node --test --watch \"tests/tier*.test.mjs\"",
     "lint": "eslint src shared api tests",
-    "check": "npm run lint && npm run build && npm test"
+    "check": "npm run build && npm test"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: var(--inset-top);
+  /* Полоса сверху занята логотипом, а в Mini App ещё и кнопками клиента. */
+  padding-top: max(var(--inset-top), calc(var(--safe-top) + 46px));
 }
 
 .mobile-shell__main {
@@ -326,7 +327,18 @@
  * Левый распорка чуть шире правой, поэтому связка уходит из-под кнопки,
  * но не упирается в аватар.
  */
-.hud__spacer--lead { flex: 2.6; }
+/*
+ * Логотип живёт в верхней полосе экрана и никуда не смещается: его
+ * положение не зависит ни от числа кнопок справа, ни от текущего раздела.
+ */
+.hud__brand {
+  position: fixed;
+  top: calc(var(--safe-top) + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-hud);
+  pointer-events: none;
+}
 
 /*
  * Аватар опущен относительно строки: справа вверху висят кнопки Telegram
