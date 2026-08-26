@@ -206,38 +206,6 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room.code, room.isHost, room.members.length, room.consensus]);
 
-  /*
-   * Колода дописывается, пока в ней есть что смотреть.
-   *
-   * Публиковалась она один раз, и вдвоём её проходили за десяток свайпов —
-   * «колода закончилась» приходило там, где раньше листали сотнями.
-   * Заказ уходит заранее, за несколько карточек до конца, чтобы пауза
-   * пришлась на чужой ход, а не на пустой экран.
-   */
-  const growingRef = useRef(false);
-
-  useEffect(() => {
-    if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
-    if (growingRef.current) return;
-
-    const config = getConfig();
-    const left = deck.queue.length;
-    if (left > config.room.refillThreshold) return;
-
-    growingRef.current = true;
-    const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
-
-    buildRoomDeck({
-      consensus: room.consensus ?? taste,
-      filters,
-      history: roomHistory(room.state, user?.uid),
-      excludeIds: published,
-    })
-      .then(({ deck: next }) => (next.length ? room.growDeck(next) : null))
-      .catch(() => { /* следующая карточка попробует снова */ })
-      .finally(() => { growingRef.current = false; });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckMode, room.code, deck.queue.length]);
 
   /* ── Подтверждение выхода, пока идёт сессия в комнате ─────────── */
   useEffect(() => {
@@ -271,6 +239,39 @@ export default function App() {
      */
     enabled: Boolean(userState) && (Boolean(user?.uid) || auth.isDegraded),
   });
+
+  /*
+   * Колода дописывается, пока в ней есть что смотреть.
+   *
+   * Публиковалась она один раз, и вдвоём её проходили за десяток свайпов —
+   * «колода закончилась» приходило там, где раньше листали сотнями.
+   * Заказ уходит заранее, за несколько карточек до конца, чтобы пауза
+   * пришлась на чужой ход, а не на пустой экран.
+   */
+  const growingRef = useRef(false);
+
+  useEffect(() => {
+    if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
+    if (growingRef.current) return;
+
+    const config = getConfig();
+    const left = deck.queue.length;
+    if (left > config.room.refillThreshold) return;
+
+    growingRef.current = true;
+    const published = (room.state.deck ?? []).map((t) => t.id ?? t.titleId).filter(Boolean);
+
+    buildRoomDeck({
+      consensus: room.consensus ?? taste,
+      filters,
+      history: roomHistory(room.state, user?.uid),
+      excludeIds: published,
+    })
+      .then(({ deck: next }) => (next.length ? room.growDeck(next) : null))
+      .catch(() => { /* следующая карточка попробует снова */ })
+      .finally(() => { growingRef.current = false; });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deckMode, room.code, deck.queue.length]);
 
   useEffect(() => {
     if (deck.queue.length) deckPoolRef.current = deck.queue.map((e) => e.title);

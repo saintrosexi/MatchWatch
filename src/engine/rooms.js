@@ -16,7 +16,7 @@
  */
 
 import { supabase, supabaseReady, guarded, PG_ERROR } from '../lib/supabase.js';
-import { normalizeRoomCode, JOIN_SOURCE } from '../../shared/model/roomCode.js';
+import { normalizeRoomCode, JOIN_SOURCE, ROOM_CODE_LENGTH } from '../../shared/model/roomCode.js';
 import { titleStub } from '../../shared/model/title.js';
 import { RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
 import { trackBusiness, trackError, trackMetric, setTelemetryRoom } from '../lib/telemetry.js';
@@ -45,7 +45,7 @@ function toRoomError(error, { code, source } = {}) {
   if (error instanceof RoomError) return error;
 
   const map = {
-    [PG_ERROR.INVALID_CODE]: ['invalid_code', 'Код комнаты состоит из 4 символов. Проверьте ввод.'],
+    [PG_ERROR.INVALID_CODE]: ['invalid_code', `Код комнаты состоит из ${ROOM_CODE_LENGTH} цифр. Проверьте ввод.`],
     [PG_ERROR.NOT_FOUND]: ['not_found', `Комната ${code ?? ''} не найдена. Возможно, она уже закрылась.`],
     [PG_ERROR.EXPIRED]: ['expired', `Комната ${code ?? ''} истекла. Попросите создать новую.`],
     [PG_ERROR.ROOM_FULL]: ['full', `В комнате ${code ?? ''} уже максимум участников.`],
@@ -102,7 +102,7 @@ export async function joinRoom(rawCode, { user, source = JOIN_SOURCE.MANUAL, pro
       module: MODULE.ROOMS_JOIN,
       context: { source, rawLength: String(rawCode ?? '').length },
     });
-    throw new RoomError('invalid_code', 'Код комнаты состоит из 4 символов. Проверьте ввод.', { source });
+    throw new RoomError('invalid_code', `Код комнаты состоит из ${ROOM_CODE_LENGTH} цифр. Проверьте ввод.`, { source });
   }
 
   try {

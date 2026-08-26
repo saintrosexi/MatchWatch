@@ -39,7 +39,8 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, onB
     setBusy(true);
     try {
       await room.join(code, source);
-      onEnterRoom?.();
+      // Тоже в лобби: колоды может ещё не быть, а если есть — из лобби
+      // до неё один тап, и заодно видно, кто уже внутри.
       setInput('');
     } catch (error) {
       toasts.error(error?.message ?? 'Не удалось войти в комнату');
@@ -52,7 +53,11 @@ export function RoomsView({ room, user, onCreate, onEnterRoom, onOpenMember, onB
     setBusy(true);
     try {
       await onCreate();
-      onEnterRoom?.();
+      /*
+       * В колоду не бросаем: комната только что создана, она пуста, и
+       * свайпать там нечего. Сначала лобби — код, участники и кнопка
+       * сборки колоды.
+       */
     } catch (error) {
       toasts.error(error?.message ?? 'Не удалось создать комнату');
     } finally {
@@ -307,8 +312,8 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
 
         {waiting && (
           <p className="status-strip">
-            Ждём второго участника. Свайпать можно уже сейчас — мэтчи появятся,
-            как только друг зайдёт.
+            Ждём второго участника. Отправьте ему код — и соберём общую колоду
+            по вкусам вас обоих.
           </p>
         )}
       </section>
