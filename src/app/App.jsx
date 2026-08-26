@@ -314,12 +314,24 @@ export default function App() {
       }))
       .then(({ deck: next, pool }) => {
         growthPoolRef.current = pool;
-        return next.length ? room.growDeck(next) : null;
+        // Длина, которую видели мы: если она изменилась, порцию уже дописал другой.
+        return next.length ? room.growDeck(next, published.length) : null;
       })
       .catch(() => { /* следующая карточка попробует снова */ })
       .finally(() => { growingRef.current = false; });
+    /*
+     * `progress.slowest` в зависимостях обязателен.
+     *
+     * Раньше эффект ждал только изменения длины очереди — и этого хватало
+     * ровно до первого случая, когда человек заканчивал пачку раньше
+     * остальных. Очередь у него становилась нулевой, эффект срабатывал,
+     * видел, что медленный ещё не дошёл, и выходил. Когда медленный
+     * доходил, длина очереди уже была нулевой и НЕ МЕНЯЛАСЬ — эффект
+     * не запускался больше никогда, и колода не росла. Со стороны это
+     * выглядело как вечная загрузка.
+     */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckMode, room.code, deck.queue.length]);
+  }, [deckMode, room.code, deck.queue.length, room.progress.slowest, room.progress.size]);
 
   useEffect(() => {
     if (deck.queue.length) deckPoolRef.current = deck.queue.map((e) => e.title);

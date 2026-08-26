@@ -120,7 +120,7 @@ export function SwipeDeck({
      * остальные ещё нет». Показывать здесь загрузку было бы враньём:
      * ничего не грузится, идёт ожидание живых людей.
      */
-    if (roomProgress?.size && roomProgress.slowest < roomProgress.size) {
+    if (roomProgress?.size) {
       const waiting = Object.entries(roomProgress.byUser ?? {})
         .filter(([, done]) => done < roomProgress.size)
         .map(([uid, done]) => ({
@@ -128,12 +128,25 @@ export function SwipeDeck({
           done,
         }));
 
+      /*
+       * Ветка одна на два состояния — ждём людей или собираем следующую
+       * порцию, — и это намеренно.
+       *
+       * Раньше почти-совпадения показывались только пока кто-то ещё
+       * свайпает. То есть исчезали ровно в тот момент, когда становились
+       * нужнее всего: все прошли пачку, обсуждать больше нечего, и
+       * человек смотрел на крутящийся кружок вместо готового ответа.
+       */
+      const everyoneDone = waiting.length === 0;
+
       return (
         <div className="stack gap-4">
           <EmptyState
             icon={Users}
-            title="Свою пачку вы прошли"
-            text="Ждём остальных — как только все закончат, добавим ещё карточек."
+            title={everyoneDone ? 'Пачку прошли все' : 'Свою пачку вы прошли'}
+            text={everyoneDone
+              ? 'Собираем следующую порцию — она общая, поэтому появится сразу у всех.'
+              : 'Ждём остальных — как только все закончат, добавим ещё карточек.'}
             action={(
               <div className="stack gap-2" style={{ minWidth: 220 }}>
                 {waiting.map((person) => (

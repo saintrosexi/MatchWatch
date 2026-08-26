@@ -424,12 +424,24 @@ export async function publishDeck(code, deck) {
  * это может любой участник. Иначе колода замирает, стоит хосту свернуть
  * приложение, — а сворачивают его постоянно.
  */
-export async function appendDeck(code, deck) {
+/**
+ * Дописать порцию в конец общей колоды.
+ *
+ * `baseSize` — та длина колоды, которую видел вызывающий. Условие роста
+ * наступает у всех участников разом, каждый собирает свою порцию, и без
+ * этой сверки колода на троих выросла бы на семьдесят пять карточек
+ * вместо двадцати пяти. Кто успел первым, тот и дописал.
+ */
+export async function appendDeck(code, deck, baseSize = null) {
   requireClient();
   const normalized = normalizeRoomCode(code);
   if (!normalized || !deck?.length) return null;
   return guarded(
-    () => supabase.rpc('append_room_deck', { p_code: normalized, p_deck: deck }),
+    () => supabase.rpc('append_room_deck', {
+      p_code: normalized,
+      p_deck: deck,
+      p_base_size: baseSize,
+    }),
     { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'append deck' },
   );
 }

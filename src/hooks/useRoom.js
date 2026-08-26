@@ -226,7 +226,7 @@ export function useRoom({ user, taste }) {
 
   /** Дописать порцию в конец общей колоды — умеет любой участник. */
   const growDeck = useCallback(
-    (deck) => (code ? appendDeck(code, deck) : Promise.resolve(null)),
+    (deck, baseSize = null) => (code ? appendDeck(code, deck, baseSize) : Promise.resolve(null)),
     [code],
   );
 
