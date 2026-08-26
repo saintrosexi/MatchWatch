@@ -17,7 +17,7 @@
 
 import { withHandler, ApiError, requireSecret } from './http.js';
 import { sbRpc, hasServiceKey } from './supabaseAdmin.js';
-import { callBot, miniAppUrl } from './botApi.js';
+import { callBot, miniAppUrl, appLink } from './botApi.js';
 import { describeBot, hasBotToken } from './telegram.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 
@@ -32,6 +32,15 @@ export const setupHandler = withHandler({ methods: ['GET', 'POST'], module: MODU
     return {
       bot,
       miniAppUrl: miniAppUrl(),
+      /*
+       * Ссылка, которую бот кладёт под инлайн-карточки. Отдельной
+       * переменной у неё нет — она склеивается из имени бота и короткого
+       * имени приложения. Показываем собранной: если вместо `t.me/...`
+       * здесь окажется адрес сайта, значит эти две переменные до функции
+       * не доехали, и карточки будут открывать браузер вместо приложения.
+       */
+      appLink: appLink(),
+      appLinkToRoom: appLink('23356'),
       expectedWebhook: `${base}/api/telegram/webhook`,
       webhook: info.ok ? info.result : { error: info.description },
       ready: readiness(),
