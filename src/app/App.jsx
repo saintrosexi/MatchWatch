@@ -28,19 +28,26 @@ import { AuthScreen } from '../features/auth/AuthScreen.jsx';
  * ради экранов, до которых человек может не дойти вовсе. Празднование
  * вдобавок тянет за собой библиотеку конфетти.
  */
-const MatchCelebration = lazy(() => import('../features/rooms/MatchCelebration.jsx')
-  .then((m) => ({ default: m.MatchCelebration })));
-const ProfileEditor = lazy(() => import('../features/profile/ProfileEditor.jsx')
-  .then((m) => ({ default: m.ProfileEditor })));
-const PublicProfileView = lazy(() => import('../features/profile/PublicProfileView.jsx')
-  .then((m) => ({ default: m.PublicProfileView })));
-const DashboardView = lazy(() => import('../features/profile/DashboardView.jsx')
-  .then((m) => ({ default: m.DashboardView })));
-const RouletteModal = lazy(() => import('../features/roulette/RouletteModal.jsx')
-  .then((m) => ({ default: m.RouletteModal })));
-const Onboarding = lazy(() => import('../features/onboarding/Onboarding.jsx')
-  .then((m) => ({ default: m.Onboarding })));
+/*
+ * Каждый ленивый экран обёрнут в `retryChunk`: после выкладки новой
+ * версии имена файлов меняются, и страница, открытая со старой сборки,
+ * идёт за файлом, которого больше нет. Празднование мэтча так и не
+ * показалось никому — вместо него люди видели «Что-то сломалось».
+ */
+const MatchCelebration = lazy(retryChunk(() => import('../features/rooms/MatchCelebration.jsx')
+  .then((m) => ({ default: m.MatchCelebration })), 'MatchCelebration'));
+const ProfileEditor = lazy(retryChunk(() => import('../features/profile/ProfileEditor.jsx')
+  .then((m) => ({ default: m.ProfileEditor })), 'ProfileEditor'));
+const PublicProfileView = lazy(retryChunk(() => import('../features/profile/PublicProfileView.jsx')
+  .then((m) => ({ default: m.PublicProfileView })), 'PublicProfileView'));
+const DashboardView = lazy(retryChunk(() => import('../features/profile/DashboardView.jsx')
+  .then((m) => ({ default: m.DashboardView })), 'DashboardView'));
+const RouletteModal = lazy(retryChunk(() => import('../features/roulette/RouletteModal.jsx')
+  .then((m) => ({ default: m.RouletteModal })), 'RouletteModal'));
+const Onboarding = lazy(retryChunk(() => import('../features/onboarding/Onboarding.jsx')
+  .then((m) => ({ default: m.Onboarding })), 'Onboarding'));
 
+import { retryChunk, clearChunkReload } from '../lib/lazyChunk.js';
 import { Toasts } from '../ui/Toasts.jsx';
 import { ErrorBoundary } from '../ui/ErrorBoundary.jsx';
 import { LoadingState, StatusStrip } from '../ui/States.jsx';
@@ -132,6 +139,13 @@ export default function App() {
    * только на экране и исчезали после перезагрузки.
    */
   useEffect(() => {
+    /*
+     * Приложение поднялось — значит перезагрузка после отвалившегося
+     * чанка сработала. Снимаем отметку, иначе одна давняя неудача
+     * навсегда запретила бы перезагрузку в этой вкладке.
+     */
+    clearChunkReload();
+
     const stop = startOutbox();
     const unsubscribe = subscribeOutbox(setPendingWrites);
     return () => { stop(); unsubscribe(); };
