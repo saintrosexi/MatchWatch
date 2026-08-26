@@ -620,6 +620,12 @@ Object.assign(TAG_MOODS, {
   'date-night': { emotion: 28, darkness: -22 },
   'crowd-pleaser': { darkness: -24, energy: 22, emotion: 18 },
   'thought-provoking': { intellect: 38, emotion: 14 },
+  /*
+   * Просила сама модель при разметке, а словарь такого слова не знал.
+   * Отброшенные теги для того и перечисляются в ответе: они показывают,
+   * чего словарю не хватает, — вместо того чтобы гадать об этом.
+   */
+  'investigation': { intellect: 32, dynamism: 10, darkness: 16 },
   /* Просила сама модель при разметке — значит слово живое, а не наше. */
   'investigation': { intellect: 32, dynamism: 10, darkness: 16 },
   'disaster': { energy: 28, dynamism: 30, darkness: 26 },
@@ -767,6 +773,7 @@ Object.assign(TAG_LABELS_RU, {
   'meditative': 'медитативное', 'relentless': 'без передышки', 'absurdist': 'абсурд',
   'whimsical': 'причудливое', 'cringe-comedy': 'неловкий юмор', 'date-night': 'на свидание',
   'crowd-pleaser': 'зайдёт всем', 'thought-provoking': 'заставляет думать',
+  'investigation': 'расследование',
   'disaster': 'катастрофа', 'first-contact': 'первый контакт',
   'alien-invasion': 'вторжение', 'hard-sci-fi': 'твёрдая фантастика',
   'multiverse': 'мультивселенная', 'folk-horror': 'фолк-хоррор',
