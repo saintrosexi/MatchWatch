@@ -266,20 +266,23 @@ export default function App() {
    */
   const growingRef = useRef(false);
   /*
-   * Сколько раз подряд дозагрузка вернулась ни с чем. Каталог конечен,
-   * и когда он вычерпан, каждый следующий свайп запускал бы полную
-   * пересборку колоды — десяток запросов к каталогу впустую, на телефоне
-   * это греет корпус и сажает батарею. После трёх пустых попыток
-   * перестаём спрашивать до смены комнаты или фильтров.
+   * Пул каталога живёт между догрузками.
+   *
+   * Дорогой была не частота попыток, а то, что каждая начиналась с нуля:
+   * новый пул, три сотни карточек, два десятка обогащений — и так на
+   * каждые двадцать пять фильмов. Сохранённый пул листается дальше
+   * с той страницы, где остановился, и очередная порция стоит один-два
+   * запроса. Ограничивать число попыток поэтому не нужно: колода растёт,
+   * пока в каталоге есть что показать, а каталог у TMDB — тысячи фильмов.
    */
-  const emptyGrowthsRef = useRef(0);
-  const MAX_EMPTY_GROWTHS = 3;
+  const growthPoolRef = useRef(null);
 
-  useEffect(() => { emptyGrowthsRef.current = 0; }, [room.code, filters]);
+  // Своя комната и свои фильтры — свой пул: чужой отдал бы не те фильмы.
+  useEffect(() => { growthPoolRef.current = null; }, [room.code, filters]);
 
   useEffect(() => {
     if (deckMode !== DECK_MODE.ROOM || !room.code || !room.state) return;
-    if (growingRef.current || emptyGrowthsRef.current >= MAX_EMPTY_GROWTHS) return;
+    if (growingRef.current) return;
 
     const config = getConfig();
     if (deck.queue.length > config.room.refillThreshold) return;
@@ -292,13 +295,13 @@ export default function App() {
       filters,
       history: roomHistory(room.state, user?.uid),
       excludeIds: published,
+      pool: growthPoolRef.current,
     })
-      .then(({ deck: next }) => {
-        if (!next.length) { emptyGrowthsRef.current += 1; return null; }
-        emptyGrowthsRef.current = 0;
-        return room.growDeck(next);
+      .then(({ deck: next, pool }) => {
+        growthPoolRef.current = pool;
+        return next.length ? room.growDeck(next) : null;
       })
-      .catch(() => { emptyGrowthsRef.current += 1; })
+      .catch(() => { /* следующая карточка попробует снова */ })
       .finally(() => { growingRef.current = false; });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckMode, room.code, deck.queue.length]);

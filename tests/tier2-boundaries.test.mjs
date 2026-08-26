@@ -501,3 +501,52 @@ test('B29 · неудачная запись не теряется, а досы�
   assert.ok(delivered.includes('исправленное'), 'доставлено должно быть последнее решение');
   assert.ok(!delivered.includes('первое'), 'устаревшее решение отправлять не нужно');
 });
+
+/**
+ * Регрессия на дорогую догрузку.
+ *
+ * Каждая следующая порция колоды комнаты начиналась с нуля: новый пул,
+ * три сотни карточек, два десятка обогащений — и так на каждые двадцать
+ * пять фильмов. На телефоне это грело корпус. Переданный пул обязан
+ * листаться дальше, а не пересобираться.
+ */
+test('B26 · догрузка колоды переиспользует пул, а не собирает его заново', async () => {
+  const { buildRoomDeck } = await import('../src/engine/roomDeck.js');
+
+  const titles = Array.from({ length: 80 }, (_, i) => makeTitle(500000 + i, `Фильм ${i}`));
+  const calls = { fill: 0, enrich: 0, loadMore: 0 };
+
+  const fakePool = {
+    all: titles,
+    size: titles.length,
+    exhausted: true,
+    async fill() { calls.fill += 1; },
+    async enrich() { calls.enrich += 1; },
+    async loadMore() { calls.loadMore += 1; },
+  };
+
+  const { deck, pool } = await buildRoomDeck({
+    consensus: createEmptyProfile(),
+    filters: {},
+    history: {},
+    pool: fakePool,
+    size: 25,
+  });
+
+  assert.equal(calls.fill, 0, 'готовый пул не наполняется заново');
+  assert.equal(calls.enrich, 0, 'и не обогащается повторно');
+  assert.equal(pool, fakePool, 'пул возвращается для следующей догрузки');
+  assert.ok(deck.length > 0, 'порция всё же собралась');
+
+  // Уже отданное не повторяется: иначе колода «растёт» одними и теми же.
+  const again = await buildRoomDeck({
+    consensus: createEmptyProfile(),
+    filters: {},
+    history: {},
+    pool: fakePool,
+    excludeIds: deck.map((e) => e.title.id),
+    size: 25,
+  });
+  const overlap = again.deck.filter((e) => deck.some((d) => d.title.id === e.title.id));
+  assert.equal(overlap.length, 0, 'вторая порция не повторяет первую');
+});

@@ -15,17 +15,28 @@ import { BIZ, MODULE } from '../../shared/telemetry/events.js';
 /** Сколько страниц каталога готовы пролистать, добирая колоду. */
 const MAX_REFILL_PAGES = 12;
 
+/**
+ * @param {object} options
+ * @param {CatalogPool} [options.pool]
+ *   Готовый пул от прошлой догрузки. Без него каждая следующая порция
+ *   начиналась бы с нуля: новый пул, три сотни карточек, два десятка
+ *   обогащений — и так на каждые двадцать пять фильмов. Переданный пул
+ *   листается дальше с той страницы, где остановился, и порция стоит
+ *   один-два запроса вместо двадцати.
+ */
 export async function buildRoomDeck({
-  consensus, filters = {}, history = {}, excludeIds = [], size, signal,
+  consensus, filters = {}, history = {}, excludeIds = [], size, signal, pool: reusablePool = null,
 } = {}) {
   const config = getConfig();
-  const pool = new CatalogPool({ filters });
+  const pool = reusablePool ?? new CatalogPool({ filters });
 
-  await pool.fill(config.deck.candidatePool, { signal });
+  if (!reusablePool) {
+    await pool.fill(config.deck.candidatePool, { signal });
 
-  // Точные теги важнее для компромисса, чем для личной ленты: тут ошибка
-  // стоит времени двух человек, а не одного.
-  await pool.enrich(pool.all.slice(0, 24).map((t) => t.id), { signal });
+    // Точные теги важнее для компромисса, чем для личной ленты: тут ошибка
+    // стоит времени двух человек, а не одного.
+    await pool.enrich(pool.all.slice(0, 24).map((t) => t.id), { signal });
+  }
 
   /*
    * Уже опубликованное в колоде исключается до ранжирования, а не после:
@@ -45,11 +56,13 @@ export async function buildRoomDeck({
   let ranked = rank();
 
   /*
-   * Колода комнаты собирается один раз и потом не пополняется: все
-   * свайпают ровно один список в одном порядке. Значит она обязана быть
-   * полной сразу. У хоста, отсмотревшего сотню фильмов, из первой
-   * страницы каталога выпадает почти всё — и вдвоём кино кончалось через
-   * пять карточек. Листаем каталог, пока колода не наберётся.
+   * Листаем каталог, пока порция не наберётся.
+   *
+   * У хоста, отсмотревшего сотню фильмов, из первой страницы выпадает
+   * почти всё — и без добора вдвоём кино кончалось через пять карточек.
+   * Потолок на число страниц за один заход нужен, чтобы одна догрузка
+   * не выгребла полкаталога разом; следующая продолжит с того же места,
+   * потому что пул переиспользуется.
    */
   let pages = 0;
   while (ranked.length < target && pages < MAX_REFILL_PAGES && !pool.exhausted) {
