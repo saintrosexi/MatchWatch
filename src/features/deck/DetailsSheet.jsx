@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Bookmark, BookmarkX, Eye, EyeOff, Heart, HeartOff, Play, Star, Users } from '../../ui/icons.js';
+import {
+  Bookmark, BookmarkX, Eye, EyeOff, Heart, HeartOff, Loader2, Play, Sparkles, Star, Users, ICON,
+} from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { MoodBars } from '../../ui/Radar.jsx';
 import { RatingPicker } from '../../ui/RatingPicker.jsx';
-import { api } from '../../lib/api.js';
+import { api, describeError } from '../../lib/api.js';
 import { openLink } from '../../lib/telegram.js';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 import { parseTitleId } from '../../../shared/model/title.js';
@@ -18,6 +20,8 @@ export function DetailsSheet({
   open, entry, onClose, onOpenActor, onToggleWatched, isWatched,
   onToggleLike, isLiked = false, onToggleWish, isWished = false,
   rating = null, onRate,
+  /** Чего хотели сегодня — если запрос был. Попадает в объяснение. */
+  wanted = null,
 }) {
   const [full, setFull] = useState(entry?.title ?? null);
   const [loading, setLoading] = useState(false);
@@ -83,6 +87,8 @@ export function DetailsSheet({
         <p className="details__overview">
           {title.overview ?? (loading ? 'Загружаем описание…' : 'Описание пока не добавлено в TMDB.')}
         </p>
+
+        <WhyThisFilm entry={entry} title={title} wanted={wanted} />
 
         {Object.keys(title.tags ?? {}).length > 0 && (
           <section className="section">
@@ -186,3 +192,76 @@ const formatVotes = (votes) =>
   (votes >= 1000
     ? `${Math.round(votes / 100) / 10} тыс. оценок`
     : withPlural(votes, FORMS.RATING));
+
+/**
+ * «Почему этот фильм».
+ *
+ * По кнопке, а не сразу: объяснение стоит обращения к модели, а
+ * спрашивают о нём редко — обычно и так понятно. Греть на этом каждую
+ * открытую карточку было бы тратой без спроса.
+ *
+ * Наружу уходят только подписи тем и то, чего хотели сегодня. Ни истории
+ * решений, ни профиля целиком: объяснение не стоит того, чтобы отдавать
+ * вкус человека стороннему сервису.
+ */
+function WhyThisFilm({ entry, title, wanted }) {
+  const [state, setState] = useState({ status: 'idle', text: null });
+
+  const matched = entry?.matchedTags ?? [];
+  const topTags = Object.entries(title?.tags ?? {})
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 8)
+    .map(([tag]) => tagLabel(tag));
+
+  // Объяснять нечего, пока не на чем: без тем модель начнёт сочинять.
+  if (!topTags.length) return null;
+
+  const ask = async () => {
+    setState({ status: 'loading', text: null });
+    try {
+      const { reason } = await api.aiExplain({
+        title: title.title,
+        year: title.year ?? null,
+        sharedTags: matched.map(tagLabel),
+        titleTags: topTags,
+        wanted: wanted ?? '',
+        confidence: entry?.confidence ?? null,
+      });
+      setState({ status: 'done', text: reason });
+    } catch (error) {
+      if (error?.code === 'ai_not_configured') {
+        setState({ status: 'off', text: null });
+        return;
+      }
+      setState({ status: 'error', text: describeError(error).text });
+    }
+  };
+
+  if (state.status === 'off') return null;
+
+  if (state.status === 'done') {
+    return (
+      <p className="why-film">
+        <Sparkles size={ICON.sm} className="why-film__icon" /> {state.text}
+      </p>
+    );
+  }
+
+  return (
+    <div className="why-film">
+      <button
+        type="button"
+        className="btn btn--ghost btn--sm"
+        onClick={ask}
+        disabled={state.status === 'loading'}
+      >
+        {state.status === 'loading'
+          ? <><Loader2 size={ICON.sm} className="spin" /> Думаем…</>
+          : <><Sparkles size={ICON.sm} /> Почему этот фильм?</>}
+      </button>
+      {state.status === 'error' && (
+        <span className="why-film__error">{state.text}</span>
+      )}
+    </div>
+  );
+}

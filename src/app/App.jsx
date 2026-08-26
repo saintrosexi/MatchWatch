@@ -735,6 +735,11 @@ export default function App() {
           isWatched={detailsEntry ? history[detailsEntry.title.id] === 'watched' : false}
           rating={detailsEntry ? (userState?.ratings?.[detailsEntry.title.id]?.rating ?? null) : null}
           onRate={handleRate}
+          /*
+           * Чего хотели сегодня — из своего же запроса, а не из чужих:
+           * объяснение адресовано тому, кто открыл карточку.
+           */
+          wanted={room.myMood?.ai?.summary ?? null}
         />
 
         <FiltersSheet

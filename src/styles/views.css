@@ -660,3 +660,16 @@
 }
 .mood-chip__hint { font-size: var(--t-micro); color: var(--text-low); }
 .mood-chip__check { position: absolute; top: var(--s-2); right: var(--s-2); color: var(--coral); }
+
+/* ── «Почему этот фильм» ────────────────────────────────────────── */
+.why-film {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: var(--s-3) 0 0;
+  font-size: var(--t-small);
+  color: var(--text-mid);
+}
+
+.why-film__icon { color: var(--coral); flex: 0 0 auto; }
+.why-film__error { font-size: var(--t-micro); color: var(--coral); }
