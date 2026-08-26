@@ -8,6 +8,7 @@
 
 import { CatalogPool } from './catalog.js';
 import { rankDeck } from './ranking.js';
+import { buildMoodRequest, moodRequestFit, roomMoodFit } from '../../shared/config/moodPresets.js';
 import { getConfig } from './recommendationConfig.js';
 import { trackBusiness } from '../lib/telemetry.js';
 import { BIZ, MODULE } from '../../shared/telemetry/events.js';
@@ -26,6 +27,8 @@ const MAX_REFILL_PAGES = 12;
  */
 export async function buildRoomDeck({
   consensus, filters = {}, history = {}, excludeIds = [], size, signal, pool: reusablePool = null,
+  /** Что участники выбрали на сегодня: массив массивов ключей чипов. */
+  moodRequests = [],
 } = {}) {
   const config = getConfig();
   const pool = reusablePool ?? new CatalogPool({ filters });
@@ -46,12 +49,28 @@ export async function buildRoomDeck({
   const excluded = new Set(excludeIds);
   const target = size ?? config.room.deckSize;
 
-  const rank = () => rankDeck(pool.all.filter((t) => !excluded.has(t.id)), consensus, {
-    config,
-    history,
-    size: target,
-    explorationRate: config.room.explorationRate,
-  });
+  /*
+   * Запрос на сегодня и накопленный вкус весят поровну.
+   *
+   * Человек, любящий триллеры, сегодня может хотеть комедию — подборка
+   * обязана это услышать. Но и забыть, какие именно комедии ему заходят,
+   * она не должна: одно настроение без вкуса выдаёт любую комедию подряд.
+   */
+  const requests = (moodRequests ?? []).map(buildMoodRequest).filter((r) => Object.keys(r.axes).length);
+  const personal = requests.filter((r) => Object.keys(r.axes).length);
+
+  const rank = () => {
+    const candidates = pool.all.filter((t) => !excluded.has(t.id));
+    const ranked = rankDeck(candidates, consensus, {
+      config,
+      history,
+      size: requests.length ? Math.max(target * 3, target) : target,
+      explorationRate: config.room.explorationRate,
+    });
+
+    if (!requests.length) return ranked.slice(0, target);
+    return blendByMood(ranked, personal, target, config);
+  };
 
   let ranked = rank();
 
@@ -96,4 +115,83 @@ export function roomHistory(roomState, uid) {
     if (item.watched) history[item.titleId] = 'watched';
   }
   return history;
+}
+
+/**
+ * Смешивает колоду под запросы участников.
+ *
+ * Большая часть — то, что устраивает всех: оценка идёт по тому, кому
+ * фильм подходит хуже всего, потому что среднее вывело бы наверх серую
+ * середину, не нравящуюся никому.
+ *
+ * Но одной справедливостью вечер не спасти: колода из сплошных
+ * компромиссов выходит пресной. Поэтому каждому участнику достаётся
+ * несколько карточек точно под его запрос — ярких, пусть и не общих.
+ */
+function blendByMood(ranked, requests, target, config) {
+  const requestWeight = config.room.requestWeight ?? 0.5;
+  const personalShare = config.room.personalMoodShare ?? 0.2;
+
+  const scored = ranked.map((entry) => ({
+    entry,
+    shared: roomMoodFit(entry.title.moods, requests) ?? 0,
+    personal: requests.map((r) => moodRequestFit(entry.title.moods, r) ?? 0),
+  }));
+
+  // Общая часть: вкус комнаты и общее настроение поровну.
+  const common = [...scored]
+    .sort((a, b) => (b.entry.score * (1 - requestWeight) + b.shared * requestWeight)
+      - (a.entry.score * (1 - requestWeight) + a.shared * requestWeight));
+
+  const perPersonSlots = requests.length > 1
+    ? Math.max(1, Math.round((target * personalShare) / requests.length))
+    : 0;
+
+  const picked = [];
+  const used = new Set();
+
+  const take = (item, slot) => {
+    if (!item || used.has(item.entry.id)) return false;
+    used.add(item.entry.id);
+    picked.push({ ...item.entry, slot });
+    return true;
+  };
+
+  // Сначала яркие карточки под каждого — иначе их вытеснит общая часть.
+  requests.forEach((_, index) => {
+    const mine = [...scored].sort((a, b) => b.personal[index] - a.personal[index]);
+    let taken = 0;
+    for (const item of mine) {
+      if (taken >= perPersonSlots) break;
+      if (take(item, 'mood-personal')) taken += 1;
+    }
+  });
+
+  for (const item of common) {
+    if (picked.length >= target) break;
+    take(item, 'mood-shared');
+  }
+
+  /*
+   * Личные карточки распределяются по колоде, а не лежат в её начале:
+   * иначе первые ходы каждый делает по чужому запросу и решает, что
+   * подборка не про него.
+   */
+  const shared = picked.filter((e) => e.slot === 'mood-shared');
+  const mine = picked.filter((e) => e.slot === 'mood-personal');
+  if (!mine.length) return shared.slice(0, target);
+
+  const out = [];
+  const step = Math.max(2, Math.floor(shared.length / (mine.length + 1)));
+  let mineCursor = 0;
+
+  shared.forEach((entry, index) => {
+    out.push(entry);
+    if ((index + 1) % step === 0 && mineCursor < mine.length) {
+      out.push(mine[mineCursor++]);
+    }
+  });
+  while (mineCursor < mine.length) out.push(mine[mineCursor++]);
+
+  return out.slice(0, target);
 }

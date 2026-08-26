@@ -9,6 +9,7 @@ import { trackMetric } from '../../lib/telemetry.js';
 import { METRIC } from '../../../shared/telemetry/events.js';
 import { sfx } from '../../lib/sound.js';
 import { requestFriend } from '../../engine/social.js';
+import { MoodPicker } from './MoodPicker.jsx';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 
 /**
@@ -317,6 +318,14 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
           </StatusStrip>
         )}
       </section>
+
+      <MoodPicker
+        myMood={room.myMood}
+        members={room.members}
+        me={user}
+        onChange={room.setMood}
+        disabled={hasDeck}
+      />
 
       {/*
         * Колода собирается осознанно, а не в момент создания комнаты:

@@ -14,6 +14,9 @@ import { normalizeRoomCode, generateRoomCode, roomPath, isValidRoomCode, ROOM_CO
 import { TMDB_GENRES, GENRE_LIST } from '../shared/taxonomy/genres.js';
 import { slugifyTag, TAG_EXPANSIONS, TAG_MOODS } from '../shared/taxonomy/tagOntology.js';
 import { RECOMMENDATION_CONFIG, MOOD_AXES, NEUTRAL_MOOD } from '../shared/config/recommendation.js';
+import {
+  MOOD_PRESETS, REWATCH, buildMoodRequest, moodRequestFit, roomMoodFit,
+} from '../shared/config/moodPresets.js';
 import { COLD_START_IDS, COLD_START_TITLES } from '../shared/config/coldStart.js';
 import { BIZ, METRIC, MODULE, LEVEL, resolveEnvironment } from '../shared/telemetry/events.js';
 import { parseDsn, createSentryTransport } from '../shared/telemetry/sentryTransport.js';
@@ -285,6 +288,57 @@ test('F14b · стартовый набор разводит по осям, а �
   for (const item of COLD_START_TITLES) {
     assert.ok(item.note?.length > 3, `у ${item.id} нет пояснения, зачем он в наборе`);
   }
+});
+
+test('F29 · чип трогает только те оси, о которых говорит', () => {
+  const light = buildMoodRequest(['light']);
+  assert.deepEqual(Object.keys(light.axes).sort(), ['darkness', 'energy', 'intellect']);
+  assert.ok(!('emotion' in light.axes),
+    '«лёгкое» ничего не сообщает об эмоциональности — придумывать за человека нельзя');
+
+  // Несколько чипов: по каждой оси среднее из тех, что её упомянули.
+  const both = buildMoodRequest(['light', 'think']);
+  assert.equal(both.axes.intellect, Math.round((35 + 82) / 2));
+  assert.equal(both.axes.dynamism, 32, 'ось из одного чипа остаётся как есть');
+
+  // Пустой запрос — не «всё подходит», а отсутствие требований.
+  assert.equal(moodRequestFit({ energy: 50 }, buildMoodRequest([])), null);
+});
+
+test('F30 · комната оценивает фильм по тому, кому он подходит хуже всего', () => {
+  const laugh = buildMoodRequest(['laugh']);
+  const thrill = buildMoodRequest(['thrill']);
+
+  const comedy = { energy: 75, darkness: 12, emotion: 62, intellect: 40, dynamism: 45 };
+  const horror = { energy: 55, darkness: 82, emotion: 40, intellect: 45, dynamism: 74 };
+  const middle = { energy: 64, darkness: 47, emotion: 51, intellect: 44, dynamism: 60 };
+
+  const fitComedy = roomMoodFit(comedy, [laugh, thrill]);
+  const fitHorror = roomMoodFit(horror, [laugh, thrill]);
+  const fitMiddle = roomMoodFit(middle, [laugh, thrill]);
+
+  /*
+   * Ни комедия, ни хоррор не должны обгонять середину: каждый из них
+   * отличен для одного и мимо для второго. Среднее вывело бы их наверх,
+   * минимум — нет.
+   */
+  assert.ok(fitMiddle > fitComedy, 'любимое одним не должно обгонять приемлемое обоим');
+  assert.ok(fitMiddle > fitHorror);
+
+  // Когда запросы совпадают, попадание в них ценится выше компромисса.
+  const bothLaugh = roomMoodFit(comedy, [laugh, buildMoodRequest(['laugh'])]);
+  assert.ok(bothLaugh > fitMiddle, 'общее желание должно всплывать выше середины');
+
+  // Никто ничего не выбрал — запроса нет, и оценка не мешает ранжированию.
+  assert.equal(roomMoodFit(comedy, [buildMoodRequest([]), buildMoodRequest([])]), null);
+});
+
+test('F31 · режим «пересмотреть любимое» отделён от настроения', () => {
+  const request = buildMoodRequest(['light', REWATCH]);
+  assert.equal(request.rewatch, true);
+  assert.ok(!request.keys.includes(REWATCH),
+    'это режим состава колоды, а не ось настроения — в осях его быть не должно');
+  assert.deepEqual(Object.keys(request.axes).sort(), ['darkness', 'energy', 'intellect']);
 });
 
 test('F16 · словарь телеметрии покрывает бизнес-сбои из ТЗ', () => {

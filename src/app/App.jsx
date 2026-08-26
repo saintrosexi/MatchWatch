@@ -54,6 +54,7 @@ import {
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
 import { getConfig, initRemoteConfig } from '../engine/recommendationConfig.js';
+import { REWATCH } from '../../shared/config/moodPresets.js';
 import { JOIN_SOURCE, roomExcludedTitles } from '../engine/rooms.js';
 
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
@@ -299,6 +300,7 @@ export default function App() {
         history: roomHistory(room.state, user?.uid),
         excludeIds: [...published, ...excluded],
         pool: growthPoolRef.current,
+        moodRequests: room.moodRequests,
       }))
       .then(({ deck: next, pool }) => {
         growthPoolRef.current = pool;
@@ -466,13 +468,15 @@ export default function App() {
        * здесь: показывать паре то, что кто-то из них уже видел, незачем,
        * а личная фильтрация при показе разъезжала общий порядок.
        */
-      const excluded = await roomExcludedTitles(room.code);
+      const rewatch = (room.moodRequests ?? []).some((keys) => keys?.includes(REWATCH));
+      const excluded = await roomExcludedTitles(room.code, { keepFavorites: rewatch });
 
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
         filters,
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,
+        moodRequests: room.moodRequests,
       });
       if (!deck.length) {
         toasts.error('Под эти фильтры ничего не нашлось. Ослабьте их и попробуйте снова.');

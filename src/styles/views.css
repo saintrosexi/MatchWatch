@@ -587,3 +587,45 @@
 .public-profile__name { font-family: var(--font-display); font-size: var(--t-title); }
 .public-profile__handle { color: var(--text-low); font-family: var(--font-mono); font-size: var(--t-small); }
 .public-profile__bio { color: var(--text-mid); max-width: 44ch; line-height: 1.55; }
+
+/* ── Настроение на сегодня ───────────────────────────────────── */
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s-2);
+}
+
+.mood-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: var(--glass-bg-flat);
+  border: 1px solid var(--glass-border);
+  text-align: left;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.mood-chip--wide { width: 100%; margin-top: var(--s-2); }
+
+/* Выбранное читается рамкой и фоном, а не только галочкой: на телефоне
+   мелкий значок в углу теряется. */
+.mood-chip[aria-pressed='true'] {
+  border-color: var(--coral);
+  background: var(--coral-soft);
+}
+.mood-chip:disabled { opacity: .5; }
+
+.mood-chip__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: var(--t-small);
+  color: var(--text-hi);
+}
+.mood-chip__hint { font-size: var(--t-micro); color: var(--text-low); }
+.mood-chip__check { position: absolute; top: var(--s-2); right: var(--s-2); color: var(--coral); }

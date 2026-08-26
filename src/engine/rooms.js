@@ -194,6 +194,8 @@ function shapeState(code, room, members, swipes, matches, watchlist) {
       online: m.online,
       joinedAt: m.joined_at,
       lastSeen: m.last_seen,
+      /** Что человек хочет сегодня — видно всем в комнате. */
+      mood: Array.isArray(m.mood_request) ? m.mood_request : [],
     }])),
     profiles: Object.fromEntries((members ?? []).filter((m) => m.taste).map((m) => [m.user_id, m.taste])),
     swipes: swipeMap,
@@ -433,6 +435,23 @@ export async function closeRoom(code) {
   );
   setTelemetryRoom(null);
   return result;
+}
+
+/**
+ * Записывает своё настроение на сегодня.
+ *
+ * Меняет только свою строку: чужой запрос — не тот предмет, который
+ * можно поправить за человека.
+ */
+export async function setRoomMood(code, keys) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized) return null;
+
+  return guarded(
+    () => supabase.rpc('set_room_mood', { p_code: normalized, p_keys: keys ?? [] }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'set room mood' },
+  );
 }
 
 /**
