@@ -15,13 +15,13 @@
  * проверять настройку, не переписывая её заново.
  */
 
-import { withHandler, ApiError, requireSecret } from '../_lib/http.js';
-import { sbRpc, hasServiceKey } from '../_lib/supabaseAdmin.js';
-import { callBot, miniAppUrl } from '../_lib/botApi.js';
-import { describeBot, hasBotToken } from '../_lib/telegram.js';
+import { withHandler, ApiError, requireSecret } from './http.js';
+import { sbRpc, hasServiceKey } from './supabaseAdmin.js';
+import { callBot, miniAppUrl } from './botApi.js';
+import { describeBot, hasBotToken } from './telegram.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 
-export default withHandler({ methods: ['GET', 'POST'], module: MODULE.BOT }, async ({ req, query }) => {
+export const setupHandler = withHandler({ methods: ['GET', 'POST'], module: MODULE.BOT }, async ({ req, query }) => {
   requireSecret(req, query, 'CRON_SECRET');
 
   const bot = await describeBot();

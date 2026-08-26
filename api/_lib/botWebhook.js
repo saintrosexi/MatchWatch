@@ -13,16 +13,16 @@
  * запросу отвечать «принято» нельзя.
  */
 
-import { withHandler, ApiError } from '../_lib/http.js';
-import { sbSelect, sbInsert, sbUpdate, hasServiceKey } from '../_lib/supabaseAdmin.js';
+import { withHandler, ApiError } from './http.js';
+import { sbSelect, sbInsert, sbUpdate, hasServiceKey } from './supabaseAdmin.js';
 import {
   sendMessage, openAppButton, answerInlineQuery, appLink, linkButton, miniAppUrl, TEXTS,
-} from '../_lib/botApi.js';
-import { logError, logMetric } from '../_lib/telemetry.js';
+} from './botApi.js';
+import { logError, logMetric } from './telemetry.js';
 import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { timingSafeEqual } from 'node:crypto';
 
-export default withHandler({ methods: ['POST'], module: MODULE.BOT }, async ({ req, body }) => {
+export const webhookHandler = withHandler({ methods: ['POST'], module: MODULE.BOT }, async ({ req, body }) => {
   assertFromTelegram(req);
 
   if (!hasServiceKey()) {

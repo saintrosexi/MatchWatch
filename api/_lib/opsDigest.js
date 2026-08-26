@@ -5,14 +5,14 @@
  * частоте, а не по ощущениям. Уходит тем же каналом, что и алерты.
  */
 
-import { withHandler, ApiError } from '../_lib/http.js';
-import { sbRpc, sbSelect, hasServiceKey } from '../_lib/supabaseAdmin.js';
-import { sendAlert, telemetryEnv } from '../_lib/telemetry.js';
+import { withHandler, ApiError } from './http.js';
+import { sbRpc, sbSelect, hasServiceKey } from './supabaseAdmin.js';
+import { sendAlert, telemetryEnv } from './telemetry.js';
 import { MODULE } from '../../shared/telemetry/events.js';
-import { clampInt } from '../_lib/util.js';
-import { assertCronAuthorized } from './rooms-gc.js';
+import { clampInt } from './util.js';
+import { assertCronAuthorized } from './opsRoomsGc.js';
 
-export default withHandler({ methods: ['GET', 'POST'], module: MODULE.OPS }, async ({ req, query }) => {
+export const digestHandler = withHandler({ methods: ['GET', 'POST'], module: MODULE.OPS }, async ({ req, query }) => {
   assertCronAuthorized(req, query);
 
   if (!hasServiceKey()) {

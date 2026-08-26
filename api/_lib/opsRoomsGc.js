@@ -8,13 +8,13 @@
  * участников, свайпы, мэтчи и списки одной транзакцией.
  */
 
-import { withHandler, ApiError, requireSecret } from '../_lib/http.js';
-import { sbRpc, hasServiceKey } from '../_lib/supabaseAdmin.js';
-import { logMetric, telemetryEnv } from '../_lib/telemetry.js';
+import { withHandler, ApiError, requireSecret } from './http.js';
+import { sbRpc, hasServiceKey } from './supabaseAdmin.js';
+import { logMetric, telemetryEnv } from './telemetry.js';
 import { MODULE } from '../../shared/telemetry/events.js';
-import { clampInt } from '../_lib/util.js';
+import { clampInt } from './util.js';
 
-export default withHandler({ methods: ['GET', 'POST'], module: MODULE.ROOMS_TTL }, async ({ req, query }) => {
+export const roomsGcHandler = withHandler({ methods: ['GET', 'POST'], module: MODULE.ROOMS_TTL }, async ({ req, query }) => {
   assertCronAuthorized(req, query);
 
   if (!hasServiceKey()) {

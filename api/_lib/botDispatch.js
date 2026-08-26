@@ -12,10 +12,10 @@
  * не трогая первую.
  */
 
-import { withHandler, ApiError } from '../_lib/http.js';
-import { sbSelect, sbUpdate, hasServiceKey } from '../_lib/supabaseAdmin.js';
-import { sendMessage, openAppButton, isFatalSendError, TEXTS } from '../_lib/botApi.js';
-import { logError, logMetric } from '../_lib/telemetry.js';
+import { withHandler, ApiError } from './http.js';
+import { sbSelect, sbUpdate, hasServiceKey } from './supabaseAdmin.js';
+import { sendMessage, openAppButton, isFatalSendError, TEXTS } from './botApi.js';
+import { logError, logMetric } from './telemetry.js';
 import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { timingSafeEqual } from 'node:crypto';
 
@@ -24,7 +24,7 @@ const MAX_ATTEMPTS = 5;
 /** Потолок на один заход: серверлес-функция ограничена по времени. */
 const BATCH = 40;
 
-export default withHandler({ methods: ['POST', 'GET'], module: MODULE.BOT }, async ({ req, query }) => {
+export const dispatchHandler = withHandler({ methods: ['POST', 'GET'], module: MODULE.BOT }, async ({ req, query }) => {
   assertInternalCaller(req, query);
 
   if (!hasServiceKey()) {

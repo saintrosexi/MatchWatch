@@ -392,7 +392,7 @@ test('F20 · сборка и обязательные артефакты на м
   const root = new URL('../', import.meta.url);
   for (const file of ['package.json', 'vite.config.js', 'vercel.json',
     'index.html', '.env.example', 'api/tmdb/catalog.js', 'api/auth/telegram.js',
-    'api/ops/events.js', 'api/ops/rooms-gc.js', 'api/ops/digest.js',
+    'api/ops/index.js', 'api/telegram/bot.js', 'api/_lib/opsRoomsGc.js',
     'supabase/migrations', 'src/lib/supabase.js', 'api/_lib/supabaseAdmin.js']) {
     assert.ok(existsSync(new URL(file, root)), `нет файла ${file}`);
   }
@@ -570,7 +570,7 @@ test('F28 · рулетка тянет из любимой темы, а внут
 });
 
 test('F41 · бот разбирает приглашение в комнату только в верном формате', async () => {
-  const { parseRoomPayload } = await import('../api/telegram/webhook.js');
+  const { parseRoomPayload } = await import('../api/_lib/botWebhook.js');
 
   assert.equal(parseRoomPayload('room_23356'), '23356');
   assert.equal(parseRoomPayload('room-23356'), '23356');
@@ -650,7 +650,7 @@ test('F45 · кнопка «Открыть» не появляется без а
 });
 
 test('F46 · приглашение в комнату уходит карточкой с кодом и кнопкой', async () => {
-  const { roomResult } = await import('../api/telegram/webhook.js');
+  const { roomResult } = await import('../api/_lib/botWebhook.js');
   const saved = process.env.VITE_TELEGRAM_BOT_USERNAME;
 
   try {
@@ -677,4 +677,34 @@ test('F46 · приглашение в комнату уходит карточ�
     if (saved === undefined) delete process.env.VITE_TELEGRAM_BOT_USERNAME;
     else process.env.VITE_TELEGRAM_BOT_USERNAME = saved;
   }
+});
+
+test('F47 · серверлес-функций не больше, чем позволяет тариф', async () => {
+  const { readdirSync, statSync } = await import('node:fs');
+  const { join } = await import('node:path');
+
+  /*
+   * Vercel на тарифе Hobby выкладывает не больше двенадцати функций.
+   * Потолок коварен тем, что сборка его не замечает: `vite build`
+   * проходит, `npm test` проходит, и падает уже выкладка —
+   * exceeded_serverless_functions_per_deployment. Прод при этом
+   * остаётся на предыдущем коммите, а локально всё зелено.
+   *
+   * Отсюда и запас: упереться ровно в двенадцать значит сломать
+   * выкладку следующим же эндпоинтом.
+   */
+  const LIMIT = 12;
+
+  const walk = (dir) => readdirSync(dir).flatMap((name) => {
+    // Файлы и папки на подчёркивание Vercel функциями не считает.
+    if (name.startsWith('_')) return [];
+    const full = join(dir, name);
+    return statSync(full).isDirectory() ? walk(full) : [full];
+  });
+
+  const functions = walk('api').filter((f) => f.endsWith('.js'));
+
+  assert.ok(functions.length <= LIMIT,
+    `функций ${functions.length}, потолок ${LIMIT} — выкладка упадёт:\n  `
+    + functions.join('\n  '));
 });

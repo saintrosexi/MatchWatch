@@ -8,8 +8,8 @@
  * видны в одном месте и с одинаковой структурой.
  */
 
-import { withHandler, badRequest } from '../_lib/http.js';
-import { logBusinessEvent, logError, logMetric } from '../_lib/telemetry.js';
+import { withHandler, badRequest } from './http.js';
+import { logBusinessEvent, logError, logMetric } from './telemetry.js';
 import { BIZ, LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
 
@@ -18,7 +18,7 @@ const KNOWN_BIZ = new Set(Object.values(BIZ));
 const KNOWN_METRICS = new Set(Object.values(METRIC));
 const KNOWN_LEVELS = new Set(Object.values(LEVEL));
 
-export default withHandler({ methods: ['POST'], module: MODULE.OPS }, async ({ body, req }) => {
+export const eventsHandler = withHandler({ methods: ['POST'], module: MODULE.OPS }, async ({ body, req }) => {
   const events = Array.isArray(body?.events) ? body.events.slice(0, MAX_BATCH) : null;
   if (!events?.length) throw badRequest('events_required', 'Передайте массив events');
 
