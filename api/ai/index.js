@@ -12,6 +12,7 @@
 import { interpretHandler } from '../_lib/aiInterpret.js';
 import { explainHandler } from '../_lib/aiExplain.js';
 import { markupHandler } from '../_lib/aiMarkup.js';
+import { filmListHandler } from '../_lib/aiFilmList.js';
 import {
   listModels, geminiModel, geminiFastModel, geminiKeys, hasGemini, GeminiError, generateStructured,
 } from '../_lib/gemini.js';
@@ -146,6 +147,7 @@ const ROUTES = {
   models: modelsHandler,
   bench: benchHandler,
   markup: markupHandler,
+  filmlist: filmListHandler,
 };
 
 export default async function handler(req, res) {
