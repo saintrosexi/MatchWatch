@@ -32,6 +32,16 @@ export const hasGemini = () => Boolean(geminiKey());
  */
 export const geminiModel = () => (process.env.GEMINI_MODEL ?? '').trim() || 'gemini-3.5-flash';
 
+/**
+ * Модель для коротких задач: объяснение в одну фразу.
+ *
+ * Разные задачи заслуживают разных моделей. Разбор запроса случается
+ * раз за вечер и стоит того, чтобы над ним подумали; объяснение —
+ * нажатие кнопки, и ждать его двадцать шесть секунд человек не станет.
+ */
+export const geminiFastModel = () => (process.env.GEMINI_MODEL_FAST ?? '').trim()
+  || geminiModel();
+
 export class GeminiError extends Error {
   constructor(code, message, { status = 502, detail = null } = {}) {
     super(message);
@@ -88,11 +98,22 @@ export async function generateStructured({
   maxTokens = 8192,
   temperature = 0.2,
   signal,
+  /** Имя модели. Без него берётся то, что задано в окружении. */
+  model: requestedModel = null,
+  /**
+   * Глубина рассуждений, если модель их поддерживает.
+   *
+   * У думающих моделей это главный рычаг времени ответа: на объяснение
+   * в одну фразу шестьсот токенов размышлений — трата, которую человек
+   * ждёт кнопкой. Поле опциональное: модели, которая его не знает,
+   * оно не отправляется вовсе.
+   */
+  thinking = null,
 } = {}) {
   const key = geminiKey();
   if (!key) throw new GeminiError('no_key', 'GEMINI_API_KEY не задан', { status: 503 });
 
-  const model = geminiModel();
+  const model = requestedModel ?? geminiModel();
 
   const body = {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -101,6 +122,7 @@ export async function generateStructured({
       maxOutputTokens: maxTokens,
       responseMimeType: 'application/json',
       responseSchema: schema,
+      ...(thinking ? { thinkingConfig: thinking } : {}),
     },
     ...(system ? { systemInstruction: { parts: [{ text: system }] } } : {}),
   };

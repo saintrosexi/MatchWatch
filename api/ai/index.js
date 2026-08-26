@@ -11,7 +11,10 @@
 
 import { interpretHandler } from '../_lib/aiInterpret.js';
 import { explainHandler } from '../_lib/aiExplain.js';
-import { listModels, geminiModel, hasGemini, GeminiError } from '../_lib/gemini.js';
+import {
+  listModels, geminiModel, geminiFastModel, hasGemini, GeminiError, generateStructured,
+} from '../_lib/gemini.js';
+import { requireSecret } from '../_lib/http.js';
 import { withHandler, ApiError, sendJson } from '../_lib/http.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 
@@ -57,12 +60,80 @@ const modelsHandler = withHandler(
     }
 
     const configured = geminiModel();
+    const fast = geminiFastModel();
 
     return {
       configured,
+      fast,
       available: models.some((m) => m.name === configured),
+      fastAvailable: models.some((m) => m.name === fast),
       models,
     };
+  },
+);
+
+/**
+ * Замер: сколько на самом деле думает каждая модель.
+ *
+ * Написано потому, что выбирать модель по названию — гадание. Разница
+ * во времени ответа идёт от объёма рассуждений, а он не следует
+ * ни из номера версии, ни из слова «lite»: цифры бывают неожиданными
+ * в обе стороны. Одна и та же задача, одна и та же схема, замер на месте.
+ *
+ * Закрыт служебным секретом: каждый прогон — настоящие обращения
+ * к модели, то есть чужие деньги.
+ */
+const benchHandler = withHandler(
+  { methods: ['GET', 'POST'], module: MODULE.DECK },
+  async ({ req, query }) => {
+    requireSecret(req, query, 'CRON_SECRET');
+
+    if (!hasGemini()) {
+      throw new ApiError(503, 'ai_not_configured', 'Не задан GEMINI_API_KEY');
+    }
+
+    const candidates = (query.get('models') ?? '')
+      .split(',').map((m) => m.trim()).filter(Boolean).slice(0, 8);
+
+    if (!candidates.length) {
+      throw new ApiError(400, 'no_models',
+        'Укажите models=имя1,имя2 — что мерить, решает вызывающий, а не догадка');
+    }
+
+    const thinkingLevel = query.get('thinking');
+
+    const results = [];
+    for (const model of candidates) {
+      const started = Date.now();
+      try {
+        const out = await generateStructured({
+          model,
+          system: 'Ты объясняешь выбор фильма одним предложением по-русски. Ничего не додумывай.',
+          prompt: 'Темы фильма: фантастика, эпический масштаб, космос.\n'
+            + 'Что человек любит: фантастика, эпический масштаб.\n'
+            + 'Совпало: фантастика, эпический масштаб.\n'
+            + 'Чего хотели сегодня: подумать.',
+          schema: { type: 'object', properties: { reason: { type: 'string' } }, required: ['reason'] },
+          maxTokens: 2048,
+          ...(thinkingLevel ? { thinking: { thinkingLevel } } : {}),
+        });
+        results.push({
+          model,
+          ms: Date.now() - started,
+          thoughtTokens: out.usage.thoughtTokens,
+          outputTokens: out.usage.outputTokens,
+          reason: out.data?.reason ?? null,
+        });
+      } catch (error) {
+        results.push({
+          model,
+          ms: Date.now() - started,
+          error: error instanceof GeminiError ? `${error.code}: ${error.message}` : String(error?.message),
+        });
+      }
+    }
+
+    return { thinkingLevel: thinkingLevel ?? null, results };
   },
 );
 
@@ -70,6 +141,7 @@ const ROUTES = {
   interpret: interpretHandler,
   explain: explainHandler,
   models: modelsHandler,
+  bench: benchHandler,
 };
 
 export default async function handler(req, res) {

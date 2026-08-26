@@ -13,7 +13,7 @@
  */
 
 import { withHandler, ApiError } from './http.js';
-import { generateStructured, GeminiError, hasGemini } from './gemini.js';
+import { generateStructured, GeminiError, hasGemini, geminiFastModel } from './gemini.js';
 import { logMetric } from './telemetry.js';
 import { LEVEL, MODULE } from '../../shared/telemetry/events.js';
 
@@ -58,6 +58,12 @@ export const explainHandler = withHandler(
     let result;
     try {
       result = await generateStructured({
+        /*
+         * Быстрая модель. Объяснение — нажатие кнопки, и ждать его
+         * полминуты человек не станет; разбор запроса случается раз
+         * за вечер и такой спешки не требует.
+         */
+        model: geminiFastModel(),
         system: SYSTEM,
         prompt: buildPrompt(payload),
         schema: SCHEMA,
