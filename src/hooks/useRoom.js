@@ -11,7 +11,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   addToWatchlist, closeRoom, createRoom, joinRoom, kickRoomMember, leaveRoom, markWatched,
   appendDeck, publishDeck, recordSwipe, removeFromWatchlist, setRoomMood, subscribeRoom,
-  transferRoomHost, roomNearMatches, updateRoomTaste, RoomError, JOIN_SOURCE,
+  transferRoomHost, roomNearMatches, updateRoomTaste, setRoomReady, finishRoomAfterMatch,
+  RoomError, JOIN_SOURCE,
 } from '../engine/rooms.js';
 import { buildConsensusProfile } from '../engine/ranking.js';
 import { getConfig } from '../engine/recommendationConfig.js';
@@ -218,6 +219,32 @@ export function useRoom({ user, taste, anchors }) {
   );
 
   /** Настроение на сегодня: своё меняем, чужие только читаем. */
+  /*
+   * Вечер закончился выбором — комната больше не нужна.
+   *
+   * Закрываем и выходим тем же путём, что и при обычном завершении:
+   * подписка снимается, состояние очищается. Мэтч при этом уже лежит
+   * в личных списках обоих, так что терять нечего.
+   */
+  const finishAfterMatch = useCallback(async () => {
+    if (!code) return false;
+    const done = await finishRoomAfterMatch(code);
+    if (!done) return false;
+    unsubscribeRef.current?.();
+    unsubscribeRef.current = null;
+    setCode(null);
+    setState(null);
+    setStatus('idle');
+    setCelebration(null);
+    setTelemetryRoom(null);
+    return true;
+  }, [code]);
+
+  const setReady = useCallback(
+    (ready) => (code ? setRoomReady(code, ready) : Promise.resolve()),
+    [code],
+  );
+
   const setMood = useCallback(
     (keys, ai = null) => (code ? setRoomMood(code, keys, ai) : Promise.resolve(null)),
     [code],
@@ -319,6 +346,18 @@ export function useRoom({ user, taste, anchors }) {
     code, state, status, error, celebration, consensus,
     members, onlineCount, progress,
     growDeck, setMood, kick, makeHost,
+    setReady, finishAfterMatch,
+    /** Я уже сказал, что готов? У хоста это подразумевается. */
+    imReady: Boolean(members.find((m) => m.uid === user?.uid)?.ready),
+    /*
+     * Все ли готовы начинать.
+     *
+     * Считается по гостям: хост не отмечается отдельно, его готовность —
+     * это само нажатие «собрать общую колоду».
+     */
+    allReady: members.filter((m) => !m.host).every((m) => m.ready),
+    /** Кого ещё ждём — их имена идут в подпись под кнопкой. */
+    notReady: members.filter((m) => !m.host && !m.ready).map((m) => m.name),
     nearMatches, refreshNearMatches,
     /**
      * Любимые фильмы ВСЕХ участников, без повторов.

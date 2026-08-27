@@ -12,7 +12,7 @@ import { METRIC, MODULE } from '../../../shared/telemetry/events.js';
  * Празднование обоюдного лайка: конфетти, звук, тактильный отклик
  * и готовая карточка для репоста.
  */
-export function MatchCelebration({ match, roomCode, partners = [], onClose, onOpenWatchlist }) {
+export function MatchCelebration({ match, roomCode, partners = [], onClose, onOpenWatchlist, onFinish }) {
   const canvasRef = useRef(null);
   const [shareUrl, setShareUrl] = useState(null);
   const [added, setAdded] = useState({});
@@ -136,8 +136,25 @@ export function MatchCelebration({ match, roomCode, partners = [], onClose, onOp
           </button>
         </div>
 
+        {/*
+          * Главное действие — закончить, а не продолжить.
+          *
+          * Комнату заводят, чтобы выбрать фильм; фильм выбран, значит
+          * она своё отработала. Раньше единственной кнопкой внизу было
+          * «свайпать дальше», и комнаты оставались висеть открытыми
+          * после того, как люди уже ушли смотреть кино.
+          *
+          * «Ещё поищем» остаётся рядом: иногда мэтч случается на фильме,
+          * который один из двоих уже видел, и вечер на этом не кончается.
+          */}
+        {onFinish && (
+          <button type="button" className="btn btn--primary btn--block" onClick={onFinish}>
+            <Check size={18} /> Всё, смотрим этот
+          </button>
+        )}
+
         <button type="button" className="btn btn--quiet" onClick={onClose}>
-          Свайпать дальше
+          {onFinish ? 'Ещё поищем' : 'Свайпать дальше'}
         </button>
       </div>
     </Sheet>

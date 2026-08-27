@@ -222,6 +222,13 @@ function shapeState(code, room, members, swipes, matches, watchlist) {
       mood: normalizeMoodRequest(m.mood_request),
       /** Любимые фильмы участника — опоры для общей подборки. */
       lovedIds: m.taste?.lovedIds ?? [],
+      /*
+       * Сказал ли человек, что готов начинать.
+       *
+       * Хост не отмечается: его готовность — это само нажатие
+       * «собрать общую колоду», и второй кнопки ему не нужно.
+       */
+      ready: Boolean(m.ready) || Boolean(m.is_host),
     }])),
     profiles: Object.fromEntries((members ?? []).filter((m) => m.taste).map((m) => [m.user_id, m.taste])),
     swipes: swipeMap,
@@ -629,4 +636,42 @@ export async function updateRoomTaste(code, profile) {
     () => supabase.rpc('update_room_taste', { p_code: normalized, p_taste: profile }),
     { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'update taste' },
   );
+}
+
+/**
+ * Отметить себя готовым (или передумать).
+ *
+ * Решение принимает сам человек: хост мог собрать колоду, пока второй
+ * ещё выбирает настроение или ждёт ответа модели на свой запрос. Рядом
+ * это чинится словами, а по переписке — уже нет.
+ */
+export async function setRoomReady(code, ready) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized) return;
+  await guarded(
+    () => supabase.rpc('set_room_ready', { p_code: normalized, p_ready: Boolean(ready) }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'set ready' },
+  );
+}
+
+/**
+ * Завершить комнату после мэтча.
+ *
+ * Обычное закрытие — право хоста, и это правильно: роспуск комнаты
+ * решает один человек. Но когда фильм уже выбран, решение приняли оба,
+ * и ждать хоста незачем — он может быть тем, кто первым закрыл
+ * приложение и пошёл ставить чайник.
+ *
+ * Возвращает false, если мэтча в комнате нет: тогда завершать нечего.
+ */
+export async function finishRoomAfterMatch(code) {
+  requireClient();
+  const normalized = normalizeRoomCode(code);
+  if (!normalized) return false;
+  const result = await guarded(
+    () => supabase.rpc('finish_room_after_match', { p_code: normalized }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'finish after match' },
+  );
+  return Boolean(result);
 }

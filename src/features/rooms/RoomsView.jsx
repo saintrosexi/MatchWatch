@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  AlertCircle, Copy, Crown, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles,
+  AlertCircle, Check, Copy, Crown, DoorOpen, Loader2, LogIn, Plus, Share2, Sparkles,
   Trash2, UserMinus, UserPlus, Users,
 } from '../../ui/icons.js';
+import { listNames } from '../../../shared/i18n/plural.js';
 import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { loadRecentRooms } from '../../engine/userData.js';
@@ -301,6 +302,28 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
             <Copy size={16} /> {copied ? 'Скопировано' : 'Ссылка'}
           </button>
         </div>
+
+        {/*
+          * «Я готов» стоит здесь, наверху, а не под составом комнаты.
+          *
+          * Ниже до неё просто не долистывают — а без неё хост не начнёт,
+          * и комната встанет на ровном месте. Место у кнопки то же, где
+          * человек только что читал код: он сюда и смотрит.
+          *
+          * Хосту она не нужна: его готовность — это нажатие «собрать
+          * общую колоду», и вторая кнопка была бы обрядом ради обряда.
+          */}
+        {!room.isHost && !hasDeck && (
+          <button
+            type="button"
+            className={`btn btn--block ${room.imReady ? 'btn--ghost' : 'btn--primary'}`}
+            onClick={() => room.setReady(!room.imReady)}
+          >
+            {room.imReady
+              ? <><Check size={18} /> Вы готовы — ждём остальных</>
+              : <><Check size={18} /> Я готов начинать</>}
+          </button>
+        )}
       </div>
 
       <section className="section">
@@ -414,7 +437,7 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
             type="button"
             className="btn btn--primary btn--lg btn--block"
             onClick={onBuildDeck}
-            disabled={deckBuilding || waiting || !room.isHost}
+            disabled={deckBuilding || waiting || !room.isHost || !room.allReady}
           >
             {deckBuilding
               ? <><Loader2 size={20} className="spin" /> Собираем колоду…</>
@@ -423,9 +446,18 @@ function RoomLobby({ room, user, toasts, onEnterRoom, onOpenMember, onBuildDeck,
           <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
             {waiting
               ? 'Ждём второго участника — колода собирается по вкусам всех, кто внутри.'
-              : room.isHost
-                ? 'Соберём подборку по тому, что любите вы оба.'
-                : 'Колоду собирает хост комнаты. Как только он нажмёт — начнём.'}
+              /*
+               * Имена, а не «участники». Хост видит, кого именно ждать,
+               * и может его поторопить — а «ждём участников» не говорит
+               * ни кого ждём, ни долго ли.
+               */
+              : !room.allReady
+                ? room.isHost
+                  ? `Ждём, пока ${listNames(room.notReady)} нажмёт «Я готов» — вдруг он ещё выбирает настроение.`
+                  : 'Нажмите «Я готов» наверху — хост начнёт, когда соберутся все.'
+                : room.isHost
+                  ? 'Все готовы. Соберём подборку по тому, что любите вы оба.'
+                  : 'Все готовы. Колоду собирает хост — как только нажмёт, начнём.'}
           </p>
         </div>
       ) : (

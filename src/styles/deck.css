@@ -276,3 +276,39 @@
   opacity: 0.75;
 }
 .card--top:active .card__hint { opacity: 0; }
+
+/*
+ * Ожидание следующей порции.
+ *
+ * Пауза в несколько секунд без единого признака работы читается как
+ * зависание, поэтому здесь и спиннер, и честный срок, и факт о кино —
+ * он занимает ровно то время, которое всё равно надо переждать.
+ */
+.next-round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-6) var(--s-4);
+  text-align: center;
+}
+.next-round__title {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--text-hi);
+}
+.next-round__fact {
+  max-width: 34ch;
+  font-size: var(--t-small);
+  line-height: 1.55;
+  color: var(--text-mid);
+  border-left: 2px solid var(--coral);
+  padding-left: var(--s-3);
+  text-align: left;
+  /* Появляется, а не подменяется на месте: подмена читается как сбой. */
+  animation: fact-in 400ms ease both;
+}
+@keyframes fact-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}

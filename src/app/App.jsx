@@ -961,6 +961,18 @@ export default function App() {
             partners={room.members.filter((m) => m.uid !== user?.uid)}
             onClose={room.dismissCelebration}
             onOpenWatchlist={() => { room.dismissCelebration(); setView(VIEW.MINE); }}
+            /*
+             * Комнату заводят, чтобы выбрать фильм. Фильм выбран — она
+             * своё отработала, и держать её открытой значит копить
+             * мёртвые комнаты, в которые никто не вернётся.
+             */
+            onFinish={async () => {
+              const done = await room.finishAfterMatch();
+              setView(VIEW.MINE);
+              toasts.success(done
+                ? 'Комната завершена — фильм ждёт в списке'
+                : 'Фильм в списке');
+            }}
           />
         )}
         </Suspense>

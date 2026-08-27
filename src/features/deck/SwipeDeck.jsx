@@ -4,6 +4,7 @@ import { ActionBar } from './ActionBar.jsx';
 import { useSwipeGesture } from '../../hooks/useSwipeGesture.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
 import { NearMatches } from '../rooms/NearMatches.jsx';
+import { NextRound } from '../rooms/NextRound.jsx';
 import { prefetchPosters } from '../../ui/Poster.jsx';
 import { haptic } from '../../lib/telegram.js';
 import { sfx, unlockAudio } from '../../lib/sound.js';
@@ -145,23 +146,30 @@ export function SwipeDeck({
 
       return (
         <div className="stack gap-4">
-          <EmptyState
-            icon={Users}
-            title={everyoneDone ? 'Пачку прошли все' : 'Свою пачку вы прошли'}
-            text={everyoneDone
-              ? 'Собираем следующую порцию — она общая, поэтому появится сразу у всех.'
-              : 'Ждём остальных — как только все закончат, добавим ещё карточек.'}
-            action={(
-              <div className="stack gap-2" style={{ minWidth: 220 }}>
-                {waiting.map((person) => (
-                  <div className="row row--between" key={person.name}>
-                    <span className="member__name">{person.name}</span>
-                    <span className="mono faint">{person.done} из {roomProgress.size}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          />
+          {/*
+            * Два состояния выглядят по-разному, потому что это разные
+            * вещи. Ждать живого человека — значит смотреть, кто сколько
+            * прошёл, и тут уместен список. Ждать подборку — значит ждать
+            * машину, и тут уместен честный срок: пауза в несколько секунд
+            * без единого признака работы читается как зависание.
+            */}
+          {everyoneDone ? <NextRound /> : (
+            <EmptyState
+              icon={Users}
+              title="Свою пачку вы прошли"
+              text="Ждём остальных — как только все закончат, добавим ещё карточек."
+              action={(
+                <div className="stack gap-2" style={{ minWidth: 220 }}>
+                  {waiting.map((person) => (
+                    <div className="row row--between" key={person.name}>
+                      <span className="member__name">{person.name}</span>
+                      <span className="mono faint">{person.done} из {roomProgress.size}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            />
+          )}
 
           {/*
             * Почти-совпадения показываем ровно здесь: человек и так
