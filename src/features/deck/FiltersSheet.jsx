@@ -2,22 +2,15 @@ import { useState } from 'react';
 import { RotateCcw } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { GENRE_LIST } from '../../../shared/taxonomy/genres.js';
+import {
+  COLLECTIONS, CURRENT_YEAR, DEFAULT_FILTERS, SORTS, currentCollection,
+} from '../../../shared/config/collections.js';
 
-const CURRENT_YEAR = new Date().getFullYear();
-
-export const DEFAULT_FILTERS = Object.freeze({
-  genres: [],
-  yearFrom: 1970,
-  yearTo: CURRENT_YEAR,
-  minRating: 0,
-  sort: 'popularity',
-});
-
-const SORTS = [
-  { key: 'popularity', label: 'Популярное' },
-  { key: 'rating', label: 'По рейтингу' },
-  { key: 'newest', label: 'Новинки' },
-];
+/*
+ * Переэкспорт: экраны импортируют умолчания отсюда с самого начала,
+ * и менять двадцать мест ради переезда одной константы незачем.
+ */
+export { DEFAULT_FILTERS };
 
 /**
  * Фильтры ДО начала сессии.
@@ -56,6 +49,23 @@ export function FiltersSheet({ open, onClose, value, onApply }) {
       )}
     >
       <div className="filters">
+        <div className="filters__group">
+          <span className="eyebrow">Подборка</span>
+          <div className="row gap-2" style={{ flexWrap: 'wrap' }}>
+            {COLLECTIONS.map((collection) => (
+              <button
+                key={collection.key}
+                type="button"
+                className={`chip chip--interactive ${currentCollection(draft) === collection.key ? 'chip--on' : ''}`}
+                aria-pressed={currentCollection(draft) === collection.key}
+                onClick={() => patch(collection.filters)}
+              >
+                {collection.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="filters__group">
           <span className="eyebrow">Жанры {draft.genres.length ? `(${draft.genres.length}/5)` : ''}</span>
           <div className="row gap-2" style={{ flexWrap: 'wrap' }}>

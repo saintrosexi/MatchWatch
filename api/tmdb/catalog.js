@@ -4,7 +4,8 @@
  * теги выведены из жанров, детальные keywords подтягивает /api/tmdb/enrich.
  * Так первая карточка появляется быстро, а точность тегов догоняет фоном.
  *
- * Параметры: list, genres, yearFrom, yearTo, minRating, maxRuntime, page, sort
+ * Параметры: list, genres, yearFrom, yearTo, minRating, maxRuntime,
+ *            originalLanguage, page, sort
  */
 
 import { withHandler, badRequest } from '../_lib/http.js';
@@ -75,6 +76,12 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
    * которое человек выдвинул прямо, а не то, что за него угадали.
    */
   const maxRuntime = clampInt(query.get('maxRuntime'), 40, 400, null);
+  /*
+   * Язык оригинала. Нужен для подборок вроде русского кино: без него
+   * отобрать «наше» нечем — по стране производства TMDB отдаёт и
+   * копродукции, где от нашего кино только деньги.
+   */
+  const originalLanguage = (query.get('originalLanguage') ?? '').trim().slice(0, 8) || null;
   const sort = SORTS[query.get('sort')] ?? SORTS.popularity;
   const language = query.get('language') ?? 'ru-RU';
 
@@ -102,6 +109,7 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
         'primary_release_date.lte': upperBound,
         'vote_average.gte': minRating ?? undefined,
         'with_runtime.lte': maxRuntime ?? undefined,
+        with_original_language: originalLanguage ?? undefined,
         // Без порога голосов discover вытаскивает случайный шум с рейтингом 10.
         'vote_count.gte': minRating ? 200 : 60,
       }

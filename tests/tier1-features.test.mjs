@@ -708,3 +708,42 @@ test('F47 · серверлес-функций не больше, чем поз�
     `функций ${functions.length}, потолок ${LIMIT} — выкладка упадёт:\n  `
     + functions.join('\n  '));
 });
+
+test('F48 · подборка русского кино — это фильтры, а не отдельная сущность', async () => {
+  const { DEFAULT_FILTERS, COLLECTIONS, currentCollection } = await import('../shared/config/collections.js');
+  const { CatalogPool } = await import('../src/engine/catalog.js');
+  const { api } = await import('../src/lib/api.js');
+
+  assert.equal(DEFAULT_FILTERS.originalLanguage, null, 'по умолчанию — весь каталог');
+
+  /*
+   * Выбранная подборка выводится из самих фильтров, а не хранится
+   * отдельным полем: два источника правды о том же самом разъезжаются,
+   * и тогда подсвечена одна кнопка, а показывается другое.
+   */
+  for (const collection of COLLECTIONS) {
+    assert.equal(currentCollection({ ...DEFAULT_FILTERS, ...collection.filters }), collection.key,
+      `подборка «${collection.label}» должна узнаваться по своим же фильтрам`);
+  }
+
+  const asked = [];
+  const original = api.catalog;
+  api.catalog = async (params) => {
+    asked.push(params);
+    return { titles: [], page: params.page, totalPages: 1 };
+  };
+
+  try {
+    /*
+     * Язык оригинала, а не страна производства: по стране TMDB отдаёт
+     * и копродукции, где от нашего кино только деньги.
+     */
+    const pool = new CatalogPool({ filters: { originalLanguage: 'ru', yearTo: 1991 } });
+    await pool.loadMore();
+
+    assert.equal(asked[0].originalLanguage, 'ru', 'язык оригинала обязан доехать до каталога');
+    assert.equal(asked[0].yearTo, 1991, 'граница советской эпохи тоже');
+  } finally {
+    api.catalog = original;
+  }
+});
