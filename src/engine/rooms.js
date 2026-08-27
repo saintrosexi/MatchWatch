@@ -441,7 +441,16 @@ export async function appendDeck(code, deck, baseSize = null) {
   return guarded(
     () => supabase.rpc('append_room_deck', {
       p_code: normalized,
-      p_deck: deck,
+      /*
+       * Ровно тот же вид, что и при публикации.
+       *
+       * Здесь уезжали записи очереди целиком — с карточкой, вложенной
+       * в поле `title`. Первые двадцать пять карточек ложились плоскими,
+       * дописанные — обёртками, и лента, дойдя до границы, падала на
+       * первом же фильме без постера: в заголовок попадал объект.
+       * Вылезло это на пятьдесят третьей карточке живой комнаты.
+       */
+      p_deck: deck.map((entry) => titleStub(entry.title ?? entry)),
       p_base_size: baseSize,
     }),
     { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'append deck' },

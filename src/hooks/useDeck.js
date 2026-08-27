@@ -10,6 +10,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CatalogPool, loadActorDeck } from '../engine/catalog.js';
 import { rankDeck, isDecided } from '../engine/ranking.js';
+import { roomQueueEntries } from '../engine/roomDeck.js';
 import { createSessionMood, resortQueue } from '../engine/sessionMood.js';
 import { getConfig } from '../engine/recommendationConfig.js';
 import { api, describeError } from '../lib/api.js';
@@ -262,9 +263,28 @@ export function useDeck({
             .filter((t) => !voted.has(t.id));
 
           ordered.forEach((t) => queuedIds.current.add(t.id));
-          setQueue(ordered.map((title) => ({
-            id: title.id, title, score: 0, slot: 'room', matchedTags: [], confidence: 'weak',
-          })));
+
+          /*
+           * Порядок общий, объяснение — личное.
+           *
+           * Здесь стояли пустые заглушки: оценка ноль, ни одного совпавшего
+           * тега, уверенность всегда «слабая». Колода при этом собиралась
+           * по вкусам всех участников — но вся эта работа оставалась
+           * на устройстве того, кто нажал «собрать», а на экран доезжал
+           * один только порядок. Под каждой карточкой человек видел
+           * запасной текст про оценку и «оцениваем ваш вкус», то есть
+           * ровно то, что показывают, когда сказать нечего.
+           *
+           * Пересчитывать порядок нельзя: колода обязана быть одинаковой
+           * у всех, иначе это уже не общий выбор. А «почему» у каждого
+           * своё — «похоже на "Брата", который вам зашёл» говорится тому,
+           * кто смотрит, а не среднему по комнате.
+           */
+          setQueue(roomQueueEntries(ordered, tasteRef.current, {
+            anchors: anchorsRef.current,
+            config: getConfig(),
+            history: historyRef.current,
+          }));
           setLoading(false);
           return;
         }

@@ -7,7 +7,8 @@
  */
 
 import { CatalogPool } from './catalog.js';
-import { rankDeck } from './ranking.js';
+import { rankDeck, scoreTitle } from './ranking.js';
+import { prepareAll } from './affinity.js';
 import { buildMoodRequest, moodRequestFit, roomMoodFit } from '../../shared/config/moodPresets.js';
 import { avoidancePenalty, mergeAvoided } from '../../shared/ai/interpretation.js';
 import { getConfig } from './recommendationConfig.js';
@@ -238,4 +239,46 @@ function blendByMood(ranked, requests, target, config) {
   while (mineCursor < mine.length) out.push(mine[mineCursor++]);
 
   return out.slice(0, target);
+}
+
+/**
+ * Записи очереди для ленты комнаты: общий порядок, личное объяснение.
+ *
+ * Порядок приходит готовым и здесь не меняется — колода обязана быть
+ * одинаковой у всех, иначе это уже не общий выбор, а две разные ленты
+ * под одним названием.
+ *
+ * А вот «почему» у каждого своё. Оно и раньше считалось — при сборке,
+ * на устройстве того, кто нажал «собрать колоду», — но до экрана
+ * не доезжало: лента подставляла пустые заглушки, и человек под каждой
+ * карточкой видел запасной текст про высокую оценку. То есть ровно то,
+ * что показывают, когда сказать нечего.
+ *
+ * Считается по СВОИМ опорам, а не по общим: «похоже на "Брата", который
+ * вам зашёл» адресовано тому, кто смотрит. Среднее по комнате не
+ * объясняет ничего никому.
+ *
+ * @param {Array} titles карточки в порядке общей колоды
+ * @param {object} profile накопленный вкус смотрящего
+ * @param {{loved?: Array, refused?: Array}} [anchors] его же опоры
+ */
+export function roomQueueEntries(titles, profile, { anchors = null, config = null, history = {} } = {}) {
+  const cfg = config ?? getConfig();
+
+  // Опоры готовятся один раз на всю колоду, а не на каждую карточку.
+  const loved = anchors?.loved?.length ? prepareAll(anchors.loved) : null;
+  const refused = anchors?.refused?.length ? prepareAll(anchors.refused) : null;
+
+  return (titles ?? []).filter(Boolean).map((title) => {
+    const scored = scoreTitle(title, profile, { config: cfg, history, loved, refused });
+    return {
+      id: title.id,
+      title,
+      score: scored.score,
+      slot: 'room',
+      matchedTags: scored.matchedTags,
+      confidence: scored.confidence,
+      becauseOf: scored.becauseOf,
+    };
+  });
 }

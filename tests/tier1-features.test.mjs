@@ -787,3 +787,48 @@ test('F49 · постоянное исключение ловит по тегу,
   ]);
   assert.deepEqual(kept.map((t) => t.id), ['a']);
 });
+
+/**
+ * Лента комнаты объясняет выбор так же, как личная.
+ *
+ * Порядок в комнате приходит готовым, и пересчитывать его нельзя —
+ * колода обязана быть одинаковой у всех. Но вместе с порядком лента
+ * теряла и объяснение: записи собирались с пустыми заглушками, и человек
+ * под каждой карточкой видел запасной текст про высокую оценку или
+ * «оцениваем ваш вкус». То есть ровно то, что показывают, когда сказать
+ * нечего, — при том что сказать было что.
+ *
+ * Проверяется главное: опора названа, порядок не тронут.
+ */
+test('F49 · в комнате карточка объясняется своим любимым, а порядок не меняется', async () => {
+  const { roomQueueEntries } = await import('../src/engine/roomDeck.js');
+  const { createEmptyProfile, applySignal, ACTION } = await import('../src/engine/tasteProfile.js');
+
+  const loved = [LIBRARY.sevenSamurai, LIBRARY.yojimbo];
+
+  let taste = createEmptyProfile();
+  for (const title of loved) taste = applySignal(taste, title, ACTION.FAVORITE);
+
+  /*
+   * Порядок нарочно «неправильный»: самое близкое к любимому стоит
+   * последним. Если бы записи пересортировывались, это бы вылезло.
+   */
+  const ordered = [LIBRARY.notebook, LIBRARY.paddington, LIBRARY.harakiri];
+
+  const entries = roomQueueEntries(ordered, taste, { anchors: { loved } });
+
+  assert.deepEqual(
+    entries.map((e) => e.title.id),
+    ordered.map((t) => t.id),
+    'порядок общей колоды остался нетронутым',
+  );
+
+  const samurai = entries.find((e) => e.title.id === LIBRARY.harakiri.id);
+  assert.ok(samurai.becauseOf, 'у похожего на любимое названа опора');
+  assert.ok(
+    loved.some((l) => l.id === samurai.becauseOf.id),
+    `опорой назван чужой фильм: ${samurai.becauseOf.title}`,
+  );
+  assert.ok(samurai.matchedTags.length > 0, 'совпавшие темы подсвечены');
+  assert.ok(samurai.score > 0, 'оценка перестала быть нулевой заглушкой');
+});
