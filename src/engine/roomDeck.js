@@ -8,7 +8,7 @@
 
 import { CatalogPool } from './catalog.js';
 import { rankDeck, scoreTitle } from './ranking.js';
-import { prepareAll } from './affinity.js';
+import { prepareAll, affinityToLoved } from './affinity.js';
 import { buildMoodRequest, moodRequestFit, roomMoodFit } from '../../shared/config/moodPresets.js';
 import { avoidancePenalty, mergeAvoided } from '../../shared/ai/interpretation.js';
 import { getConfig } from './recommendationConfig.js';
@@ -254,23 +254,55 @@ function blendByMood(ranked, requests, target, config) {
  * карточкой видел запасной текст про высокую оценку. То есть ровно то,
  * что показывают, когда сказать нечего.
  *
- * Считается по СВОИМ опорам, а не по общим: «похоже на "Брата", который
- * вам зашёл» адресовано тому, кто смотрит. Среднее по комнате не
- * объясняет ничего никому.
+ * Своя опора идёт первой: «похоже на "Брата", который вам зашёл»
+ * адресовано тому, кто смотрит, а среднее по комнате не объясняет
+ * ничего никому.
+ *
+ * Но одной своей мало. Вечер вдвоём разваливается не на вопросе
+ * «нравится ли мне», а на вопросе «а ей зайдёт?» — и ответ на него
+ * у нас есть, просто он до сих пор оставался внутри расчёта. Поэтому
+ * рядом называется опора партнёра: видно не только что фильм ваш,
+ * но и что он не будет ему чужим.
+ *
+ * Порог обязателен. Партнёрская строка ценна ровно тем, что ей можно
+ * верить; появляясь под каждой карточкой подряд, она превратится
+ * в шум и обесценит заодно и первую строку.
  *
  * @param {Array} titles карточки в порядке общей колоды
  * @param {object} profile накопленный вкус смотрящего
  * @param {{loved?: Array, refused?: Array}} [anchors] его же опоры
+ * @param {Array<{name: string, loved: Array}>} [partners] остальные участники
  */
-export function roomQueueEntries(titles, profile, { anchors = null, config = null, history = {} } = {}) {
+export function roomQueueEntries(titles, profile, {
+  anchors = null, partners = [], config = null, history = {},
+} = {}) {
   const cfg = config ?? getConfig();
 
   // Опоры готовятся один раз на всю колоду, а не на каждую карточку.
   const loved = anchors?.loved?.length ? prepareAll(anchors.loved) : null;
   const refused = anchors?.refused?.length ? prepareAll(anchors.refused) : null;
 
+  const others = (partners ?? [])
+    .filter((p) => p?.loved?.length)
+    .map((p) => ({ name: p.name, loved: prepareAll(p.loved) }));
+  const hint = cfg.room?.partnerAnchorHint ?? 0.35;
+
   return (titles ?? []).filter(Boolean).map((title) => {
     const scored = scoreTitle(title, profile, { config: cfg, history, loved, refused });
+
+    /*
+     * Из партнёров называется один — тот, кому фильм ближе всех.
+     * Перечислять всех значило бы написать под карточкой абзац, который
+     * никто не читает, а решение принимается за секунду.
+     */
+    let alsoFor = null;
+    for (const other of others) {
+      const affinity = affinityToLoved(title, other.loved, { config: cfg });
+      if (affinity.score < hint || !affinity.best?.title) continue;
+      if (!alsoFor || affinity.score > alsoFor.score) {
+        alsoFor = { name: other.name, title: affinity.best.title, score: affinity.score };
+      }
+    }
     return {
       id: title.id,
       title,
@@ -279,6 +311,8 @@ export function roomQueueEntries(titles, profile, { anchors = null, config = nul
       matchedTags: scored.matchedTags,
       confidence: scored.confidence,
       becauseOf: scored.becauseOf,
+      /** Кому ещё в комнате фильм близок и по какому его любимому. */
+      alsoFor: alsoFor ? { name: alsoFor.name, title: alsoFor.title } : null,
     };
   });
 }

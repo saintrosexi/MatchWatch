@@ -148,6 +148,42 @@ export default function App() {
   }, [userState?.anchors]);
 
   const room = useRoom({ user: roomUser, taste, anchors });
+
+  /*
+   * Любимые фильмы остальных участников — для подписи под карточкой.
+   *
+   * Порядок колоды и так считается по опорам каждого, но человеку
+   * этого не видно, а решает он именно вопрос «а ей зайдёт?».
+   * Поэтому рядом со своей опорой называется опора партнёра — с именем,
+   * потому что в комнате сидят знакомые люди.
+   *
+   * Свои сюда не попадают: про них говорит первая строка.
+   */
+  const [roomPartners, setRoomPartners] = useState([]);
+  const partnersKey = (room.members ?? [])
+    .filter((m) => m.uid !== roomUser?.uid)
+    .map((m) => `${m.uid}:${(m.lovedIds ?? []).join(',')}`)
+    .join('|');
+
+  useEffect(() => {
+    const others = (room.members ?? [])
+      .filter((m) => m.uid !== roomUser?.uid && (m.lovedIds ?? []).length);
+
+    if (!others.length) { setRoomPartners([]); return undefined; }
+
+    let cancelled = false;
+    Promise.all(others.map((m) =>
+      resolveAnchors({ loved: m.lovedIds.map((id) => ({ id })), refused: [] })
+        .then((r) => ({ name: m.name, loved: r.loved }))
+        .catch(() => null)))
+      .then((list) => {
+        if (!cancelled) setRoomPartners(list.filter((p) => p?.loved?.length));
+      });
+
+    return () => { cancelled = true; };
+    // Ключ вместо самого массива: `members` пересоздаётся на каждом
+    // обновлении присутствия, и по нему эффект крутился бы вхолостую.
+  }, [partnersKey, roomUser?.uid]); // eslint-disable-line react-hooks/exhaustive-deps
   const deckPoolRef = useRef([]);
   const deckRef = useRef(null);
   const publishedFor = useRef(null);
@@ -331,6 +367,8 @@ export default function App() {
     actorId: actorDeck?.id ?? null,
     roomDeck: deckMode === DECK_MODE.ROOM ? room.state?.deck : null,
     roomSwiped: deckMode === DECK_MODE.ROOM ? room.swipedTitleIds : null,
+    /** Любимые остальных участников — из них берётся вторая строка подписи. */
+    roomPartners: deckMode === DECK_MODE.ROOM ? roomPartners : null,
     /*
      * Колода не собирается, пока не приехала история решений: иначе
      * исключать нечего и всё отклонённое возвращается в ленту.

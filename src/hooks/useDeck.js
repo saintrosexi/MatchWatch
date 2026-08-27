@@ -98,6 +98,15 @@ export function useDeck({
    * на что этот человек уже ответил, — иначе наборы разъезжаются.
    */
   roomSwiped = null,
+  /**
+   * Любимые остальных участников: [{ name, loved }].
+   *
+   * Нужны не для порядка — он общий и приходит готовым, — а для второй
+   * строки подписи: «и на "Титаник" — любимый Сони». Вечер вдвоём
+   * разваливается не на вопросе «нравится ли мне», а на вопросе
+   * «а ей зайдёт?», и ответ на него у нас есть.
+   */
+  roomPartners = null,
   enabled = true,
 }) {
   const [queue, setQueue] = useState([]);
@@ -133,11 +142,13 @@ export function useDeck({
   const tasteRef = useRef(taste);
   const anchorsRef = useRef(anchors);
   const historyRef = useRef(history);
+  const partnersRef = useRef(roomPartners);
   const generation = useRef(0);
 
   tasteRef.current = taste;
   anchorsRef.current = anchors;
   historyRef.current = history;
+  partnersRef.current = roomPartners;
 
   const filterKey = useMemo(() => JSON.stringify(filters ?? {}), [filters]);
   const roomDeckKey = useMemo(
@@ -282,6 +293,7 @@ export function useDeck({
            */
           setQueue(roomQueueEntries(ordered, tasteRef.current, {
             anchors: anchorsRef.current,
+            partners: partnersRef.current,
             config: getConfig(),
             history: historyRef.current,
           }));

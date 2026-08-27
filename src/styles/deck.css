@@ -142,6 +142,20 @@
 }
 .card__why strong { color: var(--coral); font-weight: 600; }
 
+/*
+ * Строка про того, с кем смотрите.
+ *
+ * Тише первой намеренно: своя опора — главный довод, партнёрская
+ * дополняет её. Одинаковый вес у обеих превратил бы подпись в стену
+ * текста, а решение принимается за секунду.
+ */
+.card__why--partner {
+  margin-top: 2px;
+  -webkit-line-clamp: 1;
+  opacity: 0.8;
+}
+.card__why--partner strong { color: var(--text-hi); }
+
 /* Штампы «ДА»/«НЕТ», появляющиеся при перетаскивании. */
 .card__stamp {
   position: absolute;

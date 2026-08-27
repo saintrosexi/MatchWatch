@@ -11,7 +11,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   addToWatchlist, closeRoom, createRoom, joinRoom, kickRoomMember, leaveRoom, markWatched,
   appendDeck, publishDeck, recordSwipe, removeFromWatchlist, setRoomMood, subscribeRoom,
-  transferRoomHost, roomNearMatches, RoomError, JOIN_SOURCE,
+  transferRoomHost, roomNearMatches, updateRoomTaste, RoomError, JOIN_SOURCE,
 } from '../engine/rooms.js';
 import { buildConsensusProfile } from '../engine/ranking.js';
 import { getConfig } from '../engine/recommendationConfig.js';
@@ -132,7 +132,9 @@ export function useRoom({ user, taste, anchors }) {
       setStatus('error');
       throw e;
     }
-  }, [user, taste]);
+    // `anchors` в зависимостях обязательны: без них замыкание держит
+    // ту версию опор, что была на первом рендере, — то есть пустую.
+  }, [user, taste, anchors]);
 
   const join = useCallback(async (rawCode, source = JOIN_SOURCE.MANUAL) => {
     setError(null);
@@ -152,7 +154,33 @@ export function useRoom({ user, taste, anchors }) {
       haptic('error');
       throw roomError;
     }
-  }, [user, taste]);
+  }, [user, taste, anchors]);
+
+  /*
+   * Опоры догоняют комнату.
+   *
+   * Вкус уезжает при входе, но к этому моменту он готов не весь: темы
+   * лежат в памяти и отправляются сразу, а любимые фильмы догружаются
+   * из сети и приезжают позже. Этой секунды хватало, чтобы у каждого
+   * участника список любимых остался пустым навсегда — и подбор
+   * по опорам обоих молча не включался ни разу.
+   *
+   * Отправляется по изменению самого набора любимых, а не всего вкуса:
+   * вкус меняется на каждом свайпе, и слать строку в базу так часто
+   * незачем — на подбор в комнате влияют именно опоры.
+   */
+  const sentAnchors = useRef(null);
+  useEffect(() => {
+    if (!code || !user) return;
+
+    const profile = compactTaste(taste, anchors);
+    const key = (profile?.lovedIds ?? []).join('|');
+    if (!key || sentAnchors.current === key) return;
+
+    sentAnchors.current = key;
+    // Не вышло — пусть попробует следующая перерисовка, а не молчит навсегда.
+    updateRoomTaste(code, profile).catch(() => { sentAnchors.current = null; });
+  }, [code, user, taste, anchors]);
 
   const leave = useCallback(async () => {
     if (code) await leaveRoom(code);

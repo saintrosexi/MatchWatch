@@ -832,3 +832,45 @@ test('F49 · в комнате карточка объясняется свои�
   assert.ok(samurai.matchedTags.length > 0, 'совпавшие темы подсвечены');
   assert.ok(samurai.score > 0, 'оценка перестала быть нулевой заглушкой');
 });
+
+/**
+ * Совместный выбор объясняется вкусом каждого, а не только своим.
+ *
+ * Вечер вдвоём разваливается не на вопросе «нравится ли мне», а на
+ * вопросе «а ей зайдёт?». Ответ у подбора есть — фильм и попал в колоду
+ * потому, что близок обоим, — но оставался внутри расчёта, и человек
+ * решал вслепую.
+ *
+ * Порог здесь так же важен, как сама подпись: появляясь под каждой
+ * карточкой подряд, она превратится в шум.
+ */
+test('F50 · под карточкой назван и любимый фильм партнёра', async () => {
+  const { roomQueueEntries } = await import('../src/engine/roomDeck.js');
+  const { createEmptyProfile, applySignal, ACTION } = await import('../src/engine/tasteProfile.js');
+
+  // Я люблю романтическое, партнёр — самурайское. Вкусы разные,
+  // и это ровно тот случай, ради которого подпись и нужна.
+  const mine = [LIBRARY.notebook];
+  const hers = [LIBRARY.sevenSamurai, LIBRARY.yojimbo];
+
+  let taste = createEmptyProfile();
+  for (const title of mine) taste = applySignal(taste, title, ACTION.FAVORITE);
+
+  const entries = roomQueueEntries([LIBRARY.harakiri, LIBRARY.paddington], taste, {
+    anchors: { loved: mine },
+    partners: [{ name: 'Соня', loved: hers }],
+  });
+
+  const samurai = entries.find((e) => e.title.id === LIBRARY.harakiri.id);
+  assert.ok(samurai.alsoFor, 'близкий партнёру фильм отмечен');
+  assert.equal(samurai.alsoFor.name, 'Соня', 'назван по имени, а не «ваш партнёр»');
+  assert.ok(
+    hers.some((h) => h.title === samurai.alsoFor.title),
+    `назван не её фильм: ${samurai.alsoFor.title}`,
+  );
+
+  // А там, где фильм чужой обоим, приписывать его партнёру нельзя:
+  // строка ценна ровно тем, что ей можно верить.
+  const bear = entries.find((e) => e.title.id === LIBRARY.paddington.id);
+  assert.equal(bear.alsoFor, null, 'чужое партнёру не приписано');
+});

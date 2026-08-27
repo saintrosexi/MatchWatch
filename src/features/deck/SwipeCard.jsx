@@ -16,7 +16,7 @@ export const SwipeCard = forwardRef(function SwipeCard(
   { entry, depth = 0, isTop = false, bind, onOpenDetails },
   ref,
 ) {
-  const { title, matchedTags = [], slot, confidence, becauseOf } = entry;
+  const { title, matchedTags = [], slot, confidence, becauseOf, alsoFor } = entry;
   const explore = slot === 'explore';
 
   return (
@@ -119,6 +119,27 @@ export const SwipeCard = forwardRef(function SwipeCard(
                   : (title.rating ?? 0) >= 7.5
                     ? <>Оценка <strong>{title.rating.toFixed(1)}</strong> — зрители хвалят</>
                     : <>Пока присматриваемся к вашему вкусу — скажите «да» или «мимо»</>}
+          </p>
+        )}
+
+        {/*
+          * Вторая строка — про того, с кем смотрите.
+          *
+          * Вечер вдвоём разваливается не на вопросе «нравится ли мне»,
+          * а на вопросе «а ей зайдёт?». Ответ у подбора есть — фильм
+          * и попал сюда потому, что близок обоим, — но до сих пор он
+          * оставался внутри расчёта, и человек решал вслепую.
+          *
+          * С именем, а не «вашему партнёру»: в комнате сидят знакомые
+          * люди, и «Соня» говорит больше, чем любая формулировка.
+          *
+          * Появляется только когда близость выше порога. Строка ценна
+          * ровно тем, что ей можно верить; под каждой карточкой подряд
+          * она стала бы шумом и обесценила заодно и первую.
+          */}
+        {isTop && alsoFor?.title && (
+          <p className="card__why card__why--partner">
+            <strong>{alsoFor.name}</strong> — похоже на <strong>«{alsoFor.title}»</strong> из любимых
           </p>
         )}
 

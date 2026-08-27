@@ -611,3 +611,22 @@ function normalizeMoodRequest(raw) {
   }
   return { keys: [], ai: null };
 }
+
+/**
+ * Обновить свой профиль в уже открытой комнате.
+ *
+ * Профиль записывался только при входе, и этого не хватало: накопленные
+ * темы лежат в памяти и уезжают сразу, а любимые фильмы догружаются
+ * из сети и приезжают позже. В живых комнатах из-за этой секунды
+ * список любимых оказался пуст у каждого участника — а вместе с ним
+ * молча отключился и весь подбор по опорам обоих.
+ */
+export async function updateRoomTaste(code, profile) {
+  if (!supabaseReady()) return;
+  const normalized = normalizeRoomCode(code);
+  if (!normalized || !profile) return;
+  await guarded(
+    () => supabase.rpc('update_room_taste', { p_code: normalized, p_taste: profile }),
+    { module: MODULE.ROOMS_SYNC, roomCode: normalized, description: 'update taste' },
+  );
+}
