@@ -463,10 +463,19 @@ export function useDeck({
        */
       const decided = prev.find((entry) => entry.id === id);
       if (decided && liked !== null) sessionRef.current.record(decided.title, liked);
-      return resortQueue(advanceQueue(prev, id), sessionRef.current);
+
+      /*
+       * В комнате хвост не трогается. Колода там общая, и порядок —
+       * часть этой общности: пересортировав её под себя, я начну листать
+       * не то же самое, что листает она, и «мы выбираем вместе»
+       * перестанет быть правдой. Настроение вечера при этом копится
+       * как обычно — оно пригодится в личной ленте.
+       */
+      const next = advanceQueue(prev, id);
+      return mode === DECK_MODE.ROOM ? next : resortQueue(next, sessionRef.current);
     });
     setProcessed((n) => n + 1);
-  }, []);
+  }, [mode]);
 
   /**
    * Возвращает карточку в начало очереди.

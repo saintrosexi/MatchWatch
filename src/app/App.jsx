@@ -467,6 +467,39 @@ export default function App() {
   const handleDecision = useCallback(async (entry, action) => {
     const title = entry.title;
 
+    /*
+     * Свайп в комнате остаётся в комнате.
+     *
+     * Здесь решается не «люблю ли я этот фильм», а «будем ли мы смотреть
+     * его сегодня вместе». Это разные вопросы, и путать их нельзя.
+     * «Мимо» в комнате часто значит «не под настроение вечера» или
+     * «не с ней»; записывать это как личный отказ — значит выкинуть
+     * фильм из своей ленты навсегда за то, чего человек не говорил.
+     * Обратное так же неверно: «да» на фильм, который мы обсуждаем
+     * посмотреть вдвоём, не делает его любимым и не место ему
+     * в избранном.
+     *
+     * Влияние остаётся односторонним, и так и задумано: личные решения
+     * по-прежнему убирают фильмы из общей колоды — то, что человек уже
+     * отверг сам, предлагать ему вдвоём незачем.
+     *
+     * Профиль вкуса здесь тоже не трогается. Иначе вечер вдвоём тихо
+     * переписывал бы личные рекомендации решениями, принятыми не про
+     * себя. Настроение самой сессии лента всё равно слышит — оно живёт
+     * в памяти и завтра исчезает само.
+     */
+    if (deckMode === DECK_MODE.ROOM) {
+      // Отменять нечего в профиле — только вернуть карточку в ленту.
+      setLastDecision({ entry, action, previousTaste: null, roomOnly: true });
+      await room.swipe(title, action === ACTION.DISLIKE ? 'pass' : 'like');
+      /*
+       * Мэтч записывает сама функция комнаты — и сразу всем участникам,
+       * включая личное «буду смотреть». Это не свайп, а согласованное
+       * решение смотреть, и ему в личном списке место.
+       */
+      return;
+    }
+
     // Снимок профиля до действия: отменить решение иначе нельзя —
     // applySignal необратим из-за старения и массы настроения.
     setLastDecision({ entry, action, previousTaste: taste });
@@ -477,7 +510,7 @@ export default function App() {
 
     const nextTaste = await recordReaction({
       uid: user?.uid, title, action, taste,
-      surface: deckMode === DECK_MODE.ROOM ? 'room' : deckMode,
+      surface: deckMode,
       // Что движок обещал по этой карточке — чтобы потом сверить с исходом.
       prediction: {
         confidence: entry.confidence ?? null,
@@ -487,17 +520,6 @@ export default function App() {
       },
     });
     setTaste(nextTaste);
-
-    if (deckMode !== DECK_MODE.ROOM) return;
-
-    const roomAction = action === ACTION.DISLIKE ? 'pass' : 'like';
-    const result = await room.swipe(title, roomAction);
-
-    /*
-     * Запись мэтча делает сама функция комнаты — и сразу всем участникам,
-     * включая личное «буду смотреть». Дублировать её здесь значит писать
-     * половину правды: у второго человека клиент этот код не выполняет.
-     */
   }, [user?.uid, taste, deckMode, room]);
 
   /**
@@ -536,9 +558,21 @@ export default function App() {
    */
   const handleUndo = useCallback(async () => {
     if (!lastDecision) return;
-    const { entry, previousTaste } = lastDecision;
+    const { entry, previousTaste, roomOnly } = lastDecision;
     setLastDecision(null);
     deckRef.current?.restore(entry);
+
+    /*
+     * Отмена в комнате возвращает карточку — и только. Отменять в личном
+     * нечего: свайп туда и не записывался, а вызов `undoDecision` стёр бы
+     * настоящее личное решение по этому фильму, принятое когда-то раньше.
+     */
+    if (roomOnly) {
+      haptic('light');
+      toasts.push(`Вернули «${entry.title.title}»`);
+      return;
+    }
+
     setUserState((prev) => removeLocalDecision(prev, entry.title.id));
     const restored = await undoDecision({
       uid: user?.uid, titleId: entry.title.id, previousTaste,
