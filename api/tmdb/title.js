@@ -14,7 +14,17 @@ import { isExcluded } from '../../shared/config/excluded.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { toInt } from '../_lib/util.js';
 
-export async function loadFullTitle(tmdbId, { language = 'ru-RU' } = {}) {
+/**
+ * Карточка без наложенных слоёв.
+ *
+ * Отделена от `loadFullTitle` ради обогащения пачкой. Раньше пачка из
+ * двадцати четырёх фильмов звала полную загрузку двадцать четыре раза,
+ * и каждая шла в базу за своей разметкой — по одной строке за запрос.
+ * В час пик это давало шестнадцать тысяч обращений к каталогу за пять
+ * минут, из которых РАЗНЫХ было полторы сотни, и база отвечала
+ * таймаутами уже всему приложению, включая загрузку личных списков.
+ */
+export async function loadRawTitle(tmdbId, { language = 'ru-RU' } = {}) {
   const key = `v${TITLE_SCHEMA_VERSION}_title_${tmdbId}_${language}`;
   const { value, source } = await cached(key, TTL.TITLE, async () => {
     const [raw, imageBase] = await Promise.all([
@@ -34,20 +44,34 @@ export async function loadFullTitle(tmdbId, { language = 'ru-RU' } = {}) {
     }
     return title;
   });
-  /*
-   * Разметка накладывается на выходе из кэша: карточка держится неделю,
-   * и внутри кэша разметка ждала бы столько же, прежде чем что-то
-   * изменить.
-   */
-  if (!value) return { title: value, source };
+  return { title: value, source };
+}
 
-  const { markup, curated } = await loadOverlays([value.id]);
-  const withModel = markup.has(value.id) ? applyMarkup(value, markup.get(value.id)) : value;
+/**
+ * Накладывает уже прочитанные слои на карточку.
+ *
+ * Слои читаются отдельно и пачкой — здесь только применение, без
+ * единого обращения к базе.
+ */
+export function withOverlays(title, { markup, curated }) {
+  if (!title) return title;
+  const withModel = markup.has(title.id) ? applyMarkup(title, markup.get(title.id)) : title;
+  return curated.has(title.id) ? applyCurated(withModel, curated.get(title.id)) : withModel;
+}
 
-  return {
-    title: curated.has(value.id) ? applyCurated(withModel, curated.get(value.id)) : withModel,
-    source,
-  };
+/**
+ * Полная карточка со слоями — для одиночного запроса.
+ *
+ * Разметка накладывается на выходе из кэша: карточка держится неделю,
+ * и внутри кэша разметка ждала бы столько же, прежде чем что-то
+ * изменить.
+ */
+export async function loadFullTitle(tmdbId, { language = 'ru-RU' } = {}) {
+  const { title, source } = await loadRawTitle(tmdbId, { language });
+  if (!title) return { title, source };
+
+  const overlays = await loadOverlays([title.id]);
+  return { title: withOverlays(title, overlays), source };
 }
 
 export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheSeconds: 3600 }, async ({ query }) => {

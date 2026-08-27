@@ -8,7 +8,8 @@
  */
 
 import { withHandler, badRequest } from '../_lib/http.js';
-import { loadFullTitle } from './title.js';
+import { loadRawTitle, withOverlays } from './title.js';
+import { loadOverlays } from '../_lib/cache.js';
 import { mapWithConcurrency } from '../_lib/util.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { isExcluded } from '../../shared/config/excluded.js';
@@ -24,13 +25,25 @@ export default withHandler({ methods: ['POST'], module: MODULE.TMDB_PROXY }, asy
 
   const language = body?.language ?? 'ru-RU';
   const results = await mapWithConcurrency(ids, CONCURRENCY, async (id) => {
-    const { title } = await loadFullTitle(id, { language });
+    const { title } = await loadRawTitle(id, { language });
     return title;
   });
 
   // Постоянное исключение действует и здесь: пачка обогащения
   // приходит по id, минуя список каталога.
-  const titles = results.filter((t) => t && !t.__error && !isExcluded(t));
+  const raw = results.filter((t) => t && !t.__error && !isExcluded(t));
+
+  /*
+   * Слои читаются ОДНИМ запросом на всю пачку, а не по одному на фильм.
+   *
+   * Раньше каждая карточка ходила в базу за своей разметкой отдельно:
+   * пачка из двадцати четырёх стоила двадцати четырёх обращений, и при
+   * живой ленте это давало шестнадцать тысяч запросов к каталогу за пять
+   * минут. База отвечала таймаутами уже всему приложению — переставали
+   * грузиться и личные списки, и лента, хотя ломала их именно эта пачка.
+   */
+  const overlays = raw.length ? await loadOverlays(raw.map((t) => t.id)) : null;
+  const titles = overlays ? raw.map((t) => withOverlays(t, overlays)) : raw;
   return {
     titles,
     requested: ids.length,
