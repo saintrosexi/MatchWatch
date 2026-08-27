@@ -757,3 +757,33 @@ test('F48 · подборка русского кино — это фильтр�
     api.catalog = original;
   }
 });
+
+test('F49 · постоянное исключение ловит по тегу, ключевому слову и названию', async () => {
+  const { isExcluded, withoutExcluded } = await import('../shared/config/excluded.js');
+
+  /*
+   * Три признака сразу — не перестраховка: у TMDB ключевые слова
+   * проставлены неровно, у популярного фильма их тридцать, у нишевого
+   * ни одного. По одному признаку половина проходила бы насквозь.
+   */
+  assert.equal(isExcluded({ title: 'Фильм', tags: { queer: 80, drama: 60 } }), true, 'по нашему тегу');
+  assert.equal(isExcluded({ title: 'Фильм', tags: { 'gay-theme': 70 } }), true, 'по слову TMDB');
+  assert.equal(isExcluded({ title: 'Lesbian Space Princess', tags: {} }), true, 'по названию');
+  assert.equal(isExcluded({ title: 'Фильм', originalTitle: 'Queer', tags: {} }), true, 'по оригинальному названию');
+
+  /*
+   * Проверка по границам слов обязательна. Без неё «gay» поймал бы
+   * «Gaya», а «pride» — «Pride & Prejudice», и отсев начал бы
+   * выбрасывать совсем не то.
+   */
+  assert.equal(isExcluded({ title: 'Gaya', tags: {} }), false);
+  assert.equal(isExcluded({ title: 'Гайдай. Три весёлых буквы', tags: {} }), false);
+  assert.equal(isExcluded({ title: 'Догвилль', tags: { drama: 90 } }), false);
+  assert.equal(isExcluded(null), false);
+
+  const kept = withoutExcluded([
+    { id: 'a', title: 'Брат', tags: { crime: 90 } },
+    { id: 'b', title: 'Что-то', tags: { lgbt: 60 } },
+  ]);
+  assert.deepEqual(kept.map((t) => t.id), ['a']);
+});

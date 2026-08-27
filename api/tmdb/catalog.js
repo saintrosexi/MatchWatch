@@ -14,6 +14,7 @@ import { cached, cacheKeyFor, storeTitles, loadOverlays, TTL } from '../_lib/cac
 import { normalizeTmdbMovie } from '../../shared/model/title.js';
 import { applyMarkup } from '../../shared/ai/markup.js';
 import { applyCurated } from '../../shared/model/curated.js';
+import { isExcluded } from '../../shared/config/excluded.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { clampInt, toFloat } from '../_lib/util.js';
 
@@ -137,7 +138,10 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
     const titles = results
       .filter(isReleased)
       .map((raw) => normalizeTmdbMovie(raw, { imageBase }))
-      .filter((t) => t && t.poster);
+      .filter((t) => t && t.poster)
+      // Постоянное исключение — до кэша, иначе исключённое осело бы в нём
+      // на шесть часов и всплывало бы, пока срок не выйдет.
+      .filter((t) => !isExcluded(t));
 
     // Каталог кладём в общее хранилище: клиенты читают его напрямую из базы.
     storeTitles(titles);

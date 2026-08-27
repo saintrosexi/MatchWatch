@@ -11,6 +11,7 @@ import { withHandler, badRequest } from '../_lib/http.js';
 import { loadFullTitle } from './title.js';
 import { mapWithConcurrency } from '../_lib/util.js';
 import { MODULE } from '../../shared/telemetry/events.js';
+import { isExcluded } from '../../shared/config/excluded.js';
 
 const MAX_BATCH = 24;
 const CONCURRENCY = 6;
@@ -27,7 +28,9 @@ export default withHandler({ methods: ['POST'], module: MODULE.TMDB_PROXY }, asy
     return title;
   });
 
-  const titles = results.filter((t) => t && !t.__error);
+  // Постоянное исключение действует и здесь: пачка обогащения
+  // приходит по id, минуя список каталога.
+  const titles = results.filter((t) => t && !t.__error && !isExcluded(t));
   return {
     titles,
     requested: ids.length,

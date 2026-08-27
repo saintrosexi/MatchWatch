@@ -10,6 +10,7 @@ import { cached, storeTitles, loadOverlays, TTL } from '../_lib/cache.js';
 import { normalizeTmdbMovie, TITLE_SCHEMA_VERSION } from '../../shared/model/title.js';
 import { applyMarkup } from '../../shared/ai/markup.js';
 import { applyCurated } from '../../shared/model/curated.js';
+import { isExcluded } from '../../shared/config/excluded.js';
 import { MODULE } from '../../shared/telemetry/events.js';
 import { toInt } from '../_lib/util.js';
 
@@ -22,6 +23,11 @@ export async function loadFullTitle(tmdbId, { language = 'ru-RU' } = {}) {
     ]);
     if (!raw) return null;
     const title = normalizeTmdbMovie(raw, { imageBase });
+    // Исключённое не кэшируем и не отдаём даже по прямой ссылке.
+    if (title && isExcluded(title, Object.keys(raw?.keywords?.keywords ?? {}).length
+      ? (raw.keywords.keywords ?? []).map((k) => k.name) : null)) {
+      return null;
+    }
     if (title) {
       title.enriched = true;
       storeTitles([title]);
