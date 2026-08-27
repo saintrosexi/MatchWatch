@@ -43,6 +43,16 @@ export async function buildRoomDeck({
   const config = getConfig();
   const pool = reusablePool ?? new CatalogPool({ filters });
 
+  /*
+   * В комнате семена берутся у всех участников сразу: похожее на любимое
+   * ЕГО и похожее на любимое ЕЁ попадают в пул оба. Это честнее одного
+   * компромисса посередине, не похожего ни на что из того, что любит
+   * хоть кто-то.
+   */
+  if (!reusablePool && anchors?.loved?.length) {
+    pool.setSeeds(anchors.loved.slice(0, 10).map((a) => a.id));
+  }
+
   if (!reusablePool) {
     await pool.fill(config.deck.candidatePool, { signal });
 

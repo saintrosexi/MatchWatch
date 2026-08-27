@@ -283,6 +283,13 @@ export function useDeck({
 
         const pool = poolsRef.current.get(filterKey) ?? new CatalogPool({ filters });
         poolsRef.current.set(filterKey, pool);
+
+        /*
+         * Семена отбора: самые свежие из любимых. Больше десятка не
+         * берём — каждое стоит двух запросов к каталогу, а разнообразие
+         * после десяти уже не растёт.
+         */
+        pool.setSeeds((anchorsRef.current?.loved ?? []).slice(0, 10).map((a) => a.id));
         poolRef.current = pool;
 
         /*

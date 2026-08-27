@@ -15,9 +15,21 @@ import { getConfig } from './recommendationConfig.js';
 import { COLD_START_IDS } from '../../shared/config/coldStart.js';
 
 export class CatalogPool {
-  constructor({ filters = {}, onUpdate } = {}) {
+  constructor({ filters = {}, onUpdate, seeds = [] } = {}) {
     this.filters = filters;
     this.onUpdate = onUpdate;
+    /**
+     * Любимые фильмы, от которых пляшет отбор кандидатов.
+     *
+     * До них пул набирался одной мировой популярностью — признаком,
+     * не имеющим к человеку никакого отношения. Ранжирование потом
+     * сортировало этот список вкусом, но выбрать из плохой выборки
+     * хорошее нельзя: у всех пользователей пул был один и тот же,
+     * отличался только порядок.
+     */
+    this.seeds = seeds;
+    this.seedIndex = 0;
+    this.seedsDone = false;
     this.titles = new Map();     // id -> title
     this.page = 0;
     this.totalPages = 1;
@@ -30,6 +42,12 @@ export class CatalogPool {
 
   get all() { return [...this.titles.values()]; }
   get size() { return this.titles.size; }
+
+  setSeeds(seeds) {
+    this.seeds = seeds ?? [];
+    this.seedIndex = 0;
+    this.seedsDone = false;
+  }
 
   setFilters(filters) {
     this.filters = filters;
@@ -83,6 +101,62 @@ export class CatalogPool {
       throw error;
     } finally {
       this.loading = false;
+    }
+  }
+
+  /**
+   * Подтягивает похожих на один из любимых фильмов.
+   *
+   * Это готовый коллаборативный сигнал TMDB, посчитанный на миллионах
+   * людей: «кто смотрел это, смотрел и то». Своей такой статистики
+   * у нас не будет ещё долго, а эта бесплатна.
+   *
+   * За вызов берётся ОДНА опора, а не все сразу. Сорок запросов подряд
+   * задержали бы первую карточку на секунды ради выборки, которую
+   * человек, может быть, и не долистает.
+   */
+  async loadSimilar({ signal } = {}) {
+    if (this.seedsDone) return 0;
+
+    /*
+     * Семян нет вовсе — у новичка или пока история не приехала.
+     * Пометить себя законченным здесь обязательно: иначе наполнение
+     * пула через раз уходило бы в пустой вызов, и пул недобирал вдвое.
+     */
+    if (!this.seeds.length) { this.seedsDone = true; return 0; }
+
+    const seed = this.seeds[this.seedIndex];
+    this.seedIndex += 1;
+    if (this.seedIndex >= this.seeds.length) this.seedsDone = true;
+
+    const externalId = Number(parseTitleId(seed)?.externalId);
+    if (!Number.isFinite(externalId)) return 0;
+
+    try {
+      /*
+       * Два списка на опору: `recommendations` ближе к «вам зайдёт»,
+       * `similar` — к «того же рода». Вместе они шире, чем любой
+       * по отдельности, а стоят одинаково.
+       */
+      const [recs, similar] = await Promise.all([
+        api.catalog({ list: 'recommendations', id: externalId, page: 1 }, { signal }).catch(() => null),
+        api.catalog({ list: 'similar', id: externalId, page: 1 }, { signal }).catch(() => null),
+      ]);
+
+      let added = 0;
+      for (const payload of [recs, similar]) {
+        for (const title of payload?.titles ?? []) {
+          if (!title?.id || this.titles.has(title.id)) continue;
+          this.titles.set(title.id, title);
+          added += 1;
+        }
+      }
+
+      if (added) this.onUpdate?.(this.all);
+      return added;
+    } catch {
+      // Похожие — приятная добавка, а не условие работы каталога.
+      return 0;
     }
   }
 
@@ -168,10 +242,21 @@ export class CatalogPool {
     const limit = maxPages ?? Math.min(25, Math.ceil(remaining / 20) + 2);
 
     let pages = 0;
-    while (this.size < targetSize && !this.exhausted && pages < limit) {
-      const added = await this.loadMore({ signal });
+    while (this.size < targetSize && pages < limit) {
+      /*
+       * Похожие на любимые идут первыми и чередуются с популярным.
+       *
+       * Первыми — потому что это лучшая часть выборки: фильмы, которых
+       * человек не видел, но которые смотрели те, кому нравилось то же
+       * самое. Чередуются — потому что одними похожими пул схлопнется
+       * в пузырь вокруг уже любимого, а разведке нужен материал извне.
+       */
+      const added = !this.seedsDone && pages % 2 === 0
+        ? await this.loadSimilar({ signal })
+        : await this.loadMore({ signal });
+
       pages += 1;
-      if (added === 0 && this.exhausted) break;
+      if (added === 0 && this.exhausted && this.seedsDone) break;
     }
     return this.size;
   }

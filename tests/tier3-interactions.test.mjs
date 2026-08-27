@@ -577,3 +577,73 @@ test('X20 · подборка идёт по краям вкуса, а не по 
   assert.equal(byId.c1.becauseOf.title, 'Брат');
   assert.equal(byId.c2.becauseOf.title, 'Кин-дза-дза');
 });
+
+test('X21 · пул берёт похожих на любимые, а не одну популярку', async () => {
+  const { CatalogPool } = await import('../src/engine/catalog.js');
+  const { api } = await import('../src/lib/api.js');
+
+  const asked = [];
+  const original = api.catalog;
+
+  api.catalog = async (params) => {
+    asked.push(params);
+    const kind = params.list ?? 'discover';
+    return {
+      titles: Array.from({ length: 20 }, (_, i) => ({
+        id: `tmdb:movie:${kind}-${params.id ?? 0}-${params.page}-${i}`,
+        title: `${kind} ${i}`, tags: { drama: 60 }, poster: 'p',
+      })),
+      page: params.page, totalPages: 50,
+    };
+  };
+
+  try {
+    const pool = new CatalogPool({ filters: {} });
+    pool.setSeeds(['tmdb:movie:111', 'tmdb:movie:222']);
+    await pool.fill(120);
+
+    const lists = asked.map((p) => p.list);
+
+    /*
+     * Пул набирался одной мировой популярностью — признаком, не имеющим
+     * к человеку отношения: у всех пользователей выборка была одна и та
+     * же, отличался только порядок. Похожие на любимые — это готовый
+     * коллаборативный сигнал, и он обязан попадать в пул.
+     */
+    assert.ok(lists.includes('recommendations'), 'рекомендации TMDB не запрошены');
+    assert.ok(lists.includes('similar'), 'похожие не запрошены');
+    assert.ok(lists.includes('discover'), 'популярное тоже нужно — иначе пузырь');
+
+    // Идентификатор опоры обязан доезжать: без него TMDB отдаст не то.
+    const withId = asked.filter((p) => p.list === 'similar');
+    assert.ok(withId.every((p) => Number.isFinite(p.id)), 'у похожих должен быть id фильма');
+  } finally {
+    api.catalog = original;
+  }
+});
+
+test('X22 · без любимых пул наполняется так же полно, как и раньше', async () => {
+  const { CatalogPool } = await import('../src/engine/catalog.js');
+  const { api } = await import('../src/lib/api.js');
+
+  const original = api.catalog;
+  api.catalog = async (params) => ({
+    titles: Array.from({ length: 20 }, (_, i) => ({
+      id: `tmdb:movie:${params.page}-${i}`, title: `Ф${i}`, tags: {}, poster: 'p',
+    })),
+    page: params.page, totalPages: 50,
+  });
+
+  try {
+    /*
+     * У новичка опор нет. Раньше в этом случае каждая вторая итерация
+     * уходила в пустой вызов похожих, и пул недобирал вдвое — то есть
+     * холодный старт стал бы хуже, чем был до всей затеи.
+     */
+    const pool = new CatalogPool({ filters: {} });
+    await pool.fill(320);
+    assert.ok(pool.size >= 320, `пул должен дорасти до 320, получилось ${pool.size}`);
+  } finally {
+    api.catalog = original;
+  }
+});
