@@ -1123,3 +1123,66 @@ test('B54 · опора без тегов отбрасывается, а не л
   // Пустой вход не должен ходить в сеть вовсе.
   assert.deepEqual(await resolveAnchors(null), { loved: [], refused: [] });
 });
+
+test('B55 · лента слушает сегодняшний вечер, но не сразу', async () => {
+  const { createSessionMood, resortQueue } = await import('../src/engine/sessionMood.js');
+
+  const mk = (id, tags, darkness) => ({
+    id, tags,
+    moods: { energy: 50, darkness, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  const session = createSessionMood();
+  const grim = mk('g', { horror: 90, dread: 80 }, 85);
+  const light = mk('l', { comedy: 90, 'feel-good': 80 }, 15);
+
+  /*
+   * Три свайпа — это не настроение вечера, а случайность. Рулить
+   * по ним лентой значило бы дёргать её на ровном месте.
+   */
+  session.record(mk('a', { horror: 88 }, 84), false);
+  session.record(mk('b', { horror: 86 }, 82), false);
+  assert.equal(session.weigh(grim), 1, 'до порога лента не шевелится');
+
+  // Отклонил шесть мрачных подряд — сегодня мрачного не хочется.
+  for (let i = 0; i < 6; i += 1) {
+    session.record(mk(`p${i}`, { horror: 85 + i, dread: 70 }, 80 + i), false);
+  }
+  for (let i = 0; i < 3; i += 1) {
+    session.record(mk(`k${i}`, { comedy: 85 + i, 'feel-good': 70 }, 20), true);
+  }
+
+  assert.ok(session.weigh(grim) < 1, 'похожее на сегодняшние отказы опускается');
+  assert.ok(session.weigh(light) > 1, 'похожее на сегодняшние «да» поднимается');
+
+  // Верхние карточки не подменяются: человек их уже видит.
+  const queue = [
+    { id: 'top', score: 0.5, title: grim },
+    { id: 'second', score: 0.5, title: grim },
+    { id: 'x', score: 0.5, title: grim },
+    { id: 'y', score: 0.4, title: light },
+  ];
+  const sorted = resortQueue(queue, session);
+  assert.equal(sorted[0].id, 'top', 'верхняя карточка остаётся на месте');
+  assert.equal(sorted[1].id, 'second');
+  assert.equal(sorted[2].id, 'y', 'а в хвосте вперёд выходит то, что сегодня в тему');
+
+  // Новый вечер — новое настроение.
+  session.reset();
+  assert.equal(session.weigh(grim), 1);
+});
+
+test('B56 · «мимо» и «нравится» доезжают до настроения вечера правильно', async () => {
+  const { ACTION } = await import('../src/engine/tasteProfile.js');
+
+  /*
+   * Лента подстраивается по тому, чем было решение. Строка сравнения
+   * должна совпадать с настоящим значением: опечатка здесь молча
+   * превратила бы все отказы в одобрения, и вечер поехал бы ровно
+   * в противоположную сторону.
+   */
+  assert.equal(ACTION.DISLIKE, 'dislike', 'значение действия «мимо» изменилось — проверьте SwipeDeck');
+  assert.notEqual(ACTION.FAVORITE, 'dislike');
+  assert.notEqual(ACTION.LATER, 'dislike');
+  assert.notEqual(ACTION.WATCHED, 'dislike');
+});

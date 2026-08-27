@@ -39,6 +39,14 @@ export async function buildRoomDeck({
    * из того, что любит хоть кто-то.
    */
   anchors = null,
+  /**
+   * Опоры, разложенные по участникам: [[его], [её]].
+   *
+   * С ними оценка идёт по вероятности двойного «да». Без них — по
+   * общему списку, как для одного человека: так работает комната,
+   * где вкусы остальных ещё не приехали.
+   */
+  anchorGroups = null,
 } = {}) {
   const config = getConfig();
   const pool = reusablePool ?? new CatalogPool({ filters });
@@ -84,6 +92,7 @@ export async function buildRoomDeck({
     const ranked = rankDeck(candidates, consensus, {
       loved: anchors?.loved,
       refused: anchors?.refused,
+      lovedGroups: anchorGroups,
       config,
       history,
       size: requests.length ? Math.max(target * 3, target) : target,

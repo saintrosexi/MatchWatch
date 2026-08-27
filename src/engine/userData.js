@@ -292,12 +292,31 @@ registerHandler('rating', async ({ uid, titleId, title, rating, action, taste })
  * Записывает реакцию на тайтл: обновляет историю, профиль вкуса и,
  * если нужно, избранное.
  */
-export async function recordReaction({ uid, title, action, taste, surface = 'solo' }) {
+export async function recordReaction({
+  uid, title, action, taste, surface = 'solo',
+  /**
+   * Чем карточка была для движка: метка уверенности, слот и опора.
+   *
+   * Пишется в метрику, чтобы можно было СВЕРИТЬ обещание с исходом.
+   * Метку «сильное совпадение» мы показывали людям месяцами, ни разу
+   * не проверив, получают ли такие карточки «да» чаще прочих: в метрику
+   * она не попадала вовсе, и проверить было нечем.
+   */
+  prediction = null,
+}) {
   const nextTaste = applySignal(taste, title, action);
   const historyValue = action === ACTION.INSPECT ? null : action;
 
   trackMetric(action === ACTION.FAVORITE ? METRIC.FAVORITE : METRIC.SWIPE, {
-    context: { action, surface },
+    context: {
+      action,
+      surface,
+      confidence: prediction?.confidence ?? null,
+      slot: prediction?.slot ?? null,
+      /** Была ли у карточки опора — по ней видно, работает ли модель близости. */
+      anchored: prediction?.becauseOf ? true : false,
+      score: Number.isFinite(prediction?.score) ? Math.round(prediction.score * 100) / 100 : null,
+    },
   });
 
   if (!supabaseReady() || !uid) {

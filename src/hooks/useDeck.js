@@ -10,6 +10,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CatalogPool, loadActorDeck } from '../engine/catalog.js';
 import { rankDeck, isDecided } from '../engine/ranking.js';
+import { createSessionMood, resortQueue } from '../engine/sessionMood.js';
 import { getConfig } from '../engine/recommendationConfig.js';
 import { api, describeError } from '../lib/api.js';
 import { trackBusiness } from '../lib/telemetry.js';
@@ -122,6 +123,12 @@ export function useDeck({
   /** Момент, до которого дозагрузка не повторяется после сетевой неудачи. */
   const refillBlockedUntil = useRef(0);
   const queuedIds = useRef(new Set());
+  /*
+   * Настроение вечера. Живёт в ссылке, а не в состоянии: меняется
+   * на каждый свайп, а перерисовывать из-за него нечего — оно влияет
+   * только на порядок хвоста очереди.
+   */
+  const sessionRef = useRef(createSessionMood());
   const tasteRef = useRef(taste);
   const anchorsRef = useRef(anchors);
   const historyRef = useRef(history);
@@ -210,6 +217,7 @@ export function useDeck({
     const controller = new AbortController();
 
     queuedIds.current = new Set();
+    sessionRef.current.reset();
     refillBlockedUntil.current = 0;
     setQueue([]);
     setProcessed(0);
@@ -413,8 +421,18 @@ export function useDeck({
     refill();
   }, [queue.length, loading, exhausted, mode, refill, refillNonce]);
 
-  const advance = useCallback((id) => {
-    setQueue((prev) => advanceQueue(prev, id));
+  const advance = useCallback((id, liked = null) => {
+    setQueue((prev) => {
+      /*
+       * Решение кормит настроение вечера, и хвост очереди
+       * пересортировывается под него: отклонил пять мрачных подряд —
+       * дальше мрачного будет меньше. Верхние карточки не трогаются:
+       * подмена картинки под рукой читается как сбой, а не как забота.
+       */
+      const decided = prev.find((entry) => entry.id === id);
+      if (decided && liked !== null) sessionRef.current.record(decided.title, liked);
+      return resortQueue(advanceQueue(prev, id), sessionRef.current);
+    });
     setProcessed((n) => n + 1);
   }, []);
 

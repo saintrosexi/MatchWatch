@@ -129,9 +129,14 @@ test('X7 · веса смешивания реально управляют вк
   const byTags = scoreTitle(LIBRARY.ran, profile, { config: tagHeavy });
   const byQuality = scoreTitle(LIBRARY.ran, profile, { config: qualityHeavy });
 
-  assert.equal(byTags.score, byTags.tagScore);
-  assert.equal(byQuality.score, byQuality.qualityScore);
-  assert.notEqual(byTags.score, byQuality.score);
+  /*
+   * Сверяется оценка ДО штрафов: веса управляют смешиванием сигналов,
+   * а история решений и поправка на популярность применяются поверх
+   * и к смешиванию отношения не имеют.
+   */
+  assert.equal(byTags.rawScore, byTags.tagScore);
+  assert.equal(byQuality.rawScore, byQuality.qualityScore);
+  assert.notEqual(byTags.rawScore, byQuality.rawScore);
 });
 
 test('X8 · антимонотонность разбавляет однородную ленту', () => {
@@ -692,4 +697,112 @@ test('X23 · комната опирается на любимые ОБОИХ, �
   const hisOnly = Object.fromEntries(onlyHis.map((e) => [e.id, e]));
   assert.ok(hisOnly.c1.score > hisOnly.c2.score,
     'при опорах одного участника подборка кренится в его сторону');
+});
+
+test('X24 · комната считает вероятность двойного «да», а не «кому-нибудь зайдёт»', async () => {
+  const { affinityAcrossGroups } = await import('../src/engine/affinity.js');
+
+  const mk = (id, title, tags) => ({
+    id, title, tags,
+    moods: { energy: 50, darkness: 50, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  const his = [mk('h', 'Брат', { crime: 100, loner: 90 })];
+  const hers = [mk('s', 'Дневник памяти', { romance: 100, tenderness: 90 })];
+
+  // Идеален ему, чужой ей.
+  const onlyHis = mk('a', 'Криминал', { crime: 95, loner: 85 });
+  // Обоим средне — но обоим.
+  const bothOk = mk('b', 'Криминальная мелодрама', { crime: 55, romance: 55 });
+
+  const one = affinityAcrossGroups(onlyHis, [his, hers]);
+  const both = affinityAcrossGroups(bothOk, [his, hers]);
+
+  /*
+   * Мэтч — это когда «да» сказали ОБА. Максимумом фильм 0.9/0.1 обходил
+   * фильм 0.6/0.6, хотя первый мэтчем не станет никогда, а второй как
+   * раз может. Среднее геометрическое расставляет их правильно.
+   */
+  assert.ok(both.score > one.score,
+    `подходящий обоим обязан обгонять идеального одному: ${both.score} против ${one.score}`);
+
+  // Видно, кому фильм подходит хуже всех — по этому читается компромисс.
+  assert.equal(one.weakest.title, 'Дневник памяти');
+  assert.equal(one.best.title, 'Брат');
+
+  // Участник без опор не должен обнулять всю колоду.
+  const withEmpty = affinityAcrossGroups(onlyHis, [his, []]);
+  assert.ok(withEmpty.score > 0, 'пустая группа игнорируется, а не обнуляет');
+
+  assert.equal(affinityAcrossGroups(onlyHis, []).score, 0);
+});
+
+test('X25 · популярность понижается мягко, а не переворачивает выдачу', async () => {
+  const { scoreTitle } = await import('../src/engine/ranking.js');
+  const { createEmptyProfile } = await import('../src/engine/tasteProfile.js');
+
+  const mk = (id, popularity, quality = 0.7) => ({
+    id, title: id, tags: { drama: 80 }, quality, popularity,
+    moods: { energy: 50, darkness: 50, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  const profile = createEmptyProfile();
+  const blockbuster = scoreTitle(mk('big', 400), profile).score;
+  const obscure = scoreTitle(mk('small', 5), profile).score;
+
+  /*
+   * Популярность TMDB самоподдерживающаяся: популярное показывают чаще,
+   * от этого оно популярнее. Без поправки лента у всех сходится к одному
+   * набору блокбастеров, как бы хорошо ни работал вкус.
+   */
+  assert.ok(obscure > blockbuster,
+    `при равном качестве малоизвестное должно обгонять: ${obscure} против ${blockbuster}`);
+
+  /*
+   * Но мягко. Перекрутишь — получишь подборку из безвестного шлака,
+   * и это хуже повторов: там хотя бы фильмы хорошие.
+   */
+  assert.ok(obscure / blockbuster < 1.4, 'поправка не должна переворачивать выдачу');
+
+  // Качество по-прежнему решает: отличный блокбастер обгоняет слабое нишевое.
+  const goodBig = scoreTitle(mk('goodBig', 400, 0.95), profile).score;
+  const weakSmall = scoreTitle(mk('weakSmall', 5, 0.35), profile).score;
+  assert.ok(goodBig > weakSmall, 'хороший популярный обязан обгонять слабый нишевый');
+});
+
+test('X26 · разнообразие смотрит на все темы, а не на один ведущий тег', async () => {
+  const { rankDeck } = await import('../src/engine/ranking.js');
+  const { createEmptyProfile } = await import('../src/engine/tasteProfile.js');
+
+  const mk = (id, tags, quality) => ({
+    id, title: id, tags, quality,
+    moods: { energy: 50, darkness: 50, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  /*
+   * Четыре почти одинаковых фильма с РАЗНЫМИ ведущими тегами: прежняя
+   * проверка по одному доминирующему тегу их бы не различила и выложила
+   * подряд.
+   */
+  const twins = [
+    mk('t1', { samurai: 90, 'sword-fight': 85, japan: 80 }, 0.9),
+    mk('t2', { 'sword-fight': 90, samurai: 85, japan: 80 }, 0.88),
+    mk('t3', { japan: 90, samurai: 85, 'sword-fight': 80 }, 0.86),
+    mk('t4', { samurai: 88, japan: 84, 'sword-fight': 82 }, 0.84),
+  ];
+  const others = [
+    mk('o1', { romcom: 90, romance: 80 }, 0.7),
+    mk('o2', { documentary: 90, war: 70 }, 0.7),
+  ];
+
+  const deck = rankDeck([...twins, ...others], createEmptyProfile(), {
+    size: 6, explorationRate: 0, random: () => 0.5,
+  });
+
+  const ids = deck.map((e) => e.id);
+  const firstThree = ids.slice(0, 3);
+  const twinsUpTop = firstThree.filter((id) => id.startsWith('t')).length;
+
+  assert.ok(twinsUpTop < 3,
+    `три почти одинаковых фильма подряд — это провал разнообразия: ${firstThree.join(', ')}`);
 });

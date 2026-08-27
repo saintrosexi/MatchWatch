@@ -250,3 +250,54 @@ export function affinityToRefused(title, refused, { config = RECOMMENDATION_CONF
 
   return worst;
 }
+
+/**
+ * Близость к вкусам НЕСКОЛЬКИХ людей сразу — для комнаты.
+ *
+ * Считается среднее геометрическое личных близостей, а не максимум.
+ * Разница принципиальная и прямо отвечает цели продукта.
+ *
+ * Мэтч — это когда «да» сказали ОБА. При максимуме фильм с близостью
+ * 0.9 к нему и 0.1 к ней обходит фильм с 0.6 и 0.6 — хотя первый
+ * гарантированно не станет мэтчем, а второй как раз может. Среднее
+ * геометрическое даёт 0.3 против 0.6 и расставляет их правильно.
+ *
+ * Арифметическое среднее так не умеет: (0.9+0.1)/2 = (0.6+0.6)/2, оно
+ * не отличает согласие от компромисса. Геометрическое обнуляется, если
+ * хоть кому-то фильм чужой, — ровно как и настоящий мэтч.
+ *
+ * @param {object} title кандидат
+ * @param {Array<Array>} groups опоры по участникам: [[его], [её]]
+ */
+export function affinityAcrossGroups(title, groups, { config = RECOMMENDATION_CONFIG } = {}) {
+  const usable = (groups ?? []).filter((g) => g?.length);
+  if (!usable.length) return { score: 0, best: null, weakest: null, perGroup: [] };
+
+  const perGroup = usable.map((group) => affinityToLoved(title, group, { config }));
+
+  /*
+   * Ноль у кого-то одного обнуляет всё — и это правильно: фильм, чужой
+   * одному из двоих, мэтчем не станет никогда. Но полный ноль по вкусу
+   * обычно означает «нет данных», а не «противно», поэтому берётся
+   * небольшой пол: иначе участник без опор обнулял бы всю колоду.
+   */
+  const floor = config.room?.affinityFloor ?? 0.08;
+  const product = perGroup.reduce((acc, g) => acc * Math.max(g.score, floor), 1);
+  const score = Math.pow(product, 1 / perGroup.length);
+
+  let best = null;
+  let weakest = null;
+  for (const group of perGroup) {
+    if (!best || group.score > best.score) best = group;
+    if (!weakest || group.score < weakest.score) weakest = group;
+  }
+
+  return {
+    score,
+    /** Чья опора вытянула фильм — идёт в объяснение. */
+    best: best?.best ?? null,
+    /** Кому фильм подходит хуже всех: по нему видно, где компромисс. */
+    weakest: weakest?.best ?? null,
+    perGroup: perGroup.map((g) => g.score),
+  };
+}

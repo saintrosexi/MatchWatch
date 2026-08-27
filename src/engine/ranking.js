@@ -12,7 +12,10 @@
  */
 
 import { MOOD_AXES, RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
-import { affinityToLoved, affinityToRefused, prepare, prepareAll } from './affinity.js';
+import {
+  affinityToLoved, affinityToRefused, affinityAcrossGroups,
+  prepare, prepareAll, titleSimilarity,
+} from './affinity.js';
 import { hydrateProfile, isWarm } from './tasteProfile.js';
 import { isColdStartTitle } from '../../shared/config/coldStart.js';
 
@@ -85,6 +88,14 @@ export function scoreTitle(title, profile, {
   loved = null,
   /** Отвергнутые — второй полюс. */
   refused = null,
+  /**
+   * Опоры по участникам комнаты: [[его], [её]].
+   *
+   * Когда переданы — оценка идёт по вероятности двойного «да», а не по
+   * «кому-нибудь понравится». Мэтч — это согласие обоих, и считать его
+   * максимумом значит выводить наверх фильмы, которые мэтчем не станут.
+   */
+  lovedGroups = null,
 } = {}) {
   const p = hydrateProfile(profile);
   const tagScore = cosineSimilarity(title.tags, p.tagWeights);
@@ -97,7 +108,9 @@ export function scoreTitle(title, profile, {
    * какие темы человеку вообще близки, и этим страхует случаи, когда
    * ни один любимый фильм не похож на кандидата.
    */
-  const affinity = affinityToLoved(title, loved, { config });
+  const affinity = lovedGroups?.length
+    ? affinityAcrossGroups(title, lovedGroups, { config })
+    : affinityToLoved(title, loved, { config });
   const refusedScore = affinityToRefused(title, refused, { config });
 
   const { affinityWeight, tagWeight, qualityWeight } = config.blend;
@@ -114,7 +127,7 @@ export function scoreTitle(title, profile, {
    * Оставшиеся сигналы делят полный вес между собой сами: знаменатель
    * их и нормализует.
    */
-  const effectiveAffinity = loved?.length ? affinityWeight : 0;
+  const effectiveAffinity = (loved?.length || lovedGroups?.length) ? affinityWeight : 0;
 
   const totalWeight = effectiveAffinity + tagWeight + qualityWeight;
   const base = totalWeight === 0 ? 0 : (
@@ -130,7 +143,27 @@ export function scoreTitle(title, profile, {
    */
   const refusedDrag = 1 - refusedScore * (config.affinity?.refusedPenalty ?? 0.35);
 
-  const penalty = historyMultiplier(title.id, history, config) * refusedDrag;
+  /*
+   * Поправка на популярность.
+   *
+   * Популярность TMDB самоподдерживающаяся: популярное показывают чаще,
+   * от этого оно популярнее. Без поправки лента у всех сходится к одному
+   * и тому же набору блокбастеров, как бы хорошо ни работал вкус, —
+   * и человек справедливо говорит «одни и те же фильмы».
+   *
+   * Малоизвестный фильм, который человеку подходит, ценнее ещё одного
+   * блокбастера: блокбастер он и так видел или хотя бы про него слышал.
+   *
+   * Степень маленькая намеренно. Перекрутишь — получишь подборку
+   * из безвестного шлака, и это будет хуже, чем повторы: там хотя бы
+   * фильмы хорошие.
+   */
+  const damp = config.quality?.popularityDamping ?? 0;
+  const popularityDrag = damp > 0 && title.popularity > 0
+    ? 1 / (1 + damp * Math.log1p(title.popularity) / Math.log1p(config.quality.popularitySoftCap))
+    : 1;
+
+  const penalty = historyMultiplier(title.id, history, config) * refusedDrag * popularityDrag;
 
   /*
    * Пока профиль пуст, сравнивать фильмы по вкусу не с чем, и наверх
@@ -150,6 +183,8 @@ export function scoreTitle(title, profile, {
     affinityScore: Math.round(affinity.score * 10000) / 10000,
     /** Тот самый любимый фильм, на который похож этот. Идёт в объяснение. */
     becauseOf: affinity.best ? { id: affinity.best.id, title: affinity.best.title } : null,
+    /** Кому в комнате фильм подходит хуже всех — видно, где компромисс. */
+    weakestFor: affinity.weakest ? { id: affinity.weakest.id, title: affinity.weakest.title } : null,
     refusedScore: Math.round(refusedScore * 10000) / 10000,
     qualityScore: Math.round(qualityScore * 10000) / 10000,
     penalty,
@@ -193,6 +228,8 @@ export function rankDeck(titles, profile, {
   loved = null,
   /** Отвергнутое — второй полюс, понижающий похожее. */
   refused = null,
+  /** Опоры по участникам комнаты — включают режим «вероятность мэтча». */
+  lovedGroups = null,
 } = {}) {
   const p = hydrateProfile(profile);
   const warm = isWarm(p, config);
@@ -205,12 +242,15 @@ export function rankDeck(titles, profile, {
    */
   const lovedReady = loved?.length ? prepareAll(loved) : null;
   const refusedReady = refused?.length ? prepareAll(refused) : null;
+  const groupsReady = lovedGroups?.length
+    ? lovedGroups.filter((g) => g?.length).map((g) => prepareAll(g))
+    : null;
 
   const scored = [];
   for (const title of titles) {
     if (!title?.id) continue;
     const evaluation = scoreTitle(prepare(title), p, {
-      config, history, loved: lovedReady, refused: refusedReady,
+      config, history, loved: lovedReady, refused: refusedReady, lovedGroups: groupsReady,
     });
     if (evaluation.penalty === 0) continue; // жёстко исключено
     scored.push({
@@ -332,11 +372,20 @@ function applyDiversity(deck, config) {
   const { repetitionWindow, repetitionPenalty } = config.penalties;
   if (repetitionPenalty <= 0 || deck.length < 3) return deck;
 
+  /*
+   * Похожесть считается по всему набору тем, а не по одному ведущему тегу.
+   *
+   * Прежняя версия сравнивала только доминирующий тег, и этого мало
+   * в обе стороны: два фильма с общим «драма» могут быть совсем разными,
+   * а «самурайский боевик» и «боевик про ниндзя» с разными ведущими
+   * тегами — почти одинаковыми. Полная похожесть ловит и то и другое.
+   */
+  const prepared = deck.map((entry) => ({ entry, ready: prepare(entry.title) }));
   const result = [];
-  const pending = [...deck];
+  const pending = [...prepared];
 
   while (pending.length) {
-    const recent = result.slice(-repetitionWindow).map((c) => dominantTag(c.title));
+    const recent = result.slice(-repetitionWindow);
     let bestIndex = 0;
     let bestValue = -Infinity;
 
@@ -345,9 +394,20 @@ function applyDiversity(deck, config) {
     const lookahead = Math.min(pending.length, repetitionWindow + 2);
     for (let i = 0; i < lookahead; i += 1) {
       const candidate = pending[i];
-      const tag = dominantTag(candidate.title);
-      const repeats = recent.filter((t) => t && t === tag).length;
-      const value = candidate.score - repeats * repetitionPenalty - i * 0.001;
+
+      /*
+       * Штрафует САМОЕ похожее из недавних, а не сумма по всем.
+       * Сумма наказывала бы карточку за то, что она немного напоминает
+       * каждую из четырёх предыдущих, — а это и есть нормальный вкус.
+       * Бьём по настоящим дублям.
+       */
+      let closest = 0;
+      for (const seen of recent) {
+        const value = titleSimilarity(candidate.ready.tags, seen.ready.tags);
+        if (value > closest) closest = value;
+      }
+
+      const value = candidate.entry.score - closest * repetitionPenalty * 2 - i * 0.001;
       if (value > bestValue) { bestValue = value; bestIndex = i; }
     }
 
@@ -355,17 +415,9 @@ function applyDiversity(deck, config) {
     result.push(chosen);
   }
 
-  return result;
+  return result.map((item) => item.entry);
 }
 
-function dominantTag(title) {
-  let best = null;
-  let bestWeight = -Infinity;
-  for (const [tag, w] of Object.entries(title?.tags ?? {})) {
-    if (w > bestWeight) { bestWeight = w; best = tag; }
-  }
-  return best;
-}
 
 /**
  * Компромиссный профиль комнаты — НЕ среднее арифметическое.

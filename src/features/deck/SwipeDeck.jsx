@@ -43,8 +43,12 @@ export function SwipeDeck({
     try {
       await onDecision(decided, action);
     } finally {
-      // Снимаем именно ту карточку, по которой приняли решение.
-      deck.advance(decided.id);
+      /*
+       * Снимаем именно ту карточку, по которой приняли решение,
+       * и сообщаем, чем оно было: по решениям вечера лента
+       * подстраивается на ходу.
+       */
+      deck.advance(decided.id, action !== 'dislike');
       setBusy(false);
     }
   }, [current, busy, onDecision, deck]);

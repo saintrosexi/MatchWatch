@@ -291,19 +291,35 @@ export default function App() {
    * по обоим: половине комнаты подборка была чужой.
    */
   const roomAnchors = useCallback(async () => {
-    const ids = room.lovedIds ?? [];
-    if (!ids.length) return anchors;
+    /*
+     * Опоры разложены ПО УЧАСТНИКАМ, а не свалены в один список.
+     *
+     * Мэтч — это согласие обоих, и оценка считается как вероятность
+     * двойного «да». Одним списком фильм, идеальный ему и никакой ей,
+     * выходил бы наверх — хотя мэтчем он не станет никогда.
+     */
+    const byMember = room.members
+      .map((m) => (m.lovedIds ?? []))
+      .filter((ids) => ids.length);
 
-    const shared = await resolveAnchors({ loved: ids.map((id) => ({ id })), refused: [] })
-      .catch(() => ({ loved: [], refused: [] }));
+    if (!byMember.length) return { anchors, groups: null };
 
+    const resolved = await Promise.all(byMember.map((ids) =>
+      resolveAnchors({ loved: ids.map((id) => ({ id })), refused: [] })
+        .then((r) => r.loved)
+        .catch(() => [])));
+
+    const groups = resolved.filter((g) => g.length);
+    if (!groups.length) return { anchors, groups: null };
+
+    // Общий список тоже нужен: по нему считается близость, когда групп
+    // меньше двух, и из него берётся объяснение под карточкой.
     const seen = new Set();
-    const loved = [...(anchors?.loved ?? []), ...shared.loved]
-      .filter((a) => (seen.has(a.id) ? false : seen.add(a.id)));
+    const loved = groups.flat().filter((a) => (seen.has(a.id) ? false : seen.add(a.id)));
 
     // Отвергнутое остаётся своим: чужие отказы уже учтены исключениями.
-    return { loved, refused: anchors?.refused ?? [] };
-  }, [room.lovedIds, anchors]);
+    return { anchors: { loved, refused: anchors?.refused ?? [] }, groups };
+  }, [room.members, anchors]);
 
   const deck = useDeck({
     mode: deckMode,
@@ -367,15 +383,19 @@ export default function App() {
 
     roomExcludedTitles(room.code)
       .catch(() => [])
-      .then(async (excluded) => buildRoomDeck({
-        consensus: room.consensus ?? taste,
-        anchors: await roomAnchors(),
-        filters,
-        history: roomHistory(room.state, user?.uid),
-        excludeIds: [...published, ...excluded],
-        pool: growthPoolRef.current,
-        moodRequests: room.moodRequests,
-      }))
+      .then(async (excluded) => {
+        const { anchors: roomLoved, groups } = await roomAnchors();
+        return buildRoomDeck({
+          consensus: room.consensus ?? taste,
+          anchors: roomLoved,
+          anchorGroups: groups,
+          filters,
+          history: roomHistory(room.state, user?.uid),
+          excludeIds: [...published, ...excluded],
+          pool: growthPoolRef.current,
+          moodRequests: room.moodRequests,
+        });
+      })
       .then(({ deck: next, pool }) => {
         growthPoolRef.current = pool;
         // Длина, которую видели мы: если она изменилась, порцию уже дописал другой.
@@ -420,6 +440,13 @@ export default function App() {
     const nextTaste = await recordReaction({
       uid: user?.uid, title, action, taste,
       surface: deckMode === DECK_MODE.ROOM ? 'room' : deckMode,
+      // Что движок обещал по этой карточке — чтобы потом сверить с исходом.
+      prediction: {
+        confidence: entry.confidence ?? null,
+        slot: entry.slot ?? null,
+        becauseOf: entry.becauseOf ?? null,
+        score: entry.score ?? null,
+      },
     });
     setTaste(nextTaste);
 
@@ -565,9 +592,13 @@ export default function App() {
        * и заранее.
        */
       const asked = mergeRequestFilters(room.moodRequests ?? []);
+      // Один вызов на сборку: внутри сетевые запросы за карточками опор.
+      const { anchors: roomLoved, groups } = await roomAnchors();
+
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
-        anchors: await roomAnchors(),
+        anchors: roomLoved,
+        anchorGroups: groups,
         filters: { ...asked, ...filters },
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,
