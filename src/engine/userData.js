@@ -13,11 +13,12 @@
  */
 
 import { supabase, supabaseReady, guarded } from '../lib/supabase.js';
-import { titleStub } from '../../shared/model/title.js';
+import { titleStub, parseTitleId } from '../../shared/model/title.js';
 import { serializeProfile, hydrateProfile, decayProfile, applySignal, applyRating, ACTION } from './tasteProfile.js';
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
 import { durableWrite, registerHandler } from '../lib/outbox.js';
 import { trackMetric } from '../lib/telemetry.js';
+import { api } from '../lib/api.js';
 import { RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
 import { METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
@@ -26,8 +27,6 @@ import { normalizeRoomCode } from '../../shared/model/roomCode.js';
 const fromRow = (row) => (row ? hydrateProfile({
   version: row.version,
   tagWeights: row.tag_weights,
-  moods: row.moods,
-  moodMass: row.mood_mass,
   counts: row.counts,
   signals: row.signals,
   updatedAt: row.updated_at ? new Date(row.updated_at).getTime() : Date.now(),
@@ -39,8 +38,6 @@ const toRow = (userId, profile) => {
     user_id: userId,
     version: p.version,
     tag_weights: p.tagWeights,
-    moods: p.moods,
-    mood_mass: p.moodMass,
     counts: p.counts,
     signals: p.signals,
     updated_at: new Date().toISOString(),
@@ -489,49 +486,84 @@ export async function updateProfileFields(uid, fields) {
 }
 
 /**
- * Собирает опоры и антиопоры из истории.
+ * Собирает опоры и антиопоры из истории — пока только идентификаторы.
+ *
+ * Теги СОЗНАТЕЛЬНО не берутся из снимка карточки, лежащего в истории:
+ * снимок компактный — id, название, постер, год, — и тегов в нём нет
+ * никогда. Первая версия читала их оттуда и молча получала пустой
+ * список опор у всех до единого: модель близости не работала ни разу
+ * и не могла бы заработать.
+ *
+ * Полные данные добираются отдельно, из каталога. Так они заодно
+ * приходят с актуальной разметкой, а не с той, что была в день свайпа.
  *
  * Опорой становится всё, чем человек сказал «да»: избранное, мэтч,
- * свайп вправо и высокая оценка. «Просмотрено» опорой НЕ становится —
- * посмотреть можно и по чужому совету, и от скуки, и это ничего
- * не говорит о желании смотреть похожее.
- *
- * Карточки без тегов отбрасываются: мерить близость нечем, а место
- * в списке они занимают.
+ * свайп вправо, высокая оценка. «Просмотрено» опорой НЕ становится —
+ * посмотреть можно и по чужому совету, и от скуки.
  */
 function anchorsFrom(history, favorites, { config = RECOMMENDATION_CONFIG } = {}) {
   const limit = config.affinity?.maxAnchors ?? 40;
   const refusedLimit = config.affinity?.maxRefused ?? 60;
-  const rating = config.rating?.neutral ?? 6;
+  const neutral = config.rating?.neutral ?? 6;
 
-  const usable = (row) => row?.title && Object.keys(row.title.tags ?? {}).length > 0;
-  const shape = (row) => ({
-    id: row.title_id,
-    title: row.title.title ?? null,
-    tags: row.title.tags ?? {},
-    moods: row.title.moods ?? null,
-    at: new Date(row.updated_at ?? row.added_at ?? 0).getTime(),
-  });
-
-  const rows = (history ?? []).filter(usable);
+  const at = (row) => new Date(row.updated_at ?? row.added_at ?? 0).getTime();
   const byRecency = (a, b) => b.at - a.at;
 
+  const rows = history ?? [];
   const loved = rows
-    .filter((r) => ['favorite', 'match', 'like'].includes(r.action) || (r.rating ?? 0) > rating)
-    .map(shape);
+    .filter((r) => ['favorite', 'match', 'like'].includes(r.action) || (r.rating ?? 0) > neutral)
+    .map((r) => ({ id: r.title_id, title: r.title?.title ?? null, at: at(r) }));
 
-  // Избранное лежит и отдельной таблицей — берём оттуда то, чего нет в истории.
+  // Избранное лежит и отдельной таблицей — добираем то, чего нет в истории.
   const known = new Set(loved.map((a) => a.id));
-  for (const row of (favorites ?? []).filter(usable)) {
+  for (const row of favorites ?? []) {
     if (known.has(row.title_id)) continue;
-    loved.push(shape(row));
+    loved.push({ id: row.title_id, title: row.title?.title ?? null, at: at(row) });
     known.add(row.title_id);
   }
 
-  const refused = rows.filter((r) => r.action === 'dislike').map(shape);
+  const refused = rows
+    .filter((r) => r.action === 'dislike')
+    .map((r) => ({ id: r.title_id, title: r.title?.title ?? null, at: at(r) }));
 
   return {
     loved: loved.sort(byRecency).slice(0, limit),
     refused: refused.sort(byRecency).slice(0, refusedLimit),
   };
+}
+
+/**
+ * Достаёт полные карточки опор из каталога.
+ *
+ * Отдельным шагом и не блокирует загрузку профиля: без опор подборка
+ * работает по накопленному вектору, как раньше, — просто хуже. Дождаться
+ * их важнее, чем задержать первый экран.
+ */
+export async function resolveAnchors(anchors, { signal } = {}) {
+  const ids = [...(anchors?.loved ?? []), ...(anchors?.refused ?? [])]
+    .map((a) => Number(parseTitleId(a.id)?.externalId))
+    .filter(Number.isFinite);
+
+  if (!ids.length) return { loved: [], refused: [] };
+
+  const byId = new Map();
+  // Каталог принимает не больше двух десятков за раз.
+  for (let i = 0; i < ids.length; i += 24) {
+    try {
+      const payload = await api.enrich(ids.slice(i, i + 24), { signal });
+      for (const title of payload?.titles ?? []) byId.set(title.id, title);
+    } catch {
+      // Часть опор не доехала — работаем с тем, что есть.
+    }
+  }
+
+  const shape = (list) => (list ?? [])
+    .map((a) => {
+      const full = byId.get(a.id);
+      if (!full || !Object.keys(full.tags ?? {}).length) return null;
+      return { id: a.id, title: full.title ?? a.title, tags: full.tags, moods: full.moods ?? null };
+    })
+    .filter(Boolean);
+
+  return { loved: shape(anchors.loved), refused: shape(anchors.refused) };
 }

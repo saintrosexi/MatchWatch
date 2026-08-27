@@ -39,16 +39,6 @@ export function cosineSimilarity(titleTags, profileTags) {
   return dot / (Math.sqrt(titleNorm) * Math.sqrt(profileNorm));
 }
 
-/** Близость 5D-настроений: 1 — идентичны, 0 — противоположны. */
-export function moodSimilarity(a, b) {
-  if (!a || !b) return 0.5;
-  let sum = 0;
-  for (const axis of MOOD_AXES) {
-    const d = ((a[axis] ?? 50) - (b[axis] ?? 50)) / 100;
-    sum += d * d;
-  }
-  return Math.max(0, 1 - Math.sqrt(sum / MOOD_AXES.length));
-}
 
 /**
  * Штрафы за уже пережитое.
@@ -98,7 +88,6 @@ export function scoreTitle(title, profile, {
 } = {}) {
   const p = hydrateProfile(profile);
   const tagScore = cosineSimilarity(title.tags, p.tagWeights);
-  const moodScore = moodSimilarity(title.moods, p.moods);
   const qualityScore = title.quality ?? 0.5;
 
   /*
@@ -111,7 +100,7 @@ export function scoreTitle(title, profile, {
   const affinity = affinityToLoved(title, loved, { config });
   const refusedScore = affinityToRefused(title, refused, { config });
 
-  const { affinityWeight, tagWeight, moodWeight, qualityWeight } = config.blend;
+  const { affinityWeight, tagWeight, qualityWeight } = config.blend;
 
   /*
    * Когда опор нет — у новичка или пока любимые не догрузились — вес
@@ -127,11 +116,10 @@ export function scoreTitle(title, profile, {
    */
   const effectiveAffinity = loved?.length ? affinityWeight : 0;
 
-  const totalWeight = effectiveAffinity + tagWeight + moodWeight + qualityWeight;
+  const totalWeight = effectiveAffinity + tagWeight + qualityWeight;
   const base = totalWeight === 0 ? 0 : (
     affinity.score * effectiveAffinity
     + tagScore * tagWeight
-    + moodScore * moodWeight
     + qualityScore * qualityWeight
   ) / totalWeight;
 
@@ -163,7 +151,6 @@ export function scoreTitle(title, profile, {
     /** Тот самый любимый фильм, на который похож этот. Идёт в объяснение. */
     becauseOf: affinity.best ? { id: affinity.best.id, title: affinity.best.title } : null,
     refusedScore: Math.round(refusedScore * 10000) / 10000,
-    moodScore: Math.round(moodScore * 10000) / 10000,
     qualityScore: Math.round(qualityScore * 10000) / 10000,
     penalty,
     matchedTags: matchedTags(title.tags, p.tagWeights),
@@ -416,21 +403,19 @@ export function buildConsensusProfile(profiles, { config = RECOMMENDATION_CONFIG
     }
   }
 
-  // Настроение усредняем по массе сигналов — у активного участника
-  // вкус измерен точнее, и его вектор надёжнее.
-  const moods = {};
-  const totalMass = list.reduce((a, p) => a + Math.max(1, p.moodMass), 0);
-  for (const axis of MOOD_AXES) {
-    moods[axis] = Math.round(
-      list.reduce((acc, p) => acc + (p.moods[axis] ?? 50) * Math.max(1, p.moodMass), 0) / totalMass,
-    );
-  }
-
+  /*
+   * Усреднения настроения здесь больше нет, и это главное место, ради
+   * которого его убирали.
+   *
+   * Двое разных людей давали комнате середину между собой: у него мрак
+   * 80, у неё 40, комната искала шестьдесят — то есть то, что не нравится
+   * ни одному. Вместо этого комната работает через опоры обоих: похожее
+   * на его любимое и похожее на её любимое попадают в подборку оба,
+   * каждое со своей стороны, не смешиваясь.
+   */
   return {
     version: config.version,
     tagWeights,
-    moods,
-    moodMass: totalMass,
     counts: { like: 0, dislike: 0, favorite: 0, watched: 0, match: 0, inspect: 0 },
     signals: list.reduce((a, p) => a + p.signals, 0),
     updatedAt: Date.now(),

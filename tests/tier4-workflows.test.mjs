@@ -139,7 +139,6 @@ test('W9 · синхронизация между устройствами: пр
   const desktop = hydrateProfile(wire);
 
   assert.deepEqual(desktop.tagWeights, phone.tagWeights);
-  assert.deepEqual(desktop.moods, phone.moods);
   assert.equal(desktop.signals, phone.signals);
 
   // И продолжение свайпов на втором устройстве не теряет накопленное.
@@ -166,9 +165,11 @@ test('W10 · длинная сессия: 200 свайпов не раздува
   assert.ok(Object.keys(profile.tagWeights).length <= RECOMMENDATION_CONFIG.decay.maxTags,
     'профиль обязан оставаться ограниченным');
   assert.equal(profile.signals, 200);
-  for (const value of Object.values(profile.moods)) {
-    assert.ok(value >= 0 && value <= 100, 'настроение не должно уходить за границы');
-  }
+  /*
+   * Вектора настроения у человека больше нет — проверять на границы
+   * нечего. Ограниченность профиля держится на числе тегов выше.
+   */
+  assert.equal(profile.moods, undefined);
 
   const deck = rankDeck(catalogue, profile, { size: 30, random: seededRandom(303) });
   assert.ok(deck.length > 0);

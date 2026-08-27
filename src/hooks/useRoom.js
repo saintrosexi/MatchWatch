@@ -327,8 +327,6 @@ function compactTaste(taste) {
     .slice(0, 60);
   return {
     tagWeights: Object.fromEntries(top),
-    moods: taste.moods ?? null,
-    moodMass: taste.moodMass ?? 0,
     signals: taste.signals ?? 0,
   };
 }

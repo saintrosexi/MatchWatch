@@ -51,13 +51,14 @@ import { retryChunk, clearChunkReload } from '../lib/lazyChunk.js';
 import { Toasts } from '../ui/Toasts.jsx';
 import { ErrorBoundary } from '../ui/ErrorBoundary.jsx';
 import { LoadingState, StatusStrip } from '../ui/States.jsx';
-import { Radar } from '../ui/Radar.jsx';
+import { MoodBars } from '../ui/Radar.jsx';
 
 import { ACTION, createEmptyProfile, hydrateProfile } from '../engine/tasteProfile.js';
 import {
   loadUserState, subscribeUserState, recordReaction, toggleFavorite,
   undoDecision, markWatchedPersonal, rateTitle,
   applyLocalDecision, removeLocalDecision,
+  resolveAnchors,
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
 import { getConfig, initRemoteConfig } from '../engine/recommendationConfig.js';
@@ -258,13 +259,35 @@ export default function App() {
     return base;
   }, [userState?.history, deckMode, room.state, user?.uid]);
 
+
+  /*
+   * Полные карточки опор. Историю решений мы получаем сразу, но теги
+   * в ней не лежат — снимок карточки компактный, и первая версия
+   * молча оставалась без опор у всех до единого. Догружаем из каталога
+   * отдельно, не задерживая первый экран: без опор подборка работает
+   * по накопленному вектору, просто хуже.
+   */
+  const [anchors, setAnchors] = useState(null);
+
+  useEffect(() => {
+    const raw = userState?.anchors;
+    if (!raw?.loved?.length && !raw?.refused?.length) { setAnchors(null); return undefined; }
+
+    let cancelled = false;
+    resolveAnchors(raw)
+      .then((resolved) => { if (!cancelled) setAnchors(resolved); })
+      .catch(() => { if (!cancelled) setAnchors(null); });
+
+    return () => { cancelled = true; };
+  }, [userState?.anchors]);
+
   const deck = useDeck({
     mode: deckMode,
     filters,
     taste,
     history,
     /** Опоры вкуса: конкретные любимые фильмы вместо усреднённой точки. */
-    anchors: userState?.anchors ?? null,
+    anchors,
     actorId: actorDeck?.id ?? null,
     roomDeck: deckMode === DECK_MODE.ROOM ? room.state?.deck : null,
     roomSwiped: deckMode === DECK_MODE.ROOM ? room.swipedTitleIds : null,
@@ -322,7 +345,7 @@ export default function App() {
       .catch(() => [])
       .then((excluded) => buildRoomDeck({
         consensus: room.consensus ?? taste,
-        anchors: userState?.anchors ?? null,
+        anchors,
         filters,
         history: roomHistory(room.state, user?.uid),
         excludeIds: [...published, ...excluded],
@@ -520,7 +543,7 @@ export default function App() {
       const asked = mergeRequestFilters(room.moodRequests ?? []);
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
-        anchors: userState?.anchors ?? null,
+        anchors,
         filters: { ...asked, ...filters },
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,
@@ -997,24 +1020,21 @@ function DeckSidePanel({ deck, room, taste }) {
         </div>
       </section>
 
-      <section className="taste-panel">
-        <span className="eyebrow">
-          {room.consensus ? 'Компромисс комнаты' : 'Ваше настроение'}
-        </span>
-        <Radar
-          size={260}
-          showValues={false}
-          vectors={[
-            { key: 'me', vector: taste.moods },
-            ...(title.moods ? [{ key: 'title', vector: title.moods, variant: 'partner' }] : []),
-            ...(room.consensus ? [{ key: 'room', vector: room.consensus.moods, variant: 'consensus' }] : []),
-          ]}
-        />
-        <p className="faint" style={{ fontSize: 'var(--t-micro)' }}>
-          Кораллом — ваш профиль, голубым — настроение фильма
-          {room.consensus ? ', пунктиром — компромисс комнаты' : ''}.
-        </p>
-      </section>
+      {/*
+        * Здесь сравнивались вектор человека и вектор фильма. Первого
+        * больше нет: он усреднял весь вкус в одну точку между любимыми
+        * фильмами, и сравнивать с ним было бессмысленно — совпадение
+        * с серединой ничего не говорит о том, стоит ли смотреть.
+        *
+        * Настроение самого фильма осталось и показывается там, где оно
+        * к месту, — в карточке деталей.
+        */}
+      {title.moods && (
+        <section className="taste-panel">
+          <span className="eyebrow">Настроение фильма</span>
+          <MoodBars vector={title.moods} />
+        </section>
+      )}
     </>
   );
 }

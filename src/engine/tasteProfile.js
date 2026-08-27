@@ -3,7 +3,6 @@
  *
  * Две независимые проекции одного вкуса:
  *   tagWeights — накопленные веса по тегам (узкие темы: samurai, heist…);
- *   moods      — сглаженный 5D-вектор настроения.
  *
  * Ключевое из ТЗ: сигналы неравноценны. Лайк даёт базовый вес, избранное —
  * заметно больше (это явное «хочу», а не «ладно, свайпну вправо»), дизлайк
@@ -29,8 +28,6 @@ export function createEmptyProfile() {
   return {
     version: RECOMMENDATION_CONFIG.version,
     tagWeights: {},
-    moods: { ...NEUTRAL_MOOD },
-    moodMass: 0,
     counts: { like: 0, dislike: 0, favorite: 0, later: 0, watched: 0, match: 0, inspect: 0, rated: 0 },
     signals: 0,
     updatedAt: Date.now(),
@@ -47,7 +44,6 @@ export function hydrateProfile(raw) {
     ...base,
     ...raw,
     tagWeights: { ...raw.tagWeights },
-    moods: { ...base.moods, ...(raw.moods ?? {}) },
     counts: { ...base.counts, ...(raw.counts ?? {}) },
   };
 }
@@ -88,41 +84,19 @@ export function applySignal(profile, title, action, { config = RECOMMENDATION_CO
   }
 
   /*
-   * Настроение — скользящее среднее с ОГРАНИЧЕННОЙ массой.
+   * Вектора настроения у человека больше нет.
    *
-   * Потолок здесь не оптимизация, а исправление: без него масса росла
-   * без предела и профиль застывал. При накопленной массе 135 новый
-   * фильм сдвигал вектор меньше чем на процент — человек менял вкусы,
-   * а лента этого уже не замечала.
-   *
-   * Ограниченная масса даёт постоянную чувствительность: последние
-   * полсотни решений всегда весят больше всей предыдущей истории.
-   * Уже накопленные профили подрезаются при первой же записи и снова
-   * начинают слушать человека.
+   * Он был усреднением всего вкуса в одну точку, а усреднение и есть
+   * диагноз: любящий «Брата» и «Кин-дза-дзу» получал центр между ними
+   * и подборку, не похожую ни на один из двух. Место этого сигнала
+   * заняла близость к конкретным любимым фильмам.
    */
-  const moodInfluence = Math.max(0, weight);
-  const moods = { ...current.moods };
-  const cap = config.decay.moodMassCap ?? 50;
-  let moodMass = Math.min(current.moodMass, cap);
-
-  if (moodInfluence > 0 && title.moods) {
-    const carried = moodMass;
-    for (const axis of MOOD_AXES) {
-      const target = title.moods[axis] ?? 50;
-      moods[axis] = Math.round(
-        (current.moods[axis] * carried + target * moodInfluence) / (carried + moodInfluence),
-      );
-    }
-    moodMass = Math.min(carried + moodInfluence, cap);
-  }
 
   const counts = { ...current.counts, [action]: (current.counts[action] ?? 0) + 1 };
 
   return pruneProfile({
     ...current,
     tagWeights,
-    moods,
-    moodMass,
     counts,
     signals: current.signals + 1,
     updatedAt: now,
@@ -154,29 +128,10 @@ export function applyRating(profile, title, rating, { config = RECOMMENDATION_CO
     tagWeights[tag] = Math.round(next * 1000) / 1000;
   }
 
-  // Настроение двигаем только похвалой: низкая оценка говорит «не то кино»,
-  // а не «мне не нравится такое настроение».
-  // Потолок массы тот же, что и у свайпов: оставь его здесь без ограничения,
-  // и профиль застывал бы через оценки ровно так же, как раньше через свайпы.
-  const moods = { ...current.moods };
-  const cap = config.decay.moodMassCap ?? 50;
-  let moodMass = Math.min(current.moodMass, cap);
-
-  if (weight > 0 && title.moods) {
-    const carried = moodMass;
-    for (const axis of MOOD_AXES) {
-      moods[axis] = Math.round(
-        (current.moods[axis] * carried + (title.moods[axis] ?? 50) * weight) / (carried + weight),
-      );
-    }
-    moodMass = Math.min(carried + weight, cap);
-  }
 
   return pruneProfile({
     ...current,
     tagWeights,
-    moods,
-    moodMass,
     counts: { ...current.counts, rated: (current.counts.rated ?? 0) + 1 },
     signals: current.signals + 1,
     updatedAt: now,
@@ -207,7 +162,7 @@ export function decayProfile(profile, { config = RECOMMENDATION_CONFIG, now = Da
     const next = Math.round(w * factor * 1000) / 1000;
     if (Math.abs(next) >= config.decay.pruneBelow) tagWeights[tag] = next;
   }
-  return { ...current, tagWeights, moodMass: current.moodMass * factor, updatedAt: now };
+  return { ...current, tagWeights, updatedAt: now };
 }
 
 /** Прогрет ли профиль настолько, чтобы ему доверять. */
@@ -244,8 +199,6 @@ export function serializeProfile(profile) {
     tagWeights: Object.fromEntries(
       Object.entries(p.tagWeights).filter(([, w]) => Number.isFinite(w)),
     ),
-    moods: Object.fromEntries(MOOD_AXES.map((a) => [a, Number.isFinite(p.moods[a]) ? p.moods[a] : 50])),
-    moodMass: Number.isFinite(p.moodMass) ? p.moodMass : 0,
     counts: p.counts,
     signals: p.signals,
     updatedAt: p.updatedAt,

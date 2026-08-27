@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { BarChart3, Crown, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
-import { Radar } from '../../ui/Radar.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
@@ -100,20 +99,20 @@ export function ProfileView({
         )}
       </div>
 
-      <section className="taste-panel">
-        <div className="section__head">
-          <h2 className="section__title">Ваше кинематографическое настроение</h2>
-          {!warm && <span className="chip chip--ice">набирается</span>}
-        </div>
-
-        <Radar vectors={[{ key: 'me', vector: taste.moods }]} />
-
+      {/*
+        * Здесь была паутинка усреднённого настроения. Убрана вместе
+        * с самим вектором: он сводил весь вкус в одну точку между
+        * любимыми фильмами, и картинка выходила не про человека,
+        * а про середину между его вкусами. Темы, которые показаны
+        * ниже, ничего не усредняют и прямо участвуют в подборе —
+        * человек узнаёт в них себя, а в пятиугольнике не узнавал.
+        */}
+      {!warm && (
         <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
-          {warm
-            ? 'Профиль прогрет — лента настроена под вас.'
-            : `Ещё ${withPlural(Math.max(0, config.exploration.warmupSignals - taste.signals), FORMS.SWIPE)}, и рекомендации станут заметно точнее. Пока показываем больше разного.`}
+          {`Ещё ${withPlural(Math.max(0, config.exploration.warmupSignals - taste.signals), FORMS.SWIPE)}, `
+            + 'и рекомендации станут заметно точнее. Пока показываем больше разного.'}
         </p>
-      </section>
+      )}
 
       <section className="section">
         <div className="section__head">

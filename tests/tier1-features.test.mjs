@@ -21,7 +21,8 @@ import { COLD_START_IDS, COLD_START_TITLES } from '../shared/config/coldStart.js
 import { BIZ, METRIC, MODULE, LEVEL, resolveEnvironment } from '../shared/telemetry/events.js';
 import { parseDsn, createSentryTransport } from '../shared/telemetry/sentryTransport.js';
 import { createEmptyProfile, applySignal, topTags, ACTION, isWarm } from '../src/engine/tasteProfile.js';
-import { rankDeck, scoreTitle, buildConsensusProfile, cosineSimilarity, moodSimilarity } from '../src/engine/ranking.js';
+import { rankDeck, scoreTitle, buildConsensusProfile, cosineSimilarity } from '../src/engine/ranking.js';
+import { moodCloseness } from '../src/engine/affinity.js';
 import { validateInitData } from '../api/_lib/telegram.js';
 import { createHmac } from 'node:crypto';
 import { LIBRARY, ALL_TITLES, TMDB_RAW_MOVIE, makeTitle, seededRandom } from './helpers/fixtures.mjs';
@@ -374,7 +375,9 @@ test('F18 · окружения разделены', () => {
 
 test('F19 · конфиг рекомендаций вынесен целиком, без хардкода в логике', () => {
   const c = RECOMMENDATION_CONFIG;
-  assert.ok(c.blend.tagWeight > 0 && c.blend.moodWeight > 0 && c.blend.qualityWeight > 0);
+  assert.ok(c.blend.affinityWeight > 0 && c.blend.tagWeight > 0 && c.blend.qualityWeight > 0);
+  // Вектор настроения человека упразднён — веса у него быть не должно.
+  assert.equal(c.blend.moodWeight, undefined);
   assert.ok(c.signals.favorite > c.signals.watched, 'избранное весит больше просмотра');
   assert.ok(c.signals.dislike < 0);
   assert.ok(c.exploration.rate > 0 && c.exploration.rate < 0.5);
@@ -428,9 +431,16 @@ test('F22 · косинус и близость настроений ведут 
   assert.equal(cosineSimilarity({ a: 1 }, {}), 0);
   const same = cosineSimilarity({ a: 10, b: 5 }, { a: 10, b: 5 });
   assert.ok(Math.abs(same - 1) < 1e-9, 'идентичные векторы дают 1');
-  assert.equal(moodSimilarity(null, null), 0.5);
-  const identical = moodSimilarity({ energy: 70 }, { energy: 70 });
-  assert.ok(identical > 0.99);
+  /*
+   * Близость настроений сравнивает теперь два ФИЛЬМА, а не человека
+   * с фильмом: вектора у человека больше нет.
+   */
+  assert.equal(moodCloseness(null, null), 0);
+  const identical = moodCloseness(
+    { energy: 70, darkness: 30, intellect: 50, emotion: 40, dynamism: 60 },
+    { energy: 70, darkness: 30, intellect: 50, emotion: 40, dynamism: 60 },
+  );
+  assert.ok(identical > 0.99, 'одинаковые фильмы дают единицу');
 });
 
 test('F23 · titleStub отдаёт компактную карточку для комнат и списков', () => {

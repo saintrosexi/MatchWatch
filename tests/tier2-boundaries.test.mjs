@@ -97,7 +97,7 @@ test('B7 · профиль вкуса чинится из любого мусо�
     const p = hydrateProfile(bad);
     assert.ok(p.tagWeights && typeof p.tagWeights === 'object');
     assert.ok(p.counts.like === 0 || typeof p.counts.like === 'number');
-    assert.equal(Object.keys(p.moods).length, 5);
+    assert.equal(p.moods, undefined);
   }
 });
 
@@ -314,14 +314,12 @@ test('B20 · сериализация профиля не пропускает N
   const dirty = hydrateProfile({
     tagWeights: { good: 1.5, bad: NaN, missing: undefined },
     moods: { energy: NaN, darkness: 70 },
-    moodMass: NaN,
     signals: 3,
   });
   const serialized = serializeProfile(dirty);
   assert.equal(serialized.tagWeights.bad, undefined, 'NaN не должен уехать в базу');
-  assert.equal(serialized.moods.energy, 50, 'сломанная ось чинится нейтральным значением');
-  assert.equal(serialized.moods.darkness, 70);
-  assert.equal(serialized.moodMass, 0);
+  assert.equal(serialized.moods, undefined, 'вектора настроения в профиле больше нет');
+  assert.equal(serialized.moodMass, undefined);
   assert.ok(JSON.stringify(serialized).length > 0);
 });
 
@@ -854,58 +852,7 @@ test('B44 · настоящие теги TMDB главнее того, что п
   assert.deepEqual(applyMarkup(title, { moods: {} }), title);
 });
 
-test('B45 · профиль настроения не застывает от количества решений', async () => {
-  const { applySignal } = await import('../src/engine/tasteProfile.js');
-  const { RECOMMENDATION_CONFIG } = await import('../shared/config/recommendation.js');
 
-  const bright = { id: 'a', tags: { comedy: 100 }, moods: { energy: 80, darkness: 10, intellect: 40, emotion: 60, dynamism: 70 } };
-  const grim = { id: 'b', tags: { horror: 100 }, moods: { energy: 40, darkness: 95, intellect: 50, emotion: 50, dynamism: 40 } };
-
-  // Триста решений про светлое кино: раньше масса дорастала до сотен.
-  let profile = null;
-  for (let i = 0; i < 300; i += 1) {
-    profile = applySignal(profile, { ...bright, id: `a${i}` }, 'favorite');
-  }
-
-  assert.ok(profile.moodMass <= RECOMMENDATION_CONFIG.decay.moodMassCap,
-    `масса обязана быть ограничена, получили ${profile.moodMass}`);
-
-  const before = profile.moods.darkness;
-
-  /*
-   * Человек передумал. Без потолка массы двадцать новых решений сдвинули
-   * бы вектор на считанные пункты: при массе 300 каждое весит треть
-   * процента. Профиль переставал слушать человека вовсе.
-   */
-  for (let i = 0; i < 20; i += 1) {
-    profile = applySignal(profile, { ...grim, id: `b${i}` }, 'favorite');
-  }
-
-  const shift = profile.moods.darkness - before;
-  assert.ok(shift > 20,
-    `двадцать решений должны заметно сдвинуть вектор, сдвинулось на ${shift}`);
-});
-
-test('B46 · накопленный до потолка профиль подрезается и снова слушает', async () => {
-  const { applySignal } = await import('../src/engine/tasteProfile.js');
-  const { RECOMMENDATION_CONFIG } = await import('../shared/config/recommendation.js');
-  const cap = RECOMMENDATION_CONFIG.decay.moodMassCap;
-
-  // Профили, накопленные до исправления, приходят с массой больше потолка.
-  const heavy = {
-    tagWeights: {}, moods: { energy: 50, darkness: 20, intellect: 50, emotion: 50, dynamism: 50 },
-    moodMass: 135, counts: {}, signals: 300,
-  };
-
-  const next = applySignal(heavy, {
-    id: 'x', tags: { horror: 100 },
-    moods: { energy: 50, darkness: 100, intellect: 50, emotion: 50, dynamism: 50 },
-  }, 'favorite');
-
-  assert.ok(next.moodMass <= cap, 'старая масса подрезается при первой же записи');
-  assert.ok(next.moods.darkness > 21,
-    `после подрезки один сигнал уже двигает вектор, получили ${next.moods.darkness}`);
-});
 
 test('B47 · решение человека главнее и TMDB, и модели', async () => {
   const { applyCurated, russianEra } = await import('../shared/model/curated.js');
@@ -1073,4 +1020,106 @@ test('B51 · ускорение подбора не меняет ни опору
   const top = (rows) => rows.slice().sort((a, b) => b[1] - a[1]).slice(0, 25).map((r) => r[0]);
   assert.deepEqual(top(byIndex), top(byBrute),
     'первая двадцатка пятёрка обязана совпадать карточка в карточку');
+});
+
+test('B52 · у человека нет вектора настроения, у фильма — есть', async () => {
+  const { createEmptyProfile, applySignal, serializeProfile, ACTION } = await import('../src/engine/tasteProfile.js');
+  const { buildConsensusProfile } = await import('../src/engine/ranking.js');
+  const { RECOMMENDATION_CONFIG } = await import('../shared/config/recommendation.js');
+
+  const film = {
+    id: 'f1', title: 'Фильм', tags: { drama: 90 },
+    moods: { energy: 20, darkness: 90, intellect: 60, emotion: 80, dynamism: 15 },
+  };
+
+  /*
+   * Вектор человека был усреднением всего вкуса в одну точку, и это
+   * математически обречено на серость: любящий «Брата» (мрак 80) и
+   * «Кин-дза-дзу» (мрак 40) получал центр в районе шестидесяти —
+   * то есть подборку, не похожую ни на один из двух.
+   */
+  const profile = applySignal(createEmptyProfile(), film, ACTION.FAVORITE);
+  assert.equal(profile.moods, undefined, 'настроение не должно накапливаться в профиле');
+  assert.equal(profile.moodMass, undefined);
+  assert.equal(serializeProfile(profile).moods, undefined, 'и не должно уезжать в базу');
+
+  // У ФИЛЬМА вектор остаётся: он нужен для запроса «хочу сегодня мрачное».
+  assert.equal(film.moods.darkness, 90);
+
+  // В смешивании веса для него тоже быть не должно.
+  assert.equal(RECOMMENDATION_CONFIG.blend.moodWeight, undefined);
+
+  /*
+   * Комната — то место, ради которого убирали в первую очередь.
+   * Усреднение двух разных людей давало середину между ними: у него
+   * мрак 80, у неё 40, комната искала шестьдесят.
+   */
+  const consensus = buildConsensusProfile([
+    applySignal(createEmptyProfile(), film, ACTION.FAVORITE),
+    applySignal(createEmptyProfile(), { ...film, id: 'f2', tags: { comedy: 90 } }, ACTION.FAVORITE),
+  ]);
+  assert.equal(consensus.moods, undefined, 'комната не усредняет настроение участников');
+  assert.ok(Object.keys(consensus.tagWeights).length > 0, 'а темы по-прежнему складывает');
+});
+
+test('B53 · опоры берут теги из каталога, а не из снимка истории', async () => {
+  const { resolveAnchors } = await import('../src/engine/userData.js');
+  const { api } = await import('../src/lib/api.js');
+
+  const original = api.enrich;
+  let askedIds = [];
+
+  api.enrich = async (ids) => {
+    askedIds = [...askedIds, ...ids];
+    return {
+      titles: ids.map((id) => ({
+        id: `tmdb:movie:${id}`,
+        title: `Фильм ${id}`,
+        tags: { drama: 80, crime: 60 },
+        moods: { energy: 40, darkness: 70, intellect: 50, emotion: 60, dynamism: 30 },
+      })),
+    };
+  };
+
+  try {
+    /*
+     * В истории решений лежит компактная карточка: id, название, постер,
+     * год. Тегов в ней нет НИКОГДА. Первая версия читала теги оттуда
+     * и молча оставалась без опор у всех до единого — модель близости
+     * не работала ни разу и не могла бы заработать.
+     */
+    const resolved = await resolveAnchors({
+      loved: [{ id: 'tmdb:movie:111', title: 'Брат' }],
+      refused: [{ id: 'tmdb:movie:222', title: 'Что-то' }],
+    });
+
+    assert.deepEqual(askedIds.sort(), [111, 222], 'полные карточки берутся из каталога');
+    assert.equal(resolved.loved.length, 1);
+    assert.ok(Object.keys(resolved.loved[0].tags).length > 0, 'у опоры обязаны быть теги');
+    assert.ok(resolved.loved[0].moods, 'и вектор настроения фильма');
+    assert.equal(resolved.refused.length, 1);
+  } finally {
+    api.enrich = original;
+  }
+});
+
+test('B54 · опора без тегов отбрасывается, а не ломает подбор', async () => {
+  const { resolveAnchors } = await import('../src/engine/userData.js');
+  const { api } = await import('../src/lib/api.js');
+
+  const original = api.enrich;
+  api.enrich = async (ids) => ({
+    // Каталог знает фильм, но разметки у него ещё нет.
+    titles: ids.map((id) => ({ id: `tmdb:movie:${id}`, title: `Ф${id}`, tags: {} })),
+  });
+
+  try {
+    const resolved = await resolveAnchors({ loved: [{ id: 'tmdb:movie:5' }], refused: [] });
+    assert.deepEqual(resolved.loved, [], 'мерить близость нечем — опорой быть не может');
+  } finally {
+    api.enrich = original;
+  }
+
+  // Пустой вход не должен ходить в сеть вовсе.
+  assert.deepEqual(await resolveAnchors(null), { loved: [], refused: [] });
 });
