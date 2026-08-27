@@ -220,6 +220,8 @@ function shapeState(code, room, members, swipes, matches, watchlist) {
        * кто прямо сейчас свайпает, — плохой размен.
        */
       mood: normalizeMoodRequest(m.mood_request),
+      /** Любимые фильмы участника — опоры для общей подборки. */
+      lovedIds: m.taste?.lovedIds ?? [],
     }])),
     profiles: Object.fromEntries((members ?? []).filter((m) => m.taste).map((m) => [m.user_id, m.taste])),
     swipes: swipeMap,

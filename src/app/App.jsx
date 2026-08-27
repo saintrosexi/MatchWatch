@@ -126,7 +126,28 @@ export default function App() {
     () => user ?? { uid: 'anonymous', displayName: 'Гость', photoURL: null },
     [user],
   );
-  const room = useRoom({ user: roomUser, taste });
+  /*
+   * Полные карточки опор. Историю решений мы получаем сразу, но теги
+   * в ней не лежат — снимок карточки компактный, и первая версия
+   * молча оставалась без опор у всех до единого. Догружаем из каталога
+   * отдельно, не задерживая первый экран: без опор подборка работает
+   * по накопленному вектору, просто хуже.
+   */
+  const [anchors, setAnchors] = useState(null);
+
+  useEffect(() => {
+    const raw = userState?.anchors;
+    if (!raw?.loved?.length && !raw?.refused?.length) { setAnchors(null); return undefined; }
+
+    let cancelled = false;
+    resolveAnchors(raw)
+      .then((resolved) => { if (!cancelled) setAnchors(resolved); })
+      .catch(() => { if (!cancelled) setAnchors(null); });
+
+    return () => { cancelled = true; };
+  }, [userState?.anchors]);
+
+  const room = useRoom({ user: roomUser, taste, anchors });
   const deckPoolRef = useRef([]);
   const deckRef = useRef(null);
   const publishedFor = useRef(null);
@@ -260,26 +281,29 @@ export default function App() {
   }, [userState?.history, deckMode, room.state, user?.uid]);
 
 
+
+
   /*
-   * Полные карточки опор. Историю решений мы получаем сразу, но теги
-   * в ней не лежат — снимок карточки компактный, и первая версия
-   * молча оставалась без опор у всех до единого. Догружаем из каталога
-   * отдельно, не задерживая первый экран: без опор подборка работает
-   * по накопленному вектору, просто хуже.
+   * Опоры всей комнаты: свои плюс любимые остальных участников.
+   *
+   * Раньше сюда уходили опоры только того, кто нажал «собрать колоду».
+   * Собрал он — вечер по его вкусу, собрала она — по её, и никогда
+   * по обоим: половине комнаты подборка была чужой.
    */
-  const [anchors, setAnchors] = useState(null);
+  const roomAnchors = useCallback(async () => {
+    const ids = room.lovedIds ?? [];
+    if (!ids.length) return anchors;
 
-  useEffect(() => {
-    const raw = userState?.anchors;
-    if (!raw?.loved?.length && !raw?.refused?.length) { setAnchors(null); return undefined; }
+    const shared = await resolveAnchors({ loved: ids.map((id) => ({ id })), refused: [] })
+      .catch(() => ({ loved: [], refused: [] }));
 
-    let cancelled = false;
-    resolveAnchors(raw)
-      .then((resolved) => { if (!cancelled) setAnchors(resolved); })
-      .catch(() => { if (!cancelled) setAnchors(null); });
+    const seen = new Set();
+    const loved = [...(anchors?.loved ?? []), ...shared.loved]
+      .filter((a) => (seen.has(a.id) ? false : seen.add(a.id)));
 
-    return () => { cancelled = true; };
-  }, [userState?.anchors]);
+    // Отвергнутое остаётся своим: чужие отказы уже учтены исключениями.
+    return { loved, refused: anchors?.refused ?? [] };
+  }, [room.lovedIds, anchors]);
 
   const deck = useDeck({
     mode: deckMode,
@@ -343,9 +367,9 @@ export default function App() {
 
     roomExcludedTitles(room.code)
       .catch(() => [])
-      .then((excluded) => buildRoomDeck({
+      .then(async (excluded) => buildRoomDeck({
         consensus: room.consensus ?? taste,
-        anchors,
+        anchors: await roomAnchors(),
         filters,
         history: roomHistory(room.state, user?.uid),
         excludeIds: [...published, ...excluded],
@@ -543,7 +567,7 @@ export default function App() {
       const asked = mergeRequestFilters(room.moodRequests ?? []);
       const { deck } = await buildRoomDeck({
         consensus: room.consensus ?? taste,
-        anchors,
+        anchors: await roomAnchors(),
         filters: { ...asked, ...filters },
         history: roomHistory(room.state, user?.uid),
         excludeIds: excluded,

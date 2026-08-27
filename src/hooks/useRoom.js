@@ -21,7 +21,7 @@ import { BIZ, LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { haptic } from '../lib/telegram.js';
 import { sfx } from '../lib/sound.js';
 
-export function useRoom({ user, taste }) {
+export function useRoom({ user, taste, anchors }) {
   const [code, setCode] = useState(null);
   const [state, setState] = useState(null);
   const [status, setStatus] = useState('idle'); // idle | joining | live | error
@@ -121,7 +121,7 @@ export function useRoom({ user, taste }) {
     setError(null);
     setStatus('joining');
     try {
-      const newCode = await createRoom({ user, deck, filters, profile: compactTaste(taste) });
+      const newCode = await createRoom({ user, deck, filters, profile: compactTaste(taste, anchors) });
       setCode(newCode);
       rememberRoom({ code: newCode, role: 'host' });
       sfx.join();
@@ -138,7 +138,7 @@ export function useRoom({ user, taste }) {
     setError(null);
     setStatus('joining');
     try {
-      const { code: joined } = await joinRoom(rawCode, { user, source, profile: compactTaste(taste) });
+      const { code: joined } = await joinRoom(rawCode, { user, source, profile: compactTaste(taste, anchors) });
       setCode(joined);
       rememberRoom({ code: joined, role: 'member' });
       sfx.join();
@@ -292,6 +292,14 @@ export function useRoom({ user, taste }) {
     members, onlineCount, progress,
     growDeck, setMood, kick, makeHost,
     nearMatches, refreshNearMatches,
+    /**
+     * Любимые фильмы ВСЕХ участников, без повторов.
+     *
+     * Похожее на его любимое и похожее на её любимое попадают в подборку
+     * оба — вместо одного компромисса посередине, не похожего ни на что
+     * из того, что любит хоть кто-то.
+     */
+    lovedIds: [...new Set(members.flatMap((m) => m.lovedIds ?? []))],
     /** Запросы всех участников — из них складывается общая колода. */
     moodRequests: members.map((m) => m.mood ?? { keys: [], ai: null }),
     myMood: members.find((m) => m.uid === user?.uid)?.mood ?? { keys: [], ai: null },
@@ -318,16 +326,30 @@ export function useRoom({ user, taste }) {
   };
 }
 
-/** В комнату уезжает только то, что нужно для компромисса, — не весь профиль. */
-function compactTaste(taste) {
-  if (!taste) return null;
-  const top = Object.entries(taste.tagWeights ?? {})
+/**
+ * В комнату уезжает только то, что нужно для компромисса, — не весь профиль.
+ *
+ * Кроме тем едут идентификаторы любимых фильмов. Без них подборка
+ * строилась по опорам ОДНОГО человека — того, кто нажал «собрать
+ * колоду»: собрал он — вечер по его вкусу, собрала она — по её,
+ * и никогда по обоим. Со стороны это и выглядело как «попадается
+ * непонятно что»: половине комнаты подборка была чужой.
+ *
+ * Едут именно идентификаторы, а не карточки: полные данные всё равно
+ * добираются из каталога, а гонять их через базу — лишний вес в каждой
+ * строке участника.
+ */
+function compactTaste(taste, anchors) {
+  if (!taste && !anchors) return null;
+  const top = Object.entries(taste?.tagWeights ?? {})
     .filter(([, w]) => w > 0)
     .sort(([, a], [, b]) => b - a)
     .slice(0, 60);
+
   return {
     tagWeights: Object.fromEntries(top),
-    signals: taste.signals ?? 0,
+    signals: taste?.signals ?? 0,
+    lovedIds: (anchors?.loved ?? []).slice(0, 20).map((a) => a.id),
   };
 }
 

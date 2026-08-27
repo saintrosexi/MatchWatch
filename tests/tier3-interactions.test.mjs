@@ -647,3 +647,49 @@ test('X22 · без любимых пул наполняется так же п�
     api.catalog = original;
   }
 });
+
+test('X23 · комната опирается на любимые ОБОИХ, а не одного', async () => {
+  const { rankDeck } = await import('../src/engine/ranking.js');
+  const { createEmptyProfile, applySignal, ACTION } = await import('../src/engine/tasteProfile.js');
+  const { buildConsensusProfile } = await import('../src/engine/ranking.js');
+
+  const mk = (id, title, tags) => ({
+    id, title, tags, quality: 0.6,
+    moods: { energy: 50, darkness: 50, intellect: 50, emotion: 50, dynamism: 50 },
+  });
+
+  const his = mk('h', 'Брат', { crime: 100, loner: 90 });
+  const hers = mk('s', 'Дневник памяти', { romance: 100, tenderness: 90 });
+
+  const forHim = mk('c1', 'Криминальная драма', { crime: 95, loner: 80 });
+  const forHer = mk('c2', 'Мелодрама', { romance: 95, tenderness: 80 });
+  const forNobody = mk('c3', 'Ни то ни сё', { drama: 50 });
+
+  const consensus = buildConsensusProfile([
+    applySignal(createEmptyProfile(), his, ACTION.FAVORITE),
+    applySignal(createEmptyProfile(), hers, ACTION.FAVORITE),
+  ]);
+
+  /*
+   * Раньше в комнату уходили опоры только того, кто нажал «собрать
+   * колоду»: собрал он — вечер по его вкусу, собрала она — по её,
+   * и никогда по обоим. Половине комнаты подборка была чужой.
+   */
+  const deck = rankDeck([forHim, forHer, forNobody], consensus, {
+    loved: [his, hers], size: 3, explorationRate: 0,
+  });
+  const byId = Object.fromEntries(deck.map((e) => [e.id, e]));
+
+  assert.ok(byId.c1.score > byId.c3.score, 'фильм под его вкус обязан обгонять ничейный');
+  assert.ok(byId.c2.score > byId.c3.score, 'и фильм под её вкус тоже');
+  assert.equal(byId.c1.becauseOf.title, 'Брат');
+  assert.equal(byId.c2.becauseOf.title, 'Дневник памяти');
+
+  // С опорами одного человека второй остаётся ни с чем — это и чинили.
+  const onlyHis = rankDeck([forHim, forHer], consensus, {
+    loved: [his], size: 2, explorationRate: 0,
+  });
+  const hisOnly = Object.fromEntries(onlyHis.map((e) => [e.id, e]));
+  assert.ok(hisOnly.c1.score > hisOnly.c2.score,
+    'при опорах одного участника подборка кренится в его сторону');
+});

@@ -16,9 +16,22 @@ export const CURRENT_YEAR = new Date().getFullYear();
 /** Граница эпох — распад СССР. */
 export const SOVIET_ERA_END = 1991;
 
+/**
+ * Умолчания: человек, пришедший выбирать кино, не должен ничего
+ * ограничивать заранее.
+ *
+ * Здесь стоял 1970 год — то есть половина истории кино отсекалась
+ * ещё до всякого подбора, и «Бриллиантовая рука», и «Двенадцать
+ * разгневанных мужчин» не могли попасться в принципе. Человек этого
+ * не выбирал: так просто было записано в умолчаниях.
+ *
+ * Сузить выбор он может сам в любой момент — фильтры на месте. Но
+ * начинать надо со всего каталога, иначе «одни и те же фильмы»
+ * получаются ещё до того, как рекомендатель скажет своё слово.
+ */
 export const DEFAULT_FILTERS = Object.freeze({
   genres: [],
-  yearFrom: 1970,
+  yearFrom: 1920,
   yearTo: CURRENT_YEAR,
   minRating: 0,
   sort: 'popularity',
@@ -42,7 +55,7 @@ export const COLLECTIONS = Object.freeze([
   {
     key: 'all',
     label: 'Всё кино',
-    filters: { originalLanguage: null, yearFrom: 1970, yearTo: CURRENT_YEAR },
+    filters: { originalLanguage: null, yearFrom: 1920, yearTo: CURRENT_YEAR },
   },
   {
     key: 'ru',

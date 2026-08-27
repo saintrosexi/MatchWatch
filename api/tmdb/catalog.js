@@ -110,8 +110,16 @@ export default withHandler({ methods: ['GET'], module: MODULE.TMDB_PROXY, cacheS
         'vote_average.gte': minRating ?? undefined,
         'with_runtime.lte': maxRuntime ?? undefined,
         with_original_language: originalLanguage ?? undefined,
-        // Без порога голосов discover вытаскивает случайный шум с рейтингом 10.
-        'vote_count.gte': minRating ? 200 : 60,
+        /*
+         * Порог голосов нужен против шума: без него discover вытаскивает
+         * случайные записи с оценкой 10 и тремя голосами.
+         *
+         * Но шестьдесят — это много для старого и нишевого кино: у
+         * «Кавказской пленницы» на TMDB двадцать девять голосов. Порог
+         * снижен до двадцати пяти, и заодно поднят минимальный рейтинг,
+         * когда человек его не задал: шум отсекается им, а не голосами.
+         */
+        'vote_count.gte': minRating ? 200 : 25,
       }
     : { page, language };
 
