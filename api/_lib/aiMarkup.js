@@ -161,6 +161,29 @@ export const markupHandler = withHandler(
     const done = results.filter((r) => r.ok).length;
     if (done) logMetric('ai_markup', { value: done, context: { model } });
 
+    const quotaExhausted = results.some((r) => r.quota || r.skipped);
+
+    /*
+     * Кончившаяся квота гасит обход на несколько часов.
+     *
+     * Сами фильмы уже вернулись в очередь выше — бронь снята, попытка
+     * не засчитана, никто ничего не потерял. Но без паузы расписание
+     * продолжало бы будить разметку каждые пятнадцать минут до утра
+     * и получать тот же отказ: сотня холостых заходов за ночь.
+     *
+     * Три часа — компромисс. Дневная квота возвращается раз в сутки,
+     * и точное время сброса зависит от часового пояса ключа, поэтому
+     * ждать ровно до утра нельзя: квота бывает и минутной, и тогда
+     * ждать до утра значит потерять день впустую.
+     */
+    if (quotaExhausted && !dry) {
+      const until = new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString();
+      // Своей неудачей пауза прогон не заваливает: разметка уже
+      // сделана, и потерять её из-за служебной записи было бы обидно.
+      await sbRpc('set_ops_config', { p_key: 'markup_paused_until', p_value: until })
+        .catch(() => {});
+    }
+
     return {
       model,
       claimed: films.length,
@@ -171,7 +194,7 @@ export const markupHandler = withHandler(
        * что продолжать бессмысленно, — иначе он прогонит весь каталог
        * в стену, как это уже случилось.
        */
-      quotaExhausted: results.some((r) => r.quota || r.skipped),
+      quotaExhausted,
       /** Что модель просила, но словарь не знает: подсказка, чего дописать. */
       dropped: [...new Set(results.flatMap((r) => r.dropped ?? []))],
       results,

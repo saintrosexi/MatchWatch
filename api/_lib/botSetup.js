@@ -15,7 +15,7 @@
  * проверять настройку, не переписывая её заново.
  */
 
-import { withHandler, ApiError, requireSecret } from './http.js';
+import { withHandler, ApiError, requireSecret, publicBase } from './http.js';
 import { sbRpc, hasServiceKey } from './supabaseAdmin.js';
 import { callBot, miniAppUrl, appLink } from './botApi.js';
 import { describeBot, hasBotToken } from './telegram.js';
@@ -115,12 +115,3 @@ function readiness() {
  * подставляет клиент, и вебхук уехал бы туда, куда попросил чужой
  * запрос. Host остаётся запасным вариантом для локальной отладки.
  */
-function publicBase(req) {
-  const explicit = (process.env.PUBLIC_APP_URL ?? '').trim();
-  if (explicit) return explicit.replace(/\/$/, '');
-
-  const vercel = (process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL ?? '').trim();
-  if (vercel) return `https://${vercel.replace(/^https?:\/\//, '').replace(/\/$/, '')}`;
-
-  return `https://${req.headers?.host ?? 'localhost'}`;
-}

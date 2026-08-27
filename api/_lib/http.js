@@ -180,3 +180,26 @@ export function withHandler(options, handler) {
     }
   };
 }
+
+/**
+ * Свой публичный адрес.
+ *
+ * Нужен там, где сервис зовёт сам себя со стороны: вебхук Telegram и
+ * обход разметки из базы. Оба должны считать этот адрес одинаково —
+ * иначе бот зарегистрирует вебхук на одном хосте, а база пойдёт
+ * стучаться на другой, и разойдутся они молча.
+ *
+ * Порядок важен. VERCEL_URL у каждой выкладки свой, включая предпросмотры,
+ * поэтому явная переменная идёт первой: без неё настройка с превью
+ * прописала бы в базу временный адрес, который завтра перестанет
+ * существовать.
+ */
+export function publicBase(req) {
+  const explicit = (process.env.PUBLIC_APP_URL ?? '').trim();
+  if (explicit) return explicit.replace(/\/$/, '');
+
+  const vercel = (process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL ?? '').trim();
+  if (vercel) return `https://${vercel.replace(/^https?:\/\//, '').replace(/\/$/, '')}`;
+
+  return `https://${req.headers?.host ?? 'localhost'}`;
+}

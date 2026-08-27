@@ -16,6 +16,7 @@ import { digestHandler } from '../_lib/opsDigest.js';
 import { eventsHandler } from '../_lib/opsEvents.js';
 import { metricsHandler } from '../_lib/opsMetrics.js';
 import { roomsGcHandler } from '../_lib/opsRoomsGc.js';
+import { markupCronHandler } from '../_lib/opsMarkupCron.js';
 import { sendJson } from '../_lib/http.js';
 
 const ROUTES = {
@@ -23,6 +24,7 @@ const ROUTES = {
   events: eventsHandler,
   metrics: metricsHandler,
   'rooms-gc': roomsGcHandler,
+  'markup-cron': markupCronHandler,
 };
 
 export default async function handler(req, res) {
