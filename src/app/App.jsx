@@ -59,7 +59,7 @@ import { ACTION, createEmptyProfile, hydrateProfile } from '../engine/tasteProfi
 import {
   loadUserState, subscribeUserState, recordReaction, toggleFavorite,
   undoDecision, markWatchedPersonal, rateTitle,
-  applyLocalDecision, removeLocalDecision,
+  applyLocalDecision, removeLocalDecision, mergeUserState,
   resolveAnchors,
 } from '../engine/userData.js';
 import { buildRoomDeck, roomHistory } from '../engine/roomDeck.js';
@@ -229,7 +229,7 @@ export default function App() {
     loadUserState(user.uid)
       .then((state) => {
         if (!alive) return;
-        setUserState(state);
+        setUserState((prev) => mergeUserState(prev, state));
         setTaste(hydrateProfile(state.taste));
       })
       .catch((error) => {
@@ -240,9 +240,15 @@ export default function App() {
         trackError('Не удалось загрузить состояние пользователя', {
           module: MODULE.TASTE, level: LEVEL.ERROR, error,
         });
-        setUserState({
+        /*
+         * Пустое состояние ставим только с нуля. Если что-то уже было
+         * показано, оно и остаётся: перезатирать его пустотой из-за
+         * одной неудачной попытки — ровно то, что человек читает как
+         * «у меня пропали все списки».
+         */
+        setUserState((prev) => prev ?? {
           profile: {}, access: { tier: 'free', stars: 0 },
-          history: {}, wishlist: {}, watched: {}, favorites: {}, matches: {},
+          history: {}, wishlist: {}, watched: {}, favorites: {}, ratings: {}, matches: {},
         });
         toasts.error('История решений не загрузилась — лента может показать уже просмотренное.');
       });
@@ -251,7 +257,11 @@ export default function App() {
     // иначе пять таблиц пришлось бы сливать вручную и расхождения неизбежны.
     const unsubscribe = subscribeUserState(user.uid, () => {
       if (!alive) return;
-      loadUserState(user.uid).then((state) => { if (alive) setUserState(state); });
+      loadUserState(user.uid).then((state) => {
+        // Сбойный разрез не должен стирать то, что уже показано:
+        // «список не приехал» и «список пуст» выглядят одинаково.
+        if (alive) setUserState((prev) => mergeUserState(prev, state));
+      });
     });
 
     const stopConfig = initRemoteConfig({ uid: user.uid });
@@ -559,6 +569,19 @@ export default function App() {
 
   const handleToggleWatched = useCallback(async (title) => {
     const watched = history[title.id] === 'watched';
+
+    /*
+     * Списки обновляем здесь же, а не ждём события из базы.
+     *
+     * Соседние обработчики так и делают, а этот единственный полагался
+     * на живую подписку — и отметка не появлялась в «Просмотрено» до
+     * перезагрузки всякий раз, когда канал обрывался. В Telegram он
+     * обрывается регулярно.
+     */
+    setUserState((prev) => (watched
+      ? removeLocalDecision(prev, title.id)
+      : applyLocalDecision(prev, title, ACTION.WATCHED)));
+
     const nextTaste = await markWatchedPersonal({ uid: user?.uid, title, taste, watched: !watched });
     setTaste(nextTaste);
     if (room.code) await room.markWatched(title.id, !watched);

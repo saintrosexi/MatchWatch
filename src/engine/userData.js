@@ -17,10 +17,10 @@ import { titleStub, parseTitleId } from '../../shared/model/title.js';
 import { serializeProfile, hydrateProfile, decayProfile, applySignal, applyRating, ACTION } from './tasteProfile.js';
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
 import { durableWrite, registerHandler } from '../lib/outbox.js';
-import { trackMetric } from '../lib/telemetry.js';
+import { trackMetric, trackError } from '../lib/telemetry.js';
 import { api } from '../lib/api.js';
 import { RECOMMENDATION_CONFIG } from '../../shared/config/recommendation.js';
-import { METRIC, MODULE } from '../../shared/telemetry/events.js';
+import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
 
 /** Профиль вкуса из базы приезжает в snake_case — приводим к внутренней форме. */
@@ -56,7 +56,45 @@ export async function loadUserState(uid) {
     supabase.from('user_matches').select('*').eq('user_id', uid).order('created_at', { ascending: false }).limit(200),
   ]);
 
+  /*
+   * Какие источники не ответили.
+   *
+   * Раньше ошибки каждого из пяти запросов молча превращались в пустоту:
+   * supabase-js не бросает исключение, а возвращает `{ data: null, error }`,
+   * и `?? []` ниже делал из отказа валидный пустой список. Функция при
+   * этом возвращала совершенно правдоподобное состояние, а подписка
+   * записывала эту пустоту поверх нормальных данных — и у человека
+   * на глазах исчезали «Буду смотреть», «Просмотрено» и «Оценки»
+   * (все три — разрезы одной таблицы), пока «Нравится» и «Мэтчи»
+   * из других таблиц оставались на месте.
+   *
+   * Само по себе это не редкость: сеть под Telegram моргает регулярно.
+   * Поэтому сбой теперь называется вслух, а вызывающий код по этому
+   * списку понимает, чего НЕ ЗНАЕТ, и оставляет прежнее вместо пустого.
+   */
+  const failed = [
+    profile.error && 'profile',
+    taste.error && 'taste',
+    history.error && 'history',
+    favorites.error && 'favorites',
+    matches.error && 'matches',
+  ].filter(Boolean);
+
+  if (failed.length) {
+    trackError('Состояние пользователя загружено не полностью', {
+      module: MODULE.TASTE,
+      level: LEVEL.WARNING,
+      context: {
+        failed: failed.join(','),
+        reason: (history.error ?? profile.error ?? taste.error
+          ?? favorites.error ?? matches.error)?.message?.slice(0, 120) ?? null,
+      },
+    });
+  }
+
   return {
+    partial: failed.length > 0,
+    failed,
     profile: profile.data ?? {},
     access: {
       tier: profile.data?.access_tier ?? 'free',
@@ -107,6 +145,41 @@ export async function loadUserState(uid) {
       at: new Date(r.created_at).getTime(),
     }])),
   };
+}
+
+/**
+ * Склейка нового состояния с прежним, когда часть источников не ответила.
+ *
+ * Пустой список и «список не приехал» выглядят на экране одинаково, но
+ * значат противоположное. Показать пустоту вместо непришедших данных —
+ * значит соврать, что человек ничего не отмечал; поэтому по сбойным
+ * разрезам остаётся прежнее, а по остальным приезжает свежее.
+ *
+ * История приходит одной таблицей и разбирается на четыре разреза —
+ * если не приехала она, вернуть надо все четыре сразу, иначе списки
+ * разъедутся между собой.
+ */
+export function mergeUserState(prev, next) {
+  if (!prev || !next?.partial) return next;
+
+  const merged = { ...next };
+  const lost = new Set(next.failed ?? []);
+
+  if (lost.has('history')) {
+    merged.history = prev.history;
+    merged.wishlist = prev.wishlist;
+    merged.watched = prev.watched;
+    merged.ratings = prev.ratings;
+    merged.anchors = prev.anchors;
+  }
+  if (lost.has('favorites')) merged.favorites = prev.favorites;
+  if (lost.has('matches')) merged.matches = prev.matches;
+  if (lost.has('taste')) merged.taste = prev.taste;
+  if (lost.has('profile')) {
+    merged.profile = prev.profile;
+    merged.access = prev.access;
+  }
+  return merged;
 }
 
 /**

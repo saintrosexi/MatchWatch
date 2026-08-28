@@ -111,8 +111,21 @@ export function SwipeDeck({
       const target = e.target;
       if (typeof target?.matches === 'function'
         && target.matches('input, textarea, [contenteditable]')) return;
-      const wish = () => { haptic('medium'); sfx.like(); commit(ACTION.LATER); };
-      const seen = () => { haptic('medium'); sfx.tick(); commit(ACTION.WATCHED); };
+      /*
+       * В комнате личных пометок нет — ни кнопок, ни клавиш.
+       *
+       * Кнопки там скрыты, а клавиши оставались живыми: нажатие
+       * проходило, обработчик решения выходил раньше записи, и отметка
+       * исчезала в никуда. Молча потерянное действие хуже недоступного.
+       */
+      const wish = () => {
+        if (compact) return;
+        haptic('medium'); sfx.like(); commit(ACTION.LATER);
+      };
+      const seen = () => {
+        if (compact) return;
+        haptic('medium'); sfx.tick(); commit(ACTION.WATCHED);
+      };
       const map = {
         ArrowLeft: () => { haptic('light'); sfx.pass(); fling('left', 'pass'); },
         ArrowRight: () => { haptic('success'); sfx.favorite(); fling('right', 'like'); },
@@ -129,7 +142,7 @@ export function SwipeDeck({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [current, fling, commit, onOpenDetails, onUndo]);
+  }, [current, fling, commit, onOpenDetails, onUndo, compact]);
 
   // Пока едет следующая пачка, финальный экран показывать нельзя:
   // колода не кончилась, просто очередь на секунду опустела.

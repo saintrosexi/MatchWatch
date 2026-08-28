@@ -264,8 +264,14 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-modal);
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
+  /*
+   * Плотная подложка вместо размытия во весь экран.
+   *
+   * Пока открыта шторка с описанием, размытие живёт всё это время,
+   * а под ним лежит колода, которая никуда не делась. Самый дорогой
+   * эффект в приложении — ради того, что и так закрыто на три четверти.
+   */
+  background: rgba(0, 0, 0, 0.86);
   display: flex;
   align-items: flex-end;
   justify-content: center;
