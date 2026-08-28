@@ -18,7 +18,7 @@ import { TelegramLinkCard } from './TelegramLinkCard.jsx';
 export function ProfileView({
   user, taste, access, matches = {}, favorites = {}, ratings = {},
   prefs, onPrefsChange, onLogout, onOpenDashboard, onOpenTitle,
-  onEditProfile, onOpenFriends, profile, auth, toasts,
+  onEditProfile, onEditShowcase, onOpenFriends, profile, auth, toasts,
 }) {
   const [showAllTags, setShowAllTags] = useState(false);
   const tags = useMemo(() => topTags(taste, showAllTags ? 40 : 14), [taste, showAllTags]);
@@ -60,6 +60,15 @@ export function ProfileView({
           <button type="button" className="btn btn--ghost btn--sm" onClick={onEditProfile}>
             <Pencil size={16} /> Редактировать
           </button>
+          {/*
+            * Витрина отдельно от «редактировать»: там имя и ник — кто вы,
+            * здесь — что из уже отмеченного показывать другим.
+            */}
+          {onEditShowcase && (
+            <button type="button" className="btn btn--ghost btn--sm" onClick={onEditShowcase}>
+              <Sparkles size={16} /> Витрина
+            </button>
+          )}
           {onOpenFriends && (
             <button type="button" className="btn btn--ghost btn--sm" onClick={onOpenFriends}>
               <Users size={16} /> Друзья

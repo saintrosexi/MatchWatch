@@ -38,6 +38,8 @@ const MatchCelebration = lazy(retryChunk(() => import('../features/rooms/MatchCe
   .then((m) => ({ default: m.MatchCelebration })), 'MatchCelebration'));
 const ProfileEditor = lazy(retryChunk(() => import('../features/profile/ProfileEditor.jsx')
   .then((m) => ({ default: m.ProfileEditor })), 'ProfileEditor'));
+const ShowcaseEditor = lazy(retryChunk(() => import('../features/profile/ShowcaseEditor.jsx')
+  .then((m) => ({ default: m.ShowcaseEditor })), 'ShowcaseEditor'));
 const PublicProfileView = lazy(retryChunk(() => import('../features/profile/PublicProfileView.jsx')
   .then((m) => ({ default: m.PublicProfileView })), 'PublicProfileView'));
 const DashboardView = lazy(retryChunk(() => import('../features/profile/DashboardView.jsx')
@@ -104,6 +106,7 @@ export default function App() {
   const [filters, setFilters] = useState(() => loadLocal(STORAGE_KEYS.FILTERS, DEFAULT_FILTERS));
 
   const [userState, setUserState] = useState(null);
+  const [showcaseOpen, setShowcaseOpen] = useState(false);
   const [taste, setTaste] = useState(createEmptyProfile);
 
   const [detailsEntry, setDetailsEntry] = useState(null);
@@ -829,7 +832,7 @@ export default function App() {
     setView, setPrefs, setActorDeck, setRoomSession, setDetailsEntry,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
-    setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection,
+    setEditorOpen, setShowcaseOpen, publicProfile, setPublicProfile, meTab, collectionSection,
     desktopShell: platform.shell === 'desktop',
     buildSharedDeck, deckBuilding,
   });
@@ -928,6 +931,16 @@ export default function App() {
           onSaved={(saved) => setUserState((prev) => (prev ? { ...prev, profile: saved ?? prev.profile } : prev))}
         />
 
+        <ShowcaseEditor
+          open={showcaseOpen}
+          onClose={() => setShowcaseOpen(false)}
+          uid={user?.uid}
+          profile={userState?.profile}
+          favorites={userState?.favorites ?? {}}
+          toasts={toasts}
+          onSaved={(saved) => setUserState((prev) => (prev ? { ...prev, profile: saved ?? prev.profile } : prev))}
+        />
+
         <DetailsSheet
           open={Boolean(detailsEntry)}
           entry={detailsEntry}
@@ -1015,8 +1028,8 @@ function renderView(ctx) {
     setView, setPrefs, setRoomSession, setDetailsEntry, setActorDeck,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
-    setEditorOpen, publicProfile, setPublicProfile, meTab, collectionSection, desktopShell,
-    buildSharedDeck, deckBuilding,
+    setEditorOpen, setShowcaseOpen, publicProfile, setPublicProfile, meTab, collectionSection,
+    desktopShell, buildSharedDeck, deckBuilding,
   } = ctx;
 
   const openDetails = (stub) => setDetailsEntry({
@@ -1070,6 +1083,8 @@ function renderView(ctx) {
           username={typeof publicProfile === 'string' ? publicProfile : null}
           userId={typeof publicProfile === 'object' ? publicProfile?.uid : null}
           toasts={toasts}
+          onOpenTitle={openDetails}
+          onEditShowcase={() => setShowcaseOpen(true)}
           onBack={() => setView(publicProfile?.uid ? VIEW.ROOMS : VIEW.ME)}
         />
       );
@@ -1088,6 +1103,7 @@ function renderView(ctx) {
           favorites={userState?.favorites ?? {}}
           ratings={userState?.ratings ?? {}}
           onOpenTitle={openDetails}
+          onEditShowcase={() => setShowcaseOpen(true)}
           prefs={prefs}
           onPrefsChange={(patch) => setPrefs((p) => ({ ...p, ...patch }))}
           onLogout={auth.logout}

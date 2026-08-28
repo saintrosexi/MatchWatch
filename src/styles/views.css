@@ -589,6 +589,119 @@
 .public-profile__handle { color: var(--text-low); font-family: var(--font-mono); font-size: var(--t-small); }
 .public-profile__bio { color: var(--text-mid); max-width: 44ch; line-height: 1.55; }
 
+/* ── Страница человека ───────────────────────────────────────── */
+/*
+ * Акцент выбирается из палитры продукта, а не задаётся произвольно.
+ * Произвольный цвет рано или поздно оказывается нечитаемым на тёмном
+ * фоне, и страница перестаёт быть страницей этого приложения.
+ */
+.profile-page { --accent: var(--coral); gap: var(--s-6); }
+.profile-page[data-accent='gold']   { --accent: var(--gold); }
+.profile-page[data-accent='ice']    { --accent: var(--ice); }
+.profile-page[data-accent='mint']   { --accent: var(--mint); }
+.profile-page[data-accent='violet'] { --accent: #a97bff; }
+
+.profile-hero {
+  position: relative;
+  margin: 0 calc(-1 * var(--s-4));
+  padding: var(--s-6) var(--s-4) var(--s-5);
+  overflow: hidden;
+  isolation: isolate;
+}
+/*
+ * Обложка — постер того фильма, который человек назвал своим.
+ * Размытие здесь не нужно: постер и так уходит под плотный градиент,
+ * а blur на картинке в половину экрана — самая дорогая вещь, которую
+ * можно поставить в шапку.
+ */
+.profile-hero__cover {
+  position: absolute;
+  inset: -20% 0 auto 0;
+  height: 150%;
+  z-index: -1;
+  opacity: .34;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.5) 46%, transparent 88%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.5) 46%, transparent 88%);
+}
+.profile-hero__cover img { width: 100%; height: 100%; object-fit: cover; }
+
+.profile-hero__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  text-align: center;
+}
+.profile-hero__avatar {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--ink-800);
+  border: 2px solid var(--accent);
+}
+.profile-hero__avatar--empty { display: grid; place-items: center; }
+.profile-hero__name { font-family: var(--font-display); font-size: var(--t-title); }
+.profile-hero__handle { color: var(--text-low); font-family: var(--font-mono); font-size: var(--t-small); }
+.profile-hero__bio { color: var(--text-mid); max-width: 44ch; line-height: 1.55; margin-top: var(--s-2); }
+.profile-hero__pick { font-size: var(--t-small); color: var(--text-mid); }
+.profile-hero__pick strong { color: var(--accent); font-weight: 600; }
+
+.profile-block { display: flex; flex-direction: column; gap: var(--s-3); }
+.profile-block__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: var(--t-body);
+  color: var(--text-hi);
+}
+.profile-block__title svg { color: var(--accent); }
+.profile-block__lead { font-size: var(--t-small); color: var(--text-mid); }
+/* Блок про вас двоих выделен рамкой: это единственное на странице,
+   что относится не к человеку вообще, а к смотрящему. */
+.profile-block--shared {
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/*
+ * Ряд постеров с прокруткой. Сетка на восемнадцать фильмов занимает
+ * несколько экранов и выталкивает вниз всё остальное; ряд читается
+ * одним движением и оставляет странице ритм.
+ */
+.poster-row {
+  display: flex;
+  gap: var(--s-3);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: var(--s-2);
+  margin: 0 calc(-1 * var(--s-4));
+  padding-inline: var(--s-4);
+  -webkit-overflow-scrolling: touch;
+}
+.poster-row__item {
+  flex: 0 0 auto;
+  width: 96px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.poster-row--large .poster-row__item { width: 124px; }
+.poster-row__item img,
+.poster-row__item .poster-fallback {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--ink-800);
+}
+.poster-row--large .poster-row__item img { border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.poster-row__cap { font-size: var(--t-micro); color: var(--text-mid); }
+
 /* ── Настроение на сегодня ───────────────────────────────────── */
 
 .mood-grid {
@@ -696,3 +809,63 @@
 
 .near__title { font-weight: 600; font-size: var(--t-body); color: var(--text-hi); }
 .near__who { font-size: var(--t-small); color: var(--text-mid); }
+
+
+/* ── Редактор витрины ────────────────────────────────────────── */
+.accent-dot {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--dot);
+  border: 2px solid transparent;
+  color: #10101a;
+}
+.accent-dot--on { border-color: var(--text-hi); }
+
+/*
+ * Выбор постеров. Сетка, а не ряд: здесь человек ищет конкретный фильм
+ * среди своих, и прокручивать вбок в поисках нужного — мучение.
+ */
+.pick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: var(--s-3);
+  max-height: 46vh;
+  overflow-y: auto;
+}
+.pick-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.pick-card img,
+.pick-card .poster-fallback {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  border: 2px solid transparent;
+  opacity: .55;
+  transition: opacity var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.pick-card--on img,
+.pick-card--on .poster-fallback { opacity: 1; border-color: var(--coral); }
+/* Номер вместо галочки: в визитке важен порядок, а не только факт выбора. */
+.pick-card__badge {
+  position: absolute;
+  top: 4px; left: 4px;
+  min-width: 20px; height: 20px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  background: var(--coral);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.pick-card__cap { font-size: var(--t-micro); color: var(--text-low); }

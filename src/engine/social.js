@@ -55,6 +55,54 @@ export async function saveProfile(uid, { displayName, username, bio, photoURL })
   return data;
 }
 
+/**
+ * Страница профиля целиком — одним запросом.
+ *
+ * Раньше профиль отдавал имя, описание и четыре счётчика; смотреть там
+ * было не на что. Теперь это страница человека: закреплённые фильмы,
+ * любимое, оценки, темы вкуса — и пересечение с тем, кто смотрит.
+ *
+ * Собирается на стороне базы намеренно. Шесть отдельных запросов
+ * означали бы шесть ожиданий подряд при открытии экрана, а решает
+ * здесь именно скорость: профиль открывают мимоходом, из комнаты
+ * или из списка друзей.
+ */
+export async function loadProfilePage({ username = null, userId = null } = {}) {
+  if (!supabaseReady() || (!username && !userId)) return null;
+  const { data, error } = await supabase.rpc('profile_page', {
+    p_username: username,
+    p_user: userId,
+  });
+  if (error) throw error;
+  return data ?? null;
+}
+
+/**
+ * Витрина профиля: что человек показывает и как это выглядит.
+ *
+ * Отдельно от `saveProfile` — там имя и ник, то есть кто человек такой,
+ * а здесь то, что он о себе показывает. Смешивать их значит на каждое
+ * переключение тумблера перепроверять занятость ника.
+ */
+export async function saveShowcase(uid, { pinnedIds, heroId, accent, showFilms, showRatings, showWatched }) {
+  if (!supabaseReady() || !uid) return null;
+
+  const patch = {};
+  if (pinnedIds !== undefined) patch.pinned_ids = pinnedIds.slice(0, 6);
+  if (heroId !== undefined) patch.hero_id = heroId || null;
+  if (accent !== undefined) patch.accent = accent;
+  if (showFilms !== undefined) patch.show_films = showFilms;
+  if (showRatings !== undefined) patch.show_ratings = showRatings;
+  if (showWatched !== undefined) patch.show_watched = showWatched;
+  if (!Object.keys(patch).length) return null;
+
+  const { data, error } = await supabase
+    .from('profiles').update(patch).eq('id', uid).select().maybeSingle();
+  if (error) throw error;
+  trackMetric('profile_showcase_saved', { context: { fields: Object.keys(patch).join(',') } });
+  return data;
+}
+
 /** Публичная карточка по нику. */
 export async function loadPublicProfile(username) {
   if (!supabaseReady() || !username) return null;

@@ -1,25 +1,37 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Star, UserPlus, UserRound } from '../../ui/icons.js';
+import { ArrowLeft, Bookmark, Check, Heart, Pencil, Star, UserPlus, UserRound } from '../../ui/icons.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
-import { loadPublicProfile, loadPublicProfileById, requestFriend } from '../../engine/social.js';
+import { Poster } from '../../ui/Poster.jsx';
+import { RatingBadge } from '../../ui/RatingPicker.jsx';
+import { loadProfilePage, requestFriend } from '../../engine/social.js';
+import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 
 /**
- * Профиль другого человека.
+ * Страница человека.
  *
- * Показывает только то, что он опубликовал сам: имя, ник, описание
- * и обезличенную статистику. Ни почты, ни истории решений — списки
- * фильмов остаются личным делом каждого.
+ * Раньше здесь были имя, описание и четыре счётчика. Счётчики о человеке
+ * не говорят ничего: «85 просмотрено» одинаково у того, кто любит хорроры,
+ * и у того, кто смотрит только комедии. Смотреть было не на что.
+ *
+ * Теперь страница собрана из того, что человек уже решил: закреплённые
+ * им фильмы, любимое, оценки, темы, накопившиеся по свайпам. Ничего
+ * из этого не нужно заполнять отдельно — оно появляется само, пока
+ * человек пользуется приложением.
+ *
+ * Первым делом — пересечение с тем, кто смотрит. Чужой профиль
+ * открывают не с вопросом «кто это вообще», а с вопросом «а мы совпадём».
  */
-export function PublicProfileView({ username, userId, onBack, toasts }) {
+export function PublicProfileView({ username, userId, onBack, onOpenTitle, onEditShowcase, toasts }) {
   const [state, setState] = useState({ loading: true });
+  const [friendSent, setFriendSent] = useState(false);
 
   useEffect(() => {
     let alive = true;
     setState({ loading: true });
+    setFriendSent(false);
     // Из комнаты человек известен по идентификатору, из поиска — по нику.
-    const load = userId ? loadPublicProfileById(userId) : loadPublicProfile(username);
-    load
+    loadProfilePage({ username: userId ? null : username, userId })
       .then((person) => { if (alive) setState({ loading: false, person }); })
       .catch((error) => { if (alive) setState({ loading: false, error }); });
     return () => { alive = false; };
@@ -29,83 +41,238 @@ export function PublicProfileView({ username, userId, onBack, toasts }) {
   if (state.error) {
     return <ErrorState error={{ text: 'Не удалось загрузить профиль', retryable: true }} module="social.profile" />;
   }
+
+  const back = (
+    <button type="button" className="btn btn--quiet btn--sm" style={{ alignSelf: 'flex-start' }} onClick={onBack}>
+      <ArrowLeft size={16} /> Назад
+    </button>
+  );
+
   if (!state.person) {
     return (
       <div className="view">
-        <button type="button" className="btn btn--quiet btn--sm" style={{ alignSelf: 'flex-start' }} onClick={onBack}>
-          <ArrowLeft size={16} /> Назад
-        </button>
-        <EmptyState icon={UserRound} title="Профиль не найден" text={userId ? 'Этот человек ещё не заполнил профиль.' : `Ника @${username} не существует.`} />
+        {back}
+        <EmptyState
+          icon={UserRound}
+          title="Профиль не найден"
+          text={userId ? 'Этот человек ещё не заполнил профиль.' : `Ника @${username} не существует.`}
+        />
       </div>
     );
   }
 
-  const { person } = state;
-  const { stats } = person;
+  const person = state.person;
+  const {
+    stats = {}, visibility = {}, pinned = [], favorites = [], topRated = [], tags = [], shared, hero,
+  } = person;
+
+  /*
+   * Обложка — постер того фильма, который человек назвал своим.
+   * Это единственное «оформление», которое ничего не стоит завести:
+   * картинка уже есть, выбор уже сделан.
+   */
+  const cover = hero ?? pinned[0] ?? favorites[0] ?? null;
 
   return (
-    <div className="view">
-      <button type="button" className="btn btn--quiet btn--sm" style={{ alignSelf: 'flex-start' }} onClick={onBack}>
-        <ArrowLeft size={16} /> Назад
-      </button>
+    <div className="view profile-page" data-accent={person.accent ?? 'coral'}>
+      {back}
 
-      <div className="public-profile">
-        {person.photoURL
-          ? <img className="public-profile__avatar" src={person.photoURL} alt="" />
-          : <span className="public-profile__avatar" style={{ display: 'grid', placeItems: 'center' }}>
-              <UserRound size={44} color="var(--text-low)" />
-            </span>}
-
-        <div className="stack gap-1" style={{ alignItems: 'center' }}>
-          <h1 className="public-profile__name">{person.displayName}</h1>
-          <span className="public-profile__handle">@{person.username}</span>
-        </div>
-
-        {person.bio && <p className="public-profile__bio">{person.bio}</p>}
-
-        <div className="stat-row" style={{ width: '100%' }}>
-          <div className="stat">
-            <span className="stat__value">{stats.watched}</span>
-            <span className="stat__label">просмотрено</span>
+      <header className="profile-hero">
+        {cover?.poster && (
+          <div className="profile-hero__cover" aria-hidden="true">
+            <Poster src={cover.poster} alt="" size="w500" rounded={false} />
           </div>
-          <div className="stat">
-            <span className="stat__value">{stats.favorites}</span>
-            <span className="stat__label">понравилось</span>
-          </div>
-          <div className="stat">
-            <span className="stat__value">{stats.ratings}</span>
-            <span className="stat__label">оценок</span>
-          </div>
-          {stats.averageRating !== null && (
-            <div className="stat">
-              <span className="stat__value" style={{ color: 'var(--gold)' }}>{stats.averageRating}</span>
-              <span className="stat__label">средняя</span>
-            </div>
-          )}
-        </div>
-
-        {stats.ratings > 0 && (
-          <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
-            Поставил {withPlural(stats.ratings, FORMS.RATING)}
-            {stats.averageRating !== null && <> · в среднем <Star size={12} style={{ verticalAlign: -1 }} /> {stats.averageRating}</>}
-          </p>
         )}
 
+        <div className="profile-hero__body">
+          {person.photoURL
+            ? <img className="profile-hero__avatar" src={person.photoURL} alt="" />
+            : (
+              <span className="profile-hero__avatar profile-hero__avatar--empty">
+                <UserRound size={40} color="var(--text-low)" />
+              </span>
+            )}
+
+          <h1 className="profile-hero__name">{person.displayName ?? person.username}</h1>
+          {person.username && <span className="profile-hero__handle">@{person.username}</span>}
+          {person.bio && <p className="profile-hero__bio">{person.bio}</p>}
+
+          {hero?.title && (
+            <p className="profile-hero__pick">
+              Фильм про себя: <strong>«{hero.title}»</strong>
+            </p>
+          )}
+        </div>
+      </header>
+
+      {/*
+        * Пересечение стоит выше всего остального намеренно. Всё, что ниже, —
+        * про человека вообще; эта строка — про вас двоих, и ради неё
+        * в чужой профиль и заходят.
+        */}
+      {shared && (shared.count > 0 || shared.matches > 0) && (
+        <section className="profile-block profile-block--shared">
+          <h2 className="profile-block__title">
+            <Check size={14} /> У вас общее
+          </h2>
+          <p className="profile-block__lead">
+            {shared.count > 0 && <>{withPlural(shared.count, FORMS.MOVIE)} нравятся обоим</>}
+            {shared.count > 0 && shared.matches > 0 && ' · '}
+            {shared.matches > 0 && <>{withPlural(shared.matches, FORMS.MATCH)} в комнатах</>}
+          </p>
+          {shared.movies?.length > 0 && (
+            <PosterRow items={shared.movies} onOpenTitle={onOpenTitle} />
+          )}
+        </section>
+      )}
+
+      {pinned.length > 0 && (
+        <section className="profile-block">
+          <h2 className="profile-block__title"><Bookmark size={14} /> Визитка</h2>
+          <PosterRow items={pinned} onOpenTitle={onOpenTitle} large />
+        </section>
+      )}
+
+      {tags.length > 0 && (
+        <section className="profile-block">
+          <h2 className="profile-block__title">Чаще всего смотрит</h2>
+          <div className="row gap-2" style={{ flexWrap: 'wrap' }}>
+            {tags.map((tag) => (
+              <span className="chip chip--on" key={tag}>{tagLabel(tag)}</span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {visibility.films !== false && favorites.length > 0 && (
+        <section className="profile-block">
+          <h2 className="profile-block__title"><Heart size={14} /> Любимое</h2>
+          <PosterRow items={favorites} onOpenTitle={onOpenTitle} />
+        </section>
+      )}
+
+      {visibility.ratings !== false && topRated.length > 0 && (
+        <section className="profile-block">
+          <h2 className="profile-block__title"><Star size={14} /> Оценил выше всего</h2>
+          <div className="poster-grid">
+            {topRated.map((item) => (
+              <button type="button" className="poster-card" key={item.id} onClick={() => onOpenTitle?.(item)}>
+                <Poster src={item.poster} alt={item.title} size="w342" />
+                <span className="poster-card__cap truncate">{item.title}</span>
+                <RatingBadge value={item.userRating} className="poster-card__rating" />
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="profile-block">
+        <div className="stat-row" style={{ width: '100%' }}>
+          <Stat value={stats.favorites} label="любимых" />
+          {stats.watched !== null && stats.watched !== undefined && (
+            <Stat value={stats.watched} label="просмотрено" />
+          )}
+          {stats.ratings ? <Stat value={stats.ratings} label="оценок" /> : null}
+          {stats.averageRating !== null && stats.averageRating !== undefined && (
+            <Stat value={stats.averageRating} label="средняя" gold />
+          )}
+          {stats.matches ? <Stat value={stats.matches} label="мэтчей" /> : null}
+        </div>
+        {person.createdAt && (
+          <p className="faint" style={{ fontSize: 'var(--t-small)', textAlign: 'center' }}>
+            Здесь с {since(person.createdAt)}
+            {stats.decisions ? ` · ${withPlural(stats.decisions, FORMS.DECISION)}` : ''}
+          </p>
+        )}
+      </section>
+
+      {/*
+        * Пустой профиль честнее объяснить, чем показать пустые полки:
+        * человек мог только зарегистрироваться, а мог и закрыть фильмы.
+        */}
+      {!pinned.length && !favorites.length && !topRated.length && (
+        <EmptyState
+          icon={UserRound}
+          title={visibility.films === false ? 'Фильмы скрыты' : 'Пока пусто'}
+          text={visibility.films === false
+            ? 'Человек не показывает свои списки — только имя и общую статистику.'
+            : 'Человек ещё ничего не отметил любимым. Загляните позже.'}
+        />
+      )}
+
+      {person.isMe ? (
+        <button type="button" className="btn btn--ghost" onClick={onEditShowcase}>
+          <Pencil size={16} /> Настроить витрину
+        </button>
+      ) : (
         <button
           type="button"
           className="btn btn--primary"
+          disabled={friendSent}
           onClick={async () => {
             try {
               const status = await requestFriend(person.id);
+              setFriendSent(true);
               toasts.success(status === 'accepted' ? 'Теперь вы друзья' : 'Заявка отправлена');
             } catch (error) {
               toasts.error(error?.message ?? 'Не получилось отправить заявку');
             }
           }}
         >
-          <UserPlus size={16} /> Добавить в друзья
+          <UserPlus size={16} /> {friendSent ? 'Заявка отправлена' : 'Добавить в друзья'}
         </button>
-      </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Ряд постеров с горизонтальной прокруткой.
+ *
+ * Именно ряд, а не сетка: сетка на восемнадцать фильмов занимает
+ * несколько экранов и выталкивает вниз всё остальное, а ряд читается
+ * одним движением и оставляет странице ритм.
+ */
+function PosterRow({ items, onOpenTitle, large = false }) {
+  return (
+    <div className={`poster-row ${large ? 'poster-row--large' : ''}`}>
+      {items.map((item, index) => (
+        <button
+          type="button"
+          className="poster-row__item"
+          key={`${item.id ?? item.title}-${index}`}
+          onClick={() => onOpenTitle?.(item)}
+          title={item.title}
+        >
+          <Poster src={item.poster} alt={item.title} size="w342" />
+          <span className="poster-row__cap truncate">{item.title}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/*
+ * «Здесь с августа», а не «здесь с август».
+ *
+ * Штатный форматтер даёт месяц в именительном падеже, и фраза ломается
+ * на ровном месте. Названия проще перечислить, чем выкручивать локаль.
+ */
+const MONTHS = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+];
+
+function since(iso) {
+  const date = new Date(iso);
+  return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function Stat({ value, label, gold = false }) {
+  return (
+    <div className="stat">
+      <span className="stat__value" style={gold ? { color: 'var(--gold)' } : undefined}>{value}</span>
+      <span className="stat__label">{label}</span>
     </div>
   );
 }
