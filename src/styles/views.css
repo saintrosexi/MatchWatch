@@ -255,8 +255,9 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(0,0,0,.62);
-  backdrop-filter: blur(6px);
+  /* Плотный фон вместо размытия: значков в сетке бывает по два десятка
+     сразу, и каждое размытие — свой проход по тому, что под ним. */
+  background: rgba(0,0,0,.78);
 }
 .poster-card[data-watched='true'] img { filter: grayscale(1) brightness(.5); }
 
@@ -514,8 +515,8 @@
   gap: 3px;
   padding: 3px 7px;
   border-radius: var(--r-pill);
-  background: rgba(0, 0, 0, 0.68);
-  backdrop-filter: blur(6px);
+  /* То же и здесь: бейдж стоит на каждом постере сетки. */
+  background: rgba(0, 0, 0, 0.8);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;

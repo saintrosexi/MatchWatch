@@ -280,10 +280,29 @@
 .action--no:hover { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
 /* Цвет закреплён за смыслом: сердце всегда коралловое, отложенное —
    золотое. Одинаковые действия не должны менять цвет от экрана к экрану. */
-.action--wish { color: var(--gold); box-shadow: var(--glow-gold); }
+/*
+ * Свечение — подсветка внутри кнопки, а не тень снаружи.
+ *
+ * Снаружи оно было большой размытой тенью, и вебвью на айфоне рисовал
+ * её ПРЯМОУГОЛЬНИКОМ: вокруг круглой кнопки стоял отчётливый цветной
+ * квадрат. Размытая тень к тому же самая дорогая часть панели — она
+ * пересчитывается вместе со всем, что под кнопкой проезжает.
+ *
+ * Радиальный градиент в фоне обрезается радиусом самой кнопки, поэтому
+ * он круглый на любом движке и ничего не стоит сверх обычной заливки.
+ */
+.action--wish {
+  color: var(--gold);
+  border-color: rgba(255,194,75,.45);
+  background-image: radial-gradient(circle at 50% 45%, rgba(255,194,75,.3), rgba(255,194,75,0) 72%);
+}
 .action--seen { color: var(--mint); }
-.action--seen:hover { box-shadow: 0 0 0 1px rgba(75,227,164,.4), 0 12px 40px -8px rgba(75,227,164,.35); }
-.action--fav { color: var(--coral); box-shadow: var(--glow-coral); }
+.action--seen:hover { box-shadow: 0 0 0 1px rgba(75,227,164,.4); }
+.action--fav {
+  color: var(--coral);
+  border-color: rgba(255,77,94,.45);
+  background-image: radial-gradient(circle at 50% 45%, rgba(255,77,94,.3), rgba(255,77,94,0) 72%);
+}
 .action--undo:hover:not(:disabled) { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
 
 /* ── Прогресс колоды ─────────────────────────────────────────── */
