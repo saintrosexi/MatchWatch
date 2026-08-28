@@ -10,6 +10,8 @@ import { haptic } from '../../lib/telegram.js';
 import { sfx, unlockAudio } from '../../lib/sound.js';
 import { ACTION } from '../../engine/tasteProfile.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
+import { trackError } from '../../lib/telemetry.js';
+import { LEVEL, MODULE } from '../../../shared/telemetry/events.js';
 import { Compass, PartyPopper, SlidersHorizontal, Users } from '../../ui/icons.js';
 
 /**
@@ -36,23 +38,46 @@ export function SwipeDeck({
   const [busy, setBusy] = useState(false);
   const lastEntry = useRef(null);
 
-  const commit = useCallback(async (action) => {
+  /*
+   * Решение принято — карточка уходит немедленно.
+   *
+   * Раньше здесь стояло `await onDecision(...)`, и следующая карточка
+   * появлялась только после того, как запись доедет до базы: два
+   * запроса по мобильной сети, полсекунды и больше. Всё это время
+   * на месте колоды была пустота — ровно то, что читается как
+   * подтормаживание на каждом свайпе.
+   *
+   * Ждать было незачем. Списки и профиль вкуса обновляются в том же
+   * кадре, локально, а сама запись durableWrite при неудаче ложится
+   * в очередь и повторяется. Ответ базы не сообщает интерфейсу ничего,
+   * чего он уже не знает.
+   */
+  const commit = useCallback((action) => {
     if (!current || busy) return;
     setBusy(true);
     lastEntry.current = current;
     const decided = current;
-    try {
-      await onDecision(decided, action);
-    } finally {
-      /*
-       * Снимаем именно ту карточку, по которой приняли решение,
-       * и сообщаем, чем оно было: по решениям вечера лента
-       * подстраивается на ходу.
-       */
-      deck.advance(decided.id, action !== 'dislike');
-      setBusy(false);
-    }
+
+    /*
+     * Снимаем именно ту карточку, по которой приняли решение,
+     * и сообщаем, чем оно было: по решениям вечера лента
+     * подстраивается на ходу.
+     */
+    deck.advance(decided.id, action !== 'dislike');
+
+    Promise.resolve()
+      .then(() => onDecision(decided, action))
+      .catch((error) => trackError('Решение по карточке не записалось', {
+        module: MODULE.DECK, level: LEVEL.WARNING, error,
+      }));
   }, [current, busy, onDecision, deck]);
+
+  /*
+   * Блокировка держится не до ответа сети, а до появления следующей
+   * карточки: она нужна только чтобы одно движение пальца не решило
+   * судьбу двух фильмов сразу.
+   */
+  useEffect(() => { setBusy(false); }, [current?.id]);
 
   const { cardRef, fling, bind } = useSwipeGesture({
     enabled: Boolean(current) && !busy,
@@ -67,11 +92,15 @@ export function SwipeDeck({
     },
   });
 
-  /* Постеры следующих карточек грузим заранее — иначе они «проявляются». */
+  /*
+   * Постеры следующих карточек грузим заранее — иначе они «проявляются».
+   * Берём их из очереди, а не из отрисованной стопки: в стопке лежат
+   * две карточки, а грузить вперёд имеет смысл дальше.
+   */
   useEffect(() => {
     const count = getConfig().deck.posterPrefetch;
-    prefetchPosters(upcoming.slice(0, count).map((e) => e.title.poster));
-  }, [upcoming]);
+    prefetchPosters(deck.queue.slice(1, count + 1).map((e) => e.title.poster));
+  }, [deck.queue]);
 
   /* Клавиатура: стрелки — свайп, F — «нравится», пробел — детали. */
   useEffect(() => {

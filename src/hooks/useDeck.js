@@ -38,6 +38,13 @@ export const DECK_MODE = Object.freeze({ SOLO: 'solo', ACTOR: 'actor', ROOM: 'ro
 const REFILL_PAGES_PER_ROUND = 20;
 
 /**
+ * Пауза перед повторным кругом дозагрузки, когда предыдущий ничего
+ * не принёс. Человек её не замечает, а процессор за это время успевает
+ * отдать кадр браузеру — и фоновая доливка пула успевает продвинуться.
+ */
+const REFILL_RETRY_PAUSE = 500;
+
+/**
  * Снимает карточку с очереди.
  *
  * Убирать «первую попавшуюся» нельзя: к моменту вызова карточку мог уже
@@ -132,6 +139,8 @@ export function useDeck({
   const refillingRef = useRef(false);
   /** Момент, до которого дозагрузка не повторяется после сетевой неудачи. */
   const refillBlockedUntil = useRef(0);
+  /** Таймер отложенного круга дозагрузки — чтобы его можно было снять. */
+  const retryTimer = useRef(null);
   const queuedIds = useRef(new Set());
   /*
    * Настроение вечера. Живёт в ссылке, а не в состоянии: меняется
@@ -231,6 +240,8 @@ export function useDeck({
     queuedIds.current = new Set();
     sessionRef.current.reset();
     refillBlockedUntil.current = 0;
+    // Отложенный круг принадлежал прежним фильтрам — он больше не нужен.
+    clearTimeout(retryTimer.current);
     setQueue([]);
     setProcessed(0);
     setRefillNonce(0);
@@ -395,6 +406,17 @@ export function useDeck({
    * состоять из уже решённых фильмов — тогда прирост пула есть, а
    * показывать нечего, и один заход ничего не решает.
    */
+  /**
+   * Просит следующий круг дозагрузки — через паузу, а не сразу.
+   *
+   * Пауза нужна ровно затем, чтобы круги шли через цикл событий:
+   * без неё пустые заходы складываются в синхронную петлю.
+   */
+  const scheduleRetry = useCallback(() => {
+    clearTimeout(retryTimer.current);
+    retryTimer.current = setTimeout(() => setRefillNonce((n) => n + 1), REFILL_RETRY_PAUSE);
+  }, []);
+
   const refill = useCallback(async () => {
     if (refillingRef.current) return;
     if (Date.now() < refillBlockedUntil.current) return;
@@ -424,9 +446,25 @@ export function useDeck({
             module: MODULE.DECK, context: { seen: processed, poolSize: pool.size, pages },
           });
         } else {
-          // Полоса решённого оказалась длиннее, чем один заход. Просим
-          // ещё круг — счётчик попыток не даёт зациклиться навсегда.
-          setRefillNonce((n) => n + 1);
+          /*
+           * Полоса решённого оказалась длиннее одного захода — просим
+           * ещё круг. Но не в том же кадре.
+           *
+           * Пустой заход не всегда значит «в каталоге ничего нет».
+           * Пул отвечает нулём и когда он просто занят: пока идёт
+           * фоновая доливка кандидатов, loadMore возвращает ноль
+           * немедленно, ничего не загружая. Круг при этом получался
+           * мгновенным, следующий начинался в той же микрозадаче,
+           * и лента крутила их тысячами в секунду, пока доливка
+           * не закончится: React ругался на переполнение глубины
+           * обновлений, а телефон грелся на ровном месте.
+           *
+           * Пауза разрывает эту петлю. Кругов по-прежнему сколько
+           * угодно — единственный честный признак конца это исчерпанный
+           * каталог, — просто между ними browser успевает дышать,
+           * а фоновая доливка успевает что-то принести.
+           */
+          scheduleRetry();
         }
       }
     } catch (e) {
@@ -442,7 +480,7 @@ export function useDeck({
       refillingRef.current = false;
       setRefilling(false);
     }
-  }, [pullNewCards, processed]);
+  }, [pullNewCards, processed, scheduleRetry]);
 
   /* Запускаем дозагрузку, когда очередь подходит к концу. */
   useEffect(() => {
@@ -452,6 +490,8 @@ export function useDeck({
 
     refill();
   }, [queue.length, loading, exhausted, mode, refill, refillNonce]);
+
+  useEffect(() => () => clearTimeout(retryTimer.current), []);
 
   const advance = useCallback((id, liked = null) => {
     setQueue((prev) => {
@@ -521,7 +561,13 @@ export function useDeck({
   return {
     queue,
     current: queue[0] ?? null,
-    upcoming: queue.slice(1, 4),
+    /*
+     * Две карточки под верхней, а не три. Третья стояла с opacity 0 —
+     * невидимая, но со своим слоем композитинга и своим постером
+     * в полном разрешении. На телефоне это лишний экран отрисовки
+     * на каждом кадре свайпа.
+     */
+    upcoming: queue.slice(1, 3),
     loading,
     /** Очередь пуста, но следующая пачка уже едет — это не конец колоды. */
     refilling,

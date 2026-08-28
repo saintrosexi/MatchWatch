@@ -455,10 +455,20 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckMode, room.code, deck.queue.length, room.progress.slowest, room.progress.size]);
 
+  /*
+   * Снимок колоды для тех мест, куда её не передать пропсом.
+   *
+   * Разнесено на два эффекта не для красоты: `deck` — новый объект
+   * на каждый рендер, и в общем эффекте перебор всей очереди по шесть
+   * десятков карточек шёл на любую перерисовку экрана, включая тост
+   * и тик прогресса комнаты. Перебор нужен, только когда очередь
+   * действительно поменялась.
+   */
   useEffect(() => {
     if (deck.queue.length) deckPoolRef.current = deck.queue.map((e) => e.title);
-    deckRef.current = deck;
-  }, [deck, deck.queue]);
+  }, [deck.queue]);
+
+  useEffect(() => { deckRef.current = deck; });
 
   // Смена колоды обнуляет историю отмены: возвращать нечего.
   useEffect(() => { setLastDecision(null); }, [deckMode, actorDeck]);

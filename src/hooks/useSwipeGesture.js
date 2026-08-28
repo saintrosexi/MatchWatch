@@ -55,6 +55,8 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     dragged: false,
     /** Когда тап уже отдали наружу: страховка от двойного срабатывания. */
     lastTap: 0,
+    /** Замеры и штампы текущей карточки: пересчитываются при её смене. */
+    cache: null,
   });
 
   /*
@@ -71,29 +73,52 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     onTap?.();
   }, [onTap]);
 
+  /*
+   * Размеры и штампы карточки — раз на карточку, а не раз на кадр.
+   *
+   * offsetHeight внутри кадра заставляет браузер пересчитать раскладку,
+   * а три querySelector дают три обхода дерева — и всё это шестьдесят
+   * раз в секунду, пока палец на экране. На телефоне такой кадр
+   * не укладывается в бюджет, и свайп идёт рывками.
+   */
+  const measure = useCallback((node) => {
+    const cache = state.current.cache;
+    if (cache?.node === node) return cache;
+    const next = {
+      node,
+      width: node.offsetWidth || 320,
+      height: node.offsetHeight || 480,
+      yes: node.querySelector('.card__stamp--yes'),
+      no: node.querySelector('.card__stamp--no'),
+      info: node.querySelector('.card__stamp--info'),
+    };
+    state.current.cache = next;
+    return next;
+  }, []);
+
   const paint = useCallback((x, y, { animate = false } = {}) => {
     const node = cardRef.current;
     if (!node) return;
-    const width = state.current.width || node.offsetWidth || 320;
+    const box = measure(node);
+    const width = state.current.width || box.width;
     const progress = Math.max(-1, Math.min(1, x / (width * DISTANCE_RATIO)));
-    const upProgress = Math.max(0, Math.min(1, -y / (node.offsetHeight * UP_THRESHOLD)));
+    const upProgress = Math.max(0, Math.min(1, -y / (box.height * UP_THRESHOLD)));
 
     node.style.transition = animate ? 'transform var(--dur-base) var(--ease-out)' : 'none';
     node.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${progress * MAX_ROTATION}deg)`;
 
-    node.style.setProperty('--yes-opacity', String(Math.max(0, progress)));
-    node.style.setProperty('--no-opacity', String(Math.max(0, -progress)));
-    node.style.setProperty('--up-opacity', String(upProgress));
-
-    const yes = node.querySelector('.card__stamp--yes');
-    const no = node.querySelector('.card__stamp--no');
-    const info = node.querySelector('.card__stamp--info');
-    if (yes) yes.style.opacity = String(Math.max(0, progress));
-    if (no) no.style.opacity = String(Math.max(0, -progress));
-    if (info) info.style.opacity = String(upProgress);
+    /*
+     * Штампы красим напрямую. Раньше рядом с этим писались ещё три
+     * пользовательских свойства на саму карточку — их не читал ни один
+     * стиль, а каждая такая запись помечала всё поддерево карточки
+     * на пересчёт стилей.
+     */
+    if (box.yes) box.yes.style.opacity = String(Math.max(0, progress));
+    if (box.no) box.no.style.opacity = String(Math.max(0, -progress));
+    if (box.info) box.info.style.opacity = String(upProgress);
 
     onProgress?.({ progress, upProgress });
-  }, [onProgress]);
+  }, [measure, onProgress]);
 
   const reset = useCallback(({ animate = true } = {}) => {
     state.current.x = 0;
@@ -140,7 +165,7 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
       lastT: event.timeStamp,
       velocity: 0,
       pointerId: event.pointerId,
-      width: node.offsetWidth || 320,
+      width: measure(node).width,
     };
 
     /*
@@ -150,7 +175,7 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
      */
     try { node.setPointerCapture?.(event.pointerId); } catch { /* не мешает жесту */ }
     node.style.transition = 'none';
-  }, [enabled]);
+  }, [enabled, measure]);
 
   const onPointerMove = useCallback((event) => {
     const s = state.current;
@@ -187,7 +212,7 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     const threshold = s.width * DISTANCE_RATIO;
     const fastEnough = Math.abs(s.velocity) > VELOCITY_THRESHOLD;
     const farEnough = Math.abs(s.x) > threshold;
-    const upEnough = -s.y > (node?.offsetHeight ?? 480) * UP_THRESHOLD;
+    const upEnough = -s.y > (s.cache?.height ?? 480) * UP_THRESHOLD;
 
     /*
      * Палец почти не двигался и отпущен быстро — это нажатие. Иначе жест
@@ -239,6 +264,21 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
   }, [enabled, fireTap]);
 
   useEffect(() => reset({ animate: false }), [reset]);
+
+  /*
+   * Замеры привязаны к узлу карточки, а он переживает поворот экрана
+   * и смену размера окна. Сбрасываем кеш, иначе порог свайпа считался бы
+   * по прежней ширине.
+   */
+  useEffect(() => {
+    const drop = () => { state.current.cache = null; };
+    window.addEventListener('resize', drop);
+    window.addEventListener('orientationchange', drop);
+    return () => {
+      window.removeEventListener('resize', drop);
+      window.removeEventListener('orientationchange', drop);
+    };
+  }, []);
 
   return {
     cardRef,

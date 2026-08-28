@@ -11,7 +11,6 @@
   min-height: 0;
   /* Сверху воздуха не нужно: над колодой уже стоят логотип и кнопки. */
   padding: 0 var(--s-3) var(--s-3);
-  perspective: 1400px;
 }
 
 /* Карточка занимает всю доступную высоту, ширина выводится из пропорции
@@ -31,18 +30,65 @@
   overflow: hidden;
   background: var(--ink-800);
   box-shadow: var(--shadow-card);
-  will-change: transform, opacity;
   transform-origin: center bottom;
   user-select: none;
   -webkit-user-select: none;
+  /*
+   * Переход объявлен на всех карточках, а не только на тех, что лежат
+   * в глубине. Раньше правило висело на [data-depth], и в момент, когда
+   * карточка становилась верхней, атрибут исчезал вместе с переходом:
+   * она прыгала из уменьшенного и притушенного состояния в полный
+   * размер одним кадром. Это и был рывок на каждом перелистывании.
+   *
+   * Верхней карточке он не мешает: пока палец на экране, жест ставит
+   * ей transition: none напрямую.
+   */
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out);
 }
-/* Карточки в глубине стопки — уменьшены и притушены. */
-.card[data-depth='1'] { transform: translateY(14px) scale(0.945); opacity: .82; filter: brightness(.68); }
-.card[data-depth='2'] { transform: translateY(26px) scale(0.895); opacity: .5; filter: brightness(.45); }
-.card[data-depth='3'] { transform: translateY(36px) scale(0.86); opacity: 0; }
-.card[data-depth] { transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out), filter var(--dur-base) var(--ease-out); }
+/*
+ * Карточки в глубине стопки — уменьшены и притушены.
+ *
+ * Притушены прозрачностью, а не filter: brightness(). Фильтр — это
+ * отдельный полноэкранный проход на каждый кадр, причём ещё и
+ * анимируемый; на телефоне он греет процессор ради разницы, которую
+ * даёт обычная прозрачность на тёмном фоне.
+ */
+.card[data-depth='1'] { transform: translateY(14px) scale(0.945); }
+.card[data-depth='2'] { transform: translateY(26px) scale(0.895); }
+/*
+ * Затемнение — заливка поверх карточки, а не её прозрачность.
+ *
+ * Прозрачной карточка просвечивает: пока она поднимается наверх, сквозь
+ * неё видно следующий постер, и подъём читается как наложение двух
+ * кадров. Заливка гасит ровно так же, стоит композитору столько же,
+ * сколько любой другой слой, и ничего не просвечивает.
+ *
+ * Объявлена на всех карточках, а не только на глубоких: иначе в момент
+ * подъёма правило переставало совпадать и затемнение пропадало рывком.
+ */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.card[data-depth='1']::after { opacity: .4; }
+.card[data-depth='2']::after { opacity: .66; }
 
-.card--top { cursor: grab; touch-action: none; z-index: 3; }
+.card--top {
+  cursor: grab;
+  touch-action: none;
+  z-index: 3;
+  /*
+   * Слой держим только под той карточкой, которую действительно
+   * двигают. will-change на всей стопке означал четыре постоянных
+   * слоя в видеопамяти вместо одного.
+   */
+  will-change: transform, opacity;
+}
 .card--top:active { cursor: grabbing; }
 .card--settling { transition: transform var(--dur-base) var(--ease-out); }
 .card--flying { transition: transform 420ms var(--ease-out), opacity 420ms var(--ease-out); }
@@ -212,9 +258,16 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--glass-bg);
+  /*
+   * Плотный фон вместо backdrop-filter.
+   *
+   * Пять кнопок с размытием фона — пять слоёв, которые пересчитываются,
+   * пока над ними едет карточка: это и грело телефон, и рвало свечение
+   * по краю кнопки во время свайпа. Размывать здесь всё равно нечего —
+   * под панелью ровный тёмный фон.
+   */
+  background: var(--glass-bg-flat);
   border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
   color: var(--text-mid);
   transition: transform var(--dur-fast) var(--ease-spring),
               box-shadow var(--dur-base) var(--ease-out),
