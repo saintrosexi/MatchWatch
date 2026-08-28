@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { BarChart3, Crown, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
+import { BarChart3, Crown, Download, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
@@ -196,6 +196,32 @@ export function ProfileView({
           toast={toasts}
         />
       )}
+
+      {/*
+        * Импорт оценок. Пока анонс, а не кнопка.
+        *
+        * Место занято намеренно: перенос истории из Кинопоиска решает
+        * холодный старт — три сотни настоящих оценок делают ленту
+        * осмысленной с первого экрана, вместо десятков свайпов вслепую.
+        * Пока он не готов, честнее показать, что он в работе, чем
+        * поставить кнопку, которая ничего не делает.
+        */}
+      <section className="section">
+        <h2 className="section__title">Импорт оценок</h2>
+        <div className="import-teaser">
+          <Download size={20} color="var(--text-low)" />
+          <span className="stack grow gap-1">
+            <span className="member__name">Из Кинопоиска</span>
+            <span className="member__state">
+              Перенесём оценки и просмотренное — подборка сразу станет вашей.
+            </span>
+          </span>
+          <span className="chip">в работе</span>
+        </div>
+        <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
+          Находится в работе, ожидайте.
+        </p>
+      </section>
 
       <section className="section">
         <h2 className="section__title">Настройки</h2>
