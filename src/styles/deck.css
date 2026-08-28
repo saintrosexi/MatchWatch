@@ -269,11 +269,20 @@
   background: var(--glass-bg-flat);
   border: 1px solid var(--glass-border);
   color: var(--text-mid);
-  transition: transform var(--dur-fast) var(--ease-spring),
-              box-shadow var(--dur-base) var(--ease-out),
+  transition: box-shadow var(--dur-base) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out),
               color var(--dur-fast) var(--ease-out);
 }
-.action:active:not(:disabled) { transform: scale(0.88); }
+/*
+ * Вдавливается содержимое, а не сама кнопка.
+ *
+ * Пока сжималась кнопка, её габариты оставались прежними — и системная
+ * подсветка нажатия обводила исходный прямоугольник вокруг уменьшившегося
+ * круга. Получался серый квадрат заметно больше кнопки. Иконка сжимается
+ * так же ощутимо, но подложка стоит на месте и остаётся круглой.
+ */
+.action > svg { transition: transform var(--dur-fast) var(--ease-spring); }
+.action:active:not(:disabled) > svg { transform: scale(0.84); }
 .action--sm { width: 46px; height: 46px; }
 .action--md { width: 58px; height: 58px; }
 .action--lg { width: 68px; height: 68px; }
