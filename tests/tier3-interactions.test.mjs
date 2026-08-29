@@ -806,3 +806,69 @@ test('X26 · разнообразие смотрит на все темы, а н
   assert.ok(twinsUpTop < 3,
     `три почти одинаковых фильма подряд — это провал разнообразия: ${firstThree.join(', ')}`);
 });
+
+/* ── Потолок франшизы и план колоды ──────────────────────────── */
+
+test('I13 · одна франшиза не занимает колоду целиком', () => {
+  // Разбор живого случая: человек отметил любимыми восемь «Человеков-пауков»,
+  // и лента честно принесла ему Marvel целиком — он пролистал влево
+  // два десятка супергеройских фильмов подряд.
+  const spiders = Array.from({ length: 12 }, (_, i) => makeTitle(
+    9000 + i, `Человек-паук ${i + 1}`,
+    { genres: [28, 878], keywords: ['superhero', 'spider'], collectionId: 531241, rating: 8.1 },
+  ));
+  const others = Array.from({ length: 12 }, (_, i) => makeTitle(
+    9100 + i, `Другое кино ${i + 1}`,
+    { genres: [18], keywords: ['drama', 'family'], rating: 7.6 },
+  ));
+
+  // Профиль любит ровно то, чем набита франшиза.
+  let profile = createEmptyProfile();
+  for (let i = 0; i < 6; i += 1) profile = applySignal(profile, spiders[i], ACTION.FAVORITE);
+
+  const deck = rankDeck([...spiders, ...others], profile, {
+    size: 10, explorationRate: 0, random: seededRandom(7),
+  });
+
+  const fromFranchise = deck.filter((e) => e.title.collectionId === 531241).length;
+  assert.ok(fromFranchise <= RECOMMENDATION_CONFIG.penalties.maxPerFranchise,
+    `из одной франшизы взято ${fromFranchise} карточек при потолке ${RECOMMENDATION_CONFIG.penalties.maxPerFranchise}`);
+  assert.ok(deck.length === 10, 'потолок не должен обрывать колоду — остальное добирается другим');
+});
+
+test('I14 · колода собирается по плану: близкое, проверка вкуса, противоположности', () => {
+  // Прогретый профиль: план вступает в силу только когда есть от чего
+  // отталкиваться — новичку противопоставлять нечего.
+  let profile = createEmptyProfile();
+  for (let round = 0; round < 16; round += 1) {
+    profile = applySignal(profile, LIBRARY.johnWick, ACTION.LIKE);
+    profile = applySignal(profile, LIBRARY.drive, ACTION.LIKE);
+  }
+
+  const deck = rankDeck(ALL_TITLES, profile, { size: 12, random: seededRandom(11) });
+  const slots = deck.reduce((acc, e) => ({ ...acc, [e.slot]: (acc[e.slot] ?? 0) + 1 }), {});
+
+  assert.ok((slots.far ?? 0) > 0, 'в колоде должны быть намеренно далёкие карточки');
+  assert.ok((slots.explore ?? 0) > 0, 'и карточки на проверку вкуса');
+  assert.ok((slots.profile ?? 0) > (slots.far ?? 0), 'но похожего на любимое — больше всего');
+});
+
+test('I15 · семена берутся по одному на франшизу', async () => {
+  const { spreadSeeds } = await import('../src/hooks/useDeck.js');
+  const { FRANCHISE_WEIGHT } = await import('../shared/taxonomy/franchises.js');
+
+  const loved = [
+    { id: 'a', tags: { 'spider-man': FRANCHISE_WEIGHT, marvel: 40 } },
+    { id: 'b', tags: { 'spider-man': FRANCHISE_WEIGHT, marvel: 40 } },
+    { id: 'c', tags: { 'spider-man': FRANCHISE_WEIGHT, marvel: 40 } },
+    { id: 'd', tags: { samurai: 80, drama: 60 } },
+    { id: 'e', tags: { romcom: 70 } },
+  ];
+
+  const seeds = spreadSeeds(loved, 3).map((a) => a.id);
+  assert.deepEqual(seeds, ['a', 'd', 'e'],
+    'вторая и третья части одной франшизы уступают место другим вкусам');
+
+  // Если разнообразия не хватило — добираем пропущенным, а не оставляем пусто.
+  assert.equal(spreadSeeds(loved.slice(0, 3), 3).length, 3);
+});

@@ -18,6 +18,7 @@ import {
 } from './affinity.js';
 import { hydrateProfile, isWarm } from './tasteProfile.js';
 import { isColdStartTitle } from '../../shared/config/coldStart.js';
+import { universeOf } from '../../shared/taxonomy/franchises.js';
 
 /** Косинусное сходство разреженных векторов тегов. 0..1 (отрицательные веса гасятся). */
 export function cosineSimilarity(titleTags, profileTags) {
@@ -277,6 +278,36 @@ export function rankDeck(titles, profile, {
   const deck = [];
 
   /*
+   * Учёт франшиз и вселенных.
+   *
+   * Считаем при наборе, а не штрафуем в оценке: штраф — это «поставим
+   * пониже», а нужно именно «хватит». Человек, отметивший любимыми
+   * восемь «Человеков-пауков», по оценке получит Marvel в любом случае,
+   * потому что для движка это и есть самое похожее на его вкус.
+   */
+  const franchiseSeen = new Map();
+  const universeSeen = new Map();
+  const { maxPerFranchise = Infinity, maxPerUniverse = Infinity } = config.penalties;
+
+  const keysOf = (title) => ({
+    franchise: title?.collectionId ?? null,
+    universe: universeOf(title?.tags),
+  });
+
+  const overCap = (title) => {
+    const { franchise, universe } = keysOf(title);
+    if (franchise !== null && (franchiseSeen.get(franchise) ?? 0) >= maxPerFranchise) return true;
+    if (universe && (universeSeen.get(universe) ?? 0) >= maxPerUniverse) return true;
+    return false;
+  };
+
+  const countIn = (title) => {
+    const { franchise, universe } = keysOf(title);
+    if (franchise !== null) franchiseSeen.set(franchise, (franchiseSeen.get(franchise) ?? 0) + 1);
+    if (universe) universeSeen.set(universe, (universeSeen.get(universe) ?? 0) + 1);
+  };
+
+  /*
    * Пока профиль пуст, колода начинается с калибровочного набора.
    *
    * Множителя к оценке для этого мало: очень качественная популярка
@@ -289,40 +320,91 @@ export function rankDeck(titles, profile, {
     for (const candidate of spreadByMood(scored.filter((c) => isColdStartTitle(c.title)))) {
       if (deck.length >= target) break;
       used.add(candidate.id);
+      countIn(candidate.title);
       deck.push({ ...candidate, slot: 'calibration' });
     }
   }
-  let exploitCursor = 0;
-  let exploreCursor = 0;
+  /*
+   * Противоположности: намеренно далёкое от вкуса, но не мусор.
+   *
+   * Сортируем по возрастанию близости при соблюдённом пороге качества.
+   * Вкус нельзя расширить, показывая только то, что уже нравится, —
+   * а лента из одного «ещё такого же» стареет вместе со своим профилем.
+   */
+  const farCandidates = [...scored]
+    .filter((c) => c.qualityScore >= config.exploration.minQuality)
+    .sort((a, b) => (a.rawScore - b.rawScore) || (b.qualityScore - a.qualityScore));
 
-  // Разведочные карточки распределяем равномерно, а не сваливаем в хвост:
-  // иначе пользователь до них не доскроллит.
-  const explorePositions = new Set();
-  if (exploreSlots > 0) {
-    const step = target / exploreSlots;
-    for (let i = 0; i < exploreSlots; i += 1) {
-      explorePositions.add(Math.floor(i * step + step * 0.5 + (random() - 0.5) * step * 0.4));
-    }
+  /*
+   * План колоды: сколько карточек какого рода в ней будет.
+   *
+   * Расписывается заранее и перемешивается, а не собирается по порядку
+   * убывания оценки. Три блока подряд — «сначала всё похожее, потом всё
+   * незнакомое» — человек бросает листать на середине первого же блока.
+   */
+  /*
+   * Противоположности появляются только у прогретого профиля.
+   *
+   * Пока профиля нет, «далёкое от вкуса» посчитать не от чего: оценки
+   * у всех кандидатов почти одинаковые, и в эту долю попадёт случайное.
+   * Новичку вместо противоположностей нужна широта — её даёт разведка,
+   * которой на холодном старте и так больше половины колоды.
+   */
+  const farSlots = warm ? Math.round(exploreSlots * (config.exploration.farShare ?? 0)) : 0;
+  const probeSlots = exploreSlots - farSlots;
+
+  const plan = [];
+  for (let i = 0; i < probeSlots; i += 1) plan.push('explore');
+  for (let i = 0; i < farSlots; i += 1) plan.push('far');
+  while (plan.length < target - deck.length) plan.push('profile');
+
+  // Тасуем сам план, а не результат: так доли соблюдены точно,
+  // а порядок не выдаёт, по какому правилу карточка попала в колоду.
+  for (let i = plan.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(random() * (i + 1));
+    [plan[i], plan[j]] = [plan[j], plan[i]];
   }
 
-  for (let position = deck.length; position < target; position += 1) {
-    const wantExplore = explorePositions.has(position);
+  const cursors = { profile: 0, explore: 0, far: 0 };
+  const pools = { profile: byScore, explore: exploreCandidates, far: farCandidates };
+
+  /*
+   * Берёт следующего доступного кандидата нужного рода.
+   *
+   * `soft` — проход без учёта потолков франшизы. Нужен как последнее
+   * средство: если у человека в любимых одна вселенная и каталог
+   * отфильтрован узко, лучше показать четвёртого «Мстителя», чем
+   * оборвать колоду на середине.
+   */
+  const take = (kind, { soft = false } = {}) => {
+    const pool = pools[kind];
+    while (cursors[kind] < pool.length) {
+      const candidate = pool[cursors[kind]++];
+      if (used.has(candidate.id)) continue;
+      if (!soft && overCap(candidate.title)) continue;
+      return { ...candidate, slot: kind === 'profile' ? 'profile' : kind };
+    }
+    return null;
+  };
+
+  for (const kind of plan) {
+    if (deck.length >= target) break;
+
+    // Своя категория, затем соседние, и лишь потом — без потолков.
+    const order = kind === 'profile' ? ['profile', 'explore', 'far']
+      : kind === 'explore' ? ['explore', 'profile', 'far']
+        : ['far', 'explore', 'profile'];
+
     let pick = null;
-
-    if (wantExplore) {
-      while (exploreCursor < exploreCandidates.length && !pick) {
-        const candidate = exploreCandidates[exploreCursor++];
-        if (!used.has(candidate.id)) pick = { ...candidate, slot: 'explore' };
-      }
+    for (const source of order) {
+      pick = take(source);
+      if (pick) break;
     }
-
-    while (!pick && exploitCursor < byScore.length) {
-      const candidate = byScore[exploitCursor++];
-      if (!used.has(candidate.id)) pick = { ...candidate, slot: 'profile' };
-    }
-
+    if (!pick) pick = take(kind, { soft: true }) ?? take('profile', { soft: true });
     if (!pick) break;
+
     used.add(pick.id);
+    countIn(pick.title);
     deck.push(pick);
   }
 

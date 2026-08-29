@@ -17,6 +17,7 @@ import { api, describeError } from '../lib/api.js';
 import { trackBusiness } from '../lib/telemetry.js';
 import { BIZ, MODULE } from '../../shared/telemetry/events.js';
 import { parseTitleId } from '../../shared/model/title.js';
+import { franchiseOf, universeOf } from '../../shared/taxonomy/franchises.js';
 
 export const DECK_MODE = Object.freeze({ SOLO: 'solo', ACTOR: 'actor', ROOM: 'room' });
 
@@ -52,6 +53,43 @@ const REFILL_RETRY_PAUSE = 500;
  * пользователь видит, как под верхней карточкой подменяется фильм.
  * Поэтому удаляем строго по идентификатору, а без него — первую.
  */
+/**
+ * Отбирает опоры для семян так, чтобы одна франшиза не заняла все.
+ *
+ * Порядок сохраняется — свежие любимые впереди, — но вторая и далее
+ * части одной франшизы пропускаются, пока есть что-то ещё. Если
+ * разнообразия не хватило, добираем пропущенным: лучше десять семян
+ * из одной вселенной, чем два семени и пустая колода.
+ */
+export function spreadSeeds(loved, limit = 10) {
+  const list = loved ?? [];
+  const picked = [];
+  const skipped = [];
+  const franchises = new Set();
+  const universes = new Map();
+
+  for (const anchor of list) {
+    if (picked.length >= limit) break;
+    const franchise = franchiseOf(anchor.tags);
+    const universe = universeOf(anchor.tags);
+
+    const franchiseTaken = franchise && franchises.has(franchise);
+    const universeFull = universe && (universes.get(universe) ?? 0) >= 2;
+
+    if (franchiseTaken || universeFull) { skipped.push(anchor); continue; }
+
+    if (franchise) franchises.add(franchise);
+    if (universe) universes.set(universe, (universes.get(universe) ?? 0) + 1);
+    picked.push(anchor);
+  }
+
+  for (const anchor of skipped) {
+    if (picked.length >= limit) break;
+    picked.push(anchor);
+  }
+  return picked;
+}
+
 export function advanceQueue(queue, id) {
   if (!queue.length) return queue;
   if (!id) return queue.slice(1);
@@ -336,11 +374,20 @@ export function useDeck({
         poolsRef.current.set(filterKey, pool);
 
         /*
-         * Семена отбора: самые свежие из любимых. Больше десятка не
-         * берём — каждое стоит двух запросов к каталогу, а разнообразие
-         * после десяти уже не растёт.
+         * Семена отбора: самые свежие из любимых, но по одному
+         * на франшизу.
+         *
+         * Раньше брались первые десять подряд. У человека, отметившего
+         * любимыми восемь «Человеков-пауков», все десять семян уходили
+         * в одну франшизу — а каждое семя тянет из каталога «похожее
+         * на себя». Отсюда и лента, целиком состоящая из Marvel:
+         * дело было не в оценке карточек, а в том, что других
+         * кандидатов в неё просто не приезжало.
+         *
+         * Больше десятка не берём — каждое стоит двух запросов
+         * к каталогу, а разнообразие после десяти уже не растёт.
          */
-        pool.setSeeds((anchorsRef.current?.loved ?? []).slice(0, 10).map((a) => a.id));
+        pool.setSeeds(spreadSeeds(anchorsRef.current?.loved, 10).map((a) => a.id));
         poolRef.current = pool;
 
         /*

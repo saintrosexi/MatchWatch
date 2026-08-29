@@ -2,10 +2,11 @@
 
 import { buildTags, computeQuality, deriveMoodVector, makeTitleId } from '../../shared/model/title.js';
 
-export function makeTitle(id, title, { genres = [], keywords = [], rating = 7.4, votes = 1800, popularity = 40, year = 2015 } = {}) {
-  const tags = buildTags({ genreIds: genres, keywords });
+export function makeTitle(id, title, { genres = [], keywords = [], rating = 7.4, votes = 1800, popularity = 40, year = 2015, collectionId = null } = {}) {
+  const tags = buildTags({ genreIds: genres, keywords, collectionId });
   return {
     id: makeTitleId(id),
+    collectionId,
     externalId: id,
     kind: 'movie',
     title,
