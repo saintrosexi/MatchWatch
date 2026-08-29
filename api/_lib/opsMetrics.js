@@ -8,10 +8,14 @@
  * ops_top_failures. Ручных счётчиков больше нет: агрегаты выводятся из
  * сырых событий, поэтому их можно пересчитать задним числом.
  *
- * Доступ закрыт токеном OPS_DASHBOARD_TOKEN — эндпоинт внутренний.
+ * Доступ — по своей же учётной записи с признаком `is_ops` в профиле.
+ * Отдельный секрет остаётся как запасной путь для внешних дашбордов,
+ * но задавать его больше не обязательно: раньше без него метрики
+ * не открывались вообще никому, включая владельца приложения.
  */
 
 import { withHandler, ApiError, requireSecret } from './http.js';
+import { requireUser } from './session.js';
 import { sbSelect, sbRpc, hasServiceKey } from './supabaseAdmin.js';
 import { telemetryEnv } from './telemetry.js';
 import { MODULE } from '../../shared/telemetry/events.js';
@@ -19,8 +23,35 @@ import { clampInt } from './util.js';
 
 const dayKeyOffset = (offset) => new Date(Date.now() - offset * 86400_000).toISOString().slice(0, 10);
 
+/**
+ * Пускает либо по секрету, либо по своей учётке с признаком `is_ops`.
+ *
+ * Признак живёт в профиле и ставится только из базы: в поколоночный
+ * grant для роли authenticated колонка не входит, так что выдать её
+ * себе с клиента нельзя.
+ */
+async function requireOpsAccess(req, query) {
+  const secret = process.env.OPS_DASHBOARD_TOKEN;
+  const provided = req.headers?.authorization?.replace(/^Bearer\s+/i, '') ?? query?.get?.('token');
+
+  // Секрет задан и передан именно он — это внешний дашборд.
+  if (secret && provided && provided === secret) {
+    requireSecret(req, query, 'OPS_DASHBOARD_TOKEN');
+    return;
+  }
+
+  const user = await requireUser(req);
+  const rows = await sbSelect('profiles', {
+    select: 'is_ops', id: `eq.${user.id}`, limit: '1',
+  });
+
+  if (!rows?.[0]?.is_ops) {
+    throw new ApiError(403, 'ops_forbidden', 'Метрики доступны только владельцам приложения');
+  }
+}
+
 export const metricsHandler = withHandler({ methods: ['GET'], module: MODULE.OPS }, async ({ query, req }) => {
-  requireSecret(req, query, 'OPS_DASHBOARD_TOKEN');
+  await requireOpsAccess(req, query);
   if (!hasServiceKey()) {
     throw new ApiError(503, 'ops_not_configured',
       'Метрики недоступны: не задан SUPABASE_SERVICE_ROLE_KEY');

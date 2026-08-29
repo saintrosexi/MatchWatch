@@ -167,7 +167,15 @@ export const api = {
   unlinkTelegram: (accessToken) =>
     request('/auth/link-telegram', { method: 'DELETE', accessToken, retries: 0 }),
 
-  metrics: (days, token) => request(`/ops/metrics${qs({ days, token })}`, { timeoutMs: 20_000 }),
+  /*
+   * Метрики открываются по своей же учётке: признак `is_ops` в профиле.
+   * Отдельный токен остаётся необязательным запасным путём — раньше
+   * без него дашборд не открывался вообще никому, включая владельца.
+   */
+  metrics: async (days, token) => request(`/ops/metrics${qs({ days, token })}`, {
+    timeoutMs: 20_000,
+    accessToken: token ? undefined : await sessionToken(),
+  }),
 
   /**
    * Разбор фразы «чего хочется сегодня».
