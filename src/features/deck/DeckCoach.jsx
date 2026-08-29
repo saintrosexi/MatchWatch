@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Bookmark, Eye, Flame, Heart, X } from '../../ui/icons.js';
+import { Bookmark, Dices, Eye, Flame, Heart, RotateCcw, SlidersHorizontal, X } from '../../ui/icons.js';
 import { haptic } from '../../lib/telegram.js';
 import { loadLocal, saveLocal } from '../../lib/storage.js';
 
@@ -42,10 +42,27 @@ const STEPS = [
   {
     key: 'actions',
     target: '.actions',
-    title: 'То же кнопками',
-    text: 'Если свайпать неудобно. Слева — отмена последнего решения.',
-    rows: [],
+    title: 'Те же решения кнопками',
+    text: 'Если свайпать неудобно — под колодой те же четыре решения, слева направо.',
+    rows: [
+      { icon: RotateCcw, tone: 'muted', label: 'вернуть: отменить последнее решение и получить тот фильм обратно' },
+      { icon: X, tone: 'pass', label: 'мимо' },
+      { icon: Bookmark, tone: 'wish', label: 'буду смотреть' },
+      { icon: Eye, tone: 'seen', label: 'уже смотрел' },
+      { icon: Heart, tone: 'like', label: 'нравится' },
+    ],
     place: 'above',
+  },
+  {
+    key: 'tools',
+    target: '.hud__toolbar-right',
+    title: 'Кубик и фильтры',
+    text: 'Кубик достаёт случайный фильм из тех, что вам подходят, — когда решать не хочется вовсе. Фильтры сужают ленту: жанры, годы, рейтинг, страна.',
+    rows: [
+      { icon: Dices, tone: 'info', label: 'кубик — случайный фильм' },
+      { icon: SlidersHorizontal, tone: 'info', label: 'ползунки — фильтры ленты' },
+    ],
+    place: 'below',
   },
 ];
 
