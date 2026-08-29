@@ -1,4 +1,4 @@
-import { Compass, Flame } from '../../ui/icons.js';
+import { Flame, Heart } from '../../ui/icons.js';
 
 /**
  * Переключатель режима ленты.
@@ -11,9 +11,14 @@ import { Compass, Flame } from '../../ui/icons.js';
  * половина читается как одна кнопка с непонятной иконкой, и человек
  * не видит, между чем выбирает.
  */
+/*
+ * Сердце и огонь, а не сердце и компас. Огонь читается как «горячее,
+ * новое» — то есть ровно как обещание второго режима; компас обещал
+ * навигацию, которой здесь нет.
+ */
 const MODES = [
-  { key: 'calm', label: 'Моё', icon: Flame, hint: 'Похожее на любимое' },
-  { key: 'discovery', label: 'Другое', icon: Compass, hint: 'Незнакомое и по сегодняшнему настроению' },
+  { key: 'calm', label: 'Моё', icon: Heart, hint: 'Похожее на любимое' },
+  { key: 'discovery', label: 'Другое', icon: Flame, hint: 'Незнакомое и по сегодняшнему настроению' },
 ];
 
 export function FeedModeSwitch({ value = 'calm', onChange }) {

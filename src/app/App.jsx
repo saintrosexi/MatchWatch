@@ -16,6 +16,7 @@ import { FiltersSheet, DEFAULT_FILTERS } from '../features/deck/FiltersSheet.jsx
 import { RoomsView } from '../features/rooms/RoomsView.jsx';
 import { CollectionView } from '../features/collection/CollectionView.jsx';
 import { FeedModeSwitch } from '../features/deck/FeedModeSwitch.jsx';
+import { DeckCoach, coachSeen } from '../features/deck/DeckCoach.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
 import { MeView } from '../features/profile/MeView.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
@@ -114,6 +115,11 @@ export default function App() {
    * снова спокойный, как и было задумано.
    */
   const [feedMode, setFeedMode] = useState('calm');
+  /*
+   * Подсказки по ленте. Показываются один раз и только когда карточка
+   * уже на экране: объяснять жест, указывая на спиннер, бессмысленно.
+   */
+  const [coachOpen, setCoachOpen] = useState(false);
   const [taste, setTaste] = useState(createEmptyProfile);
 
   const [detailsEntry, setDetailsEntry] = useState(null);
@@ -494,6 +500,16 @@ export default function App() {
 
   // Смена колоды обнуляет историю отмены: возвращать нечего.
   useEffect(() => { setLastDecision(null); }, [deckMode, actorDeck]);
+
+  /*
+   * Подсказки поднимаются, когда на экране действительно есть карточка:
+   * объяснять жест, указывая на спиннер, бессмысленно.
+   */
+  useEffect(() => {
+    if (coachSeen() || coachOpen) return;
+    if (view !== VIEW.DECK || deckMode !== DECK_MODE.SOLO || !deck.current) return;
+    setCoachOpen(true);
+  }, [view, deckMode, deck.current, coachOpen]);
 
   /* ── Реакция на карточку ─────────────────────────────────────── */
   const handleDecision = useCallback(async (entry, action) => {
@@ -954,6 +970,8 @@ export default function App() {
               : <Suspense fallback={<LoadingState text="Загружаем…" />}>{content}</Suspense>}
           </MobileShell>
         )}
+
+        <DeckCoach active={coachOpen} onDone={() => setCoachOpen(false)} />
 
         <Toasts toasts={toasts.toasts} onDismiss={toasts.dismiss} />
 

@@ -3,7 +3,7 @@ import { haptic } from '../../lib/telegram.js';
 import { trackMetric } from '../../lib/telemetry.js';
 import { METRIC } from '../../../shared/telemetry/events.js';
 import {
-  ArrowLeft, Bookmark, Eye, Heart, ICON, Info, RotateCcw, Users, X,
+  ArrowLeft, Bookmark, Eye, Flame, Heart, ICON, Info, RotateCcw, Users, X,
 } from '../../ui/icons.js';
 
 /**
@@ -20,40 +20,57 @@ import {
 const SLIDES = [
   {
     art: '/mascot/swipe.png',
-    title: 'Два жеста',
-    text: 'Основное решение принимается свайпом — карточку можно просто утащить пальцем.',
+    title: 'Четыре стороны',
+    text: 'Карточку можно просто утащить пальцем. Куда утащили — то и решили.',
     rows: [
       {
         icon: Heart, tone: 'like', fill: true,
-        action: 'Свайп вправо — нравится',
+        action: 'Вправо — нравится',
         target: 'Моё → Нравится',
       },
       {
         icon: X, tone: 'pass',
-        action: 'Свайп влево — пропуск',
+        action: 'Влево — мимо',
         target: 'Больше не покажем',
+      },
+      {
+        icon: Eye, tone: 'seen',
+        action: 'Вверх — уже смотрел',
+        target: 'Моё → Просмотрено',
+      },
+      {
+        icon: Bookmark, tone: 'wish', fill: true,
+        action: 'Вниз — буду смотреть',
+        target: 'Моё → Буду смотреть',
       },
     ],
   },
   {
     art: '/mascot/swipe.png',
-    title: 'Кнопки под колодой',
-    text: 'То же самое, если свайпать не хочется, плюс два решения, которых жестами нет.',
+    title: 'Или кнопками',
+    text: 'Под колодой те же четыре решения — если свайпать не хочется. И кнопка отмены рядом.',
     rows: [
-      {
-        icon: Bookmark, tone: 'wish', fill: true,
-        action: 'Буду смотреть',
-        target: 'Моё → Буду смотреть',
-      },
-      {
-        icon: Eye, tone: 'seen',
-        action: 'Просмотрено',
-        target: 'Моё → Просмотрено',
-      },
       {
         icon: RotateCcw, tone: 'muted',
         action: 'Вернуть последнее решение',
         target: 'Карточка вернётся в ленту',
+      },
+    ],
+  },
+  {
+    art: '/mascot/swipe.png',
+    title: 'Два настроения ленты',
+    text: 'Переключатель над колодой. «Моё» — похожее на любимое. «Другое» — незнакомое, и лента резко идёт за тем, что вы лайкнули прямо сейчас. При следующем заходе снова «Моё»: это настроение на вечер, а не выбор навсегда.',
+    rows: [
+      {
+        icon: Heart, tone: 'like', fill: true,
+        action: 'Моё',
+        target: 'Спокойный вечер',
+      },
+      {
+        icon: Flame, tone: 'info',
+        action: 'Другое',
+        target: 'Расширить вкус',
       },
     ],
   },

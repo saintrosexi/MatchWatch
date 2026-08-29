@@ -406,3 +406,80 @@
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: none; }
 }
+
+
+/* ── Подсказки поверх ленты ──────────────────────────────────── */
+/*
+ * Онбординг рассказывает всё до того, как человек увидел экран,
+ * и к третьему слайду половина забывается. Эти подсказки показывают
+ * то же самое по месту: вырез вокруг живого элемента, текст рядом.
+ */
+.coach {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  animation: fade-in var(--dur-base) var(--ease-out);
+}
+/*
+ * Подложка ловит нажатия и ничего не красит: затемнение целиком
+ * на вырезе. Иначе серым становится и сама цель, а подсказка,
+ * показывающая на невидимое, бесполезна.
+ */
+.coach__scrim {
+  position: absolute;
+  inset: 0;
+  background: none;
+  border: none;
+  cursor: default;
+}
+/* Цель не нашлась — тогда затемняем всё, иначе подсказка висит в воздухе. */
+.coach__scrim--solid { background: rgba(0, 0, 0, 0.72); }
+/*
+ * Вырез — одной тенью на всю страницу, а не четырьмя блоками по краям:
+ * дешевле в отрисовке и без швов на скруглениях.
+ */
+.coach__hole {
+  position: absolute;
+  border-radius: var(--r-lg);
+  /* Одной тенью: затемняет всё вокруг и оставляет цель в полном цвете. */
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.78);
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+  pointer-events: none;
+}
+.coach__tip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  background: var(--ink-900);
+  border: 1px solid var(--glass-border);
+}
+.coach__title { font-family: var(--font-display); font-size: var(--t-body); }
+.coach__text { font-size: var(--t-small); color: var(--text-mid); line-height: 1.5; }
+.coach__rows { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.coach__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--t-small);
+  color: var(--text-hi);
+}
+.coach__row--like svg { color: var(--coral); }
+.coach__row--pass svg { color: var(--no); }
+.coach__row--seen svg { color: var(--mint); }
+.coach__row--wish svg { color: var(--gold); }
+.coach__row--info svg { color: var(--ice); }
+.coach__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.coach__dots { display: flex; gap: 5px; }
+.coach__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-700);
+}
+.coach__dot--on { background: var(--coral); width: 18px; border-radius: var(--r-pill); }
