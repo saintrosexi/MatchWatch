@@ -43,6 +43,9 @@ export function createSessionMood({ window = WINDOW } = {}) {
 
     get size() { return liked.length + passed.length; },
 
+    /** Что человек сказал «да» в этой сессии — опоры сегодняшнего вечера. */
+    likedTitles() { return [...liked]; },
+
     /**
      * Множитель к оценке кандидата: выше единицы — сегодня в тему,
      * ниже — сегодня мимо.
@@ -94,7 +97,18 @@ export function createSessionMood({ window = WINDOW } = {}) {
  * Верхние карточки не трогаются: человек их уже видит, и подмена
  * картинки под рукой читается как сбой, а не как забота.
  */
-export function resortQueue(queue, session, { keepTop = 2, config = RECOMMENDATION_CONFIG } = {}) {
+export function resortQueue(queue, session, {
+  keepTop = 2,
+  config = RECOMMENDATION_CONFIG,
+  /*
+   * Во сколько раз сильнее обычного сегодняшние решения двигают хвост.
+   *
+   * В режиме поиска — втрое: человек лайкнул один фильм и ждёт, что
+   * лента повернёт сейчас, а не когда это осядет в постоянном профиле.
+   * В спокойном режиме множитель единица, то есть поведение прежнее.
+   */
+  boost = 1,
+} = {}) {
   if (!queue?.length || session.size < (config.session?.minSignals ?? 6)) return queue;
 
   const head = queue.slice(0, keepTop);
@@ -103,7 +117,7 @@ export function resortQueue(queue, session, { keepTop = 2, config = RECOMMENDATI
 
   const weighed = tail.map((entry) => ({
     entry,
-    value: (entry.score ?? 0) * session.weigh(entry.title, { config }),
+    value: (entry.score ?? 0) * (1 + (session.weigh(entry.title, { config }) - 1) * boost),
   }));
 
   weighed.sort((a, b) => b.value - a.value);

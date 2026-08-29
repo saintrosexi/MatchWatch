@@ -231,10 +231,16 @@ export function rankDeck(titles, profile, {
   refused = null,
   /** Опоры по участникам комнаты — включают режим «вероятность мэтча». */
   lovedGroups = null,
+  /** Режим подачи: 'calm' — спокойный вечер, 'discovery' — поиск нового. */
+  feedMode = 'calm',
+  /** Что человек лайкнул ПРЯМО СЕЙЧАС: за этим лента идёт в режиме поиска. */
+  sessionLoved = null,
 } = {}) {
   const p = hydrateProfile(profile);
   const warm = isWarm(p, config);
-  const rate = explorationRate ?? (warm ? config.exploration.rate : config.exploration.coldStartRate);
+  const mode = config.feed?.[feedMode] ?? config.feed?.calm ?? {};
+  const rate = explorationRate
+    ?? (warm ? (mode.rate ?? config.exploration.rate) : config.exploration.coldStartRate);
 
   /*
    * Опоры готовятся один раз на всю колоду, а не на каждого кандидата.
@@ -350,8 +356,27 @@ export function rankDeck(titles, profile, {
    * Новичку вместо противоположностей нужна широта — её даёт разведка,
    * которой на холодном старте и так больше половины колоды.
    */
-  const farSlots = warm ? Math.round(exploreSlots * (config.exploration.farShare ?? 0)) : 0;
+  const farSlots = warm
+    ? Math.round(exploreSlots * (mode.farShare ?? config.exploration.farShare ?? 0))
+    : 0;
   const probeSlots = exploreSlots - farSlots;
+
+  /*
+   * Сессионный пул: похожее на то, что человек лайкнул прямо сейчас.
+   *
+   * В режиме поиска он занимает половину «незнакомого» — это и есть
+   * реакция на сегодняшний лайк: сказал «да» одному фильму, и лента
+   * пошла за ним, не дожидаясь, пока это осядет в постоянном профиле.
+   * Если в сессии ещё ничего не лайкнули, слоты уходят обычной разведке.
+   */
+  const sessionReady = sessionLoved?.length ? prepareAll(sessionLoved) : null;
+  const sessionCandidates = sessionReady
+    ? [...scored]
+      .map((c) => ({ c, near: affinityToLoved(prepare(c.title), sessionReady, { config }).score }))
+      .filter((x) => x.near > 0.2)
+      .sort((a, b) => b.near - a.near)
+      .map((x) => x.c)
+    : [];
 
   const plan = [];
   for (let i = 0; i < probeSlots; i += 1) plan.push('explore');
@@ -366,7 +391,12 @@ export function rankDeck(titles, profile, {
   }
 
   const cursors = { profile: 0, explore: 0, far: 0 };
-  const pools = { profile: byScore, explore: exploreCandidates, far: farCandidates };
+  const pools = {
+    profile: byScore,
+    // В режиме поиска «проверка вкуса» — это карточки под сегодняшний лайк.
+    explore: sessionCandidates.length ? sessionCandidates : exploreCandidates,
+    far: farCandidates,
+  };
 
   /*
    * Берёт следующего доступного кандидата нужного рода.
@@ -386,6 +416,29 @@ export function rankDeck(titles, profile, {
     }
     return null;
   };
+
+  /*
+   * Открытие режима поиска: несколько популярных фильмов, далёких
+   * от профиля.
+   *
+   * Именно популярных: незнакомое должно быть узнаваемым, иначе это
+   * не «покажи другое», а «покажи то, о чём я никогда не слышал» —
+   * и человек закрывает ленту на третьей карточке. Открытие идёт
+   * до плана и в перемешивание не попадает: смысл в том, чтобы разворот
+   * ленты был виден сразу, а не через десять карточек.
+   */
+  const opening = warm ? Math.min(mode.opening ?? 0, target - deck.length) : 0;
+  if (opening > 0) {
+    const loud = [...farCandidates]
+      .sort((a, b) => (b.title.popularity ?? 0) - (a.title.popularity ?? 0));
+    for (const candidate of loud) {
+      if (deck.length >= opening) break;
+      if (used.has(candidate.id) || overCap(candidate.title)) continue;
+      used.add(candidate.id);
+      countIn(candidate.title);
+      deck.push({ ...candidate, slot: 'far' });
+    }
+  }
 
   for (const kind of plan) {
     if (deck.length >= target) break;

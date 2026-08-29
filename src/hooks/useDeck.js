@@ -135,6 +135,13 @@ export function useDeck({
    * ничего не теряет, просто не получает лучшего.
    */
   anchors = null,
+  /**
+   * Режим подачи: 'calm' — спокойный вечер, 'discovery' — поиск нового.
+   *
+   * Живёт в сессии и в постоянный профиль не пишется: это выбор
+   * настроения на вечер, а не заявление о себе.
+   */
+  feedMode = 'calm',
   actorId = null,
   roomDeck = null,
   /**
@@ -216,6 +223,9 @@ export function useDeck({
       history: historyRef.current,
       size: size ?? config.deck.soloSize,
       explorationRate: mode === DECK_MODE.ACTOR ? 0 : undefined,
+      feedMode,
+      // Сегодняшние лайки как опоры: за ними идёт лента в режиме поиска.
+      sessionLoved: sessionRef.current.likedTitles(),
     });
 
     if (!ranked.length) return 0;
@@ -226,7 +236,7 @@ export function useDeck({
     // порции будет уже по настоящим keywords, а не по жанрам.
     pool.enrich(ranked.slice(0, 16).map((e) => e.id));
     return ranked.length;
-  }, [mode]);
+  }, [mode, feedMode]);
 
   /**
    * Страховка: если решение по тайтлу появилось уже после того, как он
@@ -443,7 +453,13 @@ export function useDeck({
      * при сборке — то есть при входе в комнату и при росте колоды.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, filterKey, actorId, roomDeckKey, enabled]);
+    /*
+     * `feedMode` в зависимостях обязателен: человек переключает режим,
+     * чтобы лента изменилась СЕЙЧАС. Без пересборки новый состав пришёл бы
+     * только со следующей порцией — то есть карточек через двадцать,
+     * и переключатель выглядел бы неработающим.
+     */
+  }, [mode, filterKey, actorId, roomDeckKey, enabled, feedMode]);
 
   /**
    * Дозагрузка следующей пачки.
@@ -559,10 +575,15 @@ export function useDeck({
        * как обычно — оно пригодится в личной ленте.
        */
       const next = advanceQueue(prev, id);
-      return mode === DECK_MODE.ROOM ? next : resortQueue(next, sessionRef.current);
+      if (mode === DECK_MODE.ROOM) return next;
+      const config = getConfig();
+      return resortQueue(next, sessionRef.current, {
+        config,
+        boost: config.feed?.[feedMode]?.sessionBoost ?? 1,
+      });
     });
     setProcessed((n) => n + 1);
-  }, [mode]);
+  }, [mode, feedMode]);
 
   /**
    * Возвращает карточку в начало очереди.

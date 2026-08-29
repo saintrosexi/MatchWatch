@@ -473,3 +473,58 @@
 .studio__content .state { max-width: 560px; margin: 0 auto; }
 .studio__content .taste-panel { max-width: 720px; }
 .studio__content .segmented { margin-left: 0; margin-right: 0; }
+
+
+/* ── Переключатель режима ленты ──────────────────────────────── */
+/*
+ * Стоит в одном ряду с фильтрами и рулеткой, но выглядит иначе: те —
+ * круглые кнопки-инструменты, этот — тумблер, меняющий саму ленту.
+ * Одинаковый вид означал бы, что это ещё одна кнопка из трёх.
+ */
+/*
+ * Три колонки, а не флекс: переключатель обязан стоять ровно по центру
+ * экрана независимо от того, сколько кнопок справа. При флексе центр
+ * уезжал бы каждый раз, когда меняется их число.
+ */
+.hud__toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  /* Подтянут вверх, ближе к логотипу: между шапкой и колодой не должно
+     быть пустой полосы, она съедает высоту карточки. */
+  margin-top: -8px;
+  padding: 0 var(--s-4);
+}
+.hud__toolbar > :first-child { grid-column: 2; }
+.hud__toolbar-right { grid-column: 3; justify-self: end; }
+.feed-switch {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: rgba(10, 10, 16, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+/*
+ * Обе подписи видны всегда. У крупного тумблера по центру экрана
+ * скрытая половина читается как одна кнопка с непонятной иконкой:
+ * человек должен видеть, между чем именно он выбирает.
+ */
+.feed-switch__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--text-low);
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.feed-switch__item--on {
+  background: var(--coral-soft);
+  color: var(--coral);
+}

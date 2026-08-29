@@ -15,6 +15,7 @@ import { DetailsSheet } from '../features/deck/DetailsSheet.jsx';
 import { FiltersSheet, DEFAULT_FILTERS } from '../features/deck/FiltersSheet.jsx';
 import { RoomsView } from '../features/rooms/RoomsView.jsx';
 import { CollectionView } from '../features/collection/CollectionView.jsx';
+import { FeedModeSwitch } from '../features/deck/FeedModeSwitch.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
 import { MeView } from '../features/profile/MeView.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
@@ -107,6 +108,12 @@ export default function App() {
 
   const [userState, setUserState] = useState(null);
   const [showcaseOpen, setShowcaseOpen] = useState(false);
+  /*
+   * Режим подачи ленты. Живёт в памяти сессии и никуда не сохраняется:
+   * это выбор настроения на вечер, а не свойство человека. Перезашёл —
+   * снова спокойный, как и было задумано.
+   */
+  const [feedMode, setFeedMode] = useState('calm');
   const [taste, setTaste] = useState(createEmptyProfile);
 
   const [detailsEntry, setDetailsEntry] = useState(null);
@@ -377,6 +384,8 @@ export default function App() {
     history,
     /** Опоры вкуса: конкретные любимые фильмы вместо усреднённой точки. */
     anchors,
+    // В комнате и в колоде актёра режим не участвует: там свой порядок.
+    feedMode: deckMode === DECK_MODE.SOLO ? feedMode : 'calm',
     actorId: actorDeck?.id ?? null,
     roomDeck: deckMode === DECK_MODE.ROOM ? room.state?.deck : null,
     roomSwiped: deckMode === DECK_MODE.ROOM ? room.swipedTitleIds : null,
@@ -922,14 +931,21 @@ export default function App() {
             nav={nav}
             fixed={view === VIEW.DECK}
             statusStrip={statusStrip}
-            right={view === VIEW.DECK && (
+            toolbar={view === VIEW.DECK && (
               <>
-                <button type="button" className="hud__pill" onClick={() => setRouletteOpen(true)} aria-label="Кино-рулетка">
-                  <Dices size={16} />
-                </button>
-                <button type="button" className="hud__pill" onClick={() => setFiltersOpen(true)} aria-label="Фильтры">
-                  <SlidersHorizontal size={16} />
-                </button>
+                {/* Переключатель по центру: он меняет саму ленту.
+                    Инструменты при ней — прижаты к правому краю. */}
+                {deckMode === DECK_MODE.SOLO
+                  ? <FeedModeSwitch value={feedMode} onChange={setFeedMode} />
+                  : <span />}
+                <div className="row gap-2 hud__toolbar-right">
+                  <button type="button" className="hud__pill" onClick={() => setRouletteOpen(true)} aria-label="Кино-рулетка">
+                    <Dices size={16} />
+                  </button>
+                  <button type="button" className="hud__pill" onClick={() => setFiltersOpen(true)} aria-label="Фильтры">
+                    <SlidersHorizontal size={16} />
+                  </button>
+                </div>
               </>
             )}
           >

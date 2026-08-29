@@ -14,7 +14,7 @@ import { BrandLockup } from '../../ui/Brand.jsx';
  */
 export function MobileShell({
   nav, active, onNavigate, children, fixed = false,
-  user, online = true, statusStrip, right,
+  user, online = true, statusStrip, right, toolbar,
 }) {
   return (
     <div className="mobile-shell">
@@ -31,6 +31,10 @@ export function MobileShell({
           </span>
         )}
       </header>
+
+      {/* Отдельная строка под шапкой: то, что меняет саму ленту, а не
+          работает при ней. Поэтому по центру и крупнее кнопок-инструментов. */}
+      {toolbar && <div className="hud__toolbar">{toolbar}</div>}
 
       {statusStrip}
 
