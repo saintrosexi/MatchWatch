@@ -81,13 +81,22 @@ export function SwipeDeck({
 
   const { cardRef, fling, bind } = useSwipeGesture({
     enabled: Boolean(current) && !busy,
+    // В комнате личных пометок нет — там и вертикальных жестов быть не должно.
+    verticalEnabled: !compact,
     // Тап по карточке открывает описание — отдельной кнопки для этого нет.
     onTap: () => onOpenDetails?.(current),
     onDecision: (decision) => {
       unlockAudio();
-      if (decision === 'details') { onOpenDetails?.(current); return; }
-      // Свайп вправо — «нравится»: главный жест несёт главный вес.
+      /*
+       * Четыре направления — четыре решения, те же, что на кнопках:
+       * вправо «нравится», влево «мимо», вверх «уже смотрел»,
+       * вниз «буду смотреть». Описание открывается тапом; раньше
+       * его открывал свайп вверх, но жест, который ничего не решает,
+       * занимал целое направление из четырёх.
+       */
       if (decision === 'like') { haptic('success'); sfx.favorite(); commit(ACTION.FAVORITE); }
+      else if (decision === 'watched') { haptic('medium'); sfx.tick(); commit(ACTION.WATCHED); }
+      else if (decision === 'later') { haptic('medium'); sfx.like(); commit(ACTION.LATER); }
       else { haptic('light'); sfx.pass(); commit(ACTION.DISLIKE); }
     },
   });
@@ -273,6 +282,7 @@ export function SwipeDeck({
             ref={cardRef}
             entry={current}
             isTop
+            verticalHints={!compact}
             bind={bind}
             onOpenDetails={() => onOpenDetails?.(current)}
           />

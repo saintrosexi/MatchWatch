@@ -13,7 +13,7 @@ const RUNTIME = (minutes) => (minutes ? `${Math.floor(minutes / 60)} ч ${minute
  * честно, чтобы неожиданная рекомендация не выглядела ошибкой алгоритма.
  */
 export const SwipeCard = forwardRef(function SwipeCard(
-  { entry, depth = 0, isTop = false, bind, onOpenDetails },
+  { entry, depth = 0, isTop = false, bind, onOpenDetails, verticalHints = true },
   ref,
 ) {
   const { title, matchedTags = [], slot, confidence, becauseOf, alsoFor } = entry;
@@ -49,7 +49,14 @@ export const SwipeCard = forwardRef(function SwipeCard(
             <Heart size={26} weight="fill" />
           </div>
           <div className="card__stamp card__stamp--no" aria-hidden="true">НЕТ</div>
-          <div className="card__stamp card__stamp--info" aria-hidden="true">ДЕТАЛИ</div>
+          {/* Вертикальные жесты — личные пометки: вверх «уже смотрел»,
+              вниз «отложить». В комнате их нет, поэтому и штампов нет. */}
+          {verticalHints && (
+            <>
+              <div className="card__stamp card__stamp--seen" aria-hidden="true">СМОТРЕЛ</div>
+              <div className="card__stamp card__stamp--later" aria-hidden="true">БУДУ СМОТРЕТЬ</div>
+            </>
+          )}
         </>
       )}
 

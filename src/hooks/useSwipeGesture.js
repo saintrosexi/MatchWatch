@@ -14,6 +14,13 @@ import { useCallback, useEffect, useRef } from 'react';
 const DISTANCE_RATIO = 0.28;   // доля ширины карточки
 const VELOCITY_THRESHOLD = 0.55; // px/ms
 const MAX_ROTATION = 16;
+/*
+ * Порог вертикального жеста — доля высоты карточки.
+ *
+ * Больше горизонтального намеренно: вертикаль конкурирует со скроллом
+ * страницы, и случайное «посмотрел» стоит дороже случайного «мимо» —
+ * его не видно в ленте, чтобы отменить.
+ */
 const UP_THRESHOLD = 0.34;
 
 /**
@@ -42,7 +49,15 @@ const INERT = 'button, a, [data-no-drag]';
 /** Цель события не обязана быть элементом — у текстового узла нет closest. */
 const inInert = (target) => typeof target?.closest === 'function' && Boolean(target.closest(INERT));
 
-export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true } = {}) {
+export function useSwipeGesture({
+  onDecision, onProgress, onTap, enabled = true,
+  /*
+   * Вертикальные жесты — личные пометки. В комнате их нет: там решают
+   * вдвоём «смотрим ли это сегодня», а «я уже смотрел» к общему выбору
+   * отношения не имеет.
+   */
+  verticalEnabled = true,
+} = {}) {
   const cardRef = useRef(null);
   const state = useRef({
     active: false, startX: 0, startY: 0, x: 0, y: 0,
@@ -90,7 +105,8 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
       height: node.offsetHeight || 480,
       yes: node.querySelector('.card__stamp--yes'),
       no: node.querySelector('.card__stamp--no'),
-      info: node.querySelector('.card__stamp--info'),
+      seen: node.querySelector('.card__stamp--seen'),
+      later: node.querySelector('.card__stamp--later'),
     };
     state.current.cache = next;
     return next;
@@ -102,7 +118,9 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     const box = measure(node);
     const width = state.current.width || box.width;
     const progress = Math.max(-1, Math.min(1, x / (width * DISTANCE_RATIO)));
-    const upProgress = Math.max(0, Math.min(1, -y / (box.height * UP_THRESHOLD)));
+    const vertical = y / (box.height * UP_THRESHOLD);
+    const upProgress = Math.max(0, Math.min(1, -vertical));
+    const downProgress = Math.max(0, Math.min(1, vertical));
 
     node.style.transition = animate ? 'transform var(--dur-base) var(--ease-out)' : 'none';
     node.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${progress * MAX_ROTATION}deg)`;
@@ -115,9 +133,10 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
      */
     if (box.yes) box.yes.style.opacity = String(Math.max(0, progress));
     if (box.no) box.no.style.opacity = String(Math.max(0, -progress));
-    if (box.info) box.info.style.opacity = String(upProgress);
+    if (box.seen) box.seen.style.opacity = String(upProgress);
+    if (box.later) box.later.style.opacity = String(downProgress);
 
-    onProgress?.({ progress, upProgress });
+    onProgress?.({ progress, upProgress, downProgress });
   }, [measure, onProgress]);
 
   const reset = useCallback(({ animate = true } = {}) => {
@@ -132,9 +151,9 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     if (!node) { onDecision?.(decision); return; }
 
     const distance = (window.innerWidth || 400) * 1.35;
-    const target = direction === 'up'
-      ? { x: 0, y: -distance }
-      : { x: direction === 'right' ? distance : -distance, y: state.current.y * 0.4 };
+    const target = direction === 'up' ? { x: 0, y: -distance }
+      : direction === 'down' ? { x: 0, y: distance }
+        : { x: direction === 'right' ? distance : -distance, y: state.current.y * 0.4 };
 
     node.classList.add('card--flying');
     node.style.transition = 'transform 420ms var(--ease-out), opacity 420ms var(--ease-out)';
@@ -189,8 +208,12 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     s.lastX = event.clientX;
     s.lastT = event.timeStamp;
     s.x = dx;
-    // Вертикаль демпфируем: карточка не должна «улетать» вниз при скролле.
-    s.y = dy > 0 ? dy * 0.35 : dy * 0.7;
+    /*
+     * Вертикаль слегка придерживаем — палец на телефоне уезжает вниз
+     * сам собой, — но одинаково в обе стороны: теперь это два
+     * равноправных жеста, «посмотрел» вверх и «буду смотреть» вниз.
+     */
+    s.y = dy * 0.7;
     s.travel = Math.max(s.travel, Math.hypot(dx, dy));
 
     paint(s.x, s.y);
@@ -212,7 +235,8 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     const threshold = s.width * DISTANCE_RATIO;
     const fastEnough = Math.abs(s.velocity) > VELOCITY_THRESHOLD;
     const farEnough = Math.abs(s.x) > threshold;
-    const upEnough = -s.y > (s.cache?.height ?? 480) * UP_THRESHOLD;
+    const height = s.cache?.height ?? 480;
+    const vertical = verticalEnabled && Math.abs(s.y) > height * UP_THRESHOLD;
 
     /*
      * Палец почти не двигался и отпущен быстро — это нажатие. Иначе жест
@@ -229,8 +253,9 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     }
     s.dragged = true;
 
-    if (upEnough && Math.abs(s.x) < threshold) {
-      fling('up', 'details');
+    if (vertical && Math.abs(s.x) < threshold) {
+      const up = s.y < 0;
+      fling(up ? 'up' : 'down', up ? 'watched' : 'later');
       return;
     }
     if (farEnough || (fastEnough && Math.abs(s.x) > threshold * 0.4)) {
@@ -240,7 +265,7 @@ export function useSwipeGesture({ onDecision, onProgress, onTap, enabled = true 
     }
 
     reset();
-  }, [fling, reset, fireTap]);
+  }, [fling, reset, fireTap, verticalEnabled]);
 
   /*
    * Отмена жеста — браузер забрал управление себе. Нажатием это уже не

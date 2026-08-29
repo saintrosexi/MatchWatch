@@ -228,9 +228,22 @@
   transform: rotate(-14deg);
   background: rgba(255, 77, 94, .14);
 }
-.card__stamp--info { display: none; }
 .card__stamp--no { right: 24px; color: var(--no); transform: rotate(14deg); background: rgba(90,90,114,.14); }
-.card__stamp--info { left: 50%; top: auto; bottom: 120px; margin-left: -54px; color: var(--ice); transform: none; background: rgba(111,216,255,.12); }
+
+/*
+ * Вертикальные штампы стоят там, куда уходит карточка: «смотрел» сверху,
+ * «буду смотреть» снизу. Без поворота — наклон читается как небрежность,
+ * когда штамп идёт по центру, а не из угла.
+ */
+.card__stamp--seen,
+.card__stamp--later {
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  white-space: nowrap;
+}
+.card__stamp--seen { top: 40px; color: var(--mint); background: rgba(75,227,164,.14); }
+.card__stamp--later { top: auto; bottom: 140px; color: var(--gold); background: rgba(255,194,75,.14); }
 
 /* Свечение краёв по направлению свайпа. */
 .deck__edge {
