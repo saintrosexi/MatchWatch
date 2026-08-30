@@ -16,10 +16,12 @@
 import { withHandler, ApiError } from './http.js';
 import { sbSelect, sbInsert, sbUpdate, hasServiceKey } from './supabaseAdmin.js';
 import {
-  sendMessage, openAppButton, answerInlineQuery, appLink, linkButton, miniAppUrl, TEXTS,
+  sendMessage, openAppButton, answerInlineQuery, appLink, linkButton, miniAppUrl,
+  callBot, TEXTS,
 } from './botApi.js';
 import { logError, logMetric } from './telemetry.js';
-import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
+import { creditPayment } from './billing.js';
+import { BIZ, LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
 import { timingSafeEqual } from 'node:crypto';
 
 export const webhookHandler = withHandler({ methods: ['POST'], module: MODULE.BOT }, async ({ req, body }) => {
@@ -74,8 +76,24 @@ async function handleUpdate(update) {
     return;
   }
 
+  /*
+   * Предчек обязан получить ответ в течение десяти секунд, иначе
+   * Telegram отменяет оплату сам и человек видит отказ на ровном месте.
+   * Поэтому здесь нет ни одного обращения к базе: всё, что нужно было
+   * проверить, проверено при выписке счёта.
+   */
+  if (update.pre_checkout_query) {
+    await onPreCheckout(update.pre_checkout_query);
+    return;
+  }
+
   const message = update.message ?? update.edited_message;
   if (!message?.chat || message.chat.type !== 'private') return;
+
+  if (message.successful_payment) {
+    await onSuccessfulPayment(message);
+    return;
+  }
 
   const from = message.from ?? {};
   const chatId = message.chat.id;
@@ -102,6 +120,98 @@ async function handleUpdate(update) {
   }
 
   await sendMessage(chatId, TEXTS.fallback, { keyboard: openAppButton() });
+}
+
+/* ── Оплата звёздами ─────────────────────────────────────────────── */
+
+/**
+ * Подтверждение перед списанием.
+ *
+ * Отвечаем «да» всегда. Отказывать здесь было бы правильно, если бы
+ * товар мог кончиться или подорожать между выпиской счёта и оплатой, —
+ * у подписки ни того, ни другого не бывает. А неотвеченный предчек
+ * это отменённая оплата, то есть худший исход из возможных.
+ */
+async function onPreCheckout(query) {
+  const { ok, description } = await callBot('answerPreCheckoutQuery', {
+    pre_checkout_query_id: query.id,
+    ok: true,
+  });
+
+  if (!ok) {
+    logError({
+      message: 'bot: не удалось подтвердить предчек оплаты',
+      module: MODULE.BOT,
+      level: LEVEL.CRITICAL,
+      context: { description, biz: BIZ.PAYMENT_DECLINED },
+    });
+  }
+}
+
+/**
+ * Деньги списаны — выдаём доступ.
+ *
+ * Пользователя берём из payload счёта, а не из отправителя сообщения:
+ * счёт выписывался вошедшему в приложение человеку, и именно его
+ * аккаунт должен получить премиум. Telegram-аккаунт и аккаунт
+ * MatchWatch — не одно и то же, их связь может отсутствовать.
+ *
+ * Payload при этом пришёл от Telegram, а не от клиента, поэтому ему
+ * можно верить: подделать его пользователь не может.
+ */
+async function onSuccessfulPayment(message) {
+  const payment = message.successful_payment;
+  const chatId = message.chat.id;
+
+  let payload = null;
+  try {
+    payload = JSON.parse(payment.invoice_payload ?? '{}');
+  } catch {
+    payload = null;
+  }
+
+  const userId = payload?.userId;
+  if (!userId) {
+    logError({
+      message: 'bot: оплата без пользователя в payload — доступ выдать некому',
+      module: MODULE.BOT,
+      level: LEVEL.CRITICAL,
+      context: { chargeId: payment.telegram_payment_charge_id },
+    });
+    await sendMessage(chatId, TEXTS.paymentOrphan);
+    return;
+  }
+
+  const { credited, subscription } = await creditPayment({
+    userId,
+    source: 'stars',
+    amount: payment.total_amount ?? 0,
+    currency: payment.currency ?? 'XTR',
+    chargeId: payment.telegram_payment_charge_id,
+    days: Number(payload.days) || undefined,
+    payload: {
+      provider_charge_id: payment.provider_payment_charge_id ?? null,
+      telegram_user_id: String(message.from?.id ?? ''),
+    },
+  });
+
+  if (!credited) {
+    // Повторная доставка того же обновления — человеку писать не о чем.
+    logMetric(METRIC.PREMIUM_PURCHASED, {
+      userId, value: 0, context: { biz: BIZ.PAYMENT_DUPLICATE },
+    });
+    return;
+  }
+
+  logMetric(METRIC.PREMIUM_PURCHASED, {
+    userId,
+    value: payment.total_amount ?? 0,
+    context: { currency: payment.currency ?? 'XTR' },
+  });
+
+  await sendMessage(chatId, TEXTS.paymentDone(subscription?.expires_at), {
+    keyboard: openAppButton(),
+  });
 }
 
 /**

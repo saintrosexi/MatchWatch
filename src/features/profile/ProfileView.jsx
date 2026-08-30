@@ -5,6 +5,7 @@ import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
 import { tagLabel } from '../../../shared/taxonomy/tagOntology.js';
 import { getConfig } from '../../engine/recommendationConfig.js';
+import { PREMIUM_CONFIG } from '../../../shared/config/premium.js';
 import { withPlural, FORMS } from '../../../shared/i18n/plural.js';
 import { TelegramLinkCard } from './TelegramLinkCard.jsx';
 
@@ -19,6 +20,7 @@ export function ProfileView({
   user, taste, access, matches = {}, favorites = {}, ratings = {},
   prefs, onPrefsChange, onLogout, onOpenDashboard, onOpenTitle,
   onEditProfile, onEditShowcase, onOpenFriends, profile, auth, toasts,
+  premium, onOpenPremium,
 }) {
   const [showAllTags, setShowAllTags] = useState(false);
   const tags = useMemo(() => topTags(taste, showAllTags ? 40 : 14), [taste, showAllTags]);
@@ -221,6 +223,34 @@ export function ProfileView({
         <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
           Находится в работе, ожидайте.
         </p>
+      </section>
+
+      <section className="section">
+        <h2 className="section__title">Премиум</h2>
+        {/*
+          * Одна строка, а не баннер во весь экран.
+          *
+          * Пока подписка выдана всем, крупная витрина на главном экране
+          * профиля была бы рекламой того, что у человека и так есть, —
+          * это раздражает и обесценивает саму подписку. Строка сообщает
+          * состояние и открывает витрину тем, кто сам захотел посмотреть.
+          */}
+        <button type="button" className="member" style={{ cursor: 'pointer', width: '100%' }} onClick={onOpenPremium}>
+          <Crown size={20} color={premium?.premium ? 'var(--gold)' : 'var(--text-mid)'} weight={premium?.premium ? 'fill' : 'regular'} />
+          <span className="stack grow" style={{ textAlign: 'left' }}>
+            <span className="member__name">
+              {premium?.premium ? 'Премиум активен' : 'Подключить премиум'}
+            </span>
+            <span className="member__state">
+              {premium?.premium
+                ? (premium.daysLeft > 0
+                  ? `Осталось ${premium.daysLeft} дн. · оформление профиля открыто`
+                  : 'Открыт всем на время закрытого теста')
+                : `Оформление профиля и визитка на 12 фильмов · ${PREMIUM_CONFIG.price.label}`}
+            </span>
+          </span>
+          {premium?.promoAvailable && <span className="chip chip--gold">месяц бесплатно</span>}
+        </button>
       </section>
 
       <section className="section">

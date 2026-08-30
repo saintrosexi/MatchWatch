@@ -167,6 +167,28 @@ export const api = {
   unlinkTelegram: (accessToken) =>
     request('/auth/link-telegram', { method: 'DELETE', accessToken, retries: 0 }),
 
+  /* ── Премиум ── */
+
+  /** Что у человека с подпиской. Заодно приносит цену и список выгод. */
+  billingStatus: async () => request('/billing/status', {
+    accessToken: await sessionToken(), retries: 1,
+  }),
+
+  /** Бесплатный месяц первой волне. Второй раз базой не принимается. */
+  billingPromo: async () => request('/billing/promo', {
+    method: 'POST', accessToken: await sessionToken(), retries: 0,
+  }),
+
+  /**
+   * Ссылка на счёт в звёздах.
+   *
+   * Без повторов намеренно: каждый вызов выписывает НОВЫЙ счёт,
+   * и молчаливый ретрай при обрыве ответа оставил бы человеку два.
+   */
+  billingInvoice: async () => request('/billing/invoice', {
+    method: 'POST', accessToken: await sessionToken(), retries: 0,
+  }),
+
   /*
    * Метрики открываются по своей же учётке: признак `is_ops` в профиле.
    * Отдельный токен остаётся необязательным запасным путём — раньше

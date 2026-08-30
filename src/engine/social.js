@@ -84,13 +84,23 @@ export async function loadProfilePage({ username = null, userId = null } = {}) {
  * а здесь то, что он о себе показывает. Смешивать их значит на каждое
  * переключение тумблера перепроверять занятость ника.
  */
-export async function saveShowcase(uid, { pinnedIds, heroId, accent, showFilms, showRatings, showWatched }) {
+export async function saveShowcase(uid, {
+  pinnedIds, heroId, accent, frame, showFilms, showRatings, showWatched,
+  /*
+   * Потолок визитки приходит от вызывающего, а не берётся здесь
+   * константой: он зависит от подписки. Обрезка тут — только защита
+   * от случайного лишнего, настоящий предел проверяет база
+   * (`cardinality(pinned_ids) <= pin_limit`).
+   */
+  pinLimit = 6,
+}) {
   if (!supabaseReady() || !uid) return null;
 
   const patch = {};
-  if (pinnedIds !== undefined) patch.pinned_ids = pinnedIds.slice(0, 6);
+  if (pinnedIds !== undefined) patch.pinned_ids = pinnedIds.slice(0, pinLimit);
   if (heroId !== undefined) patch.hero_id = heroId || null;
   if (accent !== undefined) patch.accent = accent;
+  if (frame !== undefined) patch.frame = frame;
   if (showFilms !== undefined) patch.show_films = showFilms;
   if (showRatings !== undefined) patch.show_ratings = showRatings;
   if (showWatched !== undefined) patch.show_watched = showWatched;

@@ -64,6 +64,8 @@ export const BIZ = Object.freeze({
   DECK_EMPTY_AFTER_FILTERS: 'deck_empty_after_filters',
   OFFLINE_DEGRADED: 'offline_degraded',
   RECONNECT_RECOVERED: 'reconnect_recovered',
+  PAYMENT_DECLINED: 'payment_declined',
+  PAYMENT_DUPLICATE: 'payment_duplicate',
 });
 
 /** Продуктовые метрики — питают дашборд аналитики. */
@@ -84,6 +86,22 @@ export const METRIC = Object.freeze({
   STAR_DECK: 'star_deck_generated',
   BOT_STARTED: 'bot_started',
   BOT_NOTIFIED: 'bot_notified',
+
+  /*
+   * Шаги воронки первой волны.
+   *
+   * `ONBOARDING_DONE` был здесь и раньше, но без начала шага посчитать
+   * отвал невозможно: видно, сколько дошло, и не видно, из скольких.
+   * Остальные ступени уже собирались (`ROOM_INVITE_SENT`, `ROOM_JOINED`,
+   * `MATCH`) — не хватало ровно двух крайних.
+   */
+  ONBOARDING_STARTED: 'onboarding_started',
+
+  /* Премиум: показ витрины, промо и оплата. */
+  PREMIUM_VIEWED: 'premium_viewed',
+  PREMIUM_PROMO_ACTIVATED: 'premium_promo_activated',
+  PREMIUM_PURCHASED: 'premium_purchased',
+  PREMIUM_CREDITED: 'premium_credited',
 });
 
 /** Окружения разделены, чтобы локальная разработка не будила прод-алерты. */

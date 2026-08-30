@@ -18,6 +18,8 @@ import { CollectionView } from '../features/collection/CollectionView.jsx';
 import { FeedModeSwitch } from '../features/deck/FeedModeSwitch.jsx';
 import { DeckCoach, coachSeen } from '../features/deck/DeckCoach.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
+import { PremiumSheet } from '../features/premium/PremiumSheet.jsx';
+import { usePremium } from '../hooks/usePremium.js';
 import { MeView } from '../features/profile/MeView.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
 
@@ -114,6 +116,7 @@ export default function App() {
 
   const [userState, setUserState] = useState(null);
   const [showcaseOpen, setShowcaseOpen] = useState(false);
+  const [premiumOpen, setPremiumOpen] = useState(false);
   /*
    * Режим подачи ленты. Живёт в памяти сессии и никуда не сохраняется:
    * это выбор настроения на вечер, а не свойство человека. Перезашёл —
@@ -142,6 +145,12 @@ export default function App() {
   const [roomSession, setRoomSession] = useState(false);
 
   const user = auth.user;
+  /*
+   * Премиум читается с сервера и живёт рядом с остальным состоянием
+   * аккаунта. На клиенте он НЕ вычисляется: часы на устройстве
+   * переводятся в два касания.
+   */
+  const premium = usePremium({ uid: user?.uid, enabled: Boolean(user?.uid) });
   // Стабильная ссылка: иначе колбэки комнаты пересоздаются на каждый рендер.
   const roomUser = useMemo(
     () => user ?? { uid: 'anonymous', displayName: 'Гость', photoURL: null },
@@ -900,8 +909,8 @@ export default function App() {
    * целиком, а не каждый по отдельности: одновременно виден ровно один.
    */
   const content = renderView({
-    view, room, sessionUser, userState, taste, prefs, toasts, history,
-    setView, setPrefs, setActorDeck, setRoomSession, setDetailsEntry,
+    view, room, sessionUser, userState, taste, prefs, toasts, history, premium,
+    setView, setPrefs, setActorDeck, setRoomSession, setDetailsEntry, setPremiumOpen,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
     setEditorOpen, setShowcaseOpen, publicProfile, setPublicProfile, meTab, collectionSection,
@@ -1019,7 +1028,21 @@ export default function App() {
           profile={userState?.profile}
           favorites={userState?.favorites ?? {}}
           toasts={toasts}
+          premium={premium.premium}
+          onOpenPremium={() => { setShowcaseOpen(false); setPremiumOpen(true); }}
           onSaved={(saved) => setUserState((prev) => (prev ? { ...prev, profile: saved ?? prev.profile } : prev))}
+        />
+
+        <PremiumSheet
+          open={premiumOpen}
+          onClose={() => setPremiumOpen(false)}
+          premium={premium.premium}
+          promoAvailable={premium.promoAvailable}
+          daysLeft={premium.daysLeft}
+          busy={premium.busy}
+          onActivate={premium.activatePromo}
+          onPurchase={premium.purchase}
+          toasts={toasts}
         />
 
         <DetailsSheet
@@ -1105,8 +1128,8 @@ const SUBTITLES = ({ view, room, actorDeck }) => {
 
 function renderView(ctx) {
   const {
-    view, room, sessionUser, userState, taste, prefs, toasts, history,
-    setView, setPrefs, setRoomSession, setDetailsEntry, setActorDeck,
+    view, room, sessionUser, userState, taste, prefs, toasts, history, premium,
+    setView, setPrefs, setRoomSession, setDetailsEntry, setActorDeck, setPremiumOpen,
     focusPerson, createRoom, startActorDeck, handleToggleWatched,
     handleRemoveFavorite, handleUndoFromList, auth,
     setEditorOpen, setShowcaseOpen, publicProfile, setPublicProfile, meTab, collectionSection,
@@ -1190,6 +1213,8 @@ function renderView(ctx) {
           onLogout={auth.logout}
           onOpenDashboard={() => setView(VIEW.DASHBOARD)}
           onEditProfile={() => setEditorOpen(true)}
+          premium={premium}
+          onOpenPremium={() => setPremiumOpen(true)}
           onOpenPublicProfile={(username) => { setPublicProfile(username); setView(VIEW.PUBLIC_PROFILE); }}
           auth={auth}
           toasts={toasts}

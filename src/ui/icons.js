@@ -54,6 +54,7 @@ export {
   Play,
   ArrowsClockwise as RefreshCw,
   ArrowCounterClockwise as RotateCcw,
+  Lock,
   MagnifyingGlass as Search,
   PaperPlaneTilt as Send,
   ShareNetwork as Share2,

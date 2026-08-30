@@ -219,6 +219,39 @@ export function shareViaInlineQuery(queryText, chatTypes = ['users', 'groups']) 
 }
 
 /** Сохранить изображение карточки мэтча в галерею (Bot API 8.0+). */
+/**
+ * Открывает счёт на оплату звёздами.
+ *
+ * Внутри Telegram это нативное окно клиента: показать его умеет только
+ * он сам, у веба такого способа нет. Снаружи открываем ссылку — она
+ * ведёт в Telegram, где оплата и продолжится.
+ *
+ * Ответ приходит одним из четырёх состояний, и `pending` среди них
+ * не финальное: деньги ещё идут, доступ появится по вебхуку. Поэтому
+ * вызывающему возвращаем именно статус, а не «получилось / не получилось».
+ *
+ * @returns {Promise<'paid'|'cancelled'|'failed'|'pending'|'external'>}
+ */
+export function openInvoice(url) {
+  const app = wa();
+
+  if (!app?.openInvoice) {
+    reportSdkGap('openInvoice');
+    openLink(url);
+    return Promise.resolve('external');
+  }
+
+  return new Promise((resolve) => {
+    try {
+      app.openInvoice(url, (status) => resolve(status ?? 'failed'));
+    } catch {
+      // Клиент старше Bot API 6.1 — ссылка всё ещё рабочая.
+      openLink(url);
+      resolve('external');
+    }
+  });
+}
+
 export function downloadMatchImage(url, filename = 'matchwatch.png') {
   const app = wa();
   if (app?.downloadFile && versionAtLeast('8.0')) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Bookmark, Check, Heart, Pencil, Star, UserPlus, UserRound } from '../../ui/icons.js';
+import { ArrowLeft, Bookmark, Check, Crown, Heart, Pencil, Star, UserPlus, UserRound } from '../../ui/icons.js';
 import { EmptyState, ErrorState, LoadingState } from '../../ui/States.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { RatingBadge } from '../../ui/RatingPicker.jsx';
@@ -74,7 +74,12 @@ export function PublicProfileView({ username, userId, onBack, onOpenTitle, onEdi
   const cover = hero ?? pinned[0] ?? favorites[0] ?? null;
 
   return (
-    <div className="view profile-page" data-accent={person.accent ?? 'coral'}>
+    <div
+      className="view profile-page"
+      data-accent={person.accent ?? 'coral'}
+      /* Фактура — премиальная часть оформления; у остальных `plain`. */
+      data-frame={person.premium ? (person.frame ?? 'plain') : 'plain'}
+    >
       {back}
 
       <header className="profile-hero">
@@ -95,6 +100,13 @@ export function PublicProfileView({ username, userId, onBack, onOpenTitle, onEdi
 
           <h1 className="profile-hero__name">{person.displayName ?? person.username}</h1>
           {person.username && <span className="profile-hero__handle">@{person.username}</span>}
+          {/*
+            * Значок — половина смысла платной косметики: её ценность
+            * в том, что её видно другим, а не владельцу.
+            */}
+          {person.premium && (
+            <span className="premium-badge"><Crown size={11} weight="fill" /> Премиум</span>
+          )}
           {person.bio && <p className="profile-hero__bio">{person.bio}</p>}
 
           {hero?.title && (

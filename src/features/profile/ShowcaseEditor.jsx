@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Bookmark, Check, Heart, Star } from '../../ui/icons.js';
+import { Bookmark, Check, Heart, Lock, Star } from '../../ui/icons.js';
 import { Sheet } from '../../ui/Sheet.jsx';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState } from '../../ui/States.jsx';
 import { saveShowcase } from '../../engine/social.js';
+import { accentAllowed, frameAllowed, pinLimitFor } from '../../../shared/config/premium.js';
 
 /** Палитра продукта. Произвольный цвет рано или поздно нечитаем на тёмном. */
 const ACCENTS = [
@@ -12,9 +13,27 @@ const ACCENTS = [
   { key: 'ice', label: 'Ледяной', color: 'var(--ice)' },
   { key: 'mint', label: 'Мятный', color: 'var(--mint)' },
   { key: 'violet', label: 'Фиолетовый', color: '#a97bff' },
+  { key: 'ember', label: 'Уголь', color: '#ff7a3d' },
+  { key: 'ocean', label: 'Океан', color: '#3da5ff' },
+  { key: 'orchid', label: 'Орхидея', color: '#e86fd6' },
+  { key: 'moss', label: 'Мох', color: '#8fbf52' },
 ];
 
-const PIN_LIMIT = 6;
+/**
+ * Фактура карточки профиля.
+ *
+ * Отдельно от цвета намеренно: человек выбирает то и другое независимо,
+ * и любая пара обязана выглядеть намеренной. Пар «цвет + фактура»
+ * заранее мы не собираем — это был бы выбор из девяти готовых образов
+ * вместо выбора из девяти цветов и пяти фактур.
+ */
+const FRAMES = [
+  { key: 'plain', label: 'Без фактуры' },
+  { key: 'glow', label: 'Свечение' },
+  { key: 'gradient', label: 'Градиент' },
+  { key: 'film', label: 'Плёнка' },
+  { key: 'noir', label: 'Нуар' },
+];
 
 /**
  * Витрина профиля: что человек показывает о себе и как это выглядит.
@@ -24,12 +43,18 @@ const PIN_LIMIT = 6;
  * настроить можно только порядок и видимость. Так профиль не пустует
  * у тех, кто не любит заполнять анкеты, а таких большинство.
  */
-export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, onSaved, toasts }) {
+export function ShowcaseEditor({
+  open, onClose, uid, profile, favorites = {}, onSaved, toasts,
+  premium = false, onOpenPremium,
+}) {
   const [form, setForm] = useState({
-    pinnedIds: [], heroId: null, accent: 'coral',
+    pinnedIds: [], heroId: null, accent: 'coral', frame: 'plain',
     showFilms: true, showRatings: true, showWatched: true,
   });
   const [saving, setSaving] = useState(false);
+
+  /* Потолок визитки — из конфига подписки, а не из константы файла. */
+  const pinLimit = pinLimitFor({ premium });
 
   useEffect(() => {
     if (!open) return;
@@ -37,6 +62,7 @@ export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, on
       pinnedIds: profile?.pinned_ids ?? [],
       heroId: profile?.hero_id ?? null,
       accent: profile?.accent ?? 'coral',
+      frame: profile?.frame ?? 'plain',
       showFilms: profile?.show_films ?? true,
       showRatings: profile?.show_ratings ?? true,
       showWatched: profile?.show_watched ?? true,
@@ -55,7 +81,7 @@ export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, on
 
   const togglePin = (id) => setForm((f) => {
     if (f.pinnedIds.includes(id)) return { ...f, pinnedIds: f.pinnedIds.filter((x) => x !== id) };
-    if (f.pinnedIds.length >= PIN_LIMIT) return f;
+    if (f.pinnedIds.length >= pinLimit) return f;
     return { ...f, pinnedIds: [...f.pinnedIds, id] };
   });
 
@@ -63,7 +89,7 @@ export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, on
     e.preventDefault();
     setSaving(true);
     try {
-      const saved = await saveShowcase(uid, form);
+      const saved = await saveShowcase(uid, { ...form, pinLimit });
       onSaved?.(saved);
       toasts?.success('Профиль обновлён');
       onClose?.();
@@ -79,20 +105,53 @@ export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, on
       <form className="stack gap-5" onSubmit={submit}>
         <section className="stack gap-3">
           <span className="field__label">Цвет страницы</span>
-          <div className="row gap-3">
-            {ACCENTS.map((item) => (
-              <button
-                type="button"
-                key={item.key}
-                className={`accent-dot ${form.accent === item.key ? 'accent-dot--on' : ''}`}
-                style={{ '--dot': item.color }}
-                aria-label={item.label}
-                aria-pressed={form.accent === item.key}
-                onClick={() => setForm((f) => ({ ...f, accent: item.key }))}
-              >
-                {form.accent === item.key && <Check size={14} />}
-              </button>
-            ))}
+          <div className="row gap-3" style={{ flexWrap: 'wrap' }}>
+            {ACCENTS.map((item) => {
+              const locked = !accentAllowed(item.key, { premium });
+              return (
+                <button
+                  type="button"
+                  key={item.key}
+                  className={`accent-dot ${form.accent === item.key ? 'accent-dot--on' : ''} ${locked ? 'accent-dot--locked' : ''}`}
+                  style={{ '--dot': item.color }}
+                  aria-label={locked ? `${item.label} — в премиуме` : item.label}
+                  aria-pressed={form.accent === item.key}
+                  /*
+                   * Закрытый цвет не прячем, а показываем запертым:
+                   * спрятанное невозможно захотеть, а витрину открывает
+                   * именно желание, а не строка в списке выгод.
+                   */
+                  onClick={() => (locked
+                    ? onOpenPremium?.()
+                    : setForm((f) => ({ ...f, accent: item.key })))}
+                >
+                  {locked ? <Lock size={12} /> : (form.accent === item.key && <Check size={14} />)}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="stack gap-3">
+          <span className="field__label">Фактура карточки</span>
+          <div className="row gap-2" style={{ flexWrap: 'wrap' }}>
+            {FRAMES.map((item) => {
+              const locked = !frameAllowed(item.key, { premium });
+              const on = form.frame === item.key;
+              return (
+                <button
+                  type="button"
+                  key={item.key}
+                  className={`chip chip--interactive ${on ? 'chip--on' : ''}`}
+                  aria-pressed={on}
+                  onClick={() => (locked
+                    ? onOpenPremium?.()
+                    : setForm((f) => ({ ...f, frame: item.key })))}
+                >
+                  {locked && <Lock size={11} />} {item.label}
+                </button>
+              );
+            })}
           </div>
         </section>
 
@@ -106,10 +165,10 @@ export function ShowcaseEditor({ open, onClose, uid, profile, favorites = {}, on
           <>
             <section className="stack gap-3">
               <span className="field__label">
-                <Bookmark size={14} /> Визитка — до {PIN_LIMIT} фильмов
+                <Bookmark size={14} /> Визитка — до {pinLimit} фильмов
               </span>
               <p className="faint" style={{ fontSize: 'var(--t-micro)' }}>
-                Их увидят первыми. Выбрано {form.pinnedIds.length} из {PIN_LIMIT}.
+                Их увидят первыми. Выбрано {form.pinnedIds.length} из {pinLimit}.
               </p>
               <div className="pick-grid">
                 {options.map((item) => {

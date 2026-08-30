@@ -64,7 +64,16 @@ export const setupHandler = withHandler({ methods: ['GET', 'POST'], module: MODU
     // Только то, на что бот действительно отвечает: сообщения и
     // инлайн-карточки. Остальные типы обновлений жгли бы вызовы
     // функции впустую.
-    allowed_updates: ['message', 'inline_query'],
+    /*
+     * `pre_checkout_query` обязателен для оплаты звёздами.
+     *
+     * Telegram не присылает типы, которых нет в этом списке, а предчек
+     * без ответа он отменяет сам через десять секунд — то есть каждая
+     * оплата молча срывалась бы, и в логах не было бы ни строчки.
+     * `successful_payment` отдельным типом не идёт: он приходит внутри
+     * `message`, который здесь и так есть.
+     */
+    allowed_updates: ['message', 'inline_query', 'pre_checkout_query'],
     drop_pending_updates: true,
   });
 
