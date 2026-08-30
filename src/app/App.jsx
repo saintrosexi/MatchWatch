@@ -720,10 +720,21 @@ export default function App() {
    * участник получал чужую подборку. Теперь сначала все собираются,
    * и только потом колода строится по компромиссу всех, кто внутри.
    */
-  const createRoom = useCallback(
-    () => room.create({ deck: [], filters }),
-    [filters, room],
-  );
+  const createRoom = useCallback(async () => {
+    try {
+      return await room.create({ deck: [], filters });
+    } catch (error) {
+      /*
+       * Упёрлись в границу тарифа — открываем витрину прямо здесь.
+       *
+       * Показать сообщение и оставить человека наедине с ним значило бы
+       * сообщить об отказе и не дать способа его снять. Витрина в этот
+       * момент не реклама, а продолжение действия, которое он начал.
+       */
+      if (error?.code === 'limit_reached') setPremiumOpen(true);
+      throw error;
+    }
+  }, [filters, room]);
 
   const [deckBuilding, setDeckBuilding] = useState(false);
 

@@ -14,6 +14,8 @@
 
 import { withHandler, ApiError } from './http.js';
 import { requireUser } from './session.js';
+import { loadSubscription } from './billing.js';
+import { isPremiumActive } from '../../shared/config/premium.js';
 import { generateStructured, GeminiError, hasGemini, geminiModel } from './gemini.js';
 import {
   AI_TAG_GLOSSARY, INTERPRETATION_SCHEMA, TMDB_GENRES, requestFromInterpretation,
@@ -44,7 +46,20 @@ export const interpretHandler = withHandler(
      * эндпоинт выбирается скриптом за минуты, и приложение остаётся
      * без разбора запросов до следующих суток.
      */
-    await requireUser(req);
+    const user = await requireUser(req);
+
+    /*
+     * Разбор фразы — платная функция по себестоимости.
+     *
+     * Каждый вызов стоит квоты у модели, и мы в неё упирались дважды.
+     * Пока премиум выдан всем, проверка пропускает всех же: она лежит
+     * готовой ровно затем, чтобы в день, когда тариф включат, не пришлось
+     * искать, где именно этот вызов открыт наружу.
+     */
+    if (!isPremiumActive(await loadSubscription(user.id))) {
+      throw new ApiError(402, 'premium_required',
+        'Подбор по фразе доступен с премиумом');
+    }
 
     if (!hasGemini()) {
       throw new ApiError(503, 'ai_not_configured',

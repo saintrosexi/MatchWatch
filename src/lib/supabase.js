@@ -57,6 +57,8 @@ export const PG_ERROR = Object.freeze({
   FORBIDDEN: 'MW403',
   NOT_FOUND: 'MW404',
   ROOM_FULL: 'MW409',
+  /** Комнаты бесплатного тарифа на этот месяц кончились. */
+  LIMIT_REACHED: 'MW402',
   EXPIRED: 'MW410',
   CODE_EXHAUSTED: 'MW500',
 });
