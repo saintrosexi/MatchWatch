@@ -328,6 +328,66 @@
 .action--undo:hover:not(:disabled) { color: var(--text-hi); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
 
 /* ── Прогресс колоды ─────────────────────────────────────────── */
+/*
+ * Просьба оценить — поверх низа колоды.
+ *
+ * Именно поверх карточки, а не под ней: место под колодой занято
+ * прогрессом и кнопками, и просьба, вставшая туда, сдвинула бы всю
+ * ленту вниз на каждое «уже смотрел». Здесь она ничего не двигает
+ * и уходит через девять секунд.
+ *
+ * Низ карточки при этом закрывается, и это осознанно: там подпись
+ * «почему показали», а фильм уже решён — объяснять нечего.
+ */
+.rate-ask {
+  position: absolute;
+  /*
+   * Строго выше верхней карточки (у неё 3), а не вровень с ней.
+   * При равном z-index порядок решает разметка, и стоило бы карточке
+   * переехать ниже в дереве — панель ушла бы под её текст.
+   */
+  z-index: 5;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  /*
+   * Почти непрозрачный фон, а не обычное стекло: под панелью лежит
+   * не постер, а плотный текстовый блок карточки — название, теги,
+   * подпись «почему показали». Сквозь стекло они читаются вместе
+   * с текстом панели, и разобрать нельзя ни то, ни другое.
+   */
+  background: color-mix(in srgb, var(--ink-abyss) 97%, transparent);
+  /* Токен уже содержит саму функцию — оборачивать его в blur() нельзя. */
+  backdrop-filter: var(--glass-blur);
+  animation: rate-ask-in var(--dur-base) var(--ease-out) both;
+}
+.rate-ask__lead {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--text-hi);
+}
+.rate-ask__hint {
+  font-size: var(--t-micro);
+  line-height: 1.4;
+}
+/* Звёзды тут — главный элемент, поэтому во всю ширину карточки. */
+.rate-ask .star-scale { max-width: none; }
+
+@keyframes rate-ask-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rate-ask { animation: none; }
+}
+
 .deck-progress {
   display: flex;
   align-items: center;

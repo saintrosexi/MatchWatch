@@ -449,3 +449,38 @@
   min-height: 20px;
 }
 .rating--sm .rating__dot { height: 30px; font-size: var(--t-micro); }
+
+/*
+ * Шкала звёздами — для предложения оценить.
+ *
+ * Десять в один ряд при любой ширине. Перенос здесь недопустим:
+ * «девять звёзд и одна на второй строке» читается не как шкала до
+ * десяти, а как сбой вёрстки, и попасть в десятку становится задачей.
+ * Поэтому звёзды делят ширину поровну и ужимаются сами, а не стоят
+ * фиксированным шагом в надежде, что места хватит.
+ */
+.star-scale {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2px;
+  max-width: 320px;
+  color: var(--text-low);
+}
+.star-scale__star {
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 2px 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+/* Размер задаёт колонка, а не атрибут иконки: иначе ужиматься нечему. */
+.star-scale__star svg { width: 100%; height: auto; }
+.star-scale__star:hover { transform: translateY(-2px); }
+.star-scale__star--on { color: var(--gold); }
+

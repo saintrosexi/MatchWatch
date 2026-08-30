@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { BarChart3, Crown, Download, LogOut, Pencil, Sparkles, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
+import { BarChart3, Crown, Download, LogOut, Pencil, Sparkles, Star, Users, Volume2, VolumeX, Vibrate } from '../../ui/icons.js';
 import { Poster } from '../../ui/Poster.jsx';
 import { EmptyState, StatusStrip } from '../../ui/States.jsx';
 import { topTags, profileBreadth } from '../../engine/tasteProfile.js';
@@ -239,6 +239,13 @@ export function ProfileView({
             hint="Нативная вибрация Telegram"
             checked={prefs.haptics}
             onChange={(v) => onPrefsChange({ haptics: v })}
+          />
+          <SettingRow
+            icon={Star}
+            label="Предлагать оценить"
+            hint="Спрашиваем про фильм из «Нравится» — оценка уточняет ленту"
+            checked={prefs.ratePrompt !== false}
+            onChange={(v) => onPrefsChange({ ratePrompt: v })}
           />
         </div>
       </section>

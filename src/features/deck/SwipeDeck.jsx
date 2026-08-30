@@ -13,6 +13,7 @@ import { getConfig } from '../../engine/recommendationConfig.js';
 import { trackError } from '../../lib/telemetry.js';
 import { LEVEL, MODULE } from '../../../shared/telemetry/events.js';
 import { Compass, PartyPopper, SlidersHorizontal, Users } from '../../ui/icons.js';
+import { StarScale } from '../../ui/RatingPicker.jsx';
 
 /**
  * Стопка карточек: жест, кнопки, клавиатура и предзагрузка постеров.
@@ -22,6 +23,18 @@ import { Compass, PartyPopper, SlidersHorizontal, Users } from '../../ui/icons.j
  */
 export function SwipeDeck({
   deck, onDecision, onOpenDetails, onOpenFilters, onRestart, onUndo, canUndo,
+  /**
+   * Проставить оценку сразу после «уже смотрел».
+   *
+   * Спрашиваем ровно здесь и больше нигде: это единственный момент,
+   * когда человек сам сказал, что фильм видел, — и единственный, когда
+   * вопрос «как вам?» не выглядит вопросом про постер.
+   */
+  onRate,
+  /** Показывать ли предложение оценить (`prefs.ratePrompt`). */
+  askToRate = true,
+  /** «Никогда не показывать» — выключает предложение до настроек. */
+  onNeverAskToRate,
   /** В комнате остаются только «нет» и «да» — личные пометки там лишние. */
   compact = false,
   /** Прогресс участников комнаты: { size, mine, slowest, byUser }. */
@@ -36,6 +49,13 @@ export function SwipeDeck({
 }) {
   const { current, upcoming, loading, refilling, error, exhausted, progress, processed } = deck;
   const [busy, setBusy] = useState(false);
+  /*
+   * Карточка, про которую сейчас спрашиваем оценку.
+   *
+   * Держим саму запись, а не идентификатор: к моменту ответа фильм уже
+   * ушёл из очереди, и достать его оттуда будет неоткуда.
+   */
+  const [rating, setRating] = useState(null);
   const lastEntry = useRef(null);
 
   /*
@@ -65,12 +85,25 @@ export function SwipeDeck({
      */
     deck.advance(decided.id, action !== 'dislike');
 
+    /*
+     * «Уже смотрел» — и сразу спрашиваем, как оно было.
+     *
+     * Здесь, у карточки, а не списком в «Моё»: человек только что
+     * вспомнил фильм, и это единственная секунда, когда оценка стоит
+     * ему одного касания. Отложенная просьба «оцените накопленное»
+     * стоит уже усилия, и её закрывают не глядя.
+     *
+     * Любое следующее решение просьбу снимает: она про тот фильм,
+     * который сейчас улетел, и висеть над следующим ей нечего.
+     */
+    setRating(action === ACTION.WATCHED && askToRate && onRate ? decided : null);
+
     Promise.resolve()
       .then(() => onDecision(decided, action))
       .catch((error) => trackError('Решение по карточке не записалось', {
         module: MODULE.DECK, level: LEVEL.WARNING, error,
       }));
-  }, [current, busy, onDecision, deck]);
+  }, [current, busy, onDecision, deck, askToRate, onRate]);
 
   /*
    * Блокировка держится не до ответа сети, а до появления следующей
@@ -78,6 +111,19 @@ export function SwipeDeck({
    * судьбу двух фильмов сразу.
    */
   useEffect(() => { setBusy(false); }, [current?.id]);
+
+  /*
+   * Просьба живёт девять секунд и уходит сама.
+   *
+   * Без таймера она осталась бы висеть над следующей карточкой до
+   * ответа — то есть превратилась бы из предложения в препятствие.
+   * Девять секунд — это прочитать строку и попасть в звезду, не больше.
+   */
+  useEffect(() => {
+    if (!rating) return undefined;
+    const timer = setTimeout(() => setRating(null), 9000);
+    return () => clearTimeout(timer);
+  }, [rating]);
 
   const { cardRef, fling, bind } = useSwipeGesture({
     enabled: Boolean(current) && !busy,
@@ -286,6 +332,15 @@ export function SwipeDeck({
             bind={bind}
             onOpenDetails={() => onOpenDetails?.(current)}
           />
+
+          {rating && (
+            <RateAsk
+              entry={rating}
+              onRate={(value) => { setRating(null); onRate(rating.title, value); }}
+              onSkip={() => setRating(null)}
+              onNever={onNeverAskToRate && (() => { setRating(null); onNeverAskToRate(); })}
+            />
+          )}
         </div>
       </div>
 
@@ -308,5 +363,54 @@ export function SwipeDeck({
         onLike={() => { haptic('success'); sfx.favorite(); fling('right', 'like'); }}
       />
     </>
+  );
+}
+
+/**
+ * Просьба оценить фильм, который только что отметили просмотренным.
+ *
+ * Стоит у карточки, поверх низа колоды, а не тостом в углу: тост
+ * читается как отчёт о выполненном действии («отметили»), и просьбу
+ * внутри него не замечают. Здесь же взгляд ещё на карточке — просьба
+ * попадает ровно туда, откуда человек не успел уйти.
+ *
+ * Зачем это движку. Свайп «уже смотрел» — слабый сигнал, вес 0,2:
+ * посмотреть можно и по чужому совету, и от скуки, и «видел» ничего
+ * не говорит о том, понравилось ли. Оценка весит вчетверо больше
+ * избранного и, в отличие от любого свайпа, умеет быть отрицательной:
+ * тройка уводит ленту от похожего, а не просто не приближает к нему.
+ * Один жест превращает пустую отметку в самый сильный сигнал, какой
+ * человек вообще может дать.
+ *
+ * Две кнопки отказа, а не одна. «Пропустить» — про этот фильм,
+ * «никогда» — про саму просьбу: без второй мы спрашивали бы снова
+ * и снова у того, кто уже ответил, и продукт выпрашивал бы данные.
+ * Возвращается в настройках — раздражение проходит быстрее решения.
+ */
+function RateAsk({ entry, onRate, onSkip, onNever }) {
+  return (
+    <section className="rate-ask" role="dialog" aria-label="Оцените фильм">
+      <p className="rate-ask__lead">
+        Смотрели «{entry.title.title}» — как вам?
+      </p>
+
+      <StarScale onRate={onRate} size={30} />
+
+      <p className="rate-ask__hint faint">
+        Оценка решает в ленте больше свайпа: выше шести — несём похожее,
+        ниже — уводим от него.
+      </p>
+
+      <div className="row gap-2">
+        <button type="button" className="btn btn--sm btn--ghost" onClick={onSkip}>
+          Пропустить
+        </button>
+        {onNever && (
+          <button type="button" className="btn btn--sm btn--quiet" onClick={onNever}>
+            Никогда не показывать
+          </button>
+        )}
+      </div>
+    </section>
   );
 }

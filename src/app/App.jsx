@@ -92,7 +92,12 @@ const VIEW = {
   DASHBOARD: 'dashboard',
 };
 
-const DEFAULT_PREFS = { sound: true, haptics: true };
+/**
+ * `ratePrompt` — показывать ли в «Нравится» предложение оценить фильм.
+ * Выключается кнопкой «Никогда не показывать» в самом предложении
+ * и возвращается в настройках: раздражение проходит, а решение остаётся.
+ */
+const DEFAULT_PREFS = { sound: true, haptics: true, ratePrompt: true };
 
 export default function App() {
   const platform = usePlatform();
@@ -657,12 +662,28 @@ export default function App() {
    */
   const handleRate = useCallback(async (title, value) => {
     if (!value) return;
-    setUserState((prev) => applyLocalDecision(prev, title, ACTION.WATCHED, { rating: value }));
-    const nextTaste = await rateTitle({ uid: user?.uid, title, rating: value, taste });
+
+    /*
+     * Оценка не сбрасывает «нравится» и не отменяет мэтч.
+     *
+     * Решение по тайтлу одно, и оценка по умолчанию ставит «просмотрено»:
+     * оценить можно только то, что видел. Но для любимого это означало
+     * бы, что девятка выкидывает фильм из «Нравится», — а мы сами просим
+     * оценить накопленное любимое, то есть предлагали бы человеку
+     * опустошить собственный список. Эти два решения не спорят: одно
+     * про «мой фильм», другое про «насколько хорош».
+     */
+    const previous = userState?.history?.[title.id];
+    const action = previous === ACTION.FAVORITE || previous === ACTION.MATCH
+      ? previous
+      : ACTION.WATCHED;
+
+    setUserState((prev) => applyLocalDecision(prev, title, action, { rating: value }));
+    const nextTaste = await rateTitle({ uid: user?.uid, title, rating: value, taste, action });
     setTaste(nextTaste);
     haptic('success');
     toasts.success(`Оценка ${value} — учтём в рекомендациях`);
-  }, [user?.uid, taste, toasts]);
+  }, [user?.uid, taste, toasts, userState?.history]);
 
   const handleRemoveFavorite = useCallback(async (stub) => {
     const titleId = stub.id ?? stub.titleId;
@@ -858,6 +879,9 @@ export default function App() {
         }
       }) : null}
       onDecision={handleDecision}
+      onRate={handleRate}
+      askToRate={prefs.ratePrompt !== false}
+      onNeverAskToRate={() => setPrefs((p) => ({ ...p, ratePrompt: false }))}
       onOpenDetails={setDetailsEntry}
       onOpenFilters={() => setFiltersOpen(true)}
       onRestart={actorDeck ? () => setActorDeck(null) : undefined}

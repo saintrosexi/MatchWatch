@@ -53,6 +53,55 @@ export function RatingPicker({ value = null, onRate, size = 'md' }) {
   );
 }
 
+/**
+ * Та же десятибалльная шкала, но звёздами.
+ *
+ * Нужна там, где человек ничего не просил, — в предложении оценить.
+ * Ряд из десяти цифр читается как форма, которую заставляют заполнить,
+ * и на него отвечают «потом»; ряд звёзд читается как приглашение,
+ * и на него отвечают сразу. Шкала при этом не меняется: те же десять
+ * баллов, что и везде, — иначе своя оценка перестала бы сравниваться
+ * с оценкой зрителей.
+ */
+export function StarScale({ value = null, onRate, size = 26 }) {
+  const [hover, setHover] = useState(null);
+  const shown = hover ?? value;
+
+  return (
+    <div className="stack gap-2">
+      <div
+        className="star-scale"
+        role="radiogroup"
+        aria-label="Ваша оценка фильма"
+        onMouseLeave={() => setHover(null)}
+      >
+        {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+          <button
+            key={n}
+            type="button"
+            role="radio"
+            aria-checked={value === n}
+            aria-label={`${n} из 10`}
+            className={`star-scale__star ${shown >= n ? 'star-scale__star--on' : ''}`}
+            onMouseEnter={() => setHover(n)}
+            onFocus={() => setHover(n)}
+            onBlur={() => setHover(null)}
+            onClick={() => onRate(n)}
+          >
+            <Star size={size} weight={shown >= n ? 'fill' : 'regular'} />
+          </button>
+        ))}
+      </div>
+
+      <div className="rating__caption">
+        {shown
+          ? <><b>{shown}</b> <span className="faint">{VERDICTS[shown]}</span></>
+          : <span className="faint">Нажмите на звезду</span>}
+      </div>
+    </div>
+  );
+}
+
 /** Словесная расшифровка: цифра без слова мало что говорит. */
 const VERDICTS = {
   1: 'ужасно', 2: 'очень плохо', 3: 'плохо', 4: 'слабо', 5: 'так себе',

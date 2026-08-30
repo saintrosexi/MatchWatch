@@ -293,17 +293,23 @@ export function rankDeck(titles, profile, {
    */
   const franchiseSeen = new Map();
   const universeSeen = new Map();
-  const { maxPerFranchise = Infinity, maxPerUniverse = Infinity } = config.penalties;
+  const {
+    maxPerFranchise = Infinity, maxPerUniverse = Infinity, capSlack = 0,
+  } = config.penalties;
 
   const keysOf = (title) => ({
     franchise: title?.collectionId ?? null,
     universe: universeOf(title?.tags),
   });
 
-  const overCap = (title) => {
+  /**
+   * @param slack на сколько разрешено превысить потолок (мягкий проход).
+   */
+  const overCap = (title, slack = 0) => {
     const { franchise, universe } = keysOf(title);
-    if (franchise !== null && (franchiseSeen.get(franchise) ?? 0) >= maxPerFranchise) return true;
-    if (universe && (universeSeen.get(universe) ?? 0) >= maxPerUniverse) return true;
+    if (franchise !== null
+      && (franchiseSeen.get(franchise) ?? 0) >= maxPerFranchise + slack) return true;
+    if (universe && (universeSeen.get(universe) ?? 0) >= maxPerUniverse + slack) return true;
     return false;
   };
 
@@ -401,17 +407,22 @@ export function rankDeck(titles, profile, {
   /*
    * Берёт следующего доступного кандидата нужного рода.
    *
-   * `soft` — проход без учёта потолков франшизы. Нужен как последнее
-   * средство: если у человека в любимых одна вселенная и каталог
-   * отфильтрован узко, лучше показать четвёртого «Мстителя», чем
-   * оборвать колоду на середине.
+   * `soft` — проход с приподнятым, но всё ещё существующим потолком.
+   * Нужен как последнее средство: если у человека в любимых одна
+   * вселенная и каталог отфильтрован узко, лучше показать четвёртого
+   * «Мстителя», чем оборвать колоду на середине.
+   *
+   * Именно приподнятым, а не снятым. Пока потолок здесь снимался
+   * совсем, бедный пул давал ленту из одной франшизы подряд — формально
+   * «мы показали хоть что-то», фактически то, ради предотвращения чего
+   * потолки и заводились.
    */
   const take = (kind, { soft = false } = {}) => {
     const pool = pools[kind];
     while (cursors[kind] < pool.length) {
       const candidate = pool[cursors[kind]++];
       if (used.has(candidate.id)) continue;
-      if (!soft && overCap(candidate.title)) continue;
+      if (overCap(candidate.title, soft ? capSlack : 0)) continue;
       return { ...candidate, slot: kind === 'profile' ? 'profile' : kind };
     }
     return null;

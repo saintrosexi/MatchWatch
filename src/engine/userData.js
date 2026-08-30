@@ -476,8 +476,17 @@ export async function undoDecision({ uid, titleId, previousTaste }) {
  * Оценить можно только то, что посмотрел, поэтому оценка заодно помечает
  * фильм просмотренным: иначе он остался бы в ленте, и пользователю
  * предлагали бы решить про кино, о котором он только что высказался.
+ *
+ * Но «просмотрено» — не единственное решение, которое совместимо
+ * с оценкой. Решение по тайтлу одно, и раньше оценка затирала им любое
+ * прежнее: поставив девятку любимому фильму, человек терял его
+ * из «Нравится». Это неверно даже по смыслу — «нравится» и «девять
+ * из десяти» не противоречат друг другу, а подтверждают друг друга, —
+ * и особенно вредно там, где мы сами просим оценить накопленное
+ * любимое: список опустошался бы ровно тем действием, которого мы
+ * добиваемся. Поэтому вызывающий может сохранить прежнее решение.
  */
-export async function rateTitle({ uid, title, rating, taste }) {
+export async function rateTitle({ uid, title, rating, taste, action = ACTION.WATCHED }) {
   const nextTaste = applyRating(taste, title, rating);
 
   if (!supabaseReady() || !uid) {
@@ -490,7 +499,7 @@ export async function rateTitle({ uid, title, rating, taste }) {
     titleId: title.id,
     title: titleStub(title),
     rating,
-    action: ACTION.WATCHED,
+    action,
     taste: nextTaste,
   }, { key: `reaction:${uid}:${title.id}` });
 

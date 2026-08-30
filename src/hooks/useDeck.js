@@ -205,6 +205,20 @@ export function useDeck({
   partnersRef.current = roomPartners;
 
   const filterKey = useMemo(() => JSON.stringify(filters ?? {}), [filters]);
+  /*
+   * Пул кандидатов — свой на каждый режим подачи.
+   *
+   * Ключа из одних фильтров было мало, и это ломало ровно то, ради чего
+   * режимы делались. Горячие семена режима поиска тянут в пул похожее
+   * на сиюминутный лайк; пул был общий, и, вернувшись в спокойную ленту,
+   * человек получал её же — пять серий подряд того, о чём он в «Моё»
+   * не просил. Спокойная лента обязана быть тем, что накоплено вообще,
+   * а не тем, что зацепило десять минут назад в другом режиме.
+   *
+   * Плата за развязку — первый вход в каждый режим наполняет свой пул.
+   * Дальше оба живут в памяти, и переключение снова мгновенно.
+   */
+  const poolKey = useMemo(() => `${feedMode}|${filterKey}`, [feedMode, filterKey]);
   const roomDeckKey = useMemo(
     () => (roomDeck ?? []).map((t) => t.id ?? t.titleId).join('|'),
     [roomDeck],
@@ -237,6 +251,40 @@ export function useDeck({
     pool.enrich(ranked.slice(0, 16).map((e) => e.id));
     return ranked.length;
   }, [mode, feedMode]);
+
+  /**
+   * Вставляет свежих кандидатов сразу за верхними карточками.
+   *
+   * Нужно режиму поиска и только ему. Обычная дозагрузка дописывает
+   * карточки в хвост, и приехавшее по горячему семени человек увидел бы
+   * через полтора десятка свайпов — то есть уже не как ответ на свой
+   * лайк, а как случайность. Здесь же лента поворачивает в ближайшие
+   * несколько карточек, ровно как он и просил.
+   *
+   * Две верхние не трогаются: одна под пальцем, вторая видна за ней,
+   * и подмена любой из них читается как сбой, а не как забота.
+   */
+  const injectFresh = useCallback((pool, count) => {
+    const config = getConfig();
+    const candidates = pool.all.filter((t) => !queuedIds.current.has(t.id));
+    if (!candidates.length) return 0;
+
+    const ranked = rankDeck(candidates, tasteRef.current, {
+      loved: anchorsRef.current?.loved,
+      refused: anchorsRef.current?.refused,
+      config,
+      history: historyRef.current,
+      size: count,
+      feedMode,
+      sessionLoved: sessionRef.current.likedTitles(),
+    });
+    if (!ranked.length) return 0;
+
+    ranked.forEach((entry) => queuedIds.current.add(entry.id));
+    setQueue((prev) => [...prev.slice(0, 2), ...ranked, ...prev.slice(2)]);
+    pool.enrich(ranked.map((e) => e.id));
+    return ranked.length;
+  }, [feedMode]);
 
   /**
    * Страховка: если решение по тайтлу появилось уже после того, как он
@@ -380,8 +428,8 @@ export function useDeck({
           return;
         }
 
-        const pool = poolsRef.current.get(filterKey) ?? new CatalogPool({ filters });
-        poolsRef.current.set(filterKey, pool);
+        const pool = poolsRef.current.get(poolKey) ?? new CatalogPool({ filters });
+        poolsRef.current.set(poolKey, pool);
 
         /*
          * Семена отбора: самые свежие из любимых, но по одному
@@ -459,7 +507,7 @@ export function useDeck({
      * только со следующей порцией — то есть карточек через двадцать,
      * и переключатель выглядел бы неработающим.
      */
-  }, [mode, filterKey, actorId, roomDeckKey, enabled, feedMode]);
+  }, [mode, poolKey, actorId, roomDeckKey, enabled, feedMode]);
 
   /**
    * Дозагрузка следующей пачки.
@@ -496,7 +544,9 @@ export function useDeck({
 
     try {
       const { added, poolExhausted, pages } = await pullNewCards(pool, {
-        size: 40, maxPages: REFILL_PAGES_PER_ROUND,
+        // Та же порция, что и у первой колоды: лента идёт ровными
+        // двадцатью пятью, а не «шестьдесят сначала, сорок потом».
+        size: getConfig().deck.soloSize, maxPages: REFILL_PAGES_PER_ROUND,
       });
 
       // Нашли хоть что-то — полоса решённого кончилась, счёт заново.
@@ -557,6 +607,30 @@ export function useDeck({
   useEffect(() => () => clearTimeout(retryTimer.current), []);
 
   const advance = useCallback((id, liked = null) => {
+    /*
+     * Горячее семя: лайк в режиме поиска сразу заказывает похожее
+     * из каталога.
+     *
+     * Пересортировки хвоста для этого мало — она меняет порядок уже
+     * загруженного, а человек, лайкнувший незнакомый фильм, ждёт, что
+     * лента принесёт ЕЩЁ такого же, чего в пуле пока просто нет.
+     *
+     * Только в режиме поиска и намеренно. В спокойной ленте состав
+     * обязан быть предсказуемым: она обновляется ровными порциями
+     * по двадцать пять, и подмешивать в неё выдачу по одному свайпу
+     * значило бы сделать «просто полистать своё» такой же дёрганой,
+     * как и поиск.
+     */
+    if (liked === true && feedMode === 'discovery' && mode === DECK_MODE.SOLO) {
+      const pool = poolRef.current;
+      if (pool?.pushSeed(id)) {
+        // Похожие — добавка, а не условие работы: молча живём без них.
+        pool.loadSimilar()
+          .then((added) => { if (added) injectFresh(pool, 6); })
+          .catch(() => {});
+      }
+    }
+
     setQueue((prev) => {
       /*
        * Решение кормит настроение вечера, и хвост очереди
@@ -583,7 +657,7 @@ export function useDeck({
       });
     });
     setProcessed((n) => n + 1);
-  }, [mode, feedMode]);
+  }, [mode, feedMode, injectFresh]);
 
   /**
    * Возвращает карточку в начало очереди.
@@ -613,16 +687,16 @@ export function useDeck({
     queuedIds.current = new Set();
     // Повтор после сбоя начинает с чистого пула: прежний мог остаться
     // на середине неудачной страницы.
-    poolsRef.current.delete(filterKey);
+    poolsRef.current.delete(poolKey);
     poolRef.current = null;
     setProcessed((n) => n);
     const pool = new CatalogPool({ filters });
-    poolsRef.current.set(filterKey, pool);
+    poolsRef.current.set(poolKey, pool);
     poolRef.current = pool;
     pool.fill(getConfig().deck.candidatePool)
       .then(() => { extend(pool); setLoading(false); })
       .catch((e) => { setError(describeError(e)); setLoading(false); });
-  }, [filters, filterKey, extend]);
+  }, [filters, poolKey, extend]);
 
   const total = processed + queue.length;
 
