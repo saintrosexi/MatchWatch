@@ -54,8 +54,6 @@ const DashboardView = lazy(retryChunk(() => import('../features/profile/Dashboar
   .then((m) => ({ default: m.DashboardView })), 'DashboardView'));
 const RouletteModal = lazy(retryChunk(() => import('../features/roulette/RouletteModal.jsx')
   .then((m) => ({ default: m.RouletteModal })), 'RouletteModal'));
-const Onboarding = lazy(retryChunk(() => import('../features/onboarding/Onboarding.jsx')
-  .then((m) => ({ default: m.Onboarding })), 'Onboarding'));
 
 import { retryChunk, clearChunkReload } from '../lib/lazyChunk.js';
 import { Toasts } from '../ui/Toasts.jsx';
@@ -119,7 +117,6 @@ export default function App() {
   const [online, setOnline] = useState(true);
   /** Сколько записей ждут отправки в базу. */
   const [pendingWrites, setPendingWrites] = useState(0);
-  const [onboarded, setOnboarded] = useState(() => loadLocal(STORAGE_KEYS.ONBOARDED, false));
   const [prefs, setPrefs] = useState(() => ({ ...DEFAULT_PREFS, ...loadLocal(STORAGE_KEYS.PREFS, {}) }));
   const [filters, setFilters] = useState(() => loadLocal(STORAGE_KEYS.FILTERS, DEFAULT_FILTERS));
 
@@ -883,18 +880,16 @@ export default function App() {
     return <div className="app-root"><LoadingState text="Открываем кинозал…" /></div>;
   }
 
+  /*
+   * Слайдов перед лентой больше нет.
+   *
+   * Обучение целиком живёт в подсказках поверх колоды (`DeckCoach`):
+   * они объясняют то же самое, но по месту и тогда, когда на экране
+   * есть настоящая карточка. Семь слайдов до продукта стоили нам
+   * ровно того человека, который пришёл посмотреть, что это такое.
+   */
   if (!user && !auth.isDegraded) {
     return <div className="app-root"><AuthScreen auth={auth} /></div>;
-  }
-
-  if (!onboarded) {
-    return (
-      <div className="app-root">
-        <Suspense fallback={<LoadingState text="Загружаем…" />}>
-          <Onboarding onDone={() => { setOnboarded(true); saveLocal(STORAGE_KEYS.ONBOARDED, true); }} />
-        </Suspense>
-      </div>
-    );
   }
 
   const sessionUser = user ?? roomUser;
