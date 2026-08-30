@@ -102,6 +102,10 @@ export const METRIC = Object.freeze({
   PREMIUM_PROMO_ACTIVATED: 'premium_promo_activated',
   PREMIUM_PURCHASED: 'premium_purchased',
   PREMIUM_CREDITED: 'premium_credited',
+
+  /* Объявление во весь экран: показали и что с ним сделали. */
+  NEWS_SHOWN: 'news_shown',
+  NEWS_ACTED: 'news_acted',
 });
 
 /** Окружения разделены, чтобы локальная разработка не будила прод-алерты. */

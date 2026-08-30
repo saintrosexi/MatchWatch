@@ -20,7 +20,7 @@ import { DeckCoach, coachSeen } from '../features/deck/DeckCoach.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
 import { PremiumSheet } from '../features/premium/PremiumSheet.jsx';
 import { usePremium } from '../hooks/usePremium.js';
-import { NewsBanner } from '../features/news/NewsBanner.jsx';
+import { NewsScreen } from '../features/news/NewsScreen.jsx';
 import { bannerNews } from '../../shared/config/news.js';
 import { MeView } from '../features/profile/MeView.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
@@ -123,28 +123,48 @@ export default function App() {
   const [userState, setUserState] = useState(null);
   const [showcaseOpen, setShowcaseOpen] = useState(false);
   const [premiumOpen, setPremiumOpen] = useState(false);
-  /* Что человек уже прочитал. Хранится на устройстве — см. STORAGE_KEYS. */
-  const [seenNews, setSeenNews] = useState(() => loadLocal(STORAGE_KEYS.NEWS_SEEN, []));
+  /**
+   * Объявление, которое человек ещё не видел.
+   *
+   * Одно на обновление и только помеченное `banner: true` в конфиге
+   * новостей. Всё остальное живёт в «Что нового» и никого не перебивает.
+   */
+  const [announced, setAnnounced] = useState(null);
 
   /*
-   * Новость показывается один раз и больше не возвращается.
+   * Прочитанное гасится, но остаётся на месте.
    *
-   * Отметку ставим и при открытии, и при закрытии: человек, который
-   * прочитал и пошёл смотреть, не должен получить ту же полоску
-   * при следующем заходе — он на неё уже ответил.
+   * Блок «что нового» постоянный, как в банковских приложениях: разовое
+   * уведомление живёт до первого касания, и закрывший его не глядя
+   * больше никогда не узнает, что там было.
    */
-  const unreadNews = useMemo(() => {
+  /*
+   * Показ решается один раз, при первом рендере после входа.
+   *
+   * Не в `useMemo` от `seenNews`: иначе объявление исчезло бы в тот же
+   * миг, когда мы пометили его прочитанным, — вместе с открытой поверх
+   * него витриной. Решение принимается один раз и живёт до закрытия.
+   */
+  useEffect(() => {
     const item = bannerNews();
-    return item && !seenNews.includes(item.id) ? item : null;
-  }, [seenNews]);
+    if (item && !loadLocal(STORAGE_KEYS.NEWS_SEEN, []).includes(item.id)) {
+      setAnnounced(item);
+    }
+  }, []);
 
+  /*
+   * Прочитанное пишем прямо в хранилище, без состояния в React.
+   *
+   * Состояние здесь ничего не рисует: объявление одно, решение о показе
+   * принято при входе, а список прочитанного нужен только следующему
+   * запуску. Лишний `useState` заставлял бы перерисовывать всё
+   * приложение ради значения, которого никто не читает.
+   */
   const markNewsSeen = useCallback((item) => {
-    setSeenNews((prev) => {
-      if (prev.includes(item.id)) return prev;
-      const next = [...prev, item.id];
-      saveLocal(STORAGE_KEYS.NEWS_SEEN, next);
-      return next;
-    });
+    if (!item) return;
+    const seen = loadLocal(STORAGE_KEYS.NEWS_SEEN, []);
+    if (seen.includes(item.id)) return;
+    saveLocal(STORAGE_KEYS.NEWS_SEEN, [...seen, item.id]);
   }, []);
   /*
    * Режим подачи ленты. Живёт в памяти сессии и никуда не сохраняется:
@@ -958,20 +978,6 @@ export default function App() {
     buildSharedDeck, deckBuilding,
   });
 
-  const newsBanner = unreadNews ? (
-    <NewsBanner
-      key={unreadNews.id}
-      item={unreadNews}
-      onDismiss={markNewsSeen}
-      onOpen={(item) => {
-        markNewsSeen(item);
-        // Запись про подписку ведёт прямо в витрину: она и есть ответ
-        // на вопрос «что нового», а лишний экран между ними — трение.
-        if (item.action === 'premium') setPremiumOpen(true);
-        else setView(VIEW.NEWS);
-      }}
-    />
-  ) : null;
 
   const statusStrip = renderStatus({
     online, room, roomSession, deckMode, auth, pendingWrites,
@@ -984,10 +990,6 @@ export default function App() {
    * и существует — узкие сообщения над содержимым, которые не двигают
    * вёрстку экрана.
    */
-  const topStrip = (newsBanner || statusStrip) ? (
-    <>{newsBanner}{statusStrip}</>
-  ) : null;
-
   const shellProps = { active: view, onNavigate: navigate, user: sessionUser, online };
 
   return (
@@ -1025,7 +1027,7 @@ export default function App() {
             {view === VIEW.DECK ? (
               <div className="cinema">
                 <div className="cinema__deck">
-                  {topStrip}
+                  {statusStrip}
                   {deckPanel}
                 </div>
                 <aside className="cinema__panel">
@@ -1043,7 +1045,7 @@ export default function App() {
             {...shellProps}
             nav={nav}
             fixed={view === VIEW.DECK}
-            statusStrip={topStrip}
+            statusStrip={statusStrip}
             toolbar={view === VIEW.DECK && (
               <>
                 {/* Переключатель по центру: он меняет саму ленту.
@@ -1095,6 +1097,20 @@ export default function App() {
           premium={premium.premium}
           onOpenPremium={() => { setShowcaseOpen(false); setPremiumOpen(true); }}
           onSaved={(saved) => setUserState((prev) => (prev ? { ...prev, profile: saved ?? prev.profile } : prev))}
+        />
+
+        <NewsScreen
+          item={announced}
+          onClose={() => { markNewsSeen(announced); setAnnounced(null); }}
+          onAction={() => {
+            markNewsSeen(announced);
+            setAnnounced(null);
+            // Объявление про подписку ведёт в витрину: она и есть ответ
+            // на вопрос «что нового», лишний экран между ними — трение.
+            if (announced?.action === 'premium') setPremiumOpen(true);
+            else setView(VIEW.NEWS);
+          }}
+          onOpenAll={() => { markNewsSeen(announced); setAnnounced(null); setView(VIEW.NEWS); }}
         />
 
         <PremiumSheet

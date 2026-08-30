@@ -1027,68 +1027,6 @@
 
 /* ── Что нового ──────────────────────────────────────────────────── */
 
-/*
- * Полоска над лентой, а не модальное окно на входе.
- *
- * Человек открыл приложение выбрать кино, а не читать нас. Модалка
- * гарантированно портит первую секунду; полоску он прочитает, если
- * захочет, и закроет одним движением, если нет.
- */
-.news-banner {
-  display: flex;
-  align-items: stretch;
-  gap: var(--s-2);
-  margin: 0 var(--s-3);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  background: var(--glass-bg);
-  overflow: hidden;
-  animation: news-in var(--dur-base) var(--ease-out) both;
-}
-.news-banner__body {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  flex: 1;
-  min-width: 0;
-  padding: var(--s-3);
-  text-align: left;
-  color: inherit;
-  cursor: pointer;
-}
-.news-banner__icon {
-  display: grid;
-  place-items: center;
-  width: 34px; height: 34px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--gold-soft);
-  color: var(--gold);
-}
-.news-banner__title { font-size: var(--t-small); }
-.news-banner__lead {
-  font-size: var(--t-micro);
-  color: var(--text-mid);
-  /* Одна строка: полоска не должна разрастаться и толкать колоду вниз. */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.news-banner__close {
-  flex: 0 0 auto;
-  padding: 0 var(--s-3);
-  color: var(--text-low);
-}
-.news-banner__close:hover { color: var(--text-hi); }
-
-@keyframes news-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .news-banner { animation: none; }
-}
-
 .news-list { display: flex; flex-direction: column; gap: var(--s-5); }
 .news-entry {
   display: flex;
@@ -1133,3 +1071,176 @@
   color: var(--text-hi);
 }
 .news-entry__list li::marker { color: var(--gold); }
+
+/* ── Объявление во весь экран ────────────────────────────────────── */
+
+/*
+ * Занимает экран целиком, а не появляется полоской или шторкой.
+ *
+ * Это дорогой приём: единственный момент, когда мы отнимаем у человека
+ * то, зачем он пришёл. Поэтому оно одно на обновление, закрывается
+ * в одно касание и больше не возвращается.
+ */
+.announce {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  padding: calc(var(--safe-top) + var(--s-8)) var(--s-5) calc(var(--safe-bottom) + var(--s-5));
+  background: var(--ink-void);
+  overflow-y: auto;
+  animation: announce-in var(--dur-base) var(--ease-out) both;
+}
+
+/* Свет сверху: экран без него читается как страница ошибки. */
+.announce__glow {
+  position: absolute;
+  inset: -30% -20% auto;
+  height: 60%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,194,75,.22), transparent 65%);
+}
+.announce[data-tag='feature'] .announce__glow {
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,77,94,.20), transparent 65%);
+}
+
+.announce__close {
+  position: absolute;
+  top: calc(var(--safe-top) + var(--s-4));
+  right: var(--s-4);
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  color: var(--text-mid);
+  z-index: 1;
+}
+.announce__close:hover { color: var(--text-hi); }
+
+.announce__body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.announce__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+.announce[data-tag='feature'] .announce__badge { background: var(--coral-soft); color: var(--coral); }
+
+.announce__crest {
+  display: grid;
+  place-items: center;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  color: var(--gold);
+  background: radial-gradient(circle, var(--gold-soft), transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+.announce[data-tag='feature'] .announce__crest {
+  color: var(--coral);
+  background: radial-gradient(circle, var(--coral-soft), transparent 72%);
+  border-color: color-mix(in srgb, var(--coral) 35%, transparent);
+}
+
+.announce__title {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.announce__lead { color: var(--text-mid); font-size: var(--t-head); line-height: 1.4; }
+.announce__text { color: var(--text-mid); font-size: var(--t-small); line-height: 1.55; }
+
+/* Зачёркнутая цена и ноль — в одной строке, на одной базовой линии. */
+.announce__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.announce__price-was {
+  font-family: var(--font-mono);
+  font-size: var(--t-head);
+  color: var(--text-low);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.announce__price-now {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  background: var(--grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.announce__price-note { font-size: var(--t-small); color: var(--gold); }
+
+.announce__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  width: 100%;
+  text-align: left;
+}
+.announce__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  font-size: var(--t-small);
+  line-height: 1.45;
+  color: var(--text-hi);
+}
+.announce__list svg { color: var(--gold); flex: 0 0 auto; margin-top: 3px; }
+
+.announce__fineprint {
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--text-low);
+}
+
+.announce__actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+@keyframes announce-in {
+  from { opacity: 0; transform: scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .announce { animation: none; }
+}
