@@ -60,6 +60,7 @@ export {
   ShareNetwork as Share2,
   SlidersHorizontal,
   Sparkle as Sparkles,
+  Wrench,
   Star,
   Trash as Trash2,
   UserMinus,

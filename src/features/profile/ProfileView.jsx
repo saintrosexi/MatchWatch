@@ -20,7 +20,7 @@ export function ProfileView({
   user, taste, access, matches = {}, favorites = {}, ratings = {},
   prefs, onPrefsChange, onLogout, onOpenDashboard, onOpenTitle,
   onEditProfile, onEditShowcase, onOpenFriends, profile, auth, toasts,
-  premium, onOpenPremium,
+  premium, onOpenPremium, onOpenNews,
 }) {
   const [showAllTags, setShowAllTags] = useState(false);
   const tags = useMemo(() => topTags(taste, showAllTags ? 40 : 14), [taste, showAllTags]);
@@ -283,6 +283,11 @@ export function ProfileView({
       </section>
 
       <div className="row gap-3">
+        {onOpenNews && (
+          <button type="button" className="btn btn--ghost" onClick={onOpenNews}>
+            <Sparkles size={16} /> Что нового
+          </button>
+        )}
         {onOpenDashboard && (
           <button type="button" className="btn btn--ghost" onClick={onOpenDashboard}>
             <BarChart3 size={16} /> Метрики

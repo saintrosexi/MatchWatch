@@ -20,6 +20,8 @@ import { DeckCoach, coachSeen } from '../features/deck/DeckCoach.jsx';
 import { VaultView } from '../features/vault/VaultView.jsx';
 import { PremiumSheet } from '../features/premium/PremiumSheet.jsx';
 import { usePremium } from '../hooks/usePremium.js';
+import { NewsBanner } from '../features/news/NewsBanner.jsx';
+import { bannerNews } from '../../shared/config/news.js';
 import { MeView } from '../features/profile/MeView.jsx';
 import { AuthScreen } from '../features/auth/AuthScreen.jsx';
 
@@ -44,6 +46,8 @@ const ProfileEditor = lazy(retryChunk(() => import('../features/profile/ProfileE
   .then((m) => ({ default: m.ProfileEditor })), 'ProfileEditor'));
 const ShowcaseEditor = lazy(retryChunk(() => import('../features/profile/ShowcaseEditor.jsx')
   .then((m) => ({ default: m.ShowcaseEditor })), 'ShowcaseEditor'));
+const WhatsNewView = lazy(retryChunk(() => import('../features/news/WhatsNewView.jsx')
+  .then((m) => ({ default: m.WhatsNewView })), 'WhatsNewView'));
 const PublicProfileView = lazy(retryChunk(() => import('../features/profile/PublicProfileView.jsx')
   .then((m) => ({ default: m.PublicProfileView })), 'PublicProfileView'));
 const DashboardView = lazy(retryChunk(() => import('../features/profile/DashboardView.jsx')
@@ -91,6 +95,8 @@ const VIEW = {
   /** «Я» — профиль и друзья под одной вкладкой. */
   ME: 'me',
   PUBLIC_PROFILE: 'public-profile',
+  /** Что нового — история обновлений продукта. */
+  NEWS: 'news',
   DASHBOARD: 'dashboard',
 };
 
@@ -117,6 +123,29 @@ export default function App() {
   const [userState, setUserState] = useState(null);
   const [showcaseOpen, setShowcaseOpen] = useState(false);
   const [premiumOpen, setPremiumOpen] = useState(false);
+  /* Что человек уже прочитал. Хранится на устройстве — см. STORAGE_KEYS. */
+  const [seenNews, setSeenNews] = useState(() => loadLocal(STORAGE_KEYS.NEWS_SEEN, []));
+
+  /*
+   * Новость показывается один раз и больше не возвращается.
+   *
+   * Отметку ставим и при открытии, и при закрытии: человек, который
+   * прочитал и пошёл смотреть, не должен получить ту же полоску
+   * при следующем заходе — он на неё уже ответил.
+   */
+  const unreadNews = useMemo(() => {
+    const item = bannerNews();
+    return item && !seenNews.includes(item.id) ? item : null;
+  }, [seenNews]);
+
+  const markNewsSeen = useCallback((item) => {
+    setSeenNews((prev) => {
+      if (prev.includes(item.id)) return prev;
+      const next = [...prev, item.id];
+      saveLocal(STORAGE_KEYS.NEWS_SEEN, next);
+      return next;
+    });
+  }, []);
   /*
    * Режим подачи ленты. Живёт в памяти сессии и никуда не сохраняется:
    * это выбор настроения на вечер, а не свойство человека. Перезашёл —
@@ -929,12 +958,36 @@ export default function App() {
     buildSharedDeck, deckBuilding,
   });
 
+  const newsBanner = unreadNews ? (
+    <NewsBanner
+      key={unreadNews.id}
+      item={unreadNews}
+      onDismiss={markNewsSeen}
+      onOpen={(item) => {
+        markNewsSeen(item);
+        // Запись про подписку ведёт прямо в витрину: она и есть ответ
+        // на вопрос «что нового», а лишний экран между ними — трение.
+        if (item.action === 'premium') setPremiumOpen(true);
+        else setView(VIEW.NEWS);
+      }}
+    />
+  ) : null;
+
   const statusStrip = renderStatus({
     online, room, roomSession, deckMode, auth, pendingWrites,
     onOpenRoom: () => navigate(VIEW.ROOMS),
   });
 
   const navigate = (key) => { haptic('select'); setActorDeck(null); setView(key); };
+  /*
+   * Полоска встаёт в тот же слот, что и строка состояния: он для того
+   * и существует — узкие сообщения над содержимым, которые не двигают
+   * вёрстку экрана.
+   */
+  const topStrip = (newsBanner || statusStrip) ? (
+    <>{newsBanner}{statusStrip}</>
+  ) : null;
+
   const shellProps = { active: view, onNavigate: navigate, user: sessionUser, online };
 
   return (
@@ -972,7 +1025,7 @@ export default function App() {
             {view === VIEW.DECK ? (
               <div className="cinema">
                 <div className="cinema__deck">
-                  {statusStrip}
+                  {topStrip}
                   {deckPanel}
                 </div>
                 <aside className="cinema__panel">
@@ -990,7 +1043,7 @@ export default function App() {
             {...shellProps}
             nav={nav}
             fixed={view === VIEW.DECK}
-            statusStrip={statusStrip}
+            statusStrip={topStrip}
             toolbar={view === VIEW.DECK && (
               <>
                 {/* Переключатель по центру: он меняет саму ленту.
@@ -1223,12 +1276,21 @@ function renderView(ctx) {
           onPrefsChange={(patch) => setPrefs((p) => ({ ...p, ...patch }))}
           onLogout={auth.logout}
           onOpenDashboard={() => setView(VIEW.DASHBOARD)}
+          onOpenNews={() => setView(VIEW.NEWS)}
           onEditProfile={() => setEditorOpen(true)}
           premium={premium}
           onOpenPremium={() => setPremiumOpen(true)}
           onOpenPublicProfile={(username) => { setPublicProfile(username); setView(VIEW.PUBLIC_PROFILE); }}
           auth={auth}
           toasts={toasts}
+        />
+      );
+
+    case VIEW.NEWS:
+      return (
+        <WhatsNewView
+          onBack={() => setView(VIEW.ME)}
+          onOpenPremium={() => setPremiumOpen(true)}
         />
       );
 
