@@ -88,7 +88,7 @@ export function ProfileView({
 
         {profile?.bio && <p className="public-profile__bio" style={{ textAlign: 'left' }}>{profile.bio}</p>}
 
-        <div className="row gap-2">
+        <div className="row row--wrap gap-2">
           <button type="button" className="btn btn--ghost btn--sm" onClick={onEditProfile}>
             <Pencil size={16} /> Редактировать
           </button>
@@ -282,7 +282,7 @@ export function ProfileView({
         </div>
       </section>
 
-      <div className="row gap-3">
+      <div className="row row--wrap gap-3">
         {onOpenNews && (
           <button type="button" className="btn btn--ghost" onClick={onOpenNews}>
             <Sparkles size={16} /> Что нового

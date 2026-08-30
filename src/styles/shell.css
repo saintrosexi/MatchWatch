@@ -27,6 +27,14 @@
      экрана только съедает высоту, которой на телефоне и так мало. */
   padding-top: 0;
   overflow-y: auto;
+  /*
+   * `clip`, а не `visible`: по спецификации `overflow-y: auto` при
+   * `overflow-x: visible` превращает горизонталь в `auto` сама. Из-за
+   * этого любой элемент шире экрана — длинное слово, ряд кнопок —
+   * делал приложение прокручиваемым вбок. `clip` этого не допускает
+   * и, в отличие от `hidden`, не создаёт второго контейнера прокрутки.
+   */
+  overflow-x: clip;
   overscroll-behavior-y: contain;
 }
 .mobile-shell__main--fixed { overflow: hidden; padding-bottom: var(--dock-h); }
