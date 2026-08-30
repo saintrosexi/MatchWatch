@@ -79,7 +79,10 @@ import { JOIN_SOURCE, roomExcludedTitles } from '../engine/rooms.js';
 import { loadLocal, saveLocal, STORAGE_KEYS } from '../lib/storage.js';
 import { subscribeNetwork } from '../lib/network.js';
 import { startOutbox, subscribeOutbox, flushOutbox } from '../lib/outbox.js';
-import { setHapticsEnabled, getStartRoomCode, enableClosingConfirmation, haptic } from '../lib/telegram.js';
+import {
+  setHapticsEnabled, getStartRoomCode, getStartDestination, enableClosingConfirmation, haptic,
+} from '../lib/telegram.js';
+import { DESTINATION } from '../../shared/model/startParam.js';
 import { setSoundEnabled } from '../lib/sound.js';
 import { trackError, trackMetric, breadcrumb } from '../lib/telemetry.js';
 import { LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
@@ -345,6 +348,30 @@ export default function App() {
 
     return () => { alive = false; unsubscribe?.(); stopConfig?.(); };
   }, [user?.uid, platform.shell, platform.telegram]);
+
+  /*
+   * ── Кнопки бота-навигатора: открыться сразу на нужном экране ──
+   *
+   * Отдельно от deep-link в комнату: там нужно ВОЙТИ в комнату, здесь —
+   * только показать раздел. Смешивать нельзя, иначе «покажи ленту»
+   * пыталось бы куда-то вступить.
+   *
+   * Премиум — не экран, а витрина поверх ленты: бот обещает показать
+   * подписку, и человек должен увидеть именно её, а не вкладку профиля,
+   * где она где-то есть.
+   */
+  const destinationHandled = useRef(false);
+  useEffect(() => {
+    if (destinationHandled.current || !auth.isReady || !user?.uid) return;
+    const to = getStartDestination();
+    if (!to) return;
+
+    destinationHandled.current = true;
+    breadcrumb(`бот: открыть раздел ${to}`);
+
+    if (to === DESTINATION.PREMIUM) setPremiumOpen(true);
+    else setView(to);
+  }, [auth.isReady, user?.uid]);
 
   /* ── Deep-link в комнату: ?room=CODE или Telegram start_param ── */
   const deepLinkHandled = useRef(false);

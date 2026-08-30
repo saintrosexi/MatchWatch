@@ -88,6 +88,12 @@ export const setupHandler = withHandler({ methods: ['GET', 'POST'], module: MODU
   const commands = await callBot('setMyCommands', {
     commands: [
       { command: 'start', description: 'Открыть MatchWatch' },
+      { command: 'menu', description: 'Все разделы кнопками' },
+      { command: 'kino', description: 'Лента: свайпать кино' },
+      { command: 'vmeste', description: 'Смотрим вместе: комната на двоих' },
+      { command: 'moe', description: 'Мои списки и оценки' },
+      { command: 'new', description: 'Что нового в приложении' },
+      { command: 'premium', description: 'Подписка MatchWatch' },
       { command: 'help', description: 'Что я умею' },
       { command: 'stop', description: 'Выключить уведомления' },
     ],

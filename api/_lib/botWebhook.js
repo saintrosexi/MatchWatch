@@ -17,8 +17,9 @@ import { withHandler, ApiError } from './http.js';
 import { sbSelect, sbInsert, sbUpdate, hasServiceKey } from './supabaseAdmin.js';
 import {
   sendMessage, openAppButton, answerInlineQuery, appLink, linkButton, miniAppUrl,
-  callBot, TEXTS,
+  callBot, navKeyboard, TEXTS,
 } from './botApi.js';
+import { DESTINATION } from '../../shared/model/startParam.js';
 import { logError, logMetric } from './telemetry.js';
 import { creditPayment } from './billing.js';
 import { BIZ, LEVEL, METRIC, MODULE } from '../../shared/telemetry/events.js';
@@ -115,12 +116,79 @@ async function handleUpdate(update) {
   }
 
   if (command === '/help') {
-    await sendMessage(chatId, TEXTS.help, { keyboard: openAppButton() });
+    await sendMessage(chatId, TEXTS.help, { keyboard: navMenu() });
+    return;
+  }
+
+  if (command === '/menu') {
+    await sendMessage(chatId, TEXTS.menu, { keyboard: navMenu() });
+    return;
+  }
+
+  /*
+   * Короткие команды на каждый раздел.
+   *
+   * Меню кнопками есть, но человек, который знает, куда идёт, набирает
+   * «/vmeste» быстрее, чем ищет кнопку глазами. Названия русские
+   * латиницей: Telegram не принимает кириллицу в командах.
+   */
+  const shortcut = SHORTCUTS[command];
+  if (shortcut) {
+    await sendMessage(chatId, shortcut.text, {
+      keyboard: openAppButton(shortcut.button, { startParam: shortcut.to }),
+    });
     return;
   }
 
   await sendMessage(chatId, TEXTS.fallback, { keyboard: openAppButton() });
 }
+
+/* ── Навигация ───────────────────────────────────────────────────── */
+
+/**
+ * Разделы, до которых бот довозит.
+ *
+ * Порядок — по частоте, а не по структуре приложения: лента первой,
+ * потому что за ней приходят чаще всего, премиум последним, потому что
+ * за ним не приходят вовсе — его открывают, когда уже что-то поняли.
+ */
+const navMenu = () => navKeyboard([
+  { text: '🎬 Лента', to: DESTINATION.DECK },
+  { text: '👀 Смотрим вместе', to: DESTINATION.ROOMS },
+  { text: '🔖 Моё', to: DESTINATION.MINE },
+  { text: '📚 Каталог', to: DESTINATION.COLLECTION },
+  { text: '✨ Что нового', to: DESTINATION.NEWS },
+  { text: '👑 Премиум', to: DESTINATION.PREMIUM },
+]);
+
+/** Команда → куда ведёт и что сказать по дороге. */
+const SHORTCUTS = {
+  '/kino': {
+    to: DESTINATION.DECK,
+    button: 'Открыть ленту',
+    text: 'Лента ждёт. Свайп вправо — нравится, влево — мимо, вверх — уже смотрел.',
+  },
+  '/vmeste': {
+    to: DESTINATION.ROOMS,
+    button: 'Смотрим вместе',
+    text: 'Создайте комнату и пришлите код второму — свайпать будете каждый со своего телефона.',
+  },
+  '/moe': {
+    to: DESTINATION.MINE,
+    button: 'Открыть «Моё»',
+    text: 'Всё, про что решение уже принято: отложенное, просмотренное, оценки и мэтчи.',
+  },
+  '/new': {
+    to: DESTINATION.NEWS,
+    button: 'Что нового',
+    text: 'Здесь мы пишем про каждое заметное обновление.',
+  },
+  '/premium': {
+    to: DESTINATION.PREMIUM,
+    button: 'Посмотреть премиум',
+    text: 'Подписка снимает границы бесплатного тарифа. На время закрытого теста — бесплатно.',
+  },
+};
 
 /* ── Оплата звёздами ─────────────────────────────────────────────── */
 

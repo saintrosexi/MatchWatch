@@ -15,6 +15,7 @@
 import { trackBusiness, trackError } from './telemetry.js';
 import { BIZ, LEVEL, MODULE } from '../../shared/telemetry/events.js';
 import { normalizeRoomCode } from '../../shared/model/roomCode.js';
+import { parseStartParam } from '../../shared/model/startParam.js';
 import { ENV } from './env.js';
 
 const wa = () => globalThis.Telegram?.WebApp ?? null;
@@ -107,11 +108,25 @@ export const getInitData = () => wa()?.initData ?? null;
 export const getTelegramUser = () => wa()?.initDataUnsafe?.user ?? null;
 
 /** Код комнаты из deep-link `t.me/<bot>/<app>?startapp=CODE`. */
+const rawStartParam = () => wa()?.initDataUnsafe?.start_param
+  ?? new URLSearchParams(globalThis.location?.search ?? '').get('tgWebAppStartParam');
+
 export function getStartRoomCode() {
-  const app = wa();
-  const raw = app?.initDataUnsafe?.start_param
-    ?? new URLSearchParams(globalThis.location?.search ?? '').get('tgWebAppStartParam');
-  return normalizeRoomCode(raw);
+  return normalizeRoomCode(rawStartParam());
+}
+
+/**
+ * Раздел, на котором нужно открыться, — из кнопок бота-навигатора.
+ *
+ * Тот же `start_param`, что и у приглашения в комнату: код — пять цифр,
+ * назначение — слово, пересечься они не могут. Разбор один на бота
+ * и приложение, иначе кнопка ведёт не туда, куда обещает подпись.
+ *
+ * @returns {string|null} значение из `DESTINATION` или null
+ */
+export function getStartDestination() {
+  const parsed = parseStartParam(rawStartParam());
+  return parsed?.kind === 'view' ? parsed.to : null;
 }
 
 /* ── Тактильный отклик ─────────────────────────────────────────── */
