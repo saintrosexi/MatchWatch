@@ -13,10 +13,11 @@ import { PREMIUM_CONFIG } from '../../../shared/config/premium.js';
  * сейчас человек не платит. Без перечёркнутой суммы «бесплатно»
  * не сообщает ценности, а без нуля рядом — выглядит как счёт.
  *
- * Отдельное решение — показывать витрину даже тем, у кого премиум уже
- * есть. Сейчас он выдан всем, и спрятать окно значило бы не собрать
- * ровно тот сигнал, ради которого всё и делалось: сколько людей
- * доходят до кнопки и нажимают её.
+ * Премиум сейчас не выдан всем — он стоит ноль рублей и берётся
+ * нажатием. Разница принципиальная: выданное молча человек не замечает
+ * и ничего этим не сообщает, а нажатие — это решение, которое можно
+ * посчитать. Сколько дошли до витрины, сколько активировали, сколько
+ * вернутся, когда цена перестанет быть нулевой.
  */
 export function PremiumSheet({ open, onClose, premium, promoAvailable, daysLeft, busy, onActivate, onPurchase, toasts }) {
   const { price, promo, benefits } = PREMIUM_CONFIG;
@@ -64,9 +65,7 @@ export function PremiumSheet({ open, onClose, premium, promoAvailable, daysLeft,
             <span className="stack gap-1">
               <b>Премиум активен</b>
               <span className="faint premium-state__note">
-                {daysLeft > 0
-                  ? `Осталось ${daysLeft} дн.`
-                  : 'Открыт всем на время закрытого теста'}
+                Осталось {daysLeft} дн.
               </span>
             </span>
           </div>

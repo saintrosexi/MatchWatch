@@ -40,6 +40,36 @@ export function ProfileView({
 
   return (
     <div className="view">
+      <section className="section">
+        <h2 className="section__title">Премиум</h2>
+        {/*
+          * Первым блоком экрана — по решению от 31.08.2026.
+          *
+          * Премиум сейчас не выдан всем, а стоит ноль рублей и берётся
+          * нажатием. Значит нажатие и есть то, что мы измеряем, — а то,
+          * что измеряют, не прячут под настройки звука. Ниже по экрану
+          * до него доходили бы единицы, и первая волна не сказала бы
+          * о готовности платить ничего.
+          */}
+        <button type="button" className="member" style={{ cursor: 'pointer', width: '100%' }} onClick={onOpenPremium}>
+          <Crown size={20} color={premium?.premium ? 'var(--gold)' : 'var(--text-mid)'} weight={premium?.premium ? 'fill' : 'regular'} />
+          <span className="stack grow" style={{ textAlign: 'left' }}>
+            <span className="member__name">
+              {premium?.premium ? 'Премиум активен' : 'Подключить премиум'}
+            </span>
+            <span className="member__state">
+              {premium?.premium
+                ? `Осталось ${premium.daysLeft} дн. · оформление профиля открыто`
+                : premium?.promoAvailable
+                  /* Ноль называем вслух: «подключить» без цены звучит как счёт. */
+                  ? `${PREMIUM_CONFIG.price.label} → 0 ₽ на первый месяц`
+                  : `${PREMIUM_CONFIG.price.label} или ${PREMIUM_CONFIG.price.stars} звёзд в месяц`}
+            </span>
+          </span>
+          {premium?.promoAvailable && <span className="chip chip--gold">месяц бесплатно</span>}
+        </button>
+      </section>
+
       <header className="stack gap-4">
         <div className="row gap-4">
           {(profile?.photo_url ?? user.photoURL)
@@ -223,34 +253,6 @@ export function ProfileView({
         <p className="faint" style={{ fontSize: 'var(--t-small)' }}>
           Находится в работе, ожидайте.
         </p>
-      </section>
-
-      <section className="section">
-        <h2 className="section__title">Премиум</h2>
-        {/*
-          * Одна строка, а не баннер во весь экран.
-          *
-          * Пока подписка выдана всем, крупная витрина на главном экране
-          * профиля была бы рекламой того, что у человека и так есть, —
-          * это раздражает и обесценивает саму подписку. Строка сообщает
-          * состояние и открывает витрину тем, кто сам захотел посмотреть.
-          */}
-        <button type="button" className="member" style={{ cursor: 'pointer', width: '100%' }} onClick={onOpenPremium}>
-          <Crown size={20} color={premium?.premium ? 'var(--gold)' : 'var(--text-mid)'} weight={premium?.premium ? 'fill' : 'regular'} />
-          <span className="stack grow" style={{ textAlign: 'left' }}>
-            <span className="member__name">
-              {premium?.premium ? 'Премиум активен' : 'Подключить премиум'}
-            </span>
-            <span className="member__state">
-              {premium?.premium
-                ? (premium.daysLeft > 0
-                  ? `Осталось ${premium.daysLeft} дн. · оформление профиля открыто`
-                  : 'Открыт всем на время закрытого теста')
-                : `Оформление профиля и визитка на 12 фильмов · ${PREMIUM_CONFIG.price.label}`}
-            </span>
-          </span>
-          {premium?.promoAvailable && <span className="chip chip--gold">месяц бесплатно</span>}
-        </button>
       </section>
 
       <section className="section">
